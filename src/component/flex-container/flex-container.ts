@@ -3,8 +3,8 @@ import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {ImgComponent} from '../../atoms/img/component';
 import {AbstractInputData, FlexContainer} from '../../interface/atoms';
-import {AbstractComponent} from '../abstract/abstract-component';
-import {ComponentLoader} from '../abstract/component-loader';
+import {AbstractComponent} from '../../abstract/abstract-component';
+import {ComponentLoader} from '../../abstract/component-loader';
 
 const componentCSS = require('./flex-container.scss');
 

@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from './abstract/abstract-component';
+import { AbstractComponent } from '../abstract/abstract-component';
 import { ECommerceItem, ECommerceTileList, Icon } from '../interface/atoms';
 
 const componentCSS = require('./e-commerce-tile-list.scss');

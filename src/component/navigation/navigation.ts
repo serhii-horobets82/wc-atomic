@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/abstract-component";
 import {Navigation, NavigationLink} from "../../interface/atoms";
 
 const componentCSS = require('./navigation.scss');

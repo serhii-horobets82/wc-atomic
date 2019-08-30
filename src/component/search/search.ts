@@ -1,5 +1,5 @@
 import {css, customElement, html, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/abstract-component';
 import {KeyValueOutputData} from '../form/form';
 import {TextfieldComponent} from '../textfield/textfield';
 import {Search} from "../../interface/atoms";

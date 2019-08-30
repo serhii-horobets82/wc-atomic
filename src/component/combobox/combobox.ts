@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {AbstractComponent} from "../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/abstract-component";
 import {KeyValueOutputData} from "../form/form";
 import {Combobox, ComboboxOption} from "../../interface/atoms";
 

@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../component/abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/abstract-component';
 import {ImgModel} from "./model";
 
 const componentCSS = require('./component.css');

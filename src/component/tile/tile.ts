@@ -1,6 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { Tile } from '../../interface/atoms';
-import { AbstractComponent } from '../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/abstract-component';
 
 const componentCSS = require('./tile.scss');
 

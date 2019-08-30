@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from './abstract/abstract-component';
+import { AbstractComponent } from '../abstract/abstract-component';
 import {Button, ECommerceItem} from '../interface/atoms';
 import { ButtonComponent } from './button/button';
 import {ImgModel} from "../atoms/img/model";

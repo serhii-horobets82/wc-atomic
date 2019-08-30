@@ -1,6 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import {
-   AbstractComponent} from '../abstract/abstract-component';
+   AbstractComponent} from '../../abstract/abstract-component';
 import { LinkComponent } from '../link/link';
 import {AbstractInputData} from "../../interface/atoms";
 

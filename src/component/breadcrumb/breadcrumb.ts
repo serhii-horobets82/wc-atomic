@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/abstract-component';
 import { Breadcrumb, Link } from '../../interface/atoms';
 import { LinkComponent } from '../link/link';
 import { guard } from 'lit-html/directives/guard';

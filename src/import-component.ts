@@ -1,4 +1,4 @@
-import './component/abstract/abstract-component';
+import './abstract/abstract-component';
 
 import './component/h/h';
 import './component/button/button';
@@ -22,4 +22,4 @@ import './component/tile/tile'
 import './component/e-commerce-item-view'
 import './component/e-commerce-tile-list'
 
-import './component/abstract/component-loader';
+import './abstract/component-loader';

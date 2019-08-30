@@ -1,12 +1,12 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/abstract-component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../text/text';
 import {IconComponent} from '../icon/icon';
 import {TextfieldComponent} from '../textfield/textfield';
 import {ImgComponent} from '../../atoms/img/component';
-import {ComponentLoader} from '../abstract/component-loader';
+import {ComponentLoader} from '../../abstract/component-loader';
 import {Column, Icon, Row, TableHeader, Table, Textfield, Text} from "../../interface/atoms";
 import {ImgModel} from "../../atoms/img/model";
 

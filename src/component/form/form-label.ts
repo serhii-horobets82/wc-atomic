@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/abstract-component';
 import {TextfieldComponent} from '../textfield/textfield';
-import {ComponentLoader} from '../abstract/component-loader';
+import {ComponentLoader} from '../../abstract/component-loader';
 import {FormElement} from "../../interface/atoms";
 
 const componentCSS = require('./form-label.scss');

@@ -1,10 +1,10 @@
 import {html, LitElement, property, TemplateResult} from 'lit-element';
-import {AbstractComponent} from '../../component/abstract/abstract-component';
+import {AbstractComponent} from '../abstract-component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {ComponentLoader} from '../../component/abstract/component-loader';
+import {ComponentLoader} from '../component-loader';
 import {TemplateModel} from "./model";
-import {DefaultTemplateModel} from "../default/model";
+import {DefaultTemplateModel} from "../../templates/default/model";
 
 export abstract class Template<TEMPLATE_MODEL extends TemplateModel, OUTPUT_DATA> extends AbstractComponent<TEMPLATE_MODEL, OUTPUT_DATA> {
 

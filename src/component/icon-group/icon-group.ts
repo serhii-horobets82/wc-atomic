@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/abstract-component';
 import {IconGroup, Icon, Link} from '../../interface/atoms';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';

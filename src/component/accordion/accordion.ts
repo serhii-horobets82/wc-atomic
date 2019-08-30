@@ -1,9 +1,9 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
-import {AbstractComponent} from '../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/abstract-component';
 import {TextComponent} from '../text/text';
-import {ComponentLoader} from '../abstract/component-loader';
+import {ComponentLoader} from '../../abstract/component-loader';
 import {Accordion, AccordionItem} from "../../interface/atoms";
 
 const componentCSS = require('./accordion.scss');

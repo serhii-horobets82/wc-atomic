@@ -1,15 +1,15 @@
 import './index.scss';
 
-import './import-atoms';
+import './atoms/import-atoms';
 import './import-component';
 import './import-compound-component';
 
 import './import-templates';
 
 
-import './abstract-app';
+import './abstract/abstract-app';
 
-export * from './abstract-app';
+export * from './abstract/abstract-app';
 
 
 import './app/pages/form';

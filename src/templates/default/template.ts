@@ -1,6 +1,6 @@
 import {css, html, property, query, unsafeCSS} from 'lit-element';
 import {NavigationComponent} from "../../component/navigation/navigation";
-import {Template} from "../base/template";
+import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../component/data-protection/data-protection";
 import {Navigation} from "../../interface/atoms";
 import {ToolbarComponent} from "../../component/toolbar/toolbar";

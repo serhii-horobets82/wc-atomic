@@ -1,5 +1,5 @@
 import { LitElement, property } from 'lit-element';
-import { AbstractInputData } from '../../interface/atoms';
+import { AbstractInputData } from '../interface/atoms';
 
 export abstract class AbstractComponent<
    INPUT_DATA extends AbstractInputData,

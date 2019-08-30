@@ -3,7 +3,7 @@ import {DefaultTemplate} from "../../templates/default/template";
 import {FlexContainer} from "../../interface/atoms";
 import {FlexComponent} from "../../component/flex-container/flex-container";
 import {NavigationComponent} from "../../component/navigation/navigation";
-import {TemplateModel} from "../../templates/base/model";
+import {TemplateModel} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
 

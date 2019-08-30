@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/abstract-component';
 import { AbstractInputData, Toolbar } from '../../interface/atoms';
-import { ComponentLoader } from '../abstract/component-loader';
+import { ComponentLoader } from '../../abstract/component-loader';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import {IconComponent} from "../icon/icon";

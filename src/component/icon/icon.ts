@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/abstract-component';
 import { Icon } from '../../interface/atoms';
 
 const componentCSS = require('./icon.scss');

@@ -1,4 +1,4 @@
-import {Template} from "../base/template";
+import {Template} from "../../abstract/template/template";
 
 export class BlankTemplate extends Template<any, any> {
 

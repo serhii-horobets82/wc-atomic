@@ -1,5 +1,5 @@
 import {customElement, html, TemplateResult} from "lit-element";
-import {AbstractApp} from "../abstract-app";
+import {AbstractApp} from "../abstract/abstract-app";
 import {router} from "../router";
 import {HomePage} from "./pages/homepage";
 import {GetStartedPage} from "./pages/get-started";
