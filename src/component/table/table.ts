@@ -5,9 +5,10 @@ import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../text/text';
 import {IconComponent} from '../icon/icon';
 import {TextfieldComponent} from '../textfield/textfield';
-import {ImgComponent} from '../img/img';
+import {ImgComponent} from '../../atoms/img/component';
 import {ComponentLoader} from '../abstract/component-loader';
-import {Column, Icon, Img, Row, TableHeader, Table, Textfield, Text} from "../../interface/atoms";
+import {Column, Icon, Row, TableHeader, Table, Textfield, Text} from "../../interface/atoms";
+import {ImgModel} from "../../atoms/img/model";
 
 const componentCSS = require('./table.scss');
 
@@ -168,7 +169,7 @@ export class TableComponent extends AbstractComponent<Table, undefined> {
                }
             },
             <Column>{
-               componentContent: <Img>{
+               componentContent: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
                   src: 'https://picsum.photos/150/150',
                   clazz: 'imageHeightHundred'

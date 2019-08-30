@@ -10,7 +10,6 @@ import './component/data-protection/data-protection';
 import './component/date/date';
 import './component/toolbar/toolbar';
 import './component/icon/icon';
-import './component/img/img';
 import './component/link/link';
 import './component/navigation/navigation';
 import './component/teaser/teaser';

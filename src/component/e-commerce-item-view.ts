@@ -1,7 +1,8 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent } from './abstract/abstract-component';
-import {Button, ECommerceItem, Img} from '../interface/atoms';
+import {Button, ECommerceItem} from '../interface/atoms';
 import { ButtonComponent } from './button/button';
+import {ImgModel} from "../atoms/img/model";
 
 const componentCSS = require('./e-commerce-item-view.scss');
 
@@ -32,9 +33,9 @@ export class ECommerceItemViewComponent extends AbstractComponent<
    oldPrice: number;
 
    @property()
-   productImgs: Img[];
+   productImgs: ImgModel[];
 
-   primaryProductImg: Img;
+   primaryProductImg: ImgModel;
 
    render() {
       return html`

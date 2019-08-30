@@ -1,5 +1,5 @@
 import { customElement, TemplateResult, html } from 'lit-element';
-import {BlankTemplate} from "../templates/blank-template";
+import {BlankTemplate} from "../../templates/blank/template";
 
 
 @customElement('page-check')

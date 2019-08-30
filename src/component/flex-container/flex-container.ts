@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
-import {ImgComponent} from '../img/img';
+import {ImgComponent} from '../../atoms/img/component';
 import {AbstractInputData, FlexContainer} from '../../interface/atoms';
 import {AbstractComponent} from '../abstract/abstract-component';
 import {ComponentLoader} from '../abstract/component-loader';

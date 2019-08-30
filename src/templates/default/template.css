@@ -1,33 +1,26 @@
-;
-
 .container {
     height: calc(100vh - var(--toolbar-height));
     width: 100%;
     padding: 0;
     margin: 0;
-
 }
-
 #header {
     position: fixed;
     width: calc(100% - var(--menu-size));
     height: var(--toolbar-height);
-    //line-height: var(--toolbar-height);
-    right:0;
-    transition: width .5s linear;
+    right: 0;
+    transition: width 0.5s linear;
     color: var(--app-header-color);
     background-color: var(--app-header-background-color);
 }
-
 #header.menuClosed {
     width: 100%;
-    transition: width .5s linear;
+    transition: width 0.5s linear;
 }
-
 #menu {
     height: 100%;
     width: var(--menu-size);
-    transition: width .5s linear;
+    transition: width 0.5s linear;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -36,22 +29,19 @@
     color: var(--app-menu-color);
     background-color: var(--app-menu-background-color);
 }
-
 #menu.menuClosed {
     width: 0%;
-    transition: width .5s linear;
+    transition: width 0.5s linear;
 }
-
 #main {
     padding-top: var(--toolbar-height);
     color: var(--app-primary-color);
     background-color: var(--app-primary-background-color);
     margin-left: var(--menu-size);
-    transition: margin-left .5s linear;
+    transition: margin-left 0.5s linear;
     min-height: 100%;
 }
-
-#main.menuClosed  {
+#main.menuClosed {
     margin-left: 0;
-    transition: margin-left .5s linear;
+    transition: margin-left 0.5s linear;
 }

@@ -1,12 +1,15 @@
 import {customElement, html, query, TemplateResult} from 'lit-element';
-import {DefaultTemplate} from "../templates/default";
-import {FormComponent} from "../component/form/form";
-import {HComponent} from "../component/h/h";
-import {HttpClient} from "../http-client";
+import {DefaultTemplate} from "../../templates/default/template";
+import {FormComponent} from "../../component/form/form";
+import {HComponent} from "../../component/h/h";
+import {HttpClient} from "../../http-client";
+import {DefaultTemplateModel} from "../../templates/default/model";
+import {data_navigation} from "../data/data";
 
 
 @customElement('page-form')
 export class FormPage extends DefaultTemplate {
+
     constructor() {
         super();
     }
@@ -38,5 +41,13 @@ export class FormPage extends DefaultTemplate {
 
         let outputData = this.myForm.getOutputData();
         console.log('output data: ' + JSON.stringify(outputData));
+    }
+
+    initTemplateData(): DefaultTemplateModel {
+        return <DefaultTemplateModel> {
+            componentIdentifier : DefaultTemplate.IDENTIFIER,
+            navigation : data_navigation,
+            title : 'Form'
+        };
     }
 }

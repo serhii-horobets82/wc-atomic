@@ -1,11 +1,10 @@
 import './index.scss';
 
-
+import './import-atoms';
 import './import-component';
 import './import-compound-component';
 
-import './templates/abstract-page';
-import './templates/default';
+import './import-templates';
 
 
 import './abstract-app';
@@ -13,10 +12,10 @@ import './abstract-app';
 export * from './abstract-app';
 
 
-import './pages/form';
-import './pages/homepage';
-import './pages/media';
-import './pages/component';
+import './app/pages/form';
+import './app/pages/homepage';
+import './app/pages/media';
+import './app/pages/component';
 
 
-import './apps/app';
+import './app/app-showcase';

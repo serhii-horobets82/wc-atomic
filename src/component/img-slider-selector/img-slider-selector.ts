@@ -1,7 +1,8 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent } from '../abstract/abstract-component';
 import { ImgSliderComponent } from '../img-slider/img-slider';
-import {Img, ImgSliderSelector} from '../../interface/atoms';
+import {ImgSliderSelector} from '../../interface/atoms';
+import {ImgModel} from "../../atoms/img/model";
 
 const componentCSS = require('./img-slider-selector.scss');
 
@@ -23,10 +24,10 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
    maxHeight: string;
 
    @property()
-   imgs: Img[] = [];
+   imgs: ImgModel[] = [];
 
    @property()
-   selectedImg: Img;
+   selectedImg: ImgModel;
 
    @property()
    columnFlexBasisValues: string[] = ['30%', '70%'];
@@ -78,7 +79,7 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
    }
 
    sliderItemClicked(event: CustomEvent) {
-      let img: Img = <Img>event.detail;
+      let img: ImgModel = <ImgModel>event.detail;
       this.selectedImg = img;
    }
 }

@@ -1,9 +1,10 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
-import { ImgComponent} from '../img/img';
+import { ImgComponent} from '../../atoms/img/component';
 import { AbstractComponent } from '../abstract/abstract-component';
-import {Img, ImgSlider} from '../../interface/atoms';
+import {ImgSlider} from '../../interface/atoms';
+import {ImgModel} from "../../atoms/img/model";
 
 const componentCSS = require('./img-slider.scss');
 
@@ -21,7 +22,7 @@ export class ImgSliderComponent extends AbstractComponent<
    static EVENT_CLICK: string = 'component-img-slider-click';
 
    @property()
-   imgs: Img[] = [];
+   imgs: ImgModel[] = [];
 
    @property()
    maxSize: string = '250px';
@@ -76,57 +77,57 @@ export class ImgSliderComponent extends AbstractComponent<
          maxSize: '500px',
          sliderType: 2,
          imgs: [
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/350/350'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/450/450'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/550/550'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/300/300'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/400/400'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <Img>{
+            <ImgModel>{
                componentIdentifier: ImgComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/600/600'
@@ -135,7 +136,7 @@ export class ImgSliderComponent extends AbstractComponent<
       };
    }
 
-   private clicked(item: Img) {
+   private clicked(item: ImgModel) {
       this.dispatchSimpleCustomEvent(ImgSliderComponent.EVENT_CLICK, item);
    }
 }

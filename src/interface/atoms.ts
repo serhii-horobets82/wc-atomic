@@ -1,3 +1,5 @@
+import {ImgModel} from "../atoms/img/model";
+
 export interface AbstractInputData {
    componentIdentifier: string;
 }
@@ -7,13 +9,6 @@ export interface RangeSliderIf extends AbstractInputData {
    name: string;
    min: number;
    max: number;
-}
-
-export interface Img extends AbstractInputData {
-   src: string;
-   clazz?: string;
-   text?: string;
-   cssStyle?: string;
 }
 
 /**
@@ -30,7 +25,7 @@ export interface Img extends AbstractInputData {
 export interface ImgSlider extends AbstractInputData {
    sliderType: number;
    maxSize: string;
-   imgs: Img[];
+   imgs: ImgModel[];
 }
 
 export interface ImgSliderSelector extends AbstractInputData {
@@ -106,7 +101,7 @@ export interface ECommerceItem extends AbstractInputData {
    buttonInputData: Button;
    description: string;
    ean: string;
-   productImgs: Img[];
+   productImgs: ImgModel[];
 }
 
 export interface ECommerceTileList extends AbstractInputData {
@@ -211,7 +206,7 @@ export interface Search extends AbstractInputData {
 
 export interface TeaserElement {
    selected: boolean;
-   img: Img;
+   img: ImgModel;
    content: AbstractInputData;
 }
 

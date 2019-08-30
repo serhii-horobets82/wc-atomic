@@ -1,11 +1,12 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../abstract/abstract-component';
-import {ImgComponent} from '../img/img';
+import {ImgComponent} from '../../atoms/img/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../text/text';
 import {ComponentLoader} from '../abstract/component-loader';
-import {Button, Img, TeaserContainer, TeaserElement, Text} from "../../interface/atoms";
+import {Button, TeaserContainer, TeaserElement, Text} from "../../interface/atoms";
+import {ImgModel} from "../../atoms/img/model";
 
 const componentCSS = require('./teaser.scss');
 
@@ -92,7 +93,7 @@ export class TeaserComponent extends AbstractComponent<
          items: [
             <TeaserElement>{
                selected: true,
-               img: <Img>{
+               img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
                   src: 'https://picsum.photos/800/300',
                   clazz: 'imageWidthHundred',
@@ -105,7 +106,7 @@ export class TeaserComponent extends AbstractComponent<
             },
             <TeaserElement>{
                selected: false,
-               img: <Img>{
+               img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
                   src: 'https://picsum.photos/800/400',
                   clazz: 'imageWidthHundred',

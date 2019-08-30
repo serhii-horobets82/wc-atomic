@@ -1,11 +1,11 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../abstract/abstract-component';
-import { Img } from '../../interface/atoms';
+import { AbstractComponent } from '../../component/abstract/abstract-component';
+import {ImgModel} from "./model";
 
-const componentCSS = require('./img.scss');
+const componentCSS = require('./component.css');
 
 @customElement('component-img')
-export class ImgComponent extends AbstractComponent<Img, undefined> {
+export class ImgComponent extends AbstractComponent<ImgModel, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -24,8 +24,8 @@ export class ImgComponent extends AbstractComponent<Img, undefined> {
    @property()
    text: string = '';
 
-   getDefaultInputData(): Img {
-      return <Img>{
+   getDefaultInputData(): ImgModel {
+      return <ImgModel>{
          componentIdentifier: ImgComponent.IDENTIFIER,
          src: 'https://picsum.photos/300/300',
          clazz: 'imageWidthHundred',

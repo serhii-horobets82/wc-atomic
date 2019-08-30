@@ -6,7 +6,7 @@ import { CheckboxComponent } from '../checkbox/checkbox';
 import { CodeComponent } from '../code/code';
 import { ColorComponent } from '../color/color';
 import { ComboboxComponent } from '../combobox/combobox';
-import { ImgComponent } from '../img/img';
+import { ImgComponent } from '../../atoms/img/component';
 import { IconComponent } from '../icon/icon';
 import { TextareaComponent } from '../textarea/textarea';
 import { DateComponent } from '../date/date';

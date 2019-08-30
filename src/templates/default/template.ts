@@ -1,13 +1,15 @@
 import {css, html, property, query, unsafeCSS} from 'lit-element';
-import {NavigationComponent} from "../component/navigation/navigation";
-import {AbstractPage} from "./abstract-page";
-import {DataProtection} from "../component/data-protection/data-protection";
-import {Navigation} from "../interface/atoms";
-import {ToolbarComponent} from "../component/toolbar/toolbar";
+import {NavigationComponent} from "../../component/navigation/navigation";
+import {Template} from "../base/template";
+import {DataProtection} from "../../component/data-protection/data-protection";
+import {Navigation} from "../../interface/atoms";
+import {ToolbarComponent} from "../../component/toolbar/toolbar";
+import {DefaultTemplateModel} from "./model";
+import {data_navigation} from "../../app/data/data";
 
-const componentCSS = require('./default.scss');
+const componentCSS = require('./template.css');
 
-export class DefaultTemplate extends AbstractPage {
+export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -17,7 +19,7 @@ export class DefaultTemplate extends AbstractPage {
     title = 'HTML Template';
 
     @property()
-    linkItems: Navigation;
+    navigation: Navigation;
 
     @query("#header")
     private headerElement: HTMLElement;
@@ -35,7 +37,7 @@ export class DefaultTemplate extends AbstractPage {
             <component-toolbar .inputData="${new ToolbarComponent().getDefaultInputData()}"></component-toolbar>
         </header>
         <div id="menu">
-            <component-navigation .inputData="${new NavigationComponent().getDefaultInputData()}" title="${this.title}"></component-navigation>
+            <component-navigation .inputData="${this.navigation}" title="${this.title}"></component-navigation>
         </div>
         <div id="main">
             ${this.getContent()}
@@ -44,6 +46,23 @@ export class DefaultTemplate extends AbstractPage {
     <component-data-protection .inputData="${new DataProtection().getDefaultInputData()}"></component-data-protection>
     `;
     }
+
+    public getOutputData(): any {
+        return {};
+    }
+
+    protected inputDataChanged(): void {
+        super.inputDataChanged();
+        this.navigation = this.inputData.navigation;
+    }
+
+    getDefaultInputData(): DefaultTemplateModel {
+        return <DefaultTemplateModel>{
+            componentIdentifier: DefaultTemplate.IDENTIFIER,
+            navigation: new NavigationComponent().getDefaultInputData(),
+        };
+    }
+
 
     menuItemClicked(event: CustomEvent) {
         console.log('menuItemClicked...');
