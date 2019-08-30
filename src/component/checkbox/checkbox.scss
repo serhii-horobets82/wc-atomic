@@ -1,0 +1,35 @@
+.checkboxContainer {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.checkbox {
+  cursor: pointer;
+  width: var(--line-height-large);
+  height: var(--line-height-large);
+  background-color: var(--app-primary-background-color-discreet);
+  display: block;
+  float: left;
+  //margin-right: 5px;
+}
+
+.checked {
+  background-color: var(--app-primary-background-color-contrast);
+}
+
+/* checkmark */
+.checked:after {
+  content: "";
+  position: absolute;
+  display: block;
+  color: green;;
+  border: solid var(--app-primary-background-color);
+  background-color: var(--app-primary-background-color-contrast);
+  left: 0px;
+  top: 0px;
+  width: var(--line-height-small);
+  height: var(--line-height-small);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}

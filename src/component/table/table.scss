@@ -1,0 +1,65 @@
+@media only screen and (min-width: 768px) {
+
+  .head, .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .head {
+    color: var(--app-primary-color-contrast);
+    background-color: var(--app-primary-background-color-contrast);
+  }
+
+  .head:first-child {
+    padding-left: var(--min-padding);
+  }
+
+  .row:first-child {
+    background-color: green;
+    width:500px;
+    margin-left: var(--min-padding);
+  }
+
+  .row {
+    //line-height: var(--line-height-big);
+  }
+
+  .headColumn {
+    display: inline;
+    overflow: hidden;
+    line-height: var(--line-height-big);
+  }
+
+  .columnHead {
+    display: none;
+  }
+
+  .row.odd {
+    color: var(--app-primary-color-discreet);
+    background-color: var(--app-primary-background-color-discreet);
+  }
+
+  .column {
+    overflow: hidden;
+    box-sizing: border-box;
+    max-height: var(--line-height-large);
+
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .table > * {
+    //padding-left: var(--medium-padding);
+    //padding-right: var(--medium-padding);
+  }
+
+  .head {
+    display: none;
+  }
+
+}

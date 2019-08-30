@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2015",
+    "module": "es2015",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true, // Typprüfung aktivieren
+ //   "declaration": true,
+    "strictPropertyInitialization": false,
+    "outDir": "../dist", // Zielverzeichnis für JavaScript-Dateien
+    "moduleResolution": "node", // explizit setzen, da module=es2015
+    "declaration": true
+    },
+  "experimentalDecorators": true
+}

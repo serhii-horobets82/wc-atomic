@@ -1,0 +1,10 @@
+.searchBox {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto var(--line-height-large);
+  align-items: center;
+}
+
+component-icon {
+  justify-self: center;
+}

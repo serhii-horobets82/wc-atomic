@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, user-scalable=no"
+      />
+      <title>Komponentenframework</title>
+      <style>
+         body {
+            margin: 0;
+            padding: 0;
+         }
+         :root {
+            --toolbar-height: 50px;
+            --menu-size: 250px;
+
+            --font-size: 1rem;
+            --font-size-small: 0.8rem;
+
+            --font-size-icon: 24px;
+            --font-family: 'Verdana';
+            --font-style: 'sans-serif';
+            --font-weight: 400;
+            --font-weight-bold: 600;
+
+            --line-height-small: 24px;
+            --line-height: 24px;
+            --line-height-large: 36px;
+            --line-height-big: 48px;
+            --line-height-massiv: 72px;
+
+            --letter-spacing: 1pt;
+
+            --min-padding: 5pt;
+            --medium-padding: 15pt;
+            --max-padding: 30pt;
+
+            --app-border-size-min: 1px;
+            --app-border-size-default: 2px;
+            --app-border-size-big: 5px;
+
+            --app-hover-brightness: 110%;
+
+            --app-error-color: #c5344e;
+            --app-error-info: #14854e;
+
+            --app-header-color: WHITE;
+            --app-header-background-color: #00469b;
+
+            --app-menu-color: WHITE;
+            --app-menu-background-color: #00469b;
+
+            --app-primary-color: #4d4d4d;
+            --app-primary-background-color: #ffffff;
+
+            --app-massive-color: #00469b;
+            --app-subtext-color: #fabb00;
+
+            --app-primary-color-contrast: #ffffff;
+            --app-primary-background-color-contrast: #00469b;
+
+            --app-primary-color-contrast-second: #6e6e6e;
+            --app-primary-background-color-contrast-second: #fabb00;
+
+            --app-primary-color-discreet: #4d4d4d;
+            --app-primary-background-color-discreet: #ececec;
+         }
+
+         @media (max-width: 1280px) {
+            :root {
+               --font-size: 0.9rem;
+               --font-size-small: 0.6rem;
+            }
+
+            body {
+               padding-left: var(--min-padding);
+               padding-right: var(--min-padding);
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <span class="icon-home"></span>
+      <span class="fas fa-1x fa-question"></span>
+
+      <app-root></app-root>
+   </body>
+</html>

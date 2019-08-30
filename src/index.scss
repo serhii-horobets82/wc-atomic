@@ -1,0 +1,22 @@
+//@import url('https://fonts.googleapis.com/css?family=East+Sea+Dokdo');
+
+@import "iconfont-load";
+@import "fortawesome-load";
+
+//CSS Variables not working in media query, so the screen sizes are defined as scss vars
+$mobile-size:768px;
+$tablet-size:1024px;
+$desktop-size:1280px;
+
+* {
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    text-rendering: optimizelegibility;
+    font-family: var(--font-family),var(--font-style);
+    font-size: var(--font-size);
+    letter-spacing: var(--letter-spacing);
+    text-decoration: none;
+    line-height: var(--line-height);
+}

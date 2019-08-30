@@ -1,0 +1,8 @@
+.floatRight,
+::slotted(.floatRight) {
+   float: right;
+}
+.floatLeft,
+::slotted(.floatLeft) {
+   float: left;
+}

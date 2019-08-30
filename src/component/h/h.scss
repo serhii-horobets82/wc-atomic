@@ -1,0 +1,25 @@
+@import "../../text_alignment";
+
+.headerBox {
+  width: 100%;
+  padding: var(--medium-padding) 0 0 0;
+}
+
+.header {
+  width: 100%;
+  //font-weight: bold;
+}
+
+.subheader {
+  width: 100%;
+  color: var(--app-subtext-color);
+  text-transform: none;
+  //font-style: italic;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: var(--app-massive-color);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 150%;
+}

@@ -1,0 +1,141 @@
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
+import { guard } from 'lit-html/directives/guard';
+import { ImgComponent} from '../img/img';
+import { AbstractComponent } from '../abstract/abstract-component';
+import {Img, ImgSlider} from '../../interface/atoms';
+
+const componentCSS = require('./img-slider.scss');
+
+@customElement('component-img-slider')
+export class ImgSliderComponent extends AbstractComponent<
+   ImgSlider,
+   undefined
+> {
+   static styles = css`
+      ${unsafeCSS(componentCSS)}
+   `;
+
+   static IDENTIFIER: string = 'ImgSliderComponent';
+
+   static EVENT_CLICK: string = 'component-img-slider-click';
+
+   @property()
+   imgs: Img[] = [];
+
+   @property()
+   maxSize: string = '250px';
+
+   @property()
+   sliderType: number = 1;
+
+   render() {
+      return html`
+         <div
+            class="imgSlider ${this.sliderType == 1
+               ? 'horizontal'
+               : 'vertical'}"
+            style="${this.sliderType == 1 ? 'max-width' : 'max-height'}:${this
+               .maxSize}"
+         >
+            ${guard(
+               this.imgs,
+               () =>
+                  html`
+                     ${repeat(
+                        this.imgs,
+                        (item) => html`
+                           <component-img
+                              clazz="${item.clazz} ${this.sliderType == 1
+                                 ? 'imageHeightHundred'
+                                 : 'imageWidthHundred'}"
+                              src="${item.src}"
+                              @click="${() => this.clicked(item)}"
+                           ></component-img>
+                        `
+                     )}
+                  `
+            )}
+         </div>
+      `;
+   }
+
+   inputDataChanged(): void {
+      this.imgs = this.inputData.imgs;
+      this.sliderType = this.inputData.sliderType;
+      this.maxSize = this.inputData.maxSize;
+   }
+
+   getOutputData(): undefined {
+      return undefined;
+   }
+
+   getDefaultInputData(): ImgSlider {
+      return <ImgSlider>{
+         componentIdentifier: ImgSliderComponent.IDENTIFIER,
+         maxSize: '500px',
+         sliderType: 2,
+         imgs: [
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/350/350'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/450/450'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/550/550'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/300/300'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/400/400'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/500/500'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/500/500'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/500/500'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/500/500'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/500/500'
+            },
+            <Img>{
+               componentIdentifier: ImgComponent.IDENTIFIER,
+               clazz: '',
+               src: 'https://picsum.photos/600/600'
+            }
+         ]
+      };
+   }
+
+   private clicked(item: Img) {
+      this.dispatchSimpleCustomEvent(ImgSliderComponent.EVENT_CLICK, item);
+   }
+}

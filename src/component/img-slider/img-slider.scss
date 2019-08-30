@@ -1,0 +1,12 @@
+.imgSlider {
+   overflow: hidden;
+   display: flex;
+}
+
+.horizontal {
+   overflow-x: auto;
+}
+.vertical {
+   overflow-y: auto;
+   flex-direction: column;
+}
