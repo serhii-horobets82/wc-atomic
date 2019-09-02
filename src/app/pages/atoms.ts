@@ -4,6 +4,7 @@ import {DefaultTemplateModel} from "../../templates/default/model";
 import {Navigation} from "../../interface/atoms";
 import {NavigationComponent} from "../../component/navigation/navigation";
 import {data_navigation} from "../data/data";
+import {ImgComponent} from "../../atoms/img/component";
 
 
 @customElement('page-atoms')
@@ -22,7 +23,7 @@ export class AtomsPage extends DefaultTemplate {
 
     getContent(): TemplateResult {
         return html`
-         <component-img src="https://picsum.photos/300/300"></component-img>   
+           <component-component-viewer .componentInputData="${new ImgComponent().getDefaultInputData()}"></component-component-viewer>
       `;
     }
 

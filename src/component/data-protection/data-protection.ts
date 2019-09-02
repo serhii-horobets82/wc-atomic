@@ -1,6 +1,6 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/abstract-component";
-import {ButtonComponent} from "../button/button";
+import {ButtonComponent} from "../../atoms/button/button";
 import {Button, DataProtectionModel} from "../../interface/atoms";
 
 const componentCSS = require('./data-protection.scss');

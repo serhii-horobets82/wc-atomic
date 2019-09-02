@@ -2,14 +2,14 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {AbstractComponent} from '../../abstract/abstract-component';
-import {TextComponent} from '../text/text';
+import {TextComponent} from '../../component/text/text';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {Accordion, AccordionItem} from "../../interface/atoms";
+import {AccordionInputData, AccordionItem} from "./model";
 
-const componentCSS = require('./accordion.scss');
+const componentCSS = require('./component.css');
 
 @customElement('component-accordion')
-export class AccordionComponent extends AbstractComponent<Accordion, any> {
+export class AccordionComponent extends AbstractComponent<AccordionInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -52,6 +52,7 @@ export class AccordionComponent extends AbstractComponent<Accordion, any> {
                   )}
                `
             )}
+            <slot></slot>
          </div>
       `;
    }
@@ -67,8 +68,8 @@ export class AccordionComponent extends AbstractComponent<Accordion, any> {
       console.log('accordion clicked, after state=' + item.stateClazz);
    }
 
-   getDefaultInputData(): Accordion {
-      return <Accordion>{
+   getDefaultInputData(): AccordionInputData {
+      return <AccordionInputData>{
          componentIdentifier: AccordionComponent.IDENTIFIER,
          items: [
             {

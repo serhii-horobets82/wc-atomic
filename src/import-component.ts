@@ -1,7 +1,7 @@
 import './abstract/abstract-component';
 
 import './component/h/h';
-import './component/button/button';
+import './atoms/button/button';
 import './component/checkbox/checkbox';
 import './component/code/code';
 import './component/color/color';

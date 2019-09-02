@@ -1,28 +1,21 @@
 .accordionHeader:hover {
   filter: brightness(var(--app-hover-brightness));
 }
-
 .accordionHeader {
   color: var(--app-primary-color-contrast);
   background-color: var(--app-primary-background-color-contrast);
   line-height: var(--line-height-big);
   cursor: pointer;
 }
-
 component-text {
   padding-left: var(--medium-padding);
 }
-
 component-icon {
   padding-right: var(--medium-padding);
 }
-
-.accordionContent {
-  &.closed {
-    display: none;
-  }
-
-  &.open {
-    display: initial;
-  }
+.accordionContent.closed {
+  display: none;
+}
+.accordionContent.open {
+  display: initial;
 }

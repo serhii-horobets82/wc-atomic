@@ -33,16 +33,6 @@ export interface ImgSliderSelector extends AbstractInputData {
    imgSlider: ImgSlider;
 }
 
-export interface AccordionItem {
-   header: string;
-   componentData: AbstractInputData;
-   stateClazz: string;
-}
-
-export interface Accordion extends AbstractInputData {
-   items: AccordionItem[];
-}
-
 /**
  * iconClazz:
  * clazzName for the icon

@@ -10,7 +10,7 @@ import {RangeSliderComponent} from '../range-slider/range-slider';
 import {Button, FlexContainer, FormComponentModel, FormElement} from '../../interface/atoms';
 import {AbstractComponent} from '../../abstract/abstract-component';
 import {FlexComponent} from '../flex-container/flex-container';
-import {ButtonComponent} from '../button/button';
+import {ButtonComponent} from '../../atoms/button/button';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../../abstract/component-loader';

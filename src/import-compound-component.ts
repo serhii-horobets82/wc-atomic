@@ -5,7 +5,7 @@ import './component/icon-group/icon-group';
 
 
 import './component/search/search';
-import './component/accordion/accordion';
+import './organisms/accordion/component';
 
 
 import './component/flex-container/flex-container';
@@ -14,6 +14,6 @@ import './component/content-slider/content-slider';
 import './component/form/form';
 import './component/form/form-label';
 
-import './component/component-viewer/component-viewer';
+import './molecules/component-viewer/component';
 
 

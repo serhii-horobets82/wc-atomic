@@ -5,14 +5,12 @@ import {HomePage} from "./pages/homepage";
 import {GetStartedPage} from "./pages/get-started";
 import {MediaPage} from "./pages/media";
 import {FormPage} from "./pages/form";
-import {ComponentPage} from "./pages/component";
-import {CompoundComponentPage} from "./pages/compound-component";
 import {CheckPage} from "./pages/check";
 import {AtomsPage} from "./pages/atoms";
 
 
 @customElement('app-root')
-export class ShowcaseApp extends AbstractApp{
+export class ShowcaseApp extends AbstractApp {
 
     renderPage(): TemplateResult {
         switch (router.getPath()) {
@@ -31,12 +29,6 @@ export class ShowcaseApp extends AbstractApp{
             case '#form':
                 let formPage = new FormPage();
                 return html`${formPage}`;
-            case '#c':
-                let componentPage = new ComponentPage();
-                return html`${componentPage}`;
-            case '#cc':
-                let compoundComponentPage = new CompoundComponentPage();
-                return html`${compoundComponentPage}`;
             case '#check':
                 return html`${new CheckPage()}`;
             default:
