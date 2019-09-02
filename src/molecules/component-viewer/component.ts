@@ -1,6 +1,6 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/abstract-component';
-import {LinkComponent} from '../../component/link/link';
+import {LinkComponent} from '../../atoms/link/component';
 import {LeafViewer} from "./model";
 import {AbstractInputData} from "../../interface/atoms";
 import {ComponentLoader} from "../../abstract/component-loader";

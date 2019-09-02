@@ -1,6 +1,6 @@
 import {customElement, html, TemplateResult} from "lit-element";
 import {AbstractApp} from "../abstract/abstract-app";
-import {router} from "../router";
+import {router} from "../util/router";
 import {HomePage} from "./pages/homepage";
 import {GetStartedPage} from "./pages/get-started";
 import {MediaPage} from "./pages/media";

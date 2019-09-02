@@ -1,9 +1,0 @@
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import './../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-
-[class^="fa-"], [class*=" fa-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-size: var(--font-size-icon);
-  line-height: var(--line-height);
-  height: var(--line-height);
-}

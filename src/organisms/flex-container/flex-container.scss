@@ -1,0 +1,87 @@
+@import '../../scss/padding';
+
+*,
+::slotted(*) {
+   box-sizing: border-box;
+}
+
+.grid,
+::slotted(.grid) {
+   margin: auto;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+}
+
+.alignItemsCenter,
+::slotted(.alignItemsCenter) {
+   align-items: center;
+}
+
+.justifyContentSpaceBetween,
+::slotted(.justifyContentSpaceBetween) {
+   justify-content: space-between;
+}
+
+.justifyContentSpaceAround,
+::slotted(.justifyContentSpaceAround) {
+   justify-content: space-around;
+}
+
+.justifyContentSpaceBetween,
+::slotted(.justifyContentSpaceBetween) {
+   justify-content: space-between;
+}
+
+.grid_100,
+::slotted(.grid_100) {
+   width: 100%;
+}
+
+.grid_75,
+::slotted(.grid_75) {
+   width: 75%;
+}
+
+.grid_50,
+::slotted(.grid_50) {
+   width: 50%;
+}
+.grid_25,
+::slotted(.grid_25) {
+   width: 25%;
+}
+
+.grid_content {
+   align-self: stretch;
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (max-width: 1280px) {
+   .grid_100,
+   .grid_75,
+   .grid_50,
+   .grid_25,
+   ::slotted(.grid_100),
+   ::slotted(.grid_75),
+   ::slotted(.grid_50),
+   ::slotted(.grid_25) {
+      width: 100%;
+   }
+}
+
+@media only screen and (max-width: 768px) {
+   .grid,
+   ::slotted(.grid) {
+   }
+
+   .grid_content,
+   ::slotted(.grid_content) {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+   }
+}

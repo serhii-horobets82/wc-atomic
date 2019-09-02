@@ -2,7 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {AbstractComponent} from '../../../abstract/abstract-component';
-import {TextComponent} from '../../../component/text/text';
+import {TextComponent} from '../../../atoms/text/component';
 import {ComponentLoader} from '../../../abstract/component-loader';
 import {AccordionInputData} from "./model";
 import {AccordionItemInputData} from "../item/model";

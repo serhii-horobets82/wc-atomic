@@ -1,6 +1,6 @@
 
 import {Navigation} from "../../interface/atoms";
-import {NavigationComponent} from "../../component/navigation/navigation";
+import {NavigationComponent} from "../../atoms/navigation/component";
 
 export const data_navigation:Navigation = <Navigation> {
     componentIdentifier: NavigationComponent.IDENTIFIER,

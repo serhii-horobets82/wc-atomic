@@ -1,15 +1,8 @@
-import './index.scss';
+import './scss/index.scss';
 
 import './atoms/import-atoms';
-import './import-component';
-import './import-compound-component';
-
-import './import-templates';
-
-
-import './abstract/abstract-app';
-
-export * from './abstract/abstract-app';
+import './molecules/import-molecules';
+import './organisms/import-organisms'
 
 
 import './app/pages/form';

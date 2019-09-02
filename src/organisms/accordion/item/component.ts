@@ -2,7 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {AbstractComponent} from '../../../abstract/abstract-component';
-import {TextComponent} from '../../../component/text/text';
+import {TextComponent} from '../../../atoms/text/component';
 import {ComponentLoader} from '../../../abstract/component-loader';
 import {AccordionItemInputData} from "./model";
 import {AbstractInputData} from "../../../interface/atoms";
@@ -24,7 +24,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
     header: string;
 
     @property()
-    stateClazz: string;
+    stateClazz: string = 'closed';
 
     render() {
         return html`<div class="accordion">

@@ -1,9 +1,9 @@
 import {css, html, property, query, unsafeCSS} from 'lit-element';
-import {NavigationComponent} from "../../component/navigation/navigation";
+import {NavigationComponent} from "../../atoms/navigation/component";
 import {Template} from "../../abstract/template/template";
-import {DataProtection} from "../../component/data-protection/data-protection";
+import {DataProtection} from "../../molecules/data-protection/data-protection";
 import {Navigation} from "../../interface/atoms";
-import {ToolbarComponent} from "../../component/toolbar/toolbar";
+import {ToolbarComponent} from "../../organisms/toolbar/organism";
 import {DefaultTemplateModel} from "./model";
 import {data_navigation} from "../../app/data/data";
 

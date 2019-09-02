@@ -1,8 +1,8 @@
 import {customElement, html, query, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
-import {FormComponent} from "../../component/form/form";
-import {HComponent} from "../../component/h/h";
-import {HttpClient} from "../../http-client";
+import {FormComponent} from "../../organisms/form/container/organism";
+import {HComponent} from "../../atoms/h/component";
+import {HttpClient} from "../../util/http-client";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
 

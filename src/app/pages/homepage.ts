@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {NavigationComponent} from "../../component/navigation/navigation";
+import {NavigationComponent} from "../../atoms/navigation/component";
 import {data_navigation} from "../data/data";
 
 
