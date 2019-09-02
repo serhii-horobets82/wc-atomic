@@ -5,7 +5,7 @@ import './component/icon-group/icon-group';
 
 
 import './component/search/search';
-import './organisms/accordion/component';
+import './organisms/accordion/container/component';
 
 
 import './component/flex-container/flex-container';

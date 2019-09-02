@@ -5,6 +5,7 @@ import {Navigation} from "../../interface/atoms";
 import {NavigationComponent} from "../../component/navigation/navigation";
 import {data_navigation} from "../data/data";
 import {ImgComponent} from "../../atoms/img/component";
+import {AccordionItemComponent} from "../../organisms/accordion/item/component";
 
 
 @customElement('page-atoms')
@@ -24,8 +25,9 @@ export class AtomsPage extends DefaultTemplate {
     getContent(): TemplateResult {
         return html`
             <component-accordion>
-                <component-component-viewer .componentInputData="${new ImgComponent().getDefaultInputData()}"></component-component-viewer>
-            
+                <component-accordion-item header="Image">
+                    INhalt
+                </component-accordion-item>
             </component-accordion>
 
       `;

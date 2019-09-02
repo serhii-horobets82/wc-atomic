@@ -1,2 +1,2 @@
-import './model';
-import './component';
+import './container/model';
+import './container/component';

@@ -15,7 +15,7 @@ import { FormLabelComponent } from '../component/form/form-label';
 import { SearchComponent } from '../component/search/search';
 import { H1Component, H2Component, H3Component } from '../component/h/h';
 import { ECommerceItemViewComponent } from '../component/e-commerce-item-view';
-import { AccordionComponent } from '../organisms/accordion/component';
+import { AccordionComponent } from '../organisms/accordion/container/component';
 import { ComponentViewerComponent } from '../molecules/component-viewer/component';
 import { ImgSliderComponent } from '../component/img-slider/img-slider';
 import { ImgSliderSelectorComponent } from '../component/img-slider-selector/img-slider-selector';
