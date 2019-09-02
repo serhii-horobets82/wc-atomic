@@ -1,11 +1,11 @@
 import {AbstractInputData} from "../../interface/atoms";
 
-export interface AccordionItem {
+export interface AccordionItemInputData extends AbstractInputData{
     header: string;
     componentData: AbstractInputData;
     stateClazz: string;
 }
 
 export interface AccordionInputData extends AbstractInputData {
-    items: AccordionItem[];
+    items: AccordionItemInputData[];
 }

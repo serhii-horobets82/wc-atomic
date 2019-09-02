@@ -23,7 +23,11 @@ export class AtomsPage extends DefaultTemplate {
 
     getContent(): TemplateResult {
         return html`
-           <component-component-viewer .componentInputData="${new ImgComponent().getDefaultInputData()}"></component-component-viewer>
+            <component-accordion>
+                <component-component-viewer .componentInputData="${new ImgComponent().getDefaultInputData()}"></component-component-viewer>
+            
+            </component-accordion>
+
       `;
     }
 
