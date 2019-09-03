@@ -19,10 +19,10 @@ export class CheckboxComponent extends AbstractComponent<
    static EVENT_VALUE_CHANGE: string = 'component-checkbox-value-change';
 
    @property()
-   protected name: string;
+   protected name: string |undefined;
 
    @property()
-   private checked: boolean;
+   private checked: boolean|undefined;
 
    render() {
       return html`
@@ -36,6 +36,7 @@ export class CheckboxComponent extends AbstractComponent<
    }
 
    async valueChange(event: Event) {
+      console.info(event.target)
       this.checked = !this.checked;
       this.dispatchSimpleCustomEvent(CheckboxComponent.EVENT_VALUE_CHANGE);
    }

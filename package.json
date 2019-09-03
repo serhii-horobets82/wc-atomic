@@ -1,6 +1,6 @@
 {
-  "name": "@dbr/atomic",
-  "version": "1.0.6",
+  "name": "dbr-wc-atomic",
+  "version": "1.0.3",
   "description": "",
   "repository": {
     "private": true

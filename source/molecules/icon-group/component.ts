@@ -5,6 +5,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {IconInputData} from "../../atoms/icon/model";
 import {IconGroupInputData} from "./model";
 import {LinkInputData} from "../../atoms/link/model";
+import {IconComponent} from "../../atoms/icon/component";
 
 const componentCSS = require('./component.css');
 
@@ -20,10 +21,10 @@ export class IconGroupComponent extends AbstractComponent<IconGroupInputData,
     static EVENT_ICON_CLICK: string = 'component-icon-group-icon-click';
 
     @property()
-    icons: IconInputData[];
+    icons: IconInputData[] = [];
 
     @property()
-    clazz: string;
+    clazz: string = '';
 
     render() {
         return html`<span class="${this.clazz}">
@@ -54,7 +55,12 @@ export class IconGroupComponent extends AbstractComponent<IconGroupInputData,
     }
 
     getDefaultInputData(): IconGroupInputData {
-        return <IconGroupInputData>{};
+        return <IconGroupInputData>{
+            componentIdentifier: IconGroupComponent.IDENTIFIER,
+            icons : [new IconComponent().getDefaultInputData(),
+                new IconComponent().getDefaultInputData(),
+                new IconComponent().getDefaultInputData(),]
+        };
     }
 
     inputDataChanged() {

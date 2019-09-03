@@ -7,4 +7,5 @@ import './img-slider/import';
 import './img-slider-selector/import';
 import './search/import';
 import './teaser/import';
+import './text-with-header/import';
 import './tile/import';

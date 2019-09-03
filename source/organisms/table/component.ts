@@ -12,6 +12,7 @@ import {IconInputData} from "../../atoms/icon/model";
 import {TextInputData} from "../../atoms/text/model";
 import {ColumnInputData, RowInputData, TableHeaderInputData, TableInputData} from "./model";
 import {TextfieldInputData} from "../../atoms/textfield/model";
+import {IconGroupComponent} from "../../molecules/icon-group/component";
 
 const componentCSS = require('./component.css');
 
@@ -50,6 +51,17 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                               </span>
                            `
                         )}
+                        ${repeat(
+                           this.headers,
+                      (header) => html`
+                              <span
+                                 class="filterColumn"
+                                 style="width: ${header.width}"
+                              >
+                                 <component-textfield></component-textfield>
+                              </span>
+                           `
+                     )}
                      </div>
                   `
             )}
@@ -99,6 +111,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                      )}
                   `
             )}
+            <div class="footer"><component-icon-group .inputData="${new IconGroupComponent().getDefaultInputData()}"></component-icon-group></div>
          </span>
       `;
    }
@@ -162,13 +175,13 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             <ColumnInputData>{
                componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'GRP_110'
+                  text: 'Ein Text'
                }
             },
             <ColumnInputData>{
                componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Microsoft Office Suite',
+                  text: 'Noch ein Text',
                }
             },
             <ColumnInputData>{
@@ -181,13 +194,13 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             <ColumnInputData>{
                componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
-                  text: '4,90'
+                  text: 'Wieder ein Text'
                }
             },
             <ColumnInputData>{
                componentContent: <TextfieldInputData>{
                   componentIdentifier: TextfieldComponent.IDENTIFIER,
-                  name: 'menge',
+                  name: 'Holala',
                   size: 5
                }
             },

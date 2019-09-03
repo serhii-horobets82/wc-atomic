@@ -1,5 +1,5 @@
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 [class^="fa-"], [class*=" fa-"] {
   /* use !important to prevent issues with browser extensions that change fonts */

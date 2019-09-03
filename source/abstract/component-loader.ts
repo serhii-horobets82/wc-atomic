@@ -27,6 +27,8 @@ import {FormComponent} from '../organisms/form/component';
 import {FlexComponent} from '../organisms/flex-container/component';
 import {TileComponent} from '../molecules/tile/component';
 import {BreadcrumbComponent} from "../molecules/breadcrumb/component";
+import {ToolbarComponent} from "../organisms/toolbar/component";
+import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -138,6 +140,13 @@ export class ComponentLoader {
                 break;
             case BreadcrumbComponent.IDENTIFIER:
                 component = new BreadcrumbComponent();
+                break;
+            case ToolbarComponent.IDENTIFIER:
+                component = new ToolbarComponent();
+                break;
+            case TextWithHeaderComponent.IDENTIFIER:
+                component = new TextWithHeaderComponent();
+                break;
             default:
                 throw new Error('Elemenent not found: ' + componentIdentifier);
         }

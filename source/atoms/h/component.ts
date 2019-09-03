@@ -12,13 +12,13 @@ export abstract class HComponent extends AbstractComponent<HInputData, any> {
     static IDENTIFIER: string = 'HComponent';
 
     @property()
-    text: string;
+    text: string = '';
 
     @property()
-    subtext: string;
+    subtext: string = '';
 
     @property()
-    clazz: string;
+    clazz: string = '';
 
     static create(headerType: number): HComponent {
         switch (headerType) {
@@ -32,12 +32,31 @@ export abstract class HComponent extends AbstractComponent<HInputData, any> {
         return new H1Component();
     }
 
+    static createFromInputData(inputData: HInputData): HComponent {
+        let header: HComponent;
+        switch (inputData.headerType) {
+            case 1:
+                header = new H1Component();
+                break;
+            case 2:
+                header = new H2Component();
+                break;
+            case 3:
+                header = new H3Component();
+                break;
+            default:
+                header = new H1Component();
+        }
+        header.inputData = inputData;
+        return header;
+    }
+
     getDefaultInputData(): HInputData {
         return <HInputData>{
             componentIdentifier: H1Component.IDENTIFIER,
             headerType: 1,
-            headerText: 'Meine Überschrift',
-            subheaderText: 'Ein kleine Unterüberschrift',
+            headerText: 'Lorem ipsum dolor sit amet',
+            subheaderText: 'Consetetur sadipscing elitr',
             clazz: '',
         };
     }

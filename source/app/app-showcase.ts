@@ -8,6 +8,8 @@ import {FormPage} from "./pages/form";
 import {CheckPage} from "./pages/check";
 import {AtomsPage} from "./pages/atoms";
 import {MoleculesPage} from "./pages/molecules";
+import {OrganismPage} from "./pages/organism";
+import {LandingPage} from "../pages/landing-page/component";
 
 
 @customElement('app-root')
@@ -27,6 +29,9 @@ export class ShowcaseApp extends AbstractApp {
             case "#molecules":
                 let moleculesPage = new MoleculesPage();
                 return html`${moleculesPage}`;
+            case "#organism":
+                let organismPage = new OrganismPage();
+                return html`${organismPage}`;
             case '#media':
                 let mediaPage = new MediaPage();
                 return html`${mediaPage}`;
@@ -35,6 +40,8 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${formPage}`;
             case '#check':
                 return html`${new CheckPage()}`;
+            case '#landingPage':
+                return html`${new LandingPage()}`;
             default:
                 return html`Fehler - Keine Seite`;
         }

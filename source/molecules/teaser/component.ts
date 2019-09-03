@@ -9,6 +9,7 @@ import {ImgModel} from "../../atoms/img/model";
 import {Button} from "../../atoms/button/model";
 import {TextInputData} from "../../atoms/text/model";
 import {TeaserContainerInputData, TeaserElementInputData} from "./model";
+import {TextWithHeaderComponent} from "../text-with-header/component";
 
 const componentCSS = require('./component.css');
 
@@ -24,7 +25,7 @@ export class TeaserComponent extends AbstractComponent<
    static IDENTIFIER: string = 'TeaserComponent';
 
    @property()
-   items: TeaserElementInputData[];
+   items: TeaserElementInputData[] = [];
 
    render() {
       return html`
@@ -97,27 +98,31 @@ export class TeaserComponent extends AbstractComponent<
                selected: true,
                img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/800/300',
+                  src: 'https://picsum.photos/900/500',
                   clazz: 'imageWidthHundred',
                   text: ''
                },
-               content: <TextInputData>{
-                  componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Lorem Ipsum 1'
-               }
+               content: new TextWithHeaderComponent().getDefaultInputData()
+            },
+            <TeaserElementInputData>{
+               selected: true,
+               img: <ImgModel>{
+                  componentIdentifier: ImgComponent.IDENTIFIER,
+                  src: 'https://picsum.photos/900/480',
+                  clazz: 'imageWidthHundred',
+                  text: ''
+               },
+               content: new TextWithHeaderComponent().getDefaultInputData()
             },
             <TeaserElementInputData>{
                selected: false,
                img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/800/400',
+                  src: 'https://picsum.photos/860/500',
                   clazz: 'imageWidthHundred',
                   text: ''
                },
-               content: <TextInputData>{
-                  componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Lorem Ipsum 3'
-               }
+               content: new TextComponent().getDefaultInputData()
             }
          ]
       };

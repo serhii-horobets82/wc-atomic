@@ -17,9 +17,12 @@ export class ComponentViewerComponent extends AbstractComponent<LeafViewer,
     static IDENTIFIER: string = 'ComponentViewerComponent';
 
     @property()
-    componentInputData: AbstractInputData;
+    componentInputData: AbstractInputData | undefined;
 
     render() {
+
+        if(this.componentInputData == undefined)
+            throw new Error("please define componentInputData");
 
         let abstractComponent = new ComponentLoader().createComponentFromInputData(this.componentInputData);
 

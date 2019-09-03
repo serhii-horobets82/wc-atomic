@@ -27,7 +27,7 @@
     //line-height: var(--line-height-big);
   }
 
-  .headColumn {
+  .headColumn, .filterColumn {
     display: inline;
     overflow: hidden;
     line-height: var(--line-height-big);
