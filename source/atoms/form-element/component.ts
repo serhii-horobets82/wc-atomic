@@ -1,14 +1,14 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/component/component';
 import {TextfieldComponent} from '../textfield/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {FormElement} from "../../interface/atoms";
+import {FormElementInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-form-label')
-export class FormLabelComponent extends AbstractComponent<
-   FormElement,
+export class FormElementComponent extends AbstractComponent<
+   FormElementInputData,
    undefined
 > {
    static styles = css`
@@ -34,9 +34,9 @@ export class FormLabelComponent extends AbstractComponent<
       `;
    }
 
-   getDefaultInputData(): FormElement {
-      return <FormElement>{
-         componentIdentifier: FormLabelComponent.IDENTIFIER,
+   getDefaultInputData(): FormElementInputData {
+      return <FormElementInputData>{
+         componentIdentifier: FormElementComponent.IDENTIFIER,
          label: 'formLabel',
          componentData: new TextfieldComponent().getDefaultInputData()
       };

@@ -1,11 +1,11 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { Tile } from '../../interface/atoms';
-import { AbstractComponent } from '../../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/component/component';
+import {TileInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-tile')
-export class TileComponent extends AbstractComponent<Tile, undefined> {
+export class TileComponent extends AbstractComponent<TileInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -25,8 +25,8 @@ export class TileComponent extends AbstractComponent<Tile, undefined> {
       return undefined;
    }
 
-   getDefaultInputData(): Tile {
-      return <Tile>{
+   getDefaultInputData(): TileInputData {
+      return <TileInputData>{
          componentIdentifier: TileComponent.IDENTIFIER
       };
    }

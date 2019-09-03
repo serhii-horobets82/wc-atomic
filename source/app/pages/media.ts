@@ -1,18 +1,18 @@
 import {customElement} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
-import {FlexContainer} from "../../interface/atoms";
 import {FlexComponent} from "../../organisms/flex-container/component";
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {TemplateModel} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
+import {FlexContainerInputData} from "../../organisms/flex-container/model";
 
 
 @customElement('page-media')
 export class MediaPage extends DefaultTemplate {
 
     initTemplateData(): DefaultTemplateModel {
-        let containerData = <FlexContainer>{
+        let containerData = <FlexContainerInputData>{
             componentIdentifier: FlexComponent.IDENTIFIER,
             gridClazz: 'grid_100',
             columnFlexBasisValue: '100%',

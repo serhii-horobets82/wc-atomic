@@ -1,5 +1,5 @@
 import {LitElement, TemplateResult} from "lit-element";
-import {router} from "../util/router";
+import {router} from "../../util/router";
 
 export abstract class AbstractApp extends LitElement {
 

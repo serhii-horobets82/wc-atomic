@@ -4,7 +4,7 @@ import './code/import';
 import './color/import';
 import './combobox/import';
 import './date/import';
-import './form-label/import';
+import './form-element/import';
 import './h/import';
 import './icon/import';
 import './img/import';

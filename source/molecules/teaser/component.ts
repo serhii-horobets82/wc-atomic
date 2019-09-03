@@ -1,19 +1,20 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/component/component';
 import {ImgComponent} from '../../atoms/img/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../../atoms/text/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {TeaserContainer, TeaserElement, Text} from "../../interface/atoms";
 import {ImgModel} from "../../atoms/img/model";
 import {Button} from "../../atoms/button/model";
+import {TextInputData} from "../../atoms/text/model";
+import {TeaserContainerInputData, TeaserElementInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-teaser')
 export class TeaserComponent extends AbstractComponent<
-   TeaserContainer,
+   TeaserContainerInputData,
    undefined
 > {
    static styles = css`
@@ -23,7 +24,7 @@ export class TeaserComponent extends AbstractComponent<
    static IDENTIFIER: string = 'TeaserComponent';
 
    @property()
-   items: TeaserElement[];
+   items: TeaserElementInputData[];
 
    render() {
       return html`
@@ -76,7 +77,7 @@ export class TeaserComponent extends AbstractComponent<
       `;
    }
 
-   async toogle(item: TeaserElement) {
+   async toogle(item: TeaserElementInputData) {
       console.log('item clicked, state=' + item.selected);
 
       this.items.forEach((value, index) => {
@@ -88,11 +89,11 @@ export class TeaserComponent extends AbstractComponent<
       console.log('item clicked, after state=' + item.selected);
    }
 
-   getDefaultInputData(): TeaserContainer {
-      return <TeaserContainer>{
+   getDefaultInputData(): TeaserContainerInputData {
+      return <TeaserContainerInputData>{
          componentIdentifier: TeaserComponent.IDENTIFIER,
          items: [
-            <TeaserElement>{
+            <TeaserElementInputData>{
                selected: true,
                img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
@@ -100,12 +101,12 @@ export class TeaserComponent extends AbstractComponent<
                   clazz: 'imageWidthHundred',
                   text: ''
                },
-               content: <Text>{
+               content: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
                   text: 'Lorem Ipsum 1'
                }
             },
-            <TeaserElement>{
+            <TeaserElementInputData>{
                selected: false,
                img: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
@@ -113,7 +114,7 @@ export class TeaserComponent extends AbstractComponent<
                   clazz: 'imageWidthHundred',
                   text: ''
                },
-               content: <Text>{
+               content: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
                   text: 'Lorem Ipsum 3'
                }

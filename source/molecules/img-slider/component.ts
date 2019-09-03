@@ -2,15 +2,15 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { ImgComponent} from '../../atoms/img/component';
-import { AbstractComponent } from '../../abstract/abstract-component';
-import {ImgSlider} from '../../interface/atoms';
+import { AbstractComponent } from '../../abstract/component/component';
 import {ImgModel} from "../../atoms/img/model";
+import {ImgSliderInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-img-slider')
 export class ImgSliderComponent extends AbstractComponent<
-   ImgSlider,
+   ImgSliderInputData,
    undefined
 > {
    static styles = css`
@@ -71,8 +71,8 @@ export class ImgSliderComponent extends AbstractComponent<
       return undefined;
    }
 
-   getDefaultInputData(): ImgSlider {
-      return <ImgSlider>{
+   getDefaultInputData(): ImgSliderInputData {
+      return <ImgSliderInputData>{
          componentIdentifier: ImgSliderComponent.IDENTIFIER,
          maxSize: '500px',
          sliderType: 2,

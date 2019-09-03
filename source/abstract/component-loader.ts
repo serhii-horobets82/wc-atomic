@@ -1,5 +1,5 @@
 import {LinkComponent} from '../atoms/link/component';
-import {AbstractComponent} from './abstract-component';
+import {AbstractComponent} from './component/component';
 import {TextComponent} from '../atoms/text/component';
 import {ButtonComponent} from '../atoms/button/component';
 import {CheckboxComponent} from '../atoms/checkbox/component';
@@ -11,7 +11,7 @@ import {IconComponent} from '../atoms/icon/component';
 import {TextareaComponent} from '../atoms/textarea/component';
 import {DateComponent} from '../atoms/date/component';
 import {TextfieldComponent} from '../atoms/textfield/component';
-import {FormLabelComponent} from '../atoms/form-label/component';
+import {FormElementComponent} from '../atoms/form-element/component';
 import {SearchComponent} from '../molecules/search/component';
 import {H1Component, H2Component, H3Component} from '../atoms/h/component';
 import {AccordionComponent} from '../organisms/accordion/container/component';
@@ -22,10 +22,11 @@ import {TableComponent} from '../organisms/table/component';
 import {TeaserComponent} from '../molecules/teaser/component';
 import {NavigationComponent} from '../atoms/navigation/component';
 import {RangeSliderComponent} from '../atoms/range-slider/component';
-import {AbstractInputData} from '../interface/atoms';
+import {AbstractInputData} from './component/model';
 import {FormComponent} from '../organisms/form/component';
 import {FlexComponent} from '../organisms/flex-container/component';
 import {TileComponent} from '../molecules/tile/component';
+import {BreadcrumbComponent} from "../molecules/breadcrumb/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -57,9 +58,6 @@ export class ComponentLoader {
             case TeaserComponent.IDENTIFIER:
                 component = new TeaserComponent();
                 break;
-            case ECommerceItemViewComponent.IDENTIFIER:
-                component = new ECommerceItemViewComponent();
-                break;
             case SearchComponent.IDENTIFIER:
                 component = new SearchComponent();
                 break;
@@ -75,8 +73,8 @@ export class ComponentLoader {
             case FormComponent.IDENTIFIER:
                 component = new FormComponent();
                 break;
-            case FormLabelComponent.IDENTIFIER:
-                component = new FormLabelComponent();
+            case FormElementComponent.IDENTIFIER:
+                component = new FormElementComponent();
                 break;
             case CheckboxComponent.IDENTIFIER:
                 component = new CheckboxComponent();
@@ -138,6 +136,8 @@ export class ComponentLoader {
             case RangeSliderComponent.IDENTIFIER:
                 component = new RangeSliderComponent();
                 break;
+            case BreadcrumbComponent.IDENTIFIER:
+                component = new BreadcrumbComponent();
             default:
                 throw new Error('Elemenent not found: ' + componentIdentifier);
         }

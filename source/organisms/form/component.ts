@@ -1,20 +1,22 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {TextfieldComponent} from '../../atoms/textfield/component';
-import {FormLabelComponent} from '../../atoms/form-label/component';
+import {FormElementComponent} from '../../atoms/form-element/component';
 import {DateComponent} from '../../atoms/date/component';
 import {CheckboxComponent} from '../../atoms/checkbox/component';
 import {ColorComponent} from '../../atoms/color/component';
 import {TextareaComponent} from '../../atoms/textarea/component';
 import {ComboboxComponent} from '../../atoms/combobox/component';
 import {RangeSliderComponent} from '../../atoms/range-slider/component';
-import {FlexContainer, FormComponentModel, FormElement} from '../../interface/atoms';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/component/component';
 import {FlexComponent} from '../flex-container/component';
 import {ButtonComponent} from '../../atoms/button/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../../abstract/component-loader';
 import {Button} from "../../atoms/button/model";
+import {FormElementInputData} from "../../atoms/form-element/model";
+import {FormComponentInputData} from "./model";
+import {FlexContainerInputData} from "../flex-container/model";
 
 const componentCSS = require('./component.css');
 
@@ -24,7 +26,7 @@ export interface KeyValueOutputData {
 }
 
 @customElement('component-form')
-export class FormComponent extends AbstractComponent<FormComponentModel, any> {
+export class FormComponent extends AbstractComponent<FormComponentInputData, any> {
    static IDENTIFIER: string = 'FormComponent';
 
    static EVENT_SUBMIT_BUTTON: string = 'component-form-submit-button-click';
@@ -44,7 +46,7 @@ export class FormComponent extends AbstractComponent<FormComponentModel, any> {
 
    @query('#flexContainer')
    flexContainerComponent: FlexComponent;
-   flexContainerInputData: FlexContainer;
+   flexContainerInputData: FlexContainerInputData;
 
    protected render() {
       return html`
@@ -95,8 +97,8 @@ export class FormComponent extends AbstractComponent<FormComponentModel, any> {
       return outputData;
    }
 
-   getDefaultInputData(): FormComponentModel {
-      return <FormComponentModel>{
+   getDefaultInputData(): FormComponentInputData {
+      return <FormComponentInputData>{
          componentIdentifier: FormComponent.IDENTIFIER,
          buttonInputDatas: [
             <Button>{
@@ -104,44 +106,44 @@ export class FormComponent extends AbstractComponent<FormComponentModel, any> {
                text: 'Senden'
             }
          ],
-         flexContainerInputData: <FlexContainer>{
+         flexContainerInputData: <FlexContainerInputData>{
             componentIdentifier: FlexComponent.IDENTIFIER,
             gridClazz: 'grid_100',
             columnFlexBasisValue: '30%',
             componentsInputData: [
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Gib deinen Namen ein',
                   componentData: new TextfieldComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Dein Geburtsdatum',
                   componentData: new DateComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label:
                      'Möchtest du übermäßig viele Emails von uns bekommen ?',
                   componentData: new CheckboxComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Gib deine Lieblingsfarbe ein',
                   componentData: new ColorComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Beschreibe dich',
                   componentData: new TextareaComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Eine Auswahl',
                   componentData: new ComboboxComponent().getDefaultInputData()
                },
-               <FormElement>{
-                  componentIdentifier: FormLabelComponent.IDENTIFIER,
+               <FormElementInputData>{
+                  componentIdentifier: FormElementComponent.IDENTIFIER,
                   label: 'Eine Auswahl',
                   componentData: new RangeSliderComponent().getDefaultInputData()
                }

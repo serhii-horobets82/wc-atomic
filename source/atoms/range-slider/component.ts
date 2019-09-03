@@ -1,13 +1,13 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/component/component";
 import {KeyValueOutputData} from "../../organisms/form/component";
-import {RangeSliderIf} from "../../interface/atoms";
+import {RangeSliderInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 
 @customElement('component-range-slider')
-export class RangeSliderComponent extends AbstractComponent<RangeSliderIf, KeyValueOutputData> {
+export class RangeSliderComponent extends AbstractComponent<RangeSliderInputData, KeyValueOutputData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -40,8 +40,8 @@ export class RangeSliderComponent extends AbstractComponent<RangeSliderIf, KeyVa
         this.dispatchSimpleCustomEvent(RangeSliderComponent.EVENT_VALUE_CHANGE, this.rangeElement.value);
     }
 
-    getDefaultInputData(): RangeSliderIf {
-        return <RangeSliderIf>{
+    getDefaultInputData(): RangeSliderInputData {
+        return <RangeSliderInputData>{
             componentIdentifier: RangeSliderComponent.IDENTIFIER,
             name: 'name',
             min: 10,

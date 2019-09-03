@@ -1,5 +1,7 @@
-import {AbstractInputData} from "../../interface/atoms";
+import {AbstractInputData} from "../../abstract/component/model";
 
-export interface CodeInputData extends AbstractInputData {
-    code: string;
+export interface TextInputData extends AbstractInputData {
+    text: string;
+    clazz?: string;
+    cssStyle?: string;
 }

@@ -2,10 +2,10 @@ import {css, html, property, query, unsafeCSS} from 'lit-element';
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../molecules/data-protection/component";
-import {Navigation} from "../../interface/atoms";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
 import {DefaultTemplateModel} from "./model";
 import {data_navigation} from "../../app/data/data";
+import {NavigationInputData} from "../../atoms/navigation/model";
 
 const componentCSS = require('./template.css');
 
@@ -19,7 +19,7 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     title = 'HTML Template';
 
     @property()
-    navigation: Navigation;
+    navigation: NavigationInputData;
 
     @query("#header")
     private headerElement: HTMLElement;

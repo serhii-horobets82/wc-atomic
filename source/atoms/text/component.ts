@@ -1,11 +1,11 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
-import {Text} from '../../interface/atoms';
+import {AbstractComponent} from '../../abstract/component/component';
+import {TextInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-text')
-export class TextComponent extends AbstractComponent<Text, any> {
+export class TextComponent extends AbstractComponent<TextInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -29,8 +29,8 @@ export class TextComponent extends AbstractComponent<Text, any> {
       `;
    }
 
-   getDefaultInputData(): Text {
-      return <Text>{
+   getDefaultInputData(): TextInputData {
+      return <TextInputData>{
          componentIdentifier: TextComponent.IDENTIFIER,
          text: 'Lorem Ipsum'
       };

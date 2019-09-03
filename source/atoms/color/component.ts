@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/component/component";
 import {KeyValueOutputData} from "../../organisms/form/component";
-import {AbstractInputData} from "../../interface/atoms";
+import {AbstractInputData} from "../../abstract/component/model";
 
 const componentCSS = require('./component.css');
 

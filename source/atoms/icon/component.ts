@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/component/component';
 import {IconInputData} from "./model";
 
 const componentCSS = require('./component.scss');

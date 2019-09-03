@@ -1,10 +1,10 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
-import {Link} from '../../interface/atoms';
+import {AbstractComponent} from '../../abstract/component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {IconInputData} from "../../atoms/icon/model";
 import {IconGroupInputData} from "./model";
+import {LinkInputData} from "../../atoms/link/model";
 
 const componentCSS = require('./component.css');
 

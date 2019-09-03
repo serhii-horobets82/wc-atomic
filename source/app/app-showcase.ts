@@ -1,5 +1,5 @@
 import {customElement, html, TemplateResult} from "lit-element";
-import {AbstractApp} from "../abstract/abstract-app";
+import {AbstractApp} from "../abstract/app/component";
 import {router} from "../util/router";
 import {HomePage} from "./pages/homepage";
 import {GetStartedPage} from "./pages/get-started";
@@ -7,6 +7,7 @@ import {MediaPage} from "./pages/media";
 import {FormPage} from "./pages/form";
 import {CheckPage} from "./pages/check";
 import {AtomsPage} from "./pages/atoms";
+import {MoleculesPage} from "./pages/molecules";
 
 
 @customElement('app-root')
@@ -23,6 +24,9 @@ export class ShowcaseApp extends AbstractApp {
             case '#atoms':
                 let atomsPage = new AtomsPage();
                 return html`${atomsPage}`;
+            case "#molecules":
+                let moleculesPage = new MoleculesPage();
+                return html`${moleculesPage}`;
             case '#media':
                 let mediaPage = new MediaPage();
                 return html`${mediaPage}`;

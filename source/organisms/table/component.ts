@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../../atoms/text/component';
@@ -7,14 +7,16 @@ import {IconComponent} from '../../atoms/icon/component';
 import {TextfieldComponent} from '../../atoms/textfield/component';
 import {ImgComponent} from '../../atoms/img/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {Column, Row, TableHeader, Table, Textfield, Text} from "../../interface/atoms";
 import {ImgModel} from "../../atoms/img/model";
 import {IconInputData} from "../../atoms/icon/model";
+import {TextInputData} from "../../atoms/text/model";
+import {ColumnInputData, RowInputData, TableHeaderInputData, TableInputData} from "./model";
+import {TextfieldInputData} from "../../atoms/textfield/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-table')
-export class TableComponent extends AbstractComponent<Table, undefined> {
+export class TableComponent extends AbstractComponent<TableInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -24,10 +26,10 @@ export class TableComponent extends AbstractComponent<Table, undefined> {
    static EVENT_COLUMN_CLICK: string = 'component-table-column-click';
 
    @property()
-   headers: TableHeader[] = [];
+   headers: TableHeaderInputData[] = [];
 
    @property()
-   rows: Row[] = [];
+   rows: RowInputData[] = [];
 
    render() {
       return html`
@@ -122,16 +124,16 @@ export class TableComponent extends AbstractComponent<Table, undefined> {
       );
    }
 
-   getDefaultInputData(): Table {
-      return <Table>{
+   getDefaultInputData(): TableInputData {
+      return <TableInputData>{
          componentIdentifier: TableComponent.IDENTIFIER,
          headers: [
-            <TableHeader>{ text: 'Artikelnummer', width: '25%' },
-            <TableHeader>{ text: 'Bezeichnung', width: '30%' },
-            <TableHeader>{ text: '', width: '10%' },
-            <TableHeader>{ text: 'Preis', width: '10%' },
-            <TableHeader>{ text: 'Menge', width: '15%' },
-            <TableHeader>{ text: '', width: '10%' }
+            <TableHeaderInputData>{ text: 'Artikelnummer', width: '25%' },
+            <TableHeaderInputData>{ text: 'Bezeichnung', width: '30%' },
+            <TableHeaderInputData>{ text: '', width: '10%' },
+            <TableHeaderInputData>{ text: 'Preis', width: '10%' },
+            <TableHeaderInputData>{ text: 'Menge', width: '15%' },
+            <TableHeaderInputData>{ text: '', width: '10%' }
          ],
          rows: [
             this.getDemoRow(),
@@ -154,42 +156,42 @@ export class TableComponent extends AbstractComponent<Table, undefined> {
       return undefined;
    }
 
-   private getDemoRow(): Row {
-      return <Row>{
+   private getDemoRow(): RowInputData {
+      return <RowInputData>{
          colums: [
-            <Column>{
-               componentContent: <Text>{
+            <ColumnInputData>{
+               componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
                   text: 'GRP_110'
                }
             },
-            <Column>{
-               componentContent: <Text>{
+            <ColumnInputData>{
+               componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
                   text: 'Microsoft Office Suite',
                }
             },
-            <Column>{
+            <ColumnInputData>{
                componentContent: <ImgModel>{
                   componentIdentifier: ImgComponent.IDENTIFIER,
                   src: 'https://picsum.photos/150/150',
                   clazz: 'imageHeightHundred'
                }
             },
-            <Column>{
-               componentContent: <Text>{
+            <ColumnInputData>{
+               componentContent: <TextInputData>{
                   componentIdentifier: TextComponent.IDENTIFIER,
                   text: '4,90'
                }
             },
-            <Column>{
-               componentContent: <Textfield>{
+            <ColumnInputData>{
+               componentContent: <TextfieldInputData>{
                   componentIdentifier: TextfieldComponent.IDENTIFIER,
                   name: 'menge',
                   size: 5
                }
             },
-            <Column>{
+            <ColumnInputData>{
                componentContent: <IconInputData>{
                   componentIdentifier: IconComponent.IDENTIFIER,
                   iconClazz: 'icon-search',

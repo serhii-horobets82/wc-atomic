@@ -1,5 +1,10 @@
-import {AbstractInputData} from "../../interface/atoms";
+import {AbstractInputData} from "../../abstract/component/model";
+import {LinkInputData} from "../link/model";
 
-export interface CodeInputData extends AbstractInputData {
-    code: string;
+export interface NavigationLinkInputData extends LinkInputData {
+    icon: string;
+}
+
+export interface NavigationInputData extends AbstractInputData {
+    links: NavigationLinkInputData[];
 }

@@ -1,13 +1,13 @@
 import {css, customElement, html, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractComponent} from '../../abstract/component/component';
 import {KeyValueOutputData} from '../../organisms/form/component';
 import {TextfieldComponent} from '../../atoms/textfield/component';
-import {Search} from "../../interface/atoms";
+import {SearchInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-search')
-export class SearchComponent extends AbstractComponent<Search, any> {
+export class SearchComponent extends AbstractComponent<SearchInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -38,8 +38,8 @@ export class SearchComponent extends AbstractComponent<Search, any> {
       );
    }
 
-   getDefaultInputData(): Search {
-      return <Search>{ componentIdentifier: SearchComponent.IDENTIFIER };
+   getDefaultInputData(): SearchInputData {
+      return <SearchInputData>{ componentIdentifier: SearchComponent.IDENTIFIER };
    }
 
    getOutputData(): any {

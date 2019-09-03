@@ -1,5 +1,9 @@
-import {AbstractInputData} from "../../interface/atoms";
+import {AbstractInputData} from "../../abstract/component/model";
 
-export interface CodeInputData extends AbstractInputData {
-    code: string;
+export interface TextfieldInputData extends AbstractInputData {
+    name: string;
+    value?: string;
+    placeholder?: string;
+    maxlength?: number;
+    size?: number;
 }

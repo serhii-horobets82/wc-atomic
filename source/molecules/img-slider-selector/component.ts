@@ -1,14 +1,14 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract/abstract-component';
+import { AbstractComponent } from '../../abstract/component/component';
 import { ImgSliderComponent } from '../img-slider/component';
-import {ImgSliderSelector} from '../../interface/atoms';
 import {ImgModel} from "../../atoms/img/model";
+import {ImgSliderSelectorInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-img-slider-selector')
 export class ImgSliderSelectorComponent extends AbstractComponent<
-   ImgSliderSelector,
+   ImgSliderSelectorInputData,
    undefined
 > {
    static styles = css`
@@ -67,8 +67,8 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
       this.sliderType = this.inputData.imgSlider.sliderType;
    }
 
-   getDefaultInputData(): ImgSliderSelector {
-      return <ImgSliderSelector>{
+   getDefaultInputData(): ImgSliderSelectorInputData {
+      return <ImgSliderSelectorInputData>{
          componentIdentifier: ImgSliderSelectorComponent.IDENTIFIER,
          imgSlider: new ImgSliderComponent().getDefaultInputData()
       };

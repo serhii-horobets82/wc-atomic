@@ -1,14 +1,15 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {NavigationComponent} from '../../atoms/navigation/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {AbstractInputData, ContentSlider} from '../../interface/atoms';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractInputData} from '../../abstract/component/model';
+import {AbstractComponent} from '../../abstract/component/component';
+import {ContentSliderInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-content-slider')
 export class ContentSliderComponent extends AbstractComponent<
-   ContentSlider,
+   ContentSliderInputData,
    undefined
 > {
    static styles = css`
@@ -62,8 +63,8 @@ export class ContentSliderComponent extends AbstractComponent<
       );
    }
 
-   getDefaultInputData(): ContentSlider {
-      return <ContentSlider>{
+   getDefaultInputData(): ContentSliderInputData {
+      return <ContentSliderInputData>{
          componentIdentifier: ContentSliderComponent.IDENTIFIER,
          open: true,
          componentInputData: new NavigationComponent().getDefaultInputData()

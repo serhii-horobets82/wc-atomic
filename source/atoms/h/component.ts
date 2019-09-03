@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/component/component";
 import {HInputData} from "./model";
 
 const componentCSS = require('./component.css');
@@ -34,6 +34,7 @@ export abstract class HComponent extends AbstractComponent<HInputData, any> {
 
     getDefaultInputData(): HInputData {
         return <HInputData>{
+            componentIdentifier: H1Component.IDENTIFIER,
             headerType: 1,
             headerText: 'Meine Überschrift',
             subheaderText: 'Ein kleine Unterüberschrift',

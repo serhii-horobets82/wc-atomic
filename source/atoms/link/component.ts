@@ -1,11 +1,11 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
-import {Link} from "../../interface/atoms";
+import {AbstractComponent} from "../../abstract/component/component";
+import {LinkInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-link')
-export class LinkComponent extends AbstractComponent<Link, undefined> {
+export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -26,8 +26,8 @@ export class LinkComponent extends AbstractComponent<Link, undefined> {
         this.text = this.inputData.text;
     }
 
-    getDefaultInputData(): Link {
-        return <Link>{componentIdentifier: LinkComponent.IDENTIFIER, text: 'Home', href: '/'};
+    getDefaultInputData(): LinkInputData {
+        return <LinkInputData>{componentIdentifier: LinkComponent.IDENTIFIER, text: 'Home', href: '/'};
     }
 
     getOutputData(): undefined {

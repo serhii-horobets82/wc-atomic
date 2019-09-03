@@ -2,15 +2,16 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {ImgComponent} from '../../atoms/img/component';
-import {AbstractInputData, FlexContainer} from '../../interface/atoms';
-import {AbstractComponent} from '../../abstract/abstract-component';
+import {AbstractInputData} from '../../abstract/component/model';
+import {AbstractComponent} from '../../abstract/component/component';
 import {ComponentLoader} from '../../abstract/component-loader';
+import {FlexContainerInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-flex-container')
 export class FlexComponent extends AbstractComponent<
-   FlexContainer,
+   FlexContainerInputData,
    undefined
 > {
    static styles = css`
@@ -190,8 +191,8 @@ export class FlexComponent extends AbstractComponent<
       return undefined;
    }
 
-   getDefaultInputData(): FlexContainer {
-      return <FlexContainer>{
+   getDefaultInputData(): FlexContainerInputData {
+      return <FlexContainerInputData>{
          componentIdentifier: FlexComponent.IDENTIFIER,
          gridClazz: 'grid_100',
          columnFlexBasisValues: ['50%', '50%'],

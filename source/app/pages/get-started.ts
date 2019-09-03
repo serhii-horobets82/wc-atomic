@@ -1,16 +1,21 @@
 import {customElement} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {H1Component} from "../../atoms/h/component";
-import {CodeComponent, Component} from "../../atoms/code/component";
+import {CodeComponent} from "../../atoms/code/component";
 import {TemplateModel} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {data_navigation} from "../data/data";
 import {HInputData} from "../../atoms/h/model";
+import {CodeInputData} from "../../atoms/code/model";
 
 
 @customElement('page-get-started')
 export class GetStartedPage extends DefaultTemplate {
+
+    constructor() {
+        super();
+    }
 
     initTemplateData(): DefaultTemplateModel {
         let xxxx = <HInputData>{
@@ -19,7 +24,7 @@ export class GetStartedPage extends DefaultTemplate {
         };
 
 
-        let xxxxy = <Component>{
+        let xxxxy = <CodeInputData>{
             componentIdentifier: CodeComponent.IDENTIFIER,
             code: '',
         };
@@ -31,13 +36,6 @@ export class GetStartedPage extends DefaultTemplate {
             title: 'Component Overview',
             componentInputData: [xxxx],
         };
-    }
-
-    constructor() {
-        super();
-
-
-
     }
 
 

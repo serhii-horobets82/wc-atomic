@@ -1,13 +1,13 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
+import {AbstractComponent} from "../../abstract/component/component";
 import {KeyValueOutputData} from "../../organisms/form/component";
-import {Textarea} from "../../interface/atoms";
+import {TextareaInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 
 @customElement('component-textarea')
-export class TextareaComponent extends AbstractComponent<Textarea, KeyValueOutputData> {
+export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyValueOutputData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -27,8 +27,8 @@ export class TextareaComponent extends AbstractComponent<Textarea, KeyValueOutpu
     @query('#textareaElement')
     private textareaElement: HTMLTextAreaElement;
 
-    getDefaultInputData(): Textarea {
-        return <Textarea>{
+    getDefaultInputData(): TextareaInputData {
+        return <TextareaInputData>{
             componentIdentifier: TextareaComponent.IDENTIFIER,
             name: 'textarea',
         };

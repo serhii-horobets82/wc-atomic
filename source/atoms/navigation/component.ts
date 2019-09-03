@@ -1,21 +1,21 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/abstract-component";
-import {Navigation, NavigationLink} from "../../interface/atoms";
+import {AbstractComponent} from "../../abstract/component/component";
+import {NavigationInputData, NavigationLinkInputData} from "./model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-navigation')
-export class NavigationComponent extends AbstractComponent<Navigation, any> {
+export class NavigationComponent extends AbstractComponent<NavigationInputData, any> {
 
     @property()
-    links: NavigationLink[];
+    links: NavigationLinkInputData[];
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
     static IDENTIFIER: string = 'NavigationComponent';
 
-    getDefaultInputData(): Navigation {
-        return <Navigation>{
+    getDefaultInputData(): NavigationInputData {
+        return <NavigationInputData>{
             componentIdentifier: NavigationComponent.IDENTIFIER,
             links: [
                 {text: 'Homepage', href: '#', icon: 'icon-home'},

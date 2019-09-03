@@ -1,5 +1,5 @@
 import {html, LitElement, property, TemplateResult} from 'lit-element';
-import {AbstractComponent} from '../abstract-component';
+import {AbstractComponent} from '../component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../component-loader';

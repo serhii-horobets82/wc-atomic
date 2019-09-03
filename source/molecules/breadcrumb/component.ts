@@ -1,15 +1,16 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract/abstract-component';
-import { Breadcrumb, Link } from '../../interface/atoms';
+import { AbstractComponent } from '../../abstract/component/component';
 import { LinkComponent } from '../../atoms/link/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
+import {BreadcrumbInputData} from "./model";
+import {LinkInputData} from "../../atoms/link/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-breadcrumb')
 export class BreadcrumbComponent extends AbstractComponent<
-   Breadcrumb,
+   BreadcrumbInputData,
    undefined
 > {
    static styles = css`
@@ -19,7 +20,7 @@ export class BreadcrumbComponent extends AbstractComponent<
    static IDENTIFIER: string = 'BreadcrumbComponent';
 
    @property()
-   links: Link[];
+   links: LinkInputData[];
 
    render() {
       return html`
@@ -56,21 +57,21 @@ export class BreadcrumbComponent extends AbstractComponent<
       this.links = this.inputData.links;
    }
 
-   getDefaultInputData(): Breadcrumb {
-      return <Breadcrumb>{
+   getDefaultInputData(): BreadcrumbInputData {
+      return <BreadcrumbInputData>{
          componentIdentifier: BreadcrumbComponent.IDENTIFIER,
          links: [
-            <Link>{
+            <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
                text: 'IT-Katalog Rhenus',
                href: ''
             },
-            <Link>{
+            <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
                text: 'Software & Accounts',
                href: ''
             },
-            <Link>{
+            <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
                text: 'Geschäftsanwendungen',
                href: ''
