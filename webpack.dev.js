@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: './src/index.ts',
+    entry: './source/index.ts',
     mode: 'development',
     devtool: 'inline-source-map',
     resolve: {extensions: ['.ts', '.js']},
@@ -33,6 +33,6 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({template: './src/index.html'})]
+    plugins: [new HtmlWebpackPlugin({template: './source/index.html'})]
 };
 

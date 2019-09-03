@@ -1,0 +1,10 @@
+import './breadcrumb/import';
+import './component-viewer/import';
+import './content-slider/import';
+import './data-protection/import';
+import './icon-group/import';
+import './img-slider/import';
+import './img-slider-selector/import';
+import './search/import';
+import './teaser/import';
+import './tile/import';

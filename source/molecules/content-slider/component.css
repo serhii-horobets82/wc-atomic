@@ -1,0 +1,26 @@
+.header {
+   color: var(--app-primary-color-contrast);
+   background-color: var(--app-primary-background-color-contrast);
+   line-height: var(--line-height-big);
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   height: var(--line-height-big);
+}
+.header.closed {
+   justify-content: space-around;
+}
+.header:hover {
+   filter: brightness(var(--app-hover-brightness));
+}
+component-icon {
+   padding-left: var(--medium-padding);
+   padding-right: var(--medium-padding);
+}
+.content.closed {
+   display: none;
+}
+.content.open {
+   display: initial;
+}

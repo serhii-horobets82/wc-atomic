@@ -5,8 +5,8 @@
   "repository": {
     "private": true
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "source/index.js",
+  "module": "source/index.js",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@types/node": "^11.9.5",

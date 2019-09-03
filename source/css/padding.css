@@ -1,0 +1,77 @@
+.minPadding,
+::slotted(.minPadding) {
+   padding: var(--min-padding);
+}
+
+.mediumPadding,
+::slotted(.mediumPadding) {
+   padding: var(--medium-padding);
+}
+
+.maxPadding,
+::slotted(.maxPadding) {
+   padding: var(--max-padding);
+}
+
+.minPaddingLeft,
+::slotted(.minPaddingLeft) {
+   padding-left: var(--min-padding);
+}
+
+.mediumPaddingLeft,
+::slotted(.mediumPaddingLeft) {
+   padding-left: var(--medium-padding);
+}
+
+.maxPaddingLeft,
+::slotted(.maxPaddingLeft) {
+   padding-left: var(--max-padding);
+}
+
+.minPaddingRight,
+::slotted(.minPaddingRight) {
+   padding-right: var(--min-padding);
+}
+
+.mediumPaddingRight,
+::slotted(.mediumPaddingRight) {
+   padding-right: var(--medium-padding);
+}
+
+.maxPaddingRight,
+::slotted(.maxPaddingRight) {
+   padding-right: var(--max-padding);
+}
+.minPaddingTop,
+::slotted(.minPaddingTop) {
+   padding-top: var(--min-padding);
+}
+
+.mediumPaddingTop,
+::slotted(.mediumPaddingTop) {
+   padding-top: var(--medium-padding);
+}
+
+.maxPaddingTop,
+::slotted(.maxPaddingTop) {
+   padding-top: var(--max-padding);
+}
+
+.minPaddingBottom,
+::slotted(.minPaddingBottom) {
+   padding-bottom: var(--min-padding);
+}
+
+.mediumPaddingBottom,
+::slotted(.mediumPaddingBottom) {
+   padding-bottom: var(--medium-padding);
+}
+
+.maxPaddingBottom,
+::slotted(.maxPaddingBottom) {
+   padding-bottom: var(--max-padding);
+}
+
+@media only screen and (max-width: 1024px),
+   only screen and (orientation: portrait) {
+}
