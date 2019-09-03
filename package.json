@@ -9,6 +9,7 @@
   "module": "source/index.js",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "@types/node": "^11.9.5",
     "clean-webpack-plugin": "^1.0.1",
     "css-loader": "^2.1.0",
@@ -28,8 +29,7 @@
     "webpack-dev-server": "^3.2.0"
   },
   "dependencies": {
-    "lit-element": "^2.0.1",
-    "prettier": "^1.17.0"
+    "lit-element": "^2.2.1"
   },
   "author": "",
   "license": "ISC",

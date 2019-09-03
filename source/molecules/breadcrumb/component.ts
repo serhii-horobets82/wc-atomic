@@ -63,17 +63,17 @@ export class BreadcrumbComponent extends AbstractComponent<
          links: [
             <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
-               text: 'IT-Katalog Rhenus',
+               text: 'Mein Katalog',
                href: ''
             },
             <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
-               text: 'Software & Accounts',
+               text: 'Meine Welt',
                href: ''
             },
             <LinkInputData>{
                componentIdentifier: LinkComponent.IDENTIFIER,
-               text: 'Geschäftsanwendungen',
+               text: 'Meine Anwendungen',
                href: ''
             }
          ]
