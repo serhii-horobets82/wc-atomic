@@ -21,6 +21,9 @@ export class TextfieldComponent extends AbstractComponent<TextfieldInputData, Ke
     value: string = '';
 
     @property()
+    type: string = 'text';
+
+    @property()
     placeholder: string = '';
 
     @property()
@@ -44,11 +47,11 @@ export class TextfieldComponent extends AbstractComponent<TextfieldInputData, Ke
 
     render() {
         return html`
-            <input id="textfieldElement" name="${this.name}" @keyup="${this.keyup}" type="text" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" />
+            <input id="textfieldElement" name="${this.name}" @keyup="${this.keyup}" type="${this.type}" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" />
 `;
     }
 
-    async keyup(event: Event) {
+    async keyup() {
         this.dispatchSimpleCustomEvent(TextfieldComponent.EVENT_KEY_UP_CHANGE);
     }
 

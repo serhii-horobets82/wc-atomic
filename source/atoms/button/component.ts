@@ -19,13 +19,13 @@ export class ButtonComponent extends AbstractComponent<Button, undefined> {
     icon: IconInputData = <IconInputData>{};
 
     @property()
-    clazz: string;
+    clazz: string = '';
 
     @property()
-    text: string;
+    text: string = '';
 
     @property()
-    href: string;
+    href: string = '';
 
     @property()
     clickEventData: any;
@@ -64,7 +64,7 @@ export class ButtonComponent extends AbstractComponent<Button, undefined> {
       `;
     }
 
-    async clicked(event: Event) {
+    async clicked() {
         this.dispatchSimpleCustomEvent(
             ButtonComponent.EVENT_CLICK,
             this.clickEventData

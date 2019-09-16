@@ -5,7 +5,6 @@ import './molecules/import-molecules';
 import './organisms/import-organisms'
 
 
-import './app/pages/form';
 import './app/pages/homepage';
 import './app/pages/media';
 

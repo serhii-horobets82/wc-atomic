@@ -4,12 +4,12 @@ import {router} from "../util/router";
 import {HomePage} from "./pages/homepage";
 import {GetStartedPage} from "./pages/get-started";
 import {MediaPage} from "./pages/media";
-import {FormPage} from "./pages/form";
 import {CheckPage} from "./pages/check";
 import {AtomsPage} from "./pages/atoms";
 import {MoleculesPage} from "./pages/molecules";
 import {OrganismPage} from "./pages/organism";
-import {LandingPage} from "../pages/landing-page/component";
+import {LandingPage} from "../pages/landing/component";
+import {LoginPage} from "../pages/login/component";
 
 
 @customElement('app-root')
@@ -35,13 +35,12 @@ export class ShowcaseApp extends AbstractApp {
             case '#media':
                 let mediaPage = new MediaPage();
                 return html`${mediaPage}`;
-            case '#form':
-                let formPage = new FormPage();
-                return html`${formPage}`;
             case '#check':
                 return html`${new CheckPage()}`;
             case '#landingPage':
                 return html`${new LandingPage()}`;
+            case '#login':
+                return html`${new LoginPage()}`;
             default:
                 return html`Fehler - Keine Seite`;
         }

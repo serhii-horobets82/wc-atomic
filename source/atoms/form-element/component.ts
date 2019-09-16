@@ -1,55 +1,63 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {TextfieldComponent} from '../textfield/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {FormElementInputData} from "./model";
+import {FormElementInputData, FormElementOutputData} from "./model";
 
 const componentCSS = require('./component.css');
 
-@customElement('component-form-label')
-export class FormElementComponent extends AbstractComponent<
-   FormElementInputData,
-   undefined
-> {
-   static styles = css`
+@customElement('component-form-element')
+export class FormElementComponent extends AbstractComponent<FormElementInputData,
+    FormElementOutputData> {
+    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-   static IDENTIFIER: string = 'FormLabelComponent';
+    static IDENTIFIER: string = 'FormLabelComponent';
 
-   @property()
-   label: string;
+    @property()
+    label: string = '';
 
-   @property()
-   component: AbstractComponent<any, any>;
+    @query('#slotElement')
+    slotElement: HTMLSlotElement | undefined;
 
-   render() {
-      return html`
+    render() {
+        return html`
          <div class="formElement">
             <label>
                ${this.label}
             </label>
-            ${this.component}
+            <slot id="slotElement"></slot>
          </div>
       `;
-   }
+    }
 
-   getDefaultInputData(): FormElementInputData {
-      return <FormElementInputData>{
-         componentIdentifier: FormElementComponent.IDENTIFIER,
-         label: 'formLabel',
-         componentData: new TextfieldComponent().getDefaultInputData()
-      };
-   }
+    getDefaultInputData(): FormElementInputData {
+        return <FormElementInputData>{
+            componentIdentifier: FormElementComponent.IDENTIFIER,
+            label: 'formLabel',
+            componentData: new TextfieldComponent().getDefaultInputData()
+        };
+    }
 
-   protected inputDataChanged() {
-      this.label = this.inputData.label;
-      this.component = ComponentLoader.INSTANCE.createComponentFromInputData(
-         this.inputData.componentData
-      );
-   }
+    protected inputDataChanged() {
+        this.label = this.inputData.label;
+    }
 
-   getOutputData(): any {
-      return this.component.getOutputData();
-   }
+    getOutputData(): FormElementOutputData {
+        let outputData: FormElementOutputData = <FormElementOutputData>{};
+        outputData.data = [];
+        if (this.slotElement != null) {
+            let elements: Element[] = this.slotElement.assignedElements();
+            for (let index = 0; index < elements.length; index++) {
+                let element: Element = elements[index];
+                if (element instanceof AbstractComponent) {
+                    let elementOutputData = element.getOutputData();
+                    console.log('output data of element: ' + element.tagName + ', data=' + JSON.stringify(elementOutputData));
+                    outputData.data.push(elementOutputData);
+                }
+            }
+        }
+        return outputData;
+    }
 }

@@ -1,4 +1,5 @@
 import {Template} from "../../abstract/template/template";
+import {html} from "lit-html";
 
 export class BlankTemplate extends Template<any, any> {
 

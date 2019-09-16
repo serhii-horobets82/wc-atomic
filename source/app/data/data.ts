@@ -10,5 +10,6 @@ export const data_navigation:NavigationInputData = <NavigationInputData> {
         {text: 'Atoms', href: '#atoms', icon: ''},
         {text: 'Molecules', href: '#molecules', icon: ''},
         {text: 'Organism', href: '#organism', icon: ''},
+        {text: 'Login Page', href: '#login', icon: ''},
     ]
 }

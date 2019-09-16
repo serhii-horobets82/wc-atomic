@@ -14,164 +14,169 @@ import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../../abstract/component-loader';
 import {Button} from "../../atoms/button/model";
-import {FormElementInputData} from "../../atoms/form-element/model";
-import {FormComponentInputData} from "./model";
+import {FormElementInputData, FormElementOutputData} from "../../atoms/form-element/model";
+import {FormComponentInputData, FormComponentOutputData} from "./model";
 import {FlexContainerInputData} from "../flex-container/model";
+import {getTypeScriptInstance} from "ts-loader/dist/types/instances";
 
 const componentCSS = require('./component.css');
 
-export interface KeyValueOutputData {
-   key: string;
-   value: any;
-}
-
 @customElement('component-form')
-export class FormComponent extends AbstractComponent<FormComponentInputData, any> {
-   static IDENTIFIER: string = 'FormComponent';
+export class FormComponent extends AbstractComponent<FormComponentInputData, FormComponentOutputData> {
 
-   static EVENT_SUBMIT_BUTTON: string = 'component-form-submit-button-click';
+    static IDENTIFIER: string = 'FormComponent';
 
-   static styles = css`
+    static EVENT_SUBMIT_BUTTON: string = 'component-form-submit-button-click';
+
+    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-   @property()
-   gridClazz: string | undefined;
+    @property()
+    gridClazz: string | undefined;
 
-   @property()
-   columnClazz: string | undefined;
+    @property()
+    columnClazz: string | undefined;
 
-   @property()
-   buttonInputDatas: Button[];
+    @property()
+    buttonInputDatas: Button[] = [];
 
-   @query('#flexContainer')
-   flexContainerComponent: FlexComponent;
-   flexContainerInputData: FlexContainerInputData;
+    @property()
+    flexContainerInputData: FlexContainerInputData | undefined;
 
-   protected render() {
-      return html`
+    @query('#slotElement')
+    slotElement: HTMLSlotElement | undefined;
+
+    protected render() {
+        return html`  
          <form
             id="formElement"
             novalidate
             @component-button-click="${this.formButtonClicked}"
          >
-            <component-flex-container
-               id="flexContainer"
-               .inputData="${this.flexContainerInputData}"
-            ></component-flex-container>
 
+            <slot id="slotElement"></slot>
             ${guard(
-               this.buttonInputDatas,
-               () =>
-                  html`
+            this.buttonInputDatas,
+            () =>
+                html`
                      ${repeat(
-                        this.buttonInputDatas,
-                        (buttonInputData, index) => html`
+                    this.buttonInputDatas,
+                    (buttonInputData) => html`
                            ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                              buttonInputData
-                           )}
+                        buttonInputData
+                    )}
                         `
-                     )}
+                )}
                   `
-            )}
+        )}
          </form>
       `;
-   }
+    }
 
-   getOutputData(): any {
-      let outputData: any = [];
-      this.flexContainerComponent.componentsInputData.forEach(
-         (componentData) => {
-            let abstractComponent = this.flexContainerComponent.componentsMap.get(
-               componentData
-            );
-            if (abstractComponent !== undefined) {
-               let componentOutputData: any = abstractComponent.getOutputData();
-               outputData.push({
-                  [componentOutputData['key']]: componentOutputData['value']
-               });
+    public getOutputData(): FormComponentOutputData {
+        let json: string = '{';
+        let formElementIndex = 0;
+        if (this.slotElement != null) {
+            let elements: Element[] = this.slotElement.assignedElements();
+            for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
+                let element: Element = elements[elementIndex];
+                if (element instanceof FormElementComponent) {
+                    let elementOutputData = element.getOutputData();
+                    for (const value of elementOutputData.data) {
+                        if (formElementIndex > 0) {
+                            json = json.concat(',');
+                        }
+                        json = json.concat('"');
+                        json = json.concat(value.key);
+                        json = json.concat('":"');
+                        json = json.concat(value.value);
+                        json = json.concat('"');
+                        formElementIndex++;
+                    }
+                }
             }
-         }
-      );
-      //console.log('current form outputData: ' + JSON.stringify(outputData));
-      return outputData;
-   }
+        }
+        json = json.concat('}');
+        console.log('form outputData: ' + json);
+        return <FormComponentOutputData>{data: JSON.parse(json)};
+    }
 
-   getDefaultInputData(): FormComponentInputData {
-      return <FormComponentInputData>{
-         componentIdentifier: FormComponent.IDENTIFIER,
-         buttonInputDatas: [
-            <Button>{
-               componentIdentifier: ButtonComponent.IDENTIFIER,
-               text: 'Senden'
+    getDefaultInputData(): FormComponentInputData {
+        return <FormComponentInputData>{
+            componentIdentifier: FormComponent.IDENTIFIER,
+            buttonInputDatas: [
+                <Button>{
+                    componentIdentifier: ButtonComponent.IDENTIFIER,
+                    text: 'Senden'
+                }
+            ],
+            flexContainerInputData: <FlexContainerInputData>{
+                componentIdentifier: FlexComponent.IDENTIFIER,
+                gridClazz: 'grid_100',
+                columnFlexBasisValue: '30%',
+                componentsInputData: [
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Gib deinen Namen ein',
+                        componentData: new TextfieldComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Dein Geburtsdatum',
+                        componentData: new DateComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label:
+                            'Möchtest du übermäßig viele Emails von uns bekommen ?',
+                        componentData: new CheckboxComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Gib deine Lieblingsfarbe ein',
+                        componentData: new ColorComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Beschreibe dich',
+                        componentData: new TextareaComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Eine Auswahl',
+                        componentData: new ComboboxComponent().getDefaultInputData()
+                    },
+                    <FormElementInputData>{
+                        componentIdentifier: FormElementComponent.IDENTIFIER,
+                        label: 'Eine Auswahl',
+                        componentData: new RangeSliderComponent().getDefaultInputData()
+                    }
+                ]
             }
-         ],
-         flexContainerInputData: <FlexContainerInputData>{
-            componentIdentifier: FlexComponent.IDENTIFIER,
-            gridClazz: 'grid_100',
-            columnFlexBasisValue: '30%',
-            componentsInputData: [
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Gib deinen Namen ein',
-                  componentData: new TextfieldComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Dein Geburtsdatum',
-                  componentData: new DateComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label:
-                     'Möchtest du übermäßig viele Emails von uns bekommen ?',
-                  componentData: new CheckboxComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Gib deine Lieblingsfarbe ein',
-                  componentData: new ColorComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Beschreibe dich',
-                  componentData: new TextareaComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Eine Auswahl',
-                  componentData: new ComboboxComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Eine Auswahl',
-                  componentData: new RangeSliderComponent().getDefaultInputData()
-               }
-            ]
-         }
-      };
-   }
+        };
+    }
 
-   inputDataChanged(): void {
-      this.gridClazz = this.inputData.gridClazz;
-      this.columnClazz = this.inputData.columnClazz;
-      this.buttonInputDatas =
-         this.inputData.buttonInputDatas !== undefined
-            ? this.inputData.buttonInputDatas
-            : [];
-      this.flexContainerInputData = this.inputData.flexContainerInputData;
-   }
+    inputDataChanged(): void {
+        this.gridClazz = this.inputData.gridClazz;
+        this.columnClazz = this.inputData.columnClazz;
+        this.buttonInputDatas =
+            this.inputData.buttonInputDatas !== undefined
+                ? this.inputData.buttonInputDatas
+                : [];
+        this.flexContainerInputData = this.inputData.flexContainerInputData;
+    }
 
-   private formButtonClicked(event: CustomEvent) {
-      console.log('formButton clicked: ' + event.detail);
-      let buttonIdentifier = event.detail;
-      switch (buttonIdentifier) {
-         case 'submitButton':
-            this.dispatchSimpleCustomEvent(
-               FormComponent.EVENT_SUBMIT_BUTTON,
-               this.getOutputData()
-            );
-            break;
-      }
-   }
+    private formButtonClicked(event: CustomEvent) {
+        console.log('formButton clicked: ' + event.detail);
+        let buttonIdentifier = event.detail;
+        switch (buttonIdentifier) {
+            case 'submitButton':
+                this.dispatchSimpleCustomEvent(
+                    FormComponent.EVENT_SUBMIT_BUTTON,
+                    this.getOutputData()
+                );
+                break;
+        }
+    }
 }
