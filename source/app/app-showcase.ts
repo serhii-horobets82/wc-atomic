@@ -10,6 +10,7 @@ import {MoleculesPage} from "./pages/molecules";
 import {OrganismPage} from "./pages/organism";
 import {LandingPage} from "../pages/landing/component";
 import {LoginPage} from "../pages/login/component";
+import {RegisterPage} from "../pages/register/component";
 
 
 @customElement('app-root')
@@ -41,6 +42,8 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${new LandingPage()}`;
             case '#login':
                 return html`${new LoginPage()}`;
+            case '#register':
+                return html`${new RegisterPage()}`;
             default:
                 return html`Fehler - Keine Seite`;
         }

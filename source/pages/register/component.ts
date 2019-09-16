@@ -8,8 +8,8 @@ import {FormComponentOutputData} from "../../organisms/form/model";
 import {httpClient} from "../../app/data/data";
 
 
-@customElement('page-login')
-export class LoginPage extends BlankTemplate {
+@customElement('page-register')
+export class RegisterPage extends BlankTemplate {
 
     @query('#login-form')
     formComponent: FormComponent | undefined;
@@ -27,8 +27,7 @@ export class LoginPage extends BlankTemplate {
                         <component-form-element label="Passwort">
                             <component-textfield type="password" name="password"></component-textfield>
                         </component-form-element>
-                        <component-button text="Registrieren"></component-button>
-                        <component-button text="Anmelden" clickEventData="login"></component-button>
+                        <component-button text="Registrieren" clickEventData="register"></component-button>
                     </component-form>
 
 `;
@@ -41,14 +40,11 @@ export class LoginPage extends BlankTemplate {
             case 'login':
                 if (this.formComponent != null) {
                     let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-
                     console.log(formOutputData.data);
-
-                    let promise = httpClient.post('/dologin', formOutputData.data);
+                    let promise = httpClient.post('/SYSTEM/AUTH/REGISTER', formOutputData.data);
                     promise.then(value => {
                         console.log(JSON.stringify(value));
                     });
-
                 }
                 break;
         }

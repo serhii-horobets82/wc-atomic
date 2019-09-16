@@ -36,7 +36,7 @@ export class HttpClient {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Credentials': 'true'
             },
-            mode: 'cors',
+            mode: 'no-cors',
             method: method
         };
 
