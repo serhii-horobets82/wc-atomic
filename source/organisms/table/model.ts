@@ -1,9 +1,42 @@
 import {AbstractInputData} from "../../abstract/component/model";
 
-export interface TableHeaderInputData extends AbstractInputData {
+export interface TableHeaderInputData {
     text: string;
-    width: string;
+    width?: string;
+    hide?: boolean;
+    columnIdentifier: string;
 }
+
+
+export interface Sort {
+    sorted: boolean;
+    unsorted: boolean;
+    empty: boolean;
+}
+
+export interface Pageable {
+    sort: Sort;
+    offset: number;
+    pageNumber: number;
+    pageSize: number;
+    unpaged: boolean;
+    paged: boolean;
+}
+
+export interface TableContent {
+    content: any[];
+    pageable: Pageable;
+    last: boolean;
+    totalElements: number;
+    totalPages: number;
+    number: number;
+    size: number;
+    sort: Sort;
+    numberOfElements: number;
+    first: boolean;
+    empty: boolean;
+}
+
 
 export interface ColumnInputData {
     componentContent: AbstractInputData;
@@ -14,6 +47,8 @@ export interface RowInputData {
 }
 
 export interface TableInputData extends AbstractInputData {
-    headers: TableHeaderInputData[];
-    rows: RowInputData[];
+    page: number;
+    size: number;
+    sort: string;
+    headers?: TableHeaderInputData[];
 }

@@ -50,7 +50,6 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
     protected render() {
         return html`  
          <form
-            id="formElement"
             novalidate
             @component-button-click="${this.formButtonClicked}"
          >
@@ -75,6 +74,8 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
     }
 
     public getOutputData(): FormComponentOutputData {
+
+        let formData = new FormData();
         let json: string = '{';
         let formElementIndex = 0;
         if (this.slotElement != null) {
@@ -93,13 +94,19 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
                         json = json.concat(value.value);
                         json = json.concat('"');
                         formElementIndex++;
+                        formData.append(value.key, value.value);
                     }
                 }
             }
         }
         json = json.concat('}');
         console.log('form outputData: ' + json);
-        return <FormComponentOutputData>{data: JSON.parse(json)};
+
+        let outputData = <FormComponentOutputData>{};
+        outputData.jsonObject = JSON.parse(json);
+        outputData.formData = formData;
+
+        return outputData;
     }
 
     getDefaultInputData(): FormComponentInputData {

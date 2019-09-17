@@ -28,7 +28,6 @@ export class ComponentViewerComponent extends AbstractComponent<LeafViewer,
 
         return html`
          <div
-            @component-textfield-keyup="${this.reqUpdate}"
             @component-date-value-change="${this.reqUpdate}"
             @component-textarea-keyup="${this.reqUpdate}"
             @component-color-value-change="${this.reqUpdate}"

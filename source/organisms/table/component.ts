@@ -10,39 +10,60 @@ import {ComponentLoader} from '../../abstract/component-loader';
 import {ImgModel} from "../../atoms/img/model";
 import {IconInputData} from "../../atoms/icon/model";
 import {TextInputData} from "../../atoms/text/model";
-import {ColumnInputData, RowInputData, TableHeaderInputData, TableInputData} from "./model";
+import {ColumnInputData, RowInputData, TableContent, TableHeaderInputData, TableInputData} from "./model";
 import {TextfieldInputData} from "../../atoms/textfield/model";
 import {IconGroupComponent} from "../../molecules/icon-group/component";
+import {httpClient} from "../../app/data/data";
+import {AbstractInputData} from "../../abstract/component/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-table')
 export class TableComponent extends AbstractComponent<TableInputData, undefined> {
-   static styles = css`
+    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-   static IDENTIFIER: string = 'TableComponent';
+    static IDENTIFIER: string = 'TableComponent';
 
-   static EVENT_COLUMN_CLICK: string = 'component-table-column-click';
+    static EVENT_COLUMN_CLICK: string = 'component-table-column-click';
 
-   @property()
-   headers: TableHeaderInputData[] = [];
+    @property()
+    headers: TableHeaderInputData[] = [];
 
-   @property()
-   rows: RowInputData[] = [];
+    @property()
+    rows: RowInputData[] = [];
 
-   render() {
-      return html`
-         <span class="table">
+    @property()
+    page: number = 0;
+
+    @property()
+    size: number = 10;
+
+    @property()
+    totalElements: number = 0;
+
+    @property()
+    totalPages: number = 0;
+
+    @property()
+    numberOfElements: number = 0;
+
+
+    @property()
+    sort: string = '';
+
+    render() {
+        return html`
+         <span class="table" @component-textfield-keyup="${this.reqUpdate}" @component-icon-click="${this.iconClicked}">
             ${guard(
-               this.headers,
-               () =>
-                  html`
+            this.headers,
+            () =>
+                html`
                      <div class="head">
                         ${repeat(
-                           this.headers,
-                           (header) => html`
+                    this.headers,
+                    (header) => html`
                               <span
                                  class="headColumn"
                                  style="width: ${header.width}"
@@ -50,10 +71,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  ${header.text}
                               </span>
                            `
-                        )}
+                )}
                         ${repeat(
-                           this.headers,
-                      (header) => html`
+                    this.headers,
+                    (header) => html`
                               <span
                                  class="filterColumn"
                                  style="width: ${header.width}"
@@ -61,157 +82,207 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  <component-textfield></component-textfield>
                               </span>
                            `
-                     )}
+                )}
                      </div>
                   `
-            )}
+        )}
             ${guard(
-               this.rows,
-               () =>
-                  html`
+            this.rows,
+            () =>
+                html`
                      ${repeat(
-                        this.rows,
-                        (row, rowIndex) => html`
+                    this.rows,
+                    (row, rowIndex) => html`
                            <div
                               class="row ${rowIndex % 2 == 0 ? 'odd' : 'even'}"
                            >
                               ${guard(
-                                 row.colums,
-                                 () =>
-                                    html`
+                        row.colums,
+                        () =>
+                            html`
                                        ${repeat(
-                                          row.colums,
-                                          (column, columnIndex) => html`
+                                row.colums,
+                                (column, columnIndex) => html`
                                              <span
                                                 class="column"
                                                 style="width: ${this.headers[
-                                                   columnIndex
-                                                ].width};"
+                                    columnIndex
+                                    ].width};"
                                                 @click="${(event: MouseEvent) =>
-                                                   this.columnClicked(
-                                                      rowIndex,
-                                                      columnIndex,
-                                                      event
-                                                   )}"
+                                    this.columnClicked(
+                                        rowIndex,
+                                        columnIndex,
+                                        event
+                                    )}"
                                              >
                                                 <span class="columnHead"
                                                    >${this.headers[columnIndex]
-                                                      .text}</span
+                                    .text}</span
                                                 >
                                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                                   column.componentContent
-                                                )}
+                                    column.componentContent
+                                )}
                                              </span>
                                           `
-                                       )}
+                            )}
                                     `
-                              )}
+                    )}
                            </div>
                         `
-                     )}
+                )}
                   `
-            )}
-            <div class="footer"><component-icon-group .inputData="${new IconGroupComponent().getDefaultInputData()}"></component-icon-group></div>
+        )}
+            <div class="footer">
+            
+                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${() => {
+            this.page--;
+            this.loadData();
+            this.reqUpdate();
+        }}"></component-icon>
+
+                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${() => {
+            this.page++;
+            this.loadData();
+            this.reqUpdate();
+        }}"></component-icon>
+                
+                Seite: ${(this.page + 1)}<br/>
+                Size: ${this.size}<br/>
+                Total Elements: ${this.totalElements}<br/>
+                Total Pages: ${this.totalPages}<br/>
+                Number of Elements: ${this.numberOfElements}<br/>
+
+            </div>
          </span>
       `;
-   }
+    }
 
-   async columnClicked(
-      rowIndex: number,
-      columnIndex: number,
-      event: MouseEvent
-   ) {
-      console.log('rowIndex=' + rowIndex);
-      console.log('columnIndex=' + columnIndex);
-      console.log('event=' + JSON.stringify(event));
+    async itemClicked(event: CustomEvent) {
 
-      let columnClickedData: any = {
-         rowIndex: rowIndex,
-         columnIndex: columnIndex
-      };
+        console.log('sdkspodk' + event.detail);
 
-      this.dispatchCompoundCustomEvent(
-         TableComponent.EVENT_COLUMN_CLICK,
-         event,
-         columnClickedData
-      );
-   }
 
-   getDefaultInputData(): TableInputData {
-      return <TableInputData>{
-         componentIdentifier: TableComponent.IDENTIFIER,
-         headers: [
-            <TableHeaderInputData>{ text: 'Artikelnummer', width: '25%' },
-            <TableHeaderInputData>{ text: 'Bezeichnung', width: '30%' },
-            <TableHeaderInputData>{ text: '', width: '10%' },
-            <TableHeaderInputData>{ text: 'Preis', width: '10%' },
-            <TableHeaderInputData>{ text: 'Menge', width: '15%' },
-            <TableHeaderInputData>{ text: '', width: '10%' }
-         ],
-         rows: [
-            this.getDemoRow(),
-            this.getDemoRow(),
-            this.getDemoRow(),
-            this.getDemoRow(),
-            this.getDemoRow(),
-            this.getDemoRow(),
-            this.getDemoRow()
-         ]
-      };
-   }
+    }
 
-   inputDataChanged(): void {
-      this.headers = this.inputData.headers;
-      this.rows = this.inputData.rows;
-   }
 
-   getOutputData(): undefined {
-      return undefined;
-   }
+    async columnClicked(
+        rowIndex: number,
+        columnIndex: number,
+        event: MouseEvent
+    ) {
+        console.log('rowIndex=' + rowIndex);
+        console.log('columnIndex=' + columnIndex);
+        console.log('event=' + JSON.stringify(event));
 
-   private getDemoRow(): RowInputData {
-      return <RowInputData>{
-         colums: [
-            <ColumnInputData>{
-               componentContent: <TextInputData>{
-                  componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Ein Text'
-               }
-            },
-            <ColumnInputData>{
-               componentContent: <TextInputData>{
-                  componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Noch ein Text',
-               }
-            },
-            <ColumnInputData>{
-               componentContent: <ImgModel>{
-                  componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/150/150',
-                  clazz: 'imageHeightHundred'
-               }
-            },
-            <ColumnInputData>{
-               componentContent: <TextInputData>{
-                  componentIdentifier: TextComponent.IDENTIFIER,
-                  text: 'Wieder ein Text'
-               }
-            },
-            <ColumnInputData>{
-               componentContent: <TextfieldInputData>{
-                  componentIdentifier: TextfieldComponent.IDENTIFIER,
-                  name: 'Holala',
-                  size: 5
-               }
-            },
-            <ColumnInputData>{
-               componentContent: <IconInputData>{
-                  componentIdentifier: IconComponent.IDENTIFIER,
-                  iconClazz: 'icon-search',
-                  clickable: true
-               }
-            }
-         ]
-      };
-   }
+        let columnClickedData: any = {
+            rowIndex: rowIndex,
+            columnIndex: columnIndex
+        };
+
+        this.dispatchCompoundCustomEvent(
+            TableComponent.EVENT_COLUMN_CLICK,
+            event,
+            columnClickedData
+        );
+    }
+
+    getDefaultInputData(): TableInputData {
+        return <TableInputData>{
+            componentIdentifier: TableComponent.IDENTIFIER,
+            page: 0,
+            size: 10,
+            sort: '',
+        };
+    }
+
+    inputDataChanged(): void {
+        if (this.inputData.headers != null) {
+            this.headers = this.inputData.headers;
+        }
+        this.loadData();
+    }
+
+    getOutputData(): undefined {
+        return undefined;
+    }
+
+    private loadData() {
+
+        let responsePromise = httpClient.get('/APP/FIND?page=' + this.page + '&size=10&sort=id%3Adesc%3B');
+        responsePromise.then(response => {
+            let bodyTextPromise: Promise<string> = response.text();
+            bodyTextPromise.then(tableContentAsJson => {
+                let tableContent: TableContent = JSON.parse(tableContentAsJson);
+                this.totalElements = tableContent.totalElements;
+                this.totalPages = tableContent.totalPages;
+                this.numberOfElements = tableContent.numberOfElements;
+
+
+                let pageable = tableContent.pageable;
+                this.size = pageable.pageSize;
+                this.page = pageable.pageNumber;
+
+                let content = tableContent.content;
+
+                this.rows = [];
+
+                content.forEach((row, index) => {
+                    console.debug("row= " + JSON.stringify(row));
+                    console.debug("index= " + index);
+
+                    let keys = Object.keys(row);
+                    let columnSize = keys.length;
+                    let maxColumnWidth = 100 / columnSize + "%";
+
+                    let columnsInputDatas: ColumnInputData[] = [];
+                    keys.forEach((columnName, columnIndex) => {
+                        console.debug('columnName= ' + columnName);
+                        console.debug('columnIndex= ' + columnIndex);
+
+                        let columnValue = Object.values(row).slice(columnIndex, columnIndex + 1)[0];
+
+                        let tableHeaderInput: TableHeaderInputData;
+                        if (this.headers.length > columnIndex) {
+                            tableHeaderInput = this.headers[columnIndex];
+                            if (tableHeaderInput.width == null || tableHeaderInput.width > maxColumnWidth) {
+                                tableHeaderInput.width = maxColumnWidth;
+                            }
+                        } else {
+                            tableHeaderInput = <TableHeaderInputData>{
+                                columnIdentifier: TextComponent.IDENTIFIER,
+                                text: columnName,
+                                width: maxColumnWidth,
+
+                            };
+                            this.headers.push(tableHeaderInput);
+                        }
+
+                        let abstractInputData: AbstractInputData;
+                        switch (tableHeaderInput.columnIdentifier) {
+                            default:
+                            case TextComponent.IDENTIFIER:
+                                abstractInputData = <TextInputData>{
+                                    componentIdentifier: TextComponent.IDENTIFIER,
+                                    text: columnValue
+                                };
+                                break;
+                        }
+
+                        let columnInputData: ColumnInputData = <ColumnInputData>{componentContent: abstractInputData};
+                        columnsInputDatas.push(columnInputData);
+
+                    });
+
+                    let rowInputData: RowInputData = <RowInputData>{colums: columnsInputDatas};
+                    this.rows.push(rowInputData);
+
+                });
+
+            })
+
+        }).catch(reason => {
+            console.log("REASEON:" + reason);
+        })
+
+    }
 }

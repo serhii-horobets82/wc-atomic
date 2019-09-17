@@ -8,7 +8,8 @@ export interface KeyValueOutputData {
 }
 
 export interface FormComponentOutputData {
-    data: any;
+    jsonObject: any;
+    formData: FormData;
 }
 
 export interface FormComponentInputData extends AbstractInputData {

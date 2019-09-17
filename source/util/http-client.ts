@@ -33,20 +33,26 @@ export class HttpClient {
         const requestOptions: RequestInit = {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true'
             },
-            mode: 'no-cors',
             method: method
         };
 
+
+        //mode: 'no-cors',
+
+        //'Access-Control-Allow-Origin': '*',
+            //'Access-Control-Allow-Credentials': 'true'
+
+
         //,credentials: 'include'
         if (body) {
-            requestOptions.body = JSON.stringify(body);
+            console.log("body: " + JSON.stringify(body));
+            requestOptions.body = body;
         }
         let completeURL = this.config.baseURL + url;
         console.log('request url: ' + completeURL);
         const response = await fetch(completeURL, requestOptions);
+        //alert(response.status);
         if (response.ok) {
             return response;
         } else {

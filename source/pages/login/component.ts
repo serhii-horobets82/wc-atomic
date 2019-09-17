@@ -22,12 +22,11 @@ export class LoginPage extends BlankTemplate {
         return html`
                     <component-form id="login-form" @component-button-click="${(event: CustomEvent) => this.formButtonClicked(event)}">
                         <component-form-element label="Benutzername">
-                            <component-textfield name="email"></component-textfield>
+                            <component-textfield name="username"></component-textfield>
                         </component-form-element>
                         <component-form-element label="Passwort">
                             <component-textfield type="password" name="password"></component-textfield>
                         </component-form-element>
-                        <component-button text="Registrieren"></component-button>
                         <component-button text="Anmelden" clickEventData="login"></component-button>
                     </component-form>
 
@@ -42,12 +41,15 @@ export class LoginPage extends BlankTemplate {
                 if (this.formComponent != null) {
                     let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
 
-                    console.log(formOutputData.data);
+                    let a = formOutputData.formData.get("username");
+                    console.log("dsdsdsdsd " +a);
 
-                    let promise = httpClient.post('/dologin', formOutputData.data);
+                    let promise = httpClient.post('/dologin', formOutputData.formData);
                     promise.then(value => {
                         console.log(JSON.stringify(value));
-                    });
+                    }).catch(reason => {
+                        console.log("reason: " + reason);
+                    }).finally();
 
                 }
                 break;

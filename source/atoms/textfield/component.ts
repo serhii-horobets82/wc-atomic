@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
-import {KeyValueOutputData} from "../../organisms/form/component";
 import {TextfieldInputData} from "./model";
+import {KeyValueOutputData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
@@ -33,7 +33,7 @@ export class TextfieldComponent extends AbstractComponent<TextfieldInputData, Ke
     size: number = 50;
 
     @query("#textfieldElement")
-    private textfieldElemet: HTMLInputElement;
+    private textfieldElemet: HTMLInputElement | undefined;
 
     getDefaultInputData(): TextfieldInputData {
         return <TextfieldInputData>{
