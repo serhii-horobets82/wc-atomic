@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: './source/index.ts',
+    entry: {
+        main: './source/index.ts',
+        polyfills: './source/polyfills.ts',
+    },
     mode: 'development',
     devtool: 'inline-source-map',
     resolve: {extensions: ['.ts', '.js']},
@@ -30,7 +33,7 @@ module.exports = {
                 use: [{
                     loader: 'file-loader', options: {}
                 }]
-            }
+            },
         ]
     },
     plugins: [new HtmlWebpackPlugin({template: './source/index.html'})]

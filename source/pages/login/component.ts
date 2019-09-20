@@ -3,7 +3,7 @@ import {BlankTemplate} from "../../templates/blank/template";
 import {TeaserComponent} from "../../molecules/teaser/component";
 import {TextWithHeaderComponent} from "../../molecules/text-with-header/component";
 import {FormComponent} from "../../organisms/form/component";
-import {HttpClient, HttpClientConfig} from "../../util/http-client";
+import {HttpClient, HttpClientIF} from "../../util/http-client/http-client";
 import {FormComponentOutputData} from "../../organisms/form/model";
 import {httpClient} from "../../app/data/data";
 
@@ -44,7 +44,7 @@ export class LoginPage extends BlankTemplate {
                     let a = formOutputData.formData.get("username");
                     console.log("dsdsdsdsd " +a);
 
-                    let promise = httpClient.post('/dologin', formOutputData.formData);
+                    let promise = httpClient.sendFormData('/dologin', formOutputData.formData);
                     promise.then(value => {
                         console.log(JSON.stringify(value));
                     }).catch(reason => {

@@ -55,7 +55,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     render() {
         return html`
-         <span class="table" @component-textfield-keyup="${this.reqUpdate}" @component-icon-click="${this.iconClicked}">
+         <span class="table" @component-textfield-keyup="${this.reqUpdate}" @component-icon-click="">
             ${guard(
             this.headers,
             () =>

@@ -3,7 +3,7 @@ import {BlankTemplate} from "../../templates/blank/template";
 import {TeaserComponent} from "../../molecules/teaser/component";
 import {TextWithHeaderComponent} from "../../molecules/text-with-header/component";
 import {FormComponent} from "../../organisms/form/component";
-import {HttpClient, HttpClientConfig} from "../../util/http-client";
+import {HttpClient, HttpClientIF} from "../../util/http-client/http-client";
 import {FormComponentOutputData} from "../../organisms/form/model";
 import {httpClient} from "../../app/data/data";
 

@@ -1,8 +1,8 @@
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {NavigationInputData} from "../../atoms/navigation/model";
-import {HttpClient, HttpClientConfig} from "../../util/http-client";
+import {HttpClient, HttpClientIF, HttpConfigImpl} from "../../util/http-client/http-client";
 
-export const httpClient: HttpClient = new HttpClient(<HttpClientConfig>{baseURL: 'http://localhost:8095'});
+export const httpClient: HttpClient = new HttpClient(new HttpConfigImpl());
 
 export const data_navigation: NavigationInputData = <NavigationInputData>{
     componentIdentifier: NavigationComponent.IDENTIFIER,
