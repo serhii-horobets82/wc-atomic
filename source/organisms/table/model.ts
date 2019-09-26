@@ -1,10 +1,11 @@
 import {AbstractInputData} from "../../abstract/component/model";
 
 export interface TableHeaderInputData {
-    text: string;
-    width?: string;
+    columnKey: string;
+    widthPercent?: number;
     hide?: boolean;
     columnIdentifier: string;
+    sortingIconClazz?: string;
 }
 
 

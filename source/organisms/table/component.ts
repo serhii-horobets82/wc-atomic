@@ -15,6 +15,13 @@ import {TextfieldInputData} from "../../atoms/textfield/model";
 import {IconGroupComponent} from "../../molecules/icon-group/component";
 import {httpClient} from "../../app/data/data";
 import {AbstractInputData} from "../../abstract/component/model";
+import {ComboboxComponent} from "../../atoms/combobox/component";
+import {ComboboxInputData} from "../../atoms/combobox/model";
+import {DatalistComponent} from "../../atoms/datalist/component";
+import {DatalistInputData} from "../../atoms/datalist/model";
+import {ButtonComponent} from "../../atoms/button/component";
+import {Button} from "../../atoms/button/model";
+import {KeyValueOutputData} from "../form/model";
 
 const componentCSS = require('./component.css');
 
@@ -49,7 +56,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     @property()
     numberOfElements: number = 0;
 
-
     @property()
     sort: string = '';
 
@@ -57,18 +63,19 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         return html`
          <span class="table" @component-textfield-keyup="${this.reqUpdate}" @component-icon-click="">
             ${guard(
-            this.headers,
+            [this.headers],
             () =>
                 html`
                      <div class="head">
                         ${repeat(
                     this.headers,
-                    (header) => html`
+                    (header, headerIndex) => html`
                               <span
                                  class="headColumn"
-                                 style="width: ${header.width}"
+                                 style="width: ${header.widthPercent}%"
                               >
-                                 ${header.text}
+                                 ${header.columnKey}
+                                 <component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>
                               </span>
                            `
                 )}
@@ -77,7 +84,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                     (header) => html`
                               <span
                                  class="filterColumn"
-                                 style="width: ${header.width}"
+                                 style="width: ${header.widthPercent}%"
                               >
                                  <component-textfield></component-textfield>
                               </span>
@@ -87,7 +94,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   `
         )}
             ${guard(
-            this.rows,
+            [this.rows],
             () =>
                 html`
                      ${repeat(
@@ -107,7 +114,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                                 class="column"
                                                 style="width: ${this.headers[
                                     columnIndex
-                                    ].width};"
+                                    ].widthPercent}%;"
                                                 @click="${(event: MouseEvent) =>
                                     this.columnClicked(
                                         rowIndex,
@@ -117,7 +124,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                              >
                                                 <span class="columnHead"
                                                    >${this.headers[columnIndex]
-                                    .text}</span
+                                    .columnKey}</span
                                                 >
                                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
                                     column.componentContent
@@ -133,18 +140,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   `
         )}
             <div class="footer">
-            
-                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${() => {
-            this.page--;
-            this.loadData();
-            this.reqUpdate();
-        }}"></component-icon>
-
-                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${() => {
-            this.page++;
-            this.loadData();
-            this.reqUpdate();
-        }}"></component-icon>
+                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
+                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
+                
+                <component-textfield value="${this.size}" @component-textfield-keyup="${(event: CustomEvent) => this.changeSize(event)}"></component-textfield>
                 
                 Seite: ${(this.page + 1)}<br/>
                 Size: ${this.size}<br/>
@@ -192,12 +191,21 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             page: 0,
             size: 10,
             sort: '',
+            headers: [<TableHeaderInputData>{columnIdentifier: TextfieldComponent.IDENTIFIER, columnKey: 'id'}]
         };
     }
 
     inputDataChanged(): void {
+        this.sort = this.inputData.sort;
         if (this.inputData.headers != null) {
             this.headers = this.inputData.headers;
+            let maxColumnWidth: number = 100 / this.headers.length;
+            this.headers.forEach((header) => {
+                if (header.widthPercent == undefined || header.widthPercent > maxColumnWidth) {
+                    header.widthPercent = maxColumnWidth;
+                }
+                this.setSortingIconClazz(header, this.inputData.sort);
+            })
         }
         this.loadData();
     }
@@ -208,7 +216,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     private loadData() {
 
-        let responsePromise = httpClient.get('/APP/FIND?page=' + this.page + '&size=10&sort=id%3Adesc%3B');
+        let responsePromise = httpClient.get('/BALANCE/FIND?page=' + this.page + '&size=' + this.size + '&sort=' + this.sort);
         responsePromise.then(response => {
             let bodyTextPromise: Promise<string> = response.text();
             bodyTextPromise.then(tableContentAsJson => {
@@ -231,34 +239,31 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                     console.debug("index= " + index);
 
                     let keys = Object.keys(row);
-                    let columnSize = keys.length;
-                    let maxColumnWidth = 100 / columnSize + "%";
 
                     let columnsInputDatas: ColumnInputData[] = [];
-                    keys.forEach((columnName, columnIndex) => {
-                        console.debug('columnName= ' + columnName);
-                        console.debug('columnIndex= ' + columnIndex);
 
-                        let columnValue = Object.values(row).slice(columnIndex, columnIndex + 1)[0];
+                    for (const tableHeaderInput of this.headers) {
 
-                        let tableHeaderInput: TableHeaderInputData;
-                        if (this.headers.length > columnIndex) {
-                            tableHeaderInput = this.headers[columnIndex];
-                            if (tableHeaderInput.width == null || tableHeaderInput.width > maxColumnWidth) {
-                                tableHeaderInput.width = maxColumnWidth;
+                        let columnKey = tableHeaderInput.columnKey;
+                        let columnValue: any = {};
+
+                        keys.forEach((columnName, columnIndex) => {
+                            if (tableHeaderInput.columnKey === columnName) {
+                                console.debug('columnName= ' + columnName);
+                                console.debug('columnIndex= ' + columnIndex);
+                                columnValue = Object.values(row).slice(columnIndex, columnIndex + 1)[0];
                             }
-                        } else {
-                            tableHeaderInput = <TableHeaderInputData>{
-                                columnIdentifier: TextComponent.IDENTIFIER,
-                                text: columnName,
-                                width: maxColumnWidth,
-
-                            };
-                            this.headers.push(tableHeaderInput);
-                        }
+                        });
 
                         let abstractInputData: AbstractInputData;
                         switch (tableHeaderInput.columnIdentifier) {
+                            case TextfieldComponent.IDENTIFIER:
+                                abstractInputData = <TextfieldInputData>{
+                                    componentIdentifier: TextfieldComponent.IDENTIFIER,
+                                    name: columnKey,
+                                    value: columnValue
+                                };
+                                break;
                             default:
                             case TextComponent.IDENTIFIER:
                                 abstractInputData = <TextInputData>{
@@ -266,23 +271,123 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                     text: columnValue
                                 };
                                 break;
+                            case ComboboxComponent.IDENTIFIER:
+                                abstractInputData = <ComboboxInputData>{
+                                    componentIdentifier: ComboboxComponent.IDENTIFIER,
+                                    name: columnKey,
+                                };
+                                break;
+                            case DatalistComponent.IDENTIFIER:
+                                abstractInputData = <DatalistInputData>{
+                                    componentIdentifier: DatalistComponent.IDENTIFIER,
+                                    name: columnKey,
+                                };
+                                break;
+                            case ButtonComponent.IDENTIFIER:
+                                abstractInputData = <Button>{
+                                    componentIdentifier: ButtonComponent.IDENTIFIER,
+                                    text: columnValue,
+                                };
+                                break;
                         }
 
                         let columnInputData: ColumnInputData = <ColumnInputData>{componentContent: abstractInputData};
                         columnsInputDatas.push(columnInputData);
 
-                    });
+
+                    }
 
                     let rowInputData: RowInputData = <RowInputData>{colums: columnsInputDatas};
                     this.rows.push(rowInputData);
-
                 });
 
-            })
+                //this.reqUpdate();
 
-        }).catch(reason => {
-            console.log("REASEON:" + reason);
-        })
+            });
+        });
 
     }
+
+    private previousPage() {
+        if (this.page > 0) {
+            this.page--;
+            this.loadData();
+        }
+    }
+
+    private nextPage() {
+        if ((this.page + 1) < this.totalPages) {
+            this.page++;
+            this.loadData();
+        }
+    }
+
+    private changeSize(event: CustomEvent) {
+        let newSize: KeyValueOutputData = event.detail;
+        console.log('set new size per page: ' + newSize.value);
+        this.size = newSize.value;
+        this.loadData();
+    }
+
+    private updateSortProperty(header: TableHeaderInputData) {
+
+        let columnKey: string = header.columnKey;
+
+        let sortingKey: KeyValueOutputData | null = this.getSortingKey(columnKey, this.sort);
+        header.sortingIconClazz = 'fas fa-sort';
+
+        if (sortingKey != null) {
+            switch (sortingKey.value) {
+                case 'desc':
+                    this.sort = this.sort.replace(columnKey.concat(':desc;'), columnKey.concat(':asc;'));
+                    break;
+                case 'asc':
+                    this.sort = this.sort.replace(columnKey.concat(':asc;'), '');
+                    break;
+            }
+        } else {
+            this.sort = this.sort.concat(columnKey, ':desc;')
+        }
+
+        console.log('new sorting: ' + this.sort);
+        this.setSortingIconClazz(header, this.sort);
+        this.headers = this.headers.map((item) => item);
+        this.loadData();
+    }
+
+
+    private setSortingIconClazz(tableHeaderInputData: TableHeaderInputData, sort: string) {
+        let columnKey: string = tableHeaderInputData.columnKey;
+        let sortingKey: KeyValueOutputData | null = this.getSortingKey(columnKey, sort);
+        tableHeaderInputData.sortingIconClazz = 'fas fa-sort';
+        if (sortingKey != null) {
+            switch (sortingKey.value) {
+                case 'desc':
+                    tableHeaderInputData.sortingIconClazz = 'fas fa-sort-up';
+                    break;
+                case 'asc':
+                    tableHeaderInputData.sortingIconClazz = 'fas fa-sort-down';
+                    break;
+            }
+        }
+        console.log('new sortingIconClazz: ' + tableHeaderInputData.sortingIconClazz);
+    }
+
+
+    private getSortingKey(columnKey: string, sort: string) {
+        let indexOfColumnKey = this.sort.indexOf(columnKey);
+        if (indexOfColumnKey == -1) {
+            return null;
+        } else {
+            let subSort = sort.substr(indexOfColumnKey);
+            let sortingKeyAsString = subSort.substr(0, subSort.indexOf(';'));
+            let sortingKeyArray = sortingKeyAsString.split(':');
+            return <KeyValueOutputData>{
+                key: sortingKeyArray[0],
+                value: sortingKeyArray[1]
+            }
+        }
+    }
+
+
 }

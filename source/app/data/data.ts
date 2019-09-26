@@ -14,5 +14,6 @@ export const data_navigation: NavigationInputData = <NavigationInputData>{
         {text: 'Organism', href: '#organism', icon: ''},
         {text: 'Login Page', href: '#login', icon: ''},
         {text: 'Register Page', href: '#register', icon: ''},
+        {text: 'Balance', href: '#balance', icon: ''},
     ]
 }

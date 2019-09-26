@@ -52,7 +52,7 @@ export class TextfieldComponent extends AbstractComponent<TextfieldInputData, Ke
     }
 
     async keyup() {
-        this.dispatchSimpleCustomEvent(TextfieldComponent.EVENT_KEY_UP_CHANGE);
+        this.dispatchSimpleCustomEvent(TextfieldComponent.EVENT_KEY_UP_CHANGE, this.getOutputData());
     }
 
     getOutputData(): KeyValueOutputData {

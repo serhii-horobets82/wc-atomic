@@ -29,6 +29,7 @@ import {TileComponent} from '../molecules/tile/component';
 import {BreadcrumbComponent} from "../molecules/breadcrumb/component";
 import {ToolbarComponent} from "../organisms/toolbar/component";
 import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
+import {DatalistComponent} from "../atoms/datalist/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -98,6 +99,9 @@ export class ComponentLoader {
                 break;
             case ComboboxComponent.IDENTIFIER:
                 component = new ComboboxComponent();
+                break;
+            case DatalistComponent.IDENTIFIER:
+                component = new DatalistComponent();
                 break;
             case CheckboxComponent.IDENTIFIER:
                 component = new CheckboxComponent();

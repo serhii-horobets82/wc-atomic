@@ -11,6 +11,7 @@ import {OrganismPage} from "./pages/organism";
 import {LandingPage} from "../pages/landing/component";
 import {LoginPage} from "../pages/login/component";
 import {RegisterPage} from "../pages/register/component";
+import {BalancePage} from "./pages/balance";
 
 
 @customElement('app-root')
@@ -44,6 +45,9 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${new LoginPage()}`;
             case '#register':
                 return html`${new RegisterPage()}`;
+                case '#balance':
+                return html`${new BalancePage()}`;
+
             default:
                 return html`Fehler - Keine Seite`;
         }

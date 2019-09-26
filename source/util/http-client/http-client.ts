@@ -11,10 +11,11 @@ export enum Credentials {
 }
 
 export class HttpConfigImpl implements HttpClientIF {
-    credentials = Credentials.SAME_ORIGIN;
-    cors = CorsMode.SAME_ORIGIN;
+    credentials = Credentials.INCLUDE;
+    cors = CorsMode.CORS;
     defaultContentType = 'application/json';
-    baseURL = 'http://v220190910399797452.supersrv.de:8095';
+    //baseURL = 'http://v220190910399797452.supersrv.de:8095';
+    baseURL = 'http://localhost:8095';
 }
 
 export interface HttpClientIF {
@@ -34,7 +35,11 @@ export class HttpClient {
 
     public sendFormData(url: string, formData: FormData) {
         console.log('send form data {}', formData);
-        return this.createFetch('POST', url, undefined, formData);
+        let urlSearchParams: URLSearchParams = new URLSearchParams();
+        formData.forEach((value, key) => {
+            urlSearchParams.append(key, value.toString());
+        });
+        return this.post(url, ContentType.FORM, urlSearchParams);
     }
 
     public get(url: string, contentType: string = this._config.defaultContentType) {
@@ -62,46 +67,56 @@ export class HttpClient {
         let headers: any = {};
 
         //headers['Access-Control-Allow-Origin'] = '*';
+        //headers['Access-Control-Allow-Credentials'] = true;
+        //headers['Accept'] = '*/*';
 
         if (contentType != undefined) {
+            console.log('set content type header: ', contentType);
             headers['Content-Type'] = contentType;
         }
 
+        if (this.isLoggedIn()) {
+            console.log('set basic authentication header. ');
+            //headers['Authorization'] = 'Basic ' + this.getJSessionId();
+        }
+        console.log("body: " + JSON.stringify(body));
 
-        //{
-        //  'Content-Type': ContentType.FORM,
-        // 'Access-Control-Allow-Origin': '*',
-        //}
+        console.log('set request method: ' + method);
 
+        //mode: this._config.cors,
         const requestOptions: RequestInit = {
             headers: headers,
             method: method,
-            mode: 'no-cors'
+            body: body,
+            credentials: this._config.credentials
         };
-        //mode: 'no-cors'
 
-        if (body) {
-            console.log("body: " + JSON.stringify(body));
-            requestOptions.body = body;
-        }
+//redirect: "follow"
+        //credentials: this._config.credentials,
 
-        console.log('requestOptions: {}', requestOptions);
 
-        let completeURL = this._config.baseURL + url;
+            let completeURL = this._config.baseURL + url;
         console.log('request url: ' + completeURL);
 
         const response = await fetch(completeURL, requestOptions);
+        console.info('response status: ', response.status);
+        return response;
 
-        if (response.ok) {
-            return response;
-        } else {
-            let message = await response.text();
-            try {
-                message = JSON.parse(message).message;
-            } catch (e) {
-            }
-            message = message || response.statusText;
-            return Promise.reject(message);
-        }
     }
+
+    public isLoggedIn() {
+        let isLoggedIn = this.getJSessionId() != null;
+        console.log('isLoggedIn: ' + isLoggedIn);
+        return isLoggedIn;
+    }
+
+
+    getJSessionId() {
+        let jsId = document.cookie.match(/JSESSIONID=[^;]+/);
+        if (jsId != null) {
+            return jsId[0].substring(11);
+        }
+        return jsId;
+    }
+
 }

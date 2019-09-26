@@ -2,19 +2,19 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
-import {KeyValueOutputData} from "../../organisms/form/component";
-import {ComboboxInputData, ComboboxOption} from "./model";
+import {DatalistInputData, DatalistOption} from "./model";
+import {KeyValueOutputData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
-@customElement('component-combobox')
-export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyValueOutputData> {
+@customElement('component-datalist')
+export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyValueOutputData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
-    static IDENTIFIER: string = 'ComboboxComponent';
+    static IDENTIFIER: string = 'DatalistComponent';
 
-    static EVENT_SELECTION_CHANGE: string = 'combobox-component-selection-change';
+    static EVENT_SELECTION_CHANGE: string = 'combobox-datalist-selection-change';
 
     @property()
     name: string = '';
@@ -23,7 +23,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
     size: number = 1;
 
     @property()
-    options: ComboboxOption[] = [];
+    options: DatalistOption[] = [];
 
     @query('#selectElement')
     private selectElement: HTMLSelectElement | undefined;
@@ -38,26 +38,19 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
     render() {
         return html`
-  <input list="browsers" name="browser">
-  <datalist id="browsers">
-    <option value="Internet Explorer">
-    <option value="Firefox">
-    <option value="Chrome">
-    <option value="Opera">
-    <option value="Safari">
-  </datalist>
-            <select id="selectElement" name="${this.name}" size="${this.size}" @change="${this.selectionChange}">
+  <input list="options" name="option">
+            <datalist id="options" name="${this.name}" size="${this.size}" @change="${this.selectionChange}">
                 ${guard([this.options], () => html`${
             repeat(this.options, option => option.value, (option, index) => html`
                         <option value="${option.value}">${option.text}</option>
                     `)}
                 `)}
-            </select>
+            </datalist>
         `;
     }
 
     async selectionChange(event: Event) {
-        this.dispatchSimpleCustomEvent(ComboboxComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+        this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
     }
 
     getOutputData(): KeyValueOutputData {
@@ -68,12 +61,12 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
         };
     }
 
-    getDefaultInputData(): ComboboxInputData {
-        return <ComboboxInputData>{
-            componentIdentifier: ComboboxComponent.IDENTIFIER,
+    getDefaultInputData(): DatalistInputData {
+        return <DatalistInputData>{
+            componentIdentifier: DatalistComponent.IDENTIFIER,
             name: 'combobox',
             size: 1,
-            options: <ComboboxOption[]>[{value: 'value1', text: 'Eintrag 1'}, {
+            options: <DatalistOption[]>[{value: 'value1', text: 'Eintrag 1'}, {
                 value: 'value2',
                 text: 'Eintrag 2'
             }, {value: 'value3', text: 'Eintrag 3'},],
@@ -81,7 +74,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
     }
 
     getEventList(): string[] {
-        return [ComboboxComponent.EVENT_SELECTION_CHANGE];
+        return [DatalistComponent.EVENT_SELECTION_CHANGE];
     }
 
 }

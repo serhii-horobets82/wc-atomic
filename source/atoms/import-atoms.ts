@@ -3,6 +3,7 @@ import './checkbox/import';
 import './code/import';
 import './color/import';
 import './combobox/import';
+import './datalist/import';
 import './date/import';
 import './form-element/import';
 import './h/import';
