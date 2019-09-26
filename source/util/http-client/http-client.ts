@@ -15,7 +15,8 @@ export class HttpConfigImpl implements HttpClientIF {
     cors = CorsMode.CORS;
     defaultContentType = 'application/json';
     //baseURL = 'http://v220190910399797452.supersrv.de:8095';
-    baseURL = 'http://localhost:8095';
+    baseURL = 'http://91.132.144.173:8095';
+    //baseURL = 'http://localhost:8095';
 }
 
 export interface HttpClientIF {
