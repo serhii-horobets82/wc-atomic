@@ -1,3 +1,8 @@
+import {constants} from "http2";
+import HTTP_STATUS_OK = module
+import {BooleanType} from "../constants";
+import {httpClient} from "../../app/data/data";
+
 export enum ContentType {
     FORM = 'application/x-www-form-urlencoded', JSON = 'application/json', XML = 'application/xml'
 }
@@ -10,6 +15,16 @@ export enum Credentials {
     SAME_ORIGIN = 'same-origin', INCLUDE = 'include', OMIT = 'omit'
 }
 
+
+export enum HttpStatusEnum {
+    OK = 200,
+}
+
+export enum HttpClientSessionKey {
+    AUTHENTICATED = 'AUTHENTICATED',
+}
+
+
 export class HttpConfigImpl implements HttpClientIF {
     credentials = Credentials.INCLUDE;
     cors = CorsMode.CORS;
@@ -17,6 +32,8 @@ export class HttpConfigImpl implements HttpClientIF {
     //baseURL = 'http://v220190910399797452.supersrv.de:8095';
     baseURL = 'http://91.132.144.173:8095';
     //baseURL = 'http://localhost:8095';
+    loginPath = '/dologin';
+    logoutPath = '/dologout';
 }
 
 export interface HttpClientIF {
@@ -24,6 +41,8 @@ export interface HttpClientIF {
     cors: string;
     defaultContentType: string;
     baseURL: string;
+    loginPath: string;
+    logoutPath: string;
 }
 
 export class HttpClient {
@@ -32,6 +51,30 @@ export class HttpClient {
 
     constructor(config: HttpConfigImpl) {
         this._config = config;
+    }
+
+    public async logout() {
+        let response = await this.get(this._config.logoutPath);
+        if (response.status == HttpStatusEnum.OK) {
+            console.log('logout successfully.');
+            sessionStorage.setItem(HttpClientSessionKey.AUTHENTICATED, BooleanType.FALSE);
+        }
+        return this.isAuthenticated();
+    }
+
+    public async login(formData: FormData) {
+        let response = await this.sendFormData(this._config.loginPath, formData);
+        if (response.status == HttpStatusEnum.OK) {
+            console.log('login successfully.');
+            sessionStorage.setItem(HttpClientSessionKey.AUTHENTICATED, BooleanType.TRUE);
+        } else {
+            sessionStorage.setItem(HttpClientSessionKey.AUTHENTICATED, BooleanType.FALSE);
+        }
+        return this.isAuthenticated();
+    }
+
+    public isAuthenticated() {
+        return BooleanType.TRUE == sessionStorage.getItem(HttpClientSessionKey.AUTHENTICATED);
     }
 
     public sendFormData(url: string, formData: FormData) {
@@ -76,7 +119,7 @@ export class HttpClient {
             headers['Content-Type'] = contentType;
         }
 
-        if (this.isLoggedIn()) {
+        if (this.isAuthenticated()) {
             console.log('set basic authentication header. ');
             //headers['Authorization'] = 'Basic ' + this.getJSessionId();
         }
@@ -96,28 +139,13 @@ export class HttpClient {
         //credentials: this._config.credentials,
 
 
-            let completeURL = this._config.baseURL + url;
+        let completeURL = this._config.baseURL + url;
         console.log('request url: ' + completeURL);
 
         const response = await fetch(completeURL, requestOptions);
         console.info('response status: ', response.status);
         return response;
 
-    }
-
-    public isLoggedIn() {
-        let isLoggedIn = this.getJSessionId() != null;
-        console.log('isLoggedIn: ' + isLoggedIn);
-        return isLoggedIn;
-    }
-
-
-    getJSessionId() {
-        let jsId = document.cookie.match(/JSESSIONID=[^;]+/);
-        if (jsId != null) {
-            return jsId[0].substring(11);
-        }
-        return jsId;
     }
 
 }

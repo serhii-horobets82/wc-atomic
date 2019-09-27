@@ -1,110 +1,111 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract/component/component';
-import { AbstractInputData} from '../../abstract/component/model';
-import { ComponentLoader } from '../../abstract/component-loader';
-import { guard } from 'lit-html/directives/guard';
-import { repeat } from 'lit-html/directives/repeat';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractInputData} from '../../abstract/component/model';
+import {ComponentLoader} from '../../abstract/component-loader';
+import {guard} from 'lit-html/directives/guard';
+import {repeat} from 'lit-html/directives/repeat';
 import {IconComponent} from "../../atoms/icon/component";
 import {ToolbarInputData} from "./model";
+import {AuthenticatedIconComponent} from "../../molecules/authenticated-icon/component";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-toolbar')
 export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefined> {
-   static styles = css`
+    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-   static IDENTIFIER: string = 'ToolbarComponent';
+    static IDENTIFIER: string = 'ToolbarComponent';
 
-   @property()
-   leftInputData: AbstractInputData[] = [];
+    @property()
+    leftInputData: AbstractInputData[] = [];
 
-   @property()
-   mainInputData: AbstractInputData[] = [];
+    @property()
+    mainInputData: AbstractInputData[] = [];
 
-   @property()
-   rightInputData: AbstractInputData[] = [];
+    @property()
+    rightInputData: AbstractInputData[] = [];
 
-   constructor() {
-      super();
-   }
+    constructor() {
+        super();
+    }
 
-   render() {
-      return html`
+    render() {
+        return html`
          <div class="toolbar">
             <component-flex-container
                gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween"
             >
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
-                     this.leftInputData,
-                     () =>
-                        html`
+            this.leftInputData,
+            () =>
+                html`
                            ${repeat(
-                              this.leftInputData,
-                              (inputData, index) => html`
+                    this.leftInputData,
+                    (inputData, index) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    inputData
-                                 )}
+                        inputData
+                    )}
                               `
-                           )}
+                )}
                         `
-                  )}
+        )}
                </component-flex-container>
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
-                     this.mainInputData,
-                     () =>
-                        html`
+            this.mainInputData,
+            () =>
+                html`
                            ${repeat(
-                              this.mainInputData,
-                              (inputData, index) => html`
+                    this.mainInputData,
+                    (inputData, index) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    inputData
-                                 )}
+                        inputData
+                    )}
                               `
-                           )}
+                )}
                         `
-                  )}
+        )}
                </component-flex-container>
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
-                     this.rightInputData,
-                     () =>
-                        html`
+            this.rightInputData,
+            () =>
+                html`
                            ${repeat(
-                              this.rightInputData,
-                              (inputData, index) => html`
+                    this.rightInputData,
+                    (inputData, index) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    inputData
-                                 )}
+                        inputData
+                    )}
                               `
-                           )}
+                )}
                         `
-                  )}
+        )}
                </component-flex-container>
             </component-flex-container>
          </div>
       `;
-   }
+    }
 
-   getDefaultInputData(): ToolbarInputData {
-      return <ToolbarInputData>{
-         componentIdentifier: ToolbarComponent.IDENTIFIER,
-         leftInputData: [new IconComponent().getDefaultInputData()],
-         mainInputData: [],
-         rightInputData: []
-      };
-   }
+    getDefaultInputData(): ToolbarInputData {
+        return <ToolbarInputData>{
+            componentIdentifier: ToolbarComponent.IDENTIFIER,
+            leftInputData: [new IconComponent().getDefaultInputData()],
+            mainInputData: [],
+            rightInputData: [new AuthenticatedIconComponent().getDefaultInputData()]
+        };
+    }
 
-   getOutputData(): any {
-      return undefined;
-   }
+    getOutputData(): any {
+        return undefined;
+    }
 
-   protected inputDataChanged() {
-       this.leftInputData = this.inputData.leftInputData;
-       this.mainInputData = this.inputData.mainInputData;
-       this.rightInputData = this.inputData.rightInputData;
-   }
+    protected inputDataChanged() {
+        this.leftInputData = this.inputData.leftInputData;
+        this.mainInputData = this.inputData.mainInputData;
+        this.rightInputData = this.inputData.rightInputData;
+    }
 }

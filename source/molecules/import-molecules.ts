@@ -1,3 +1,4 @@
+import './authenticated-icon/import';
 import './breadcrumb/import';
 import './component-viewer/import';
 import './content-slider/import';
