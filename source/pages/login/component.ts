@@ -15,6 +15,8 @@ export class LoginPage extends BlankTemplate {
     @query('#login-form')
     formComponent: FormComponent | undefined;
 
+    test: any;
+
     constructor() {
         super();
     }
@@ -23,6 +25,8 @@ export class LoginPage extends BlankTemplate {
     isAuthenticated: boolean = httpClient.isAuthenticated();
 
     getContent(): TemplateResult {
+        this.test;
+
         return !this.isAuthenticated ? html`
                     <component-form id="login-form">
                         <component-form-element label="Benutzername">

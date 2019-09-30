@@ -3,25 +3,17 @@ import {AbstractComponent} from '../../abstract/component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../../atoms/text/component';
-import {IconComponent} from '../../atoms/icon/component';
 import {TextfieldComponent} from '../../atoms/textfield/component';
-import {ImgComponent} from '../../atoms/img/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {ImgModel} from "../../atoms/img/model";
-import {IconInputData} from "../../atoms/icon/model";
 import {TextInputData} from "../../atoms/text/model";
 import {ColumnInputData, RowInputData, TableContent, TableHeaderInputData, TableInputData} from "./model";
-import {TextfieldInputData} from "../../atoms/textfield/model";
-import {IconGroupComponent} from "../../molecules/icon-group/component";
 import {httpClient} from "../../app/data/data";
-import {AbstractInputData} from "../../abstract/component/model";
 import {ComboboxComponent} from "../../atoms/combobox/component";
-import {ComboboxInputData} from "../../atoms/combobox/model";
 import {DatalistComponent} from "../../atoms/datalist/component";
-import {DatalistInputData} from "../../atoms/datalist/model";
 import {ButtonComponent} from "../../atoms/button/component";
 import {Button} from "../../atoms/button/model";
 import {KeyValueOutputData} from "../form/model";
+import {TextfieldInputData} from "../../atoms/textfield/model";
 
 const componentCSS = require('./component.css');
 
@@ -127,7 +119,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                     .columnKey}</span
                                                 >
                                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    column.componentContent
+                                    column.componentInputData
                                 )}
                                              </span>
                                           `
@@ -191,7 +183,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             page: 0,
             size: 10,
             sort: '',
-            headers: [<TableHeaderInputData>{columnIdentifier: TextfieldComponent.IDENTIFIER, columnKey: 'id'}]
+            headers: []
         };
     }
 
@@ -255,45 +247,25 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             }
                         });
 
-                        let abstractInputData: AbstractInputData;
-                        switch (tableHeaderInput.columnIdentifier) {
+                        let inputData = tableHeaderInput.componentInputData;
+                        switch (inputData.componentIdentifier) {
                             case TextfieldComponent.IDENTIFIER:
-                                abstractInputData = <TextfieldInputData>{
-                                    componentIdentifier: TextfieldComponent.IDENTIFIER,
-                                    name: columnKey,
-                                    value: columnValue
-                                };
+                                (<TextfieldInputData>inputData).value = columnValue;
                                 break;
                             default:
                             case TextComponent.IDENTIFIER:
-                                abstractInputData = <TextInputData>{
-                                    componentIdentifier: TextComponent.IDENTIFIER,
-                                    text: columnValue
-                                };
+                                (<TextInputData>inputData).text = columnValue;
                                 break;
                             case ComboboxComponent.IDENTIFIER:
-                                abstractInputData = <ComboboxInputData>{
-                                    componentIdentifier: ComboboxComponent.IDENTIFIER,
-                                    name: columnKey,
-                                };
                                 break;
                             case DatalistComponent.IDENTIFIER:
-                                abstractInputData = <DatalistInputData>{
-                                    componentIdentifier: DatalistComponent.IDENTIFIER,
-                                    name: columnKey,
-                                };
                                 break;
                             case ButtonComponent.IDENTIFIER:
-                                abstractInputData = <Button>{
-                                    componentIdentifier: ButtonComponent.IDENTIFIER,
-                                    text: columnValue,
-                                };
+                                (<Button>inputData).text = columnValue;
                                 break;
                         }
 
-                        let columnInputData: ColumnInputData = <ColumnInputData>{componentContent: abstractInputData};
-                        columnsInputDatas.push(columnInputData);
-
+                        columnsInputDatas.push(<ColumnInputData>{componentInputData: inputData});
 
                     }
 

@@ -4,8 +4,8 @@ export interface TableHeaderInputData {
     columnKey: string;
     widthPercent?: number;
     hide?: boolean;
-    columnIdentifier: string;
     sortingIconClazz?: string;
+    componentInputData: AbstractInputData;
 }
 
 
@@ -40,7 +40,7 @@ export interface TableContent {
 
 
 export interface ColumnInputData {
-    componentContent: AbstractInputData;
+    componentInputData: AbstractInputData;
 }
 
 export interface RowInputData {

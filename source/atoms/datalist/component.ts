@@ -34,6 +34,7 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         if (this.inputData.options != undefined) {
             this.options = this.inputData.options;
         }
+        this.registerDynamicDataChannel(this.inputData.dataListChannel);
     }
 
     render() {
@@ -75,6 +76,15 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
 
     getEventList(): string[] {
         return [DatalistComponent.EVENT_SELECTION_CHANGE];
+    }
+
+    dynamicData(channel: string, dynamicData: string) {
+        super.dynamicData(channel, dynamicData);
+        switch (channel) {
+            case this.inputData.dataListChannel:
+                this.options = JSON.parse(dynamicData);
+                break;
+        }
     }
 
 }

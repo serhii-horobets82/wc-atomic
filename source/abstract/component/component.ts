@@ -1,5 +1,6 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
+import {store} from "../../util/storage/storage";
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement {
@@ -97,4 +98,20 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         });
         this.dispatchEvent(valueChanged);
     }
+
+    dynamicData(channel: string, dynamicData: string) {
+        console.log("dynamic data received, channel: " + channel)
+        if (dynamicData === undefined) {
+            console.log('retrieve empty dynamic data');
+        }
+    }
+
+    registerDynamicDataChannel(channel: string) {
+        if (channel !== undefined) {
+            store.register(channel, this);
+        }
+    }
+
+
+
 }

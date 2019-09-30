@@ -4,11 +4,12 @@ import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
 import {TableHeaderInputData, TableInputData} from "../../organisms/table/model";
-import {TextfieldComponent} from "../../atoms/textfield/component";
-import {TextComponent} from "../../atoms/text/component";
-import {ComboboxComponent} from "../../atoms/combobox/component";
+import {TextInputData} from "../../atoms/text/model";
+import {DatalistInputData} from "../../atoms/datalist/model";
 import {DatalistComponent} from "../../atoms/datalist/component";
-import {ButtonComponent} from "../../atoms/button/component";
+import {TextComponent} from "../../atoms/text/component";
+import {TextfieldInputData} from "../../atoms/textfield/model";
+import {Button} from "../../atoms/button/model";
 
 
 @customElement('page-balance')
@@ -24,12 +25,30 @@ export class BalancePage extends DefaultTemplate {
         page: 0,
         size: 10,
         sort: 'nummer:desc;',
-        headers: [<TableHeaderInputData>{columnIdentifier: TextComponent.IDENTIFIER, columnKey: 'nummer'},
-            <TableHeaderInputData>{columnIdentifier: TextComponent.IDENTIFIER, columnKey: 'bezeichnung'},
-            <TableHeaderInputData>{columnIdentifier: TextfieldComponent.IDENTIFIER, columnKey: 'saldo'},
-            <TableHeaderInputData>{columnIdentifier: DatalistComponent.IDENTIFIER, columnKey: 'dest_idl'},
-            <TableHeaderInputData>{columnIdentifier: ButtonComponent.IDENTIFIER, columnKey: 'bestaetigen'},
-            <TableHeaderInputData>{columnIdentifier: ButtonComponent.IDENTIFIER, columnKey: 'status'}]
+        headers: [<TableHeaderInputData>{
+            componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+            columnKey: 'nummer'
+        },
+            <TableHeaderInputData>{
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'bezeichnung'
+            },
+            <TableHeaderInputData>{
+                componentInputData: <TextfieldInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'saldo'
+            },
+            <TableHeaderInputData>{
+                componentInputData: <DatalistInputData>{
+                    componentIdentifier: DatalistComponent.IDENTIFIER,
+                    dataListChannel: 'companies'
+                },
+                columnKey: 'dest_idl'
+            },
+            <TableHeaderInputData>{
+                componentInputData: <Button>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'status'
+            }
+        ]
     };
 
     getContent(): TemplateResult {
