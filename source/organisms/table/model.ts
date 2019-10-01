@@ -3,8 +3,8 @@ import {AbstractInputData} from "../../abstract/component/model";
 export interface TableHeaderInputData {
     columnKey: string;
     widthPercent?: number;
-    hide?: boolean;
     sortingIconClazz?: string;
+    searchValue: string;
     componentInputData: AbstractInputData;
 }
 

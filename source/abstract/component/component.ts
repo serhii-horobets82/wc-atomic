@@ -106,8 +106,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         }
     }
 
-    registerDynamicDataChannel(channel: string) {
-        if (channel !== undefined) {
+    registerDynamicDataChannel(channel: string | null) {
+        if (channel !== null) {
             store.register(channel, this);
         }
     }

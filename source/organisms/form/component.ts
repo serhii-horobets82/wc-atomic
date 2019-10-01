@@ -1,12 +1,9 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {TextfieldComponent} from '../../atoms/textfield/component';
+import {InputComponent} from '../../input/input/component';
 import {FormElementComponent} from '../../atoms/form-element/component';
-import {DateComponent} from '../../atoms/date/component';
-import {CheckboxComponent} from '../../atoms/checkbox/component';
-import {ColorComponent} from '../../atoms/color/component';
-import {TextareaComponent} from '../../atoms/textarea/component';
-import {ComboboxComponent} from '../../atoms/combobox/component';
-import {RangeSliderComponent} from '../../atoms/range-slider/component';
+import {CheckboxComponent} from '../../input/checkbox/component';
+import {TextareaComponent} from '../../input/textarea/component';
+import {ComboboxComponent} from '../../input/combobox/component';
 import {AbstractComponent} from '../../abstract/component/component';
 import {FlexComponent} from '../flex-container/component';
 import {ButtonComponent} from '../../atoms/button/component';
@@ -14,10 +11,9 @@ import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../../abstract/component-loader';
 import {Button} from "../../atoms/button/model";
-import {FormElementInputData, FormElementOutputData} from "../../atoms/form-element/model";
+import {FormElementInputData} from "../../atoms/form-element/model";
 import {FormComponentInputData, FormComponentOutputData} from "./model";
 import {FlexContainerInputData} from "../flex-container/model";
-import {getTypeScriptInstance} from "ts-loader/dist/types/instances";
 
 const componentCSS = require('./component.css');
 
@@ -126,23 +122,13 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
                     <FormElementInputData>{
                         componentIdentifier: FormElementComponent.IDENTIFIER,
                         label: 'Gib deinen Namen ein',
-                        componentData: new TextfieldComponent().getDefaultInputData()
-                    },
-                    <FormElementInputData>{
-                        componentIdentifier: FormElementComponent.IDENTIFIER,
-                        label: 'Dein Geburtsdatum',
-                        componentData: new DateComponent().getDefaultInputData()
+                        componentData: new InputComponent().getDefaultInputData()
                     },
                     <FormElementInputData>{
                         componentIdentifier: FormElementComponent.IDENTIFIER,
                         label:
                             'Möchtest du übermäßig viele Emails von uns bekommen ?',
                         componentData: new CheckboxComponent().getDefaultInputData()
-                    },
-                    <FormElementInputData>{
-                        componentIdentifier: FormElementComponent.IDENTIFIER,
-                        label: 'Gib deine Lieblingsfarbe ein',
-                        componentData: new ColorComponent().getDefaultInputData()
                     },
                     <FormElementInputData>{
                         componentIdentifier: FormElementComponent.IDENTIFIER,
@@ -153,11 +139,6 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
                         componentIdentifier: FormElementComponent.IDENTIFIER,
                         label: 'Eine Auswahl',
                         componentData: new ComboboxComponent().getDefaultInputData()
-                    },
-                    <FormElementInputData>{
-                        componentIdentifier: FormElementComponent.IDENTIFIER,
-                        label: 'Eine Auswahl',
-                        componentData: new RangeSliderComponent().getDefaultInputData()
                     }
                 ]
             }

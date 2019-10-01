@@ -22,10 +22,10 @@ export class RegisterPage extends BlankTemplate {
         return html`
                     <component-form id="login-form" @component-button-click="${(event: CustomEvent) => this.formButtonClicked(event)}">
                         <component-form-element label="Benutzername">
-                            <component-textfield name="email"></component-textfield>
+                            <component-inputfield name="email"></component-inputfield>
                         </component-form-element>
                         <component-form-element label="Passwort">
-                            <component-textfield type="password" name="password"></component-textfield>
+                            <component-inputfield type="password" name="password"></component-inputfield>
                         </component-form-element>
                         <component-button text="Registrieren" clickEventData="register"></component-button>
                     </component-form>

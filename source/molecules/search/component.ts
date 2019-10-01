@@ -1,7 +1,7 @@
 import {css, customElement, html, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {KeyValueOutputData} from '../../organisms/form/component';
-import {TextfieldComponent} from '../../atoms/textfield/component';
+import {InputComponent} from '../../input/input/component';
 import {SearchInputData} from "./model";
 
 const componentCSS = require('./component.css');
@@ -17,12 +17,12 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
    static EVENT_CLICK: string = 'component-search';
 
    @query('#textfieldComponent')
-   textfieldComponent: TextfieldComponent;
+   textfieldComponent: InputComponent;
 
    render() {
       return html`
          <div class="searchBox">
-            <component-textfield id="textfieldComponent"></component-textfield
+            <component-inputfield id="textfieldComponent"></component-inputfield
             ><component-icon
                iconClazz="icon-search" clickable="true"
                @component-icon-click="${this.clicked}"

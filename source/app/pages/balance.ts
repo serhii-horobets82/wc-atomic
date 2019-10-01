@@ -5,11 +5,13 @@ import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
 import {TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
-import {DatalistInputData} from "../../atoms/datalist/model";
-import {DatalistComponent} from "../../atoms/datalist/component";
+import {DatalistInputData} from "../../input/datalist/model";
+import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
-import {TextfieldInputData} from "../../atoms/textfield/model";
+import {TextfieldInputData} from "../../input/input/model";
 import {Button} from "../../atoms/button/model";
+import {InputComponent} from "../../input/input/component";
+import {ButtonComponent} from "../../atoms/button/component";
 
 
 @customElement('page-balance')
@@ -27,26 +29,34 @@ export class BalancePage extends DefaultTemplate {
         sort: 'nummer:desc;',
         headers: [<TableHeaderInputData>{
             componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-            columnKey: 'nummer'
+            columnKey: 'nummer',
+            searchValue: ''
         },
             <TableHeaderInputData>{
                 componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'bezeichnung'
+                columnKey: 'bezeichnung',
+                searchValue: ''
             },
             <TableHeaderInputData>{
-                componentInputData: <TextfieldInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'saldo'
+                componentInputData: <TextfieldInputData>{
+                    componentIdentifier: InputComponent.IDENTIFIER,
+                    type: 'number'
+                },
+                columnKey: 'saldo',
+                searchValue: ''
             },
             <TableHeaderInputData>{
                 componentInputData: <DatalistInputData>{
                     componentIdentifier: DatalistComponent.IDENTIFIER,
                     dataListChannel: 'companies'
                 },
-                columnKey: 'dest_idl'
+                columnKey: 'dest_idl',
+                searchValue: ''
             },
             <TableHeaderInputData>{
-                componentInputData: <Button>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'status'
+                componentInputData: <Button>{componentIdentifier: ButtonComponent.IDENTIFIER},
+                columnKey: 'status',
+                searchValue: ''
             }
         ]
     };
@@ -55,10 +65,15 @@ export class BalancePage extends DefaultTemplate {
 
         return html`
 
-<component-button text="Kreditoren"></component-button>
-<component-button text="Debitoren"></component-button>
-
-<component-table .inputData="${this.tableInputData}"></component-table>
+            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
+            
+                <component-button text="Kreditoren"></component-button>
+                <component-button text="Debitoren"></component-button>
+                <component-button text="Sachkonten"></component-button>
+            
+                <component-table .inputData="${this.tableInputData}"></component-table>
+            
+            </component-flex-container>
 
 `;
 

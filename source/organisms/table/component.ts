@@ -2,18 +2,21 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {TextComponent} from '../../atoms/text/component';
-import {TextfieldComponent} from '../../atoms/textfield/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {TextInputData} from "../../atoms/text/model";
 import {ColumnInputData, RowInputData, TableContent, TableHeaderInputData, TableInputData} from "./model";
+import {ComboboxOption} from "../../input/combobox/model";
+import {baseHelper} from "../../util/base";
 import {httpClient} from "../../app/data/data";
-import {ComboboxComponent} from "../../atoms/combobox/component";
-import {DatalistComponent} from "../../atoms/datalist/component";
+import {InputComponent} from "../../input/input/component";
+import {TextInputData} from "../../atoms/text/model";
+import {ComboboxComponent} from "../../input/combobox/component";
+import {DatalistComponent} from "../../input/datalist/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {Button} from "../../atoms/button/model";
+import {TextfieldInputData} from "../../input/input/model";
 import {KeyValueOutputData} from "../form/model";
-import {TextfieldInputData} from "../../atoms/textfield/model";
+import {TextComponent} from "../../atoms/text/component";
+import {DatalistInputData} from "../../input/datalist/model";
 
 const componentCSS = require('./component.css');
 
@@ -34,10 +37,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     rows: RowInputData[] = [];
 
     @property()
-    page: number = 0;
-
-    @property()
-    size: number = 10;
+    page: number = 1;
 
     @property()
     totalElements: number = 0;
@@ -51,9 +51,44 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     @property()
     sort: string = '';
 
+    @property()
+    size: number = 20;
+
+    sizeOptions: ComboboxOption[] = [<ComboboxOption>{
+        text: '5',
+        value: '5'
+    }, <ComboboxOption>{
+        text: '10',
+        value: '10'
+    }, <ComboboxOption>{
+        text: '20',
+        value: '20'
+    }, <ComboboxOption>{
+        text: '50',
+        value: '50'
+    }, <ComboboxOption>{
+        text: '100',
+        value: '100'
+    }];
+
     render() {
         return html`
-         <span class="table" @component-textfield-keyup="${this.reqUpdate}" @component-icon-click="">
+
+            <component-flex-container gridClazz="grid_100">
+            
+                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
+                <component-inputfield type="number" value="${this.page}" size="2" min="1" max="${this.totalPages}"  @component-inputfield-change="${(event: CustomEvent) => this.changePage(event)}"></component-inputfield> / ${this.totalPages}
+                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
+                
+                
+                <component-combobox .options="${this.sizeOptions}" .selectedValue="${this.size}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
+
+                ${this.numberOfElements} von insgesamt: ${this.totalElements}
+
+        </component-flex-container>
+
+
+         <span class="table">
             ${guard(
             [this.headers],
             () =>
@@ -61,7 +96,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                      <div class="head">
                         ${repeat(
                     this.headers,
-                    (header, headerIndex) => html`
+                    (header) => html`
                               <span
                                  class="headColumn"
                                  style="width: ${header.widthPercent}%"
@@ -77,8 +112,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                               <span
                                  class="filterColumn"
                                  style="width: ${header.widthPercent}%"
+                                 @component-inputfield-keyup="${(event: CustomEvent) => {this.searchValueChanged(event, header)}}"
                               >
-                                 <component-textfield></component-textfield>
+                                ${this.createFilterComponent(header)}
                               </span>
                            `
                 )}
@@ -132,16 +168,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   `
         )}
             <div class="footer">
-                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
-                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
-                
-                <component-textfield value="${this.size}" @component-textfield-keyup="${(event: CustomEvent) => this.changeSize(event)}"></component-textfield>
-                
-                Seite: ${(this.page + 1)}<br/>
-                Size: ${this.size}<br/>
-                Total Elements: ${this.totalElements}<br/>
-                Total Pages: ${this.totalPages}<br/>
-                Number of Elements: ${this.numberOfElements}<br/>
+            
+            
 
             </div>
          </span>
@@ -208,7 +236,22 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     private loadData() {
 
-        let responsePromise = httpClient.get('/BALANCE/FIND?page=' + this.page + '&size=' + this.size + '&sort=' + this.sort);
+        //where clause - START
+        let whereClause = '';
+        this.headers.forEach(header => {
+            if (baseHelper.isNotBlank(header.searchValue)) {
+                whereClause = whereClause.concat(header.columnKey, '=', header.searchValue);
+            }
+        });
+        if (whereClause.length > 0) {
+            whereClause = "&".concat(whereClause);
+        }
+        //where clause - END
+
+        let requestUrl = '/BALANCE/FIND?page='.concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
+        console.log('request url: ' + requestUrl);
+
+        let responsePromise = httpClient.get(requestUrl);
         responsePromise.then(response => {
             let bodyTextPromise: Promise<string> = response.text();
             bodyTextPromise.then(tableContentAsJson => {
@@ -220,7 +263,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
                 let pageable = tableContent.pageable;
                 this.size = pageable.pageSize;
-                this.page = pageable.pageNumber;
+                this.page = pageable.pageNumber + 1;
 
                 let content = tableContent.content;
 
@@ -247,10 +290,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             }
                         });
 
-                        let inputData = tableHeaderInput.componentInputData;
+                        let inputData = baseHelper.clone(tableHeaderInput.componentInputData);
                         switch (inputData.componentIdentifier) {
-                            case TextfieldComponent.IDENTIFIER:
+                            case InputComponent.IDENTIFIER:
                                 (<TextfieldInputData>inputData).value = columnValue;
+                                (<TextfieldInputData>inputData).name = columnKey;
                                 break;
                             default:
                             case TextComponent.IDENTIFIER:
@@ -259,6 +303,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             case ComboboxComponent.IDENTIFIER:
                                 break;
                             case DatalistComponent.IDENTIFIER:
+                                (<DatalistInputData>inputData).selectedValue = columnValue;
                                 break;
                             case ButtonComponent.IDENTIFIER:
                                 (<Button>inputData).text = columnValue;
@@ -271,6 +316,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
                     let rowInputData: RowInputData = <RowInputData>{colums: columnsInputDatas};
                     this.rows.push(rowInputData);
+
                 });
 
                 //this.reqUpdate();
@@ -280,15 +326,27 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     }
 
+    private changePage(event: CustomEvent) {
+        let newPage: KeyValueOutputData = event.detail;
+        let newPageValue: number = Number(newPage.value);
+        console.log('set new page: ' + newPageValue);
+        if (newPageValue > this.totalPages) {
+            newPageValue = this.totalPages;
+        }
+        this.page = newPageValue;
+        this.loadData();
+    }
+
+
     private previousPage() {
-        if (this.page > 0) {
+        if (this.page > 1) {
             this.page--;
             this.loadData();
         }
     }
 
     private nextPage() {
-        if ((this.page + 1) < this.totalPages) {
+        if (this.page < this.totalPages) {
             this.page++;
             this.loadData();
         }
@@ -362,4 +420,28 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     }
 
 
+    private searchValueChanged(event: CustomEvent, header: TableHeaderInputData) {
+        console.log("search value change" + JSON.stringify(event.detail));
+        let newValue: KeyValueOutputData = event.detail;
+        header.searchValue = newValue.value;
+        this.loadData();
+    }
+
+    /**
+     *
+     * create table filter component and add header inputData to new component.
+     *
+     * @param header
+     */
+    private createFilterComponent(header: TableHeaderInputData) {
+        let componentIdentifier = header.componentInputData.componentIdentifier;
+        switch (componentIdentifier) {
+            case TextComponent.IDENTIFIER:
+                return html`<component-inputfield value="${header.searchValue}"></component-inputfield>`;
+            case InputComponent.IDENTIFIER:
+                return html`<component-inputfield value="${header.searchValue}" .inputData="${header.componentInputData}"></component-inputfield>`;
+            default:
+                return html``;
+        }
+    }
 }

@@ -30,10 +30,10 @@ export class LoginPage extends BlankTemplate {
         return !this.isAuthenticated ? html`
                     <component-form id="login-form">
                         <component-form-element label="Benutzername">
-                            <component-textfield name="username"></component-textfield>
+                            <component-inputfield name="username"></component-inputfield>
                         </component-form-element>
                         <component-form-element label="Passwort">
-                            <component-textfield type="password" name="password"></component-textfield>
+                            <component-inputfield type="password" name="password"></component-inputfield>
                         </component-form-element>
                         <component-button text="Anmelden"  @click="${() => this.login()}"></component-button>
                     </component-form>` : html`

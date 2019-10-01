@@ -2,7 +2,7 @@ import {NavigationComponent} from "../../atoms/navigation/component";
 import {NavigationInputData} from "../../atoms/navigation/model";
 import {HttpClient, HttpConfigImpl} from "../../util/http-client/http-client";
 import {store} from "../../util/storage/storage";
-import {DatalistOption} from "../../atoms/datalist/model";
+import {DatalistOption} from "../../input/datalist/model";
 
 export const httpClient: HttpClient = new HttpClient(new HttpConfigImpl());
 
@@ -49,7 +49,6 @@ window.onload = function () {
 
 export interface User {
     id: number;
-    idl?: any;
     gender: string;
     name: string;
     vorname: string;

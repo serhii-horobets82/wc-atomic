@@ -1,8 +1,7 @@
-input {
+textarea {
+  padding-left: var(--min-padding);
   font: inherit;
-  height: var(--line-height-large);
   line-height: var(--line-height);
   box-sizing : border-box;
   width: 100%;
-  padding-left: var(--min-padding);
 }

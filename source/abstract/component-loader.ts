@@ -2,15 +2,13 @@ import {LinkComponent} from '../atoms/link/component';
 import {AbstractComponent} from './component/component';
 import {TextComponent} from '../atoms/text/component';
 import {ButtonComponent} from '../atoms/button/component';
-import {CheckboxComponent} from '../atoms/checkbox/component';
+import {CheckboxComponent} from '../input/checkbox/component';
 import {CodeComponent} from '../atoms/code/component';
-import {ColorComponent} from '../atoms/color/component';
-import {ComboboxComponent} from '../atoms/combobox/component';
+import {ComboboxComponent} from '../input/combobox/component';
 import {ImgComponent} from '../atoms/img/component';
 import {IconComponent} from '../atoms/icon/component';
-import {TextareaComponent} from '../atoms/textarea/component';
-import {DateComponent} from '../atoms/date/component';
-import {TextfieldComponent} from '../atoms/textfield/component';
+import {TextareaComponent} from '../input/textarea/component';
+import {InputComponent} from '../input/input/component';
 import {FormElementComponent} from '../atoms/form-element/component';
 import {SearchComponent} from '../molecules/search/component';
 import {H1Component, H2Component, H3Component} from '../atoms/h/component';
@@ -21,7 +19,6 @@ import {ImgSliderSelectorComponent} from '../molecules/img-slider-selector/compo
 import {TableComponent} from '../organisms/table/component';
 import {TeaserComponent} from '../molecules/teaser/component';
 import {NavigationComponent} from '../atoms/navigation/component';
-import {RangeSliderComponent} from '../atoms/range-slider/component';
 import {AbstractInputData} from './component/model';
 import {FormComponent} from '../organisms/form/component';
 import {FlexComponent} from '../organisms/flex-container/component';
@@ -29,7 +26,7 @@ import {TileComponent} from '../molecules/tile/component';
 import {BreadcrumbComponent} from "../molecules/breadcrumb/component";
 import {ToolbarComponent} from "../organisms/toolbar/component";
 import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
-import {DatalistComponent} from "../atoms/datalist/component";
+import {DatalistComponent} from "../input/datalist/component";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 
 export class ComponentLoader {
@@ -83,11 +80,8 @@ export class ComponentLoader {
             case CheckboxComponent.IDENTIFIER:
                 component = new CheckboxComponent();
                 break;
-            case TextfieldComponent.IDENTIFIER:
-                component = new TextfieldComponent();
-                break;
-            case DateComponent.IDENTIFIER:
-                component = new DateComponent();
+            case InputComponent.IDENTIFIER:
+                component = new InputComponent();
                 break;
             case TextareaComponent.IDENTIFIER:
                 component = new TextareaComponent();
@@ -106,9 +100,6 @@ export class ComponentLoader {
                 break;
             case CheckboxComponent.IDENTIFIER:
                 component = new CheckboxComponent();
-                break;
-            case ColorComponent.IDENTIFIER:
-                component = new ColorComponent();
                 break;
             case CodeComponent.IDENTIFIER:
                 component = new CodeComponent();
@@ -139,9 +130,6 @@ export class ComponentLoader {
                 break;
             case NavigationComponent.IDENTIFIER:
                 component = new NavigationComponent();
-                break;
-            case RangeSliderComponent.IDENTIFIER:
-                component = new RangeSliderComponent();
                 break;
             case BreadcrumbComponent.IDENTIFIER:
                 component = new BreadcrumbComponent();

@@ -4,20 +4,17 @@ import {DefaultTemplateModel} from "../../templates/default/model";
 import {data_navigation} from "../data/data";
 import {ImgComponent} from "../../atoms/img/component";
 import {ButtonComponent} from "../../atoms/button/component";
-import {CheckboxComponent} from "../../atoms/checkbox/component";
+import {CheckboxComponent} from "../../input/checkbox/component";
 import {CodeComponent} from "../../atoms/code/component";
-import {ColorComponent} from "../../atoms/color/component";
-import {ComboboxComponent} from "../../atoms/combobox/component";
-import {DateComponent} from "../../atoms/date/component";
+import {ComboboxComponent} from "../../input/combobox/component";
 import {FormElementComponent} from "../../atoms/form-element/component";
 import {H1Component, HComponent} from "../../atoms/h/component";
 import {IconComponent} from "../../atoms/icon/component";
 import {LinkComponent} from "../../atoms/link/component";
 import {NavigationComponent} from "../../atoms/navigation/component";
-import {RangeSliderComponent} from "../../atoms/range-slider/component";
 import {TextComponent} from "../../atoms/text/component";
-import {TextareaComponent} from "../../atoms/textarea/component";
-import {TextfieldComponent} from "../../atoms/textfield/component";
+import {TextareaComponent} from "../../input/textarea/component";
+import {InputComponent} from "../../input/input/component";
 
 
 @customElement('page-atoms')
@@ -47,15 +44,9 @@ export class AtomsPage extends DefaultTemplate {
                     <component-accordion-item header="Code">
                         <component-component-viewer .componentInputData="${new CodeComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
-                    <component-accordion-item header="Color">
-                        <component-component-viewer .componentInputData="${new ColorComponent().getDefaultInputData()}"></component-component-viewer>
-                    </component-accordion-item> 
                     <component-accordion-item header="Combobox">
                         <component-component-viewer .componentInputData="${new ComboboxComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item>
-                    <component-accordion-item header="Date">
-                        <component-component-viewer .componentInputData="${new DateComponent().getDefaultInputData()}"></component-component-viewer>
-                    </component-accordion-item> 
                     <component-accordion-item header="Form-Label">
                         <component-component-viewer .componentInputData="${new FormElementComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
@@ -74,9 +65,6 @@ export class AtomsPage extends DefaultTemplate {
                     <component-accordion-item header="Navigation">
                         <component-component-viewer .componentInputData="${new NavigationComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
-                    <component-accordion-item header="Range-Slider">
-                        <component-component-viewer .componentInputData="${new RangeSliderComponent().getDefaultInputData()}"></component-component-viewer>
-                    </component-accordion-item> 
                     <component-accordion-item header="text">
                         <component-component-viewer .componentInputData="${new TextComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
@@ -84,7 +72,7 @@ export class AtomsPage extends DefaultTemplate {
                         <component-component-viewer .componentInputData="${new TextareaComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
                     <component-accordion-item header="Textfield">
-                        <component-component-viewer .componentInputData="${new TextfieldComponent().getDefaultInputData()}"></component-component-viewer>
+                        <component-component-viewer .componentInputData="${new InputComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item>
                 </component-accordion>
              </component-flex-container>

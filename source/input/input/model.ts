@@ -6,4 +6,5 @@ export interface TextfieldInputData extends AbstractInputData {
     placeholder?: string;
     maxlength?: number;
     size?: number;
+    type?: string;
 }
