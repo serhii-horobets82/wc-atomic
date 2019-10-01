@@ -45,6 +45,7 @@ export interface ColumnInputData {
 
 export interface RowInputData {
     colums: ColumnInputData[];
+    source: any;
 }
 
 export interface TableInputData extends AbstractInputData {
@@ -52,4 +53,12 @@ export interface TableInputData extends AbstractInputData {
     size: number;
     sort: string;
     headers?: TableHeaderInputData[];
+}
+
+
+export interface ColumnChangedEventData {
+    row: RowInputData;
+    rowIndex: number;
+    columnIndex: number;
+    newValue: any;
 }

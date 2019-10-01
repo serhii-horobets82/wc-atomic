@@ -83,14 +83,14 @@ export class HttpClient {
         formData.forEach((value, key) => {
             urlSearchParams.append(key, value.toString());
         });
-        return this.post(url, ContentType.FORM, urlSearchParams);
+        return this.post(url, urlSearchParams, ContentType.FORM);
     }
 
     public get(url: string, contentType: string = this._config.defaultContentType) {
         return this.createFetch('GET', url, contentType);
     }
 
-    public post(url: string, contentType: string = this._config.defaultContentType, body: any) {
+    public post(url: string, body: any, contentType: string = this._config.defaultContentType) {
         return this.createFetch('POST', url, contentType, body);
     }
 

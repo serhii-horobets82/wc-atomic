@@ -75,12 +75,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
 
     protected dispatchCompoundCustomEvent(
         eventName: string,
-        childEvent: Event,
+        childEvent: CustomEvent,
         data?: any
     ) {
         this.dispatchSimpleCustomEvent(eventName, {
             data,
-            childEvent: childEvent
+            childData: childEvent.detail
         });
     }
 

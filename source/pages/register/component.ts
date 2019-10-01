@@ -41,7 +41,7 @@ export class RegisterPage extends BlankTemplate {
                 if (this.formComponent != null) {
                     let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
                     console.log(formOutputData.jsonObject);
-                    let promise = httpClient.post('/SYSTEM/AUTH/REGISTER', formOutputData.jsonObject);
+                    let promise = httpClient.post('/SYSTEM/AUTH/REGISTER', undefined, formOutputData.jsonObject);
                     promise.then(value => {
                         console.log(JSON.stringify(value));
                     });

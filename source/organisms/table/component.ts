@@ -1,9 +1,15 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {ComponentLoader} from '../../abstract/component-loader';
-import {ColumnInputData, RowInputData, TableContent, TableHeaderInputData, TableInputData} from "./model";
+import {
+    ColumnChangedEventData,
+    ColumnInputData,
+    RowInputData,
+    TableContent,
+    TableHeaderInputData,
+    TableInputData
+} from "./model";
 import {ComboboxOption} from "../../input/combobox/model";
 import {baseHelper} from "../../util/base";
 import {httpClient} from "../../app/data/data";
@@ -28,7 +34,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     static IDENTIFIER: string = 'TableComponent';
 
-    static EVENT_COLUMN_CLICK: string = 'component-table-column-click';
+    static EVENT_COLUMN_CHANGED: string = 'component-table-column-changed';
 
     @property()
     headers: TableHeaderInputData[] = [];
@@ -73,6 +79,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     render() {
         return html`
+            <div class="header">
 
             <component-flex-container gridClazz="grid_100">
             
@@ -86,6 +93,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 ${this.numberOfElements} von insgesamt: ${this.totalElements}
 
         </component-flex-container>
+
+        </div>
 
 
          <span class="table">
@@ -112,7 +121,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                               <span
                                  class="filterColumn"
                                  style="width: ${header.widthPercent}%"
-                                 @component-inputfield-keyup="${(event: CustomEvent) => {this.searchValueChanged(event, header)}}"
                               >
                                 ${this.createFilterComponent(header)}
                               </span>
@@ -143,20 +151,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                                 style="width: ${this.headers[
                                     columnIndex
                                     ].widthPercent}%;"
-                                                @click="${(event: MouseEvent) =>
-                                    this.columnClicked(
-                                        rowIndex,
-                                        columnIndex,
-                                        event
-                                    )}"
                                              >
                                                 <span class="columnHead"
-                                                   >${this.headers[columnIndex]
-                                    .columnKey}</span
+                                                   >${this.headers[columnIndex].columnKey}</span
                                                 >
-                                                ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    column.componentInputData
-                                )}
+                                                ${this.createColumnComponent(row, column, rowIndex, columnIndex)}
                                              </span>
                                           `
                             )}
@@ -199,7 +198,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         };
 
         this.dispatchCompoundCustomEvent(
-            TableComponent.EVENT_COLUMN_CLICK,
+            TableComponent.EVENT_COLUMN_CHANGED,
             event,
             columnClickedData
         );
@@ -314,7 +313,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
                     }
 
-                    let rowInputData: RowInputData = <RowInputData>{colums: columnsInputDatas};
+                    let rowInputData: RowInputData = <RowInputData>{colums: columnsInputDatas, source: row};
                     this.rows.push(rowInputData);
 
                 });
@@ -437,11 +436,58 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         let componentIdentifier = header.componentInputData.componentIdentifier;
         switch (componentIdentifier) {
             case TextComponent.IDENTIFIER:
-                return html`<component-inputfield value="${header.searchValue}"></component-inputfield>`;
+                return html`<component-inputfield value="${header.searchValue}"  @component-inputfield-keyup="${(event: CustomEvent) => {
+                    this.searchValueChanged(event, header)
+                }}"></component-inputfield>`;
             case InputComponent.IDENTIFIER:
-                return html`<component-inputfield value="${header.searchValue}" .inputData="${header.componentInputData}"></component-inputfield>`;
+                return html`<component-inputfield value="${header.searchValue}" .inputData="${header.componentInputData}"  @component-inputfield-keyup="${(event: CustomEvent) => {
+                    this.searchValueChanged(event, header)
+                }}"></component-inputfield>`;
             default:
                 return html``;
         }
     }
+
+    private createColumnComponent(row: RowInputData, column: ColumnInputData, rowIndex: number, columnIndex: number): TemplateResult {
+        let componentInputData = column.componentInputData;
+        let componentIdentifier = componentInputData.componentIdentifier;
+        switch (componentIdentifier) {
+            case TextComponent.IDENTIFIER:
+                return html`<component-text .inputData="${componentInputData}"></component-text>`;
+            case InputComponent.IDENTIFIER:
+                return html`<component-inputfield .inputData="${componentInputData}"></component-inputfield>`;
+            case DatalistComponent.IDENTIFIER:
+                return html`<component-datalist .inputData="${componentInputData}" @combobox-datalist-selection-change="${(event: CustomEvent) => {
+                    this.createColumnChangeEvent(row, event, rowIndex, columnIndex)
+                }}"></component-datalist>`;
+            default:
+                return html``;
+        }
+
+
+    }
+
+    /**
+     * if column value change, dispatch a simple custom event with all necessery data for parent object.
+     * @param row
+     * @param event
+     * @param rowIndex
+     * @param columnIndex
+     */
+    private createColumnChangeEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
+
+        let columnChangedData: ColumnChangedEventData = {
+            row: row,
+            rowIndex: rowIndex,
+            columnIndex: columnIndex,
+            newValue: event.detail
+        };
+
+        this.dispatchSimpleCustomEvent(
+            TableComponent.EVENT_COLUMN_CHANGED,
+            columnChangedData
+        );
+
+    }
+
 }

@@ -2,8 +2,8 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {data_navigation} from "../data/data";
-import {TableHeaderInputData, TableInputData} from "../../organisms/table/model";
+import {data_navigation, httpClient} from "../data/data";
+import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {DatalistInputData} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
@@ -71,7 +71,9 @@ export class BalancePage extends DefaultTemplate {
                 <component-button text="Debitoren"></component-button>
                 <component-button text="Sachkonten"></component-button>
             
-                <component-table .inputData="${this.tableInputData}"></component-table>
+                <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
+            this.columnTableChangedEvent(event)
+        }}"></component-table>
             
             </component-flex-container>
 
@@ -88,4 +90,20 @@ export class BalancePage extends DefaultTemplate {
         };
     }
 
+    private columnTableChangedEvent(event: CustomEvent) {
+        let data = <ColumnChangedEventData>event.detail;
+
+        let source: any = data.row.source;
+
+        let urlSuffix = '/MATCHING/'.concat(source.id).concat('/').concat(data.newValue.value);
+        console.log('matching: ' + urlSuffix);
+        let responsePromise = httpClient.post(urlSuffix, {});
+        responsePromise.then(value => {
+            console.log(value.status);
+        })
+
+        console.log(JSON.stringify(source));
+
+
+    }
 }
