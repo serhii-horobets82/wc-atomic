@@ -19,7 +19,7 @@ export class LoginPage extends BlankTemplate {
  
  <component-flex-container gridClazz="grid_100 maxPadding"  columnFlexBasisValue="100%;">
  
- <component-img clazz="imageWidthHundred" src="http://v220190910399797452.supersrv.de/img/login.jpg"></component-img>
+ <component-img clazz="imageWidthHundred" src="http://v220190910399797452.supersrv.de/img/Logo_REMONDIS_Claim_E_RGB_72dpi.jpg"></component-img>
 
  
  <component-authentication @component-authentication-event-success="${() => this.successfullyLoggedIn()}" @component-authentication-event-logout="${() => this.successfullyLoggedOut()}"></component-authentication>
