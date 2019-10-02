@@ -1,6 +1,6 @@
 import {AbstractInputData} from "../../abstract/component/model";
 
-export interface TextfieldInputData extends AbstractInputData {
+export interface InputInputData extends AbstractInputData {
     name: string;
     value?: string;
     placeholder?: string;

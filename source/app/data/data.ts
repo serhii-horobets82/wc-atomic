@@ -17,9 +17,10 @@ export const data_navigation: NavigationInputData = <NavigationInputData>{
         {text: 'Login Page', href: '#login', icon: ''},
         {text: 'Register Page', href: '#register', icon: ''},
         {text: 'Startseite', href: '#dashboard', icon: ''},
-        {text: 'Balance', href: '#balance', icon: ''},
-        {text: 'Matching', href: '#matching', icon: ''},
-        {text: 'Retification', href: '#retification', icon: ''},
+        {text: 'Import', href: '#import', icon: ''},
+        {text: 'IC-Salden', href: '#balance', icon: ''},
+        {text: 'Kontenabstimmung', href: '#retification', icon: ''},
+        {text: 'Saldenbestätigungen', href: '#matching', icon: ''},
     ]
 }
 

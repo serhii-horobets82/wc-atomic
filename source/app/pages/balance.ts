@@ -8,7 +8,7 @@ import {TextInputData} from "../../atoms/text/model";
 import {DatalistInputData} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
-import {TextfieldInputData} from "../../input/input/model";
+import {InputInputData} from "../../input/input/model";
 import {Button} from "../../atoms/button/model";
 import {InputComponent} from "../../input/input/component";
 import {ButtonComponent} from "../../atoms/button/component";
@@ -25,6 +25,7 @@ export class BalancePage extends DefaultTemplate {
     @property()
     tableInputData: TableInputData = <TableInputData>{
         componentIdentifier: TableComponent.IDENTIFIER,
+        requestPath: '/BALANCE/FIND',
         page: 0,
         size: 10,
         sort: 'nummer:desc;',
@@ -39,7 +40,7 @@ export class BalancePage extends DefaultTemplate {
                 searchValue: ''
             },
             <TableHeaderInputData>{
-                componentInputData: <TextfieldInputData>{
+                componentInputData: <InputInputData>{
                     componentIdentifier: InputComponent.IDENTIFIER,
                     type: 'number'
                 },

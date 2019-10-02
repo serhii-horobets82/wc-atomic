@@ -19,7 +19,7 @@ import {ComboboxComponent} from "../../input/combobox/component";
 import {DatalistComponent} from "../../input/datalist/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {Button} from "../../atoms/button/model";
-import {TextfieldInputData} from "../../input/input/model";
+import {InputInputData} from "../../input/input/model";
 import {KeyValueOutputData} from "../form/model";
 import {TextComponent} from "../../atoms/text/component";
 import {DatalistInputData} from "../../input/datalist/model";
@@ -59,6 +59,19 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     @property()
     size: number = 20;
+
+    @property()
+    requestPath: string = '';
+
+    @property()
+    sorting: boolean = false;
+
+    @property()
+    paging: boolean = false;
+
+    @property()
+    filtering: boolean = false;
+
 
     sizeOptions: ComboboxOption[] = [<ComboboxOption>{
         text: '5',
@@ -111,7 +124,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  style="width: ${header.widthPercent}%"
                               >
                                  ${header.columnKey}
-                                 <component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>
+                                 
+                                 ${this.filtering ? '<component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>' : ''}
+                            
                               </span>
                            `
                 )}
@@ -185,15 +200,20 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     getDefaultInputData(): TableInputData {
         return <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,
+            requestPath: '',
             page: 0,
             size: 10,
             sort: '',
+            sorting: false,
+            paging: false,
+            filtering: false,
             headers: []
         };
     }
 
     inputDataChanged(): void {
-        this.sort = this.inputData.sort;
+        if (this.inputData.sort != null)
+            this.sort = this.inputData.sort;
         if (this.inputData.headers != null) {
             this.headers = this.inputData.headers;
             let maxColumnWidth: number = 100 / this.headers.length;
@@ -201,9 +221,16 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 if (header.widthPercent == undefined || header.widthPercent > maxColumnWidth) {
                     header.widthPercent = maxColumnWidth;
                 }
-                this.setSortingIconClazz(header, this.inputData.sort);
+                this.setSortingIconClazz(header, this.sort);
             })
         }
+        this.requestPath = this.inputData.requestPath;
+        if (this.inputData.paging != null)
+            this.paging = this.inputData.paging;
+        if (this.inputData.filtering != null)
+            this.filtering = this.inputData.filtering;
+        if (this.inputData.sorting != null)
+            this.sorting = this.inputData.sorting;
         this.loadData();
     }
 
@@ -225,7 +252,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         }
         //where clause - END
 
-        let requestUrl = '/BALANCE/FIND?page='.concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
+        let requestUrl = this.requestPath.concat('?page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
         console.log('request url: ' + requestUrl);
 
         let responsePromise = httpClient.get(requestUrl);
@@ -270,8 +297,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         let inputData = baseHelper.clone(tableHeaderInput.componentInputData);
                         switch (inputData.componentIdentifier) {
                             case InputComponent.IDENTIFIER:
-                                (<TextfieldInputData>inputData).value = columnValue;
-                                (<TextfieldInputData>inputData).name = columnKey;
+                                (<InputInputData>inputData).value = columnValue;
+                                (<InputInputData>inputData).name = columnKey;
                                 break;
                             default:
                             case TextComponent.IDENTIFIER:

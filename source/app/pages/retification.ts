@@ -8,7 +8,7 @@ import {TextInputData} from "../../atoms/text/model";
 import {DatalistInputData} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
-import {TextfieldInputData} from "../../input/input/model";
+import {InputInputData} from "../../input/input/model";
 import {Button} from "../../atoms/button/model";
 import {InputComponent} from "../../input/input/component";
 import {ButtonComponent} from "../../atoms/button/component";
@@ -25,38 +25,38 @@ export class RetificationPage extends DefaultTemplate {
     @property()
     tableInputData: TableInputData = <TableInputData>{
         componentIdentifier: TableComponent.IDENTIFIER,
+        requestPath: '/MATCHING/RETIFICATION/BY_IDL/0680',
         page: 0,
         size: 10,
-        sort: 'nummer:desc;',
+        sort: '',
         headers: [<TableHeaderInputData>{
             componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-            columnKey: 'nummer',
+            columnKey: 'src_idl',
             searchValue: ''
         },
             <TableHeaderInputData>{
                 componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'bezeichnung',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <TextfieldInputData>{
-                    componentIdentifier: InputComponent.IDENTIFIER,
-                    type: 'number'
-                },
-                columnKey: 'saldo',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <DatalistInputData>{
-                    componentIdentifier: DatalistComponent.IDENTIFIER,
-                    dataListChannel: 'companies'
-                },
                 columnKey: 'dest_idl',
                 searchValue: ''
             },
             <TableHeaderInputData>{
-                componentInputData: <Button>{componentIdentifier: ButtonComponent.IDENTIFIER},
-                columnKey: 'status',
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'src_firmenname',
+                searchValue: ''
+            },
+            <TableHeaderInputData>{
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'dest_firmenname',
+                searchValue: ''
+            },
+            <TableHeaderInputData>{
+                componentInputData: <InputInputData>{componentIdentifier: InputComponent.IDENTIFIER},
+                columnKey: 'src_saldo',
+                searchValue: ''
+            },
+            <TableHeaderInputData>{
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'dest_saldo',
                 searchValue: ''
             }
         ]

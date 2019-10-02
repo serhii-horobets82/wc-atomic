@@ -15,6 +15,7 @@ import {BalancePage} from "./pages/balance";
 import {DashboardPage} from "./pages/dashboard";
 import {MatchingPage} from "./pages/matching";
 import {RetificationPage} from "./pages/retification";
+import {ImportPage} from "./pages/import";
 
 
 @customElement('app-root')
@@ -50,6 +51,8 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${new RegisterPage()}`;
             case '#dashboard':
                 return html`${new DashboardPage()}`;
+            case '#import':
+                return html`${new ImportPage()}`;
             case '#balance':
                 return html`${new BalancePage()}`;
             case '#matching':

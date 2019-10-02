@@ -1,12 +1,12 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
-import {TextfieldInputData} from "./model";
+import {InputInputData} from "./model";
 import {KeyValueOutputData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-inputfield')
-export class InputComponent extends AbstractComponent<TextfieldInputData, KeyValueOutputData> {
+export class InputComponent extends AbstractComponent<InputInputData, KeyValueOutputData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -43,8 +43,8 @@ export class InputComponent extends AbstractComponent<TextfieldInputData, KeyVal
     @query("#inputElement")
     private textfieldElemet: HTMLInputElement | undefined;
 
-    getDefaultInputData(): TextfieldInputData {
-        return <TextfieldInputData>{
+    getDefaultInputData(): InputInputData {
+        return <InputInputData>{
             componentIdentifier: InputComponent.IDENTIFIER,
             name: 'textfield',
             text: 'name',

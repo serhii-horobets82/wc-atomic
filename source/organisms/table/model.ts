@@ -49,10 +49,14 @@ export interface RowInputData {
 }
 
 export interface TableInputData extends AbstractInputData {
-    page: number;
-    size: number;
-    sort: string;
+    requestPath: string;
+    page?: number;
+    size?: number;
+    sort?: string;
     headers?: TableHeaderInputData[];
+    sorting?: boolean;
+    paging?: boolean;
+    filtering?: boolean;
 }
 
 
