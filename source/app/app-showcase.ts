@@ -12,6 +12,9 @@ import {LandingPage} from "../pages/landing/component";
 import {LoginPage} from "../pages/login/component";
 import {RegisterPage} from "../pages/register/component";
 import {BalancePage} from "./pages/balance";
+import {DashboardPage} from "./pages/dashboard";
+import {MatchingPage} from "./pages/matching";
+import {RetificationPage} from "./pages/retification";
 
 
 @customElement('app-root')
@@ -45,8 +48,14 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${new LoginPage()}`;
             case '#register':
                 return html`${new RegisterPage()}`;
-                case '#balance':
+            case '#dashboard':
+                return html`${new DashboardPage()}`;
+            case '#balance':
                 return html`${new BalancePage()}`;
+            case '#matching':
+                return html`${new MatchingPage()}`;
+            case '#retification':
+                return html`${new RetificationPage()}`;
 
             default:
                 return html`Fehler - Keine Seite`;

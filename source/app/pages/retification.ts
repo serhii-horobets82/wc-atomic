@@ -15,8 +15,8 @@ import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 
 
-@customElement('page-balance')
-export class BalancePage extends DefaultTemplate {
+@customElement('page-retification')
+export class RetificationPage extends DefaultTemplate {
 
     constructor() {
         super();

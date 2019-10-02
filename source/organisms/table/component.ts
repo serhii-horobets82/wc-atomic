@@ -182,28 +182,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     }
 
-
-    async columnClicked(
-        rowIndex: number,
-        columnIndex: number,
-        event: MouseEvent
-    ) {
-        console.log('rowIndex=' + rowIndex);
-        console.log('columnIndex=' + columnIndex);
-        console.log('event=' + JSON.stringify(event));
-
-        let columnClickedData: any = {
-            rowIndex: rowIndex,
-            columnIndex: columnIndex
-        };
-
-        this.dispatchCompoundCustomEvent(
-            TableComponent.EVENT_COLUMN_CHANGED,
-            event,
-            columnClickedData
-        );
-    }
-
     getDefaultInputData(): TableInputData {
         return <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,

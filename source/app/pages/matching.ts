@@ -15,8 +15,8 @@ import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 
 
-@customElement('page-balance')
-export class BalancePage extends DefaultTemplate {
+@customElement('page-matching')
+export class MatchingPage extends DefaultTemplate {
 
     constructor() {
         super();

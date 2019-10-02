@@ -1,71 +1,67 @@
-import {customElement, TemplateResult, html, query, property} from 'lit-element';
+import {customElement, html, TemplateResult} from 'lit-element';
 import {BlankTemplate} from "../../templates/blank/template";
-import {TeaserComponent} from "../../molecules/teaser/component";
-import {TextWithHeaderComponent} from "../../molecules/text-with-header/component";
-import {FormComponent} from "../../organisms/form/component";
-import {HttpClient, HttpClientIF} from "../../util/http-client/http-client";
-import {FormComponentOutputData} from "../../organisms/form/model";
-import {httpClient} from "../../app/data/data";
 import {router} from "../../util/router";
+import {DatalistOption} from "../../input/datalist/model";
+import {sessionStore} from "../../util/storage/storage";
+import {httpClient, Konzern, User} from "../../app/data/data";
 
 
 @customElement('page-login')
 export class LoginPage extends BlankTemplate {
 
-    @query('#login-form')
-    formComponent: FormComponent | undefined;
-
-    test: any;
-
     constructor() {
         super();
+
     }
 
-    @property()
-    isAuthenticated: boolean = httpClient.isAuthenticated();
-
     getContent(): TemplateResult {
-        this.test;
+        return html` 
+ 
+ <component-flex-container gridClazz="grid_100 maxPadding"  columnFlexBasisValue="100%;">
+ 
+ <component-img clazz="imageWidthHundred" src="http://v220190910399797452.supersrv.de/img/login.jpg"></component-img>
 
-        return !this.isAuthenticated ? html`
-                    <component-form id="login-form">
-                        <component-form-element label="Benutzername">
-                            <component-inputfield name="username"></component-inputfield>
-                        </component-form-element>
-                        <component-form-element label="Passwort">
-                            <component-inputfield type="password" name="password"></component-inputfield>
-                        </component-form-element>
-                        <component-button text="Anmelden"  @click="${() => this.login()}"></component-button>
-                    </component-form>` : html`
-                    <component-form id="logout-form">
-                        <component-button text="Abmelden"  @click="${() => this.logout()}"></component-button>
-                    </component-form>
+ 
+ <component-authentication @component-authentication-event-success="${() => this.successfullyLoggedIn()}" @component-authentication-event-logout="${() => this.successfullyLoggedOut()}"></component-authentication>
+
+</component-flex-container>
 
 `;
     }
 
+    private successfullyLoggedIn() {
 
-    private logout() {
-        httpClient.logout().then(isAuthenticated => {
-            this.isAuthenticated = isAuthenticated;
+        let responsePromiseCompany = httpClient.get('/COMPANY');
+        responsePromiseCompany.then(response => {
+            let responseTextPromise = response.text();
+            responseTextPromise.then(responseText => {
+                let companies: Konzern[] = JSON.parse(responseText);
+                let companyOptions: DatalistOption[] = [];
+                companies.forEach(company => {
+                    companyOptions.push(<DatalistOption>{text: company.firmenname, value: company.idl + ''})
+                });
+                sessionStore.addData("companies", JSON.stringify(companyOptions));
+            });
         });
-    }
 
-    private login() {
-        if (this.formComponent != null) {
-            let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-            let loginPromise = httpClient.login(formOutputData.formData);
-            loginPromise.then(isLoggedIn => {
-                this.isAuthenticated = isLoggedIn;
-                if (this.isAuthenticated) {
-                    router.navigate("#balance");
-                }
-            }).catch(reason => {
-                console.log('login failure, reason: ' + reason)
-                this.isAuthenticated = false;
+
+        let responsePromiseUser = httpClient.get('/SYSTEM/AUTH/USER');
+        responsePromiseUser.then(response => {
+            let responseTextPromise = response.text();
+            responseTextPromise.then(responseText => {
+                let user: User = JSON.parse(responseText);
+                sessionStore.addData("user", JSON.stringify(user));
             })
-        }
+        })
+
+        router.navigate("#dashboard");
     }
 
+    private successfullyLoggedOut() {
 
+        sessionStore.removeData('user');
+        sessionStore.removeData('companies');
+
+        router.navigate("#login");
+    }
 }

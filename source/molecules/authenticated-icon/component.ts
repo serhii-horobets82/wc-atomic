@@ -29,24 +29,26 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     getDefaultInputData(): AuthenticatedIconInputData {
         return <AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
+            isAuthenticated: false,
+            loginPage: '#login',
+            logoutPage: '#login'
         }
     }
 
     inputDataChanged() {
+        this.isAuthenticated = this.inputData.isAuthenticated;
     }
 
     getOutputData(): any {
         return undefined;
     }
 
-    private logout() {
-        httpClient.logout().then(isAuthenticated => {
-            this.isAuthenticated = isAuthenticated;
-            router.navigate("#login");
-        });
+    private login() {
+        router.navigate(this.inputData.loginPage);
     }
 
-    private login() {
-        router.navigate("#login");
+    private logout() {
+        router.navigate(this.inputData.logoutPage);
     }
+
 }

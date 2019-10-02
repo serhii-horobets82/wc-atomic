@@ -1,7 +1,7 @@
 import {AbstractComponent} from "../../abstract/component/component";
 import {AbstractInputData} from "../../abstract/component/model";
 
-export class Store {
+export class SessionStore {
 
     listener = new Map<String, AbstractComponent<any, any>[]>();
 
@@ -39,6 +39,11 @@ export class Store {
         }
     }
 
+    removeData(channel: string) {
+        if (channel != null) {
+            sessionStorage.removeItem(channel);
+        }
+    }
 }
 
-export const store = new Store();
+export const sessionStore = new SessionStore();

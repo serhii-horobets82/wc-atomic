@@ -1,7 +1,4 @@
-import {constants} from "http2";
-import HTTP_STATUS_OK = module
 import {BooleanType} from "../constants";
-import {httpClient} from "../../app/data/data";
 
 export enum ContentType {
     FORM = 'application/x-www-form-urlencoded', JSON = 'application/json', XML = 'application/xml'
@@ -68,6 +65,7 @@ export class HttpClient {
             console.log('login successfully.');
             sessionStorage.setItem(HttpClientSessionKey.AUTHENTICATED, BooleanType.TRUE);
         } else {
+            console.log('login failure.');
             sessionStorage.setItem(HttpClientSessionKey.AUTHENTICATED, BooleanType.FALSE);
         }
         return this.isAuthenticated();
@@ -110,10 +108,6 @@ export class HttpClient {
 
         let headers: any = {};
 
-        //headers['Access-Control-Allow-Origin'] = '*';
-        //headers['Access-Control-Allow-Credentials'] = true;
-        //headers['Accept'] = '*/*';
-
         if (contentType != undefined) {
             console.log('set content type header: ', contentType);
             headers['Content-Type'] = contentType;
@@ -127,17 +121,14 @@ export class HttpClient {
 
         console.log('set request method: ' + method);
 
-        //mode: this._config.cors,
         const requestOptions: RequestInit = {
             headers: headers,
             method: method,
             body: body,
-            credentials: this._config.credentials
+            credentials: this._config.credentials,
         };
 
-//redirect: "follow"
-        //credentials: this._config.credentials,
-
+        //redirect: "manual"
 
         let completeURL = this._config.baseURL + url;
         console.log('request url: ' + completeURL);
@@ -146,6 +137,18 @@ export class HttpClient {
         console.info('response status: ', response.status);
         return response;
 
+    }
+
+    getJSessionId() {
+        var jsId: RegExpMatchArray | null = document.cookie.match(/JSESSIONID=[^;]+/);
+        console.log(jsId);
+        if (jsId != null) {
+            if (jsId instanceof Array)
+                return jsId[0].substring(11);
+            else if (jsId instanceof String)
+                return String(jsId).substring(11);
+        }
+        return jsId;
     }
 
 }

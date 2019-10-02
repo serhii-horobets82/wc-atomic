@@ -1,6 +1,6 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
-import {store} from "../../util/storage/storage";
+import {sessionStore} from "../../util/storage/storage";
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement {
@@ -108,7 +108,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
 
     registerDynamicDataChannel(channel: string | null) {
         if (channel !== null) {
-            store.register(channel, this);
+            sessionStore.register(channel, this);
         }
     }
 
