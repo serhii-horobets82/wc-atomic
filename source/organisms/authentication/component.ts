@@ -6,7 +6,7 @@ import {
     LoginInputData,
     LogoutEventData
 } from "./model";
-import {httpClient} from "../../app/data/data";
+import {HTTP_CLIENT} from "../../app/data/data";
 import {FormComponentOutputData} from "../form/model";
 import {FormComponent} from "../form/component";
 
@@ -34,7 +34,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     formComponent: FormComponent | undefined;
 
     @property()
-    isAuthenticated: boolean = httpClient.isAuthenticated();
+    isAuthenticated: boolean = HTTP_CLIENT.isAuthenticated();
 
     render() {
         return !this.isAuthenticated ? html`
@@ -55,7 +55,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     private login() {
         if (this.formComponent != null) {
             let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-            let loginPromise = httpClient.login(formOutputData.formData);
+            let loginPromise = HTTP_CLIENT.login(formOutputData.formData);
             loginPromise.then(isAuthenticated => {
 
                 this.isAuthenticated = isAuthenticated;
@@ -91,7 +91,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     }
 
     private logout() {
-        httpClient.logout().then(isAuthenticated => {
+        HTTP_CLIENT.logout().then(isAuthenticated => {
             this.isAuthenticated = isAuthenticated;
 
             let eventData: LogoutEventData = {};

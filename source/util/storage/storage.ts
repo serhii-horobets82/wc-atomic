@@ -19,7 +19,11 @@ export class SessionStore {
         console.log("listener size:" + channelListener.length);
     }
 
-    addData(channel: string, content: string) {
+    setItem(channel: string, content: any) {
+        this.setItemString(channel, JSON.stringify(content));
+    }
+
+    setItemString(channel: string, content: string) {
         sessionStorage.setItem(channel, content);
         let channelListener = this.listener.get(channel);
         if (channelListener != undefined) {
@@ -30,7 +34,7 @@ export class SessionStore {
         }
     }
 
-    getData<T>(channel: string | null): T | null {
+    getItem<T>(channel: string | null): T | null {
         if (channel != null) {
             let item = sessionStorage.getItem(channel);
             return item !== null ? <T>JSON.parse(item) : null;
@@ -39,11 +43,10 @@ export class SessionStore {
         }
     }
 
-    removeData(channel: string) {
+    removeItem(channel: string) {
         if (channel != null) {
             sessionStorage.removeItem(channel);
         }
     }
 }
 
-export const sessionStore = new SessionStore();

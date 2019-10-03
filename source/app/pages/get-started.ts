@@ -5,7 +5,7 @@ import {CodeComponent} from "../../atoms/code/component";
 import {TemplateModel} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {NavigationComponent} from "../../atoms/navigation/component";
-import {data_navigation} from "../data/data";
+import {DATA_NAVIGATION} from "../data/data";
 import {HInputData} from "../../atoms/h/model";
 import {CodeInputData} from "../../atoms/code/model";
 
@@ -32,7 +32,7 @@ export class GetStartedPage extends DefaultTemplate {
 
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [xxxx],
         };

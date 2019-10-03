@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {data_navigation, httpClient} from "../data/data";
+import {DATA_NAVIGATION, HTTP_CLIENT} from "../data/data";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {DatalistInputData} from "../../input/datalist/model";
@@ -86,7 +86,7 @@ export class BalancePage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [],
         };
@@ -100,7 +100,7 @@ export class BalancePage extends DefaultTemplate {
         let newValueData = data.newValue.value;
         let urlSuffix = baseHelper.isNotBlank(newValueData) ? '/MATCHING/MATCH/'.concat(source.id).concat('/').concat(newValueData) : '/MATCHING/UNMATCH/'.concat(source.id);
         console.log('matching: ' + urlSuffix);
-        let responsePromise = httpClient.post(urlSuffix, {});
+        let responsePromise = HTTP_CLIENT.post(urlSuffix, {});
         responsePromise.then(value => {
             console.log('matching/unmatching ok ? ' + value.status);
         })

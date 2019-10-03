@@ -5,7 +5,7 @@ import {TextWithHeaderComponent} from "../../molecules/text-with-header/componen
 import {FormComponent} from "../../organisms/form/component";
 import {HttpClient, HttpClientIF} from "../../util/http-client/http-client";
 import {FormComponentOutputData} from "../../organisms/form/model";
-import {httpClient} from "../../app/data/data";
+import {HTTP_CLIENT} from "../data/data";
 
 
 @customElement('page-register')
@@ -41,7 +41,7 @@ export class RegisterPage extends BlankTemplate {
                 if (this.formComponent != null) {
                     let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
                     console.log(formOutputData.jsonObject);
-                    let promise = httpClient.post('/SYSTEM/AUTH/REGISTER', undefined, formOutputData.jsonObject);
+                    let promise = HTTP_CLIENT.post('/SYSTEM/AUTH/REGISTER', undefined, formOutputData.jsonObject);
                     promise.then(value => {
                         console.log(JSON.stringify(value));
                     });

@@ -12,7 +12,7 @@ import {
 } from "./model";
 import {ComboboxOption} from "../../input/combobox/model";
 import {baseHelper} from "../../util/base";
-import {httpClient} from "../../app/data/data";
+import {HTTP_CLIENT} from "../../app/data/data";
 import {InputComponent} from "../../input/input/component";
 import {TextInputData} from "../../atoms/text/model";
 import {ComboboxComponent} from "../../input/combobox/component";
@@ -255,7 +255,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         let requestUrl = this.requestPath.concat('?page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
         console.log('request url: ' + requestUrl);
 
-        let responsePromise = httpClient.get(requestUrl);
+        let responsePromise = HTTP_CLIENT.get(requestUrl);
         responsePromise.then(response => {
             let bodyTextPromise: Promise<string> = response.text();
             bodyTextPromise.then(tableContentAsJson => {

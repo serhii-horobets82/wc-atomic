@@ -1,13 +1,12 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {BlankTemplate} from "../../templates/blank/template";
 import {router} from "../../util/router";
-import {DatalistOption} from "../../input/datalist/model";
-import {sessionStore} from "../../util/storage/storage";
-import {httpClient, Konzern, User} from "../../app/data/data";
+import {BALCO_DATA_STORE} from "../data/balco_data";
+import {HTTP_CLIENT, Konzern, User} from "../data/data";
 
 
 @customElement('page-login')
-export class LoginPage extends BlankTemplate {
+export class AuthenticationPage extends BlankTemplate {
 
     constructor() {
         super();
@@ -31,37 +30,30 @@ export class LoginPage extends BlankTemplate {
 
     private successfullyLoggedIn() {
 
-        let responsePromiseCompany = httpClient.get('/COMPANY');
+        let responsePromiseCompany = HTTP_CLIENT.get('/COMPANY');
         responsePromiseCompany.then(response => {
             let responseTextPromise = response.text();
             responseTextPromise.then(responseText => {
                 let companies: Konzern[] = JSON.parse(responseText);
-                let companyOptions: DatalistOption[] = [];
-                companies.forEach(company => {
-                    companyOptions.push(<DatalistOption>{text: company.firmenname, value: company.idl + ''})
-                });
-                sessionStore.addData("companies", JSON.stringify(companyOptions));
+                BALCO_DATA_STORE.saveKonzerne(companies);
             });
         });
 
-
-        let responsePromiseUser = httpClient.get('/SYSTEM/AUTH/USER');
+        let responsePromiseUser = HTTP_CLIENT.get('/SYSTEM/AUTH/USER');
         responsePromiseUser.then(response => {
             let responseTextPromise = response.text();
             responseTextPromise.then(responseText => {
                 let user: User = JSON.parse(responseText);
-                sessionStore.addData("user", JSON.stringify(user));
-            })
-        })
+                BALCO_DATA_STORE.saveLoginUser(user);
+            });
+        });
 
         router.navigate("#dashboard");
+
     }
 
     private successfullyLoggedOut() {
-
-        sessionStore.removeData('user');
-        sessionStore.removeData('companies');
-
+        BALCO_DATA_STORE.logout();
         router.navigate("#login");
     }
 }

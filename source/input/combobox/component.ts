@@ -2,9 +2,9 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
-import {KeyValueOutputData} from "../../organisms/form/component";
 import {ComboboxInputData, ComboboxOption} from "./model";
 import {baseHelper} from "../../util/base";
+import {KeyValueOutputData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 

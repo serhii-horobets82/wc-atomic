@@ -5,7 +5,7 @@ import {AbstractComponent} from "../../abstract/component/component";
 import {DatalistInputData, DatalistOption} from "./model";
 import {KeyValueOutputData} from "../../organisms/form/model";
 import {baseHelper} from "../../util/base";
-import {sessionStore} from "../../util/storage/storage";
+import {SESSION_STORE} from "../../app/data/data";
 
 const componentCSS = require('./component.css');
 
@@ -44,7 +44,7 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         }
         this.selectedValue = this.inputData.selectedValue;
         //this.registerDynamicDataChannel(this.inputData.dataListChannel);
-        let options: DatalistOption[] | null = sessionStore.getData(this.inputData.dataListChannel);
+        let options: DatalistOption[] | null = SESSION_STORE.getItem(this.inputData.dataListChannel);
         if (options != null)
             this.options = options;
         else

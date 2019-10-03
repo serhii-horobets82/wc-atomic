@@ -4,7 +4,7 @@ import {FlexComponent} from "../../organisms/flex-container/component";
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {TemplateModel} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {data_navigation} from "../data/data";
+import {DATA_NAVIGATION} from "../data/data";
 import {FlexContainerInputData} from "../../organisms/flex-container/model";
 
 
@@ -20,7 +20,7 @@ export class MediaPage extends DefaultTemplate {
         };
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [containerData],
         };

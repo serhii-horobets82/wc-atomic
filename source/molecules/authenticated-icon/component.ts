@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {AuthenticatedIconInputData} from "./model";
-import {httpClient} from "../../app/data/data";
+import {HTTP_CLIENT} from "../../app/data/data";
 import {router} from "../../util/router";
 
 const componentCSS = require('./component.scss');
@@ -15,7 +15,7 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     static IDENTIFIER: string = 'AuthenticatedIconComponent';
 
     @property()
-    isAuthenticated: boolean = httpClient.isAuthenticated();
+    isAuthenticated: boolean = HTTP_CLIENT.isAuthenticated();
 
     render() {
         return this.isAuthenticated ? html`

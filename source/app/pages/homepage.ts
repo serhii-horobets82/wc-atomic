@@ -2,7 +2,7 @@ import {customElement, html, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {NavigationComponent} from "../../atoms/navigation/component";
-import {data_navigation} from "../data/data";
+import {DATA_NAVIGATION} from "../data/data";
 
 
 @customElement('page-homepage')
@@ -21,7 +21,7 @@ export class HomePage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [],
         };

@@ -8,14 +8,12 @@ import {CheckPage} from "./pages/check";
 import {AtomsPage} from "./pages/atoms";
 import {MoleculesPage} from "./pages/molecules";
 import {OrganismPage} from "./pages/organism";
-import {LandingPage} from "../pages/landing/component";
-import {LoginPage} from "../pages/login/component";
-import {RegisterPage} from "../pages/register/component";
 import {BalancePage} from "./pages/balance";
 import {DashboardPage} from "./pages/dashboard";
 import {MatchingPage} from "./pages/matching";
 import {RetificationPage} from "./pages/retification";
 import {ImportPage} from "./pages/import";
+import {AuthenticationPage} from "./pages/authentication";
 
 
 @customElement('app-root')
@@ -43,12 +41,8 @@ export class ShowcaseApp extends AbstractApp {
                 return html`${mediaPage}`;
             case '#check':
                 return html`${new CheckPage()}`;
-            case '#landingPage':
-                return html`${new LandingPage()}`;
             case '#login':
-                return html`${new LoginPage()}`;
-            case '#register':
-                return html`${new RegisterPage()}`;
+                return html`${new AuthenticationPage()}`;
             case '#dashboard':
                 return html`${new DashboardPage()}`;
             case '#import':

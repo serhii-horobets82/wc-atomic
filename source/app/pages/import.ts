@@ -1,7 +1,7 @@
 import {customElement, html, property, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {data_navigation, User} from "../data/data";
+import {DATA_NAVIGATION, User} from "../data/data";
 import {sessionStore} from "../../util/storage/storage";
 
 @customElement('page-import')
@@ -17,7 +17,7 @@ export class ImportPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [],
         };

@@ -22,31 +22,21 @@ export enum HttpClientSessionKey {
 }
 
 
-export class HttpConfigImpl implements HttpClientIF {
-    credentials = Credentials.INCLUDE;
-    cors = CorsMode.CORS;
-    defaultContentType = 'application/json';
-    //baseURL = 'http://v220190910399797452.supersrv.de:8095';
-    baseURL = 'http://91.132.144.173:8095';
-    //baseURL = 'http://localhost:8095';
-    loginPath = '/dologin';
-    logoutPath = '/dologout';
-}
-
 export interface HttpClientIF {
-    credentials: string;
+    credentials: any;
     cors: string;
     defaultContentType: string;
     baseURL: string;
+    isSecured: boolean;
     loginPath: string;
     logoutPath: string;
 }
 
 export class HttpClient {
 
-    private _config: HttpConfigImpl;
+    private _config: HttpClientIF;
 
-    constructor(config: HttpConfigImpl) {
+    constructor(config: HttpClientIF) {
         this._config = config;
     }
 
@@ -145,7 +135,7 @@ export class HttpClient {
         if (jsId != null) {
             if (jsId instanceof Array)
                 return jsId[0].substring(11);
-            else if (jsId instanceof String)
+            else
                 return String(jsId).substring(11);
         }
         return jsId;

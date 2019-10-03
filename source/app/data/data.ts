@@ -1,12 +1,33 @@
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {NavigationInputData} from "../../atoms/navigation/model";
-import {HttpClient, HttpConfigImpl} from "../../util/http-client/http-client";
-import {sessionStore} from "../../util/storage/storage";
-import {DatalistOption} from "../../input/datalist/model";
+import {CorsMode, Credentials, HttpClient, HttpClientIF} from "../../util/http-client/http-client";
+import {SessionStore} from "../../util/storage/storage";
+import {AppData} from "../../abstract/app/app";
 
-export const httpClient: HttpClient = new HttpClient(new HttpConfigImpl());
 
-export const data_navigation: NavigationInputData = <NavigationInputData>{
+export const CONFIGURATION: AppData = <AppData>{
+    isSecured: true,
+    description: 'Balco Tool',
+    name: 'Balco',
+    loginPage: '#login',
+};
+
+//baseURL = 'http://v220190910399797452.supersrv.de:8095';
+//baseURL = 'http://localhost:8095';
+
+export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
+    credentials: Credentials.INCLUDE,
+    cors: CorsMode.CORS,
+    defaultContentType: 'application/json',
+    baseURL: 'http://91.132.144.173:8095',
+    isSecured: CONFIGURATION.isSecured,
+    loginPath: '/dologin',
+    logoutPath: '/dologout',
+});
+
+export const SESSION_STORE = new SessionStore();
+
+export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
     componentIdentifier: NavigationComponent.IDENTIFIER,
     links: [
         {text: 'Homepage', href: '#', icon: 'icon-home'},

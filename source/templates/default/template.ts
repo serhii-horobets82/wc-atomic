@@ -4,7 +4,7 @@ import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../molecules/data-protection/component";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
 import {DefaultTemplateModel} from "./model";
-import {data_navigation} from "../../app/data/data";
+import {DATA_NAVIGATION} from "../../app/data/data";
 import {NavigationInputData} from "../../atoms/navigation/model";
 
 const componentCSS = require('./template.css');

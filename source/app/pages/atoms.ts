@@ -1,7 +1,7 @@
 import {DefaultTemplate} from "../../templates/default/template";
 import {customElement, TemplateResult, html} from "lit-element";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {data_navigation} from "../data/data";
+import {DATA_NAVIGATION} from "../data/data";
 import {ImgComponent} from "../../atoms/img/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {CheckboxComponent} from "../../input/checkbox/component";
@@ -27,7 +27,7 @@ export class AtomsPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: data_navigation,
+            navigation: DATA_NAVIGATION,
         }
     }
 
