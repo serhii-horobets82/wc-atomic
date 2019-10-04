@@ -14,47 +14,11 @@ export class MatchingPage extends DefaultTemplate {
 
     constructor() {
         super();
+        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     @property()
-    tableInputData: TableInputData = <TableInputData>{
-        componentIdentifier: TableComponent.IDENTIFIER,
-        requestPath: '/MATCHING/MATCHING/BY_IDL/' + BALCO_DATA_STORE.getSelectedCompany().idl,
-        page: 0,
-        size: 10,
-        sort: '',
-        headers: [<TableHeaderInputData>{
-            componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-            columnKey: 'src_idl',
-            searchValue: ''
-        },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'dest_idl',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'src_firmenname',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'dest_firmenname',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'src_saldo',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'dest_saldo',
-                searchValue: ''
-            }
-        ]
-    };
+    tableInputData: TableInputData = <TableInputData>{};
 
     getContent(): TemplateResult {
 
@@ -76,8 +40,46 @@ export class MatchingPage extends DefaultTemplate {
 
     }
 
-    initTemplateData(): DefaultTemplateModel {
-        return DEFAULT_TEMPLATE_INPUT_DATA;
+    protected inputDataChanged(): void {
+        super.inputDataChanged();
+        this.tableInputData = <TableInputData>{
+            componentIdentifier: TableComponent.IDENTIFIER,
+            requestPath: '/MATCHING/MATCHING/BY_IDL/' + BALCO_DATA_STORE.getSelectedCompany().idl,
+            page: 0,
+            size: 10,
+            sort: '',
+            headers: [<TableHeaderInputData>{
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'src_idl',
+                searchValue: ''
+            },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'dest_idl',
+                    searchValue: ''
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'src_firmenname',
+                    searchValue: ''
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'dest_firmenname',
+                    searchValue: ''
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'src_saldo',
+                    searchValue: ''
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'dest_saldo',
+                    searchValue: ''
+                }
+            ]
+        };
     }
 
     private columnTableChangedEvent(event: CustomEvent) {

@@ -2,7 +2,7 @@ import {customElement} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {FlexComponent} from "../../organisms/flex-container/component";
 import {NavigationComponent} from "../../atoms/navigation/component";
-import {TemplateModel} from "../../abstract/template/model";
+import {TemplateInputData} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {DATA_NAVIGATION} from "../data/data";
 import {FlexContainerInputData} from "../../organisms/flex-container/model";

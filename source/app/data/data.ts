@@ -9,7 +9,7 @@ import {IconComponent} from "../../atoms/icon/component";
 import {AuthenticatedIconComponent} from "../../molecules/authenticated-icon/component";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
 import {IconInputData} from "../../atoms/icon/model";
-import {BALCO_DATA_STORE} from "./balco_data";
+import {BALCO_DATA_STORE, BalcoDataChannels} from "./balco_data";
 import {SpacerInputData} from "../../atoms/spacer/model";
 import {SpacerComponent} from "../../atoms/spacer/component";
 import {TextInputData} from "../../atoms/text/model";
@@ -51,6 +51,7 @@ export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
 
 export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplateModel>{
     componentIdentifier: DefaultTemplate.IDENTIFIER,
+    sessionStorageChannels: [BalcoDataChannels.SELECTED_COMPANY],
     navigationInputData: DATA_NAVIGATION,
     toolbarInputData: <ToolbarInputData>{
         componentIdentifier: ToolbarComponent.IDENTIFIER,

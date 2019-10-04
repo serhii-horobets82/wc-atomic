@@ -220,10 +220,21 @@ ${this.paging ? html`
         this.sorting = baseHelper.getValue(this.inputData.sorting, true);
         this.headers = baseHelper.getValue(this.inputData.headers, []);
 
-        let maxColumnWidth: number = 100 / this.headers.length;
+
+        let headerWithUsed: number = 0;
+        let headerCountUndefined: number = 0;
+        this.headers.forEach((header: TableHeaderInputData) => {
+            if (header.widthPercent != undefined) {
+                headerWithUsed += header.widthPercent;
+            } else {
+                headerCountUndefined++;
+            }
+        });
+
+        let defaultHeaderWidthPercent: number = (100 - headerWithUsed) / headerCountUndefined;
         this.headers.forEach((header) => {
-            if (header.widthPercent == undefined || header.widthPercent > maxColumnWidth) {
-                header.widthPercent = maxColumnWidth;
+            if (header.widthPercent == undefined) {
+                header.widthPercent = defaultHeaderWidthPercent;
             }
             this.setSortingIconClazz(header, this.sort);
         });
@@ -250,10 +261,11 @@ ${this.paging ? html`
         }
         //where clause - END
 
-        let requestUrl = this.requestPath.concat('?').concat(this.requestParams).concat('&page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
-        console.log('request url: ' + requestUrl);
+        let requestPath = this.requestPath.concat('?').concat(this.requestParams).concat('&page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
 
-        let responsePromise = HTTP_CLIENT.get(requestUrl);
+        console.log('table path prefix: ' + requestPath);
+
+        let responsePromise = HTTP_CLIENT.get(requestPath);
         responsePromise.then(response => {
             let bodyTextPromise: Promise<string> = response.text();
             bodyTextPromise.then(tableContentAsJson => {

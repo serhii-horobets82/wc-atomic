@@ -1,19 +1,18 @@
-import {html, LitElement, property, TemplateResult} from 'lit-element';
+import {html, TemplateResult} from 'lit-element';
 import {AbstractComponent} from '../component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../component-loader';
-import {TemplateModel} from "./model";
-import {DefaultTemplateModel} from "../../templates/default/model";
+import {TemplateInputData} from "./model";
 
-export abstract class Template<TEMPLATE_MODEL extends TemplateModel, OUTPUT_DATA> extends AbstractComponent<TEMPLATE_MODEL, OUTPUT_DATA> {
+export abstract class Template<TEMPLATE_MODEL extends TemplateInputData, OUTPUT_DATA> extends AbstractComponent<TEMPLATE_MODEL, OUTPUT_DATA> {
 
-   protected constructor() {
+    constructor() {
       super();
-      this.inputData = this.initTemplateData();
+        //this.inputData = this.initTemplateData();
    }
 
-   abstract initTemplateData() : TEMPLATE_MODEL;
+    //abstract initTemplateData() : TEMPLATE_MODEL;
 
    getContent(): TemplateResult {
       return html`
@@ -33,7 +32,7 @@ export abstract class Template<TEMPLATE_MODEL extends TemplateModel, OUTPUT_DATA
       `;
    }
 
-    protected inputDataChanged(): void {
+    inputDataChanged(): void {
         let titleTag = document.getElementsByTagName("TITLE")[0];
         titleTag.textContent= this.inputData.title;
     }
@@ -41,4 +40,5 @@ export abstract class Template<TEMPLATE_MODEL extends TemplateModel, OUTPUT_DATA
     private loadComponent(inputData: any): AbstractComponent<any, any> {
       return ComponentLoader.INSTANCE.createComponentFromInputData(inputData);
    }
+
 }

@@ -36,6 +36,10 @@ export class Router {
     }
 
     navigate(relUrl: string) {
+        if(this.path === relUrl){
+            console.log('you are already on page: ' + relUrl);
+            return;
+        }
         console.debug('navigate path:' + relUrl);
         history.pushState(null, '', relUrl);
         this.path = relUrl;

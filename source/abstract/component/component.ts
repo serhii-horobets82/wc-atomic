@@ -1,11 +1,11 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
-import {SESSION_STORE} from "../../util/storage/storage";
-import {SessionStoreListener} from "../../util/storage/model";
+import {baseHelper} from "../../util/base";
+import {UI_REFRESH, UIRefreshListener} from "../../util/storage/ui-refresh";
 
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
-    OUTPUT_DATA> extends LitElement implements SessionStoreListener {
+    OUTPUT_DATA> extends LitElement implements UIRefreshListener {
 
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
@@ -16,33 +16,29 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
 
     protected abstract inputDataChanged(): void;
 
+    @property()
+    sessionStorageChannels: string[] = [];
 
-    private _sessionStorageChannels: string[] = [];
-
-    get sessionStorageChannels(): string[] {
-        return this._sessionStorageChannels;
-    }
-
-    set sessionStorageChannels(value: string[]) {
-        this._sessionStorageChannels = value;
-    }
-
-    channelUpdated(channel: string): void{
-        console.log('channel has updated: ' + channel);
-        this.reqUpdate();
+    updateUI(channel: string, data: any): void {
+        console.log('channel has updated: ' + channel + ",component " + this.inputData.componentIdentifier + ', data=' + JSON.stringify(data));
+        this.inputData = <INPUT_DATA>this.inputData;
     }
 
     protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
-        this._sessionStorageChannels.forEach(channel => {
-            SESSION_STORE.register(channel, this);
-        })
+        if (this.sessionStorageChannels != undefined) {
+            this.sessionStorageChannels.forEach(channel => {
+            UI_REFRESH.register(channel, this);
+            })
+        }
     }
 
     disconnectedCallback(): void {
         console.log('disconnected');
-        this._sessionStorageChannels.forEach(channel => {
-            SESSION_STORE.unregister(channel, this);
-        })
+        if (this.sessionStorageChannels != undefined) {
+            this.sessionStorageChannels.forEach(channel => {
+                UI_REFRESH.unregister(channel, this);
+            });
+        }
     }
 
     constructor() {
@@ -59,6 +55,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         console.debug(
             'input data changed, new value=' + JSON.stringify(this._inputData)
         );
+        this.sessionStorageChannels = baseHelper.getValue(this._inputData.sessionStorageChannels, []);
         this.inputDataChanged();
     }
 

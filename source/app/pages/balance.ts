@@ -1,7 +1,6 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
-import {DefaultTemplateModel} from "../../templates/default/model";
 import {DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
@@ -19,6 +18,7 @@ export class BalancePage extends DefaultTemplate {
 
     constructor() {
         super();
+        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     @property()
@@ -31,43 +31,7 @@ export class BalancePage extends DefaultTemplate {
     typ: string = 'D';
 
     @property()
-    tableInputData: TableInputData = <TableInputData>{
-        componentIdentifier: TableComponent.IDENTIFIER,
-        requestPath: '/BALANCE/FIND',
-        requestParams: 'typ=' + this.typ + '&src_idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
-        page: 0,
-        size: 10,
-        sort: 'nummer:desc;',
-        headers: [<TableHeaderInputData>{
-            componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-            columnKey: 'nummer',
-            searchValue: ''
-        },
-            <TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'bezeichnung',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <InputInputData>{
-                    componentIdentifier: InputComponent.IDENTIFIER,
-                    type: 'number'
-                },
-                columnKey: 'saldo',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: BALCO_DATA_STORE.getCompaniesDLID(),
-                columnKey: 'dest_idl',
-                searchValue: ''
-            },
-            <TableHeaderInputData>{
-                componentInputData: <ButtonInputData>{componentIdentifier: ButtonComponent.IDENTIFIER},
-                columnKey: 'status',
-                searchValue: ''
-            }
-        ]
-    };
+    tableInputData: TableInputData = <TableInputData>{};
 
     getContent(): TemplateResult {
         return html`
@@ -97,8 +61,50 @@ export class BalancePage extends DefaultTemplate {
 
     }
 
-    initTemplateData(): DefaultTemplateModel {
-        return DEFAULT_TEMPLATE_INPUT_DATA;
+    protected inputDataChanged(): void {
+        super.inputDataChanged();
+        this.tableInputData = <TableInputData>{
+            componentIdentifier: TableComponent.IDENTIFIER,
+            requestPath: '/BALANCE/FIND',
+            requestParams: 'typ=' + this.typ + '&src_idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
+            page: 0,
+            size: 10,
+            sort: 'nummer:desc;',
+            headers: [<TableHeaderInputData>{
+                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                columnKey: 'nummer',
+                searchValue: '',
+                widthPercent: 10,
+            },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'bezeichnung',
+                    searchValue: '',
+                    widthPercent: 40,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <InputInputData>{
+                        componentIdentifier: InputComponent.IDENTIFIER,
+                        type: 'number'
+                    },
+                    columnKey: 'saldo',
+                    searchValue: '',
+                    widthPercent: 10,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: BALCO_DATA_STORE.getCompaniesDLID(),
+                    columnKey: 'dest_idl',
+                    searchValue: '',
+                    widthPercent: 30,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <ButtonInputData>{componentIdentifier: ButtonComponent.IDENTIFIER},
+                    columnKey: 'status',
+                    searchValue: '',
+                    widthPercent: 10,
+                }
+            ]
+        };
     }
 
     private columnTableChangedEvent(event: CustomEvent) {

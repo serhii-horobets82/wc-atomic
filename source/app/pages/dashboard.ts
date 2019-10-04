@@ -13,6 +13,7 @@ export class DashboardPage extends DefaultTemplate {
 
     constructor() {
         super();
+        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
         this.user = BALCO_DATA_STORE.getUser();
     }
 

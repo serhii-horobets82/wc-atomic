@@ -2,7 +2,7 @@ import {customElement} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {H1Component} from "../../atoms/h/component";
 import {CodeComponent} from "../../atoms/code/component";
-import {TemplateModel} from "../../abstract/template/model";
+import {TemplateInputData} from "../../abstract/template/model";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {DATA_NAVIGATION} from "../data/data";

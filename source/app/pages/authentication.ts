@@ -29,27 +29,24 @@ export class AuthenticationPage extends BlankTemplate {
     }
 
     private successfullyLoggedIn() {
-
-        let responsePromiseCompany = HTTP_CLIENT.get('/COMPANY');
-        responsePromiseCompany.then(response => {
-            let responseTextPromise = response.text();
-            responseTextPromise.then(responseText => {
-                let companies: Konzern[] = JSON.parse(responseText);
-                BALCO_DATA_STORE.saveKonzerne(companies);
-            });
-        });
-
         let responsePromiseUser = HTTP_CLIENT.get('/SYSTEM/AUTH/USER');
         responsePromiseUser.then(response => {
             let responseTextPromise = response.text();
             responseTextPromise.then(responseText => {
                 let user: User = JSON.parse(responseText);
                 BALCO_DATA_STORE.saveLoginUser(user);
+                let responsePromiseCompany = HTTP_CLIENT.get('/COMPANY');
+                responsePromiseCompany.then(response => {
+                    let responseTextPromise = response.text();
+                    responseTextPromise.then(responseText => {
+                        let companies: Konzern[] = JSON.parse(responseText);
+                        BALCO_DATA_STORE.saveKonzerne(companies);
+                        router.navigate("#dashboard");
+                    });
+                });
+
             });
         });
-
-        router.navigate("#dashboard");
-
     }
 
     private successfullyLoggedOut() {

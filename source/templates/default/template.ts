@@ -39,7 +39,7 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
 
     render() {
         return html`
-     <div class="container" @component-icon-click="${this.menuItemClicked}">
+     <div class="container" @component-icon-click="${this.menuItemClicked}" >
         <header id="header">
             <component-toolbar .inputData="${this.toolbarInputData}"></component-toolbar>
         </header>
@@ -54,15 +54,14 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     `;
     }
 
-    public getOutputData(): any {
-        return {};
-    }
-
     protected inputDataChanged(): void {
         this.navigationInputData = this.inputData.navigationInputData;
         this.toolbarInputData = this.inputData.toolbarInputData;
     }
 
+    public getOutputData(): any {
+        return {};
+    }
     getDefaultInputData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,

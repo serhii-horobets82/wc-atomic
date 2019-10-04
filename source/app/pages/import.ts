@@ -11,6 +11,7 @@ export class ImportPage extends DefaultTemplate {
 
     constructor() {
         super();
+        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     initTemplateData(): DefaultTemplateModel {
