@@ -1,9 +1,37 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
-import {InputInputData} from "./model";
+import {InputDataChangeEvent, InputInputData} from "./model";
 import {KeyValueOutputData} from "../../organisms/form/model";
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
+
+
+export enum HTMLInputTypes {
+    BUTTON = 'button',
+    CHECKBOX = 'checkbox',
+    COLOR = 'color',
+    DATE = 'date',
+    DATETIME_LOCAL = 'datetime-local',
+    EMAIL = 'email',
+    FILE = 'file',
+    HIDDEN = 'hidden',
+    IMAGE = 'image',
+    MONTH = 'month',
+    NUMBER = 'number',
+    PASSWORD = 'password',
+    RADIO = 'radio',
+    RANGE = 'range',
+    RESET = 'reset',
+    SEARCH = 'search',
+    SUBMIT = 'submit',
+    TEL = 'tel',
+    TEXT = 'text',
+    TIME = 'time',
+    URL = 'url',
+    WEEK = 'week'
+}
+
 
 @customElement('component-inputfield')
 export class InputComponent extends AbstractComponent<InputInputData, KeyValueOutputData> {
@@ -23,7 +51,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueOu
     value: string = '';
 
     @property()
-    type: string = 'text';
+    type: string = HTMLInputTypes.TEXT;
 
     @property()
     placeholder: string = '';
@@ -55,24 +83,26 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueOu
 
     render() {
         return html`
-            <input id="inputElement" name="${this.name}" @keyup="${this.keyup}" @change="${this.change}" type="${this.type}" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" min="${this.min}" max="${this.max}"/>
+            <input id="inputElement" multiple="" name="${this.name}" @keyup="${this.keyup}" @change="${(event: InputDataChangeEvent) => this.change(event)}" type="${this.type}" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" min="${this.min}" max="${this.max}"/>
 `;
     }
 
     async keyup() {
-        this.value = this.textfieldElemet != null ? this.textfieldElemet.value : this.value;
         this.dispatchSimpleCustomEvent(InputComponent.EVENT_KEY_UP_CHANGE, this.getOutputData());
     }
 
-    async change() {
-        this.value = this.textfieldElemet != null ? this.textfieldElemet.value : this.value;
-        this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, this.getOutputData());
+    async change(event: Event) {
+        let inputDataChangedEvent: InputDataChangeEvent = <InputDataChangeEvent>{};
+        inputDataChangedEvent.type = this.type;
+        inputDataChangedEvent.element = <HTMLInputElement>event.target;
+        inputDataChangedEvent.outputData = this.getOutputData();
+        this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
     }
 
     getOutputData(): KeyValueOutputData {
         return <KeyValueOutputData>{
             key: this.name,
-            value: this.value,
+            value: this.textfieldElemet != null ? this.textfieldElemet.value : this.value,
         };
     }
 
@@ -81,13 +111,14 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueOu
     }
 
     protected inputDataChanged() {
-        this.name = this.inputData.name;
-        this.value = this.inputData.value !== undefined ? this.inputData.value : '';
-        this.placeholder = this.inputData.placeholder !== undefined ? this.inputData.placeholder : '';
-        this.maxlength = this.inputData.maxlength !== undefined ? this.inputData.maxlength : 255;
-        this.size = this.inputData.size !== undefined ? this.inputData.size : 20;
-        this.type = this.inputData.type !== undefined ? this.inputData.type : 'text';
-
+        this.name = baseHelper.getValue(this.inputData.name, '');
+        this.value = baseHelper.getValue(this.inputData.value, '');
+        this.type = baseHelper.getValue(this.inputData.value, HTMLInputTypes.TEXT);
+        this.placeholder = baseHelper.getValue(this.inputData.value, '');
+        this.maxlength = baseHelper.getValue(this.inputData.maxlength, this.maxlength);
+        this.size = baseHelper.getValue(this.inputData.size, this.size);
+        this.min = baseHelper.getValue(this.inputData.size, this.min);
+        this.max = baseHelper.getValue(this.inputData.size, this.max);
     }
 
 }

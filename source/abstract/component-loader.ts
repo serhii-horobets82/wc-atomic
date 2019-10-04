@@ -28,6 +28,7 @@ import {ToolbarComponent} from "../organisms/toolbar/component";
 import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
 import {DatalistComponent} from "../input/datalist/component";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
+import {SpacerComponent} from "../atoms/spacer/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -79,6 +80,9 @@ export class ComponentLoader {
                 break;
             case CheckboxComponent.IDENTIFIER:
                 component = new CheckboxComponent();
+                break;
+            case SpacerComponent.IDENTIFIER:
+                component = new SpacerComponent();
                 break;
             case InputComponent.IDENTIFIER:
                 component = new InputComponent();

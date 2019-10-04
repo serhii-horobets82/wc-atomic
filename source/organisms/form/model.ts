@@ -1,5 +1,5 @@
 import {AbstractInputData} from "../../abstract/component/model";
-import {Button} from "../../atoms/button/model";
+import {ButtonInputData} from "../../atoms/button/model";
 import {FlexContainerInputData} from "../flex-container/model";
 
 export interface KeyValueOutputData {
@@ -15,6 +15,6 @@ export interface FormComponentOutputData {
 export interface FormComponentInputData extends AbstractInputData {
     gridClazz?: string;
     columnClazz?: string;
-    buttonInputDatas?: Button[];
+    buttonInputDatas?: ButtonInputData[];
     flexContainerInputData: FlexContainerInputData;
 }

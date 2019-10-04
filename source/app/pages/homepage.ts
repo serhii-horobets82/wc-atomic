@@ -21,7 +21,7 @@ export class HomePage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
+            navigationInputData: DATA_NAVIGATION,
             title: 'Component Overview',
             componentInputData: [],
         };

@@ -6,10 +6,9 @@
 }
 #header {
     position: fixed;
-    width: calc(100% - var(--menu-size));
+    width: calc(100%);
     height: var(--toolbar-height);
     right: 0;
-    transition: width 0.5s linear;
     color: var(--app-header-color);
     background-color: var(--app-header-background-color);
 }
@@ -18,20 +17,20 @@
     transition: width 0.5s linear;
 }
 #menu {
-    height: 100%;
+    height: calc(100% - var(--toolbar-height));
     width: var(--menu-size);
-    transition: width 0.5s linear;
+    transition: left 0.5s linear;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: var(--toolbar-height);
     left: 0;
     overflow-x: hidden;
     color: var(--app-menu-color);
     background-color: var(--app-menu-background-color);
 }
 #menu.menuClosed {
-    width: 0%;
-    transition: width 0.5s linear;
+    left: calc(-1 * var(--menu-size));
+    transition: left 0.5s linear;
 }
 #main {
     padding-top: var(--toolbar-height);

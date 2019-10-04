@@ -6,7 +6,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../../atoms/text/component';
 import {ComponentLoader} from '../../abstract/component-loader';
 import {ImgModel} from "../../atoms/img/model";
-import {Button} from "../../atoms/button/model";
+import {ButtonInputData} from "../../atoms/button/model";
 import {TextInputData} from "../../atoms/text/model";
 import {TeaserContainerInputData, TeaserElementInputData} from "./model";
 import {TextWithHeaderComponent} from "../text-with-header/component";

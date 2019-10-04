@@ -1,4 +1,4 @@
-import {HTTP_CLIENT, Konzern, SESSION_STORE, User} from "./data";
+import {Konzern, SESSION_STORE, User} from "./data";
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {DatalistInputData, DatalistOption} from "../../input/datalist/model";
@@ -17,6 +17,22 @@ export class BalcoDataStore {
         return <Konzern>SESSION_STORE.getItem(BalcoDataChannels.SELECTED_COMPANY);
     }
 
+    setSelectedIDL(selectedIDL: string) {
+        console.log('Konzernauswahl, neuer Konzern: ' + selectedIDL);
+        let konzerne: Konzern[] | null = SESSION_STORE.getItem(BalcoDataChannels.KONZERNE);
+        if (konzerne != null) {
+            konzerne.forEach(konzern => {
+                if (konzern.idl == selectedIDL) {
+                    console.log('ändere Konzern: ' + selectedIDL)
+                    SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, konzern);
+                    let myCompaniesCID: ComboboxInputData = this.getMyCompaniesCID();
+                    myCompaniesCID.selectedValue = selectedIDL;
+                    this.setMyCompaniesCID(myCompaniesCID);
+                }
+            });
+        }
+    }
+
     public saveLoginUser(user: User) {
 
         SESSION_STORE.setItem(BalcoDataChannels.USER, user);
@@ -33,7 +49,7 @@ export class BalcoDataStore {
             options: options
         };
 
-        SESSION_STORE.setItem(BalcoDataChannels.MY_COMPANIES_CID, myCompanies);
+        this.setMyCompaniesCID(myCompanies);
         SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, user.companyDTOS[0]);
 
     }
@@ -56,29 +72,21 @@ export class BalcoDataStore {
 
     }
 
-
-    setSelectedIDL(selectedIDL: string) {
-        let konzerne: Konzern[] | null = SESSION_STORE.getItem(BalcoDataChannels.KONZERNE);
-        if (konzerne != null) {
-            konzerne.forEach(konzern => {
-                if (konzern.idl == selectedIDL) {
-                    console.log('ändere Konzern: ' + selectedIDL)
-                    SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, konzern);
-                }
-            });
-        }
-    }
-
     getUser(): User {
         return <User>SESSION_STORE.getItem(BalcoDataChannels.USER);
     }
 
-    getCompaniesDLID(): DatalistInputData {
-        return <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.COMPANIES_DLID);
+    getMyCompaniesCID(): ComboboxInputData {
+        return <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.MY_COMPANIES_CID);
     }
 
-    getMyCompaniesCID(): DatalistInputData {
-        return <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.MY_COMPANIES_CID);
+    private setMyCompaniesCID(myCompanies: ComboboxInputData) {
+        SESSION_STORE.setItem(BalcoDataChannels.MY_COMPANIES_CID, myCompanies);
+    }
+
+
+    public getUserString() {
+        return this.getUser() != null ? this.getUser().vorname.concat(' ').concat(BALCO_DATA_STORE.getUser().name) : '';
     }
 
 }

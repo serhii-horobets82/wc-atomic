@@ -11,18 +11,18 @@ import {
     TableInputData
 } from "./model";
 import {ComboboxOption} from "../../input/combobox/model";
+import {InputComponent} from "../../input/input/component";
+import {DatalistComponent} from "../../input/datalist/component";
+import {TextComponent} from "../../atoms/text/component";
 import {baseHelper} from "../../util/base";
 import {HTTP_CLIENT} from "../../app/data/data";
-import {InputComponent} from "../../input/input/component";
-import {TextInputData} from "../../atoms/text/model";
-import {ComboboxComponent} from "../../input/combobox/component";
-import {DatalistComponent} from "../../input/datalist/component";
-import {ButtonComponent} from "../../atoms/button/component";
-import {Button} from "../../atoms/button/model";
-import {InputInputData} from "../../input/input/model";
-import {KeyValueOutputData} from "../form/model";
-import {TextComponent} from "../../atoms/text/component";
 import {DatalistInputData} from "../../input/datalist/model";
+import {TextInputData} from "../../atoms/text/model";
+import {InputInputData} from "../../input/input/model";
+import {ComboboxComponent} from "../../input/combobox/component";
+import {ButtonComponent} from "../../atoms/button/component";
+import {ButtonInputData} from "../../atoms/button/model";
+import {KeyValueOutputData} from "../form/model";
 
 const componentCSS = require('./component.css');
 
@@ -64,13 +64,16 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     requestPath: string = '';
 
     @property()
-    sorting: boolean = false;
+    requestParams: string = '';
 
     @property()
-    paging: boolean = false;
+    sorting: Boolean = true;
 
     @property()
-    filtering: boolean = false;
+    paging: Boolean = true;
+
+    @property()
+    filtering: Boolean = true;
 
 
     sizeOptions: ComboboxOption[] = [<ComboboxOption>{
@@ -92,8 +95,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     render() {
         return html`
+            
             <div class="header">
-
+${this.paging ? html`
             <component-flex-container gridClazz="grid_100">
             
                 <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
@@ -106,7 +110,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 ${this.numberOfElements} von insgesamt: ${this.totalElements}
 
         </component-flex-container>
-
+` : html``}
         </div>
 
 
@@ -125,12 +129,12 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                               >
                                  ${header.columnKey}
                                  
-                                 ${this.filtering ? '<component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>' : ''}
+                                 ${this.sorting ? html`<component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
                             
                               </span>
                            `
                 )}
-                        ${repeat(
+                        ${this.filtering ? repeat(
                     this.headers,
                     (header) => html`
                               <span
@@ -140,7 +144,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                 ${this.createFilterComponent(header)}
                               </span>
                            `
-                )}
+                ) : html``}
                      </div>
                   `
         )}
@@ -190,13 +194,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       `;
     }
 
-    async itemClicked(event: CustomEvent) {
-
-        console.log('sdkspodk' + event.detail);
-
-
-    }
-
     getDefaultInputData(): TableInputData {
         return <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,
@@ -204,6 +201,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             page: 0,
             size: 10,
             sort: '',
+            requestParams: '',
             sorting: false,
             paging: false,
             filtering: false,
@@ -212,26 +210,26 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     }
 
     inputDataChanged(): void {
-        if (this.inputData.sort != null)
-            this.sort = this.inputData.sort;
-        if (this.inputData.headers != null) {
-            this.headers = this.inputData.headers;
-            let maxColumnWidth: number = 100 / this.headers.length;
-            this.headers.forEach((header) => {
-                if (header.widthPercent == undefined || header.widthPercent > maxColumnWidth) {
-                    header.widthPercent = maxColumnWidth;
-                }
-                this.setSortingIconClazz(header, this.sort);
-            })
-        }
-        this.requestPath = this.inputData.requestPath;
-        if (this.inputData.paging != null)
-            this.paging = this.inputData.paging;
-        if (this.inputData.filtering != null)
-            this.filtering = this.inputData.filtering;
-        if (this.inputData.sorting != null)
-            this.sorting = this.inputData.sorting;
+
+        this.sort = baseHelper.getValue(this.inputData.sort, '');
+        this.requestParams = baseHelper.getValue(this.inputData.requestParams, '');
+        this.size = baseHelper.getValue(this.inputData.size, 10);
+        this.requestPath = baseHelper.getValue(this.inputData.requestPath, '');
+        this.paging = baseHelper.getValue(this.inputData.paging, true);
+        this.filtering = baseHelper.getValue(this.inputData.filtering, true);
+        this.sorting = baseHelper.getValue(this.inputData.sorting, true);
+        this.headers = baseHelper.getValue(this.inputData.headers, []);
+
+        let maxColumnWidth: number = 100 / this.headers.length;
+        this.headers.forEach((header) => {
+            if (header.widthPercent == undefined || header.widthPercent > maxColumnWidth) {
+                header.widthPercent = maxColumnWidth;
+            }
+            this.setSortingIconClazz(header, this.sort);
+        });
+
         this.loadData();
+
     }
 
     getOutputData(): undefined {
@@ -252,7 +250,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         }
         //where clause - END
 
-        let requestUrl = this.requestPath.concat('?page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
+        let requestUrl = this.requestPath.concat('?').concat(this.requestParams).concat('&page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
         console.log('request url: ' + requestUrl);
 
         let responsePromise = HTTP_CLIENT.get(requestUrl);
@@ -310,7 +308,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                 (<DatalistInputData>inputData).selectedValue = columnValue;
                                 break;
                             case ButtonComponent.IDENTIFIER:
-                                (<Button>inputData).text = columnValue;
+                                (<ButtonInputData>inputData).text = columnValue;
                                 break;
                         }
 

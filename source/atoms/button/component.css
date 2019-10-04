@@ -16,7 +16,7 @@ button {
 
     padding: var(--min-padding) var(--medium-padding) var(--min-padding) var(--medium-padding);
 }
-button:hover {
+button:hover, .selected {
     background-color: transparent;
     color: var(--app-primary-color);
     transition: color 100ms linear, background-color 100ms linear, border 100ms linear;

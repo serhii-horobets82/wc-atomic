@@ -7,7 +7,8 @@ export interface ComboboxOption {
 }
 
 export interface ComboboxInputData extends AbstractInputData {
-    name: string;
-    size: number;
+    name?: string;
+    size?: number;
+    selectedValue?: string;
     options: ComboboxOption[];
 }

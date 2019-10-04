@@ -39,7 +39,7 @@ export class MoleculesPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
+            navigationInputData: DATA_NAVIGATION,
         }
     }
 

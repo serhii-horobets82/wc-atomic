@@ -1,37 +1,41 @@
-import {customElement, html, property, TemplateResult} from "lit-element";
+import {customElement, html, query, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, User} from "../data/data";
-import {sessionStore} from "../../util/storage/storage";
+import {DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
+import {InputDataChangeEvent} from "../../input/input/model";
+import {BALCO_DATA_STORE} from "../data/balco_data";
+import {CheckboxComponent} from "../../input/checkbox/component";
 
 @customElement('page-import')
 export class ImportPage extends DefaultTemplate {
-
-    @property()
-    user: User = <User>{};
 
     constructor() {
         super();
     }
 
     initTemplateData(): DefaultTemplateModel {
-        return <DefaultTemplateModel>{
-            componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
-            title: 'Component Overview',
-            componentInputData: [],
-        };
+        return DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
+    @query('#checkbox')
+    checkbox: CheckboxComponent | undefined;
+
     getContent(): TemplateResult {
-        return html`Import 
+        return html`
+            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding" columnFlexBasisValue="100%" >
+                <component-h1 text="Hinweis" subtext="Saldenliste importieren"></component-h1>
+                <component-text text="Importieren Sie hier Ihre Saldenliste im CSV-Format. Der Aufbau der Datei muss wie in der Beispieldatei sein. Sie können den Import beliebig oft wiederholen. Um Ihre bisherigen Salden zu löschen klicken Sie auf die Checkbox 'Alte Salden löschen'."></component-text>
+                <component-spacer clazz="mediumPaddingTop">ssss</component-spacer>
+                <component-checkbox id="checkbox">Alte Salden löschen</component-checkbox>
+                <component-spacer clazz="mediumPaddingTop">ssss</component-spacer>
+                <component-inputfield type="file" @component-inputfield-change="${(event: CustomEvent) => this.upload(event)}"></component-inputfield>
+            </component-flex-container>`;
+    }
 
-Hinweis:
- 
-<component-text text="Importiere hier nun jeweils eine Debitoren- und eine Kreditorensaldenliste im CSV-Format. Der Aufbau der Datei muss wie in der Beispieldatei sein. Du  kannst den Import beliebig oft wiederholen. "></component-text>
-
-
-<component-inputfield type="file"></component-inputfield>`;
+    private upload(event: CustomEvent) {
+        let data: InputDataChangeEvent = event.detail;
+        let files = data.element.files;
+        HTTP_CLIENT.uploadFiles('/BALANCE/CSV/'.concat(BALCO_DATA_STORE.getSelectedCompany().idl).concat('/').concat(this.checkbox != undefined ? this.checkbox.getOutputData().value ? 'true' : 'false' : 'false'), files);
     }
 
 }

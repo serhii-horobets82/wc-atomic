@@ -1,12 +1,13 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {IconInputData} from "../icon/model";
-import {Button} from "./model";
+import {ButtonInputData} from "./model";
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-button')
-export class ButtonComponent extends AbstractComponent<Button, undefined> {
+export class ButtonComponent extends AbstractComponent<ButtonInputData, undefined> {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -28,10 +29,13 @@ export class ButtonComponent extends AbstractComponent<Button, undefined> {
     href: string = '';
 
     @property()
-    clickEventData: any;
+    selected: boolean = false;
 
-    getDefaultInputData(): Button {
-        return <Button>{
+    @property()
+    clickEventData: any = {};
+
+    getDefaultInputData(): ButtonInputData {
+        return <ButtonInputData>{
             componentIdentifier: ButtonComponent.IDENTIFIER,
             clazz: '',
             text: 'Mein Button',
@@ -46,18 +50,16 @@ export class ButtonComponent extends AbstractComponent<Button, undefined> {
     }
 
     protected inputDataChanged() {
-        this.icon =
-            this.inputData.icon !== undefined
-                ? this.inputData.icon
-                : <IconInputData>{};
-        this.text = this.inputData.text;
-        this.href = this.inputData.href !== undefined ? this.inputData.href : '/';
-        this.clickEventData = this.inputData.clickEventData;
+        this.icon = baseHelper.getValue(this.inputData.icon, <IconInputData>{});
+        this.text = baseHelper.getValue(this.inputData.text, '');
+        this.href = baseHelper.getValue(this.inputData.href, '/');
+        this.selected = baseHelper.getValue(this.inputData.selected, false);
+        this.clickEventData = baseHelper.getValue(this.inputData.clickEventData, {});
     }
 
     render() {
         return html`
-         <button class="${this.clazz}" @click="${this.clicked}">
+         <button class="${this.clazz} ${this.selected ? 'selected' : ''}" @click="${this.clicked}">
             <component-icon .inputData="${this.icon}"></component-icon>
             <component-text clazz="ellipsis centerText" text="${this.text}"></component-text>
          </button>

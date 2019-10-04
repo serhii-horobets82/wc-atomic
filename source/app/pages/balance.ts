@@ -2,17 +2,18 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, HTTP_CLIENT} from "../data/data";
+import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {DatalistInputData} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {Button} from "../../atoms/button/model";
+import {ButtonInputData} from "../../atoms/button/model";
 import {InputComponent} from "../../input/input/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
+import {BALCO_DATA_STORE, BalcoDataChannels} from "../data/balco_data";
 
 
 @customElement('page-balance')
@@ -23,9 +24,19 @@ export class BalancePage extends DefaultTemplate {
     }
 
     @property()
+    kreditorSelected: boolean = false;
+
+    @property()
+    debitorSelected: boolean = true;
+
+    @property()
+    typ: string = 'D';
+
+    @property()
     tableInputData: TableInputData = <TableInputData>{
         componentIdentifier: TableComponent.IDENTIFIER,
         requestPath: '/BALANCE/FIND',
+        requestParams: 'typ=' + this.typ + '&src_idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
         page: 0,
         size: 10,
         sort: 'nummer:desc;',
@@ -50,13 +61,13 @@ export class BalancePage extends DefaultTemplate {
             <TableHeaderInputData>{
                 componentInputData: <DatalistInputData>{
                     componentIdentifier: DatalistComponent.IDENTIFIER,
-                    dataListChannel: 'companies'
+                    dataListChannel: BalcoDataChannels.COMPANIES_DLID
                 },
                 columnKey: 'dest_idl',
                 searchValue: ''
             },
             <TableHeaderInputData>{
-                componentInputData: <Button>{componentIdentifier: ButtonComponent.IDENTIFIER},
+                componentInputData: <ButtonInputData>{componentIdentifier: ButtonComponent.IDENTIFIER},
                 columnKey: 'status',
                 searchValue: ''
             }
@@ -69,10 +80,19 @@ export class BalancePage extends DefaultTemplate {
 
             <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
             
-                <component-button text="Kreditoren"></component-button>
-                <component-button text="Debitoren"></component-button>
-                <component-button text="Sachkonten"></component-button>
-            
+                <component-button text="Debitoren" .selected="${this.debitorSelected}"  @click="${() => {
+            this.changeTyp('D')
+        }})"></component-button>
+                
+                <component-spacer clazz="minPaddingRight"></component-spacer>
+
+                <component-button text="Kreditoren" .selected="${this.kreditorSelected}" @click="${() => {
+            this.changeTyp('K')
+        }})"></component-button>
+                
+                <component-spacer clazz="maxPadding"></component-spacer>
+                
+           
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
         }}"></component-table>
@@ -84,12 +104,7 @@ export class BalancePage extends DefaultTemplate {
     }
 
     initTemplateData(): DefaultTemplateModel {
-        return <DefaultTemplateModel>{
-            componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
-            title: 'Component Overview',
-            componentInputData: [],
-        };
+        return DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     private columnTableChangedEvent(event: CustomEvent) {
@@ -105,5 +120,20 @@ export class BalancePage extends DefaultTemplate {
             console.log('matching/unmatching ok ? ' + value.status);
         })
 
+    }
+
+    private changeTyp(newTyp: string) {
+        this.typ = newTyp;
+        switch (newTyp) {
+            case 'D':
+                this.kreditorSelected = false;
+                this.debitorSelected = true;
+                break;
+            case 'K':
+                this.kreditorSelected = true;
+                this.debitorSelected = false;
+                break;
+        }
+        this.tableInputData.requestParams = 'typ=' + this.typ + '&src_idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl);
     }
 }

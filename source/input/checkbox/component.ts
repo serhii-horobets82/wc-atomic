@@ -1,7 +1,8 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
-import {KeyValueOutputData} from '../../organisms/form/component';
 import {CheckboxInputData} from "./model";
+import {baseHelper} from "../../util/base";
+import {KeyValueOutputData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
@@ -19,10 +20,14 @@ export class CheckboxComponent extends AbstractComponent<
    static EVENT_VALUE_CHANGE: string = 'component-checkbox-value-change';
 
    @property()
-   protected name: string |undefined;
+   protected name: string = '';
 
    @property()
-   private checked: boolean|undefined;
+   private checked: boolean = false;
+
+   @property()
+   private text: string = '';
+
 
    render() {
       return html`
@@ -31,7 +36,10 @@ export class CheckboxComponent extends AbstractComponent<
                class="checkbox ${this.checked ? 'checked' : ''}"
                @click="${this.valueChange}"
             ></span
-         ></span>
+         >
+         ${this.text}
+         <slot></slot>
+         </span>
       `;
    }
 
@@ -49,9 +57,9 @@ export class CheckboxComponent extends AbstractComponent<
    }
 
    protected inputDataChanged() {
-      this.name = this.inputData.name;
-      this.checked =
-         this.inputData.checked !== undefined ? this.inputData.checked : false;
+      this.name = baseHelper.getValue(this.inputData.name, '');
+      this.checked = baseHelper.getValue(this.inputData.checked, false);
+      this.text = baseHelper.getValue(this.inputData.text, '');
    }
 
    getOutputData(): KeyValueOutputData {

@@ -2,10 +2,11 @@ import {css, html, property, query, unsafeCSS} from 'lit-element';
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../molecules/data-protection/component";
-import {ToolbarComponent} from "../../organisms/toolbar/component";
 import {DefaultTemplateModel} from "./model";
-import {DATA_NAVIGATION} from "../../app/data/data";
 import {NavigationInputData} from "../../atoms/navigation/model";
+import {ToolbarInputData} from "../../organisms/toolbar/model";
+import {IconInputData} from "../../atoms/icon/model";
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./template.css');
 
@@ -19,25 +20,31 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     title = 'HTML Template';
 
     @property()
-    navigation: NavigationInputData;
+    menuSwitchIconClazz = 'fas fa-bars';
+
+    @property()
+    navigationInputData: NavigationInputData | undefined;
+
+    @property()
+    toolbarInputData: ToolbarInputData | undefined;
 
     @query("#header")
-    private headerElement: HTMLElement;
+    private headerElement: HTMLElement | undefined;
     @query("#menu")
-    private menuElement: HTMLElement;
+    private menuElement: HTMLElement | undefined;
     @query("#main")
-    private mainElement: HTMLElement;
+    private mainElement: HTMLElement | undefined;
 
     menuCss: string = '';
 
     render() {
         return html`
-     <div class="container" @menuItemClicked="${this.menuItemClicked}">
+     <div class="container" @component-icon-click="${this.menuItemClicked}">
         <header id="header">
-            <component-toolbar .inputData="${new ToolbarComponent().getDefaultInputData()}"></component-toolbar>
+            <component-toolbar .inputData="${this.toolbarInputData}"></component-toolbar>
         </header>
         <div id="menu">
-            <component-navigation .inputData="${this.navigation}" title="${this.title}"></component-navigation>
+            <component-navigation .inputData="${this.navigationInputData}" title="${this.title}"></component-navigation>
         </div>
         <div id="main">
             ${this.getContent()}
@@ -52,28 +59,36 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     }
 
     protected inputDataChanged(): void {
-        super.inputDataChanged();
-        this.navigation = this.inputData.navigation;
+        this.navigationInputData = this.inputData.navigationInputData;
+        this.toolbarInputData = this.inputData.toolbarInputData;
     }
 
     getDefaultInputData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: new NavigationComponent().getDefaultInputData(),
+            navigationInputData: new NavigationComponent().getDefaultInputData(),
         };
     }
 
 
     menuItemClicked(event: CustomEvent) {
-        console.log('menuItemClicked...');
-        if (this.menuCss.length == 0) {
-            this.menuCss = 'menuClosed';
-        } else {
-            this.menuCss = '';
+        let iid: IconInputData = event.detail
+        if (baseHelper.isEqual(iid.iconClazz, this.menuSwitchIconClazz)) {
+            console.log('menuItemClicked...');
+            if (this.menuCss.length == 0) {
+                this.menuCss = 'menuClosed';
+            } else {
+                this.menuCss = '';
+            }
+
+            if (this.menuElement != undefined)
+                this.menuElement.setAttribute('class', this.menuCss);
+            if (this.mainElement != undefined)
+                this.mainElement.setAttribute('class', this.menuCss);
+            if (this.headerElement != undefined)
+                this.headerElement.setAttribute('class', this.menuCss);
+
         }
-        this.menuElement.setAttribute('class', this.menuCss);
-        this.mainElement.setAttribute('class', this.menuCss);
-        this.headerElement.setAttribute('class', this.menuCss);
     }
 
 }

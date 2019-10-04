@@ -10,7 +10,7 @@ import {ButtonComponent} from '../../atoms/button/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {Button} from "../../atoms/button/model";
+import {ButtonInputData} from "../../atoms/button/model";
 import {FormElementInputData} from "../../atoms/form-element/model";
 import {FormComponentInputData, FormComponentOutputData} from "./model";
 import {FlexContainerInputData} from "../flex-container/model";
@@ -35,7 +35,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
     columnClazz: string | undefined;
 
     @property()
-    buttonInputDatas: Button[] = [];
+    buttonInputDatas: ButtonInputData[] = [];
 
     @property()
     flexContainerInputData: FlexContainerInputData | undefined;
@@ -109,7 +109,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
         return <FormComponentInputData>{
             componentIdentifier: FormComponent.IDENTIFIER,
             buttonInputDatas: [
-                <Button>{
+                <ButtonInputData>{
                     componentIdentifier: ButtonComponent.IDENTIFIER,
                     text: 'Senden'
                 }

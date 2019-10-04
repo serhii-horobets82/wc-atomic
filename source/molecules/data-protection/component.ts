@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
 import {ButtonComponent} from "../../atoms/button/component";
-import {Button} from "../../atoms/button/model";
+import {ButtonInputData} from "../../atoms/button/model";
 import {DataProtectionInputData} from "./model";
 
 const componentCSS = require('./component.css');
@@ -17,7 +17,7 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
     static LOCAL_STORAGE_ACCEPT_KEY = 'component-data-protection-accept';
 
     @property()
-    buttonInputData: Button;
+    buttonInputData: ButtonInputData;
 
     @property()
     lawText: string;
@@ -56,7 +56,7 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
     getDefaultInputData(): DataProtectionInputData {
         return <DataProtectionInputData>{
             componentIdentifier: DataProtection.IDENTIFIER,
-            buttonInputData: <Button>{
+            buttonInputData: <ButtonInputData>{
                 componentIdentifier: ButtonComponent.IDENTIFIER,
                 text: 'Einverstanden',
             },

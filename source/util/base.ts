@@ -23,6 +23,13 @@ export class BaseHelper {
     isEqual(first: string | undefined, second: string | undefined) {
         return first === second;
     }
+
+    getValue(value: any | undefined | null, defaultValue: any): any {
+        if (value === null || value === undefined) {
+            return defaultValue;
+        }
+        return value;
+    }
 }
 
 export const baseHelper = new BaseHelper();

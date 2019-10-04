@@ -1,7 +1,7 @@
 import {BooleanType} from "../constants";
 
 export enum ContentType {
-    FORM = 'application/x-www-form-urlencoded', JSON = 'application/json', XML = 'application/xml'
+    MULTIPART_FORM_DATA = 'multipart/form-data', FORM = 'application/x-www-form-urlencoded', JSON = 'application/json', XML = 'application/xml'
 }
 
 export enum CorsMode {
@@ -72,6 +72,18 @@ export class HttpClient {
             urlSearchParams.append(key, value.toString());
         });
         return this.post(url, urlSearchParams, ContentType.FORM);
+    }
+
+    uploadFiles(url: string, files: FileList | undefined | null) {
+        if (files != undefined && files != null) {
+            for (let i = 0, f; f = files[i]; i++) {
+                const formData = new FormData();
+                formData.append('file', f);
+                this.createFetch('POST', url, undefined, formData).then(response => {
+                    console.log('file uploaded, status: '.concat(String(response.status)));
+                });
+            }
+        }
     }
 
     public get(url: string, contentType: string = this._config.defaultContentType) {

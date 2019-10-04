@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, HTTP_CLIENT} from "../data/data";
+import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
@@ -77,12 +77,7 @@ export class MatchingPage extends DefaultTemplate {
     }
 
     initTemplateData(): DefaultTemplateModel {
-        return <DefaultTemplateModel>{
-            componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
-            title: 'Component Overview',
-            componentInputData: [],
-        };
+        return DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     private columnTableChangedEvent(event: CustomEvent) {

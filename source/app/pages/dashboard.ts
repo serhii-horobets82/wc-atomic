@@ -1,7 +1,7 @@
 import {customElement, html, property, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, Konzern, SESSION_STORE, User} from "../data/data";
+import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA, Konzern, SESSION_STORE, User} from "../data/data";
 import {KeyValueOutputData} from "../../organisms/form/model";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 
@@ -17,16 +17,11 @@ export class DashboardPage extends DefaultTemplate {
     }
 
     initTemplateData(): DefaultTemplateModel {
-        return <DefaultTemplateModel>{
-            componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigation: DATA_NAVIGATION,
-            title: 'Component Overview',
-            componentInputData: [],
-        };
+        return DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     getContent(): TemplateResult {
-        return html`Herzlich Willkommen: ${this.user.vorname} ${this.user.name}
+        return html`Herzlich Willkommen: ${BALCO_DATA_STORE.getUserString()}
         
                 <component-combobox .inputData="${BALCO_DATA_STORE.getMyCompaniesCID()}" @combobox-component-selection-change="${(event: CustomEvent) => this.ddd(event)}"></component-combobox>
 
