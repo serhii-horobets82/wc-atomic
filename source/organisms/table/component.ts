@@ -97,22 +97,28 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         return html`
             
             <div class="header">
-${this.paging ? html`
-            <component-flex-container gridClazz="grid_100">
-            
-                <component-icon iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
-                <component-inputfield type="number" value="${this.page}" size="2" min="1" max="${this.totalPages}"  @component-inputfield-change="${(event: CustomEvent) => this.changePage(event)}"></component-inputfield> / ${this.totalPages}
-                <component-icon iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
+                ${this.paging ? html`
                 
+                <component-toolbar>
                 
-                <component-combobox .options="${this.sizeOptions}" .selectedValue="${this.size}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
-
-                ${this.numberOfElements} von insgesamt: ${this.totalElements}
-
-        </component-flex-container>
-` : html``}
+                  <component-spacer slot="leftComponents" clazz="minPaddingLeft"></component-spacer>
+                  <span slot="leftComponents">${this.size * (this.page - 1)} - ${this.numberOfElements} von insgesamt: ${this.totalElements}</span>
+                               
+                  <span slot="mainComponents">Einträge pro Seite&nbsp;</span>
+                  <component-combobox slot="mainComponents" .options="${this.sizeOptions}" .selectedValue="${this.size}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
+                
+                  <component-icon slot="rightComponents" iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
+                  <span slot="rightComponents">&nbsp;Seite&nbsp;</span>
+                  <component-inputfield slot="rightComponents" type="number" value="${this.page}" size="2" min="1" max="${this.totalPages}"  @component-inputfield-change="${(event: CustomEvent) => this.changePage(event)}"></component-inputfield>
+                  <span slot="rightComponents">&nbsp;/&nbsp;${this.totalPages > 0 ? this.totalPages : 1}&nbsp;</span>
+                  <component-icon slot="rightComponents" iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
+                  <component-spacer slot="rightComponents" clazz="minPaddingRight"></component-spacer> 
+                  
+                </component-toolbar>
+                          
+                ` : html``}
         </div>
-
+        <component-spacer clazz="minPaddingTop"></component-spacer>
 
          <span class="table">
             ${guard(
@@ -148,7 +154,7 @@ ${this.paging ? html`
                      </div>
                   `
         )}
-            ${guard(
+            ${this.rows.length > 0 ? guard(
             [this.rows],
             () =>
                 html`
@@ -184,7 +190,7 @@ ${this.paging ? html`
                         `
                 )}
                   `
-        )}
+        ) : html`Keine Daten`}
             <div class="footer">
             
             

@@ -52,6 +52,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                 )}
                         `
         )}
+                  <slot name="leftComponents"></slot>
                </component-flex-container>
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
@@ -67,7 +68,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                               `
                 )}
                         `
-        )}
+        )}<slot name="mainComponents"></slot>
                </component-flex-container>
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
@@ -84,6 +85,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                 )}
                         `
         )}
+                  <slot name="rightComponents"></slot>
                </component-flex-container>
             </component-flex-container>
          </div>

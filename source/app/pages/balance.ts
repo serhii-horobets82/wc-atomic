@@ -93,7 +93,7 @@ export class BalancePage extends DefaultTemplate {
                 },
                 <TableHeaderInputData>{
                     componentInputData: BALCO_DATA_STORE.getCompaniesDLID(),
-                    columnKey: 'dest_idl',
+                    columnKey: 'destIdl',
                     searchValue: '',
                     widthPercent: 30,
                 },

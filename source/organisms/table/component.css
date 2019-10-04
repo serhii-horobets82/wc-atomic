@@ -8,7 +8,7 @@
     align-items: center;
   }
 
-  .head {
+  .head, .header {
     color: var(--app-primary-color-contrast);
     background-color: var(--app-primary-background-color-contrast);
   }
