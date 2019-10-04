@@ -5,7 +5,6 @@ import {AbstractComponent} from "../../abstract/component/component";
 import {DatalistInputData, DatalistOption} from "./model";
 import {KeyValueOutputData} from "../../organisms/form/model";
 import {baseHelper} from "../../util/base";
-import {SESSION_STORE} from "../../app/data/data";
 
 const componentCSS = require('./component.css');
 
@@ -43,12 +42,6 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
             this.options = this.inputData.options;
         }
         this.selectedValue = this.inputData.selectedValue;
-        //this.registerDynamicDataChannel(this.inputData.dataListChannel);
-        let options: DatalistOption[] | null = SESSION_STORE.getItem(this.inputData.dataListChannel);
-        if (options != null)
-            this.options = options;
-        else
-            this.options = [];
         this.updateSelectedText();
     }
 
@@ -98,17 +91,6 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     getEventList(): string[] {
         return [DatalistComponent.EVENT_SELECTION_CHANGE];
     }
-
-    dynamicData(channel: string, dynamicData: string) {
-        super.dynamicData(channel, dynamicData);
-        switch (channel) {
-            case this.inputData.dataListChannel:
-                this.options = JSON.parse(dynamicData);
-                this.updateSelectedText();
-                break;
-        }
-    }
-
 
     private updateSelectedText() {
         if (baseHelper.isNotBlank(this.selectedValue)) {

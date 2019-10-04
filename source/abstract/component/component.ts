@@ -1,9 +1,12 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
-import {SESSION_STORE} from "../../app/data/data";
+import {SESSION_STORE} from "../../util/storage/storage";
+import {SessionStoreListener} from "../../util/storage/model";
+
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
-    OUTPUT_DATA> extends LitElement {
+    OUTPUT_DATA> extends LitElement implements SessionStoreListener {
+
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
 
@@ -13,6 +16,35 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
 
     protected abstract inputDataChanged(): void;
 
+
+    private _sessionStorageChannels: string[] = [];
+
+    get sessionStorageChannels(): string[] {
+        return this._sessionStorageChannels;
+    }
+
+    set sessionStorageChannels(value: string[]) {
+        this._sessionStorageChannels = value;
+    }
+
+    channelUpdated(channel: string): void{
+        console.log('channel has updated: ' + channel);
+        this.reqUpdate();
+    }
+
+    protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
+        this._sessionStorageChannels.forEach(channel => {
+            SESSION_STORE.register(channel, this);
+        })
+    }
+
+    disconnectedCallback(): void {
+        console.log('disconnected');
+        this._sessionStorageChannels.forEach(channel => {
+            SESSION_STORE.unregister(channel, this);
+        })
+    }
+
     constructor() {
         super();
     }
@@ -20,6 +52,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     get inputData(): INPUT_DATA {
         return this._inputData;
     }
+
 
     set inputData(value: INPUT_DATA) {
         this._inputData = value;
@@ -105,13 +138,5 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
             console.log('retrieve empty dynamic data');
         }
     }
-
-    registerDynamicDataChannel(channel: string | null) {
-        if (channel !== null) {
-            //SESSION_STORE.register(channel, this);
-        }
-    }
-
-
 
 }

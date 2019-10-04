@@ -1,7 +1,6 @@
 import {NavigationComponent} from "../../atoms/navigation/component";
 import {NavigationInputData} from "../../atoms/navigation/model";
 import {CorsMode, Credentials, HttpClient, HttpClientIF} from "../../util/http-client/http-client";
-import {SessionStore} from "../../util/storage/storage";
 import {AppData} from "../../abstract/app/app";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {DefaultTemplate} from "../../templates/default/template";
@@ -37,8 +36,6 @@ export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
     loginPath: '/dologin',
     logoutPath: '/dologout',
 });
-
-export const SESSION_STORE = new SessionStore();
 
 export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
     componentIdentifier: NavigationComponent.IDENTIFIER,

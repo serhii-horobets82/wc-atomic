@@ -1,26 +1,39 @@
-import {AbstractComponent} from "../../abstract/component/component";
-import {AbstractInputData} from "../../abstract/component/model";
+import {SessionStoreListener} from "./model";
+
 
 export class SessionStore {
 
-    listener = new Map<String, AbstractComponent<any, any>[]>();
+    listener = new Map<String, SessionStoreListener[]>();
 
     constructor() {
-
     }
 
-    register(channel: string, consumer: AbstractComponent<AbstractInputData, any>) {
-        let channelListener: AbstractComponent<any, any>[] | undefined = this.listener.get(channel);
+    register(channel: string, listener: SessionStoreListener): any {
+        let channelListener: SessionStoreListener[] | undefined = this.listener.get(channel);
         if (channelListener == undefined) {
             channelListener = [];
             this.listener.set(channel, channelListener);
         }
-        channelListener.push(consumer);
+        channelListener.push(listener);
         console.log("listener size:" + channelListener.length);
     }
 
+    unregister(channel: string, listener: SessionStoreListener): void {
+        let channelListener: SessionStoreListener[] | undefined = this.listener.get(channel);
+        if (channelListener == undefined) {
+            console.log("nothing to remove");
+            return;
+        }
+        channelListener = channelListener.slice(channelListener.findIndex(listener), 1);
+        this.listener.set(channel, channelListener);
+        console.log("listener size:" + channelListener.length);
+    }
+
+
     setItem(channel: string, content: any) {
         this.setItemString(channel, JSON.stringify(content));
+
+
     }
 
     setItemString(channel: string, content: string) {
@@ -29,7 +42,7 @@ export class SessionStore {
         if (channelListener != undefined) {
             channelListener.forEach(listener => {
                 console.log("data received for channel: " + channel);
-                listener.dynamicData(channel, content);
+                listener.channelUpdated(channel);
             });
         }
     }
@@ -48,5 +61,9 @@ export class SessionStore {
             sessionStorage.removeItem(channel);
         }
     }
+
 }
+
+export const SESSION_STORE = new SessionStore();
+
 

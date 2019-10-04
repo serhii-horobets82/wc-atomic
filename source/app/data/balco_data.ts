@@ -1,7 +1,9 @@
-import {Konzern, SESSION_STORE, User} from "./data";
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {DatalistInputData, DatalistOption} from "../../input/datalist/model";
+import {DatalistComponent} from "../../input/datalist/component";
+import {Konzern, User} from "./data";
+import {SESSION_STORE} from "../../util/storage/storage";
 
 export enum BalcoDataChannels {
     KONZERNE = 'KONZERNE',
@@ -67,9 +69,20 @@ export class BalcoDataStore {
         companies.forEach(company => {
             companyOptions.push(<DatalistOption>{text: company.firmenname, value: company.idl + ''})
         });
-        SESSION_STORE.setItem(BalcoDataChannels.COMPANIES_DLID, companyOptions);
+
+        let companyDatalistInputData: DatalistInputData = <DatalistInputData>{
+            componentIdentifier: DatalistComponent.IDENTIFIER,
+            selectedValue: companyOptions[0].value,
+            options: companyOptions
+        };
+
+        SESSION_STORE.setItem(BalcoDataChannels.COMPANIES_DLID, companyDatalistInputData);
         SESSION_STORE.setItem(BalcoDataChannels.KONZERNE, companies);
 
+    }
+
+    getCompaniesDLID(): DatalistInputData {
+        return <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.COMPANIES_DLID);
     }
 
     getUser(): User {

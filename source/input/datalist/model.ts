@@ -9,7 +9,6 @@ export interface DatalistOption {
 export interface DatalistInputData extends AbstractInputData {
     name: string;
     size: number;
-    dataListChannel: string | null;
     selectedValue: string | undefined;
     options: DatalistOption[];
 }

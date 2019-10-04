@@ -44,7 +44,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                 html`
                            ${repeat(
                     this.leftInputData,
-                    (inputData, index) => html`
+                    (inputData) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
                         inputData
                     )}
@@ -60,7 +60,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                 html`
                            ${repeat(
                     this.mainInputData,
-                    (inputData, index) => html`
+                    (inputData) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
                         inputData
                     )}
@@ -76,7 +76,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                 html`
                            ${repeat(
                     this.rightInputData,
-                    (inputData, index) => html`
+                    (inputData) => html`
                                  ${ComponentLoader.INSTANCE.createComponentFromInputData(
                         inputData
                     )}
