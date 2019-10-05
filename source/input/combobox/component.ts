@@ -4,12 +4,12 @@ import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
 import {ComboboxInputData, ComboboxOption} from "./model";
 import {baseHelper} from "../../util/base";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-combobox')
-export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyValueOutputData> {
+export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyValueData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -49,14 +49,14 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
                         <option value="${option.value}">${option.text}</option>
                     `)}
                 `)}
-                <slot></slot>
-            </select>
+
+            </select>                            
         `;
     }
 
-    getOutputData(): KeyValueOutputData {
+    getOutputData(): KeyValueData {
         let value = this.selectElement != null ? this.selectElement.value : '';
-        return <KeyValueOutputData>{
+        return <KeyValueData>{
             key: this.name,
             value: value,
         };

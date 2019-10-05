@@ -2,6 +2,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
+    entry: {
+        main: './source/index.ts',
+        polyfills: './source/polyfills.ts',
+    },
     mode: 'production', resolve: {extensions: ['.ts', '.js']},
     module: {
         rules: [

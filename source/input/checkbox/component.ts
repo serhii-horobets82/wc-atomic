@@ -2,14 +2,14 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {CheckboxInputData} from "./model";
 import {baseHelper} from "../../util/base";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-checkbox')
 export class CheckboxComponent extends AbstractComponent<
    CheckboxInputData,
-   KeyValueOutputData
+   KeyValueData
 > {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -62,8 +62,8 @@ export class CheckboxComponent extends AbstractComponent<
       this.text = baseHelper.getValue(this.inputData.text, '');
    }
 
-   getOutputData(): KeyValueOutputData {
-      return <KeyValueOutputData>{
+   getOutputData(): KeyValueData {
+      return <KeyValueData>{
          key: this.name,
          value: this.checked
       };

@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {DEFAULT_TEMPLATE_INPUT_DATA, User} from "../data/data";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 
 @customElement('page-dashboard')
@@ -46,7 +46,7 @@ export class DashboardPage extends DefaultTemplate {
 
 
     ddd(event: CustomEvent) {
-        let data: KeyValueOutputData = event.detail;
+        let data: KeyValueData = event.detail;
         let selectedIDL: string = data.value;
         BALCO_DATA_STORE.setSelectedIDL(selectedIDL);
     }

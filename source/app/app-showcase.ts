@@ -15,7 +15,7 @@ import {RetificationPage} from "./pages/retification";
 import {ImportPage} from "./pages/import";
 import {AuthenticationPage} from "./pages/authentication";
 import {BALCO_DATA_STORE} from "./data/balco_data";
-import {KeyValueOutputData} from "../organisms/form/model";
+import {KeyValueData} from "../organisms/form/model";
 
 
 @customElement('app-root')
@@ -26,8 +26,9 @@ export class ShowcaseApp extends AbstractApp {
         window.addEventListener('combobox-component-selection-change', (event) => {
                 if (event instanceof CustomEvent) {
                     let customEvent: CustomEvent = event;
-                    let data: KeyValueOutputData = customEvent.detail;
-                    BALCO_DATA_STORE.setSelectedIDL(data.value);
+                    let data: KeyValueData = customEvent.detail;
+                    if(data.key == 'myCompanies')
+                        BALCO_DATA_STORE.setSelectedIDL(data.value);
                 }
             }
         );

@@ -22,7 +22,7 @@ import {InputInputData} from "../../input/input/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {ButtonInputData} from "../../atoms/button/model";
-import {KeyValueOutputData} from "../form/model";
+import {KeyValueData} from "../form/model";
 
 const componentCSS = require('./component.css');
 
@@ -347,7 +347,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     }
 
     private changePage(event: CustomEvent) {
-        let newPage: KeyValueOutputData = event.detail;
+        let newPage: KeyValueData = event.detail;
         let newPageValue: number = Number(newPage.value);
         console.log('set new page: ' + newPageValue);
         if (newPageValue > this.totalPages) {
@@ -373,7 +373,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     }
 
     private changeSize(event: CustomEvent) {
-        let newSize: KeyValueOutputData = event.detail;
+        let newSize: KeyValueData = event.detail;
         console.log('set new size per page: ' + newSize.value);
         this.size = newSize.value;
         this.loadData();
@@ -383,7 +383,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
         let columnKey: string = header.columnKey;
 
-        let sortingKey: KeyValueOutputData | null = this.getSortingKey(columnKey, this.sort);
+        let sortingKey: KeyValueData | null = this.getSortingKey(columnKey, this.sort);
         header.sortingIconClazz = 'fas fa-sort';
 
         if (sortingKey != null) {
@@ -408,7 +408,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     private setSortingIconClazz(tableHeaderInputData: TableHeaderInputData, sort: string) {
         let columnKey: string = tableHeaderInputData.columnKey;
-        let sortingKey: KeyValueOutputData | null = this.getSortingKey(columnKey, sort);
+        let sortingKey: KeyValueData | null = this.getSortingKey(columnKey, sort);
         tableHeaderInputData.sortingIconClazz = 'fas fa-sort';
         if (sortingKey != null) {
             switch (sortingKey.value) {
@@ -432,7 +432,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             let subSort = sort.substr(indexOfColumnKey);
             let sortingKeyAsString = subSort.substr(0, subSort.indexOf(';'));
             let sortingKeyArray = sortingKeyAsString.split(':');
-            return <KeyValueOutputData>{
+            return <KeyValueData>{
                 key: sortingKeyArray[0],
                 value: sortingKeyArray[1]
             }
@@ -442,7 +442,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     private searchValueChanged(event: CustomEvent, header: TableHeaderInputData) {
         console.log("search value change" + JSON.stringify(event.detail));
-        let newValue: KeyValueOutputData = event.detail;
+        let newValue: KeyValueData = event.detail;
         header.searchValue = newValue.value;
         this.loadData();
     }

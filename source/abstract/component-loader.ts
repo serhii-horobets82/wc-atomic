@@ -29,6 +29,7 @@ import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
 import {DatalistComponent} from "../input/datalist/component";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 import {SpacerComponent} from "../atoms/spacer/component";
+import {I18NSelectorComponent} from "../molecules/i18n/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -113,6 +114,9 @@ export class ComponentLoader {
                 break;
             case ButtonComponent.IDENTIFIER:
                 component = new ButtonComponent();
+                break;
+            case I18NSelectorComponent.IDENTIFIER:
+                component = new I18NSelectorComponent();
                 break;
             case LinkComponent.IDENTIFIER:
                 component = new LinkComponent();

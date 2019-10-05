@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
 import {InputDataChangeEvent, InputInputData} from "./model";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
@@ -34,7 +34,7 @@ export enum HTMLInputTypes {
 
 
 @customElement('component-inputfield')
-export class InputComponent extends AbstractComponent<InputInputData, KeyValueOutputData> {
+export class InputComponent extends AbstractComponent<InputInputData, KeyValueData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -99,8 +99,8 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueOu
         this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
     }
 
-    getOutputData(): KeyValueOutputData {
-        return <KeyValueOutputData>{
+    getOutputData(): KeyValueData {
+        return <KeyValueData>{
             key: this.name,
             value: this.textfieldElemet != null ? this.textfieldElemet.value : this.value,
         };

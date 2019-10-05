@@ -3,13 +3,13 @@ import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
 import {DatalistInputData, DatalistOption} from "./model";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-datalist')
-export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyValueOutputData> {
+export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyValueData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -69,8 +69,8 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
     }
 
-    getOutputData(): KeyValueOutputData {
-        return <KeyValueOutputData>{
+    getOutputData(): KeyValueData {
+        return <KeyValueData>{
             key: this.name,
             value: this.selectedValue,
         };

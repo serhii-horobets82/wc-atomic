@@ -1,5 +1,6 @@
 import './authenticated-icon/import';
 import './breadcrumb/import';
+import './i18n/import';
 import './component-viewer/import';
 import './content-slider/import';
 import './data-protection/import';

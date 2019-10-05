@@ -14,6 +14,9 @@ import {SpacerInputData} from "../../atoms/spacer/model";
 import {SpacerComponent} from "../../atoms/spacer/component";
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
+import {I18NInputData} from "../../molecules/i18n/model";
+import {I18NSelectorComponent} from "../../molecules/i18n/component";
+import {KeyValueData} from "../../organisms/form/model";
 
 
 export const CONFIGURATION: AppData = <AppData>{
@@ -69,6 +72,9 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
         }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingRight'
+        }, <I18NInputData>{
+            componentIdentifier: I18NSelectorComponent.IDENTIFIER,
+            languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
         }, new AuthenticatedIconComponent().getDefaultInputData(), <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingRight'

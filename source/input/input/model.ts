@@ -1,5 +1,5 @@
 import {AbstractInputData} from "../../abstract/component/model";
-import {KeyValueOutputData} from "../../organisms/form/model";
+import {KeyValueData} from "../../organisms/form/model";
 
 export interface InputInputData extends AbstractInputData {
     name: string;
@@ -12,6 +12,6 @@ export interface InputInputData extends AbstractInputData {
 
 export interface InputDataChangeEvent {
     type: string;
-    outputData: KeyValueOutputData,
+    outputData: KeyValueData,
     element: HTMLInputElement,
 }
