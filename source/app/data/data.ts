@@ -17,6 +17,8 @@ import {TextComponent} from "../../atoms/text/component";
 import {I18NInputData} from "../../molecules/i18n-selector/model";
 import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
 import {KeyValueData} from "../../organisms/form/model";
+import {TableContent} from "../../organisms/table/model";
+import {I18N, LanguageItem} from "../../util/i18n-util";
 
 
 export const CONFIGURATION: AppData = <AppData>{
@@ -40,6 +42,24 @@ export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
     loginPath: '/dologin',
     logoutPath: '/dologout',
 });
+
+
+
+let response = HTTP_CLIENT.get('/I18N/FIND?page=0&size=1000');
+
+response.then(value => {
+    value.text().then(value1 => {
+        let tableContent: TableContent = JSON.parse(value1);
+        let items : LanguageItem[] = tableContent.content;
+
+        items.forEach(item => {
+            I18N.addItem(item);
+        });
+        console.log("receiver lanugage... "+ JSON.stringify(items));
+
+    });
+
+})
 
 export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
     componentIdentifier: NavigationComponent.IDENTIFIER,

@@ -1,6 +1,13 @@
 import {LOCAL_STORE} from "./storage/storage";
 import {baseHelper} from "./base";
 
+export interface LanguageItem {
+    locale: string;
+    code: string;
+    key: string;
+    value: string;
+}
+
 export const I18N_DE =
     {
         'language': 'Sprache',
@@ -12,15 +19,6 @@ export const I18N_DE =
 
 export const I18N_EN =  {'language': 'Language', 'key2': 'value2'};
 
-export interface I18NEntry {
-    key: string;
-    value: string;
-}
-
-export interface I18NData {
-    entries: I18NEntry[];
-}
-
 export class I18nUtil {
 
     static LOCAL_STORAGE_I18N_LANGUAGE_KEY: string = 'LOCAL_STORAGE_I18N_LANGUAGE_KEY';
@@ -31,29 +29,34 @@ export class I18nUtil {
             this.setLanguage(window.navigator.language);
         }
 
-        this.saveI18NData('de-DE', I18N_DE);
-        this.saveI18NData('en-EN', I18N_EN);
+        //this.saveI18NData('de-DE', I18N_DE);
+        //this.saveI18NData('en-EN', I18N_EN);
 
     }
 
-    setLanguage(key: string) {
-        LOCAL_STORE.setItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_KEY, key);
+    setLanguage(locale: string | null) {
+        LOCAL_STORE.setItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_KEY, locale);
     }
 
     getLanguage(): string | null {
         return LOCAL_STORE.getItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_KEY);
     }
 
-    getI18NData(): I18NData | null {
-        return LOCAL_STORE.getItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_SET_PREFIX + this.getLanguage());
+    getICurrent18NData(): {} | null {
+        return this.getI18NData(this.getLanguage());
     }
 
-    saveI18NData(key: string, i18nData: any) {
-        LOCAL_STORE.setItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_SET_PREFIX + key, i18nData);
+    private getI18NData(locale: string | null): {} | null {
+        return LOCAL_STORE.getItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_SET_PREFIX + locale);
+    }
+
+
+    saveI18NData(locale: string, i18nData: {}) {
+        LOCAL_STORE.setItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_SET_PREFIX + locale, i18nData);
     }
 
     getValue(key: string) {
-        let i18nData: any = this.getI18NData();
+        let i18nData: any = this.getICurrent18NData();
         let value = '';
         if (i18nData != null && i18nData[key] != null) {
             value = i18nData[key];
@@ -61,6 +64,16 @@ export class I18nUtil {
         return value.length > 0 ? value : '???'.concat(key).concat('???');
     }
 
+    addItem(item: LanguageItem) {
+        console.log('add language item: ' + JSON.stringify(item));
+        let i18NData = this.getI18NData(item.code);
+        if (i18NData == null) {
+            i18NData = {};
+        }
+        i18NData[item.key] = item.value;
+        this.saveI18NData(item.code, i18NData);
+
+    }
 }
 
 export const I18N = new I18nUtil();
