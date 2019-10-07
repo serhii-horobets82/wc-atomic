@@ -1,6 +1,6 @@
 export class BaseHelper {
 
-    public isNotEmpty(value: string | undefined): boolean {
+    public isNotEmpty(value: any | undefined): boolean {
         return !this.isEmpty(value);
     }
 

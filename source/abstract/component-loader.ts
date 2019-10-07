@@ -29,7 +29,7 @@ import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
 import {DatalistComponent} from "../input/datalist/component";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 import {SpacerComponent} from "../atoms/spacer/component";
-import {I18NSelectorComponent} from "../molecules/i18n/component";
+import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();

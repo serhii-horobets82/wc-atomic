@@ -14,8 +14,8 @@ import {SpacerInputData} from "../../atoms/spacer/model";
 import {SpacerComponent} from "../../atoms/spacer/component";
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
-import {I18NInputData} from "../../molecules/i18n/model";
-import {I18NSelectorComponent} from "../../molecules/i18n/component";
+import {I18NInputData} from "../../molecules/i18n-selector/model";
+import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
 import {KeyValueData} from "../../organisms/form/model";
 
 
@@ -29,12 +29,13 @@ export const CONFIGURATION: AppData = <AppData>{
 //baseURL = 'http://v220190910399797452.supersrv.de:8095';
 //baseURL = 'http://localhost:8095';
 //baseURL: 'http://91.132.144.173:8095',
+//baseURL: 'http://localhost:8095',
 
 export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
     credentials: Credentials.INCLUDE,
     cors: CorsMode.CORS,
     defaultContentType: 'application/json',
-    baseURL: 'http://localhost:8095',
+    baseURL: 'http://v220190910399797452.supersrv.de:8095',
     isSecured: CONFIGURATION.isSecured,
     loginPath: '/dologin',
     logoutPath: '/dologout',
@@ -62,11 +63,14 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
-        mainInputData: [],
-        rightInputData: [BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
+        mainInputData: [<TextInputData>{
+            componentIdentifier: TextComponent.IDENTIFIER,
+            text: 'Geselschaft'
+        }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingRight'
-        }, <TextInputData>{
+            clazz: 'mediumPaddingLeft'
+        }, BALCO_DATA_STORE.getMyCompaniesCID()],
+        rightInputData: [<TextInputData>{
             componentIdentifier: TextComponent.IDENTIFIER,
             text: BALCO_DATA_STORE.getUserString()
         }, <SpacerInputData>{

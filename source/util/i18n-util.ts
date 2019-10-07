@@ -2,7 +2,13 @@ import {LOCAL_STORE} from "./storage/storage";
 import {baseHelper} from "./base";
 
 export const I18N_DE =
-    {'language': 'Sprache', 'key2': 'value2'};
+    {
+        'language': 'Sprache',
+        'key2': 'value2',
+        'table_no_data': 'Keine Daten vorhanden',
+        'table_items_of': 'von insgesamt',
+        'table_entries_per_page': 'Einträge pro Seite',
+    };
 
 export const I18N_EN =  {'language': 'Language', 'key2': 'value2'};
 
@@ -48,10 +54,11 @@ export class I18nUtil {
 
     getValue(key: string) {
         let i18nData: any = this.getI18NData();
-        if (i18nData != null) {
-            return i18nData[key];
+        let value = '';
+        if (i18nData != null && i18nData[key] != null) {
+            value = i18nData[key];
         }
-        return 'key not defined: ' + key;
+        return value.length > 0 ? value : '???'.concat(key).concat('???');
     }
 
 }

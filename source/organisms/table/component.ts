@@ -36,6 +36,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     static EVENT_COLUMN_CHANGED: string = 'component-table-column-changed';
 
+    private i18nTablePrefix = 'table_';
+
     @property()
     headers: TableHeaderInputData[] = [];
 
@@ -102,13 +104,13 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 <component-toolbar>
                 
                   <component-spacer slot="leftComponents" clazz="minPaddingLeft"></component-spacer>
-                  <span slot="leftComponents">${this.size * (this.page - 1)} - ${this.numberOfElements} von insgesamt: ${this.totalElements}</span>
+                  <span slot="leftComponents">${this.size * (this.page - 1)} - ${(this.size * (this.page - 1) + this.numberOfElements)} ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span>
                                
-                  <span slot="mainComponents">Einträge pro Seite&nbsp;</span>
+                  <span slot="mainComponents">${this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page'))}&nbsp;</span>
                   <component-combobox slot="mainComponents" .options="${this.sizeOptions}" .selectedValue="${this.size}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
                 
                   <component-icon slot="rightComponents" iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
-                  <span slot="rightComponents">&nbsp;Seite&nbsp;</span>
+                  <span slot="rightComponents">&nbsp;${this.getI18NValue(this.i18nTablePrefix.concat('page'))}&nbsp;</span>
                   <component-inputfield slot="rightComponents" type="number" value="${this.page}" size="2" min="1" max="${this.totalPages}"  @component-inputfield-change="${(event: CustomEvent) => this.changePage(event)}"></component-inputfield>
                   <span slot="rightComponents">&nbsp;/&nbsp;${this.totalPages > 0 ? this.totalPages : 1}&nbsp;</span>
                   <component-icon slot="rightComponents" iconClazz="fas fa-angle-right" clickable="true" @click="${this.nextPage}"></component-icon>
@@ -133,7 +135,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  class="headColumn"
                                  style="width: ${header.widthPercent}%"
                               >
-                                 ${header.columnKey}
+                              ${this.getI18NValue(this.i18nTablePrefix.concat(header.columnKey))}
                                  
                                  ${this.sorting ? html`<component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
                             
@@ -190,7 +192,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         `
                 )}
                   `
-        ) : html`Keine Daten`}
+        ) : html`${this.getI18NValue(this.i18nTablePrefix.concat('no_data'))}`}
             <div class="footer">
             
             

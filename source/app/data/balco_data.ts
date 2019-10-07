@@ -42,7 +42,10 @@ export class BalcoDataStore {
         let options: ComboboxOption[] = [];
 
         user.companyDTOS.forEach(companyDTO => {
-            options.push(<ComboboxOption>{text: companyDTO.firmenname, value: companyDTO.idl});
+            options.push(<ComboboxOption>{
+                text: companyDTO.idl.concat(' - ').concat(companyDTO.firmenname),
+                value: companyDTO.idl
+            });
         })
 
         let myCompanies: ComboboxInputData = <ComboboxInputData>{

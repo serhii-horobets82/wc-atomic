@@ -22,7 +22,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, any>
     render() {
         return html`
 
-        ${I18N.getValue('language')}
+        ${this.getI18NValue('language')}
 
       <component-combobox .inputData="${this.comboboxInputData}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"></component-combobox>   
       `

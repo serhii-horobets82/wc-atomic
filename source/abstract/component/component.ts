@@ -2,6 +2,7 @@ import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
 import {baseHelper} from "../../util/base";
 import {UI_REFRESH, UIRefreshListener} from "../../util/storage/ui-refresh";
+import {I18N} from "../../util/i18n-util";
 
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
@@ -55,7 +56,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         console.debug(
             'input data changed, new value=' + JSON.stringify(this._inputData)
         );
-        this.sessionStorageChannels = baseHelper.getValue(this._inputData.sessionStorageChannels, []);
+        if (baseHelper.isNotEmpty(this._inputData)) {
+            this.sessionStorageChannels = baseHelper.getValue(this._inputData.sessionStorageChannels, []);
+        } else {
+            throw new Error("empty input data: " + JSON.stringify(this));
+        }
+
         this.inputDataChanged();
     }
 
@@ -85,6 +91,10 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
 
     public getEventList(): string[] {
         return [];
+    }
+
+    public getI18NValue(key: string): string | null | undefined {
+        return I18N.getValue(key);
     }
 
     objToString(obj: any) {
