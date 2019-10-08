@@ -37,14 +37,14 @@ export class BalancePage extends DefaultTemplate {
         return html`
 
             <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
-            
-                <component-button text="Debitoren" .selected="${this.debitorSelected}"  @click="${() => {
+
+                <component-button text="${this.getI18NValue('balco_debitor')}" .selected="${this.debitorSelected}"  @click="${() => {
             this.changeTyp('D')
         }})"></component-button>
                 
                 <component-spacer clazz="minPaddingRight"></component-spacer>
 
-                <component-button text="Kreditoren" .selected="${this.kreditorSelected}" @click="${() => {
+                <component-button text="${this.getI18NValue('balco_kreditor')}" .selected="${this.kreditorSelected}" @click="${() => {
             this.changeTyp('K')
         }})"></component-button>
                 

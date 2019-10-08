@@ -64,11 +64,11 @@ response.then(value => {
 export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
     componentIdentifier: NavigationComponent.IDENTIFIER,
     links: [
-        {text: 'Startseite', href: '#dashboard', icon: ''},
-        {text: 'Import', href: '#import', icon: ''},
-        {text: 'IC-Salden', href: '#balance', icon: ''},
-        {text: 'Kontenabstimmung', href: '#retification', icon: ''},
-        {text: 'Saldenbestätigungen', href: '#matching', icon: ''},
+        {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: ''},
+        {text: I18N.getValue('balco_import_page'), href: '#import', icon: ''},
+        {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: ''},
+        {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: ''},
+        {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: ''},
     ]
 }
 
@@ -85,7 +85,7 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
         mainInputData: [<TextInputData>{
             componentIdentifier: TextComponent.IDENTIFIER,
-            text: 'Geselschaft'
+            text: I18N.getValue('balco_company')
         }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'

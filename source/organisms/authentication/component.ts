@@ -39,16 +39,16 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     render() {
         return !this.isAuthenticated ? html`
                     <component-form id="authenitcate-form">
-                        <component-form-element label="Benutzername">
+                        <component-form-element label="${this.getI18NValue('component_authentication_username')}">
                             <component-inputfield name="username"></component-inputfield>
                         </component-form-element>
-                        <component-form-element label="Passwort">
+                        <component-form-element label="${this.getI18NValue('component_authentication_password')}">
                             <component-inputfield type="password" name="password"></component-inputfield>
                         </component-form-element>
-                        <component-button text="Anmelden"  @click="${() => this.login()}"></component-button>
+                        <component-button text="${this.getI18NValue('component_authentication_login')}"  @click="${() => this.login()}"></component-button>
                     </component-form>` : html`
                     <component-form id="logout-form">
-                        <component-button text="Abmelden"  @click="${() => this.logout()}"></component-button>
+                        <component-button text="${this.getI18NValue('component_authentication_logout')}"  @click="${() => this.logout()}"></component-button>
                     </component-form>`;
     }
 

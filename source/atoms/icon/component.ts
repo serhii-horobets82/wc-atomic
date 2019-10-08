@@ -18,6 +18,9 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
     iconClazz: string = '';
 
     @property()
+    title: string = '';
+
+    @property()
     clickEventData: any = {};
 
     @property()
@@ -28,7 +31,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
     render() {
         return html`
-         <span
+         <span title="${this.title}"
             class="${this.iconClazz} ${this.clickable ? 'clickable' : ''} ${this
             .status === 2
             ? 'active'

@@ -33,10 +33,9 @@ export class RetificationPage extends DefaultTemplate {
 
             <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
             
-                <component-button text="Kreditoren"></component-button>
-                <component-button text="Debitoren"></component-button>
-                <component-button text="Sachkonten"></component-button>
-            
+                <component-button text="${this.getI18NValue('balco_kreditor')}"></component-button>
+                <component-button text="${this.getI18NValue('balco_debitor')}"></component-button>
+           
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
         }}"></component-table>
