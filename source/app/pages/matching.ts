@@ -45,7 +45,7 @@ export class MatchingPage extends DefaultTemplate {
             componentIdentifier: TableComponent.IDENTIFIER,
             requestPath: '/MATCHING/MATCHING/BY_IDL/' + BALCO_DATA_STORE.getSelectedCompany().idl,
             page: 0,
-            size: 10,
+            size: 5,
             sort: '',
             headers: [<TableHeaderInputData>{
                 componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},

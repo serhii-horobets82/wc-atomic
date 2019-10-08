@@ -10,7 +10,7 @@ import {
     TableHeaderInputData,
     TableInputData
 } from "./model";
-import {ComboboxOption} from "../../input/combobox/model";
+import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
@@ -37,6 +37,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     static EVENT_COLUMN_CHANGED: string = 'component-table-column-changed';
 
     private i18nTablePrefix = 'table_';
+    private itemSizeDefaultValue: number = 5;
+
 
     @property()
     headers: TableHeaderInputData[] = [];
@@ -60,9 +62,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     sort: string = '';
 
     @property()
-    size: number = 20;
-
-    @property()
     requestPath: string = '';
 
     @property()
@@ -78,22 +77,27 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     filtering: Boolean = true;
 
 
-    sizeOptions: ComboboxOption[] = [<ComboboxOption>{
-        text: '5',
-        value: '5'
-    }, <ComboboxOption>{
-        text: '10',
-        value: '10'
-    }, <ComboboxOption>{
-        text: '20',
-        value: '20'
-    }, <ComboboxOption>{
-        text: '50',
-        value: '50'
-    }, <ComboboxOption>{
-        text: '100',
-        value: '100'
-    }];
+    @property()
+    sizeComboboxInputData = <ComboboxInputData>{
+        componentIdentifier: ComboboxComponent.IDENTIFIER,
+        selectedValue: String(this.itemSizeDefaultValue),
+        options: [<ComboboxOption>{
+            text: '5',
+            value: '5'
+        }, <ComboboxOption>{
+            text: '10',
+            value: '10'
+        }, <ComboboxOption>{
+            text: '20',
+            value: '20'
+        }, <ComboboxOption>{
+            text: '50',
+            value: '50'
+        }, <ComboboxOption>{
+            text: '100',
+            value: '100'
+        }]
+    }
 
     render() {
         return html`
@@ -104,10 +108,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 <component-toolbar>
                 
                   <component-spacer slot="leftComponents" clazz="minPaddingLeft"></component-spacer>
-                  <span slot="leftComponents">${this.size * (this.page - 1)} - ${(this.size * (this.page - 1) + this.numberOfElements)} ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span>
+                  <span slot="leftComponents">${this.getItemSize() * (this.page - 1)} - ${(this.getItemSize() * (this.page - 1) + this.numberOfElements)} ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span>
                                
                   <span slot="mainComponents">${this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page'))}&nbsp;</span>
-                  <component-combobox slot="mainComponents" .options="${this.sizeOptions}" .selectedValue="${this.size}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
+                  <component-combobox slot="mainComponents" .inputData="${this.sizeComboboxInputData}"  @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
                 
                   <component-icon slot="rightComponents" iconClazz="fas fa-angle-left" clickable="true" @click="${this.previousPage}"></component-icon>
                   <span slot="rightComponents">&nbsp;${this.getI18NValue(this.i18nTablePrefix.concat('page'))}&nbsp;</span>
@@ -135,10 +139,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  class="headColumn"
                                  style="width: ${header.widthPercent}%"
                               >
-                              ${this.getI18NValue(this.i18nTablePrefix.concat(header.columnKey))}
-                                 
-                                 ${this.sorting ? html`<component-icon iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
-                            
+                              <component-toolbar clazz="">
+                                  <span slot="mainComponents">${this.getI18NValue(this.i18nTablePrefix.concat(header.columnKey))}</span>
+                                  ${this.sorting ? html`<component-icon slot="rightComponents" iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
+                              </component-toolbar>
                               </span>
                            `
                 )}
@@ -207,7 +211,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             componentIdentifier: TableComponent.IDENTIFIER,
             requestPath: '',
             page: 0,
-            size: 10,
+            size: 5,
             sort: '',
             requestParams: '',
             sorting: false,
@@ -221,7 +225,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
         this.sort = baseHelper.getValue(this.inputData.sort, '');
         this.requestParams = baseHelper.getValue(this.inputData.requestParams, '');
-        this.size = baseHelper.getValue(this.inputData.size, 10);
+        this.sizeComboboxInputData.selectedValue = String(baseHelper.getValue(this.inputData.size, this.itemSizeDefaultValue));
         this.requestPath = baseHelper.getValue(this.inputData.requestPath, '');
         this.paging = baseHelper.getValue(this.inputData.paging, true);
         this.filtering = baseHelper.getValue(this.inputData.filtering, true);
@@ -269,7 +273,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         }
         //where clause - END
 
-        let requestPath = this.requestPath.concat('?').concat(this.requestParams).concat('&page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.size).concat('&sort=').concat(String(this.sort)).concat(whereClause));
+        let requestPath = this.requestPath.concat('?').concat(this.requestParams).concat('&page=').concat(String((this.page - 1))).concat('&size=').concat(String(this.getItemSize()).concat('&sort=').concat(String(this.sort)).concat(whereClause));
 
         console.log('table path prefix: ' + requestPath);
 
@@ -284,7 +288,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
 
                 let pageable = tableContent.pageable;
-                this.size = pageable.pageSize;
+                this.sizeComboboxInputData.selectedValue = String(pageable.pageSize);
                 this.page = pageable.pageNumber + 1;
 
                 let content = tableContent.content;
@@ -321,6 +325,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             default:
                             case TextComponent.IDENTIFIER:
                                 (<TextInputData>inputData).text = columnValue;
+                                (<TextInputData>inputData).clazz = 'ellipsis';
                                 break;
                             case ComboboxComponent.IDENTIFIER:
                                 break;
@@ -377,7 +382,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     private changeSize(event: CustomEvent) {
         let newSize: KeyValueData = event.detail;
         console.log('set new size per page: ' + newSize.value);
-        this.size = newSize.value;
+        this.sizeComboboxInputData.selectedValue = newSize.value;
         this.loadData();
     }
 
@@ -476,6 +481,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         let componentIdentifier = componentInputData.componentIdentifier;
         switch (componentIdentifier) {
             case TextComponent.IDENTIFIER:
+                (<TextInputData>componentInputData).clazz = 'ellipsis';
                 return html`<component-text .inputData="${componentInputData}"></component-text>`;
             case InputComponent.IDENTIFIER:
                 return html`<component-inputfield .inputData="${componentInputData}"></component-inputfield>`;
@@ -513,4 +519,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     }
 
+    private getItemSize() {
+        let size: number = Number(this.sizeComboboxInputData.selectedValue);
+        return size;
+    }
 }

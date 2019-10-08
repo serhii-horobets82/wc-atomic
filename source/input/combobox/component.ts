@@ -29,9 +29,6 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
     @property()
     selectedValue: string = '';
 
-    @query('#selectElement')
-    private selectElement: HTMLSelectElement | undefined;
-
     protected inputDataChanged() {
         this.name = baseHelper.getValue(this.inputData.name, '');
         this.size = baseHelper.getValue(this.inputData.size, 1);
@@ -41,7 +38,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
     render() {
         return html`
-            <select id="selectElement" name="${this.name}" size="${this.size}" @change="${() => this.dispatchSimpleCustomEvent(ComboboxComponent.EVENT_SELECTION_CHANGE, this.getOutputData())}">
+            <select name="${this.name}" size="${this.size}" @change="${(event: Event) => this.onChange(event)}">
                 ${guard([this.options], () => html`${
             repeat(this.options, option => option.value, (option) => baseHelper.isEqual(this.selectedValue, option.value) ? html`
                         <option value="${option.value}" selected>${option.text}</option>
@@ -54,11 +51,17 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
         `;
     }
 
+    private onChange(event: Event) {
+        let selectElement: HTMLSelectElement | null = <HTMLSelectElement>event.target;
+        this.selectedValue = selectElement != null ? selectElement.value : '';
+        console.log('selected value change, new value: '.concat(this.selectedValue));
+        this.dispatchSimpleCustomEvent(ComboboxComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+    }
+
     getOutputData(): KeyValueData {
-        let value = this.selectElement != null ? this.selectElement.value : '';
         return <KeyValueData>{
             key: this.name,
-            value: value,
+            value: this.selectedValue,
         };
     }
 

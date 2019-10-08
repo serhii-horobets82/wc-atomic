@@ -68,7 +68,7 @@ export class BalancePage extends DefaultTemplate {
             requestPath: '/BALANCE/FIND',
             requestParams: 'typ=' + this.typ + '&src_idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
             page: 0,
-            size: 10,
+            size: 5,
             sort: 'nummer:desc;',
             headers: [<TableHeaderInputData>{
                 componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
@@ -93,7 +93,7 @@ export class BalancePage extends DefaultTemplate {
                 },
                 <TableHeaderInputData>{
                     componentInputData: BALCO_DATA_STORE.getCompaniesDLID(),
-                    columnKey: 'destIdl',
+                    columnKey: 'dest_idl',
                     searchValue: '',
                     widthPercent: 30,
                 },

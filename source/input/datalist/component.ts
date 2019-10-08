@@ -32,9 +32,6 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     @property()
     selectedText: string = '';
 
-    @query('#selectElement')
-    private selectElement: HTMLSelectElement | undefined;
-
     protected inputDataChanged() {
         this.name = this.inputData.name;
         this.size = this.inputData.size;
@@ -47,7 +44,7 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
 
     render() {
         return html`
-           <input list="options" value="${this.selectedText}" @change="${(event: Event) => this.selectionChange(event)}">
+           <input list="options" value="${this.selectedText}" @change="${(event: Event) => this.onChange(event)}">
            <input type="hidden" name="${this.name}" value="${this.selectedValue}"/>
             <datalist id="options" size="${this.size}">
                 ${guard([this.options], () => html`${
@@ -61,11 +58,20 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         `;
     }
 
-    async selectionChange(event: Event) {
+    private selectionChangesd(event: Event) {
+        let selectElement: HTMLSelectElement | null = <HTMLSelectElement>event.target;
+        this.selectedValue = selectElement != null ? selectElement.value : '';
+        this.inputData.selectedValue = this.selectedValue;
+        this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+    }
+
+    async onChange(event: Event) {
         let inputElement: HTMLInputElement = <HTMLInputElement>event.target;
         this.selectedValue = inputElement.value;
+        this.inputData.selectedValue = this.selectedValue;
         this.updateSelectedText();
         inputElement.value = this.selectedText;
+        console.log('selected value change, new value: '.concat(this.selectedValue));
         this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
     }
 
@@ -100,6 +106,8 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
                     break;
                 }
             }
+        } else {
+            this.selectedText = '';
         }
     }
 
