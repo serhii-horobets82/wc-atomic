@@ -41,7 +41,7 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
         return html`
      <div class="container" @component-icon-click="${this.menuItemClicked}" >
         <header id="header">
-            <component-toolbar .inputData="${this.toolbarInputData}"></component-toolbar>
+            <component-menubar .inputData="${this.toolbarInputData}"></component-menubar>
         </header>
         <div id="menu">
             <component-navigation .inputData="${this.navigationInputData}" title="${this.title}"></component-navigation>
@@ -91,3 +91,4 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     }
 
 }
+

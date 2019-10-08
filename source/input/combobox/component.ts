@@ -29,8 +29,12 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
     @property()
     selectedValue: string = '';
 
+    @property()
+    cssStyle : string = '';
+
     protected inputDataChanged() {
         this.name = baseHelper.getValue(this.inputData.name, '');
+        this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
         this.size = baseHelper.getValue(this.inputData.size, 1);
         this.selectedValue = baseHelper.getValue(this.inputData.selectedValue, '');
         this.options = baseHelper.getValue(this.inputData.options, <ComboboxOption>{});
@@ -38,7 +42,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
     render() {
         return html`
-            <select name="${this.name}" size="${this.size}" @change="${(event: Event) => this.onChange(event)}">
+            <select name="${this.name}" style="${this.cssStyle}" size="${this.size}" @change="${(event: Event) => this.onChange(event)}">
                 ${guard([this.options], () => html`${
             repeat(this.options, option => option.value, (option) => baseHelper.isEqual(this.selectedValue, option.value) ? html`
                         <option value="${option.value}" selected>${option.text}</option>

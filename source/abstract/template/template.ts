@@ -32,7 +32,7 @@ export abstract class Template<TEMPLATE_MODEL extends TemplateInputData, OUTPUT_
       `;
    }
 
-    inputDataChanged(): void {
+    protected inputDataChanged(): void {
         let titleTag = document.getElementsByTagName("TITLE")[0];
         titleTag.textContent= this.inputData.title;
     }

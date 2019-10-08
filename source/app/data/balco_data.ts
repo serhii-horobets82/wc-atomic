@@ -51,6 +51,7 @@ export class BalcoDataStore {
         let myCompanies: ComboboxInputData = <ComboboxInputData>{
             componentIdentifier: ComboboxComponent.IDENTIFIER,
             name: 'myCompanies',
+            cssStyle: 'width:50px;',
             options: options
         };
 
