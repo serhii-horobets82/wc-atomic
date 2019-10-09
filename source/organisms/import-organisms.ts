@@ -5,3 +5,4 @@ import './authentication/import';
 import './table/import';
 import './toolbar/import';
 import './menubar/import';
+import './component-viewer/import';

@@ -23,6 +23,7 @@ export class SessionStore {
     }
 
     removeItem(channel: string) {
+        console.log('remove channel: ' + channel);
         if (channel != null) {
             this.storage.removeItem(channel);
         }

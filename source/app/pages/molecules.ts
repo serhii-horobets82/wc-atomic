@@ -3,7 +3,7 @@ import {customElement, TemplateResult, html} from "lit-element";
 import {DefaultTemplateModel} from "../../templates/default/model";
 import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA} from "../data/data";
 import {BreadcrumbComponent} from "../../molecules/breadcrumb/component";
-import {ComponentViewerComponent} from "../../molecules/component-viewer/component";
+import {ComponentViewerComponent} from "../../organisms/component-viewer/component";
 import {ContentSliderComponent} from "../../molecules/content-slider/component";
 import {DataProtection} from "../../molecules/data-protection/component";
 import {IconGroupComponent} from "../../molecules/icon-group/component";

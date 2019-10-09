@@ -1,7 +1,6 @@
-import './authenticated-icon/import';
 import './breadcrumb/import';
 import './i18n-selector/import';
-import './component-viewer/import';
+import './authenticated-icon/import';
 import './content-slider/import';
 import './data-protection/import';
 import './icon-group/import';

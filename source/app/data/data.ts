@@ -19,7 +19,7 @@ import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
 import {KeyValueData} from "../../organisms/form/model";
 import {TableContent} from "../../organisms/table/model";
 import {I18N, LanguageItem} from "../../util/i18n-util";
-
+import {AuthenticatedIconInputData} from "../../molecules/authenticated-icon/model";
 
 export const CONFIGURATION: AppData = <AppData>{
     isSecured: true,
@@ -42,8 +42,6 @@ export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
     loginPath: '/dologin',
     logoutPath: '/dologout',
 });
-
-
 
 let response = HTTP_CLIENT.get('/I18N/FIND?page=0&size=1000');
 
@@ -99,7 +97,12 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
         rightInputData: [<TextInputData>{
             componentIdentifier: TextComponent.IDENTIFIER,
             text: BALCO_DATA_STORE.getUserString()
-        }, new AuthenticatedIconComponent().getDefaultInputData(), <SpacerInputData>{
+        }, <AuthenticatedIconInputData>{
+            componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
+            isAuthenticated: false,
+            loginPage: '#login',
+            logoutPage: '#login'
+        }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingRight'
         }]

@@ -54,19 +54,10 @@ export class RetificationPage extends DefaultTemplate {
             page: 0,
             size: 10,
             sort: '',
-            headers: [<TableHeaderInputData>{
-                componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                columnKey: 'src_idl',
-                searchValue: ''
-            },
+            headers: [
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_idl',
-                    searchValue: ''
-                },
-                <TableHeaderInputData>{
-                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                    columnKey: 'src_firmenname',
                     searchValue: ''
                 },
                 <TableHeaderInputData>{

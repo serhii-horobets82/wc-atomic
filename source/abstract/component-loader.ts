@@ -13,7 +13,7 @@ import {FormElementComponent} from '../atoms/form-element/component';
 import {SearchComponent} from '../molecules/search/component';
 import {H1Component, H2Component, H3Component} from '../atoms/h/component';
 import {AccordionComponent} from '../organisms/accordion/container/component';
-import {ComponentViewerComponent} from '../molecules/component-viewer/component';
+import {ComponentViewerComponent} from '../organisms/component-viewer/component';
 import {ImgSliderComponent} from '../molecules/img-slider/component';
 import {ImgSliderSelectorComponent} from '../molecules/img-slider-selector/component';
 import {TableComponent} from '../organisms/table/component';

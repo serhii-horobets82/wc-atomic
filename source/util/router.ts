@@ -90,6 +90,8 @@ export class Router {
         if (origin !== window.location.origin) {
             return true; // target is external to the app
         }
+
+        return false;
     }
 
     private getAnchorOrigin(anchor: HTMLAnchorElement) {

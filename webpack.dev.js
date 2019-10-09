@@ -10,8 +10,7 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     performance: {
-        maxEntrypointSize: 700000,
-        maxAssetSize: 800000
+        maxEntrypointSize: 700000
     },
     mode: 'development',
     devtool: 'inline-source-map',
@@ -21,21 +20,21 @@ module.exports = {
             {test: /\.ts$/, use: {loader: 'ts-loader', options: {transpileOnly: true}}},
             {
                 test: /\.scss$/, include: /index\.scss/, use: ['style-loader',
-                    {loader: 'css-loader', options: {sourceMap: true}},
+                    {loader: 'css-loader', options: {sourceMap: true}},'postcss-loader',
                     {loader: 'sass-loader', options: {sourceMap: true}}]
             },
             {
                 test: /\.scss$/, exclude: /index\.scss$/, use: ['to-string-loader',
-                    {loader: 'css-loader', options: {sourceMap: true}},
+                    {loader: 'css-loader', options: {sourceMap: true}},'postcss-loader',
                     {loader: 'sass-loader', options: {sourceMap: true}}]
             },
             {
                 test: /\.css$/, include: /index\.css$/, use: ['style-loader',
-                    {loader: 'css-loader', options: {sourceMap: true}},]
+                    {loader: 'css-loader', options: {sourceMap: true}},'postcss-loader',]
             },
             {
                 test: /\.css$/, exclude: /index\.css$/, use: ['to-string-loader',
-                    {loader: 'css-loader', options: {sourceMap: true}},]
+                    {loader: 'css-loader', options: {sourceMap: true}},'postcss-loader',]
             },
             {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
