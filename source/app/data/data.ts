@@ -89,16 +89,16 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
         }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
-        }, BALCO_DATA_STORE.getMyCompaniesCID()],
-        rightInputData: [<TextInputData>{
-            componentIdentifier: TextComponent.IDENTIFIER,
-            text: BALCO_DATA_STORE.getUserString()
-        }, <SpacerInputData>{
+        }, BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingRight'
         }, <I18NInputData>{
             componentIdentifier: I18NSelectorComponent.IDENTIFIER,
             languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
+        }],
+        rightInputData: [<TextInputData>{
+            componentIdentifier: TextComponent.IDENTIFIER,
+            text: BALCO_DATA_STORE.getUserString()
         }, new AuthenticatedIconComponent().getDefaultInputData(), <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingRight'

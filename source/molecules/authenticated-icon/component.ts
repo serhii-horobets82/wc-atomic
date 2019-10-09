@@ -14,6 +14,10 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
 
     static IDENTIFIER: string = 'AuthenticatedIconComponent';
 
+    constructor(){
+        super();
+    }
+
     @property()
     isAuthenticated: boolean = HTTP_CLIENT.isAuthenticated();
 

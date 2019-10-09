@@ -1,8 +1,17 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
     entry: {
         main: './source/index.ts',
         polyfills: './source/polyfills.ts',
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
+    performance: {
+        maxEntrypointSize: 700000,
+        maxAssetSize: 800000
     },
     mode: 'development',
     devtool: 'inline-source-map',
@@ -39,3 +48,4 @@ module.exports = {
     plugins: [new HtmlWebpackPlugin({template: './source/index.html'})]
 };
 
+//module.exports.plugins.push(new BundleAnalyzerPlugin({generateStatsFile: true}));

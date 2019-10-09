@@ -3,6 +3,7 @@ import {AbstractInputData} from './model';
 import {baseHelper} from "../../util/base";
 import {UI_REFRESH, UIRefreshListener} from "../../util/storage/ui-refresh";
 import {I18N} from "../../util/i18n-util";
+import {router} from "../../util/router";
 
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
@@ -40,10 +41,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
                 UI_REFRESH.unregister(channel, this);
             });
         }
-    }
-
-    constructor() {
-        super();
     }
 
     get inputData(): INPUT_DATA {
@@ -144,6 +141,10 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         if (dynamicData === undefined) {
             console.log('retrieve empty dynamic data');
         }
+    }
+
+    protected getPageName(): string {
+        return router.getPath().replace('#', '');
     }
 
 }

@@ -140,7 +140,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  style="width: ${header.widthPercent}%"
                               >
                               <component-toolbar clazz="">
-                                  <span slot="mainComponents">${this.getI18NValue(this.i18nTablePrefix.concat(header.columnKey))}</span>
+                                  <span slot="mainComponents">${this.getI18NValue(this.getPageName().concat('_').concat(this.i18nTablePrefix).concat(header.columnKey))}</span>
                                   ${this.sorting ? html`<component-icon slot="rightComponents" iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
                               </component-toolbar>
                               </span>
