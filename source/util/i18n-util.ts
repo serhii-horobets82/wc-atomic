@@ -8,17 +8,6 @@ export interface LanguageItem {
     value: string;
 }
 
-export const I18N_DE =
-    {
-        'language': 'Sprache',
-        'key2': 'value2',
-        'table_no_data': 'Keine Daten vorhanden',
-        'table_items_of': 'von insgesamt',
-        'table_entries_per_page': 'Einträge pro Seite',
-    };
-
-export const I18N_EN =  {'language': 'Language', 'key2': 'value2'};
-
 export class I18nUtil {
 
     static LOCAL_STORAGE_I18N_LANGUAGE_KEY: string = 'LOCAL_STORAGE_I18N_LANGUAGE_KEY';
@@ -28,10 +17,6 @@ export class I18nUtil {
         if (baseHelper.isEmpty(LOCAL_STORE.getItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_KEY))) {
             this.setLanguage(window.navigator.language);
         }
-
-        //this.saveI18NData('de-DE', I18N_DE);
-        //this.saveI18NData('en-EN', I18N_EN);
-
     }
 
     setLanguage(locale: string | null) {
@@ -51,7 +36,7 @@ export class I18nUtil {
     }
 
 
-    saveI18NData(locale: string, i18nData: {}) {
+    saveI18NData(i18nData: {}, locale: string | null = this.getLanguage()) {
         LOCAL_STORE.setItem(I18nUtil.LOCAL_STORAGE_I18N_LANGUAGE_SET_PREFIX + locale, i18nData);
     }
 

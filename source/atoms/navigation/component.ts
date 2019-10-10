@@ -1,6 +1,11 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract/component/component";
 import {NavigationInputData, NavigationLinkInputData} from "./model";
+import {AbstractInputData} from "../../abstract/component/model";
+import {guard} from 'lit-html/directives/guard';
+import {ComponentLoader} from "../../abstract/component-loader";
+import {repeat} from 'lit-html/directives/repeat';
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
 
@@ -8,7 +13,13 @@ const componentCSS = require('./component.css');
 export class NavigationComponent extends AbstractComponent<NavigationInputData, any> {
 
     @property()
-    links: NavigationLinkInputData[];
+    links: NavigationLinkInputData[] = [];
+
+    @property()
+    contentBefore: AbstractInputData[] = [];
+
+    @property()
+    contentAfter: AbstractInputData[] = [];
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -25,12 +36,30 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
                 {text: 'Komponenten', href: '#c', icon: ''},
                 {text: 'Komplexe Komponenten', href: '#cc', icon: ''},
                 {text: 'Dynamische Komponenten', href: '#dc', icon: ''},
-            ]
+            ],
+            contentBefore: [],
+            contentAfter: [],
         }
     }
 
     render() {
         return html`<div>
+${guard(
+            this.contentBefore,
+            () =>
+                html`
+                           ${repeat(
+                    this.contentBefore,
+                    (inputData) => html`
+                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
+                        inputData
+                    )}
+                              `
+                )}
+                        `
+        )}
+                  <slot name="contentBefore"></slot>
+                  
       <nav>
         <ul>
             ${this.links.map((linkItem) => html`
@@ -41,12 +70,31 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
             `)}
         </ul>
       </nav>
+      
+      ${guard(
+            this.contentAfter,
+            () =>
+                html`
+                           ${repeat(
+                    this.contentAfter,
+                    (inputData) => html`
+                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
+                        inputData
+                    )}
+                              `
+                )}
+                        `
+        )}
+                  <slot name="contentAfter"></slot>
+      
      </div>
     `;
     }
 
     protected inputDataChanged() {
         this.links = this.inputData.links;
+        this.contentBefore = baseHelper.getValue(this.inputData.contentBefore, []);
+        this.contentAfter = baseHelper.getValue(this.inputData.contentAfter, []);
     }
 
     getOutputData(): any {

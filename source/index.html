@@ -82,8 +82,11 @@
       </style>
       <script>
          window.onload = function () {
-            console.log('Do Prexix Stuff');
-            document.body.append(document.createElement("app-root"));
+            let appRoot = document.createElement("app-root");
+            appRoot.preRender().then(value => {
+               console.log('prerendering finished: ' + value)
+               document.body.append(appRoot);
+            });
          }
       </script>
    </head>

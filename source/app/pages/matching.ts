@@ -2,12 +2,14 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
+
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
+import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {HTTP_CLIENT} from "../data/data";
 
 @customElement('page-matching')
 export class MatchingPage extends DefaultTemplate {

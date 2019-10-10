@@ -1,9 +1,10 @@
 import {customElement, html, query, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
-import {DEFAULT_TEMPLATE_INPUT_DATA, HTTP_CLIENT} from "../data/data";
+
 import {InputDataChangeEvent} from "../../input/input/model";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {CheckboxComponent} from "../../input/checkbox/component";
+import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
 
 @customElement('page-import')
 export class ImportPage extends DefaultTemplate {

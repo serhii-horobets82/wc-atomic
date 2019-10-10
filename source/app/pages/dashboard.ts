@@ -1,6 +1,8 @@
 import {customElement, html, property, TemplateResult} from "lit-element";
+import {TeaserComponent} from "../../molecules/teaser/component";
 import {DefaultTemplate} from "../../templates/default/template";
-import {DEFAULT_TEMPLATE_INPUT_DATA, User} from "../data/data";
+import {User} from "../data/data";
+import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 
 @customElement('page-dashboard')
@@ -23,7 +25,7 @@ export class DashboardPage extends DefaultTemplate {
                     <component-text text="${this.getI18NValue('balco_welcome_text')}"></component-text>
                 </div>
                 <div>
-                TODO:
+                <component-teaser .inputData="${new TeaserComponent().getDefaultInputData()}"></component-teaser>
                 </div>
                 <div>
                 TODO:

@@ -1,11 +1,11 @@
 import {DefaultTemplate} from "../../templates/default/template";
 import {customElement, TemplateResult, html} from "lit-element";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION} from "../data/data";
 import {AccordionComponent} from "../../organisms/accordion/container/component";
 import {FormComponent} from "../../organisms/form/component";
 import {TableComponent} from "../../organisms/table/component";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
+import {DATA_NAVIGATION} from "../app-showcase";
 
 
 @customElement('page-organism')
