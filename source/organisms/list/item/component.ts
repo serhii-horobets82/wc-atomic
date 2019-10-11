@@ -1,6 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../../abstract/component/component';
-import {ComponentLoader} from '../../../abstract/component-loader';
 import {AbstractInputData} from "../../../abstract/component/model";
 import {ListItemInputData} from "./model";
 
@@ -15,11 +14,11 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     static IDENTIFIER: string = 'ListItemComponent';
 
     @property()
-    content: AbstractInputData = <AbstractInputData>{};
+    content: AbstractInputData[] = [];
 
     render() {
         return html`<div>
-                        ${ComponentLoader.INSTANCE.createComponentFromInputData(this.content)}
+                        TODO:
                         <slot></slot>                           
                     </div>
       `;
@@ -28,7 +27,7 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     getDefaultInputData(): ListItemInputData {
         return <ListItemInputData>{
             componentIdentifier: ListItemComponent.IDENTIFIER,
-            content: <AbstractInputData>{},
+            content: [],
         };
     }
 
@@ -37,6 +36,8 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     }
 
     protected inputDataChanged() {
+        this.content = this.inputData.content;
+
 
     }
 

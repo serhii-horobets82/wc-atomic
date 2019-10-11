@@ -6,7 +6,6 @@ import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {ImgModel} from "../../atoms/img/model";
 import {ImgComponent} from "../../atoms/img/component";
-import {TextWithHeaderComponent} from "../../molecules/text-with-header/component";
 import {TextComponent} from "../../atoms/text/component";
 import {TextInputData} from "../../atoms/text/model";
 import {I18N} from "../../util/i18n-util";
@@ -108,18 +107,25 @@ export class DashboardPage extends DefaultTemplate {
                 <div>
                     
                     <component-teaser>
-                        
-                        
+                    
                         <component-teaser-element slot="content" selected="true">
                             <component-img slot="background" .inputData="${new ImgComponent().getDefaultInputData()}"></component-img>
                         </component-teaser-element>
-                    
+                        <component-teaser-element slot="content">
+                            <component-img slot="background" .inputData="${new ImgComponent().getDefaultInputData()}"></component-img>
+                        </component-teaser-element>
+                        <component-teaser-element slot="content">
+                            <component-img slot="background" .inputData="${new ImgComponent().getDefaultInputData()}"></component-img>
+                        </component-teaser-element>
+                        <component-teaser-element slot="content">
+                            <component-img slot="background" .inputData="${new ImgComponent().getDefaultInputData()}"></component-img>
+                        </component-teaser-element>
+
+                        <component-teaser-menu-element slot="menu" selected="true"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
                         
-                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
-                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
-                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
-                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
-                
                     </component-teaser>
                 
                 </div>
