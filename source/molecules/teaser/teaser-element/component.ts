@@ -1,12 +1,11 @@
-import {property, unsafeCSS, html, css, customElement} from "lit-element";
+import {css, customElement, html, property, unsafeCSS} from "lit-element";
 import {AbstractComponent} from "../../../abstract/component/component";
 import {TeaserElementInputData} from "./model";
 import {ComponentLoader} from "../../../abstract/component-loader";
-import {TextComponent} from "../../../atoms/text/component";
-import {ImgComponent} from "../../../atoms/img/component";
 import {AbstractInputData} from "../../../abstract/component/model";
-import {ImgModel} from "../../../atoms/img/model";
 import {baseHelper} from "../../../util/base";
+import {repeat} from "lit-html/directives/repeat";
+import {guard} from "lit-html/directives/guard";
 
 const componentCSS = require('./component.css');
 
@@ -22,20 +21,42 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
     selected: boolean = false;
 
     @property()
-    foregroundContent: AbstractInputData = <AbstractInputData>{};
+    foregroundContent: AbstractInputData[] = [];
 
     @property()
-    backgroundContent: AbstractInputData = <AbstractInputData>{};
+    backgroundContent: AbstractInputData[] = [];
 
     render() {
         return html`  <div class="item ${this.selected ? 'selected' : ''}">
                           <div class="background">
-                             ${ComponentLoader.INSTANCE.createComponentFromInputData(this.backgroundContent)}
-                             <slot id="background"></slot>
+                           ${guard(
+            [this.backgroundContent],
+            () =>
+                html`
+                        ${repeat(
+                    this.backgroundContent,
+                    (item) => html`
+                              ${ComponentLoader.INSTANCE.createComponentFromInputData(item)}
+                           `
+                )}
+                     `
+        )}
+                             <slot name="background"></slot>
                           </div>
                           <div class="foreground">
-                             ${ComponentLoader.INSTANCE.createComponentFromInputData(this.foregroundContent)}
-                             <slot id="foreground"></slot>
+                           ${guard(
+            [this.foregroundContent],
+            () =>
+                html`
+                        ${repeat(
+                    this.foregroundContent,
+                    (item) => html`
+                              ${ComponentLoader.INSTANCE.createComponentFromInputData(item)}
+                           `
+                )}
+                     `
+        )}
+                             <slot name="foreground"></slot>
                           </div>
                        </div>
       `;
@@ -45,8 +66,8 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
         return <TeaserElementInputData>{
             componentIdentifier: TeaserElementComponent.IDENTIFIER,
             selected: false,
-            foregroundContent: new TextComponent().getDefaultInputData(),
-            backgroundContent: new ImgComponent().getDefaultInputData()
+            foregroundContent: [],
+            backgroundContent: []
         };
     }
 
@@ -56,7 +77,7 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
 
     protected inputDataChanged() {
         this.selected = baseHelper.getValue(this.inputData.selected, false);
-        this.foregroundContent = baseHelper.getValue(this.inputData.foregroundContent, <AbstractInputData>{});
-        this.backgroundContent = baseHelper.getValue(this.inputData.backgroundContent, <ImgModel>{});
+        this.foregroundContent = baseHelper.getValue(this.inputData.foregroundContent, []);
+        this.backgroundContent = baseHelper.getValue(this.inputData.backgroundContent, []);
     }
 }

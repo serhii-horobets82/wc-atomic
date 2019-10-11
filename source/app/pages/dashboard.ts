@@ -26,73 +26,68 @@ export class DashboardPage extends DefaultTemplate {
         items: [
             <TeaserElementInputData>{
                 componentIdentifier: TeaserElementComponent.IDENTIFIER,
-                selected: true,
-                backgroundContent: <ImgModel>{
+                backgroundContent: [<ImgModel>{
                     componentIdentifier: ImgComponent.IDENTIFIER,
                     src: 'https://picsum.photos/900/500',
                     clazz: 'imageWidthHundred',
                     text: 'Mandant'
-                },
-                foregroundContent: <TextInputData>{
+                }],
+                foregroundContent: [<TextInputData>{
                     componentIdentifier: TextComponent.IDENTIFIER,
                     text: I18N.getValue('teaser_mandant_content'),
-                }
+                }]
             },
             <TeaserElementInputData>{
                 componentIdentifier: TeaserElementComponent.IDENTIFIER,
-                selected: true,
-                backgroundContent: <ImgModel>{
+                backgroundContent: [<ImgModel>{
                     componentIdentifier: ImgComponent.IDENTIFIER,
                     src: 'https://picsum.photos/900/480',
                     clazz: 'imageWidthHundred',
                     text: ''
-                },
-                foregroundContent: <TextInputData>{
+                }],
+                foregroundContent: [<TextInputData>{
                     componentIdentifier: TextComponent.IDENTIFIER,
                     text: I18N.getValue('teaser_import_content'),
-                }
+                }]
             },
             <TeaserElementInputData>{
                 componentIdentifier: TeaserElementComponent.IDENTIFIER,
-                selected: false,
-                backgroundContent: <ImgModel>{
+                backgroundContent: [<ImgModel>{
                     componentIdentifier: ImgComponent.IDENTIFIER,
                     src: 'https://picsum.photos/860/500',
                     clazz: 'imageWidthHundred',
                     text: ''
-                },
-                foregroundContent: <TextInputData>{
+                }],
+                foregroundContent: [<TextInputData>{
                     componentIdentifier: TextComponent.IDENTIFIER,
                     text: I18N.getValue('teaser_ic_salden_content'),
-                }
+                }]
             },
             <TeaserElementInputData>{
                 componentIdentifier: TeaserElementComponent.IDENTIFIER,
-                selected: false,
-                backgroundContent: <ImgModel>{
+                backgroundContent: [<ImgModel>{
                     componentIdentifier: ImgComponent.IDENTIFIER,
                     src: 'https://picsum.photos/860/500',
                     clazz: 'imageWidthHundred',
                     text: ''
-                },
-                foregroundContent: <TextInputData>{
+                }],
+                foregroundContent: [<TextInputData>{
                     componentIdentifier: TextComponent.IDENTIFIER,
                     text: I18N.getValue('teaser_kontenabstimmung_mandant_content'),
-                }
+                }]
             },
             <TeaserElementInputData>{
                 componentIdentifier: TeaserElementComponent.IDENTIFIER,
-                selected: false,
-                backgroundContent: <ImgModel>{
+                backgroundContent: [<ImgModel>{
                     componentIdentifier: ImgComponent.IDENTIFIER,
                     src: 'https://picsum.photos/860/500',
                     clazz: 'imageWidthHundred',
                     text: ''
-                },
-                foregroundContent: <TextInputData>{
+                }],
+                foregroundContent: [<TextInputData>{
                     componentIdentifier: TextComponent.IDENTIFIER,
                     text: I18N.getValue('teaser_saldenbeastaetigung_content'),
-                }
+                }]
             }
         ]
     };
@@ -106,13 +101,29 @@ export class DashboardPage extends DefaultTemplate {
     getContent(): TemplateResult {
         return html`
             <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding" columnFlexBasisValue="50%" >
-                <div>
-                    <component-h2 text="${this.getI18NValue('balco_welcome_user_prefix')} ${BALCO_DATA_STORE.getUserString()}" subtext="${BALCO_DATA_STORE.getSelectedCompany().firmenname}"></component-h2>
-                    <component-text text="${this.getI18NValue('balco_welcome_text')}"></component-text>
-                </div>
+              
                 <div>
                 <component-teaser .inputData="${this.teaserInputData}"></component-teaser>
                 </div>
+                <div>
+                    
+                    <component-teaser>
+                        
+                        
+                        <component-teaser-element slot="content" selected="true">
+                            <component-img slot="background" .inputData="${new ImgComponent().getDefaultInputData()}"></component-img>
+                        </component-teaser-element>
+                    
+                        
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                        <component-teaser-menu-element slot="menu"></component-teaser-menu-element>
+                
+                    </component-teaser>
+                
+                </div>
+
                 <div>
                 
                 <component-list>Meine Liste
@@ -120,9 +131,13 @@ export class DashboardPage extends DefaultTemplate {
                 </component-list>
                 
                 </div>
-                <div>
-                TODO:
+
+                
+                 <div>
+                    <component-h2 text="${this.getI18NValue('balco_welcome_user_prefix')} ${BALCO_DATA_STORE.getUserString()}" subtext="${BALCO_DATA_STORE.getSelectedCompany().firmenname}"></component-h2>
+                    <component-text text="${this.getI18NValue('balco_welcome_text')}"></component-text>
                 </div>
+                
             </component-flex-container>
         `;
     }

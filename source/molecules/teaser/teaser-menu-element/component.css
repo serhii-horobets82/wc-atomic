@@ -1,4 +1,4 @@
-.menuItem {
+.menuItem, ::slotted(.menuItem) {
   background-attachment: scroll;
   background-clip: border-box;
   background-color: var(--app-primary-background-color);
@@ -19,6 +19,6 @@
   width: 10px;
 }
 
-.menuItem.selected {
+.menuItem.selected, ::slotted(.menuItem.selected) {
   background-color: var(--app-primary-background-color-contrast);
 }

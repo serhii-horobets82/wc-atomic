@@ -30,6 +30,8 @@ import {DatalistComponent} from "../input/datalist/component";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 import {SpacerComponent} from "../atoms/spacer/component";
 import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
+import {ListComponent} from "../organisms/list/container/component";
+import {ListItemComponent} from "../organisms/list/item/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -136,6 +138,12 @@ export class ComponentLoader {
             case TableComponent.IDENTIFIER:
                 component = new TableComponent();
                 break;
+            case ListComponent.IDENTIFIER:
+                component = new ListComponent();
+                break;
+            case ListItemComponent.IDENTIFIER:
+                component = new ListItemComponent();
+                break;
             case NavigationComponent.IDENTIFIER:
                 component = new NavigationComponent();
                 break;
@@ -152,7 +160,9 @@ export class ComponentLoader {
                 component = new AuthenticatedIconComponent();
                 break;
             default:
-                throw new Error('Elemenent not found: ' + componentIdentifier);
+                let error = new Error('Elemenent not found: ' + componentIdentifier);
+                console.error('AAAAAAAAAAAAAA'+error.stack);
+                throw error;
         }
 
         if (component === undefined) {

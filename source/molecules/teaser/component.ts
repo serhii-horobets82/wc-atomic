@@ -1,21 +1,17 @@
+import {baseHelper} from "../../util/base";
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/component/component';
-import {ImgComponent} from '../../atoms/img/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {TextComponent} from '../../atoms/text/component';
-import {TextWithHeaderComponent} from "../text-with-header/component";
+import {AbstractComponent} from '../../abstract/component/component';
 import {TeaserContainerInputData} from "./model";
 import {TeaserElementInputData} from "./teaser-element/model";
-import {ImgModel} from "../../atoms/img/model";
 import {TeaserElementComponent} from "./teaser-element/component";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-teaser')
-export class TeaserComponent extends AbstractComponent<
-   TeaserContainerInputData,
-   undefined
+export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
+    undefined
 > {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -30,44 +26,45 @@ export class TeaserComponent extends AbstractComponent<
       return html`
          <div class="viewport">
             ${guard(
-               [this.items],
-               () =>
-                  html`
+          [this.items],
+          () =>
+              html`
                      ${repeat(
-                        this.items,
-                      (item) => html`
-                            <component-teaser-element selected="${item.selected}" .foregroundContent="${item.foregroundContent}" .backgroundContent="${item.backgroundContent}"></component-teaser-element>
+                  this.items,
+                  (item) => html`
+                            <component-teaser-element .inputData="${item}"></component-teaser-element>
                         `
-                     )}
+              )}
                   `
-            )}
-            <slot id="content"></slot>
-
+      )}
+            <slot name="content"></slot>
             <div class="menu">
                ${guard(
-                  [this.items],
-                  () =>
-                     html`
+          [this.items],
+          () =>
+              html`
                         ${repeat(
-                           this.items,
-                           (item) => html`
-                              <component-teaser-menu-element @click="${() => this.toogle(item)}" selected=${item.selected}></component-teaser-menu-element>
+                  this.items,
+                  (item) => html`
+                              <component-teaser-menu-element @click="${() => this.selectItem(item)}" .inputData=${item}></component-teaser-menu-element>
                            `
-                        )}
+              )}
                      `
-               )}
+      )}
+                <slot name="menu"></slot>
             </div>
          </div>
       `;
    }
 
-   async toogle(item: TeaserElementInputData) {
+   selectItem(item: TeaserElementInputData) {
       console.log('item clicked, state=' + item.selected);
 
       this.items.forEach((value) => {
          value.selected = false;
       });
-      item.selected = !item.selected;
+
+      item.selected = true;
       this.items = this.items.map((item) => item);
 
       console.log('item clicked, after state=' + item.selected);
@@ -89,6 +86,9 @@ export class TeaserComponent extends AbstractComponent<
    }
 
    protected inputDataChanged() {
-      this.items = this.inputData.items;
+      this.items = baseHelper.getValue(this.inputData.items, []);
+      if (this.items.length > 0) {
+         this.selectItem(this.items[0]);
+      }
    }
 }

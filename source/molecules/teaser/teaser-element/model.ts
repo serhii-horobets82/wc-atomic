@@ -3,7 +3,7 @@ import {AbstractInputData} from "../../../abstract/component/model";
 
 
 export interface TeaserElementInputData extends AbstractInputData {
-    selected: boolean;
-    backgroundContent: ImgModel;
-    foregroundContent: AbstractInputData;
+    selected?: boolean;
+    backgroundContent: AbstractInputData[];
+    foregroundContent: AbstractInputData[];
 }
