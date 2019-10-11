@@ -1,4 +1,5 @@
 import './accordion/import';
+import './list/import';
 import './flex-container/import';
 import './form/import';
 import './authentication/import';

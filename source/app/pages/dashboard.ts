@@ -114,7 +114,11 @@ export class DashboardPage extends DefaultTemplate {
                 <component-teaser .inputData="${this.teaserInputData}"></component-teaser>
                 </div>
                 <div>
-                TODO:
+                
+                <component-list>Meine Liste
+                    <component-list-item>dddd</component-list-item>
+                </component-list>
+                
                 </div>
                 <div>
                 TODO:
