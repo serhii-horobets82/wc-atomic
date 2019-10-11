@@ -4,12 +4,11 @@ import {ImgComponent} from '../../atoms/img/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {TextComponent} from '../../atoms/text/component';
-import {ComponentLoader} from '../../abstract/component-loader';
-import {ImgModel} from "../../atoms/img/model";
-import {ButtonInputData} from "../../atoms/button/model";
-import {TextInputData} from "../../atoms/text/model";
-import {TeaserContainerInputData, TeaserElementInputData} from "./model";
 import {TextWithHeaderComponent} from "../text-with-header/component";
+import {TeaserContainerInputData} from "./model";
+import {TeaserElementInputData} from "./teaser-element/model";
+import {ImgModel} from "../../atoms/img/model";
+import {TeaserElementComponent} from "./teaser-element/component";
 
 const componentCSS = require('./component.css');
 
@@ -36,24 +35,13 @@ export class TeaserComponent extends AbstractComponent<
                   html`
                      ${repeat(
                         this.items,
-                        (item, index) => html`
-                           <div class="item ${item.selected ? 'selected' : ''}">
-                              <div class="background">
-                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    item.img
-                                 )}
-                              </div>
-
-                              <div class="foreground">
-                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                                    item.content
-                                 )}
-                              </div>
-                           </div>
+                      (item) => html`
+                            <component-teaser-element selected="${item.selected}" .foregroundContent="${item.foregroundContent}" .backgroundContent="${item.backgroundContent}"></component-teaser-element>
                         `
                      )}
                   `
             )}
+            <slot id="content"></slot>
 
             <div class="menu">
                ${guard(
@@ -63,12 +51,7 @@ export class TeaserComponent extends AbstractComponent<
                         ${repeat(
                            this.items,
                            (item) => html`
-                              <div
-                                 class="menuItem ${item.selected
-                                    ? 'selected'
-                                    : ''}"
-                                 @click="${() => this.toogle(item)}"
-                              ></div>
+                              <component-teaser-menu-element @click="${() => this.toogle(item)}" selected=${item.selected}></component-teaser-menu-element>
                            `
                         )}
                      `
@@ -81,7 +64,7 @@ export class TeaserComponent extends AbstractComponent<
    async toogle(item: TeaserElementInputData) {
       console.log('item clicked, state=' + item.selected);
 
-      this.items.forEach((value, index) => {
+      this.items.forEach((value) => {
          value.selected = false;
       });
       item.selected = !item.selected;
@@ -94,37 +77,10 @@ export class TeaserComponent extends AbstractComponent<
       return <TeaserContainerInputData>{
          componentIdentifier: TeaserComponent.IDENTIFIER,
          items: [
-            <TeaserElementInputData>{
-               selected: true,
-               img: <ImgModel>{
-                  componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/900/500',
-                  clazz: 'imageWidthHundred',
-                  text: ''
-               },
-               content: new TextWithHeaderComponent().getDefaultInputData()
-            },
-            <TeaserElementInputData>{
-               selected: true,
-               img: <ImgModel>{
-                  componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/900/480',
-                  clazz: 'imageWidthHundred',
-                  text: ''
-               },
-               content: new TextWithHeaderComponent().getDefaultInputData()
-            },
-            <TeaserElementInputData>{
-               selected: false,
-               img: <ImgModel>{
-                  componentIdentifier: ImgComponent.IDENTIFIER,
-                  src: 'https://picsum.photos/860/500',
-                  clazz: 'imageWidthHundred',
-                  text: ''
-               },
-               content: new TextComponent().getDefaultInputData()
-            }
-         ]
+            new TeaserElementComponent().getDefaultInputData(),
+            new TeaserElementComponent().getDefaultInputData(),
+            new TeaserElementComponent().getDefaultInputData(),
+            new TeaserElementComponent().getDefaultInputData()]
       };
    }
 
