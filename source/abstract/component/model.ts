@@ -1,4 +1,5 @@
 export interface AbstractInputData {
     componentIdentifier: string;
-    sessionStorageChannels?: string[];
+    dataReceiverChannels?: string[];
+    uiRefreshChannels?: string[];
 }

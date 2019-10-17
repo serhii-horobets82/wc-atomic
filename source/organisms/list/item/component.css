@@ -1,4 +1,5 @@
-div, ::slotted(div) {
-    height: 100px;
-    background-color: green;
+.listItem, ::slotted(.listItem) {
+    height: var(--toolbar-height);
+    line-height: var(--toolbar-height);
+    border: solid 1px rgba(210, 215, 217, 0.75);
 }

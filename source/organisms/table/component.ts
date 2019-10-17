@@ -124,9 +124,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                           
                 ` : html``}
         </div>
+        
         <component-spacer clazz="minPaddingTop"></component-spacer>
 
-         <span class="table">
+         <div class="table">
             ${guard(
             [this.headers],
             () =>
@@ -197,12 +198,17 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 )}
                   `
         ) : html`${this.getI18NValue(this.i18nTablePrefix.concat('no_data'))}`}
+         
+ </div>
+         
             <div class="footer">
             
             
 
-            </div>
-         </span>
+           
+       
+       
+                </div>  
       `;
     }
 

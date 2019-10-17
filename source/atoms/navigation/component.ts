@@ -36,9 +36,7 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
                 {text: 'Komponenten', href: '#c', icon: ''},
                 {text: 'Komplexe Komponenten', href: '#cc', icon: ''},
                 {text: 'Dynamische Komponenten', href: '#dc', icon: ''},
-            ],
-            contentBefore: [],
-            contentAfter: [],
+            ]
         }
     }
 

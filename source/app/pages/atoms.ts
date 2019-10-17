@@ -1,10 +1,8 @@
 import {DefaultTemplate} from "../../templates/default/template";
 import {customElement, TemplateResult, html} from "lit-element";
 import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION} from "../data/data";
 import {ImgComponent} from "../../atoms/img/component";
 import {ButtonComponent} from "../../atoms/button/component";
-import {CheckboxComponent} from "../../input/checkbox/component";
 import {CodeComponent} from "../../atoms/code/component";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {FormElementComponent} from "../../atoms/form-element/component";
@@ -15,6 +13,7 @@ import {NavigationComponent} from "../../atoms/navigation/component";
 import {TextComponent} from "../../atoms/text/component";
 import {TextareaComponent} from "../../input/textarea/component";
 import {InputComponent} from "../../input/input/component";
+import {getNAV} from "../app-showcase";
 
 
 @customElement('page-atoms')
@@ -27,7 +26,7 @@ export class AtomsPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigationInputData: DATA_NAVIGATION,
+            navigationInputData: getNAV(),
         }
     }
 
@@ -37,9 +36,6 @@ export class AtomsPage extends DefaultTemplate {
                 <component-accordion>
                     <component-accordion-item header="Button">
                         <component-component-viewer .componentInputData="${new ButtonComponent().getDefaultInputData()}"></component-component-viewer>
-                    </component-accordion-item> 
-                    <component-accordion-item header="Checkbox">
-                        <component-component-viewer .componentInputData="${new CheckboxComponent().getDefaultInputData()}"></component-component-viewer>
                     </component-accordion-item> 
                     <component-accordion-item header="Code">
                         <component-component-viewer .componentInputData="${new CodeComponent().getDefaultInputData()}"></component-component-viewer>

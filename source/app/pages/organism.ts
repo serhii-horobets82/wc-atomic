@@ -5,7 +5,7 @@ import {AccordionComponent} from "../../organisms/accordion/container/component"
 import {FormComponent} from "../../organisms/form/component";
 import {TableComponent} from "../../organisms/table/component";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
-import {DATA_NAVIGATION} from "../app-showcase";
+import {getNAV} from "../app-showcase";
 
 
 @customElement('page-organism')
@@ -18,7 +18,7 @@ export class OrganismPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigationInputData: DATA_NAVIGATION,
+            navigationInputData: getNAV(),
         }
     }
 

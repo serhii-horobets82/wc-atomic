@@ -43,7 +43,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
       `;
     }
 
-    async clicked(event: Event) {
+    async clicked() {
         if (this.clickable) {
             this.dispatchSimpleCustomEvent(
                 IconComponent.EVENT_CLICK,

@@ -32,6 +32,19 @@ export interface HttpClientIF {
     logoutPath: string;
 }
 
+export interface FileUploadItem {
+    filename: string;
+    success: boolean;
+    file: File;
+    response: any;
+
+}
+
+export interface FileUpload {
+    files: FileUploadItem[];
+}
+
+
 export class HttpClient {
 
     private _config: HttpClientIF;
@@ -74,16 +87,29 @@ export class HttpClient {
         return this.post(url, urlSearchParams, ContentType.FORM);
     }
 
-    uploadFiles(url: string, files: FileList | undefined | null) {
+    async uploadFiles(url: string, files: FileList | undefined | null) {
+        let fileUpload: FileUpload = <FileUpload>{
+            files: [],
+            response: {},
+        };
+
         if (files != undefined && files != null) {
             for (let i = 0, f; f = files[i]; i++) {
                 const formData = new FormData();
                 formData.append('file', f);
-                this.createFetch('POST', url, undefined, formData).then(response => {
-                    console.log('file uploaded, status: '.concat(String(response.status)));
-                });
+                let response = await this.createFetch('POST', url, undefined, formData);
+                let fileItem: FileUploadItem = <FileUploadItem>{
+                    file: f,
+                    response: response,
+                    filename: f.name,
+                    success: response.ok
+                };
+                fileUpload.files.push(fileItem);
             }
         }
+
+        return fileUpload;
+
     }
 
     public get(url: string, contentType: string = this._config.defaultContentType) {

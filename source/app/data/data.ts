@@ -44,6 +44,15 @@ export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
 });
 
 
+export interface BalanceOverview {
+    typ: string;
+    saldoSumme: number;
+    anzahlImportierteSalden: number;
+    anzahlZuBestaetigenderSalden: number;
+    anzahlKontenInSaldenabstimmung: number;
+    anzahlSaldenbestaetigungen: number;
+}
+
 export interface Konzern {
     id: number;
     teilkonzern: string;

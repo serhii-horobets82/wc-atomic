@@ -1,16 +1,11 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
-import {DefaultTemplateModel} from "../../templates/default/model";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
-import {DatalistInputData} from "../../input/datalist/model";
-import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {ButtonInputData} from "../../atoms/button/model";
 import {InputComponent} from "../../input/input/component";
-import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
@@ -26,17 +21,37 @@ export class RetificationPage extends DefaultTemplate {
     }
 
     @property()
+    kreditorSelected: boolean = false;
+
+    @property()
+    debitorSelected: boolean = true;
+
+    @property()
+    typ: string = 'D';
+
+    @property()
     tableInputData: TableInputData = <TableInputData>{};
 
     getContent(): TemplateResult {
 
         return html`
 
-            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
-            
-                <component-button text="${this.getI18NValue('balco_kreditor')}"></component-button>
-                <component-button text="${this.getI18NValue('balco_debitor')}"></component-button>
-           
+          <component-flex-container gridClazz="grid_100 maxPadding">
+
+                <component-button text="${this.getI18NValue('balco_debitor')}" .selected="${this.debitorSelected}"  @click="${() => {
+            this.changeTyp('D')
+        }})"></component-button>
+                
+                <component-spacer clazz="minPaddingRight"></component-spacer>
+
+                <component-button text="${this.getI18NValue('balco_kreditor')}" .selected="${this.kreditorSelected}" @click="${() => {
+            this.changeTyp('K')
+        }})"></component-button>
+                    
+         </component-flex-container>
+                 
+             <component-flex-container gridClazz="grid_100 maxPadding" columnFlexBasisValue="100%">
+          
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
         }}"></component-table>
@@ -47,34 +62,52 @@ export class RetificationPage extends DefaultTemplate {
 
     }
 
+    private changeTyp(newTyp: string) {
+        this.typ = newTyp;
+        switch (newTyp) {
+            case 'D':
+                this.kreditorSelected = false;
+                this.debitorSelected = true;
+                break;
+            case 'K':
+                this.kreditorSelected = true;
+                this.debitorSelected = false;
+                break;
+        }
+        this.tableInputData.requestParams = 'typ=' + this.typ + '&idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl);
+    }
+
     protected inputDataChanged(): void {
         super.inputDataChanged();
         this.tableInputData = <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,
-            requestPath: '/MATCHING/RETIFICATION/BY_IDL/' + BALCO_DATA_STORE.getSelectedCompany().idl,
+            requestPath: '/MATCHING/RETIFICATION/BY_IDL',
+            requestParams: 'typ=' + this.typ + '&idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
             page: 0,
             size: 10,
             sort: '',
+            sorting: false,
+            filtering: false,
             headers: [
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_idl',
-                    searchValue: ''
+                    searchValue: '', widthPercent: 10,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_firmenname',
-                    searchValue: ''
+                    searchValue: '', widthPercent: 50,
                 },
                 <TableHeaderInputData>{
-                    componentInputData: <InputInputData>{componentIdentifier: InputComponent.IDENTIFIER},
+                    componentInputData: <InputInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'src_saldo',
-                    searchValue: ''
+                    searchValue: '', widthPercent: 20,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_saldo',
-                    searchValue: ''
+                    searchValue: '', widthPercent: 20,
                 }
             ]
         };

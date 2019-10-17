@@ -84,6 +84,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     render() {
         return html`
             <input id="inputElement" multiple="" name="${this.name}" @keyup="${this.keyup}" @change="${(event: InputDataChangeEvent) => this.change(event)}" type="${this.type}" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" min="${this.min}" max="${this.max}"/>
+            <slot></slot>
 `;
     }
 

@@ -12,6 +12,7 @@ import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {HTTP_CLIENT} from "../data/data";
 
 
 @customElement('page-balance')
@@ -37,7 +38,7 @@ export class BalancePage extends DefaultTemplate {
     getContent(): TemplateResult {
         return html`
 
-            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
+           <component-flex-container gridClazz="grid_100 maxPadding">
 
                 <component-button text="${this.getI18NValue('balco_debitor')}" .selected="${this.debitorSelected}"  @click="${() => {
             this.changeTyp('D')
@@ -48,16 +49,16 @@ export class BalancePage extends DefaultTemplate {
                 <component-button text="${this.getI18NValue('balco_kreditor')}" .selected="${this.kreditorSelected}" @click="${() => {
             this.changeTyp('K')
         }})"></component-button>
-                
-                <component-spacer clazz="maxPadding"></component-spacer>
-                
-           
+                    
+         </component-flex-container>
+                 
+             <component-flex-container gridClazz="grid_100 maxPadding" columnFlexBasisValue="100%">
+          
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
         }}"></component-table>
             
             </component-flex-container>
-
 `;
 
     }

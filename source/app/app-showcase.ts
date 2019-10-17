@@ -17,9 +17,8 @@ import {KeyValueData} from "../organisms/form/model";
 import {AppData} from "../abstract/app/app";
 import {CorsMode, Credentials, HttpClient, HttpClientIF, HttpStatusEnum} from "../util/http-client/http-client";
 import {BALCO_DATA_STORE, BalcoDataChannels} from "./data/balco_data";
-import {TableContent} from "../organisms/table/model";
 import {router, Router} from "../util/router";
-import {I18N, LanguageItem} from "../util/i18n-util";
+import {I18N} from "../util/i18n-util";
 import {NavigationInputData} from "../atoms/navigation/model";
 import {NavigationComponent} from "../atoms/navigation/component";
 import {DefaultTemplateModel} from "../templates/default/model";
@@ -36,37 +35,36 @@ import {I18NInputData} from "../molecules/i18n-selector/model";
 import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
 import {AuthenticatedIconInputData} from "../molecules/authenticated-icon/model";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
+import {UI_REFRESHER} from "../util/ui-refresher/ui-rfresher";
 
-
-export const DATA_NAVIGATION: NavigationInputData = <NavigationInputData>{
-    componentIdentifier: NavigationComponent.IDENTIFIER,
-    contentAfter: [<TextInputData>{
-        componentIdentifier: TextComponent.IDENTIFIER,
-        text: I18N.getValue('balco_company')
-    }, <SpacerInputData>{
-        componentIdentifier: SpacerComponent.IDENTIFIER,
-        clazz: 'mediumPaddingLeft'
-    }, BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
-        componentIdentifier: SpacerComponent.IDENTIFIER,
-        clazz: 'mediumPaddingRight'
-    }, <I18NInputData>{
-        componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-        languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
-    }],
-    links: [
-        {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: ''},
-        {text: I18N.getValue('balco_import_page'), href: '#import', icon: ''},
-        {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: ''},
-        {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: ''},
-        {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: ''},
-    ],
+export function getNAV(): NavigationInputData {
+    return <NavigationInputData>{
+        componentIdentifier: NavigationComponent.IDENTIFIER,
+        contentBefore: [<TextInputData>{
+            componentIdentifier: TextComponent.IDENTIFIER,
+            text: I18N.getValue('balco_company')
+        }, BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
+            componentIdentifier: SpacerComponent.IDENTIFIER,
+            clazz: 'mediumPaddingTop'
+        }, <I18NInputData>{
+            componentIdentifier: I18NSelectorComponent.IDENTIFIER,
+            languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
+        }],
+        links: [
+            {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: ''},
+            {text: I18N.getValue('balco_import_page'), href: '#import', icon: ''},
+            {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: ''},
+            {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: ''},
+            {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: ''},
+        ],
+    };
 }
 
 
 export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplateModel>{
     componentIdentifier: DefaultTemplate.IDENTIFIER,
-    sessionStorageChannels: [BalcoDataChannels.SELECTED_COMPANY],
-    navigationInputData: DATA_NAVIGATION,
+    dataReceiverChannels: [BalcoDataChannels.SELECTED_COMPANY],
+    navigationInputData: getNAV(),
     toolbarInputData: <ToolbarInputData>{
         componentIdentifier: ToolbarComponent.IDENTIFIER,
         leftInputData: [<SpacerInputData>{
@@ -74,10 +72,7 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
         mainInputData: [],
-        rightInputData: [<TextInputData>{
-            componentIdentifier: TextComponent.IDENTIFIER,
-            text: BALCO_DATA_STORE.getUserString()
-        }, <AuthenticatedIconInputData>{
+        rightInputData: [<AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
             isAuthenticated: false,
             loginPage: '#login',
@@ -103,6 +98,10 @@ export class ShowcaseApp extends AbstractApp {
                     let data: KeyValueData = customEvent.detail;
                     if(data.key == 'myCompanies')
                         BALCO_DATA_STORE.setSelectedIDL(data.value);
+                        BALCO_DATA_STORE.loadBalanceData().then(() => {
+                            console.log("balance data neu geladen");
+                            UI_REFRESHER.informListener(BalcoDataChannels.BALANCE_OVERVIEW_D)
+                        });
                 }
             }
         );

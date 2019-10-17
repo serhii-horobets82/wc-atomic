@@ -77,12 +77,15 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
       SHADOW_DOM_HELPER.setProperty(this.menuSlotElement, 'selected', false, TeaserElementMenuComponent, null);
       teaserElementMenuComponent.selected = true;
       let indexOf: number = SHADOW_DOM_HELPER.indexOf(this.menuSlotElement, teaserElementMenuComponent);
+
+      SHADOW_DOM_HELPER.setProperty(this.contentSlotElement, 'selected', false, TeaserElementComponent, null);
+
       let teaserElementComponent: TeaserElementComponent | null = SHADOW_DOM_HELPER.getElement(this.contentSlotElement, TeaserElementComponent, indexOf);
       if (teaserElementComponent != null) {
          teaserElementComponent.inputData.selected = true;
          teaserElementComponent.selected=true;
-         this.selectItem(teaserElementComponent.inputData);
       }
+
    }
 
    selectItem(item: TeaserElementInputData) {

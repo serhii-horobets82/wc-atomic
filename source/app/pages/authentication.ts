@@ -1,18 +1,8 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {BlankTemplate} from "../../templates/blank/template";
 import {router} from "../../util/router";
-
-import {TextInputData} from "../../atoms/text/model";
-import {TextComponent} from "../../atoms/text/component";
-import {I18N} from "../../util/i18n-util";
-import {SpacerInputData} from "../../atoms/spacer/model";
-import {SpacerComponent} from "../../atoms/spacer/component";
-import {I18NInputData} from "../../molecules/i18n-selector/model";
-import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
-import {KeyValueData} from "../../organisms/form/model";
-import {HTTP_CLIENT, Konzern, User} from "../data/data";
+import {BalanceOverview, HTTP_CLIENT, Konzern, User} from "../data/data";
 import {BALCO_DATA_STORE} from "../data/balco_data";
-import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
 
 
 @customElement('page-login')
@@ -39,23 +29,9 @@ export class AuthenticationPage extends BlankTemplate {
     }
 
     private successfullyLoggedIn() {
-        let responsePromiseUser = HTTP_CLIENT.get('/SYSTEM/AUTH/USER');
-        responsePromiseUser.then(response => {
-            let responseTextPromise = response.text();
-            responseTextPromise.then(responseText => {
-                let user: User = JSON.parse(responseText);
-                BALCO_DATA_STORE.saveLoginUser(user);
-                let responsePromiseCompany = HTTP_CLIENT.get('/COMPANY');
-                responsePromiseCompany.then(response => {
-                    let responseTextPromise = response.text();
-                    responseTextPromise.then(responseText => {
-                        let companies: Konzern[] = JSON.parse(responseText);
-                        BALCO_DATA_STORE.saveKonzerne(companies);
-                        router.navigate("#dashboard");
-                    });
-                });
-
-            });
+        this.doLoginRequests().then(() => {
+            console.log('all login data received...');
+            router.navigate("#dashboard");
         });
     }
 
@@ -63,4 +39,20 @@ export class AuthenticationPage extends BlankTemplate {
         BALCO_DATA_STORE.logout();
         router.navigate("#login");
     }
+
+    async doLoginRequests() {
+        let responseUser = await HTTP_CLIENT.get('/SYSTEM/AUTH/USER');
+        let userBody = await responseUser.text()
+        let user: User = JSON.parse(userBody);
+        BALCO_DATA_STORE.saveLoginUser(user);
+
+        let responseCompany = await HTTP_CLIENT.get('/COMPANY');
+        let responseCompanyBody = await responseCompany.text();
+        let companies: Konzern[] = JSON.parse(responseCompanyBody);
+        BALCO_DATA_STORE.saveKonzerne(companies);
+
+        await BALCO_DATA_STORE.loadBalanceData();
+
+    }
+
 }

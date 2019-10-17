@@ -1,13 +1,14 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
 import {baseHelper} from "../../util/base";
-import {UI_REFRESH, UIRefreshListener} from "../../util/storage/ui-refresh";
+import {DATA_RECEIVER, DataReceiverListener} from "../../util/data-receiver/data-receiver";
 import {I18N} from "../../util/i18n-util";
 import {router} from "../../util/router";
+import {UI_REFRESHER, UIRefresherListener} from "../../util/ui-refresher/ui-rfresher";
 
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
-    OUTPUT_DATA> extends LitElement implements UIRefreshListener {
+    OUTPUT_DATA> extends LitElement implements DataReceiverListener, UIRefresherListener {
 
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
@@ -19,28 +20,46 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     protected abstract inputDataChanged(): void;
 
     @property()
-    sessionStorageChannels: string[] = [];
+    dataReceiverChannels: string[] = [];
 
-    updateUI(channel: string, data: any): void {
-        console.log('channel has updated: ' + channel + ",component " + this.inputData.componentIdentifier + ', data=' + JSON.stringify(data));
-        this.inputData = <INPUT_DATA>this.inputData;
-    }
+    @property()
+    uiRefreshChannels: string[] = [];
 
     protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
-        if (this.sessionStorageChannels != undefined) {
-            this.sessionStorageChannels.forEach(channel => {
-            UI_REFRESH.register(channel, this);
+        if (this.dataReceiverChannels != undefined) {
+            this.dataReceiverChannels.forEach(channel => {
+                DATA_RECEIVER.register(channel, this);
             })
+        }
+        if (this.uiRefreshChannels != undefined) {
+            this.uiRefreshChannels.forEach(channel => {
+                UI_REFRESHER.register(channel, this);
+            });
         }
     }
 
     disconnectedCallback(): void {
         console.log('disconnected');
-        if (this.sessionStorageChannels != undefined) {
-            this.sessionStorageChannels.forEach(channel => {
-                UI_REFRESH.unregister(channel, this);
+        if (this.dataReceiverChannels != undefined) {
+            this.dataReceiverChannels.forEach(channel => {
+                DATA_RECEIVER.unregister(channel, this);
             });
         }
+        if (this.uiRefreshChannels != undefined) {
+            this.uiRefreshChannels.forEach(channel => {
+                UI_REFRESHER.unregister(channel, this);
+            });
+        }
+    }
+
+    dataRecieved(channel: string, data: any): void {
+        console.log('channel has updated: ' + channel + ",component " + this.inputData.componentIdentifier + ', data=' + JSON.stringify(data));
+        this.inputData = <INPUT_DATA>this.inputData;
+    }
+
+    updateUI(channel: string): void {
+        console.log('update ui, channel:' + channel)
+        this.reqUpdate();
     }
 
     get inputData(): INPUT_DATA {
@@ -54,7 +73,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
             'input data changed, new value=' + JSON.stringify(this._inputData)
         );
         if (baseHelper.isNotEmpty(this._inputData)) {
-            this.sessionStorageChannels = baseHelper.getValue(this._inputData.sessionStorageChannels, []);
+            this.dataReceiverChannels = baseHelper.getValue(this._inputData.dataReceiverChannels, []);
         } else {
             throw new Error("empty input data: " + JSON.stringify(this));
         }
@@ -134,13 +153,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
             composed: true
         });
         this.dispatchEvent(valueChanged);
-    }
-
-    dynamicData(channel: string, dynamicData: string) {
-        console.log("dynamic data received, channel: " + channel)
-        if (dynamicData === undefined) {
-            console.log('retrieve empty dynamic data');
-        }
     }
 
     protected getPageName(): string {

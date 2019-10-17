@@ -1,4 +1,4 @@
-import {UI_REFRESH} from "./ui-refresh";
+import {DATA_RECEIVER} from "../data-receiver/data-receiver";
 
 export class SessionStore {
 
@@ -10,7 +10,7 @@ export class SessionStore {
 
     setItem(channel: string, content: any) {
         this.storage.setItem(channel, JSON.stringify(content));
-        UI_REFRESH.informListener(channel, content);
+        DATA_RECEIVER.informListener(channel, content);
     }
 
     getItem<T>(channel: string | null): T | null {

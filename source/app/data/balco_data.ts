@@ -2,18 +2,24 @@ import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {DatalistInputData, DatalistOption} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
-import {Konzern, User} from "./data";
-import {SESSION_STORE} from "../../util/storage/storage";
+import {BalanceOverview, HTTP_CLIENT, Konzern, User} from "./data";
+import {LOCAL_STORE, SESSION_STORE} from "../../util/storage/storage";
+import {FileUpload} from "../../util/http-client/http-client";
 
 export enum BalcoDataChannels {
     KONZERNE = 'KONZERNE',
     USER = 'USER',
     COMPANIES_DLID = 'COMPANIES_DLO',
     MY_COMPANIES_CID = 'COMPANIES_CID',
-    SELECTED_COMPANY = 'SELECTED_COMPANY'
+    SELECTED_COMPANY = 'SELECTED_COMPANY',
+    BALANCE_OVERVIEW_K = 'BALANCE_OVERVIEW_K',
+    BALANCE_OVERVIEW_D = 'BALANCE_OVERVIEW_D',
+    IMPORT_LAST_UPLOAD = 'IMPORT_LAST_UPLOAD',
 }
 
 export class BalcoDataStore {
+    IMG_RESOURCE_URL: string = "http://v220190910399797452.supersrv.de/img/";
+
 
     public getSelectedCompany(): Konzern {
         return <Konzern>SESSION_STORE.getItem(BalcoDataChannels.SELECTED_COMPANY);
@@ -94,7 +100,12 @@ export class BalcoDataStore {
     }
 
     getMyCompaniesCID(): ComboboxInputData {
-        return <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.MY_COMPANIES_CID);
+        let item: ComboboxInputData | null = <DatalistInputData>SESSION_STORE.getItem(BalcoDataChannels.MY_COMPANIES_CID);
+        if (item == null) {
+            item = <ComboboxInputData>{componentIdentifier: ComboboxComponent.IDENTIFIER, options: []};
+            this.setMyCompaniesCID(item);
+        }
+        return item;
     }
 
     private setMyCompaniesCID(myCompanies: ComboboxInputData) {
@@ -106,6 +117,48 @@ export class BalcoDataStore {
         return this.getUser() != null ? this.getUser().vorname.concat(' ').concat(BALCO_DATA_STORE.getUser().name) : '';
     }
 
+    public getBalanceOverview(typ: string): BalanceOverview | null {
+        switch (typ) {
+            case 'D':
+                return <BalanceOverview>SESSION_STORE.getItem(BalcoDataChannels.BALANCE_OVERVIEW_D);
+            case 'K':
+                return <BalanceOverview>SESSION_STORE.getItem(BalcoDataChannels.BALANCE_OVERVIEW_K);
+        }
+        return null;
+    }
+
+    saveBalanceOverviewK(balanceOverviewK: BalanceOverview) {
+        SESSION_STORE.setItem(BalcoDataChannels.BALANCE_OVERVIEW_K, balanceOverviewK);
+    }
+
+    saveBalanceOverviewD(balanceOverviewD: BalanceOverview) {
+        SESSION_STORE.setItem(BalcoDataChannels.BALANCE_OVERVIEW_D, balanceOverviewD);
+    }
+
+    getLastFileUpload() {
+        let item: FileUpload | null = LOCAL_STORE.getItem(BalcoDataChannels.IMPORT_LAST_UPLOAD);
+        if (item == null) {
+            item = <FileUpload>{response: {}, files: []};
+            this.setLastFileUpload(item);
+        }
+        return item;
+    }
+
+    setLastFileUpload(fileUpload: FileUpload) {
+        LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD, fileUpload);
+    }
+
+    async loadBalanceData() {
+        let responseBalanceOverviewK = await HTTP_CLIENT.get('/BALANCE_OVERVIEW/' + BALCO_DATA_STORE.getSelectedCompany().idl + '/K');
+        let responseBalanceOverviewBodyK = await responseBalanceOverviewK.text();
+        let balanceOverviewK: BalanceOverview = JSON.parse(responseBalanceOverviewBodyK);
+        BALCO_DATA_STORE.saveBalanceOverviewK(balanceOverviewK);
+
+        let responseBalanceOverviewD = await HTTP_CLIENT.get('/BALANCE_OVERVIEW/' + BALCO_DATA_STORE.getSelectedCompany().idl + '/D');
+        let responseBalanceOverviewBodyD = await responseBalanceOverviewD.text();
+        let balanceOverviewD: BalanceOverview = JSON.parse(responseBalanceOverviewBodyD);
+        BALCO_DATA_STORE.saveBalanceOverviewD(balanceOverviewD);
+    }
 }
 
 export const BALCO_DATA_STORE = new BalcoDataStore();

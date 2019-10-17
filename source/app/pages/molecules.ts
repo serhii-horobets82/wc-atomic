@@ -1,7 +1,5 @@
 import {DefaultTemplate} from "../../templates/default/template";
-import {customElement, TemplateResult, html} from "lit-element";
-import {DefaultTemplateModel} from "../../templates/default/model";
-import {DATA_NAVIGATION, DEFAULT_TEMPLATE_INPUT_DATA} from "../data/data";
+import {customElement, html, TemplateResult} from "lit-element";
 import {BreadcrumbComponent} from "../../molecules/breadcrumb/component";
 import {ComponentViewerComponent} from "../../organisms/component-viewer/component";
 import {ContentSliderComponent} from "../../molecules/content-slider/component";
@@ -12,16 +10,11 @@ import {SearchComponent} from "../../molecules/search/component";
 import {TeaserComponent} from "../../molecules/teaser/component";
 import {TileComponent} from "../../molecules/tile/component";
 
-
 @customElement('page-molecules')
 export class MoleculesPage extends DefaultTemplate {
 
     constructor() {
         super();
-    }
-
-    initTemplateData(): DefaultTemplateModel {
-        return DEFAULT_TEMPLATE_INPUT_DATA;
     }
 
     getContent(): TemplateResult {

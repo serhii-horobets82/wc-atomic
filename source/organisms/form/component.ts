@@ -1,7 +1,6 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {InputComponent} from '../../input/input/component';
 import {FormElementComponent} from '../../atoms/form-element/component';
-import {CheckboxComponent} from '../../input/checkbox/component';
 import {TextareaComponent} from '../../input/textarea/component';
 import {ComboboxComponent} from '../../input/combobox/component';
 import {AbstractComponent} from '../../abstract/component/component';
@@ -123,12 +122,6 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
                         componentIdentifier: FormElementComponent.IDENTIFIER,
                         label: 'Gib deinen Namen ein',
                         componentData: new InputComponent().getDefaultInputData()
-                    },
-                    <FormElementInputData>{
-                        componentIdentifier: FormElementComponent.IDENTIFIER,
-                        label:
-                            'Möchtest du übermäßig viele Emails von uns bekommen ?',
-                        componentData: new CheckboxComponent().getDefaultInputData()
                     },
                     <FormElementInputData>{
                         componentIdentifier: FormElementComponent.IDENTIFIER,

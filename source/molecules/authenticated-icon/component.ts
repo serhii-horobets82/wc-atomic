@@ -22,9 +22,9 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
 
     render() {
         return this.isAuthenticated ? html`
-         <component-icon title="${this.getI18NValue('component_authentication_icon_title')}" iconClazz="fas fa-sign-out-alt" clickable="true" @click="${() => this.logout()}"></component-icon>
+         <component-icon title="${this.getI18NValue('component_authentication_icon_title_logout')}" iconClazz="fas fa-sign-out-alt" clickable="true" @click="${() => this.logout()}"></component-icon>
       ` : html`
-         <component-icon iconClazz="fas fa-sign-in-alt" clickable="true" @click="${() => this.login()}"></component-icon>        
+         <component-icon title="${this.getI18NValue('component_authentication_icon_title_login')}" iconClazz="fas fa-sign-in-alt" clickable="true" @click="${() => this.login()}"></component-icon>        
       `;
     }
 

@@ -1,7 +1,6 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
-import {DefaultTemplateModel} from "../../templates/default/model";
 
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
@@ -20,17 +19,37 @@ export class MatchingPage extends DefaultTemplate {
     }
 
     @property()
+    kreditorSelected: boolean = false;
+
+    @property()
+    debitorSelected: boolean = true;
+
+    @property()
+    typ: string = 'D';
+
+    @property()
     tableInputData: TableInputData = <TableInputData>{};
 
     getContent(): TemplateResult {
 
         return html`
 
-            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding">
-            
-                <component-button text="${this.getI18NValue('balco_kreditor')}"></component-button>
-                <component-button text="${this.getI18NValue('balco_debitor')}"></component-button>
-            
+            <component-flex-container gridClazz="grid_100 maxPadding">
+
+                <component-button text="${this.getI18NValue('balco_debitor')}" .selected="${this.debitorSelected}"  @click="${() => {
+            this.changeTyp('D')
+        }})"></component-button>
+                
+                <component-spacer clazz="minPaddingRight"></component-spacer>
+
+                <component-button text="${this.getI18NValue('balco_kreditor')}" .selected="${this.kreditorSelected}" @click="${() => {
+            this.changeTyp('K')
+        }})"></component-button>
+                    
+         </component-flex-container>
+                 
+             <component-flex-container gridClazz="grid_100 maxPadding" columnFlexBasisValue="100%">
+          
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
         }}"></component-table>
@@ -41,14 +60,32 @@ export class MatchingPage extends DefaultTemplate {
 
     }
 
+    private changeTyp(newTyp: string) {
+        this.typ = newTyp;
+        switch (newTyp) {
+            case 'D':
+                this.kreditorSelected = false;
+                this.debitorSelected = true;
+                break;
+            case 'K':
+                this.kreditorSelected = true;
+                this.debitorSelected = false;
+                break;
+        }
+        this.tableInputData.requestParams = 'typ=' + this.typ + '&idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl);
+    }
+
     protected inputDataChanged(): void {
         super.inputDataChanged();
         this.tableInputData = <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,
-            requestPath: '/MATCHING/MATCHING/BY_IDL/' + BALCO_DATA_STORE.getSelectedCompany().idl,
+            requestPath: '/MATCHING/MATCHING/BY_IDL',
+            requestParams: 'typ=' + this.typ + '&idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
             page: 0,
             size: 5,
             sort: '',
+            sorting: false,
+            filtering: false,
             headers: [
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},

@@ -6,3 +6,7 @@ input {
     width: 100%;
     padding-left: var(--min-padding);
 }
+
+input[type="checkbox"] {
+    width: auto;
+}

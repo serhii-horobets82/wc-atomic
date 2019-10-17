@@ -2,7 +2,6 @@ import {LinkComponent} from '../atoms/link/component';
 import {AbstractComponent} from './component/component';
 import {TextComponent} from '../atoms/text/component';
 import {ButtonComponent} from '../atoms/button/component';
-import {CheckboxComponent} from '../input/checkbox/component';
 import {CodeComponent} from '../atoms/code/component';
 import {ComboboxComponent} from '../input/combobox/component';
 import {ImgComponent} from '../atoms/img/component';
@@ -81,9 +80,6 @@ export class ComponentLoader {
             case FormElementComponent.IDENTIFIER:
                 component = new FormElementComponent();
                 break;
-            case CheckboxComponent.IDENTIFIER:
-                component = new CheckboxComponent();
-                break;
             case SpacerComponent.IDENTIFIER:
                 component = new SpacerComponent();
                 break;
@@ -104,9 +100,6 @@ export class ComponentLoader {
                 break;
             case DatalistComponent.IDENTIFIER:
                 component = new DatalistComponent();
-                break;
-            case CheckboxComponent.IDENTIFIER:
-                component = new CheckboxComponent();
                 break;
             case CodeComponent.IDENTIFIER:
                 component = new CodeComponent();

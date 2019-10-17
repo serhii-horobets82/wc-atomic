@@ -17,10 +17,12 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     content: AbstractInputData[] = [];
 
     render() {
-        return html`<div>
-                        TODO:
+        return html`
+                <div class="listItem">
+                    <component-flex-container>
                         <slot></slot>                           
-                    </div>
+                    </component-flex-container>
+                </div>
       `;
     }
 
