@@ -139,7 +139,7 @@ export class BalcoDataStore {
         let item: FileUpload | null = LOCAL_STORE.getItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl());
         if (item == null) {
             item = <FileUpload>{response: {}, files: []};
-            this.setLastFileUpload(item);
+            LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), item);
         }
         return item;
     }
