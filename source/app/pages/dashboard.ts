@@ -1,7 +1,7 @@
 import {customElement, html, property, TemplateResult} from "lit-element";
 import {DefaultTemplate} from "../../templates/default/template";
 import {BalanceOverview, User} from "../data/data";
-import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {getDefaultTemplateInputData} from "../app-showcase";
 import {BALCO_DATA_STORE, BalcoDataChannels} from "../data/balco_data";
 import {I18N} from "../../util/i18n-util";
 import {baseHelper} from "../../util/base";
@@ -14,7 +14,7 @@ export class DashboardPage extends DefaultTemplate {
 
     constructor() {
         super();
-        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
+        this.inputData = getDefaultTemplateInputData();
         this.user = BALCO_DATA_STORE.getUser();
         this.uiRefreshChannels = [BalcoDataChannels.BALANCE_OVERVIEW_D, BalcoDataChannels.BALANCE_OVERVIEW_K];
     }

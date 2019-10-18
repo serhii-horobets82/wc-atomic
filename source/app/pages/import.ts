@@ -3,22 +3,23 @@ import {DefaultTemplate} from "../../templates/default/template";
 
 import {InputDataChangeEvent} from "../../input/input/model";
 import {BALCO_DATA_STORE} from "../data/balco_data";
-import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {guard} from "lit-html/directives/guard";
 import {repeat} from "lit-html/directives/repeat";
 import {FileUploadItem} from "../../util/http-client/http-client";
+import {InputComponent} from "../../input/input/component";
 
 @customElement('page-import')
 export class ImportPage extends DefaultTemplate {
 
     constructor() {
         super();
-        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
+        this.inputData = getDefaultTemplateInputData();
     }
 
     @query('#checkbox')
-    checkbox: HTMLInputElement | undefined;
+    checkbox: InputComponent | undefined;
 
     @property()
     files: FileUploadItem[] = BALCO_DATA_STORE.getLastFileUpload().files;
@@ -36,6 +37,7 @@ export class ImportPage extends DefaultTemplate {
                     <component-spacer clazz="mediumPaddingTop"></component-spacer>
                     <component-inputfield type="file" @component-inputfield-change="${(event: CustomEvent) => this.upload(event)}"></component-inputfield>
                     
+                    <component-link href="http://v220190910399797452.supersrv.de/img/example.csv">Beispiel CSV</component-link>
                     
                     <component-list>
                     <component-list-item>
@@ -55,6 +57,7 @@ export class ImportPage extends DefaultTemplate {
                     <component-list-item>
                         <component-text text="${file.filename}"></component-text>
                         <component-text text="${file.success ? this.getI18NValue('import_ok') : this.getI18NValue('import_failure')}"></component-text>
+                        <component-text text="${file.uploadDate}"></component-text>
                     </component-list-item>
                           
                         `
@@ -72,7 +75,7 @@ export class ImportPage extends DefaultTemplate {
     private upload(event: CustomEvent) {
         let data: InputDataChangeEvent = event.detail;
         let files = data.element.files;
-        HTTP_CLIENT.uploadFiles('/BALANCE/CSV/'.concat(BALCO_DATA_STORE.getSelectedCompany().idl).concat('/').concat(this.checkbox != undefined ? this.checkbox.checked ? 'true' : 'false' : 'false'), files).then(fileUpload => {
+        HTTP_CLIENT.uploadFiles('/BALANCE/CSV/'.concat(BALCO_DATA_STORE.getSelectedCompany().idl).concat('/').concat(this.checkbox != undefined ? this.checkbox.getOutputData().value : 'false'), files).then(fileUpload => {
             BALCO_DATA_STORE.setLastFileUpload(fileUpload);
             this.files = fileUpload.files;
         }).catch(fileUpload => {

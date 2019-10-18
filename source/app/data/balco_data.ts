@@ -31,7 +31,7 @@ export class BalcoDataStore {
         if (konzerne != null) {
             konzerne.forEach(konzern => {
                 if (konzern.idl == selectedIDL) {
-                    console.log('ändere Konzern: ' + selectedIDL)
+                    console.log('ändere Konzern: ' + selectedIDL);
                     SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, konzern);
                     let myCompaniesCID: ComboboxInputData = this.getMyCompaniesCID();
                     myCompaniesCID.selectedValue = selectedIDL;
@@ -52,7 +52,7 @@ export class BalcoDataStore {
                 text: companyDTO.idl.concat(' - ').concat(companyDTO.firmenname),
                 value: companyDTO.idl
             });
-        })
+        });
 
         let myCompanies: ComboboxInputData = <ComboboxInputData>{
             componentIdentifier: ComboboxComponent.IDENTIFIER,
@@ -136,7 +136,7 @@ export class BalcoDataStore {
     }
 
     getLastFileUpload() {
-        let item: FileUpload | null = LOCAL_STORE.getItem(BalcoDataChannels.IMPORT_LAST_UPLOAD);
+        let item: FileUpload | null = LOCAL_STORE.getItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl());
         if (item == null) {
             item = <FileUpload>{response: {}, files: []};
             this.setLastFileUpload(item);
@@ -145,7 +145,13 @@ export class BalcoDataStore {
     }
 
     setLastFileUpload(fileUpload: FileUpload) {
-        LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD, fileUpload);
+        let lastFileUpload: FileUpload = this.getLastFileUpload();
+        if (lastFileUpload != null) {
+            lastFileUpload.files.forEach(value => {
+                fileUpload.files.push(value);
+            });
+        }
+        LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), fileUpload);
     }
 
     async loadBalanceData() {
@@ -158,6 +164,10 @@ export class BalcoDataStore {
         let responseBalanceOverviewBodyD = await responseBalanceOverviewD.text();
         let balanceOverviewD: BalanceOverview = JSON.parse(responseBalanceOverviewBodyD);
         BALCO_DATA_STORE.saveBalanceOverviewD(balanceOverviewD);
+    }
+
+    private getSelectedIdl(): string {
+        return this.getSelectedCompany().idl;
     }
 }
 

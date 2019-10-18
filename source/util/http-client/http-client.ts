@@ -35,6 +35,7 @@ export interface HttpClientIF {
 export interface FileUploadItem {
     filename: string;
     success: boolean;
+    uploadDate: Date;
     file: File;
     response: any;
 
@@ -102,7 +103,8 @@ export class HttpClient {
                     file: f,
                     response: response,
                     filename: f.name,
-                    success: response.ok
+                    success: response.ok,
+                    uploadDate: new Date(),
                 };
                 fileUpload.files.push(fileItem);
             }

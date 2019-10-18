@@ -7,11 +7,10 @@ import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
 import {ButtonInputData} from "../../atoms/button/model";
-import {InputComponent} from "../../input/input/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
-import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 
 
@@ -20,7 +19,7 @@ export class BalancePage extends DefaultTemplate {
 
     constructor() {
         super();
-        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
+        this.inputData = getDefaultTemplateInputData();
     }
 
     @property()
@@ -86,7 +85,7 @@ export class BalancePage extends DefaultTemplate {
                 },
                 <TableHeaderInputData>{
                     componentInputData: <InputInputData>{
-                        componentIdentifier: InputComponent.IDENTIFIER,
+                        componentIdentifier: TextComponent.IDENTIFIER,
                         type: 'number'
                     },
                     columnKey: 'saldo',

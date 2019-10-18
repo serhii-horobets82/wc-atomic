@@ -7,7 +7,7 @@ import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
-import {DEFAULT_TEMPLATE_INPUT_DATA} from "../app-showcase";
+import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 
 @customElement('page-matching')
@@ -15,7 +15,7 @@ export class MatchingPage extends DefaultTemplate {
 
     constructor() {
         super();
-        this.inputData = DEFAULT_TEMPLATE_INPUT_DATA;
+        this.inputData = getDefaultTemplateInputData();
     }
 
     @property()

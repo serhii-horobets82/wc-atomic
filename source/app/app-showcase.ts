@@ -61,7 +61,8 @@ export function getNAV(): NavigationInputData {
 }
 
 
-export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplateModel>{
+export function getDefaultTemplateInputData(): DefaultTemplateModel {
+    return <DefaultTemplateModel>{
     componentIdentifier: DefaultTemplate.IDENTIFIER,
     dataReceiverChannels: [BalcoDataChannels.SELECTED_COMPANY],
     navigationInputData: getNAV(),
@@ -84,6 +85,7 @@ export const DEFAULT_TEMPLATE_INPUT_DATA: DefaultTemplateModel = <DefaultTemplat
     },
     title: 'Component Overview',
     componentInputData: [],
+    }
 }
 
 

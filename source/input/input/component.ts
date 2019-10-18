@@ -101,10 +101,23 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     }
 
     getOutputData(): KeyValueData {
+
+        let value = this.textfieldElemet != null ? this.textfieldElemet.value : this.value;
+
+        switch (this.type) {
+            case HTMLInputTypes.CHECKBOX:
+                value = this.textfieldElemet != null ? baseHelper.getValue(this.textfieldElemet.checked, false) : false;
+                break;
+            default:
+                break;
+
+        }
+
         return <KeyValueData>{
             key: this.name,
-            value: this.textfieldElemet != null ? this.textfieldElemet.value : this.value,
+            value: value,
         };
+
     }
 
     getEventList(): string[] {
