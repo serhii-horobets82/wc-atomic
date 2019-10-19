@@ -108,7 +108,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 <component-toolbar>
                 
                   <component-spacer slot="leftComponents" clazz="minPaddingLeft"></component-spacer>
-                  <span slot="leftComponents">${(this.getItemSize() * (this.page - 1)) + 1} - ${(this.getItemSize() * (this.page - 1) + this.numberOfElements)} ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span>
+                  <span slot="leftComponents">${this.currentPageItemStartIndex()} - ${this.currentPageItemEndIndex()} ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span>
                                
                   <span slot="mainComponents">${this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page'))}&nbsp;</span>
                   <component-combobox slot="mainComponents" .inputData="${this.sizeComboboxInputData}"  @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"></component-combobox>
@@ -529,5 +529,13 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     private getItemSize() {
         let size: number = Number(this.sizeComboboxInputData.selectedValue);
         return size;
+    }
+
+    private currentPageItemStartIndex(): Number {
+        return this.totalElements == 0 ? 0 : (this.getItemSize() * (this.page - 1)) + 1;
+    }
+
+    private currentPageItemEndIndex() {
+        return (this.getItemSize() * (this.page - 1) + this.numberOfElements);
     }
 }
