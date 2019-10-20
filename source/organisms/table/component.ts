@@ -194,7 +194,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                     `
                     )}
                            </div>
-                           TODO: Row Inhalt
                         `
                 )}
                   `

@@ -43,6 +43,19 @@ export const HTTP_CLIENT: HttpClient = new HttpClient(<HttpClientIF>{
     logoutPath: '/dologout',
 });
 
+export interface Retification   {
+    src_id: number;
+    src_idl: string;
+    src_nummer: string;
+    src_bezeichnung: string;
+    src_typ: string;
+    src_saldo: number;
+    dest_idl: string;
+    dest_nummer: string;
+    dest_bezeichnung: string;
+    dest_typ: string;
+    dest_saldo: number;
+}
 
 export interface BalanceOverview {
     typ: string;

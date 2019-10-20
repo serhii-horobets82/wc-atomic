@@ -81,7 +81,7 @@ export class RetificationPage extends DefaultTemplate {
         super.inputDataChanged();
         this.tableInputData = <TableInputData>{
             componentIdentifier: TableComponent.IDENTIFIER,
-            requestPath: '/MATCHING/RETIFICATION/BY_IDL',
+            requestPath: '/RETIFICATION/RETIFICATION/BY_IDL',
             requestParams: 'typ=' + this.typ + '&idl='.concat(BALCO_DATA_STORE.getSelectedCompany().idl),
             page: 0,
             size: 10,
@@ -91,23 +91,33 @@ export class RetificationPage extends DefaultTemplate {
             headers: [
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                    columnKey: 'dest_idl',
+                    columnKey: 'src_nummer',
                     searchValue: '', widthPercent: 10,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                    columnKey: 'dest_firmenname',
-                    searchValue: '', widthPercent: 50,
+                    columnKey: 'src_bezeichnung',
+                    searchValue: '', widthPercent: 30,
                 },
                 <TableHeaderInputData>{
-                    componentInputData: <InputInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    componentInputData: <InputInputData>{componentIdentifier: InputComponent.IDENTIFIER},
                     columnKey: 'src_saldo',
-                    searchValue: '', widthPercent: 20,
+                    searchValue: '', widthPercent: 10,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'dest_nummer',
+                    searchValue: '', widthPercent: 10,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'dest_bezeichnung',
+                    searchValue: '', widthPercent: 30,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <InputInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_saldo',
-                    searchValue: '', widthPercent: 20,
+                    searchValue: '', widthPercent: 10,
                 }
             ]
         };

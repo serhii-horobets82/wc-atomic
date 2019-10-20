@@ -57,7 +57,7 @@ export class ImportPage extends DefaultTemplate {
                     <component-list-item>
                         <component-text text="${file.filename}"></component-text>
                         <component-text text="${file.success ? this.getI18NValue('import_ok') : this.getI18NValue('import_failure')}"></component-text>
-                        <component-text text="${file.uploadDate}"></component-text>
+                        <component-text text="${new Date(file.uploadDate).toLocaleString()}"></component-text>
                     </component-list-item>
                           
                         `
