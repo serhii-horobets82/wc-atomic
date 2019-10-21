@@ -2,6 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../../abstract/component/component';
 import {AbstractInputData} from "../../../abstract/component/model";
 import {ListItemInputData} from "./model";
+import {baseHelper} from "../../../util/base";
 
 const componentCSS = require('./component.css');
 
@@ -16,9 +17,13 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     @property()
     content: AbstractInputData[] = [];
 
+    @property()
+    clazz: string = '';
+
+
     render() {
         return html`
-                <div class="listItem">
+                <div class="listItem ${this.clazz}">
                     <component-flex-container>
                         <slot></slot>                           
                     </component-flex-container>
@@ -38,9 +43,8 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
     }
 
     protected inputDataChanged() {
+        this.clazz = baseHelper.getValue(this.inputData.clazz, '');
         this.content = this.inputData.content;
-
-
     }
 
 }

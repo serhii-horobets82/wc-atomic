@@ -1,5 +1,5 @@
 .container {
-    height: calc(100vh - var(--toolbar-height));
+    height: calc(100vh - var(--menubar-height));
     width: 100%;
     padding: 0;
     margin: 0;
@@ -7,7 +7,7 @@
 #header {
     position: fixed;
     width: calc(100%);
-    height: var(--toolbar-height);
+    height: var(--menubar-height);
     right: 0;
     color: var(--app-header-color);
     background-color: var(--app-header-background-color);
@@ -17,12 +17,12 @@
     transition: width 0.5s linear;
 }
 #menu {
-    height: calc(100% - var(--toolbar-height));
+    height: calc(100% - var(--menubar-height));
     width: var(--menu-size);
     transition: left 0.5s linear;
     position: fixed;
     z-index: 1;
-    top: var(--toolbar-height);
+    top: var(--menubar-height);
     left: 0;
     overflow-x: hidden;
     color: var(--app-menu-color);
@@ -33,7 +33,7 @@
     transition: left 0.5s linear;
 }
 #main {
-    padding-top: var(--toolbar-height);
+    padding-top: var(--menubar-height);
     color: var(--app-primary-color);
     background-color: var(--app-primary-background-color);
     margin-left: var(--menu-size);

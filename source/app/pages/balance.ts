@@ -52,11 +52,17 @@ export class BalancePage extends DefaultTemplate {
          </component-flex-container>
          
          
-         
-         <component-icon iconClazz="fas fa-circle"></component-icon>Offen (grau)
-         <component-icon iconClazz="fas fa-circle"></component-icon>Bereitgestellt (Gelb) 
-         <component-icon iconClazz="fas fa-circle"></component-icon>Nicht bestätigt (rot)
-         <component-icon iconClazz="fas fa-circle"></component-icon>Bestätigt (grün)
+         <component-toolbar>
+             <component-spacer slot="leftComponents" clazz="maxPaddingLeft"></component-spacer>
+             <component-icon slot="leftComponents" iconClazz="fas fa-circle"></component-icon>
+             <component-text slot="leftComponents">&nbsp;${this.getI18NValue('balco_status_open')}&nbsp;</component-text>
+             <component-icon slot="leftComponents" iconClazz="fas fa-circle warning"></component-icon>
+             <component-text slot="leftComponents">&nbsp;${this.getI18NValue('balco_status_ready')}&nbsp;</component-text> 
+             <component-icon slot="leftComponents" iconClazz="fas fa-circle error"></component-icon>
+             <component-text slot="leftComponents">&nbsp;${this.getI18NValue('balco_status_not_accepted')}&nbsp;</component-text>
+             <component-icon slot="leftComponents" iconClazz="fas fa-circle success"></component-icon>
+             <component-text slot="leftComponents">&nbsp;${this.getI18NValue('balco_status_matched')}&nbsp;</component-text>
+         </component-toolbar>
                  
              <component-flex-container gridClazz="grid_100 maxPadding" columnFlexBasisValue="100%">
           

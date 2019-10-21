@@ -73,7 +73,13 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
         mainInputData: [],
-        rightInputData: [<AuthenticatedIconInputData>{
+        rightInputData: [<TextInputData>{
+            componentIdentifier: TextComponent.IDENTIFIER,
+            text: BALCO_DATA_STORE.getUserString()
+        }, <SpacerInputData>{
+            componentIdentifier: SpacerComponent.IDENTIFIER,
+            clazz: 'mediumPaddingLeft'
+        }, <AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
             isAuthenticated: false,
             loginPage: '#login',

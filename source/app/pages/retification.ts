@@ -106,11 +106,6 @@ export class RetificationPage extends DefaultTemplate {
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
-                    columnKey: 'dest_nummer',
-                    searchValue: '', widthPercent: 10,
-                },
-                <TableHeaderInputData>{
-                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_bezeichnung',
                     searchValue: '', widthPercent: 30,
                 },
@@ -128,13 +123,22 @@ export class RetificationPage extends DefaultTemplate {
 
         let source: any = data.row.source;
 
-        let newValueData = data.newValue.value;
-        let urlSuffix = baseHelper.isNotBlank(newValueData) ? '/MATCHING/MATCH/'.concat(source.id).concat('/').concat(newValueData) : '/MATCHING/UNMATCH/'.concat(source.id);
+        let newValueData = data.newValue.outputData.value;
+        if (baseHelper.isBlank(newValueData)) {
+            return;
+        }
+        let urlSuffix = '/RETIFICATION/UPDATE_SALDO/'.concat(source.src_id).concat('/').concat(newValueData);
         console.log('matching: ' + urlSuffix);
         let responsePromise = HTTP_CLIENT.post(urlSuffix, {});
         responsePromise.then(value => {
             console.log('matching/unmatching ok ? ' + value.status);
         })
+
+    }
+
+    private changeSaldo(event: CustomEvent): void {
+        let data = event.detail;
+        console.log(data);
 
     }
 }

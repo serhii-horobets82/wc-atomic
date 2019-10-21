@@ -20,7 +20,7 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
 
     render() {
         return html`
-         <div>
+         <div class="list">
             ${guard(
             [this.items],
             () => html`

@@ -1,6 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {TextInputData} from "./model";
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.css');
 
@@ -23,8 +24,8 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
 
    render() {
       return html`
-         <span class="${this.clazz}" style="${this.cssStyle}"
-            >${this.text}</span
+         <span class="text ${this.clazz}" style="${this.cssStyle}"
+            >${this.text}<slot></slot></span
          >
       `;
    }
@@ -41,10 +42,8 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
    }
 
    protected inputDataChanged() {
-      this.text = this.inputData.text !== undefined ? this.inputData.text : '';
-      this.cssStyle =
-         this.inputData.cssStyle !== undefined ? this.inputData.cssStyle : '';
-      this.clazz =
-         this.inputData.clazz !== undefined ? this.inputData.clazz : '';
+      this.text = baseHelper.getValue(this.inputData.text, '');
+      this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
+      this.clazz = baseHelper.getValue(this.inputData.clazz, '');
    }
 }

@@ -44,7 +44,7 @@ export class ImportPage extends DefaultTemplate {
 
 
               <component-list>
-                    <component-list-item>
+                    <component-list-item clazz="contrast">
                         <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('upload_statistik')}"></component-text>
                    </component-list-item>
@@ -55,7 +55,6 @@ export class ImportPage extends DefaultTemplate {
                      ${repeat(
                     this.files,
                     (file) => html`
-
                     <component-list-item>
                         <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${file.filename}"></component-text>
@@ -64,16 +63,11 @@ export class ImportPage extends DefaultTemplate {
                         <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(new Date(file.uploadDate))}"></component-text>
                     </component-list-item>
-                          
                         `
                 )}
                   `
         )}
-                 
                  </component-list>   
-
-
-                
             </component-flex-container>
             
             

@@ -23,7 +23,7 @@ export class DashboardPage extends DefaultTemplate {
         let balanceOverviewD = baseHelper.getValue(BALCO_DATA_STORE.getBalanceOverview('D'), <BalanceOverview>{});
         let balanceOverviewK = baseHelper.getValue(BALCO_DATA_STORE.getBalanceOverview('K'), <BalanceOverview>{});
         return html`
-            <component-flex-container gridClazz="grid_100 alignItemsCenter maxPadding" columnFlexBasisValue="50%" >
+            <component-flex-container gridClazz="grid_100 alignItemsTop maxPadding" columnFlexBasisValue="50%" >
                 <div>
                     <component-h2 text="${this.getI18NValue('balco_welcome_user_prefix')} ${BALCO_DATA_STORE.getUserString()}" subtext="${BALCO_DATA_STORE.getSelectedCompany().firmenname}"></component-h2>
                     <component-text text="${this.getI18NValue('balco_welcome_text')}"></component-text>
@@ -60,54 +60,76 @@ export class DashboardPage extends DefaultTemplate {
                 </div>
                <div>
                 <component-list>
-                    <component-list-item>
+                    <component-list-item clazz="contrast">
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('balco_debitor')}"></component-text>
                     </component-list-item>
                     <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('saldo_importiert')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewD.saldoSumme)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_importierter_datensaetze')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlImportierteSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_zu_bestaetigender_salden')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlZuBestaetigenderSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_salden_in_konstenabstimmung')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlKontenInSaldenabstimmung)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_saldenbestaetigungen')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlSaldenbestaetigungen)}"></component-text>
                     </component-list-item>
                 </component-list>
                 </div>
                 <div>
                  <component-list>
-                    <component-list-item>
+                    <component-list-item clazz="contrast">
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('balco_kreditor')}"></component-text>
                     </component-list-item>
                     <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('saldo_importiert')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewK.saldoSumme)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_importierter_datensaetze')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlImportierteSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_zu_bestaetigender_salden')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlZuBestaetigenderSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_salden_in_konstenabstimmung')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlKontenInSaldenabstimmung)}"></component-text>
                     </component-list-item>
                      <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${I18N.getValue('anzahl_saldenbestaetigungen')}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlSaldenbestaetigungen)}"></component-text>
                     </component-list-item>
                   </component-list>

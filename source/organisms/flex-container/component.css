@@ -13,6 +13,11 @@
    justify-content: flex-start;
 }
 
+.alignItemsCenter,
+::slotted(.alignItemsCenter) {
+   align-items: center;
+}
+
 .alignItemsTop,
 ::slotted(.alignItemsTop) {
    align-self: flex-start;

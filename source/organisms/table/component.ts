@@ -24,7 +24,6 @@ import {ButtonComponent} from "../../atoms/button/component";
 import {ButtonInputData} from "../../atoms/button/model";
 import {KeyValueData} from "../form/model";
 import {IconComponent} from "../../atoms/icon/component";
-import {IconInputData} from "../../atoms/icon/model";
 
 const componentCSS = require('./component.css');
 
@@ -498,7 +497,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             case IconComponent.IDENTIFIER:
                 return html`<component-icon .inputData="${componentInputData}"></component-icon>`;
             case InputComponent.IDENTIFIER:
-                return html`<component-inputfield .inputData="${componentInputData}"></component-inputfield>`;
+                return html`<component-inputfield .inputData="${componentInputData}"  @component-inputfield-change="${(event: CustomEvent) => {
+                    this.createColumnChangeEvent(row, event, rowIndex, columnIndex)
+                }}"></component-inputfield>`;
             case DatalistComponent.IDENTIFIER:
                 return html`<component-datalist .inputData="${componentInputData}" @combobox-datalist-selection-change="${(event: CustomEvent) => {
                     this.createColumnChangeEvent(row, event, rowIndex, columnIndex)

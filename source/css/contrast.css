@@ -1,0 +1,4 @@
+.contrast {
+    color: var(--app-primary-color-contrast);
+    background-color: var(--app-primary-background-color-contrast);
+}

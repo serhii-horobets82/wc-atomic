@@ -1,4 +1,4 @@
 .toolbar {
-    height: var(--toolbar-height);
-    line-height: var(--toolbar-height);
+    height: var(--menubar-height);
+    line-height: var(--menubar-height);
 }
