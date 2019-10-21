@@ -9,6 +9,7 @@ import {guard} from "lit-html/directives/guard";
 import {repeat} from "lit-html/directives/repeat";
 import {FileUploadItem} from "../../util/http-client/http-client";
 import {InputComponent} from "../../input/input/component";
+import {baseHelper} from "../../util/base";
 
 @customElement('page-import')
 export class ImportPage extends DefaultTemplate {
@@ -27,7 +28,8 @@ export class ImportPage extends DefaultTemplate {
 
     getContent(): TemplateResult {
         return html`
-            <component-flex-container gridClazz="grid_100 maxPadding"  itemClazz="alignItemsTop" columnFlexBasisValue="50%" >
+            <component-flex-container gridClazz="grid_75 maxPaddingTop"  itemClazz="alignItemsTop" .columnFlexBasisValues="${['50%', '50%', '100%']}" >
+                
                 <component-img clazz="imageWidthHundred" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL}import.jpg"></component-img>
                 <component-flex-container gridClazz="grid_100 alignItemsCenter mediumPaddingLeft" columnFlexBasisValue="100%" >
                     <component-h1 text="${this.getI18NValue('balco_upload_header_text')}" subtext="${this.getI18NValue('balco_upload_header_subtext')}"></component-h1>
@@ -36,16 +38,16 @@ export class ImportPage extends DefaultTemplate {
                     <component-inputfield id="checkbox" type="checkbox">${this.getI18NValue('balco_upload_delete_old_values_checkbox_text')}</component-inputfield>
                     <component-spacer clazz="mediumPaddingTop"></component-spacer>
                     <component-inputfield type="file" @component-inputfield-change="${(event: CustomEvent) => this.upload(event)}"></component-inputfield>
-                    
-                    <component-link href="http://v220190910399797452.supersrv.de/img/example.csv">Beispiel CSV</component-link>
-                    
-                    <component-list>
+                    <component-link href="${BALCO_DATA_STORE.IMG_RESOURCE_URL}/example.csv">Beispiel CSV</component-link>
+                </component-flex-container>
+
+
+
+              <component-list>
                     <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('upload_statistik')}"></component-text>
                    </component-list-item>
-                     
-             
-                    
                      ${guard(
             this.files,
             () =>
@@ -55,9 +57,12 @@ export class ImportPage extends DefaultTemplate {
                     (file) => html`
 
                     <component-list-item>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${file.filename}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${file.success ? this.getI18NValue('import_ok') : this.getI18NValue('import_failure')}"></component-text>
-                        <component-text text="${new Date(file.uploadDate).toLocaleString()}"></component-text>
+                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
+                        <component-text text="${baseHelper.beautifyText(new Date(file.uploadDate))}"></component-text>
                     </component-list-item>
                           
                         `
@@ -66,9 +71,14 @@ export class ImportPage extends DefaultTemplate {
         )}
                  
                  </component-list>   
-                    
-                </component-flex-container>
+
+
+                
             </component-flex-container>
+            
+            
+            
+            
 `;
     }
 

@@ -30,6 +30,17 @@ export class BaseHelper {
         }
         return value;
     }
+
+    beautifyText(value: any): string {
+        if (value == null || value == undefined) {
+            return "";
+        } else if (value instanceof Number) {
+            return value.toLocaleString();
+        } else if (value instanceof Date) {
+            return value.toLocaleString();
+        }
+        return value;
+    }
 }
 
 export const baseHelper = new BaseHelper();

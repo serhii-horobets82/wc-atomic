@@ -6,12 +6,12 @@ import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../.
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {ButtonInputData} from "../../atoms/button/model";
-import {ButtonComponent} from "../../atoms/button/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
+import {IconComponent} from "../../atoms/icon/component";
+import {IconInputData} from "../../atoms/icon/model";
 
 
 @customElement('page-balance')
@@ -50,6 +50,13 @@ export class BalancePage extends DefaultTemplate {
         }})"></component-button>
                     
          </component-flex-container>
+         
+         
+         
+         <component-icon iconClazz="fas fa-circle"></component-icon>Offen (grau)
+         <component-icon iconClazz="fas fa-circle"></component-icon>Bereitgestellt (Gelb) 
+         <component-icon iconClazz="fas fa-circle"></component-icon>Nicht bestätigt (rot)
+         <component-icon iconClazz="fas fa-circle"></component-icon>Bestätigt (grün)
                  
              <component-flex-container gridClazz="grid_100 maxPadding" columnFlexBasisValue="100%">
           
@@ -99,7 +106,10 @@ export class BalancePage extends DefaultTemplate {
                     widthPercent: 30,
                 },
                 <TableHeaderInputData>{
-                    componentInputData: <ButtonInputData>{componentIdentifier: ButtonComponent.IDENTIFIER},
+                    componentInputData: <IconInputData>{
+                        componentIdentifier: IconComponent.IDENTIFIER,
+                        iconClazz: 'fas fa-circle'
+                    },
                     columnKey: 'status',
                     searchValue: '',
                     widthPercent: 10,

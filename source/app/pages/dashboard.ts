@@ -65,23 +65,23 @@ export class DashboardPage extends DefaultTemplate {
                     </component-list-item>
                     <component-list-item>
                         <component-text text="${I18N.getValue('saldo_importiert')}"></component-text>
-                        <component-text text="${balanceOverviewD.saldoSumme}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewD.saldoSumme)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_importierter_datensaetze')}"></component-text>
-                        <component-text text="${balanceOverviewD.anzahlImportierteSalden}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlImportierteSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_zu_bestaetigender_salden')}"></component-text>
-                        <component-text text="${balanceOverviewD.anzahlZuBestaetigenderSalden}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlZuBestaetigenderSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_salden_in_konstenabstimmung')}"></component-text>
-                        <component-text text="${balanceOverviewD.anzahlKontenInSaldenabstimmung}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlKontenInSaldenabstimmung)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_saldenbestaetigungen')}"></component-text>
-                        <component-text text="${balanceOverviewD.anzahlSaldenbestaetigungen}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewD.anzahlSaldenbestaetigungen)}"></component-text>
                     </component-list-item>
                 </component-list>
                 </div>
@@ -92,23 +92,23 @@ export class DashboardPage extends DefaultTemplate {
                     </component-list-item>
                     <component-list-item>
                         <component-text text="${I18N.getValue('saldo_importiert')}"></component-text>
-                        <component-text text="${balanceOverviewK.saldoSumme}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewK.saldoSumme)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_importierter_datensaetze')}"></component-text>
-                        <component-text text="${balanceOverviewK.anzahlImportierteSalden}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlImportierteSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_zu_bestaetigender_salden')}"></component-text>
-                        <component-text text="${balanceOverviewK.anzahlZuBestaetigenderSalden}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlZuBestaetigenderSalden)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_salden_in_konstenabstimmung')}"></component-text>
-                        <component-text text="${balanceOverviewK.anzahlKontenInSaldenabstimmung}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlKontenInSaldenabstimmung)}"></component-text>
                     </component-list-item>
                      <component-list-item>
                         <component-text text="${I18N.getValue('anzahl_saldenbestaetigungen')}"></component-text>
-                        <component-text text="${balanceOverviewK.anzahlSaldenbestaetigungen}"></component-text>
+                        <component-text text="${baseHelper.beautifyText(balanceOverviewK.anzahlSaldenbestaetigungen)}"></component-text>
                     </component-list-item>
                   </component-list>
                 </div>

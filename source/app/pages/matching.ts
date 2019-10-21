@@ -45,6 +45,11 @@ export class MatchingPage extends DefaultTemplate {
                 <component-button text="${this.getI18NValue('balco_kreditor')}" .selected="${this.kreditorSelected}" @click="${() => {
             this.changeTyp('K')
         }})"></component-button>
+
+                <component-spacer clazz="minPaddingRight"></component-spacer>
+
+                <component-button text="${this.getI18NValue('balco_pdf_export_matching')}"></component-button>
+
                     
          </component-flex-container>
                  

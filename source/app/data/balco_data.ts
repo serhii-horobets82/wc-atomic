@@ -77,7 +77,7 @@ export class BalcoDataStore {
     saveKonzerne(companies: Konzern[]) {
         let companyOptions: DatalistOption[] = [];
         companies.forEach(company => {
-            companyOptions.push(<DatalistOption>{text: company.firmenname, value: company.idl + ''})
+            companyOptions.push(<DatalistOption>{text: company.idl.concat(' - ').concat(company.firmenname), value: company.idl + ''})
         });
 
         let companyDatalistInputData: DatalistInputData = <DatalistInputData>{

@@ -23,6 +23,8 @@ import {ComboboxComponent} from "../../input/combobox/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {ButtonInputData} from "../../atoms/button/model";
 import {KeyValueData} from "../form/model";
+import {IconComponent} from "../../atoms/icon/component";
+import {IconInputData} from "../../atoms/icon/model";
 
 const componentCSS = require('./component.css');
 
@@ -341,6 +343,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             case ButtonComponent.IDENTIFIER:
                                 (<ButtonInputData>inputData).text = columnValue;
                                 break;
+                            case IconComponent.IDENTIFIER:
+                                //(<IconInputData>inputData).iconClazz = columnValue;
+                                break;
+
                         }
 
                         columnsInputDatas.push(<ColumnInputData>{componentInputData: inputData});
@@ -489,6 +495,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             case TextComponent.IDENTIFIER:
                 (<TextInputData>componentInputData).clazz = 'ellipsis';
                 return html`<component-text .inputData="${componentInputData}"></component-text>`;
+            case IconComponent.IDENTIFIER:
+                return html`<component-icon .inputData="${componentInputData}"></component-icon>`;
             case InputComponent.IDENTIFIER:
                 return html`<component-inputfield .inputData="${componentInputData}"></component-inputfield>`;
             case DatalistComponent.IDENTIFIER:
