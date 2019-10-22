@@ -1,6 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {IconInputData} from "./model";
+import {baseHelper} from "../../util/base";
 
 const componentCSS = require('./component.scss');
 
@@ -18,10 +19,10 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
     iconClazz: string = '';
 
     @property()
-    title: string = '';
+    cssStyle: string = '';
 
     @property()
-    clickEventData: any = {};
+    title: string = '';
 
     @property()
     clickable: boolean = false;
@@ -51,7 +52,6 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                     "status": this.status,
                     "clickable": this.clickable,
                     "iconClazz": this.iconClazz,
-                    "clickEventData": this.clickEventData
                 }
             );
         }
@@ -67,14 +67,10 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
     }
 
     inputDataChanged() {
-        this.iconClazz =
-            this.inputData.iconClazz !== undefined ? this.inputData.iconClazz : '';
-        this.clickable =
-            this.inputData.clickable !== undefined
-                ? this.inputData.clickable
-                : false;
-        this.status =
-            this.inputData.status !== undefined ? this.inputData.status : 1;
+        this.iconClazz = baseHelper.getValue(this.inputData.iconClazz, '');
+        this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
+        this.status = baseHelper.getValue(this.inputData.status, 1);
+        this.clickable = baseHelper.getValue(this.inputData.clickable, false);
     }
 
     getOutputData(): any {

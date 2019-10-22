@@ -1,25 +1,5 @@
-import {NavigationComponent} from "../../atoms/navigation/component";
-import {NavigationInputData} from "../../atoms/navigation/model";
 import {CorsMode, Credentials, HttpClient, HttpClientIF} from "../../util/http-client/http-client";
 import {AppData} from "../../abstract/app/app";
-import {DefaultTemplateModel} from "../../templates/default/model";
-import {DefaultTemplate} from "../../templates/default/template";
-import {ToolbarInputData} from "../../organisms/toolbar/model";
-import {IconComponent} from "../../atoms/icon/component";
-import {AuthenticatedIconComponent} from "../../molecules/authenticated-icon/component";
-import {ToolbarComponent} from "../../organisms/toolbar/component";
-import {IconInputData} from "../../atoms/icon/model";
-import {BALCO_DATA_STORE, BalcoDataChannels} from "./balco_data";
-import {SpacerInputData} from "../../atoms/spacer/model";
-import {SpacerComponent} from "../../atoms/spacer/component";
-import {TextInputData} from "../../atoms/text/model";
-import {TextComponent} from "../../atoms/text/component";
-import {I18NInputData} from "../../molecules/i18n-selector/model";
-import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
-import {KeyValueData} from "../../organisms/form/model";
-import {TableContent} from "../../organisms/table/model";
-import {I18N, LanguageItem} from "../../util/i18n-util";
-import {AuthenticatedIconInputData} from "../../molecules/authenticated-icon/model";
 
 export const CONFIGURATION: AppData = <AppData>{
     isSecured: true,

@@ -2,6 +2,7 @@ import {AbstractInputData} from "../../abstract/component/model";
 
 export interface TableHeaderInputData {
     columnKey: string;
+    valueProperty?: string;
     widthPercent?: number;
     sortingIconClazz?: string;
     searchValue: string;

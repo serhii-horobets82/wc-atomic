@@ -116,7 +116,8 @@ export class BalancePage extends DefaultTemplate {
                         componentIdentifier: IconComponent.IDENTIFIER,
                         iconClazz: 'fas fa-circle'
                     },
-                    columnKey: 'status',
+                    columnKey: 'statusColor',
+                    valueProperty: 'iconClazz',
                     searchValue: '',
                     widthPercent: 10,
                 }

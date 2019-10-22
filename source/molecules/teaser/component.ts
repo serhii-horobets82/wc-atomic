@@ -6,7 +6,7 @@ import {AbstractComponent} from '../../abstract/component/component';
 import {TeaserContainerInputData} from './model';
 import {TeaserElementInputData} from './teaser-element/model';
 import {TeaserElementComponent} from './teaser-element/component';
-import {SHADOW_DOM_HELPER} from "../../util/helper";
+import {SLOT_HELPER} from "../../util/helper";
 import {TeaserElementMenuComponent} from "./teaser-menu-element/component";
 
 const componentCSS = require('./component.css');
@@ -30,7 +30,10 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
 
    constructor() {
       super();
-      addEventListener('component-teaser-menu-element-click', (event) => this.selectItemElement(event), false);
+      addEventListener('component-teaser-menu-element-click', (event) => this.selectSlotItemEvent(event), false);
+      setInterval(() => {
+         this.nextItem()
+      }, 10000);
    }
 
    render() {
@@ -58,7 +61,7 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
                   this.items,
                   (item) => html`
                               <component-teaser-menu-element
-                                 @click="${() => this.selectItem(item)}"
+                                 @click="${() => this.selectShadowDomItem(item)}"
                                  .inputData=${item}
                               ></component-teaser-menu-element>
                            `
@@ -71,16 +74,23 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
       `;
    }
 
-   selectItemElement(customEvent: Event) {
+
+   selectSlotItemEvent(customEvent: Event) {
       let teaserElementMenuComponent: TeaserElementMenuComponent = (<CustomEvent>customEvent).detail;
+      this.selectSlotItem(teaserElementMenuComponent);
+   }
+
+   selectSlotItem(teaserElementMenuComponent: TeaserElementMenuComponent) {
       console.log('teaserElementMenuComponent clicked');
-      SHADOW_DOM_HELPER.setProperty(this.menuSlotElement, 'selected', false, TeaserElementMenuComponent, null);
+      SLOT_HELPER.setProperty(this.menuSlotElement, 'selected', false, TeaserElementMenuComponent, null);
+      teaserElementMenuComponent.inputData.selected = true;
       teaserElementMenuComponent.selected = true;
-      let indexOf: number = SHADOW_DOM_HELPER.indexOf(this.menuSlotElement, teaserElementMenuComponent);
 
-      SHADOW_DOM_HELPER.setProperty(this.contentSlotElement, 'selected', false, TeaserElementComponent, null);
+      let indexOf: number = SLOT_HELPER.indexOf(this.menuSlotElement, teaserElementMenuComponent);
+      console.log(indexOf);
 
-      let teaserElementComponent: TeaserElementComponent | null = SHADOW_DOM_HELPER.getElement(this.contentSlotElement, TeaserElementComponent, indexOf);
+      SLOT_HELPER.setProperty(this.contentSlotElement, 'selected', false, TeaserElementComponent, null);
+      let teaserElementComponent: TeaserElementComponent | null = SLOT_HELPER.getElement(this.contentSlotElement, TeaserElementComponent, indexOf);
       if (teaserElementComponent != null) {
          teaserElementComponent.inputData.selected = true;
          teaserElementComponent.selected=true;
@@ -88,7 +98,19 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
 
    }
 
-   selectItem(item: TeaserElementInputData) {
+   nextItem() {
+      console.log("select next slot element");
+      let teaserElementMenuComponent: TeaserElementMenuComponent | null = SLOT_HELPER.getElementByProperty(this.menuSlotElement, TeaserElementMenuComponent, 'selected');
+      console.info(JSON.stringify(teaserElementMenuComponent));
+      if (teaserElementMenuComponent != null) {
+         let teaserElementMenuComponentNext: TeaserElementMenuComponent | null = SLOT_HELPER.nextElement(this.menuSlotElement, TeaserElementMenuComponent, teaserElementMenuComponent);
+         if (teaserElementMenuComponentNext != null) {
+            this.selectSlotItem(teaserElementMenuComponentNext);
+         }
+      }
+   }
+
+   selectShadowDomItem(item: TeaserElementInputData) {
       console.log('item clicked, state=' + item.selected + JSON.stringify(item));
 
       this.items.forEach((value) => {
@@ -120,7 +142,7 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
    protected inputDataChanged() {
       this.items = baseHelper.getValue(this.inputData.items, []);
       if (this.items.length > 0) {
-         this.selectItem(this.items[0]);
+         this.selectShadowDomItem(this.items[0]);
       }
 
       if (this.contentSlotElement != null) {
@@ -141,4 +163,5 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
          }
       }
    }
+
 }

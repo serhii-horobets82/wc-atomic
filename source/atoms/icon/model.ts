@@ -13,7 +13,8 @@ import {AbstractInputData} from "../../abstract/component/model";
  * 3 = passiv
  */
 export interface IconInputData extends AbstractInputData {
-    iconClazz: string;
-    clickable: boolean;
-    status: number;
+    iconClazz?: string;
+    cssStyle?: string;
+    clickable?: boolean;
+    status?: number;
 }

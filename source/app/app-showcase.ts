@@ -51,11 +51,11 @@ export function getNAV(): NavigationInputData {
             languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
         }],
         links: [
-            {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: ''},
-            {text: I18N.getValue('balco_import_page'), href: '#import', icon: ''},
-            {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: ''},
-            {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: ''},
-            {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: ''},
+            {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: 'fas fa-tasks'},
+            {text: I18N.getValue('balco_import_page'), href: '#import', icon: 'fas fa-file-import'},
+            {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: 'fas fa-sync-alt'},
+            {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: 'fas fa-balance-scale-right'},
+            {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: 'fas fa-check-double'},
         ],
     };
 }
@@ -73,7 +73,13 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
         mainInputData: [],
-        rightInputData: [<TextInputData>{
+        rightInputData: [<IconInputData>{
+            componentIdentifier: IconComponent.IDENTIFIER,
+            iconClazz: "fas fa-users"
+        }, <SpacerInputData>{
+            componentIdentifier: SpacerComponent.IDENTIFIER,
+            clazz: 'mediumPaddingLeft'
+        }, <TextInputData>{
             componentIdentifier: TextComponent.IDENTIFIER,
             text: BALCO_DATA_STORE.getUserString()
         }, <SpacerInputData>{

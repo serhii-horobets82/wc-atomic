@@ -324,6 +324,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         });
 
                         let inputData = baseHelper.clone(tableHeaderInput.componentInputData);
+
                         switch (inputData.componentIdentifier) {
                             case InputComponent.IDENTIFIER:
                                 (<InputInputData>inputData).value = columnValue;
@@ -345,7 +346,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             case IconComponent.IDENTIFIER:
                                 //(<IconInputData>inputData).iconClazz = columnValue;
                                 break;
+                        }
 
+                        if (tableHeaderInput.valueProperty != null) {
+                            inputData[tableHeaderInput.valueProperty] = columnValue;
                         }
 
                         columnsInputDatas.push(<ColumnInputData>{componentInputData: inputData});
