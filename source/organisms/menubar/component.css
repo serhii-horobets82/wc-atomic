@@ -1,4 +1,18 @@
-.toolbar {
-    height: var(--menubar-height);
-    line-height: var(--menubar-height);
+.menubar {
+    width: 100%;
+    display: grid;
+    grid-template-rows: var(--menubar-height);
+    grid-template-columns: var(--menu-size) auto var(--menu-size);
+}
+
+.left {
+    justify-self: start;
+}
+
+.center {
+    justify-self: start;
+}
+
+.right {
+    justify-self: end;
 }

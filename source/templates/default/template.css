@@ -36,9 +36,10 @@
     padding-top: var(--menubar-height);
     color: var(--app-primary-color);
     background-color: var(--app-primary-background-color);
+    min-height: 100%;
     margin-left: var(--menu-size);
     transition: margin-left 0.5s linear;
-    min-height: 100%;
+
 }
 #main.menuClosed {
     margin-left: 0;

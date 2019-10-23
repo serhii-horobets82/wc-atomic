@@ -39,11 +39,11 @@ export interface Retification   {
 
 export interface BalanceOverview {
     typ: string;
-    saldoSumme: number;
-    anzahlImportierteSalden: number;
-    anzahlZuBestaetigenderSalden: number;
-    anzahlKontenInSaldenabstimmung: number;
-    anzahlSaldenbestaetigungen: number;
+    saldoSumme: Number;
+    anzahlImportierteSalden: Number;
+    anzahlZuBestaetigenderSalden: Number;
+    anzahlKontenInSaldenabstimmung: Number;
+    anzahlSaldenbestaetigungen: Number;
 }
 
 export interface Konzern {

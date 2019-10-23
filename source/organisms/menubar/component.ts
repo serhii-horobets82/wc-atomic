@@ -29,7 +29,7 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
     rightInputData: AbstractInputData[] = [];
 
     @property()
-    clazz: string = 'toolbar';
+    clazz: string = 'menubar';
 
     constructor() {
         super();
@@ -37,10 +37,10 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
 
     render() {
         return html`
-         <div class="${this.clazz}">
-            <component-flex-container
-               gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween"
-            >
+         <div class="menubar ${this.clazz}">
+
+            <div class="left">
+
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.leftInputData,
@@ -58,6 +58,11 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
         )}
                   <slot name="leftComponents"></slot>
                </component-flex-container>
+               </div>
+               
+                           <div class="center">
+
+               
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.mainInputData,
@@ -74,6 +79,10 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
                         `
         )}<slot name="mainComponents"></slot>
                </component-flex-container>
+               
+</div>
+            <div class="right">
+               
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.rightInputData,
@@ -91,7 +100,8 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
         )}
                   <slot name="rightComponents"></slot>
                </component-flex-container>
-            </component-flex-container>
+</div>
+
          </div>
       `;
     }
@@ -110,7 +120,7 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
     }
 
     protected inputDataChanged() {
-        this.clazz = baseHelper.getValue(this.inputData.clazz, 'toolbar');
+        this.clazz = baseHelper.getValue(this.inputData.clazz, '');
         this.leftInputData = this.inputData.leftInputData;
         this.mainInputData = this.inputData.mainInputData;
         this.rightInputData = this.inputData.rightInputData;

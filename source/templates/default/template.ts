@@ -74,20 +74,23 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
         let iid: IconInputData = event.detail
         if (baseHelper.isEqual(iid.iconClazz, this.menuSwitchIconClazz)) {
             console.log('menuItemClicked...');
-            if (this.menuCss.length == 0) {
-                this.menuCss = 'menuClosed';
-            } else {
-                this.menuCss = '';
-            }
-
-            if (this.menuElement != undefined)
-                this.menuElement.setAttribute('class', this.menuCss);
-            if (this.mainElement != undefined)
-                this.mainElement.setAttribute('class', this.menuCss);
-            if (this.headerElement != undefined)
-                this.headerElement.setAttribute('class', this.menuCss);
-
+           this.toogleMenu();
         }
+    }
+
+    private toogleMenu() {
+        if (this.menuCss.length == 0) {
+            this.menuCss = 'menuClosed';
+        } else {
+            this.menuCss = '';
+        }
+
+        if (this.menuElement != undefined)
+            this.menuElement.setAttribute('class', this.menuCss);
+        if (this.mainElement != undefined)
+            this.mainElement.setAttribute('class', this.menuCss);
+        if (this.headerElement != undefined)
+            this.headerElement.setAttribute('class', this.menuCss);
     }
 
 }

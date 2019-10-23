@@ -6,6 +6,7 @@ import {guard} from 'lit-html/directives/guard';
 import {ComponentLoader} from "../../abstract/component-loader";
 import {repeat} from 'lit-html/directives/repeat';
 import {baseHelper} from "../../util/base";
+import {router} from "../../util/router";
 
 const componentCSS = require('./component.css');
 
@@ -57,17 +58,14 @@ ${guard(
                         `
         )}
                   <slot name="contentBefore"></slot>
+                
                   
-      <nav>
-        <ul>
             ${this.links.map((linkItem) => html`
-                <li>
-                    <component-icon iconClazz="${linkItem.icon}"></component-icon>
-                    <component-link href="${linkItem.href}" text="${linkItem.text}"></component-link>
-                </li>
+                <div @click="${() => this.clickedMenuItem(linkItem)}" class="${router.getPath() == linkItem.href ? 'navItem selected' : 'navItem'}">
+                    <component-icon iconClazz="${linkItem.icon}" class="navitemIcon"></component-icon>
+                    <component-text>${linkItem.text}</component-text>
+                </div>
             `)}
-        </ul>
-      </nav>
       
       ${guard(
             this.contentAfter,
@@ -100,5 +98,8 @@ ${guard(
     }
 
 
+    private clickedMenuItem(linkItem: NavigationLinkInputData) {
+        router.navigate(linkItem.href);
+    }
 }
 

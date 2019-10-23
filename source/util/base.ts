@@ -34,7 +34,7 @@ export class BaseHelper {
     beautifyText(value: any): string {
         if (value == null || value == undefined) {
             return "";
-        } else if (value instanceof Number) {
+        } else if (value instanceof Number|| typeof value == 'number') {
             return value.toLocaleString();
         } else if (value instanceof Date) {
             return value.toLocaleString();

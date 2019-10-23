@@ -31,35 +31,35 @@ export class DashboardPage extends DefaultTemplate {
                 <div>
                     <component-teaser>
                         <component-teaser-element slot="content" selected="true">
-                            <component-img slot="background" cssStyle="height:480px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_gesellschaft.jpeg'}"></component-img>
+                            <component-img slot="background" cssStyle="height:600px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_gesellschaft.jpeg'}"></component-img>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-h3 text="${I18N.getValue('header_teaser_mandant_content')}"></component-h3>
                                 <compontent-text>${I18N.getValue('teaser_mandant_content')}</compontent-text>
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:480px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_import.jpeg'}"></component-img>
+                            <component-img slot="background" cssStyle="height:600px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_import.jpeg'}"></component-img>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-h3 text="${I18N.getValue('header_teaser_import_content')}"></component-h3>
                                 <compontent-text>${I18N.getValue('teaser_import_content')}</compontent-text>
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:480px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_ic_salden.jpeg'}"></component-img>
+                            <component-img slot="background" cssStyle="height:600px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_ic_salden.jpeg'}"></component-img>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-h3 text="${I18N.getValue('header_teaser_ic_salden_content')}"></component-h3>
                                 <compontent-text>${I18N.getValue('teaser_ic_salden_content')}</compontent-text>
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:480px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_kontenabstimmung.jpeg'}"></component-img>
+                            <component-img slot="background" cssStyle="height:600px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_kontenabstimmung.jpeg'}"></component-img>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-h3 text="${I18N.getValue('header_teaser_kontenabstimmung_mandant_content')}"></component-h3>
                                 <compontent-text>${I18N.getValue('teaser_kontenabstimmung_mandant_content')}</compontent-text>
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:480px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_salden_ok.jpeg'}"></component-img>
+                            <component-img slot="background" cssStyle="height:600px;" src="${BALCO_DATA_STORE.IMG_RESOURCE_URL + 'info_salden_ok.jpeg'}"></component-img>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-h3 text="${I18N.getValue('header_teaser_saldenbeastaetigung_content')}"></component-h3>
                                 <compontent-text>${I18N.getValue('teaser_saldenbeastaetigung_content')}</compontent-text>

@@ -46,9 +46,6 @@ export function getNAV(): NavigationInputData {
         }, BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingTop'
-        }, <I18NInputData>{
-            componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-            languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
         }],
         links: [
             {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: 'fas fa-tasks'},
@@ -72,8 +69,10 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
-        mainInputData: [],
-        rightInputData: [<IconInputData>{
+        mainInputData: [<I18NInputData>{
+            componentIdentifier: I18NSelectorComponent.IDENTIFIER,
+            languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
+        }, <IconInputData>{
             componentIdentifier: IconComponent.IDENTIFIER,
             iconClazz: "fas fa-users"
         }, <SpacerInputData>{
@@ -85,7 +84,8 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
         }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
-        }, <AuthenticatedIconInputData>{
+        }],
+        rightInputData: [<AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
             isAuthenticated: false,
             loginPage: '#login',
