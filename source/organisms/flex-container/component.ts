@@ -141,7 +141,10 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData,
                 classList.add('grid_content');
             }
             if (this.itemClazz.length > 0 && !classList.contains(this.itemClazz)) {
-                classList.add(this.itemClazz);
+                let itemClazzesSplitted: string[] = this.itemClazz.split(" ");
+                itemClazzesSplitted.forEach(itemClazz => {
+                    classList.add(itemClazz);
+                });
             }
 
             let currentStyle: string | null = element.getAttribute('style');

@@ -41,13 +41,13 @@ export class ImportPage extends DefaultTemplate {
                     <component-link href="${BALCO_DATA_STORE.IMG_RESOURCE_URL}/example.csv">Beispiel CSV</component-link>
                 </component-flex-container>
 
-
-
-              <component-list>
+                <component-list>
                     <component-list-item clazz="contrast">
-                        <component-spacer clazz="mediumPaddingLeft"></component-spacer>
-                        <component-text text="${this.getI18NValue('upload_statistik')}"></component-text>
-                   </component-list-item>
+                    <component-spacer clazz="mediumPaddingLeft"></component-spacer>
+                    <component-text text="${this.getI18NValue('upload_statistik')}">
+                    </component-text>
+                    </component-list-item>
+                    
                      ${guard(
             this.files,
             () =>
@@ -67,7 +67,10 @@ export class ImportPage extends DefaultTemplate {
                 )}
                   `
         )}
-                 </component-list>   
+
+
+            </component-list>
+                  
             </component-flex-container>
             
             

@@ -141,10 +141,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                  class="headColumn"
                                  style="width: ${header.widthPercent}%"
                               >
-                              <component-toolbar clazz="">
-                                  <span slot="mainComponents">${this.getI18NValue(this.getPageName().concat('_').concat(this.i18nTablePrefix).concat(header.columnKey))}</span>
+                                  <span>${this.getI18NValue(this.getPageName().concat('_').concat(this.i18nTablePrefix).concat(header.columnKey))}</span>
                                   ${this.sorting ? html`<component-icon slot="rightComponents" iconClazz="${header.sortingIconClazz}" class="clickable" @click="${() => this.updateSortProperty(header)}"></component-icon>` : html``}
-                              </component-toolbar>
                               </span>
                            `
                 )}
@@ -185,9 +183,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                     columnIndex
                                     ].widthPercent}%;"
                                              >
-                                                <span class="columnHead"
-                                                   >${this.headers[columnIndex].columnKey}</span
-                                                >
                                                 ${this.createColumnComponent(row, column, rowIndex, columnIndex)}
                                              </span>
                                           `

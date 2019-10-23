@@ -16,7 +16,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
     clazz: string = '';
 
     render() {
-        return html`<div class="${this.clazz}"></div>`;
+        return html`<div class="${this.clazz}"><slot></slot></div>`;
     }
 
     getDefaultInputData(): any {

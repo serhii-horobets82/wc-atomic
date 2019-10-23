@@ -11,28 +11,7 @@
     background-color: var(--app-primary-background-color-contrast);
   }
 
-  .head:first-child {
-    padding-left: var(--min-padding);
-  }
-
-  .row:first-child {
-    background-color: green;
-    width:500px;
-    margin-left: var(--min-padding);
-  }
-
   .row {
-    //line-height: var(--line-height-big);
-  }
-
-  .headColumn, .filterColumn {
-    display: inline;
-    overflow: hidden;
-    line-height: var(--line-height-big);
-  }
-
-  .columnHead {
-    display: none;
   }
 
   .row.odd {
@@ -40,10 +19,15 @@
     background-color: var(--app-primary-background-color-discreet);
   }
 
-  .column {
+  .headColumn, .filterColumn, .column {
     overflow: hidden;
+    display: inline-block;
     box-sizing: border-box;
-    max-height: var(--line-height-large);
+    line-height: var(--line-height-big);
+    height: var(--line-height-big);
+  }
 
+  .head:first-child, .row .column:first-child {
+    padding-left: var(--min-padding);
   }
 
