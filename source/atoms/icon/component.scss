@@ -12,21 +12,21 @@
 }
 
 .active {
-  color: var(--app-primary-background-color-contrast);
+  color: var(--app-color-primary-contrast);
 }
 
 .passiv {
-  color: var(--app-primary-background-color-discreet);
+  color: var(--app-color-primary-discreet);
 }
 
 .error {
-  color: var(--app-error-color);
+  color: var(--app-color-error);
 }
 
 .warning {
-  color: var(--app-warning-color);
+  color: var(--app-error-warning);
 }
 
 .success {
-  color: var(--app-success-color);
+  color: var(--app-color-success);
 }

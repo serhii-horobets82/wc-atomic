@@ -9,9 +9,10 @@ import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 @customElement('page-matching')
-export class MatchingPage extends DefaultTemplate {
+export class MatchingPage extends AbstractBalcoPage {
 
     constructor() {
         super();

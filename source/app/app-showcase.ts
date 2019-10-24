@@ -37,55 +37,18 @@ import {AuthenticatedIconInputData} from "../molecules/authenticated-icon/model"
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 import {UI_REFRESHER} from "../util/ui-refresher/ui-rfresher";
 
-export function getNAV(): NavigationInputData {
-    return <NavigationInputData>{
-        componentIdentifier: NavigationComponent.IDENTIFIER,
-        contentBefore: [<TextInputData>{
-            componentIdentifier: TextComponent.IDENTIFIER,
-            text: I18N.getValue('balco_company')
-        }, BALCO_DATA_STORE.getMyCompaniesCID(), <SpacerInputData>{
-            componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingTop'
-        }],
-        links: [
-            {text: I18N.getValue('balco_dashboard_page'), href: '#dashboard', icon: 'fas fa-tasks'},
-            {text: I18N.getValue('balco_import_page'), href: '#import', icon: 'fas fa-file-import'},
-            {text: I18N.getValue('balco_balance_page'), href: '#balance', icon: 'fas fa-sync-alt'},
-            {text: I18N.getValue('balco_retification_page'), href: '#retification', icon: 'fas fa-balance-scale-right'},
-            {text: I18N.getValue('balco_matching_page'), href: '#matching', icon: 'fas fa-check-double'},
-        ],
-    };
-}
-
-
 export function getDefaultTemplateInputData(): DefaultTemplateModel {
     return <DefaultTemplateModel>{
     componentIdentifier: DefaultTemplate.IDENTIFIER,
     dataReceiverChannels: [BalcoDataChannels.SELECTED_COMPANY],
-    navigationInputData: getNAV(),
     toolbarInputData: <ToolbarInputData>{
         componentIdentifier: ToolbarComponent.IDENTIFIER,
         leftInputData: [<SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
         }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
-        mainInputData: [<I18NInputData>{
-            componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-            languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
-        }],
-        rightInputData: [<IconInputData>{
-            componentIdentifier: IconComponent.IDENTIFIER,
-            iconClazz: "fas fa-users"
-        }, <SpacerInputData>{
-            componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingLeft'
-        }, <TextInputData>{
-            componentIdentifier: TextComponent.IDENTIFIER,
-            text: BALCO_DATA_STORE.getUserString()
-        }, <SpacerInputData>{
-            componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingLeft'
-        }, <AuthenticatedIconInputData>{
+        mainInputData: [],
+        rightInputData: [<AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
             isAuthenticated: false,
             loginPage: '#login',

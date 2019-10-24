@@ -9,9 +9,10 @@ import {ImgSliderComponent} from "../../molecules/img-slider/component";
 import {SearchComponent} from "../../molecules/search/component";
 import {TeaserComponent} from "../../molecules/teaser/component";
 import {TileComponent} from "../../molecules/tile/component";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 @customElement('page-molecules')
-export class MoleculesPage extends DefaultTemplate {
+export class MoleculesPage extends AbstractBalcoPage {
 
     constructor() {
         super();

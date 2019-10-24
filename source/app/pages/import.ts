@@ -10,9 +10,10 @@ import {repeat} from "lit-html/directives/repeat";
 import {FileUploadItem} from "../../util/http-client/http-client";
 import {InputComponent} from "../../input/input/component";
 import {baseHelper} from "../../util/base";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 @customElement('page-import')
-export class ImportPage extends DefaultTemplate {
+export class ImportPage extends AbstractBalcoPage {
 
     constructor() {
         super();
@@ -42,7 +43,7 @@ export class ImportPage extends DefaultTemplate {
                 </component-flex-container>
 
                 <component-list>
-                    <component-list-item clazz="contrast">
+                    <component-list-item clazz="primaryColor">
                     <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                     <component-text text="${this.getI18NValue('upload_statistik')}">
                     </component-text>

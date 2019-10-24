@@ -7,16 +7,16 @@
   }
 
   .head, .header {
-    color: var(--app-primary-color-contrast);
-    background-color: var(--app-primary-background-color-contrast);
+    color: var(--app-color-on-primary);
+    background-color: var(--app-color-primary);
   }
 
   .row {
   }
 
   .row.odd {
-    color: var(--app-primary-color-discreet);
-    background-color: var(--app-primary-background-color-discreet);
+    color: var(--app-color-on-primary-50);
+    background-color: var(--app-color-primary-50);
   }
 
   .headColumn, .filterColumn, .column {

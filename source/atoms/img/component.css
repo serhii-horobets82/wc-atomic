@@ -43,7 +43,7 @@ img {
    box-sizing: border-box;
 }
 .imageWithBorder img {
-   border: 0.1em solid var(--app-primary-background-color-contrast);
+   border: 0.1em solid var(--app-color-primary-contrast);
    padding: 0.25em;
    width: 100%;
 }

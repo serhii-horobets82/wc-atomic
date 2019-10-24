@@ -14,6 +14,9 @@ const componentCSS = require('./component.css');
 export class NavigationComponent extends AbstractComponent<NavigationInputData, any> {
 
     @property()
+    clazz: string = '';
+
+    @property()
     links: NavigationLinkInputData[] = [];
 
     @property()
@@ -88,6 +91,7 @@ ${guard(
     }
 
     protected inputDataChanged() {
+        this.clazz = baseHelper.getValue(this.inputData.clazz, '');
         this.links = this.inputData.links;
         this.contentBefore = baseHelper.getValue(this.inputData.contentBefore, []);
         this.contentAfter = baseHelper.getValue(this.inputData.contentAfter, []);

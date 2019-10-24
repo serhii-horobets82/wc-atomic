@@ -9,8 +9,6 @@
     width: calc(100%);
     height: var(--menubar-height);
     right: 0;
-    color: var(--app-header-color);
-    background-color: var(--app-header-background-color);
 }
 #header.menuClosed {
     width: 100%;
@@ -25,8 +23,8 @@
     top: var(--menubar-height);
     left: 0;
     overflow-x: hidden;
-    color: var(--app-menu-color);
-    background-color: var(--app-menu-background-color);
+    background-color: var(--app-color-secondary);
+    color: var(--app-color-on-secondary);
 }
 #menu.menuClosed {
     left: calc(-1 * var(--menu-size));
@@ -34,8 +32,8 @@
 }
 #main {
     padding-top: var(--menubar-height);
-    color: var(--app-primary-color);
-    background-color: var(--app-primary-background-color);
+    color: var(--app-color-on-background);
+    background-color: var(--app-color-background);
     min-height: 100%;
     margin-left: var(--menu-size);
     transition: margin-left 0.5s linear;

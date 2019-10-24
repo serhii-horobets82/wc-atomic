@@ -10,10 +10,11 @@ import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 
 @customElement('page-retification')
-export class RetificationPage extends DefaultTemplate {
+export class RetificationPage extends AbstractBalcoPage {
 
     constructor() {
         super();

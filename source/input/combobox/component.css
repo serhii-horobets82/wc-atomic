@@ -2,9 +2,10 @@ select {
   font: inherit;
   text-transform: none;
   box-sizing: border-box;
-  background: transparent;
+  background-color: var(--app-color-background);
+  color: var(--app-color-on-background);
   //border: none;
-  //border: 0.1rem solid var(--app-primary-background-color-contrast);
+  //border: 0.1rem solid var(--app-color-primary-contrast);
   height: var(--line-height-large);
   line-height: var(--line-height);
   padding-left: var(--min-padding);

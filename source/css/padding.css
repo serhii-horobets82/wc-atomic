@@ -1,74 +1,89 @@
 .minPadding,
 ::slotted(.minPadding) {
+   box-sizing: border-box;
    padding: var(--min-padding);
 }
 
 .mediumPadding,
 ::slotted(.mediumPadding) {
+   box-sizing: border-box;
    padding: var(--medium-padding);
 }
 
 .maxPadding,
 ::slotted(.maxPadding) {
+   box-sizing: border-box;
    padding: var(--max-padding);
 }
 
 .minPaddingLeft,
 ::slotted(.minPaddingLeft) {
+   box-sizing: border-box;
    padding-left: var(--min-padding);
 }
 
 .mediumPaddingLeft,
 ::slotted(.mediumPaddingLeft) {
+   box-sizing: border-box;
    padding-left: var(--medium-padding);
 }
 
 .maxPaddingLeft,
 ::slotted(.maxPaddingLeft) {
+   box-sizing: border-box;
    padding-left: var(--max-padding);
 }
 
 .minPaddingRight,
 ::slotted(.minPaddingRight) {
+   box-sizing: border-box;
    padding-right: var(--min-padding);
 }
 
 .mediumPaddingRight,
 ::slotted(.mediumPaddingRight) {
+   box-sizing: border-box;
    padding-right: var(--medium-padding);
 }
 
 .maxPaddingRight,
 ::slotted(.maxPaddingRight) {
+   box-sizing: border-box;
    padding-right: var(--max-padding);
 }
 .minPaddingTop,
 ::slotted(.minPaddingTop) {
+   box-sizing: border-box;
    padding-top: var(--min-padding);
 }
 
 .mediumPaddingTop,
 ::slotted(.mediumPaddingTop) {
+   box-sizing: border-box;
    padding-top: var(--medium-padding);
 }
 
 .maxPaddingTop,
 ::slotted(.maxPaddingTop) {
+   box-sizing: border-box;
    padding-top: var(--max-padding);
 }
 
 .minPaddingBottom,
 ::slotted(.minPaddingBottom) {
+   box-sizing: border-box;
    padding-bottom: var(--min-padding);
 }
 
 .mediumPaddingBottom,
 ::slotted(.mediumPaddingBottom) {
+   box-sizing: border-box;
    padding-bottom: var(--medium-padding);
 }
 
 .maxPaddingBottom,
 ::slotted(.maxPaddingBottom) {
+   box-sizing: border-box;
    padding-bottom: var(--max-padding);
 }
 

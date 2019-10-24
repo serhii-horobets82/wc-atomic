@@ -6,10 +6,11 @@ import {FormComponent} from "../../organisms/form/component";
 import {TableComponent} from "../../organisms/table/component";
 import {ToolbarComponent} from "../../organisms/toolbar/component";
 import {getNAV} from "../app-showcase";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 
 @customElement('page-organism')
-export class OrganismPage extends DefaultTemplate {
+export class OrganismPage extends AbstractBalcoPage {
 
     constructor() {
         super();

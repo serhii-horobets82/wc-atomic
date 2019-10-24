@@ -15,7 +15,8 @@
 }
 
 .foreground, ::slotted(.foreground) {
-  background-color: var(--app-primary-background-color-contrast-second);
+  background-color: var(--app-color-surface);
+  color: var(--app-color-on-surface);
   width: 75%;
   height: 40%;
   display: block;

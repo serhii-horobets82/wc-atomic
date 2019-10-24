@@ -14,10 +14,11 @@ import {TextComponent} from "../../atoms/text/component";
 import {TextareaComponent} from "../../input/textarea/component";
 import {InputComponent} from "../../input/input/component";
 import {getNAV} from "../app-showcase";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 
 @customElement('page-atoms')
-export class AtomsPage extends DefaultTemplate {
+export class AtomsPage extends AbstractBalcoPage {
 
     constructor() {
         super();
@@ -26,7 +27,6 @@ export class AtomsPage extends DefaultTemplate {
     initTemplateData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigationInputData: getNAV(),
         }
     }
 

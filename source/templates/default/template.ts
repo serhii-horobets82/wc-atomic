@@ -1,5 +1,4 @@
-import {css, html, property, query, unsafeCSS} from 'lit-element';
-import {NavigationComponent} from "../../atoms/navigation/component";
+import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
 import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../molecules/data-protection/component";
 import {DefaultTemplateModel} from "./model";
@@ -44,7 +43,7 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
             <component-menubar .inputData="${this.toolbarInputData}"></component-menubar>
         </header>
         <div id="menu">
-            <component-navigation .inputData="${this.navigationInputData}" title="${this.title}"></component-navigation>
+            ${this.getMenuComponent()}
         </div>
         <div id="main">
             ${this.getContent()}
@@ -55,7 +54,6 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     }
 
     protected inputDataChanged(): void {
-        this.navigationInputData = this.inputData.navigationInputData;
         this.toolbarInputData = this.inputData.toolbarInputData;
     }
 
@@ -65,7 +63,6 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     getDefaultInputData(): DefaultTemplateModel {
         return <DefaultTemplateModel>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
-            navigationInputData: new NavigationComponent().getDefaultInputData(),
         };
     }
 
@@ -92,6 +89,8 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
         if (this.headerElement != undefined)
             this.headerElement.setAttribute('class', this.menuCss);
     }
+
+    abstract getMenuComponent(): TemplateResult;
 
 }
 

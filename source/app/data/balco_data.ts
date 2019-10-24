@@ -57,7 +57,6 @@ export class BalcoDataStore {
         let myCompanies: ComboboxInputData = <ComboboxInputData>{
             componentIdentifier: ComboboxComponent.IDENTIFIER,
             name: 'myCompanies',
-            cssStyle: 'width:200px;',
             options: options
         };
 
@@ -114,7 +113,8 @@ export class BalcoDataStore {
 
 
     public getUserString() {
-        return this.getUser() != null ? this.getUser().vorname.concat(' ').concat(BALCO_DATA_STORE.getUser().name) : '';
+        let user = this.getUser();
+        return user != null ? user.gender.concat(' ').concat(user.vorname).concat(' ').concat(BALCO_DATA_STORE.getUser().name) : '';
     }
 
     public getBalanceOverview(typ: string): BalanceOverview | null {

@@ -5,9 +5,10 @@ import {getDefaultTemplateInputData} from "../app-showcase";
 import {BALCO_DATA_STORE, BalcoDataChannels} from "../data/balco_data";
 import {I18N} from "../../util/i18n-util";
 import {baseHelper} from "../../util/base";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 @customElement('page-dashboard')
-export class DashboardPage extends DefaultTemplate {
+export class DashboardPage extends AbstractBalcoPage {
 
     @property()
     user: User = <User>{};
@@ -74,7 +75,7 @@ export class DashboardPage extends DefaultTemplate {
                 </div>
                <div>
                 <component-list>
-                    <component-list-item clazz="contrast">
+                    <component-list-item clazz="primaryColor">
                         <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('balco_debitor')}"></component-text>
                     </component-list-item>
@@ -112,7 +113,7 @@ export class DashboardPage extends DefaultTemplate {
                 </div>
                 <div>
                  <component-list>
-                    <component-list-item clazz="contrast">
+                    <component-list-item clazz="primaryColor">
                         <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                         <component-text text="${this.getI18NValue('balco_kreditor')}"></component-text>
                     </component-list-item>

@@ -6,6 +6,7 @@ export interface NavigationLinkInputData extends LinkInputData {
 }
 
 export interface NavigationInputData extends AbstractInputData {
+    clazz?: string;
     links: NavigationLinkInputData[];
     contentBefore?: AbstractInputData[];
     contentAfter?: AbstractInputData[];

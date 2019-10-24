@@ -13,10 +13,11 @@ import {HTTP_CLIENT} from "../data/data";
 import {IconComponent} from "../../atoms/icon/component";
 import {IconInputData} from "../../atoms/icon/model";
 import {UI_REFRESHER} from "../../util/ui-refresher/ui-rfresher";
+import {AbstractBalcoPage} from "./abstract-balco-page";
 
 
 @customElement('page-balance')
-export class BalancePage extends DefaultTemplate {
+export class BalancePage extends AbstractBalcoPage {
 
     static DATALIST_CHANGE_CHANNEL: string = 'DATALIST_CHANGE_CHANNEL';
 
