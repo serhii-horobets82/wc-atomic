@@ -12,14 +12,18 @@ import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {IconComponent} from "../../atoms/icon/component";
 import {IconInputData} from "../../atoms/icon/model";
+import {UI_REFRESHER} from "../../util/ui-refresher/ui-rfresher";
 
 
 @customElement('page-balance')
 export class BalancePage extends DefaultTemplate {
 
+    static DATALIST_CHANGE_CHANNEL: string = 'DATALIST_CHANGE_CHANNEL';
+
     constructor() {
         super();
         this.inputData = getDefaultTemplateInputData();
+        this.uiRefreshChannels = [BalancePage.DATALIST_CHANGE_CHANNEL];
     }
 
     @property()
@@ -136,6 +140,7 @@ export class BalancePage extends DefaultTemplate {
         let responsePromise = HTTP_CLIENT.post(urlSuffix, {});
         responsePromise.then(value => {
             console.log('matching/unmatching ok ? ' + value.status);
+            UI_REFRESHER.informListener(BalancePage.DATALIST_CHANGE_CHANNEL);
         })
 
     }

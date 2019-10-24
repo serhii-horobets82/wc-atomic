@@ -41,7 +41,6 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
 
             <div class="left">
 
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.leftInputData,
             () =>
@@ -57,13 +56,11 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
                         `
         )}
                   <slot name="leftComponents"></slot>
-               </component-flex-container>
                </div>
                
                            <div class="center">
 
                
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.mainInputData,
             () =>
@@ -78,12 +75,10 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
                 )}
                         `
         )}<slot name="mainComponents"></slot>
-               </component-flex-container>
                
 </div>
             <div class="right">
                
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
             this.rightInputData,
             () =>
@@ -99,9 +94,7 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
                         `
         )}
                   <slot name="rightComponents"></slot>
-               </component-flex-container>
 </div>
-
          </div>
       `;
     }

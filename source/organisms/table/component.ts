@@ -327,7 +327,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                 break;
                             default:
                             case TextComponent.IDENTIFIER:
-                                (<TextInputData>inputData).text = columnValue;
+                                (<TextInputData>inputData).text = baseHelper.beautifyText(columnValue);
                                 (<TextInputData>inputData).clazz = 'ellipsis';
                                 break;
                             case ComboboxComponent.IDENTIFIER:

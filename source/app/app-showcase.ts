@@ -72,7 +72,8 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
         mainInputData: [<I18NInputData>{
             componentIdentifier: I18NSelectorComponent.IDENTIFIER,
             languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{key: 'en-EN', value: 'English'}]
-        }, <IconInputData>{
+        }],
+        rightInputData: [<IconInputData>{
             componentIdentifier: IconComponent.IDENTIFIER,
             iconClazz: "fas fa-users"
         }, <SpacerInputData>{
@@ -84,8 +85,7 @@ export function getDefaultTemplateInputData(): DefaultTemplateModel {
         }, <SpacerInputData>{
             componentIdentifier: SpacerComponent.IDENTIFIER,
             clazz: 'mediumPaddingLeft'
-        }],
-        rightInputData: [<AuthenticatedIconInputData>{
+        }, <AuthenticatedIconInputData>{
             componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
             isAuthenticated: false,
             loginPage: '#login',
@@ -112,10 +112,10 @@ export class ShowcaseApp extends AbstractApp {
                     let data: KeyValueData = customEvent.detail;
                     if(data.key == 'myCompanies')
                         BALCO_DATA_STORE.setSelectedIDL(data.value);
-                        BALCO_DATA_STORE.loadBalanceData().then(() => {
-                            console.log("balance data neu geladen");
-                            UI_REFRESHER.informListener(BalcoDataChannels.BALANCE_OVERVIEW_D)
-                        });
+                    BALCO_DATA_STORE.loadBalanceData().then(() => {
+                        console.log("balance data neu geladen");
+                        UI_REFRESHER.informListener(BalcoDataChannels.BALANCE_OVERVIEW_D)
+                    });
                 }
             }
         );

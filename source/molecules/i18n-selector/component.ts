@@ -6,7 +6,7 @@ import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {KeyValueData} from "../../organisms/form/model";
 
-const componentCSS = require('./component.scss');
+const componentCSS = require('./component.css');
 
 @customElement('component-i18n-selector')
 export class I18NSelectorComponent extends AbstractComponent<I18NInputData, any> {
@@ -22,7 +22,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, any>
     render() {
         return html`
                   <div>
-                    ${this.getI18NValue('language')}
+                    <component-text>${this.getI18NValue('language')}</component-text>
                     <component-combobox .inputData="${this.comboboxInputData}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"></component-combobox>   
                   </div>`
     }
