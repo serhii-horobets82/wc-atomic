@@ -1,3 +1,5 @@
+import {I18N} from "./i18n-util";
+
 export class BaseHelper {
 
     public isNotEmpty(value: any | undefined): boolean {
@@ -35,7 +37,8 @@ export class BaseHelper {
         if (value == null || value == undefined) {
             return "";
         } else if (value instanceof Number|| typeof value == 'number') {
-            return value.toLocaleString();
+            // TODO: funktioniert nicht mit options minimumFractionDigits: 2, maximumFractionDigits: 2 ??? warum nicht
+            return value.toLocaleString(window.navigator.language, {});
         } else if (value instanceof Date) {
             return value.toLocaleString();
         }

@@ -48,7 +48,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     name: string = '';
 
     @property()
-    value: string = '';
+    value: any = '';
 
     @property()
     type: string = HTMLInputTypes.TEXT;
@@ -83,7 +83,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
     render() {
         return html`
-            <input id="inputElement" multiple="" name="${this.name}" @keyup="${this.keyup}" @change="${(event: InputDataChangeEvent) => this.change(event)}" type="${this.type}" value="${this.value}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" min="${this.min}" max="${this.max}"/>
+            <input id="inputElement" multiple="" name="${this.name}" @keyup="${this.keyup}" @change="${(event: Event) => this.change(event)}" type="${this.type}" value="${this.prepareValue(this.value)}" placeholder="${this.placeholder}" size="${this.size}" maxlength="${this.maxlength}" min="${this.min}" max="${this.max}"/>
             <slot></slot>
 `;
     }
@@ -127,12 +127,23 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     protected inputDataChanged() {
         this.name = baseHelper.getValue(this.inputData.name, '');
         this.value = baseHelper.getValue(this.inputData.value, '');
-        this.type = baseHelper.getValue(this.inputData.value, HTMLInputTypes.TEXT);
-        this.placeholder = baseHelper.getValue(this.inputData.value, '');
+        this.type = baseHelper.getValue(this.inputData.type, HTMLInputTypes.TEXT);
+        this.placeholder = baseHelper.getValue(this.inputData.placeholder, '');
         this.maxlength = baseHelper.getValue(this.inputData.maxlength, this.maxlength);
         this.size = baseHelper.getValue(this.inputData.size, this.size);
-        this.min = baseHelper.getValue(this.inputData.size, this.min);
-        this.max = baseHelper.getValue(this.inputData.size, this.max);
+        this.min = baseHelper.getValue(this.inputData.min, this.min);
+        this.max = baseHelper.getValue(this.inputData.max, this.max);
     }
 
+    private prepareValue(value: any): any {
+        switch (this.type) {
+            case HTMLInputTypes.NUMBER:
+                value = Number(value);
+                break;
+            default:
+                break;
+
+        }
+        return baseHelper.beautifyText(value);
+    }
 }

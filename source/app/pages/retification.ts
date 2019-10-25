@@ -5,7 +5,7 @@ import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../.
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {InputComponent} from "../../input/input/component";
+import {HTMLInputTypes, InputComponent} from "../../input/input/component";
 import {baseHelper} from "../../util/base";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
@@ -101,7 +101,7 @@ export class RetificationPage extends AbstractBalcoPage {
                     searchValue: '', widthPercent: 30,
                 },
                 <TableHeaderInputData>{
-                    componentInputData: <InputInputData>{componentIdentifier: InputComponent.IDENTIFIER},
+                    componentInputData: <InputInputData>{componentIdentifier: InputComponent.IDENTIFIER, type: HTMLInputTypes.NUMBER},
                     columnKey: 'src_saldo',
                     searchValue: '', widthPercent: 10,
                 },

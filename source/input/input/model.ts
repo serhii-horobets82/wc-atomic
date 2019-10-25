@@ -7,6 +7,8 @@ export interface InputInputData extends AbstractInputData {
     placeholder?: string;
     maxlength?: number;
     size?: number;
+    min?: number;
+    max?: number;
     type?: string;
 }
 
