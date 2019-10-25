@@ -12,8 +12,8 @@ import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {IconComponent} from "../../atoms/icon/component";
 import {IconInputData} from "../../atoms/icon/model";
-import {UI_REFRESHER} from "../../util/ui-refresher/ui-rfresher";
 import {AbstractBalcoPage} from "./abstract-balco-page";
+import {UI_REFRESHER} from "../../index";
 
 
 @customElement('page-balance')

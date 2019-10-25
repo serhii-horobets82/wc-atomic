@@ -4,8 +4,8 @@ import {baseHelper} from "../../util/base";
 import {DATA_RECEIVER, DataReceiverListener} from "../../util/data-receiver/data-receiver";
 import {I18N} from "../../util/i18n-util";
 import {router} from "../../util/router";
-import {UI_REFRESHER, UIRefresherListener} from "../../util/ui-refresher/ui-rfresher";
-
+import {UI_REFRESHER} from "../../index";
+import { UIRefresherListener } from '@domoskanonos/typescript_base';
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement implements DataReceiverListener, UIRefresherListener {

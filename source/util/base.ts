@@ -38,7 +38,7 @@ export class BaseHelper {
             return "";
         } else if (value instanceof Number|| typeof value == 'number') {
             // TODO: funktioniert nicht mit options minimumFractionDigits: 2, maximumFractionDigits: 2 ??? warum nicht
-            return value.toLocaleString(window.navigator.language, {});
+            return value.toLocaleString(window.navigator.language, {style: 'decimal'});
         } else if (value instanceof Date) {
             return value.toLocaleString();
         }

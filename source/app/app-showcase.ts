@@ -35,7 +35,7 @@ import {I18NInputData} from "../molecules/i18n-selector/model";
 import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
 import {AuthenticatedIconInputData} from "../molecules/authenticated-icon/model";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
-import {UI_REFRESHER} from "../util/ui-refresher/ui-rfresher";
+import {UI_REFRESHER} from "../index";
 
 export function getDefaultTemplateInputData(): DefaultTemplateModel {
     return <DefaultTemplateModel>{
