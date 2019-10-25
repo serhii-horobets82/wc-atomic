@@ -18,9 +18,6 @@ import {AppData} from "../abstract/app/app";
 import {CorsMode, Credentials, HttpClient, HttpClientIF, HttpStatusEnum} from "../util/http-client/http-client";
 import {BALCO_DATA_STORE, BalcoDataChannels} from "./data/balco_data";
 import {router, Router} from "../util/router";
-import {I18N} from "../util/i18n-util";
-import {NavigationInputData} from "../atoms/navigation/model";
-import {NavigationComponent} from "../atoms/navigation/component";
 import {DefaultTemplateModel} from "../templates/default/model";
 import {DefaultTemplate} from "../templates/default/template";
 import {ToolbarInputData} from "../organisms/toolbar/model";
@@ -29,13 +26,9 @@ import {SpacerInputData} from "../atoms/spacer/model";
 import {SpacerComponent} from "../atoms/spacer/component";
 import {IconInputData} from "../atoms/icon/model";
 import {IconComponent} from "../atoms/icon/component";
-import {TextInputData} from "../atoms/text/model";
-import {TextComponent} from "../atoms/text/component";
-import {I18NInputData} from "../molecules/i18n-selector/model";
-import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
 import {AuthenticatedIconInputData} from "../molecules/authenticated-icon/model";
 import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
-import {UI_REFRESHER} from "../index";
+import {I18N, UI_REFRESHER} from "../index";
 
 export function getDefaultTemplateInputData(): DefaultTemplateModel {
     return <DefaultTemplateModel>{
@@ -113,7 +106,7 @@ export class ShowcaseApp extends AbstractApp {
     protected async preRender() {
         let response = await this.appData.httpClient.get('/I18N/JSON/' + I18N.getLanguage());
         if (response.status == HttpStatusEnum.OK) {
-            I18N.saveI18NData(JSON.parse(await response.text()));
+            I18N.saveData(JSON.parse(await response.text()));
             return Promise.resolve();
         } else {
             return Promise.reject(response.status);

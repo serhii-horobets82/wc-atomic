@@ -9,7 +9,7 @@ import {guard} from "lit-html/directives/guard";
 import {repeat} from "lit-html/directives/repeat";
 import {FileUploadItem} from "../../util/http-client/http-client";
 import {InputComponent} from "../../input/input/component";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 import {AbstractBalcoPage} from "./abstract-balco-page";
 
 @customElement('page-import')

@@ -3,7 +3,7 @@ import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
 import {ComboboxInputData, ComboboxOption} from "./model";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');

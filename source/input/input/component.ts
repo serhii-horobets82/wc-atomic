@@ -2,7 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent} from "../../abstract/component/component";
 import {InputDataChangeEvent, InputInputData} from "./model";
 import {KeyValueData} from "../../organisms/form/model";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 
 const componentCSS = require('./component.css');
 

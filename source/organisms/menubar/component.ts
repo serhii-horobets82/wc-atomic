@@ -7,7 +7,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {IconComponent} from "../../atoms/icon/component";
 import {MenubarInputData} from "./model";
 import {AuthenticatedIconComponent} from "../../molecules/authenticated-icon/component";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 
 const componentCSS = require('./component.css');
 

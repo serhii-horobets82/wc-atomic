@@ -6,7 +6,7 @@ import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../.
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";

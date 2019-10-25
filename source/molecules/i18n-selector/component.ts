@@ -1,10 +1,10 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {I18NInputData} from "./model";
-import {I18N} from "../../util/i18n-util";
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {KeyValueData} from "../../organisms/form/model";
+import {I18N} from "../../index";
 
 const componentCSS = require('./component.css');
 

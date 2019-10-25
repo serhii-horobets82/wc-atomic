@@ -3,8 +3,9 @@ import {ComboboxComponent} from "../../input/combobox/component";
 import {DatalistInputData, DatalistOption} from "../../input/datalist/model";
 import {DatalistComponent} from "../../input/datalist/component";
 import {BalanceOverview, HTTP_CLIENT, Konzern, User} from "./data";
-import {LOCAL_STORE, SESSION_STORE} from "../../util/storage/storage";
 import {FileUpload} from "../../util/http-client/http-client";
+import {DATA_RECEIVER} from "../../util/data-receiver/data-receiver";
+import {LOCAL_STORE, SESSION_STORE} from "../../index";
 
 export enum BalcoDataChannels {
     KONZERNE = 'KONZERNE',
@@ -33,6 +34,7 @@ export class BalcoDataStore {
                 if (konzern.idl == selectedIDL) {
                     console.log('ändere Konzern: ' + selectedIDL);
                     SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, konzern);
+                    DATA_RECEIVER.informListener(BalcoDataChannels.SELECTED_COMPANY, konzern);
                     let myCompaniesCID: ComboboxInputData = this.getMyCompaniesCID();
                     myCompaniesCID.selectedValue = selectedIDL;
                     this.setMyCompaniesCID(myCompaniesCID);
@@ -44,6 +46,7 @@ export class BalcoDataStore {
     public saveLoginUser(user: User) {
 
         SESSION_STORE.setItem(BalcoDataChannels.USER, user);
+        DATA_RECEIVER.informListener(BalcoDataChannels.USER, user);
 
         let options: ComboboxOption[] = [];
 
@@ -62,7 +65,7 @@ export class BalcoDataStore {
 
         this.setMyCompaniesCID(myCompanies);
         SESSION_STORE.setItem(BalcoDataChannels.SELECTED_COMPANY, user.companyDTOS[0]);
-
+        DATA_RECEIVER.informListener(BalcoDataChannels.SELECTED_COMPANY, user.companyDTOS[0]);
     }
 
     logout() {
@@ -86,8 +89,9 @@ export class BalcoDataStore {
         };
 
         SESSION_STORE.setItem(BalcoDataChannels.COMPANIES_DLID, companyDatalistInputData);
+        DATA_RECEIVER.informListener(BalcoDataChannels.COMPANIES_DLID, companyDatalistInputData);
         SESSION_STORE.setItem(BalcoDataChannels.KONZERNE, companies);
-
+        DATA_RECEIVER.informListener(BalcoDataChannels.KONZERNE, companies);
     }
 
     getCompaniesDLID(): DatalistInputData {
@@ -109,6 +113,7 @@ export class BalcoDataStore {
 
     private setMyCompaniesCID(myCompanies: ComboboxInputData) {
         SESSION_STORE.setItem(BalcoDataChannels.MY_COMPANIES_CID, myCompanies);
+        DATA_RECEIVER.informListener(BalcoDataChannels.MY_COMPANIES_CID, myCompanies);
     }
 
 
@@ -129,10 +134,12 @@ export class BalcoDataStore {
 
     saveBalanceOverviewK(balanceOverviewK: BalanceOverview) {
         SESSION_STORE.setItem(BalcoDataChannels.BALANCE_OVERVIEW_K, balanceOverviewK);
+        DATA_RECEIVER.informListener(BalcoDataChannels.BALANCE_OVERVIEW_K, balanceOverviewK);
     }
 
     saveBalanceOverviewD(balanceOverviewD: BalanceOverview) {
         SESSION_STORE.setItem(BalcoDataChannels.BALANCE_OVERVIEW_D, balanceOverviewD);
+        DATA_RECEIVER.informListener(BalcoDataChannels.BALANCE_OVERVIEW_D, balanceOverviewD);
     }
 
     getLastFileUpload() {
@@ -140,6 +147,7 @@ export class BalcoDataStore {
         if (item == null) {
             item = <FileUpload>{response: {}, files: []};
             LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), item);
+            DATA_RECEIVER.informListener(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), item);
         }
         return item;
     }
@@ -152,6 +160,7 @@ export class BalcoDataStore {
             });
         }
         LOCAL_STORE.setItem(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), fileUpload);
+        DATA_RECEIVER.informListener(BalcoDataChannels.IMPORT_LAST_UPLOAD + this.getSelectedIdl(), fileUpload);
     }
 
     async loadBalanceData() {

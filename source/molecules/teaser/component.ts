@@ -1,4 +1,4 @@
-import {baseHelper} from '../../util/base';
+import {baseHelper} from '../../index';
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';

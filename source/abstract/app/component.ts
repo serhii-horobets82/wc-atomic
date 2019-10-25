@@ -2,14 +2,14 @@ import {LitElement, TemplateResult} from "lit-element";
 import {AppData} from "./app";
 import {router, Router} from "../../util/router";
 import {HttpClient} from "../../util/http-client/http-client";
-import {I18nUtil} from "../../util/i18n-util";
+import { I18nUtil } from "@domoskanonos/typescript_base";
 
 
 export abstract class AbstractApp extends LitElement {
 
     private readonly _appData: AppData;
 
-    protected readonly i18n: I18nUtil = new I18nUtil();
+    protected readonly i18n: I18nUtil = new I18nUtil(localStorage);
 
     constructor() {
         super();

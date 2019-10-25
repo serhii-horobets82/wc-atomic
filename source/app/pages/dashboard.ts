@@ -3,9 +3,8 @@ import {DefaultTemplate} from "../../templates/default/template";
 import {BalanceOverview, User} from "../data/data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {BALCO_DATA_STORE, BalcoDataChannels} from "../data/balco_data";
-import {I18N} from "../../util/i18n-util";
-import {baseHelper} from "../../util/base";
 import {AbstractBalcoPage} from "./abstract-balco-page";
+import {baseHelper, I18N} from "../../index";
 
 @customElement('page-dashboard')
 export class DashboardPage extends AbstractBalcoPage {

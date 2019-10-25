@@ -2,12 +2,12 @@ import {DefaultTemplate} from "../../templates/default/template";
 import {html, TemplateResult} from "lit-html";
 import {NavigationInputData} from "../../atoms/navigation/model";
 import {NavigationComponent} from "../../atoms/navigation/component";
-import {I18N} from "../../util/i18n-util";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {ComponentLoader} from "../../abstract/component-loader";
 import {I18NInputData} from "../../molecules/i18n-selector/model";
 import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
 import {KeyValueData} from "../../organisms/form/model";
+import {I18N} from "../../index";
 
 
 export function getNAV(): NavigationInputData {

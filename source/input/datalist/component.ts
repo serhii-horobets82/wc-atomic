@@ -4,7 +4,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
 import {DatalistInputData, DatalistOption} from "./model";
 import {KeyValueData} from "../../organisms/form/model";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 
 const componentCSS = require('./component.css');
 

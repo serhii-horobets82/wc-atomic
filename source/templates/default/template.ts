@@ -5,7 +5,7 @@ import {DefaultTemplateModel} from "./model";
 import {NavigationInputData} from "../../atoms/navigation/model";
 import {ToolbarInputData} from "../../organisms/toolbar/model";
 import {IconInputData} from "../../atoms/icon/model";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 
 const componentCSS = require('./template.css');
 

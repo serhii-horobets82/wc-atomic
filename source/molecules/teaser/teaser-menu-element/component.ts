@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from "lit-element";
-import {baseHelper} from "../../../util/base";
+import {baseHelper} from "../../../index";
 import {AbstractComponent} from "../../../abstract/component/component";
 import {TeaserMenuElementInputData} from "./model";
 

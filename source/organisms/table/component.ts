@@ -14,7 +14,7 @@ import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 import {HTTP_CLIENT} from "../../app/data/data";
 import {DatalistInputData} from "../../input/datalist/model";
 import {TextInputData} from "../../atoms/text/model";

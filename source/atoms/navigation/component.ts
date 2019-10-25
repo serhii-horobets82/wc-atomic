@@ -5,7 +5,7 @@ import {AbstractInputData} from "../../abstract/component/model";
 import {guard} from 'lit-html/directives/guard';
 import {ComponentLoader} from "../../abstract/component-loader";
 import {repeat} from 'lit-html/directives/repeat';
-import {baseHelper} from "../../util/base";
+import {baseHelper} from "../../index";
 import {router} from "../../util/router";
 
 const componentCSS = require('./component.css');
