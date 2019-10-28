@@ -1,8 +1,9 @@
 import {AbstractInputData} from "../../abstract/component/model";
+import {KeyValueData} from "../form/model";
 
 export interface TableHeaderInputData {
     columnKey: string;
-    valueProperty?: string;
+    valueProperty?: KeyValueData;
     widthPercent?: number;
     sortingIconClazz?: string;
     searchValue: string;

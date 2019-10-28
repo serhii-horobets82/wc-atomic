@@ -17,6 +17,9 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
    text: string = '';
 
    @property()
+   title: string = '';
+
+   @property()
    clazz: string = '';
 
    @property()
@@ -24,7 +27,7 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
 
    render() {
       return html`
-         <span class="text ${this.clazz}" style="${this.cssStyle}"
+         <span class="text ${this.clazz}" title="${this.title}" style="${this.cssStyle}"
             >${this.text}<slot></slot></span
          >
       `;
@@ -45,5 +48,6 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
       this.text = baseHelper.getValue(this.inputData.text, '');
       this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
       this.clazz = baseHelper.getValue(this.inputData.clazz, '');
+      this.title = baseHelper.getValue(this.inputData.title, '');
    }
 }

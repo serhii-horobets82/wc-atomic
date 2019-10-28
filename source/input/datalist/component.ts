@@ -1,4 +1,4 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
@@ -27,20 +27,10 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     options: DatalistOption[] = [];
 
     @property()
-    selectedValue: string | undefined;
+    selectedValue: string = '';
 
     @property()
     selectedText: string = '';
-
-    protected inputDataChanged() {
-        this.name = this.inputData.name;
-        this.size = this.inputData.size;
-        if (this.inputData.options != undefined) {
-            this.options = this.inputData.options;
-        }
-        this.selectedValue = this.inputData.selectedValue;
-        this.updateSelectedText();
-    }
 
     render() {
         return html`
@@ -58,11 +48,12 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         `;
     }
 
-    private selectionChangesd(event: Event) {
-        let selectElement: HTMLSelectElement | null = <HTMLSelectElement>event.target;
-        this.selectedValue = selectElement != null ? selectElement.value : '';
-        this.inputData.selectedValue = this.selectedValue;
-        this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+    protected inputDataChanged() {
+        this.name = baseHelper.getValue(this.inputData.name, '');
+        this.size = baseHelper.getValue(this.inputData.size, 1);
+        this.options = baseHelper.getValue(this.inputData.options, []);
+        this.selectedValue = baseHelper.getValue(this.inputData.selectedValue, '');
+        this.updateSelectedText();
     }
 
     async onChange(event: Event) {

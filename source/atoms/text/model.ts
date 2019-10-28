@@ -4,4 +4,5 @@ export interface TextInputData extends AbstractInputData {
     text?: string;
     clazz?: string;
     cssStyle?: string;
+    title?: string;
 }

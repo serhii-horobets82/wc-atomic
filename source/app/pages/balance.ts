@@ -1,19 +1,18 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
 import {TextComponent} from "../../atoms/text/component";
 import {InputInputData} from "../../input/input/model";
-import {baseHelper} from "../../index";
+import {baseHelper, UI_REFRESHER} from "../../index";
 import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {IconComponent} from "../../atoms/icon/component";
 import {IconInputData} from "../../atoms/icon/model";
 import {AbstractBalcoPage} from "./abstract-balco-page";
-import {UI_REFRESHER} from "../../index";
+import {KeyValueData} from "../../organisms/form/model";
 
 
 @customElement('page-balance')
@@ -122,7 +121,7 @@ export class BalancePage extends AbstractBalcoPage {
                         iconClazz: 'fas fa-circle'
                     },
                     columnKey: 'statusColor',
-                    valueProperty: 'iconClazz',
+                    valueProperty: <KeyValueData>{key: 'iconClazz', value: 'statusColor'},
                     searchValue: '',
                     widthPercent: 10,
                 }

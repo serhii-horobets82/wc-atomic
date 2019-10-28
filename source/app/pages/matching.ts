@@ -1,5 +1,4 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
@@ -10,6 +9,7 @@ import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {AbstractBalcoPage} from "./abstract-balco-page";
+import {KeyValueData} from "../../organisms/form/model";
 
 @customElement('page-matching')
 export class MatchingPage extends AbstractBalcoPage {

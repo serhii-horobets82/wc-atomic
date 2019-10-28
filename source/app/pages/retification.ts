@@ -1,5 +1,4 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {DefaultTemplate} from "../../templates/default/template";
 import {TableComponent} from "../../organisms/table/component";
 import {ColumnChangedEventData, TableHeaderInputData, TableInputData} from "../../organisms/table/model";
 import {TextInputData} from "../../atoms/text/model";
@@ -11,6 +10,7 @@ import {BALCO_DATA_STORE} from "../data/balco_data";
 import {getDefaultTemplateInputData} from "../app-showcase";
 import {HTTP_CLIENT} from "../data/data";
 import {AbstractBalcoPage} from "./abstract-balco-page";
+import {KeyValueData} from "../../organisms/form/model";
 
 
 @customElement('page-retification')
@@ -55,7 +55,13 @@ export class RetificationPage extends AbstractBalcoPage {
           
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
-        }}"></component-table>
+        }}">
+
+                <component-table-compound-header cssStyle="width:35%; padding-left:5px;" slot="compoundHeaders" text="Meine Salden"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:45%;" slot="compoundHeaders" text="Gemeldete Salden"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:20%;" slot="compoundHeaders" text="Abstimmung"></component-table-compound-header>
+
+</component-table>
             
             </component-flex-container>
 
@@ -93,7 +99,7 @@ export class RetificationPage extends AbstractBalcoPage {
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'src_nummer',
-                    searchValue: '', widthPercent: 10,
+                    searchValue: '', widthPercent: 5,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
@@ -108,12 +114,19 @@ export class RetificationPage extends AbstractBalcoPage {
                 <TableHeaderInputData>{
                     componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_bezeichnung',
-                    searchValue: '', widthPercent: 30,
+                    searchValue: '', widthPercent: 25,
                 },
                 <TableHeaderInputData>{
                     componentInputData: <InputInputData>{componentIdentifier: TextComponent.IDENTIFIER},
                     columnKey: 'dest_saldo',
                     searchValue: '', widthPercent: 10,
+                },
+                <TableHeaderInputData>{
+                    componentInputData: <TextInputData>{componentIdentifier: TextComponent.IDENTIFIER},
+                    columnKey: 'kontaktdaten',
+                    valueProperty: <KeyValueData>{key: 'title', value: 'kontaktdaten_html'},
+                    searchValue: '',
+                    widthPercent: 20,
                 }
             ]
         };

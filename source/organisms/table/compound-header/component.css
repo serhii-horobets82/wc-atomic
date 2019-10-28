@@ -1,0 +1,9 @@
+.compoundHeader {
+    line-height: var(--line-height-big);
+    height: var(--line-height-big);
+    color: var(--app-color-on-surface);
+    background-color: var(--app-color-surface);
+    display: inline-block;
+    box-sizing: border-box;
+    font-weight: var(--font-weight-bold);
+}

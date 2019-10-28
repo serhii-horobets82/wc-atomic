@@ -124,9 +124,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 </component-toolbar>
                           
                 ` : html``}
-        </div>
+            </div>
         
         <component-spacer clazz="minPaddingTop"></component-spacer>
+
+        <slot name="compoundHeaders" class="compoundHeaders"></slot>
 
          <div class="table">
             ${guard(
@@ -296,6 +298,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                 let content = tableContent.content;
 
                 this.rows = [];
+                //this.rows.splice(0,this.rows.length);
 
                 content.forEach((row, index) => {
                     console.debug("row= " + JSON.stringify(row));
@@ -344,7 +347,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         }
 
                         if (tableHeaderInput.valueProperty != null) {
-                            inputData[tableHeaderInput.valueProperty] = columnValue;
+                            inputData[tableHeaderInput.valueProperty.key] = baseHelper.beautifyText(row[tableHeaderInput.valueProperty.value]);
                         }
 
                         columnsInputDatas.push(<ColumnInputData>{componentInputData: inputData});
