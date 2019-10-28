@@ -138,12 +138,13 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     private prepareValue(value: any): any {
         switch (this.type) {
             case HTMLInputTypes.NUMBER:
-                value = Number(value);
+                //value = Number(value);
                 break;
             default:
                 break;
 
         }
-        return baseHelper.beautifyText(value);
+        //return baseHelper.beautifyText(value);
+        return value;
     }
 }

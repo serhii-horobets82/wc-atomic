@@ -57,8 +57,8 @@ export class RetificationPage extends AbstractBalcoPage {
             this.columnTableChangedEvent(event)
         }}">
 
-                <component-table-compound-header cssStyle="width:35%; padding-left:5px;" slot="compoundHeaders" text="Meine Salden"></component-table-compound-header>
-                <component-table-compound-header cssStyle="width:45%;" slot="compoundHeaders" text="Gemeldete Salden"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:45%; padding-left:5px;" slot="compoundHeaders" text="Meine Salden"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:35%;" slot="compoundHeaders" text="Gemeldete Salden"></component-table-compound-header>
                 <component-table-compound-header cssStyle="width:20%;" slot="compoundHeaders" text="Abstimmung"></component-table-compound-header>
 
 </component-table>
