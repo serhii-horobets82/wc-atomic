@@ -2,8 +2,6 @@ import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element
 import {Template} from "../../abstract/template/template";
 import {DataProtection} from "../../molecules/data-protection/component";
 import {DefaultTemplateModel} from "./model";
-import {NavigationInputData} from "../../atoms/navigation/model";
-import {ToolbarInputData} from "../../organisms/toolbar/model";
 import {IconInputData} from "../../atoms/icon/model";
 import {baseHelper} from "../../index";
 
@@ -21,12 +19,6 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     @property()
     menuSwitchIconClazz = 'fas fa-bars';
 
-    @property()
-    navigationInputData: NavigationInputData | undefined;
-
-    @property()
-    toolbarInputData: ToolbarInputData | undefined;
-
     @query("#header")
     private headerElement: HTMLElement | undefined;
     @query("#menu")
@@ -40,10 +32,10 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
         return html`
      <div class="container" @component-icon-click="${this.menuItemClicked}" >
         <header id="header">
-            <component-menubar .inputData="${this.toolbarInputData}"></component-menubar>
+            ${this.getTopContent()}
         </header>
         <div id="menu">
-            ${this.getMenuComponent()}
+            ${this.getLeftComponent()}
         </div>
         <div id="main">
             ${this.getContent()}
@@ -54,7 +46,6 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
     }
 
     protected inputDataChanged(): void {
-        this.toolbarInputData = this.inputData.toolbarInputData;
     }
 
     public getOutputData(): any {
@@ -90,7 +81,9 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
             this.headerElement.setAttribute('class', this.menuCss);
     }
 
-    abstract getMenuComponent(): TemplateResult;
+    abstract getLeftComponent(): TemplateResult;
+
+    abstract getTopContent(): TemplateResult;
 
 }
 

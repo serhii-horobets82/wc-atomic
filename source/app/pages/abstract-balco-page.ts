@@ -8,6 +8,12 @@ import {I18NInputData} from "../../molecules/i18n-selector/model";
 import {I18NSelectorComponent} from "../../molecules/i18n-selector/component";
 import {KeyValueData} from "../../organisms/form/model";
 import {I18N} from "../../index";
+import {ToolbarComponent} from "../../organisms/toolbar/component";
+import {SpacerInputData} from "../../atoms/spacer/model";
+import {SpacerComponent} from "../../atoms/spacer/component";
+import {IconComponent} from "../../atoms/icon/component";
+import {ToolbarInputData} from "../../organisms/toolbar/model";
+import {IconInputData} from "../../atoms/icon/model";
 
 
 export function getNAV(): NavigationInputData {
@@ -24,9 +30,26 @@ export function getNAV(): NavigationInputData {
 }
 
 
+export function getToolbarData(): ToolbarInputData {
+    return <ToolbarInputData>{
+        componentIdentifier: ToolbarComponent.IDENTIFIER,
+        leftInputData: [<SpacerInputData>{
+            componentIdentifier: SpacerComponent.IDENTIFIER,
+            clazz: 'mediumPaddingLeft'
+        }, <IconInputData>{
+            componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true
+        }
+
+        ],
+        mainInputData: [],
+        rightInputData:
+            []
+    }
+};
+
 export class AbstractBalcoPage extends DefaultTemplate {
 
-    getMenuComponent(): TemplateResult {
+    getTopContent(): TemplateResult {
         let i18NInputData: I18NInputData = <I18NInputData>{
             componentIdentifier: I18NSelectorComponent.IDENTIFIER,
             languages: [<KeyValueData>{key: 'de-DE', value: 'Deutsch'}, <KeyValueData>{
@@ -34,8 +57,20 @@ export class AbstractBalcoPage extends DefaultTemplate {
                 value: 'English'
             }]
         };
-        return html`
+        return html`<component-menubar .inputData="${getToolbarData()}">
+                        <component-spacer clazz="minPadding" slot="rightComponents">
+                            ${ComponentLoader.INSTANCE.createComponentFromInputData(i18NInputData)}
+                        </component-spacer>
+                        
+                        <component-authenticated-icon slot="rightComponents" isAuthenticated="false" loginPage="#login" logoutPage="#login"></component-authenticated-icon>
+                        
+                        <component-spacer slot="rightComponents" clazz="mediumPaddingRight"></component-spacer>
+                        
+                    </component-menubar>`;
+    }
 
+    getLeftComponent(): TemplateResult {
+        return html`
 
             <component-navigation clazz="primaryColor" .inputData="${getNAV()}">
             
@@ -54,17 +89,6 @@ export class AbstractBalcoPage extends DefaultTemplate {
                 <component-spacer clazz="minPadding" slot="contentBefore">
                     ${ComponentLoader.INSTANCE.createComponentFromInputData(BALCO_DATA_STORE.getMyCompaniesCID())}
                 </component-spacer>
-
-
-                <component-spacer clazz="minPadding" slot="contentAfter">
-                    ${ComponentLoader.INSTANCE.createComponentFromInputData(i18NInputData)}
-                </component-spacer>
-
-
-
-        }
-
-
 
             </component-navigation>
 

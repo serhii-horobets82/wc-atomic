@@ -20,42 +20,16 @@ import {BALCO_DATA_STORE, BalcoDataChannels} from "./data/balco_data";
 import {router, Router} from "../util/router";
 import {DefaultTemplateModel} from "../templates/default/model";
 import {DefaultTemplate} from "../templates/default/template";
-import {ToolbarInputData} from "../organisms/toolbar/model";
-import {ToolbarComponent} from "../organisms/toolbar/component";
-import {SpacerInputData} from "../atoms/spacer/model";
-import {SpacerComponent} from "../atoms/spacer/component";
-import {IconInputData} from "../atoms/icon/model";
-import {IconComponent} from "../atoms/icon/component";
-import {AuthenticatedIconInputData} from "../molecules/authenticated-icon/model";
-import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
 import {I18N, UI_REFRESHER} from "../index";
 
 export function getDefaultTemplateInputData(): DefaultTemplateModel {
     return <DefaultTemplateModel>{
     componentIdentifier: DefaultTemplate.IDENTIFIER,
     dataReceiverChannels: [BalcoDataChannels.SELECTED_COMPANY],
-    toolbarInputData: <ToolbarInputData>{
-        componentIdentifier: ToolbarComponent.IDENTIFIER,
-        leftInputData: [<SpacerInputData>{
-            componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingLeft'
-        }, <IconInputData>{componentIdentifier: IconComponent.IDENTIFIER, iconClazz: 'fas fa-bars', clickable: true}],
-        mainInputData: [],
-        rightInputData: [<AuthenticatedIconInputData>{
-            componentIdentifier: AuthenticatedIconComponent.IDENTIFIER,
-            isAuthenticated: false,
-            loginPage: '#login',
-            logoutPage: '#login'
-        }, <SpacerInputData>{
-            componentIdentifier: SpacerComponent.IDENTIFIER,
-            clazz: 'mediumPaddingRight'
-        }]
-    },
     title: 'Component Overview',
     componentInputData: [],
     }
 }
-
 
 @customElement('app-root')
 export class ShowcaseApp extends AbstractApp {

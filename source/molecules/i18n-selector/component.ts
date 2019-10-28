@@ -9,24 +9,27 @@ import {I18N} from "../../index";
 const componentCSS = require('./component.css');
 
 @customElement('component-i18n-selector')
-export class I18NSelectorComponent extends AbstractComponent<I18NInputData, any> {
+export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyValueData> {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
     static IDENTIFIER: string = 'I18NSelectorComponent';
 
+    static EVENT_CHANGE_LANG: string = 'component-i18n-selector-change-lang';
+
     @property()
     comboboxInputData: ComboboxInputData = <ComboboxInputData>{};
 
+    private outputData: KeyValueData = <KeyValueData>{};
+
     render() {
         return html`
-                  <div>
-                    <component-text>${this.getI18NValue('language')}</component-text>
+                  <component-flex-container gridClazz="grid_100 alignItemsCenter" >
+                    <component-text>${this.getI18NValue('language')}</component-text>&nbsp;
                     <component-combobox .inputData="${this.comboboxInputData}" @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"></component-combobox>   
-                  </div>`
+                  </component-flex-container>`
     }
-
 
     getDefaultInputData(): I18NInputData {
         return <I18NInputData>{
@@ -52,12 +55,15 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, any>
         this.comboboxInputData = compoboxInputData;
     }
 
-    getOutputData(): any {
-        return undefined;
+    getOutputData(): KeyValueData {
+        return this.outputData;
     }
 
     private changeLanguage(event: CustomEvent) {
-        let languageKeyValue: KeyValueData = event.detail;
-        I18N.setLanguage(languageKeyValue.value);
+        this.outputData = event.detail;
+        I18N.setLanguage(this.outputData.value);
+        this.dispatchSimpleCustomEvent(
+            I18NSelectorComponent.EVENT_CHANGE_LANG,
+            this.getOutputData());
     }
 }

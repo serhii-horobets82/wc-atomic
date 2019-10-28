@@ -20,6 +20,12 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     @property()
     isAuthenticated: boolean = false;
 
+    @property()
+    loginPage: string = '';
+
+    @property()
+    logoutPage: string = '';
+
     render() {
         return this.isAuthenticated ? html`
          <component-icon title="${this.getI18NValue('component_authentication_icon_title_logout')}" iconClazz="fas fa-sign-out-alt" clickable="true" @click="${() => this.logout()}"></component-icon>
@@ -40,6 +46,8 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
 
     inputDataChanged() {
         this.isAuthenticated = this.inputData.isAuthenticated;
+        this.loginPage = this.inputData.loginPage;
+        this.logoutPage = this.inputData.logoutPage;
     }
 
     getOutputData(): any {
@@ -47,11 +55,11 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     }
 
     private login() {
-        router.navigate(this.inputData.loginPage);
+        router.navigate(this.loginPage);
     }
 
     private logout() {
-        router.navigate(this.inputData.logoutPage);
+        router.navigate(this.logoutPage);
     }
 
 }
