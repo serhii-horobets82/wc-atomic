@@ -72,7 +72,14 @@ export class BalancePage extends AbstractBalcoPage {
           
                 <component-table .inputData="${this.tableInputData}" @component-table-column-changed="${(event: CustomEvent) => {
             this.columnTableChangedEvent(event)
-        }}"></component-table>
+        }}">
+                
+                <component-table-compound-header cssStyle="width:60%; padding-left:5px;" slot="compoundHeaders" text="${this.getI18NValue('balco_meine_salden')}"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:30%;" slot="compoundHeaders" text="${this.getI18NValue('balco_gemeldete_zuordnung')}"></component-table-compound-header>
+                <component-table-compound-header cssStyle="width:10%;" slot="compoundHeaders" text="${this.getI18NValue('balco_meine_status')}"></component-table-compound-header>
+
+                
+</component-table>
             
             </component-flex-container>
 `;
