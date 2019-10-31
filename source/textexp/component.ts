@@ -1,10 +1,11 @@
-import {css, customElement, html, LitElement, property, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {TextInputData} from "./model";
+import {AbstractComponent} from "../abstract/component/component";
 
 const componentCSS = require('./component.css');
 
 @customElement('component-texte')
-export class TextEComponent extends LitElement {
+export class TextEComponent extends AbstractComponent<any, any> {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
