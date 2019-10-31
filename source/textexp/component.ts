@@ -4,7 +4,7 @@ import {TextInputData} from "./model";
 const componentCSS = require('./component.css');
 
 @customElement('component-texte')
-export class TextComponent extends LitElement {
+export class TextEComponent extends LitElement {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
