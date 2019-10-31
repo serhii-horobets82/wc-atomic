@@ -1,4 +1,4 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract/component/component";
@@ -18,9 +18,6 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     static EVENT_SELECTION_CHANGE: string = 'combobox-datalist-selection-change';
 
     @property()
-    name: string = '';
-
-    @property()
     size: number = 1;
 
     @property()
@@ -30,13 +27,15 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     selectedValue: string = '';
 
     @property()
-    selectedText: string = '';
+    selectedText: string = 'h';
+
+    @query("#item")
+    inputfield: HTMLInputElement | undefined;
 
     render() {
-        return html`
-           <input list="options" value="${this.selectedText}" @change="${(event: Event) => this.onChange(event)}">
-           <input type="hidden" name="${this.name}" value="${this.selectedValue}"/>
-            <datalist id="options" size="${this.size}">
+        return html`<span>
+           <input id="item" list="items" type="text" value="${this.selectedText}" @change="${(event: Event) => this.onChange(event)}"/>
+            <datalist id="items" size="${this.size}" >
                 ${guard([this.options], () => html`${
             repeat(this.options, option => option.value, (option) => baseHelper.isEqual(this.selectedValue, option.value) ? html`
                         <option value="${option.value}" selected>${option.text}</option>
@@ -45,30 +44,38 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
                     `)}
                 `)}
             </datalist>
+            </span>
         `;
     }
 
     protected inputDataChanged() {
-        this.name = baseHelper.getValue(this.inputData.name, '');
         this.size = baseHelper.getValue(this.inputData.size, 1);
-        this.options = baseHelper.getValue(this.inputData.options, []);
+        this.options = baseHelper.cloneArray(baseHelper.getValue(this.inputData.options, []));
         this.selectedValue = baseHelper.getValue(this.inputData.selectedValue, '');
-        this.updateSelectedText();
+        this.selectedText = this.getSelectedText();
+        console.log(this.inputfield);
+        if(this.inputfield!= null){
+            this.inputfield.value = this.selectedText;
+            this.inputfield.defaultValue = this.selectedText;
+        }
     }
 
     async onChange(event: Event) {
         let inputElement: HTMLInputElement = <HTMLInputElement>event.target;
         this.selectedValue = inputElement.value;
         this.inputData.selectedValue = this.selectedValue;
-        this.updateSelectedText();
+        this.options = baseHelper.cloneArray(baseHelper.getValue(this.inputData.options, []));
+        this.selectedText = this.getSelectedText();
         inputElement.value = this.selectedText;
+        inputElement.defaultValue = this.selectedText;
         console.log('selected value change, new value: '.concat(this.selectedValue));
-        this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+        console.log('selected value change, new selectedText: '.concat(this.selectedText));
+       //this.dispatchSimpleCustomEvent(DatalistComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
     }
 
     getOutputData(): KeyValueData {
         return <KeyValueData>{
-            key: this.name,
+            key: this.inputData.name,
             value: this.selectedValue,
         };
     }
@@ -76,7 +83,6 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     getDefaultInputData(): DatalistInputData {
         return <DatalistInputData>{
             componentIdentifier: DatalistComponent.IDENTIFIER,
-            name: 'combobox',
             size: 1,
             options: <DatalistOption[]>[{value: 'value1', text: 'Eintrag 1'}, {
                 value: 'value2',
@@ -89,17 +95,15 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         return [DatalistComponent.EVENT_SELECTION_CHANGE];
     }
 
-    private updateSelectedText() {
-        if (baseHelper.isNotBlank(this.selectedValue)) {
-            for (const option of this.options) {
+    private getSelectedText(): string {
+        if (baseHelper.isNotBlank(this.inputData.selectedValue)) {
+            for (const option of this.inputData.options) {
                 if (baseHelper.isEqual(option.value, this.selectedValue)) {
-                    this.selectedText = option.text
-                    break;
+                    return option.text;
                 }
             }
-        } else {
-            this.selectedText = '';
         }
+        return '';
     }
 
 }

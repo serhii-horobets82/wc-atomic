@@ -358,9 +358,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                     this.rows.push(rowInputData);
 
                 });
-
-                //this.reqUpdate();
-
             });
         });
 

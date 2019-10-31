@@ -1,4 +1,3 @@
-import {BasicUtil, DataStore, I18nUtil, UIRefresher} from '@domoskanonos/typescript_base';
 import './scss/index.scss';
 
 import './atoms/import-atoms';
@@ -7,9 +6,13 @@ import './molecules/import-molecules';
 import './organisms/import-organisms'
 
 import './app/app-showcase';
+import { UIRefresherService } from '@domoskanonos/typescript_base/source/ui-refresher/u-i-refresher-service';
+import { BasicService } from '@domoskanonos/typescript_base/source/basic';
+import { I18nService } from '@domoskanonos/typescript_base/source/i18n-util/i18n-util';
+import { DataStoreService } from '@domoskanonos/typescript_base/source/storage/storage';
 
-export const UI_REFRESHER: UIRefresher = new UIRefresher();
-export const baseHelper = new BasicUtil();
-export const I18N = new I18nUtil(localStorage);
-export const SESSION_STORE = new DataStore(sessionStorage);
-export const LOCAL_STORE = new DataStore(localStorage);
+export const UI_REFRESHER: UIRefresherService = new UIRefresherService();
+export const baseHelper = new BasicService();
+export const I18N = new I18nService(localStorage);
+export const SESSION_STORE = new DataStoreService(sessionStorage);
+export const LOCAL_STORE = new DataStoreService(localStorage);
