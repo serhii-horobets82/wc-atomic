@@ -1,6 +1,6 @@
 {
-  "name": "dbr-wc-atomic",
-  "version": "1.0.3",
+  "name": "@domoskanonos/wc-atomic",
+  "version": "1.0.0",
   "description": "",
   "repository": {
     "private": true
@@ -41,6 +41,8 @@
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --open",
     "build_dev": "./node_modules/.bin/webpack --config webpack.dev.js --progress",
     "build_prod": "./node_modules/.bin/webpack --config webpack.prod.js --progress",
+    "new-version": "npm version patch & npm publish --access=public",
+    "unpublish": "npm unpublish --force",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
