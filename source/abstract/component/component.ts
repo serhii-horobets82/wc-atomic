@@ -166,7 +166,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     }
 
     protected getPageName(): string {
-        return RouterService.getInstance().router.getPath().replace('#', '');
+        return RouterService.getInstance().getPath().replace('#', '');
     }
 
 }
