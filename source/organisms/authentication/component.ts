@@ -1,4 +1,4 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {css, customElement, html, property, query, unsafeCSS} from "lit-element";
 import {AbstractComponent} from '../../abstract/component/component';
 import {
     AuthenticatedFailureEventData,
@@ -6,9 +6,9 @@ import {
     LoginInputData,
     LogoutEventData
 } from "./model";
-import {HTTP_CLIENT} from "../../app/data/data";
 import {FormComponentOutputData} from "../form/model";
 import {FormComponent} from "../form/component";
+import {APP_DATA} from "../../index";
 
 const componentCSS = require('./component.css');
 
@@ -34,7 +34,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     formComponent: FormComponent | undefined;
 
     @property()
-    isAuthenticated: boolean = HTTP_CLIENT.isAuthenticated();
+    isAuthenticated: boolean = APP_DATA.httpClient.isAuthenticated();
 
     render() {
         return !this.isAuthenticated ? html`
@@ -55,7 +55,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     private login() {
         if (this.formComponent != null) {
             let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-            let loginPromise = HTTP_CLIENT.login(formOutputData.formData);
+            let loginPromise = APP_DATA.httpClient.login(formOutputData.formData);
             loginPromise.then(isAuthenticated => {
 
                 this.isAuthenticated = isAuthenticated;
@@ -91,7 +91,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     }
 
     private logout() {
-        HTTP_CLIENT.logout().then(isAuthenticated => {
+        APP_DATA.httpClient.logout().then(isAuthenticated => {
             this.isAuthenticated = isAuthenticated;
 
             let eventData: LogoutEventData = {};

@@ -1,12 +1,16 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
-import {DATA_RECEIVER, DataReceiverListener} from "../../util/data-receiver/data-receiver";
-import {router} from "../../util/router";
-import {baseHelper, I18N, UI_REFRESHER} from "../../index";
-import { UIRefresherListener } from '@domoskanonos/typescript_base';
-
+import {APP_DATA, baseHelper, DATA_RECEIVER, I18N, UI_REFRESHER} from "../../index";
+import {
+    UIRefresherListener,
+    DataReceiverListener
+} from '@domoskanonos/frontend-basis';
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement implements DataReceiverListener, UIRefresherListener {
+
+    constructor(){
+        super();
+    }
 
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
@@ -154,7 +158,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     }
 
     protected getPageName(): string {
-        return router.getPath().replace('#', '');
+        return APP_DATA.router.getPath().replace('#', '');
     }
 
 }

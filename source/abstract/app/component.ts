@@ -1,35 +1,12 @@
 import {LitElement, TemplateResult} from "lit-element";
-import {AppData} from "./app";
-import {router} from "../../util/router";
-import {HttpClient} from "../../util/http-client/http-client";
+import {APP_DATA} from "../../index";
+
 
 export abstract class AbstractApp extends LitElement {
 
-    private readonly _appData: AppData;
-
-
     constructor() {
         super();
-        console.log('init appData...');
-        this._appData = this.initAppData();
-        console.log('app constructor done.');
     }
-
-    /**
-     * get all app data object
-     */
-    get appData(): AppData {
-        return this._appData;
-    }
-
-    /**
-     * get current app httpClient
-     */
-    get httpClient(): HttpClient {
-        return this.appData.httpClient;
-    }
-
-    protected abstract initAppData(): AppData;
 
     /**
      * doing stuff before first rendering, f.e. load data from server
@@ -44,10 +21,10 @@ export abstract class AbstractApp extends LitElement {
 
     firstUpdated() {
         this.registerEventListener();
-        router.subscribe(() => this.requestUpdate());
-        if (this.appData.isSecured && !this.appData.httpClient.isAuthenticated()) {
+        APP_DATA.router.subscribe(() => this.requestUpdate());
+        if (APP_DATA.isSecured && !APP_DATA.httpClient.isAuthenticated()) {
             console.log('user not authenticated, redirect to login page.')
-            router.navigate(this.appData.loginPage);
+            APP_DATA.router.navigate(APP_DATA.loginPage);
         }
     }
 

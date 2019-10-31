@@ -15,7 +15,6 @@ import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent} from "../../atoms/text/component";
 import {baseHelper} from "../../index";
-import {HTTP_CLIENT} from "../../app/data/data";
 import {DatalistInputData} from "../../input/datalist/model";
 import {TextInputData} from "../../atoms/text/model";
 import {InputInputData} from "../../input/input/model";
@@ -39,7 +38,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     private i18nTablePrefix = 'table_';
     private itemSizeDefaultValue: number = 5;
-
 
     @property()
     headers: TableHeaderInputData[] = [];

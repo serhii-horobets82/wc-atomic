@@ -1,4 +1,5 @@
-import {TemplateInputData} from "../../abstract/template/model";
+import {AbstractInputData} from "../../abstract/component/model";
 
-export interface DefaultTemplateModel extends TemplateInputData {
+export interface DefaultTemplateInputData extends AbstractInputData {
+    title: string;
 }

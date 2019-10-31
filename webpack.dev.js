@@ -3,7 +3,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
    entry: {
-      polyfills: './source/polyfills.ts',
       main: './source/index.ts'
    },
    resolve: {

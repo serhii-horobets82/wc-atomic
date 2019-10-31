@@ -1,20 +1,20 @@
-import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
-import {Template} from "../../abstract/template/template";
+import {css, property, query, TemplateResult, unsafeCSS, html} from 'lit-element';
 import {DataProtection} from "../../molecules/data-protection/component";
-import {DefaultTemplateModel} from "./model";
+import {DefaultTemplateInputData} from "./model";
 import {IconInputData} from "../../atoms/icon/model";
 import {baseHelper} from "../../index";
+import {AbstractComponent} from "../../abstract/component/component";
 
 const componentCSS = require('./template.css');
 
-export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any> {
+export abstract class DefaultTemplate extends AbstractComponent<DefaultTemplateInputData, any> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
     static IDENTIFIER: string = 'DefaultTemplate';
 
     @property()
-    title = 'HTML Template';
+    title = '';
 
     @property()
     menuSwitchIconClazz = 'fas fa-bars';
@@ -38,22 +38,30 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
             ${this.getLeftComponent()}
         </div>
         <div id="main">
-            ${this.getContent()}
+            ${this.getMainComponent()}
         </div>
     </div>
     <component-data-protection .inputData="${new DataProtection().getDefaultInputData()}"></component-data-protection>
     `;
     }
 
+    abstract getMainComponent(): TemplateResult;
+
+    abstract getLeftComponent(): TemplateResult;
+
+    abstract getTopContent(): TemplateResult;
+
     protected inputDataChanged(): void {
+        this.title = this.inputData.title;
     }
 
     public getOutputData(): any {
         return {};
     }
-    getDefaultInputData(): DefaultTemplateModel {
-        return <DefaultTemplateModel>{
+    getDefaultInputData(): DefaultTemplateInputData {
+        return <DefaultTemplateInputData>{
             componentIdentifier: DefaultTemplate.IDENTIFIER,
+            title:'',
         };
     }
 
@@ -80,10 +88,6 @@ export abstract class DefaultTemplate extends Template<DefaultTemplateModel, any
         if (this.headerElement != undefined)
             this.headerElement.setAttribute('class', this.menuCss);
     }
-
-    abstract getLeftComponent(): TemplateResult;
-
-    abstract getTopContent(): TemplateResult;
 
 }
 

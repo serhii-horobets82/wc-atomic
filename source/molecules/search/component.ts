@@ -1,8 +1,8 @@
 import {css, customElement, html, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
-import {KeyValueOutputData} from '../../organisms/form/component';
 import {InputComponent} from '../../input/input/component';
 import {SearchInputData} from "./model";
+import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
@@ -17,7 +17,7 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
    static EVENT_CLICK: string = 'component-search';
 
    @query('#textfieldComponent')
-   textfieldComponent: InputComponent;
+   textfieldComponent: InputComponent | undefined;
 
    render() {
       return html`
@@ -31,7 +31,7 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
       `;
    }
 
-   async clicked(event: Event) {
+   async clicked() {
       this.dispatchSimpleCustomEvent(
          SearchComponent.EVENT_CLICK,
          this.getOutputData()
@@ -44,7 +44,7 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
 
    getOutputData(): any {
       return this.textfieldComponent != null
-         ? (<KeyValueOutputData>this.textfieldComponent.getOutputData()).value
+          ? (<KeyValueData>this.textfieldComponent.getOutputData()).value
          : '';
    }
 

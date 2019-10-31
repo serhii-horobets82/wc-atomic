@@ -5,8 +5,7 @@ import {AbstractInputData} from "../../abstract/component/model";
 import {guard} from 'lit-html/directives/guard';
 import {ComponentLoader} from "../../abstract/component-loader";
 import {repeat} from 'lit-html/directives/repeat';
-import {baseHelper} from "../../index";
-import {router} from "../../util/router";
+import {APP_DATA, baseHelper} from "../../index";
 
 const componentCSS = require('./component.css');
 
@@ -64,7 +63,7 @@ ${guard(
                 
                   
             ${this.links.map((linkItem) => html`
-                <div @click="${() => this.clickedMenuItem(linkItem)}" class="${router.getPath() == linkItem.href ? 'navItem selected' : 'navItem'}">
+                <div @click="${() => this.clickedMenuItem(linkItem)}" class="${APP_DATA.router.getPath() == linkItem.href ? 'navItem selected' : 'navItem'}">
                     <component-icon iconClazz="${linkItem.icon}" class="navitemIcon"></component-icon>
                     <component-text>${linkItem.text}</component-text>
                 </div>
@@ -103,7 +102,7 @@ ${guard(
 
 
     private clickedMenuItem(linkItem: NavigationLinkInputData) {
-        router.navigate(linkItem.href);
+        APP_DATA.router.navigate(linkItem.href);
     }
 }
 

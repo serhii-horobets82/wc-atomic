@@ -1,15 +1,11 @@
-import {Template} from "../../abstract/template/template";
-import {html} from "lit-html";
+import {AbstractComponent} from "../../abstract/component/component";
+import {TemplateResult} from "lit-html";
 
-export class BlankTemplate extends Template<any, any> {
-
-    initTemplateData() {
-        return {};
-    }
+export abstract class BlankTemplate extends AbstractComponent<any, any> {
 
     static IDENTIFIER: string = 'BlanckTemplate';
 
-    render() {
+    render(): TemplateResult {
         return this.getContent();
     }
 
@@ -24,4 +20,5 @@ export class BlankTemplate extends Template<any, any> {
     inputDataChanged(): void {
     }
 
+    abstract getContent(): TemplateResult;
 }

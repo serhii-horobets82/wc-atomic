@@ -120,6 +120,7 @@
       </style>
       <script>
          window.onload = function () {
+            console.log('onload...');
             let appRoot = document.createElement("app-root");
             appRoot.preRender().then(value => {
                console.log('prerendering finished: ' + value)

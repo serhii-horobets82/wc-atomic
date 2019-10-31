@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract/component/component';
 import {AuthenticatedIconInputData} from "./model";
-import {router} from "../../util/router";
+import {APP_DATA} from "../../index";
 
 const componentCSS = require('./component.scss');
 
@@ -55,11 +55,11 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     }
 
     private login() {
-        router.navigate(this.loginPage);
+        APP_DATA.router.navigate(this.loginPage);
     }
 
     private logout() {
-        router.navigate(this.logoutPage);
+        APP_DATA.router.navigate(this.logoutPage);
     }
 
 }
