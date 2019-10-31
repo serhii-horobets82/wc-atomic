@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/component/component";
+import {AbstractComponent} from "../../abstract-component/component";
 import {NavigationInputData, NavigationLinkInputData} from "./model";
-import {AbstractInputData} from "../../abstract/component/model";
+import {AbstractInputData} from "../../abstract-component/model";
 import {guard} from 'lit-html/directives/guard';
 import {ComponentLoader} from "../../abstract/component-loader";
 import {repeat} from 'lit-html/directives/repeat';

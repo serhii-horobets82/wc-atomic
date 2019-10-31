@@ -1,5 +1,5 @@
 import {ImgModel} from "../../atoms/img/model";
-import {AbstractInputData} from "../../abstract/component/model";
+import {AbstractInputData} from "../../abstract-component/model";
 
 /**
  *

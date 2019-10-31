@@ -1,5 +1,5 @@
 import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractComponent} from '../../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {
@@ -13,10 +13,10 @@ import {
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
-import {TextComponent} from "../../atoms/text/component";
+import {TextComponent} from "../../text/component";
 import {baseHelper} from "../../index";
 import {DatalistInputData} from "../../input/datalist/model";
-import {TextInputData} from "../../atoms/text/model";
+import {TextInputData} from "../../text/model";
 import {InputInputData} from "../../input/input/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {ButtonComponent} from "../../atoms/button/component";

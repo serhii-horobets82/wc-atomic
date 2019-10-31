@@ -7,4 +7,4 @@ import './img/import';
 import './link/import';
 import './spacer/import';
 import './navigation/import';
-import './text/import';
+import '../text/import';

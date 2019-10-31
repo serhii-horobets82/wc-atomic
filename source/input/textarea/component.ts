@@ -1,5 +1,5 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from "../../abstract/component/component";
+import {AbstractComponent} from "../../abstract-component/component";
 import {KeyValueOutputData} from "../../organisms/form/component";
 import {TextareaInputData} from "./model";
 

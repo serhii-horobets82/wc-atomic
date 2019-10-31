@@ -3,7 +3,7 @@ import {InputComponent} from '../../input/input/component';
 import {FormElementComponent} from '../../atoms/form-element/component';
 import {TextareaComponent} from '../../input/textarea/component';
 import {ComboboxComponent} from '../../input/combobox/component';
-import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractComponent} from '../../abstract-component/component';
 import {FlexComponent} from '../flex-container/component';
 import {ButtonComponent} from '../../atoms/button/component';
 import {guard} from 'lit-html/directives/guard';

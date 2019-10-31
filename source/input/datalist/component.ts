@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {AbstractComponent} from "../../abstract/component/component";
+import {AbstractComponent} from "../../abstract-component/component";
 import {DatalistInputData, DatalistOption} from "./model";
 import {KeyValueData} from "../../organisms/form/model";
 import {baseHelper} from "../../index";

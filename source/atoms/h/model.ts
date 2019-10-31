@@ -1,4 +1,4 @@
-import {AbstractInputData} from "../../abstract/component/model";
+import {AbstractInputData} from "../../abstract-component/model";
 
 export interface HInputData extends AbstractInputData {
     headerType: number;

@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractComponent} from '../../abstract-component/component';
 import {AuthenticatedIconInputData} from "./model";
 import {APP_DATA} from "../../index";
 

@@ -1,8 +1,8 @@
 import {css, customElement, html, property, unsafeCSS} from "lit-element";
-import {AbstractComponent} from "../../../abstract/component/component";
+import {AbstractComponent} from "../../../abstract-component/component";
 import {TeaserElementInputData} from "./model";
 import {ComponentLoader} from "../../../abstract/component-loader";
-import {AbstractInputData} from "../../../abstract/component/model";
+import {AbstractInputData} from "../../../abstract-component/model";
 import {baseHelper} from "../../../index";
 import {repeat} from "lit-html/directives/repeat";
 import {guard} from "lit-html/directives/guard";

@@ -2,7 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { ImgComponent} from '../../atoms/img/component';
-import { AbstractComponent } from '../../abstract/component/component';
+import { AbstractComponent } from '../../abstract-component/component';
 import {ImgModel} from "../../atoms/img/model";
 import {ImgSliderInputData} from "./model";
 

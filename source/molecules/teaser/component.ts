@@ -2,7 +2,7 @@ import {baseHelper, SLOT_HELPER} from '../../index';
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractComponent} from '../../abstract-component/component';
 import {TeaserContainerInputData} from './model';
 import {TeaserElementInputData} from './teaser-element/model';
 import {TeaserElementComponent} from './teaser-element/component';

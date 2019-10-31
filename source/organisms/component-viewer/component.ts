@@ -1,8 +1,8 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract/component/component';
+import {AbstractComponent} from '../../abstract-component/component';
 import {LinkComponent} from '../../atoms/link/component';
 import {LeafViewer} from "./model";
-import {AbstractInputData} from "../../abstract/component/model";
+import {AbstractInputData} from "../../abstract-component/model";
 import {ComponentLoader} from "../../abstract/component-loader";
 
 const componentCSS = require('./component.css');

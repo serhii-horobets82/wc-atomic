@@ -3,7 +3,7 @@ import {DataProtection} from "../../molecules/data-protection/component";
 import {DefaultTemplateInputData} from "./model";
 import {IconInputData} from "../../atoms/icon/model";
 import {baseHelper} from "../../index";
-import {AbstractComponent} from "../../abstract/component/component";
+import {AbstractComponent} from "../../abstract-component/component";
 
 const componentCSS = require('./template.css');
 

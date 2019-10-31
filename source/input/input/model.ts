@@ -1,4 +1,4 @@
-import {AbstractInputData} from "../../abstract/component/model";
+import {AbstractInputData} from "../../abstract-component/model";
 import {KeyValueData} from "../../organisms/form/model";
 
 export interface InputInputData extends AbstractInputData {

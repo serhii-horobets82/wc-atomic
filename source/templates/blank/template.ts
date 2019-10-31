@@ -1,4 +1,4 @@
-import {AbstractComponent} from "../../abstract/component/component";
+import {AbstractComponent} from "../../abstract-component/component";
 import {TemplateResult} from "lit-html";
 
 export abstract class BlankTemplate extends AbstractComponent<any, any> {

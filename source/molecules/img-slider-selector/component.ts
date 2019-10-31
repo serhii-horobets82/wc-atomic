@@ -1,5 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract/component/component';
+import { AbstractComponent } from '../../abstract-component/component';
 import { ImgSliderComponent } from '../img-slider/component';
 import {ImgModel} from "../../atoms/img/model";
 import {ImgSliderSelectorInputData} from "./model";
