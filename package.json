@@ -1,6 +1,6 @@
 {
   "name": "@domoskanonos/wc-atomic",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "source/index.js",
   "module": "source/index.js",
