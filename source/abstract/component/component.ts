@@ -1,16 +1,24 @@
 import {LitElement, property} from 'lit-element';
 import {AbstractInputData} from './model';
-import {APP_DATA, baseHelper, DATA_RECEIVER, I18N, UI_REFRESHER} from "../../index";
 import {
+    BasicService,
+    DataReceiverListener,
+    DataReceiverService,
+    I18nService,
     UIRefresherListener,
-    DataReceiverListener
+    UiRefresherService,
+    RouterService
 } from '@domoskanonos/frontend-basis';
+
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement implements DataReceiverListener, UIRefresherListener {
 
     constructor(){
         super();
     }
+
+    private basicService: BasicService = new BasicService();
+    private i18n: I18nService = new I18nService(localStorage);
 
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
@@ -30,12 +38,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
         if (this.dataReceiverChannels != undefined) {
             this.dataReceiverChannels.forEach(channel => {
-                DATA_RECEIVER.register(channel, this);
+                DataReceiverService.getInstance().register(channel, this);
             })
         }
         if (this.uiRefreshChannels != undefined) {
             this.uiRefreshChannels.forEach(channel => {
-                UI_REFRESHER.register(channel, this);
+                UiRefresherService.getInstance().register(channel, this);
             });
         }
     }
@@ -44,12 +52,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         console.log('disconnected');
         if (this.dataReceiverChannels != undefined) {
             this.dataReceiverChannels.forEach(channel => {
-                DATA_RECEIVER.unregister(channel, this);
+                DataReceiverService.getInstance().unregister(channel, this);
             });
         }
         if (this.uiRefreshChannels != undefined) {
             this.uiRefreshChannels.forEach(channel => {
-                UI_REFRESHER.unregister(channel, this);
+                UiRefresherService.getInstance().unregister(channel, this);
             });
         }
     }
@@ -74,8 +82,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         console.debug(
             'input data changed, new value=' + JSON.stringify(this._inputData)
         );
-        if (baseHelper.isNotEmpty(this._inputData)) {
-            this.dataReceiverChannels = baseHelper.getValue(this._inputData.dataReceiverChannels, []);
+        if (this.basicService.isNotEmpty(this._inputData)) {
+            this.dataReceiverChannels = this.basicService.getValue(this._inputData.dataReceiverChannels, []);
         } else {
             throw new Error("empty input data: " + JSON.stringify(this));
         }
@@ -112,7 +120,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     }
 
     public getI18NValue(key: string): string | null | undefined {
-        return I18N.getValue(key);
+        return this.i18n.getValue(key);
     }
 
     objToString(obj: any) {
@@ -158,7 +166,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     }
 
     protected getPageName(): string {
-        return APP_DATA.router.getPath().replace('#', '');
+        return RouterService.getInstance().router.getPath().replace('#', '');
     }
 
 }

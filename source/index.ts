@@ -15,24 +15,20 @@ import {
     BasicService,
     CorsMode,
     Credentials,
-    DataReceiverService,
     DataStoreService,
     HttpClientIF,
     HttpClientService,
     I18nService,
     RouterService,
-    SlotService,
-    UiRefresherService
+    SlotService
 } from '@domoskanonos/frontend-basis';
 import {AppData} from "./abstract/app/model";
 
-export const UI_REFRESHER: UiRefresherService = new UiRefresherService();
 export const baseHelper = new BasicService();
 export const I18N = new I18nService(localStorage);
 export const SESSION_STORE = new DataStoreService(sessionStorage);
 export const LOCAL_STORE = new DataStoreService(localStorage);
 export const SLOT_HELPER = new SlotService();
-export const DATA_RECEIVER = new DataReceiverService();
 
 let secured = false;
 
