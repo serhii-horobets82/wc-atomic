@@ -1,5 +1,5 @@
-import {AbstractInputData} from "../../abstract-component/model";
 import {KeyValueData} from "../../organisms/form/model";
+import {AbstractInputData} from "../../abstract-component/component";
 
 export interface FormElementInputData extends AbstractInputData {
     label: string;

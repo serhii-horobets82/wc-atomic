@@ -2,8 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
 import {ImgComponent} from '../../atoms/img/component';
-import {AbstractInputData} from '../../abstract-component/model';
-import {AbstractComponent} from '../../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../../abstract-component/component';
 import {ComponentLoader} from '../../abstract/component-loader';
 import {FlexContainerInputData} from "./model";
 

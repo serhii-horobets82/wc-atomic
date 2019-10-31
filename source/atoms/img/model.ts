@@ -1,4 +1,4 @@
-import {AbstractInputData} from "../../abstract-component/model";
+import {AbstractInputData} from "../../abstract-component/component";
 
 export interface ImgModel extends AbstractInputData {
     src: string;

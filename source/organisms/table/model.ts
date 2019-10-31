@@ -1,5 +1,5 @@
-import {AbstractInputData} from "../../abstract-component/model";
 import {KeyValueData} from "../form/model";
+import {AbstractInputData} from "../../abstract-component/component";
 
 export interface TableHeaderInputData {
     columnKey: string;

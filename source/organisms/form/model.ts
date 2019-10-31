@@ -1,6 +1,6 @@
-import {AbstractInputData} from "../../abstract-component/model";
 import {ButtonInputData} from "../../atoms/button/model";
 import {FlexContainerInputData} from "../flex-container/model";
+import {AbstractInputData} from "../../abstract-component/component";
 
 export interface KeyValueData {
     key: string;

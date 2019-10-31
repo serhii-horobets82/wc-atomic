@@ -1,9 +1,15 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../abstract-component/component';
-import {TextInputData} from "./model";
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {baseHelper} from "../index";
 
 const componentCSS = require('./component.css');
+
+export interface TextInputData extends AbstractInputData {
+   text?: string;
+   clazz?: string;
+   cssStyle?: string;
+   title?: string;
+}
 
 @customElement('component-text')
 export class TextComponent extends AbstractComponent<TextInputData, any> {

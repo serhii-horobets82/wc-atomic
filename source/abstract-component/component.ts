@@ -1,14 +1,19 @@
 import {LitElement, property} from 'lit-element';
-import {AbstractInputData} from './model';
 import {
     BasicService,
     DataReceiverListener,
     DataReceiverService,
     I18nService,
+    RouterService,
     UIRefresherListener,
-    UiRefresherService,
-    RouterService
+    UiRefresherService
 } from '@domoskanonos/frontend-basis';
+
+export interface AbstractInputData {
+    componentIdentifier: string;
+    dataReceiverChannels?: string[];
+    uiRefreshChannels?: string[];
+}
 
 export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     OUTPUT_DATA> extends LitElement implements DataReceiverListener, UIRefresherListener {

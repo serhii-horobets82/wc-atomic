@@ -1,4 +1,4 @@
-import {AbstractInputData} from "../../abstract-component/model";
+import {AbstractInputData} from "../../abstract-component/component";
 
 export interface TextareaInputData extends AbstractInputData {
     name: string;

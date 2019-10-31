@@ -1,8 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {NavigationComponent} from '../../atoms/navigation/component';
 import {ComponentLoader} from '../../abstract/component-loader';
-import {AbstractInputData} from '../../abstract-component/model';
-import {AbstractComponent} from '../../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../../abstract-component/component';
 import {ContentSliderInputData} from "./model";
 
 const componentCSS = require('./component.css');

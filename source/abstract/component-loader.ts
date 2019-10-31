@@ -1,5 +1,5 @@
 import {LinkComponent} from '../atoms/link/component';
-import {AbstractComponent} from '../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {TextComponent} from '../text/component';
 import {ButtonComponent} from '../atoms/button/component';
 import {CodeComponent} from '../atoms/code/component';
@@ -18,7 +18,6 @@ import {ImgSliderSelectorComponent} from '../molecules/img-slider-selector/compo
 import {TableComponent} from '../organisms/table/component';
 import {TeaserComponent} from '../molecules/teaser/component';
 import {NavigationComponent} from '../atoms/navigation/component';
-import {AbstractInputData} from '../abstract-component/model';
 import {FormComponent} from '../organisms/form/component';
 import {FlexComponent} from '../organisms/flex-container/component';
 import {TileComponent} from '../molecules/tile/component';

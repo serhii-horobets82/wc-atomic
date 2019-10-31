@@ -13,10 +13,9 @@ import {
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
-import {TextComponent} from "../../text/component";
+import {TextComponent, TextInputData} from "../../text/component";
 import {baseHelper} from "../../index";
 import {DatalistInputData} from "../../input/datalist/model";
-import {TextInputData} from "../../text/model";
 import {InputInputData} from "../../input/input/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {ButtonComponent} from "../../atoms/button/component";

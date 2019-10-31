@@ -1,2 +1,2 @@
-export * from './source/abstract-component/import';
-export * from './source/text/import';
+export {AbstractInputData, AbstractComponent} from './source/abstract-component/component';
+export {TextInputData, TextComponent} from './source/text/component';

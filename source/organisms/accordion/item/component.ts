@@ -1,11 +1,10 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {repeat} from 'lit-html/directives/repeat';
 import {guard} from 'lit-html/directives/guard';
-import {AbstractComponent} from '../../../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../../../abstract-component/component';
 import {TextComponent} from '../../../text/component';
 import {ComponentLoader} from '../../../abstract/component-loader';
 import {AccordionItemInputData} from "./model";
-import {AbstractInputData} from "../../../abstract-component/model";
 
 const componentCSS = require('./component.css');
 

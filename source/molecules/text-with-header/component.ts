@@ -2,9 +2,8 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent} from '../../abstract-component/component';
 import {TextWithHeaderInputData} from "./model";
 import {H1Component} from "../../atoms/h/component";
-import {TextComponent} from "../../text/component";
+import {TextComponent, TextInputData} from "../../text/component";
 import {HInputData} from "../../atoms/h/model";
-import {TextInputData} from "../../text/model";
 
 const componentCSS = require('./component.css');
 
