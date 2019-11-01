@@ -1,7 +1,6 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract-component/component';
 import {ImgModel} from "./model";
-import {baseHelper} from "../../index";
 
 const componentCSS = require('./component.css');
 
@@ -35,10 +34,10 @@ export class ImgComponent extends AbstractComponent<ImgModel, undefined> {
    }
 
    protected inputDataChanged() {
-      this.src = baseHelper.getValue(this.inputData.src, '')
-      this.text = baseHelper.getValue(this.inputData.text, '')
-      this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '')
-      this.clazz = baseHelper.getValue(this.inputData.clazz, '')
+      this.src = this.basicService.getValue(this.inputData.src, '')
+      this.text = this.basicService.getValue(this.inputData.text, '')
+      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '')
+      this.clazz = this.basicService.getValue(this.inputData.clazz, '')
    }
 
    render() {

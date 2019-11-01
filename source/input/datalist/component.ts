@@ -4,7 +4,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract-component/component";
 import {DatalistInputData, DatalistOption} from "./model";
 import {KeyValueData} from "../../organisms/form/model";
-import {baseHelper} from "../../index";
+
 
 const componentCSS = require('./component.css');
 
@@ -37,7 +37,7 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
            <input id="item" list="items" type="text" value="${this.selectedText}" @change="${(event: Event) => this.onChange(event)}"/>
             <datalist id="items" size="${this.size}" >
                 ${guard([this.options], () => html`${
-            repeat(this.options, option => option.value, (option) => baseHelper.isEqual(this.selectedValue, option.value) ? html`
+            repeat(this.options, option => option.value, (option) => this.basicService.isEqual(this.selectedValue, option.value) ? html`
                         <option value="${option.value}" selected>${option.text}</option>
                     ` : html`
                         <option value="${option.value}">${option.text}</option>
@@ -49,9 +49,9 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     }
 
     protected inputDataChanged() {
-        this.size = baseHelper.getValue(this.inputData.size, 1);
-        this.options = baseHelper.cloneArray(baseHelper.getValue(this.inputData.options, []));
-        this.selectedValue = baseHelper.getValue(this.inputData.selectedValue, '');
+        this.size = this.basicService.getValue(this.inputData.size, 1);
+        this.options = this.basicService.cloneArray(this.basicService.getValue(this.inputData.options, []));
+        this.selectedValue = this.basicService.getValue(this.inputData.selectedValue, '');
         this.selectedText = this.getSelectedText();
         console.log(this.inputfield);
         if(this.inputfield!= null){
@@ -64,7 +64,7 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
         let inputElement: HTMLInputElement = <HTMLInputElement>event.target;
         this.selectedValue = inputElement.value;
         this.inputData.selectedValue = this.selectedValue;
-        this.options = baseHelper.cloneArray(baseHelper.getValue(this.inputData.options, []));
+        this.options = this.basicService.cloneArray(this.basicService.getValue(this.inputData.options, []));
         this.selectedText = this.getSelectedText();
         inputElement.value = this.selectedText;
         inputElement.defaultValue = this.selectedText;
@@ -96,9 +96,9 @@ export class DatalistComponent extends AbstractComponent<DatalistInputData, KeyV
     }
 
     private getSelectedText(): string {
-        if (baseHelper.isNotBlank(this.inputData.selectedValue)) {
+        if (this.basicService.isNotBlank(this.inputData.selectedValue)) {
             for (const option of this.inputData.options) {
-                if (baseHelper.isEqual(option.value, this.selectedValue)) {
+                if (this.basicService.isEqual(option.value, this.selectedValue)) {
                     return option.text;
                 }
             }

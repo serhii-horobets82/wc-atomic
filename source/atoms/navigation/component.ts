@@ -4,7 +4,7 @@ import {NavigationInputData, NavigationLinkInputData} from "./model";
 import {guard} from 'lit-html/directives/guard';
 import {ComponentLoader} from "../../abstract/component-loader";
 import {repeat} from 'lit-html/directives/repeat';
-import {APP_DATA, baseHelper} from "../../index";
+import {RouterService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -62,7 +62,7 @@ ${guard(
                 
                   
             ${this.links.map((linkItem) => html`
-                <div @click="${() => this.clickedMenuItem(linkItem)}" class="${APP_DATA.router.getPath() == linkItem.href ? 'navItem selected' : 'navItem'}">
+                <div @click="${() => this.clickedMenuItem(linkItem)}" class="${RouterService.getInstance().getPath() == linkItem.href ? 'navItem selected' : 'navItem'}">
                     <component-icon iconClazz="${linkItem.icon}" class="navitemIcon"></component-icon>
                     <component-text>${linkItem.text}</component-text>
                 </div>
@@ -89,10 +89,10 @@ ${guard(
     }
 
     protected inputDataChanged() {
-        this.clazz = baseHelper.getValue(this.inputData.clazz, '');
+        this.clazz = this.basicService.getValue(this.inputData.clazz, '');
         this.links = this.inputData.links;
-        this.contentBefore = baseHelper.getValue(this.inputData.contentBefore, []);
-        this.contentAfter = baseHelper.getValue(this.inputData.contentAfter, []);
+        this.contentBefore = this.basicService.getValue(this.inputData.contentBefore, []);
+        this.contentAfter = this.basicService.getValue(this.inputData.contentAfter, []);
     }
 
     getOutputData(): any {
@@ -101,7 +101,7 @@ ${guard(
 
 
     private clickedMenuItem(linkItem: NavigationLinkInputData) {
-        APP_DATA.router.navigate(linkItem.href);
+        RouterService.getInstance().navigate(linkItem.href);
     }
 }
 

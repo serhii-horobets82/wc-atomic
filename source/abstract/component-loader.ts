@@ -5,7 +5,7 @@ import {ButtonComponent} from '../atoms/button/component';
 import {CodeComponent} from '../atoms/code/component';
 import {ComboboxComponent} from '../input/combobox/component';
 import {ImgComponent} from '../atoms/img/component';
-import {IconComponent} from '../atoms/icon/component';
+import {IconComponent} from '../icon/component';
 import {TextareaComponent} from '../input/textarea/component';
 import {InputComponent} from '../input/input/component';
 import {FormElementComponent} from '../atoms/form-element/component';

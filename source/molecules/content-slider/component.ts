@@ -16,10 +16,10 @@ export class ContentSliderComponent extends AbstractComponent<
    `;
 
    @property()
-   open: boolean;
+   open: boolean = true;
 
    @property()
-   componentInputData: AbstractInputData;
+   componentInputData: AbstractInputData = <AbstractInputData>{};
 
    static IDENTIFIER: string = 'ContentSliderComponent';
 

@@ -3,7 +3,7 @@ import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {AbstractComponent} from "../../abstract-component/component";
 import {ComboboxInputData, ComboboxOption} from "./model";
-import {baseHelper} from "../../index";
+
 import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
@@ -33,18 +33,18 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
     cssStyle : string = '';
 
     protected inputDataChanged() {
-        this.name = baseHelper.getValue(this.inputData.name, '');
-        this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
-        this.size = baseHelper.getValue(this.inputData.size, 1);
-        this.selectedValue = baseHelper.getValue(this.inputData.selectedValue, '');
-        this.options = baseHelper.getValue(this.inputData.options, <ComboboxOption>{});
+        this.name = this.basicService.getValue(this.inputData.name, '');
+        this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
+        this.size = this.basicService.getValue(this.inputData.size, 1);
+        this.selectedValue = this.basicService.getValue(this.inputData.selectedValue, '');
+        this.options = this.basicService.getValue(this.inputData.options, <ComboboxOption>{});
     }
 
     render() {
         return html`
             <select name="${this.name}" style="${this.cssStyle}" size="${this.size}" @change="${(event: Event) => this.onChange(event)}">
                 ${guard([this.options], () => html`${
-            repeat(this.options, option => option.value, (option) => baseHelper.isEqual(this.selectedValue, option.value) ? html`
+            repeat(this.options, option => option.value, (option) => this.basicService.isEqual(this.selectedValue, option.value) ? html`
                         <option value="${option.value}" selected>${option.text}</option>
                     ` : html`
                         <option value="${option.value}">${option.text}</option>

@@ -1,8 +1,8 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract-component/component';
-import {IconInputData} from "../icon/model";
 import {ButtonInputData} from "./model";
-import {baseHelper} from "../../index";
+import {IconInputData} from "../../icon/component";
+
 
 const componentCSS = require('./component.css');
 
@@ -50,11 +50,11 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
     }
 
     protected inputDataChanged() {
-        this.icon = baseHelper.getValue(this.inputData.icon, <IconInputData>{});
-        this.text = baseHelper.getValue(this.inputData.text, '');
-        this.href = baseHelper.getValue(this.inputData.href, '/');
-        this.selected = baseHelper.getValue(this.inputData.selected, false);
-        this.clickEventData = baseHelper.getValue(this.inputData.clickEventData, {});
+        this.icon = this.basicService.getValue(this.inputData.icon, <IconInputData>{});
+        this.text = this.basicService.getValue(this.inputData.text, '');
+        this.href = this.basicService.getValue(this.inputData.href, '/');
+        this.selected = this.basicService.getValue(this.inputData.selected, false);
+        this.clickEventData = this.basicService.getValue(this.inputData.clickEventData, {});
     }
 
     render() {

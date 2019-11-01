@@ -18,16 +18,16 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
    static IDENTIFIER: string = 'ImgSliderSelectorComponent';
 
    @property()
-   sliderType: number;
+   sliderType: number = 1;
 
    @property()
-   maxHeight: string;
+   maxHeight: string = '';
 
    @property()
    imgs: ImgModel[] = [];
 
    @property()
-   selectedImg: ImgModel;
+   selectedImg: ImgModel = <ImgModel>{};
 
    @property()
    columnFlexBasisValues: string[] = ['30%', '70%'];

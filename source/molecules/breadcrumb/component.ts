@@ -20,7 +20,7 @@ export class BreadcrumbComponent extends AbstractComponent<
    static IDENTIFIER: string = 'BreadcrumbComponent';
 
    @property()
-   links: LinkInputData[];
+   links: LinkInputData[] = [];
 
    render() {
       return html`

@@ -1,13 +1,16 @@
-import {css, property, query, TemplateResult, unsafeCSS, html} from 'lit-element';
-import {DataProtection} from "../../molecules/data-protection/component";
-import {DefaultTemplateInputData} from "./model";
-import {IconInputData} from "../../atoms/icon/model";
-import {baseHelper} from "../../index";
-import {AbstractComponent} from "../../abstract-component/component";
+import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
+import {DataProtection} from "../molecules/data-protection/component";
 
-const componentCSS = require('./template.css');
+import {AbstractComponent, AbstractInputData} from "../abstract-component/component";
+import {IconInputData} from "../icon/component";
 
-export abstract class DefaultTemplate extends AbstractComponent<DefaultTemplateInputData, any> {
+const componentCSS = require('./component.css');
+
+export interface BasisTemplateInputData extends AbstractInputData {
+    title: string;
+}
+
+export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInputData, any> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -58,9 +61,10 @@ export abstract class DefaultTemplate extends AbstractComponent<DefaultTemplateI
     public getOutputData(): any {
         return {};
     }
-    getDefaultInputData(): DefaultTemplateInputData {
-        return <DefaultTemplateInputData>{
-            componentIdentifier: DefaultTemplate.IDENTIFIER,
+
+    getDefaultInputData(): BasisTemplateInputData {
+        return <BasisTemplateInputData>{
+            componentIdentifier: BasisTemplate.IDENTIFIER,
             title:'',
         };
     }
@@ -68,7 +72,7 @@ export abstract class DefaultTemplate extends AbstractComponent<DefaultTemplateI
 
     menuItemClicked(event: CustomEvent) {
         let iid: IconInputData = event.detail
-        if (baseHelper.isEqual(iid.iconClazz, this.menuSwitchIconClazz)) {
+        if (this.basicService.isEqual(iid.iconClazz, this.menuSwitchIconClazz)) {
             console.log('menuItemClicked...');
            this.toogleMenu();
         }

@@ -1,5 +1,5 @@
-import {IconInputData} from "../../atoms/icon/model";
 import {AbstractInputData} from "../../abstract-component/component";
+import {IconInputData} from "../../icon/component";
 
 export interface IconGroupInputData extends AbstractInputData {
     clazz?: string;

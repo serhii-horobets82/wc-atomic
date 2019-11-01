@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract-component/component";
 import {LinkInputData} from "./model";
-import {baseHelper} from "../../index";
+
 
 const componentCSS = require('./component.css');
 
@@ -23,8 +23,8 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
     }
 
     protected inputDataChanged() {
-        this.href = baseHelper.getValue(this.inputData.href,'');
-        this.text = baseHelper.getValue(this.inputData.text,'');
+        this.href = this.basicService.getValue(this.inputData.href,'');
+        this.text = this.basicService.getValue(this.inputData.text,'');
     }
 
     getDefaultInputData(): LinkInputData {

@@ -1,56 +1,11 @@
-import './scss/index.scss';
-
-import './templates/import-templates';
-
-import './atoms/import-atoms';
-import './input/import-input';
-import './molecules/import-molecules';
-import './organisms/import-organisms'
-
-import './app/pages/dashboard';
-
-import './app/app-showcase';
-
-import {
-    BasicService,
-    CorsMode,
-    Credentials,
-    DataStoreService,
-    HttpClientIF,
-    HttpClientService,
-    I18nService,
-    RouterService,
-    SlotService
-} from '@domoskanonos/frontend-basis';
-import {AppData} from "./abstract/app/model";
-
-export const baseHelper = new BasicService();
-export const I18N = new I18nService(localStorage);
-export const SESSION_STORE = new DataStoreService(sessionStorage);
-export const LOCAL_STORE = new DataStoreService(localStorage);
-export const SLOT_HELPER = new SlotService();
-
-let secured = false;
-
-export const APP_DATA = <AppData>{
-    isSecured: secured,
-    description: 'Balco Tool',
-    name: 'Balco',
-    loginPage: '#login',
-    httpClient: new HttpClientService(<HttpClientIF>{
-        credentials: Credentials.INCLUDE,
-        cors: CorsMode.CORS,
-        defaultContentType: 'application/json',
-        baseURL: 'http://v220190910399797452.supersrv.de:8095',
-        isSecured: secured,
-        loginPath: '/dologin',
-        logoutPath: '/dologout',
-    }),
-    router: new RouterService(),
-};
-
-
 import {AbstractInputData, AbstractComponent} from './abstract-component/component';
+import {AppData, AbstractApp} from './abstract-app/component';
 import {TextInputData, TextComponent} from './text/component';
+import {IconInputData,IconComponent} from './icon/component';
+import {BasisTemplateInputData,BasisTemplate} from './template-basis/component';
+
 export {AbstractInputData, AbstractComponent} from './abstract-component/component';
+export {AppData, AbstractApp} from './abstract-app/component';
+export {IconInputData,IconComponent} from './icon/component';
 export {TextInputData, TextComponent} from './text/component';
+export {BasisTemplateInputData,BasisTemplate} from './template-basis/component';

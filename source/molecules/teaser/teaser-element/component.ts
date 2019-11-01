@@ -2,7 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from "lit-element";
 import {AbstractComponent, AbstractInputData} from "../../../abstract-component/component";
 import {TeaserElementInputData} from "./model";
 import {ComponentLoader} from "../../../abstract/component-loader";
-import {baseHelper} from "../../../index";
+
 import {repeat} from "lit-html/directives/repeat";
 import {guard} from "lit-html/directives/guard";
 
@@ -75,8 +75,8 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
     }
 
     protected inputDataChanged() {
-        this.selected = baseHelper.getValue(this.inputData.selected, false);
-        this.foregroundContent = baseHelper.getValue(this.inputData.foregroundContent, []);
-        this.backgroundContent = baseHelper.getValue(this.inputData.backgroundContent, []);
+        this.selected = this.basicService.getValue(this.inputData.selected, false);
+        this.foregroundContent = this.basicService.getValue(this.inputData.foregroundContent, []);
+        this.backgroundContent = this.basicService.getValue(this.inputData.backgroundContent, []);
     }
 }

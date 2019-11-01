@@ -17,10 +17,10 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
     static LOCAL_STORAGE_ACCEPT_KEY = 'component-data-protection-accept';
 
     @property()
-    buttonInputData: ButtonInputData;
+    buttonInputData: ButtonInputData = <ButtonInputData>{};
 
     @property()
-    lawText: string;
+    lawText: string = '';
 
     @property()
     isAccepted: boolean;
@@ -49,7 +49,7 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
 </div>`;
     }
 
-    async accept(event: Event) {
+    async accept() {
         this.setLocalStorageAcceptValue(true);
     }
 

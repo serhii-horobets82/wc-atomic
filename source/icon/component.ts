@@ -1,9 +1,26 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract-component/component';
-import {IconInputData} from "./model";
-import {baseHelper} from "../../index";
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 
 const componentCSS = require('./component.scss');
+
+/**
+ * iconClazz:
+ * clazzName for the icon
+ *
+ * clickable:
+ * if true, mouse is cursor type pointer and a event is pushed.
+ *
+ * status:
+ * 1 = normal
+ * 2 = aktiv
+ * 3 = passiv
+ */
+export interface IconInputData extends AbstractInputData {
+    iconClazz?: string;
+    cssStyle?: string;
+    clickable?: boolean;
+    status?: number;
+}
 
 @customElement('component-icon')
 export class IconComponent extends AbstractComponent<IconInputData, any> {
@@ -67,10 +84,10 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
     }
 
     inputDataChanged() {
-        this.iconClazz = baseHelper.getValue(this.inputData.iconClazz, '');
-        this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
-        this.status = baseHelper.getValue(this.inputData.status, 1);
-        this.clickable = baseHelper.getValue(this.inputData.clickable, false);
+        this.iconClazz = this.basicService.getValue(this.inputData.iconClazz, '');
+        this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
+        this.status = this.basicService.getValue(this.inputData.status, 1);
+        this.clickable = this.basicService.getValue(this.inputData.clickable, false);
     }
 
     getOutputData(): any {

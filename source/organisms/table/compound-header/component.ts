@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../../abstract-component/component';
 import {TableCompoundHeaderInputData} from "./model";
-import {baseHelper} from "../../../index";
+
 
 const componentCSS = require('./component.css');
 
@@ -39,8 +39,8 @@ export class TableCompoundHeader extends AbstractComponent<TableCompoundHeaderIn
     }
 
     protected inputDataChanged() {
-        this.text = baseHelper.getValue(this.inputData.text, '');
-        this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
+        this.text = this.basicService.getValue(this.inputData.text, '');
+        this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
     }
 
 }

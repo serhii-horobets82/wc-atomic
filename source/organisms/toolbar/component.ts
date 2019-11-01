@@ -3,10 +3,10 @@ import {AbstractComponent, AbstractInputData} from '../../abstract-component/com
 import {ComponentLoader} from '../../abstract/component-loader';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {IconComponent} from "../../atoms/icon/component";
+import {IconComponent} from "../../icon/component";
 import {ToolbarInputData} from "./model";
 import {AuthenticatedIconComponent} from "../../molecules/authenticated-icon/component";
-import {baseHelper} from "../../index";
+
 
 const componentCSS = require('./component.css');
 
@@ -109,7 +109,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
     }
 
     protected inputDataChanged() {
-        this.clazz = baseHelper.getValue(this.inputData.clazz, 'toolbar');
+        this.clazz = this.basicService.getValue(this.inputData.clazz, 'toolbar');
         this.leftInputData = this.inputData.leftInputData;
         this.mainInputData = this.inputData.mainInputData;
         this.rightInputData = this.inputData.rightInputData;

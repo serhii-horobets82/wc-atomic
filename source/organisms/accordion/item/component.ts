@@ -17,10 +17,10 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
     static IDENTIFIER: string = 'AccordionItemComponent';
 
     @property()
-    componentData: AbstractInputData;
+    componentData: AbstractInputData = <AbstractInputData>{};
 
     @property()
-    header: string;
+    header: string = '';
 
     @property()
     stateClazz: string = 'closed';

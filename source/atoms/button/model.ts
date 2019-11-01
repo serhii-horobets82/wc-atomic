@@ -1,5 +1,5 @@
-import {IconInputData} from "../icon/model";
 import {AbstractInputData} from "../../abstract-component/component";
+import {IconInputData} from "../../icon/component";
 
 export interface ButtonInputData extends AbstractInputData {
     clazz: string;

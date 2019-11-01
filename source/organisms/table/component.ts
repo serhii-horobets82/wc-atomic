@@ -14,14 +14,14 @@ import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {InputComponent} from "../../input/input/component";
 import {DatalistComponent} from "../../input/datalist/component";
 import {TextComponent, TextInputData} from "../../text/component";
-import {baseHelper} from "../../index";
 import {DatalistInputData} from "../../input/datalist/model";
 import {InputInputData} from "../../input/input/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {ButtonComponent} from "../../atoms/button/component";
 import {ButtonInputData} from "../../atoms/button/model";
 import {KeyValueData} from "../form/model";
-import {IconComponent} from "../../atoms/icon/component";
+import {IconComponent} from "../../icon/component";
+import {HttpClientService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -224,14 +224,14 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
     inputDataChanged(): void {
 
-        this.sort = baseHelper.getValue(this.inputData.sort, '');
-        this.requestParams = baseHelper.getValue(this.inputData.requestParams, '');
-        this.sizeComboboxInputData.selectedValue = String(baseHelper.getValue(this.inputData.size, this.itemSizeDefaultValue));
-        this.requestPath = baseHelper.getValue(this.inputData.requestPath, '');
-        this.paging = baseHelper.getValue(this.inputData.paging, true);
-        this.filtering = baseHelper.getValue(this.inputData.filtering, true);
-        this.sorting = baseHelper.getValue(this.inputData.sorting, true);
-        this.headers = baseHelper.getValue(this.inputData.headers, []);
+        this.sort = this.basicService.getValue(this.inputData.sort, '');
+        this.requestParams = this.basicService.getValue(this.inputData.requestParams, '');
+        this.sizeComboboxInputData.selectedValue = String(this.basicService.getValue(this.inputData.size, this.itemSizeDefaultValue));
+        this.requestPath = this.basicService.getValue(this.inputData.requestPath, '');
+        this.paging = this.basicService.getValue(this.inputData.paging, true);
+        this.filtering = this.basicService.getValue(this.inputData.filtering, true);
+        this.sorting = this.basicService.getValue(this.inputData.sorting, true);
+        this.headers = this.basicService.getValue(this.inputData.headers, []);
 
 
         let headerWithUsed: number = 0;
@@ -265,7 +265,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
         //where clause - START
         let whereClause = '';
         this.headers.forEach(header => {
-            if (baseHelper.isNotBlank(header.searchValue)) {
+            if (this.basicService.isNotBlank(header.searchValue)) {
                 whereClause = whereClause.concat(header.columnKey, '=', header.searchValue);
             }
         });
@@ -278,7 +278,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
         console.log('table path prefix: ' + requestPath);
 
-        let responsePromise = HTTP_CLIENT.get(requestPath);
+        let responsePromise = HttpClientService.getInstance().get(requestPath);
         responsePromise.then(response => {
             let bodyTextPromise: Promise<string> = response.text();
             bodyTextPromise.then(tableContentAsJson => {
@@ -318,7 +318,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                             }
                         });
 
-                        let inputData = baseHelper.clone(tableHeaderInput.componentInputData);
+                        let inputData = this.basicService.clone(tableHeaderInput.componentInputData);
 
                         switch (inputData.componentIdentifier) {
                             case InputComponent.IDENTIFIER:
@@ -327,7 +327,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                 break;
                             default:
                             case TextComponent.IDENTIFIER:
-                                (<TextInputData>inputData).text = baseHelper.beautifyText(columnValue);
+                                (<TextInputData>inputData).text = this.basicService.beautifyText(columnValue);
                                 (<TextInputData>inputData).clazz = 'ellipsis';
                                 break;
                             case ComboboxComponent.IDENTIFIER:
@@ -344,7 +344,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         }
 
                         if (tableHeaderInput.valueProperty != null) {
-                            inputData[tableHeaderInput.valueProperty.key] = baseHelper.beautifyText(row[tableHeaderInput.valueProperty.value]);
+                            inputData[tableHeaderInput.valueProperty.key] = this.basicService.beautifyText(row[tableHeaderInput.valueProperty.value]);
                         }
 
                         columnsInputDatas.push(<ColumnInputData>{componentInputData: inputData});

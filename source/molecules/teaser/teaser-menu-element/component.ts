@@ -1,5 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from "lit-element";
-import {baseHelper} from "../../../index";
+
 import {AbstractComponent} from "../../../abstract-component/component";
 import {TeaserMenuElementInputData} from "./model";
 
@@ -43,6 +43,6 @@ export class TeaserElementMenuComponent extends AbstractComponent<TeaserMenuElem
     }
 
     protected inputDataChanged() {
-        this.selected = baseHelper.getValue(this.inputData.selected, false);
+        this.selected = this.basicService.getValue(this.inputData.selected, false);
     }
 }

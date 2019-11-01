@@ -1,7 +1,7 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from '../../abstract-component/component';
 import {AuthenticatedIconInputData} from "./model";
-import {APP_DATA} from "../../index";
+import {RouterService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.scss');
 
@@ -55,11 +55,11 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
     }
 
     private login() {
-        APP_DATA.router.navigate(this.loginPage);
+        RouterService.getInstance().navigate(this.loginPage);
     }
 
     private logout() {
-        APP_DATA.router.navigate(this.logoutPage);
+        RouterService.getInstance().navigate(this.logoutPage);
     }
 
 }

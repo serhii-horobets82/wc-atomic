@@ -30,7 +30,7 @@ export class AccordionComponent extends AbstractComponent<AccordionInputData, an
                   ${repeat(
                 this.items,
                 (item) => item.header,
-                (item, index) => html`
+                (item) => html`
                         <component-accordion-item .inputData="${item}"></component-accordion-item>
                      `
             )}

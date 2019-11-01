@@ -12,7 +12,7 @@ export class CodeComponent extends AbstractComponent<CodeInputData, undefined> {
     static IDENTIFIER: string = 'CodeComponent';
 
     @property()
-    code: string;
+    code: string = '';
 
     render() {
         return html`<pre>

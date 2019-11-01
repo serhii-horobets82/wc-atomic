@@ -4,7 +4,6 @@ import {I18NInputData} from "./model";
 import {ComboboxInputData, ComboboxOption} from "../../input/combobox/model";
 import {ComboboxComponent} from "../../input/combobox/component";
 import {KeyValueData} from "../../organisms/form/model";
-import {I18N} from "../../index";
 
 const componentCSS = require('./component.css');
 
@@ -34,7 +33,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
     getDefaultInputData(): I18NInputData {
         return <I18NInputData>{
             componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-            selectedLanguage: I18N.getLanguage(),
+            selectedLanguage: this.i18nService.getLanguage(),
             languages: []
         }
     }
@@ -43,7 +42,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
         let compoboxInputData: ComboboxInputData = <ComboboxInputData>{
             componentIdentifier: ComboboxComponent.IDENTIFIER,
             name: 'browserLanguage',
-            selectedValue: I18N.getLanguage(),
+            selectedValue: this.i18nService.getLanguage(),
             size: 1,
             options: [],
         };
@@ -61,7 +60,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
 
     private changeLanguage(event: CustomEvent) {
         this.outputData = event.detail;
-        I18N.setLanguage(this.outputData.value);
+        this.i18nService.setLanguage(this.outputData.value);
         this.dispatchSimpleCustomEvent(
             I18NSelectorComponent.EVENT_CHANGE_LANG,
             this.getOutputData());

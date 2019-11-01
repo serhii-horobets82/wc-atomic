@@ -1,13 +1,13 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent} from "../../abstract-component/component";
-import {KeyValueOutputData} from "../../organisms/form/component";
 import {TextareaInputData} from "./model";
+import {KeyValueData} from "../../organisms/form/model";
 
 const componentCSS = require('./component.css');
 
 
 @customElement('component-textarea')
-export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyValueOutputData> {
+export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyValueData> {
 
     static styles = css`${unsafeCSS(componentCSS)}`;
 
@@ -16,16 +16,16 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
     static EVENT_KEY_UP_CHANGE: string = 'component-textarea-keyup';
 
     @property()
-    name: string;
+    name: string = '';
 
     @property()
-    value: string;
+    value: string = '';
 
     @property()
-    rows: number;
+    rows: number = 0;
 
     @query('#textareaElement')
-    private textareaElement: HTMLTextAreaElement;
+    private textareaElement: HTMLTextAreaElement | undefined;
 
     getDefaultInputData(): TextareaInputData {
         return <TextareaInputData>{
@@ -34,7 +34,7 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
         };
     }
 
-    async keyup(event: Event) {
+    async keyup() {
         this.dispatchSimpleCustomEvent(TextareaComponent.EVENT_KEY_UP_CHANGE);
     }
 
@@ -50,9 +50,9 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
 `;
     }
 
-    getOutputData(): KeyValueOutputData {
+    getOutputData(): KeyValueData {
         let value = this.textareaElement != null ? this.textareaElement.value : this.value;
-        return <KeyValueOutputData>{
+        return <KeyValueData>{
             key: this.name,
             value: value,
         };

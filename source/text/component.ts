@@ -1,6 +1,5 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {baseHelper} from "../index";
 
 const componentCSS = require('./component.css');
 
@@ -51,9 +50,9 @@ export class TextComponent extends AbstractComponent<TextInputData, any> {
    }
 
    protected inputDataChanged() {
-      this.text = baseHelper.getValue(this.inputData.text, '');
-      this.cssStyle = baseHelper.getValue(this.inputData.cssStyle, '');
-      this.clazz = baseHelper.getValue(this.inputData.clazz, '');
-      this.title = baseHelper.getValue(this.inputData.title, '');
+      this.text = this.basicService.getValue(this.inputData.text, '');
+      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
+      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
+      this.title = this.basicService.getValue(this.inputData.title, '');
    }
 }

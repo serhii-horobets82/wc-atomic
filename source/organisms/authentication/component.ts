@@ -8,7 +8,7 @@ import {
 } from "./model";
 import {FormComponentOutputData} from "../form/model";
 import {FormComponent} from "../form/component";
-import {APP_DATA} from "../../index";
+import {HttpClientService} from "@domoskanonos/frontend-basis";
 
 const componentCSS = require('./component.css');
 
@@ -34,7 +34,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     formComponent: FormComponent | undefined;
 
     @property()
-    isAuthenticated: boolean = APP_DATA.httpClient.isAuthenticated();
+    isAuthenticated: boolean = HttpClientService.getInstance().isAuthenticated();
 
     render() {
         return !this.isAuthenticated ? html`
@@ -55,7 +55,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     private login() {
         if (this.formComponent != null) {
             let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-            let loginPromise = APP_DATA.httpClient.login(formOutputData.formData);
+            let loginPromise = HttpClientService.getInstance().login(formOutputData.formData);
             loginPromise.then(isAuthenticated => {
 
                 this.isAuthenticated = isAuthenticated;
@@ -91,7 +91,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
     }
 
     private logout() {
-        APP_DATA.httpClient.logout().then(isAuthenticated => {
+        HttpClientService.getInstance().logout().then(isAuthenticated => {
             this.isAuthenticated = isAuthenticated;
 
             let eventData: LogoutEventData = {};

@@ -2,7 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent} from "../../abstract-component/component";
 import {InputDataChangeEvent, InputInputData} from "./model";
 import {KeyValueData} from "../../organisms/form/model";
-import {baseHelper} from "../../index";
+
 
 const componentCSS = require('./component.css');
 
@@ -106,7 +106,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
         switch (this.type) {
             case HTMLInputTypes.CHECKBOX:
-                value = this.textfieldElemet != null ? baseHelper.getValue(this.textfieldElemet.checked, false) : false;
+                value = this.textfieldElemet != null ? this.basicService.getValue(this.textfieldElemet.checked, false) : false;
                 break;
             default:
                 break;
@@ -125,14 +125,14 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
     }
 
     protected inputDataChanged() {
-        this.name = baseHelper.getValue(this.inputData.name, '');
-        this.value = baseHelper.getValue(this.inputData.value, '');
-        this.type = baseHelper.getValue(this.inputData.type, HTMLInputTypes.TEXT);
-        this.placeholder = baseHelper.getValue(this.inputData.placeholder, '');
-        this.maxlength = baseHelper.getValue(this.inputData.maxlength, this.maxlength);
-        this.size = baseHelper.getValue(this.inputData.size, this.size);
-        this.min = baseHelper.getValue(this.inputData.min, this.min);
-        this.max = baseHelper.getValue(this.inputData.max, this.max);
+        this.name = this.basicService.getValue(this.inputData.name, '');
+        this.value = this.basicService.getValue(this.inputData.value, '');
+        this.type = this.basicService.getValue(this.inputData.type, HTMLInputTypes.TEXT);
+        this.placeholder = this.basicService.getValue(this.inputData.placeholder, '');
+        this.maxlength = this.basicService.getValue(this.inputData.maxlength, this.maxlength);
+        this.size = this.basicService.getValue(this.inputData.size, this.size);
+        this.min = this.basicService.getValue(this.inputData.min, this.min);
+        this.max = this.basicService.getValue(this.inputData.max, this.max);
     }
 
     private prepareValue(value: any): any {
@@ -144,7 +144,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
                 break;
 
         }
-        //return baseHelper.beautifyText(value);
+        //return this.basicService.beautifyText(value);
         return value;
     }
 }

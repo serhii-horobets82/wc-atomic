@@ -6,7 +6,8 @@ import {
     I18nService,
     RouterService,
     UIRefresherListener,
-    UiRefresherService
+    UiRefresherService,
+    SlotService
 } from '@domoskanonos/frontend-basis';
 
 export interface AbstractInputData {
@@ -22,8 +23,9 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
         super();
     }
 
-    private basicService: BasicService = new BasicService();
-    private i18n: I18nService = new I18nService(localStorage);
+    protected basicService: BasicService = new BasicService();
+    protected slotService: SlotService = new SlotService();
+    protected i18nService: I18nService = new I18nService(localStorage);
 
     @property()
     private _inputData: INPUT_DATA = <INPUT_DATA>{};
@@ -125,7 +127,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData,
     }
 
     public getI18NValue(key: string): string | null | undefined {
-        return this.i18n.getValue(key);
+        return this.i18nService.getValue(key);
     }
 
     objToString(obj: any) {
