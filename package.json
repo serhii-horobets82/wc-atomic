@@ -1,9 +1,11 @@
 {
   "name": "@domoskanonos/wc-atomic",
   "version": "1.0.12",
+  "license": "MIT",
   "description": "",
   "main": "source/index.js",
-  "module": "source/index.js",
+  "types": "source/index.d.ts",
+  "module": "source/index.d.js",
   "devDependencies": {
     "prettier": "^1.18.2",
     "autoprefixer": "^9.6.0",
