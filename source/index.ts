@@ -48,3 +48,9 @@ export const APP_DATA = <AppData>{
     }),
     router: new RouterService(),
 };
+
+
+import {AbstractInputData, AbstractComponent} from './abstract-component/component';
+import {TextInputData, TextComponent} from './text/component';
+export {AbstractInputData, AbstractComponent} from './abstract-component/component';
+export {TextInputData, TextComponent} from './text/component';
