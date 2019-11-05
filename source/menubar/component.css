@@ -1,0 +1,29 @@
+@import '../css/color.css';
+
+.menubar {
+    width: 100%;
+    display: grid;
+    grid-template-rows: var(--menubar-height);
+    grid-template-columns: var(--menu-size) auto auto;
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+}
+
+.left {
+    justify-self: start;
+}
+.center {
+    justify-self: center;
+}
+
+.right {
+    justify-self: end;
+}
+
+.left ,.center,.right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}

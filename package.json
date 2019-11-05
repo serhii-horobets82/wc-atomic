@@ -39,6 +39,7 @@
   "author": "",
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --open",
+    "build": "tsc -p ./",
     "build_dev": "./node_modules/.bin/webpack --config webpack.dev.js --progress",
     "new-version": "npm version patch & npm publish --access=public",
     "unpublish": "npm unpublish --force",

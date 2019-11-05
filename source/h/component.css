@@ -1,0 +1,23 @@
+@import "../css/text_alignment.css";
+
+.headerBox {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: var(--app-color-on-background);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 150%;
+}
+
+.subheader {
+  width: 100%;
+  color: var(--app-color-secondary);
+  text-transform: none;
+  //font-style: italic;
+}

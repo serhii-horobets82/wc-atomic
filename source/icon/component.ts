@@ -15,7 +15,7 @@ const componentCSS = require('./component.scss');
  * 2 = aktiv
  * 3 = passiv
  */
-export interface IconInputData extends AbstractInputData {
+export class IconInputData extends AbstractInputData {
     iconClazz?: string;
     cssStyle?: string;
     clickable?: boolean;

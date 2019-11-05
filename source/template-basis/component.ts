@@ -1,13 +1,13 @@
 import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
-import {DataProtection} from "../molecules/data-protection/component";
+import {DataProtection} from "../data-protection/component";
 
 import {AbstractComponent, AbstractInputData} from "../abstract-component/component";
 import {IconInputData} from "../icon/component";
 
 const componentCSS = require('./component.css');
 
-export interface BasisTemplateInputData extends AbstractInputData {
-    title: string;
+export class BasisTemplateInputData extends AbstractInputData {
+    title?: string;
 }
 
 export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInputData, any> {
@@ -55,7 +55,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
     abstract getTopContent(): TemplateResult;
 
     protected inputDataChanged(): void {
-        this.title = this.inputData.title;
+        this.title = this.basicService.getValue(this.inputData.title, '');
     }
 
     public getOutputData(): any {

@@ -2,13 +2,13 @@ import {TemplateResult} from "lit-element";
 import {HttpClientService, RouterService} from "@domoskanonos/frontend-basis";
 import {AbstractComponent, AbstractInputData} from "../index";
 
-export interface AppData extends AbstractInputData {
-    name: string;
-    description: string;
-    isSecured: boolean;
-    loginPage: string;
-    httpClient: HttpClientService;
-    router: RouterService;
+export class AppData extends AbstractInputData {
+    name?: string;
+    description?: string;
+    isSecured?: boolean;
+    loginPage?: string;
+    httpClient?: HttpClientService;
+    router?: RouterService;
 }
 
 export abstract class AbstractApp extends AbstractComponent<AppData, undefined> {

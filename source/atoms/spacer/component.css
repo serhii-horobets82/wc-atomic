@@ -1,5 +1,0 @@
-@import '../../css/padding.css';
-
-div, ::slotted(.div) {
-    width: 100%;
-}

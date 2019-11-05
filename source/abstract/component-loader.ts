@@ -1,35 +1,34 @@
-import {LinkComponent} from '../atoms/link/component';
+import {LinkComponent} from '../link/component';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {TextComponent} from '../text/component';
-import {ButtonComponent} from '../atoms/button/component';
-import {CodeComponent} from '../atoms/code/component';
-import {ComboboxComponent} from '../input/combobox/component';
-import {ImgComponent} from '../atoms/img/component';
+import {ButtonComponent} from '../button/component';
+import {CodeComponent} from '../code/component';
+import {ComboboxComponent} from '../combobox/component';
+import {ImgComponent} from '../img/component';
 import {IconComponent} from '../icon/component';
-import {TextareaComponent} from '../input/textarea/component';
-import {InputComponent} from '../input/input/component';
-import {FormElementComponent} from '../atoms/form-element/component';
-import {SearchComponent} from '../molecules/search/component';
-import {H1Component, H2Component, H3Component} from '../atoms/h/component';
-import {AccordionComponent} from '../organisms/accordion/container/component';
-import {ComponentViewerComponent} from '../organisms/component-viewer/component';
-import {ImgSliderComponent} from '../molecules/img-slider/component';
-import {ImgSliderSelectorComponent} from '../molecules/img-slider-selector/component';
-import {TableComponent} from '../organisms/table/component';
-import {TeaserComponent} from '../molecules/teaser/component';
-import {NavigationComponent} from '../atoms/navigation/component';
-import {FormComponent} from '../organisms/form/component';
-import {FlexComponent} from '../organisms/flex-container/component';
-import {TileComponent} from '../molecules/tile/component';
-import {BreadcrumbComponent} from "../molecules/breadcrumb/component";
-import {ToolbarComponent} from "../organisms/toolbar/component";
-import {TextWithHeaderComponent} from "../molecules/text-with-header/component";
-import {DatalistComponent} from "../input/datalist/component";
-import {AuthenticatedIconComponent} from "../molecules/authenticated-icon/component";
-import {SpacerComponent} from "../atoms/spacer/component";
-import {I18NSelectorComponent} from "../molecules/i18n-selector/component";
-import {ListComponent} from "../organisms/list/container/component";
-import {ListItemComponent} from "../organisms/list/item/component";
+import {TextareaComponent} from '../textarea/component';
+import {InputComponent} from '../input/component';
+import {FormElementComponent} from '../form-element/component';
+import {SearchComponent} from '../search/component';
+import {H1Component, H2Component, H3Component} from '../h/component';
+import {AccordionComponent} from '../accordion/container/component';
+import {ImgSliderComponent} from '../img-slider/component';
+import {ImgSliderSelectorComponent} from '../img-slider-selector/component';
+import {TableComponent} from '../table/component';
+import {TeaserComponent} from '../teaser/component';
+import {NavigationComponent} from '../navigation/component';
+import {FormComponent} from '../form/component';
+import {FlexComponent} from '../flex-container/component';
+import {TileComponent} from '../tile/component';
+import {BreadcrumbComponent} from "../breadcrumb/component";
+import {ToolbarComponent} from "../toolbar/component";
+import {TextWithHeaderComponent} from "../text-with-header/component";
+import {DatalistComponent} from "../datalist/component";
+import {AuthenticatedIconComponent} from "../authenticated-icon/component";
+import {SpacerComponent} from "../spacer/component";
+import {I18NSelectorComponent} from "../i18n-selector/component";
+import {ListComponent} from "../list/container/component";
+import {ListItemComponent} from "../list/item/component";
 
 export class ComponentLoader {
     static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -117,9 +116,6 @@ export class ComponentLoader {
                 break;
             case AccordionComponent.IDENTIFIER:
                 component = new AccordionComponent();
-                break;
-            case ComponentViewerComponent.IDENTIFIER:
-                component = new ComponentViewerComponent();
                 break;
             case ImgSliderComponent.IDENTIFIER:
                 component = new ImgSliderComponent();
