@@ -1,20 +1,26 @@
+@import "../css/shadow.css";
 .container {
     height: calc(100vh - var(--menubar-height));
     width: 100%;
     padding: 0;
     margin: 0;
 }
-#header {
+
+#top {
     position: fixed;
     width: calc(100%);
     height: var(--menubar-height);
     right: 0;
+    z-index: 10;
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
 }
-#header.menuClosed {
+
+#top.menuClosed {
     width: 100%;
-    transition: width 0.5s linear;
 }
-#menu {
+
+#left {
     height: calc(100% - var(--menubar-height));
     width: var(--menu-size);
     transition: left 0.5s linear;
@@ -23,10 +29,11 @@
     top: var(--menubar-height);
     left: 0;
     overflow-x: hidden;
-    background-color: var(--app-color-secondary);
-    color: var(--app-color-on-secondary);
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
 }
-#menu.menuClosed {
+
+#left.menuClosed {
     left: calc(-1 * var(--menu-size));
     transition: left 0.5s linear;
 }

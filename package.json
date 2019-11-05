@@ -9,7 +9,7 @@
    "devDependencies": {
       "prettier": "^1.18.2",
       "autoprefixer": "^9.6.0",
-      "@fortawesome/fontawesome-free": "^5.7.2",
+      "@fortawesome/fontawesome-free": "^5.11.2",
       "clean-webpack-plugin": "^1.0.1",
       "css-loader": "^2.1.0",
       "file-loader": "^3.0.1",
@@ -39,7 +39,7 @@
    "author": "",
    "scripts": {
       "start": "./node_modules/.bin/webpack-dev-server --config webpack.dev.js --open",
-      "build": "tsc -p ./",
+      "build_typescript": "tsc -p ./",
       "pretty": "prettier --write \"./**/*.{ts,json}\"",
       "build_dev": "./node_modules/.bin/webpack --config webpack.dev.js --progress",
       "new-version": "npm version patch & npm publish --access=public",

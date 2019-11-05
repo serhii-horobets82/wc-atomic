@@ -12,14 +12,15 @@ export class AppData extends AbstractInputData {
 }
 
 export abstract class AbstractApp extends AbstractComponent<AppData, undefined> {
+
    /**
     * doing stuff before first rendering, f.e. load data from server
     */
-   protected async preRender(): Promise<void> {
+   public async preRender(): Promise<void> {
       return Promise.resolve();
    }
 
-   render() {
+   render() :TemplateResult {
       return this.renderPage();
    }
 
