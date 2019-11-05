@@ -1,10 +1,10 @@
-import {css, customElement, html, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
 export class TileInputData extends AbstractInputData {
-    componentInputData?: AbstractInputData;
+   componentInputData?: AbstractInputData;
 }
 
 @customElement('component-tile')

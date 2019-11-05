@@ -1,7 +1,7 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {ImgSliderComponent, ImgSliderInputData} from '../img-slider/component';
-import {ImgInputData} from "../img/component";
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { ImgSliderComponent, ImgSliderInputData } from '../img-slider/component';
+import { ImgInputData } from '../img/component';
 
 const componentCSS = require('./component.css');
 
@@ -11,10 +11,7 @@ export class ImgSliderSelectorInputData extends AbstractInputData {
 }
 
 @customElement('component-img-slider-selector')
-export class ImgSliderSelectorComponent extends AbstractComponent<
-   ImgSliderSelectorInputData,
-   undefined
-> {
+export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelectorInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -38,15 +35,9 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
 
    render() {
       return html`
-         <div
-            @component-img-slider-click="${this.sliderItemClicked}"
-            class="sliderSelector"
-            style="height: ${this.maxHeight};"
-         >
+         <div @component-img-slider-click="${this.sliderItemClicked}" class="sliderSelector" style="height: ${this.maxHeight};">
             <component-img-slider
-               style="flex-basis: ${this.imgs.length > 1
-                  ? this.columnFlexBasisValues[0]
-                  : '0%'}"
+               style="flex-basis: ${this.imgs.length > 1 ? this.columnFlexBasisValues[0] : '0%'}"
                maxSize="${this.maxHeight}"
                sliderType="${this.sliderType}"
                .imgs="${this.imgs}"
@@ -54,9 +45,7 @@ export class ImgSliderSelectorComponent extends AbstractComponent<
 
             <component-img
                .inputData="${this.selectedImg}"
-               style="flex-basis: ${this.imgs.length > 1
-                  ? this.columnFlexBasisValues[1]
-                  : 'auto'}"
+               style="flex-basis: ${this.imgs.length > 1 ? this.columnFlexBasisValues[1] : 'auto'}"
             ></component-img>
          </div>
       `;

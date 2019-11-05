@@ -1,163 +1,157 @@
-import {LinkComponent} from '../link/component';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {TextComponent} from '../text/component';
-import {ButtonComponent} from '../button/component';
-import {CodeComponent} from '../code/component';
-import {ComboboxComponent} from '../combobox/component';
-import {ImgComponent} from '../img/component';
-import {IconComponent} from '../icon/component';
-import {TextareaComponent} from '../textarea/component';
-import {InputComponent} from '../input/component';
-import {FormElementComponent} from '../form-element/component';
-import {SearchComponent} from '../search/component';
-import {H1Component, H2Component, H3Component} from '../h/component';
-import {AccordionComponent} from '../accordion/container/component';
-import {ImgSliderComponent} from '../img-slider/component';
-import {ImgSliderSelectorComponent} from '../img-slider-selector/component';
-import {TableComponent} from '../table/component';
-import {TeaserComponent} from '../teaser/component';
-import {NavigationComponent} from '../navigation/component';
-import {FormComponent} from '../form/component';
-import {FlexComponent} from '../flex-container/component';
-import {TileComponent} from '../tile/component';
-import {BreadcrumbComponent} from "../breadcrumb/component";
-import {ToolbarComponent} from "../toolbar/component";
-import {TextWithHeaderComponent} from "../text-with-header/component";
-import {DatalistComponent} from "../datalist/component";
-import {AuthenticatedIconComponent} from "../authenticated-icon/component";
-import {SpacerComponent} from "../spacer/component";
-import {I18NSelectorComponent} from "../i18n-selector/component";
-import {ListComponent} from "../list/container/component";
-import {ListItemComponent} from "../list/item/component";
+import { LinkComponent } from '../link/component';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { TextComponent } from '../text/component';
+import { ButtonComponent } from '../button/component';
+import { CodeComponent } from '../code/component';
+import { ComboboxComponent } from '../combobox/component';
+import { ImgComponent } from '../img/component';
+import { IconComponent } from '../icon/component';
+import { TextareaComponent } from '../textarea/component';
+import { InputComponent } from '../input/component';
+import { FormElementComponent } from '../form-element/component';
+import { SearchComponent } from '../search/component';
+import { H1Component, H2Component, H3Component } from '../h/component';
+import { AccordionComponent } from '../accordion/container/component';
+import { ImgSliderComponent } from '../img-slider/component';
+import { ImgSliderSelectorComponent } from '../img-slider-selector/component';
+import { TableComponent } from '../table/component';
+import { TeaserComponent } from '../teaser/component';
+import { NavigationComponent } from '../navigation/component';
+import { FormComponent } from '../form/component';
+import { FlexComponent } from '../flex-container/component';
+import { TileComponent } from '../tile/component';
+import { BreadcrumbComponent } from '../breadcrumb/component';
+import { ToolbarComponent } from '../toolbar/component';
+import { TextWithHeaderComponent } from '../text-with-header/component';
+import { DatalistComponent } from '../datalist/component';
+import { AuthenticatedIconComponent } from '../authenticated-icon/component';
+import { SpacerComponent } from '../spacer/component';
+import { I18NSelectorComponent } from '../i18n-selector/component';
+import { ListComponent } from '../list/container/component';
+import { ListItemComponent } from '../list/item/component';
 
 export class ComponentLoader {
-    static INSTANCE: ComponentLoader = new ComponentLoader();
+   static INSTANCE: ComponentLoader = new ComponentLoader();
 
-    public createComponentFromInputData(
-        componentInputData: AbstractInputData
-    ): AbstractComponent<AbstractInputData, any> {
-        let component = this.createComponent(
-            componentInputData.componentIdentifier
-        );
-        component.inputData = componentInputData;
-        return component;
-    }
+   public createComponentFromInputData(componentInputData: AbstractInputData): AbstractComponent<AbstractInputData, any> {
+      let component = this.createComponent(componentInputData.componentIdentifier);
+      component.inputData = componentInputData;
+      return component;
+   }
 
-    public createComponent(
-        componentIdentifier: string
-    ): AbstractComponent<AbstractInputData, any> {
-        console.log('create component, identifier=' + componentIdentifier);
+   public createComponent(componentIdentifier: string): AbstractComponent<AbstractInputData, any> {
+      console.log('create component, identifier=' + componentIdentifier);
 
-        let component: AbstractComponent<any, any> | undefined = undefined;
+      let component: AbstractComponent<any, any> | undefined = undefined;
 
-        switch (componentIdentifier) {
-            case FlexComponent.IDENTIFIER:
-                component = new FlexComponent();
-                break;
-            case TileComponent.IDENTIFIER:
-                component = new TileComponent();
-                break;
-            case TeaserComponent.IDENTIFIER:
-                component = new TeaserComponent();
-                break;
-            case SearchComponent.IDENTIFIER:
-                component = new SearchComponent();
-                break;
-            case H1Component.IDENTIFIER:
-                component = new H1Component();
-                break;
-            case H2Component.IDENTIFIER:
-                component = new H2Component();
-                break;
-            case H3Component.IDENTIFIER:
-                component = new H3Component();
-                break;
-            case FormComponent.IDENTIFIER:
-                component = new FormComponent();
-                break;
-            case FormElementComponent.IDENTIFIER:
-                component = new FormElementComponent();
-                break;
-            case SpacerComponent.IDENTIFIER:
-                component = new SpacerComponent();
-                break;
-            case InputComponent.IDENTIFIER:
-                component = new InputComponent();
-                break;
-            case TextareaComponent.IDENTIFIER:
-                component = new TextareaComponent();
-                break;
-            case IconComponent.IDENTIFIER:
-                component = new IconComponent();
-                break;
-            case ImgComponent.IDENTIFIER:
-                component = new ImgComponent();
-                break;
-            case ComboboxComponent.IDENTIFIER:
-                component = new ComboboxComponent();
-                break;
-            case DatalistComponent.IDENTIFIER:
-                component = new DatalistComponent();
-                break;
-            case CodeComponent.IDENTIFIER:
-                component = new CodeComponent();
-                break;
-            case TextComponent.IDENTIFIER:
-                component = new TextComponent();
-                break;
-            case ButtonComponent.IDENTIFIER:
-                component = new ButtonComponent();
-                break;
-            case I18NSelectorComponent.IDENTIFIER:
-                component = new I18NSelectorComponent();
-                break;
-            case LinkComponent.IDENTIFIER:
-                component = new LinkComponent();
-                break;
-            case AccordionComponent.IDENTIFIER:
-                component = new AccordionComponent();
-                break;
-            case ImgSliderComponent.IDENTIFIER:
-                component = new ImgSliderComponent();
-                break;
-            case ImgSliderSelectorComponent.IDENTIFIER:
-                component = new ImgSliderSelectorComponent();
-                break;
-            case TableComponent.IDENTIFIER:
-                component = new TableComponent();
-                break;
-            case ListComponent.IDENTIFIER:
-                component = new ListComponent();
-                break;
-            case ListItemComponent.IDENTIFIER:
-                component = new ListItemComponent();
-                break;
-            case NavigationComponent.IDENTIFIER:
-                component = new NavigationComponent();
-                break;
-            case BreadcrumbComponent.IDENTIFIER:
-                component = new BreadcrumbComponent();
-                break;
-            case ToolbarComponent.IDENTIFIER:
-                component = new ToolbarComponent();
-                break;
-            case TextWithHeaderComponent.IDENTIFIER:
-                component = new TextWithHeaderComponent();
-                break;
-            case AuthenticatedIconComponent.IDENTIFIER:
-                component = new AuthenticatedIconComponent();
-                break;
-            default:
-                let error = new Error('Elemenent not found: ' + componentIdentifier);
-                console.error('AAAAAAAAAAAAAA'+error.stack);
-                throw error;
-        }
+      switch (componentIdentifier) {
+         case FlexComponent.IDENTIFIER:
+            component = new FlexComponent();
+            break;
+         case TileComponent.IDENTIFIER:
+            component = new TileComponent();
+            break;
+         case TeaserComponent.IDENTIFIER:
+            component = new TeaserComponent();
+            break;
+         case SearchComponent.IDENTIFIER:
+            component = new SearchComponent();
+            break;
+         case H1Component.IDENTIFIER:
+            component = new H1Component();
+            break;
+         case H2Component.IDENTIFIER:
+            component = new H2Component();
+            break;
+         case H3Component.IDENTIFIER:
+            component = new H3Component();
+            break;
+         case FormComponent.IDENTIFIER:
+            component = new FormComponent();
+            break;
+         case FormElementComponent.IDENTIFIER:
+            component = new FormElementComponent();
+            break;
+         case SpacerComponent.IDENTIFIER:
+            component = new SpacerComponent();
+            break;
+         case InputComponent.IDENTIFIER:
+            component = new InputComponent();
+            break;
+         case TextareaComponent.IDENTIFIER:
+            component = new TextareaComponent();
+            break;
+         case IconComponent.IDENTIFIER:
+            component = new IconComponent();
+            break;
+         case ImgComponent.IDENTIFIER:
+            component = new ImgComponent();
+            break;
+         case ComboboxComponent.IDENTIFIER:
+            component = new ComboboxComponent();
+            break;
+         case DatalistComponent.IDENTIFIER:
+            component = new DatalistComponent();
+            break;
+         case CodeComponent.IDENTIFIER:
+            component = new CodeComponent();
+            break;
+         case TextComponent.IDENTIFIER:
+            component = new TextComponent();
+            break;
+         case ButtonComponent.IDENTIFIER:
+            component = new ButtonComponent();
+            break;
+         case I18NSelectorComponent.IDENTIFIER:
+            component = new I18NSelectorComponent();
+            break;
+         case LinkComponent.IDENTIFIER:
+            component = new LinkComponent();
+            break;
+         case AccordionComponent.IDENTIFIER:
+            component = new AccordionComponent();
+            break;
+         case ImgSliderComponent.IDENTIFIER:
+            component = new ImgSliderComponent();
+            break;
+         case ImgSliderSelectorComponent.IDENTIFIER:
+            component = new ImgSliderSelectorComponent();
+            break;
+         case TableComponent.IDENTIFIER:
+            component = new TableComponent();
+            break;
+         case ListComponent.IDENTIFIER:
+            component = new ListComponent();
+            break;
+         case ListItemComponent.IDENTIFIER:
+            component = new ListItemComponent();
+            break;
+         case NavigationComponent.IDENTIFIER:
+            component = new NavigationComponent();
+            break;
+         case BreadcrumbComponent.IDENTIFIER:
+            component = new BreadcrumbComponent();
+            break;
+         case ToolbarComponent.IDENTIFIER:
+            component = new ToolbarComponent();
+            break;
+         case TextWithHeaderComponent.IDENTIFIER:
+            component = new TextWithHeaderComponent();
+            break;
+         case AuthenticatedIconComponent.IDENTIFIER:
+            component = new AuthenticatedIconComponent();
+            break;
+         default:
+            let error = new Error('Elemenent not found: ' + componentIdentifier);
+            console.error('AAAAAAAAAAAAAA' + error.stack);
+            throw error;
+      }
 
-        if (component === undefined) {
-            throw new Error("component is undefined ");
-        }
-        component.inputData = component.getDefaultInputData();
+      if (component === undefined) {
+         throw new Error('component is undefined ');
+      }
+      component.inputData = component.getDefaultInputData();
 
-        return component;
-    }
+      return component;
+   }
 }

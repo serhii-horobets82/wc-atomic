@@ -1,5 +1,5 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
@@ -40,16 +40,15 @@ export class ImgComponent extends AbstractComponent<ImgInputData, undefined> {
    }
 
    protected inputDataChanged() {
-      this.src = this.basicService.getValue(this.inputData.src, '')
-      this.text = this.basicService.getValue(this.inputData.text, '')
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '')
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '')
+      this.src = this.basicService.getValue(this.inputData.src, '');
+      this.text = this.basicService.getValue(this.inputData.text, '');
+      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
+      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
    }
 
    render() {
       return html`
-         <span class="${this.clazz}" ><img src="${this.src}" style="${this.cssStyle}"/></span
-         >${this.text}
+         <span class="${this.clazz}"><img src="${this.src}" style="${this.cssStyle}"/></span>${this.text}
       `;
    }
 

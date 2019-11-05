@@ -1,7 +1,7 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {NavigationComponent} from '../navigation/component';
-import {ComponentLoader} from '../abstract/component-loader';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { NavigationComponent } from '../navigation/component';
+import { ComponentLoader } from '../abstract/component-loader';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
@@ -11,10 +11,7 @@ export class ContentSliderInputData extends AbstractInputData {
 }
 
 @customElement('component-content-slider')
-export class ContentSliderComponent extends AbstractComponent<
-   ContentSliderInputData,
-   undefined
-> {
+export class ContentSliderComponent extends AbstractComponent<ContentSliderInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -32,18 +29,14 @@ export class ContentSliderComponent extends AbstractComponent<
    render() {
       return html`
          <div @component-icon-click="${this.iconClicked}">
-          <div class="header ${this.open ? '' : 'closed'}"> 
-            <component-icon
-               iconClazz="${
-                  this.open ? 'fas fa-angle-left' : 'fas fa-angle-right'
-               }"
-               clickable="true"
-            ></component-icon>
+            <div class="header ${this.open ? '' : 'closed'}">
+               <component-icon
+                  iconClazz="${this.open ? 'fas fa-angle-left' : 'fas fa-angle-right'}"
+                  clickable="true"
+               ></component-icon>
             </div>
             <div class="content ${this.open ? '' : 'closed'}">
-               ${ComponentLoader.INSTANCE.createComponentFromInputData(
-                  this.componentInputData
-               )}
+               ${ComponentLoader.INSTANCE.createComponentFromInputData(this.componentInputData)}
             </div>
          </div>
       `;
@@ -59,11 +52,7 @@ export class ContentSliderComponent extends AbstractComponent<
 
       console.log('content slider new state, open= ' + this.open);
 
-      this.dispatchCompoundCustomEvent(
-         ContentSliderComponent.EVENT_CONTENT_SLIDER_CLICK,
-         event,
-         contentSliderData
-      );
+      this.dispatchCompoundCustomEvent(ContentSliderComponent.EVENT_CONTENT_SLIDER_CLICK, event, contentSliderData);
    }
 
    getDefaultInputData(): ContentSliderInputData {

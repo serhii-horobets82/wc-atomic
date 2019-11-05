@@ -1,8 +1,8 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {repeat} from 'lit-html/directives/repeat';
-import {guard} from 'lit-html/directives/guard';
-import {ImgComponent, ImgInputData} from '../img/component';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
+import { guard } from 'lit-html/directives/guard';
+import { ImgComponent, ImgInputData } from '../img/component';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
@@ -24,10 +24,7 @@ export class ImgSliderInputData extends AbstractInputData {
 }
 
 @customElement('component-img-slider')
-export class ImgSliderComponent extends AbstractComponent<
-   ImgSliderInputData,
-   undefined
-> {
+export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -48,11 +45,8 @@ export class ImgSliderComponent extends AbstractComponent<
    render() {
       return html`
          <div
-            class="imgSlider ${this.sliderType == 1
-               ? 'horizontal'
-               : 'vertical'}"
-            style="${this.sliderType == 1 ? 'max-width' : 'max-height'}:${this
-               .maxSize}"
+            class="imgSlider ${this.sliderType == 1 ? 'horizontal' : 'vertical'}"
+            style="${this.sliderType == 1 ? 'max-width' : 'max-height'}:${this.maxSize}"
          >
             ${guard(
                this.imgs,
@@ -62,9 +56,7 @@ export class ImgSliderComponent extends AbstractComponent<
                         this.imgs,
                         (item) => html`
                            <component-img
-                              clazz="${item.clazz} ${this.sliderType == 1
-                                 ? 'imageHeightHundred'
-                                 : 'imageWidthHundred'}"
+                              clazz="${item.clazz} ${this.sliderType == 1 ? 'imageHeightHundred' : 'imageWidthHundred'}"
                               src="${item.src}"
                               @click="${() => this.clicked(item)}"
                            ></component-img>
