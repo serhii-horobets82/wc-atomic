@@ -5,13 +5,13 @@ import {
     DataReceiverService,
     I18nService,
     RouterService,
+    SlotService,
     UIRefresherListener,
-    UiRefresherService,
-    SlotService
+    UiRefresherService
 } from '@domoskanonos/frontend-basis';
 
-export interface AbstractInputData {
-    componentIdentifier: string;
+export class AbstractInputData {
+    componentIdentifier: string = '';
     dataReceiverChannels?: string[];
     uiRefreshChannels?: string[];
 }

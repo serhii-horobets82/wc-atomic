@@ -3,7 +3,7 @@ import {AbstractComponent, AbstractInputData} from '../abstract-component/compon
 
 const componentCSS = require('./component.css');
 
-export interface TextInputData extends AbstractInputData {
+export class TextInputData extends AbstractInputData {
    text?: string;
    clazz?: string;
    cssStyle?: string;
