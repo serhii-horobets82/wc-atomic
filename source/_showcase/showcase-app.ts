@@ -1,10 +1,10 @@
-import {AbstractApp} from "..";
 import {customElement, html, TemplateResult} from 'lit-element';
 import {RouterService} from "@domoskanonos/frontend-basis";
 import {Dashboard} from "./dashboard";
+import {AbstractApp} from "../abstract-app/component";
 
 @customElement('app-root')
-export class ShowcaseApp extends AbstractApp {
+class ShowcaseApp extends AbstractApp {
 
     renderPage(): TemplateResult {
         let path = RouterService.getInstance().getPath();
