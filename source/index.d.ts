@@ -1,2 +1,5 @@
 import './index';
-export * from './index';
+
+declare module "wc-atomic" {
+    export * from './index';
+}

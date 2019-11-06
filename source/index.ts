@@ -1,8 +1,6 @@
 import {ComponentLoader} from './abstract/component-loader';
 export {ComponentLoader} from './abstract/component-loader';
-import {AppData,AbstractApp} from './abstract-app/component';
-export {AppData,AbstractApp} from './abstract-app/component';
-import {AbstractInputData,AbstractComponent} from './abstract-component/component';
+import {AbstractInputData, AbstractComponent, AbstractApp, AppData} from './abstract-component/component';
 export {AbstractInputData,AbstractComponent} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
@@ -86,3 +84,5 @@ import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 import './scss/index.scss';
 import './_showcase/showcase-app';
+export {AbstractApp} from "./abstract-component/component";
+export {AppData} from "./abstract-component/component";

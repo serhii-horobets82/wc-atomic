@@ -1,15 +1,15 @@
-import { css, customElement, html, property, TemplateResult, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { guard } from 'lit-html/directives/guard';
-import { repeat } from 'lit-html/directives/repeat';
-import { InputComponent, InputInputData } from '../input/component';
-import { DatalistComponent, DatalistInputData } from '../datalist/component';
-import { TextComponent, TextInputData } from '../text/component';
-import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
-import { ButtonComponent, ButtonInputData } from '../button/component';
-import { IconComponent } from '../icon/component';
-import { HttpClientService } from '@domoskanonos/frontend-basis';
-import { KeyValueData } from '../form/component';
+import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {guard} from 'lit-html/directives/guard';
+import {repeat} from 'lit-html/directives/repeat';
+import {InputComponent, InputInputData} from '../input/component';
+import {DatalistComponent, DatalistInputData} from '../datalist/component';
+import {TextComponent, TextInputData} from '../text/component';
+import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
+import {ButtonComponent, ButtonInputData} from '../button/component';
+import {IconComponent} from '../icon/component';
+import {HttpClientService} from '@domoskanonos/frontend-basis';
+import {KeyValueData} from '../form/component';
 
 const componentCSS = require('./component.css');
 
@@ -372,7 +372,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       console.log('table path prefix: ' + requestPath);
 
       let responsePromise = HttpClientService.getInstance().get(requestPath);
-      responsePromise.then((response) => {
+      responsePromise.then((response: any) => {
          let bodyTextPromise: Promise<string> = response.text();
          bodyTextPromise.then((tableContentAsJson) => {
             let tableContent: TableContent = JSON.parse(tableContentAsJson);

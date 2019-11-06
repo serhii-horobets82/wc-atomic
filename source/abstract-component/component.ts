@@ -1,8 +1,9 @@
-import { LitElement, property } from 'lit-element';
+import {LitElement, property, TemplateResult} from 'lit-element';
 import {
    BasicService,
    DataReceiverListener,
    DataReceiverService,
+   HttpClientService,
    I18nService,
    RouterService,
    SlotService,
@@ -165,5 +166,55 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       return RouterService.getInstance()
          .getPath()
          .replace('#', '');
+   }
+}
+
+export class AppData extends AbstractInputData {
+   name?: string;
+   description?: string;
+   isSecured?: boolean;
+   loginPage?: string;
+   httpClient?: HttpClientService;
+   router?: RouterService;
+}
+
+export abstract class AbstractApp extends AbstractComponent<AppData, undefined> {
+
+   /**
+    * doing stuff before first rendering, f.e. load data from server
+    */
+   public async preRender(): Promise<void> {
+      return Promise.resolve();
+   }
+
+   render(): TemplateResult {
+      return this.renderPage();
+   }
+
+   firstUpdated() {
+      this.registerEventListener();
+      RouterService.getInstance().subscribe(() => this.requestUpdate());
+   }
+
+   abstract renderPage(): TemplateResult;
+
+   /**
+    *
+    * Here you can register event listener on app root component,
+    * so you can catch all underlying events.
+    *
+    */
+   protected registerEventListener(): void {
+   }
+
+   getDefaultInputData(): AppData {
+      return <AppData>{};
+   }
+
+   getOutputData(): undefined {
+      return undefined;
+   }
+
+   protected inputDataChanged(): void {
    }
 }

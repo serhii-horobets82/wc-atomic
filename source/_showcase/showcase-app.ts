@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {RouterService} from "@domoskanonos/frontend-basis";
 import {Dashboard} from "./dashboard";
-import {AbstractApp} from "../abstract-app/component";
+import {AbstractApp} from "../abstract-component/component";
 
 @customElement('app-root')
 class ShowcaseApp extends AbstractApp {
