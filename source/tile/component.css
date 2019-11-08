@@ -1,5 +1,11 @@
+@import '../css/shadow.css';
+
 .tile {
    box-sizing: border-box;
-   background-color: var(--app-color-primary-discreet);
-   padding: var(--medium-padding);
+   background-color: var(--app-color-on-surface);
+   color: var(--app-color-on-surface);
+   margin-bottom: var(--medium-space);
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }

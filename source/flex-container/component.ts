@@ -1,16 +1,16 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
-import { guard } from 'lit-html/directives/guard';
-import { ImgComponent } from '../img/component';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { ComponentLoader } from '../abstract/component-loader';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {repeat} from 'lit-html/directives/repeat';
+import {guard} from 'lit-html/directives/guard';
+import {ImgComponent} from '../img/component';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {ComponentLoader} from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 
 export class FlexContainerInputData extends AbstractInputData {
    gridClazz?: string;
    itemClazz?: string;
-   columnFlexBasisValue?: string;
+   columnFlexBasisValue?: string = "100%";
    columnFlexBasisValues?: string[];
    componentsInputData?: AbstractInputData[];
 }
@@ -70,7 +70,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    columnFlexBasisValues: string[] = [];
 
    @property()
-   columnFlexBasisValue: string = 'auto';
+   columnFlexBasisValue: string = '100%';
 
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;

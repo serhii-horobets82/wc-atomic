@@ -6,6 +6,7 @@
            name="viewport"
            content="width=device-width, initial-scale=1.0, user-scalable=no"
    />
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
    <title>Komponentenframework</title>
    <style>
       body {
@@ -14,14 +15,14 @@
       }
       :root {
 
-         --min-padding: 5pt;
-         --medium-padding: 15pt;
-         --max-padding: 30pt;
+         --min-space: 5pt;
+         --medium-space: 15pt;
+         --max-space: 30pt;
 
-         --font-size: 0.9rem;
-         --font-size-small: 0.8rem;
-         --font-family: 'Verdana';
-         --font-style: 'sans-serif';
+         --font-size: 1.1rem;
+         --font-size-small: 0.9rem;
+         --font-family: 'Roboto Mono';
+         --font-style: 'monospace';
          --font-weight: 400;
          --font-weight-bold: 600;
          --letter-spacing: 1pt;
@@ -55,7 +56,7 @@
          --app-color-on-info: #FFFFFF;
          --app-color-on-primary: #000000;
          --app-color-on-secondary: #FFFFFF;
-         --app-color-on-surface: #000000;
+         --app-color-on-surface: #FFFFFF;
          --app-color-on-background: #000000;
 
 
@@ -77,8 +78,8 @@
          }
 
          body {
-            padding-left: var(--min-padding);
-            padding-right: var(--min-padding);
+            padding-left: var(--min-space);
+            padding-right: var(--min-space);
          }
       }
    </style>

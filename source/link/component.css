@@ -4,15 +4,10 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: inherit;
   background-color: inherit;
   line-height: var(--line-height);
   height: var(--line-height);
-}
-
-a:hover {
-  color: var(--app-subtext-color);
-  transition: color 100ms linear, background-color 100ms linear, border 100ms linear;
 }
 

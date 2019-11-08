@@ -21,7 +21,7 @@ export class CodeComponent extends AbstractComponent<CodeInputData, undefined> {
    render() {
       return html`
          <pre>
-                <code>${this.code}</code>
+                <code>${this.code}<slot></slot></code>
             </pre
          >
       `;

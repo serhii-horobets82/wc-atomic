@@ -1,19 +1,2 @@
-.navItem {
-    line-height: var(--line-height-large);
-    height: var(--line-height-large);
-    cursor: pointer;
-    background-color: var(--app-color-secondary);
-    color: var(--app-color-on-secondary);
-}
 
-.navItem.selected, .navItem:hover, .navItem:active {
-    background-color: var(--app-color-secondary-700);
-}
-
-.navitemIcon {
-    text-align:center;
-    vertical-align: middle;
-    width: 50px;
-    display: inline-block;
-}
 

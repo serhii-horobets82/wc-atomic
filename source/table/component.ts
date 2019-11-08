@@ -378,7 +378,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             let tableContent: TableContent = JSON.parse(tableContentAsJson);
             this.totalElements = tableContent.totalElements;
             this.totalPages = tableContent.totalPages;
-            this.numberOfElements = tableContent.numberOfElements;
+            this.numberOfElements = Number(tableContent.numberOfElements);
 
             let pageable = tableContent.pageable;
             this.sizeComboboxInputData.selectedValue = String(pageable.pageSize);
@@ -638,7 +638,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CHANGED, columnChangedData);
    }
 
-   private getItemSize() {
+   private getItemSize() : number {
       let size: number = Number(this.sizeComboboxInputData.selectedValue);
       return size;
    }
@@ -648,6 +648,8 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    }
 
    private currentPageItemEndIndex() {
-      return this.getItemSize() * (this.page - 1) + this.numberOfElements;
+      let endIndex =(Number(this.getItemSize() * (this.page - 1)) + this.numberOfElements)
+      return endIndex;
    }
+
 }

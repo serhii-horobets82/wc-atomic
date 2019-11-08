@@ -85,8 +85,8 @@ export class H1Component extends HComponent {
    render() {
       return html`
          <div class="headerBox ${this.clazz}">
-            <h1 class="header">${this.text}</h1>
-            <h2 class="subheader">${this.subtext}</h2>
+            <h1 class="header">${this.text}<slot name="header"></slot><slot></slot></h1>
+            <h2 class="subheader">${this.subtext}<slot name="subheader"></slot></h2>
          </div>
       `;
    }

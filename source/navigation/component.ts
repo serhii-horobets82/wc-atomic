@@ -1,16 +1,12 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { guard } from 'lit-html/directives/guard';
-import { ComponentLoader } from '../abstract/component-loader';
-import { repeat } from 'lit-html/directives/repeat';
-import { RouterService } from '@domoskanonos/frontend-basis';
-import { LinkInputData } from '../link/component';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {guard} from 'lit-html/directives/guard';
+import {ComponentLoader} from '../abstract/component-loader';
+import {repeat} from 'lit-html/directives/repeat';
+import {RouterService} from '@domoskanonos/frontend-basis';
+import {NavigationLinkInputData} from "./navigation-link/component";
 
 const componentCSS = require('./component.css');
-
-export class NavigationLinkInputData extends LinkInputData {
-   icon?: string;
-}
 
 export class NavigationInputData extends AbstractInputData {
    clazz?: string;
@@ -43,13 +39,13 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
       return <NavigationInputData>{
          componentIdentifier: NavigationComponent.IDENTIFIER,
          links: [
-            { text: 'Homepage', href: '#', icon: 'icon-home' },
-            { text: 'Get started', href: '#get-started', icon: '' },
-            { text: 'Form', href: '#form', icon: '' },
-            { text: 'Media', href: '#media', icon: '' },
-            { text: 'Komponenten', href: '#c', icon: '' },
-            { text: 'Komplexe Komponenten', href: '#cc', icon: '' },
-            { text: 'Dynamische Komponenten', href: '#dc', icon: '' }
+             {text: 'Homepage', href: '#', iconClazz: 'icon-home'},
+             {text: 'Get started', href: '#get-started', iconClazz: ''},
+             {text: 'Form', href: '#form', iconClazz: ''},
+             {text: 'Media', href: '#media', iconClazz: ''},
+             {text: 'Komponenten', href: '#c', iconClazz: ''},
+             {text: 'Komplexe Komponenten', href: '#cc', iconClazz: ''},
+             {text: 'Dynamische Komponenten', href: '#dc', iconClazz: ''}
          ]
       };
    }
@@ -73,15 +69,10 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
 
             ${this.links.map(
                (linkItem) => html`
-                  <div
-                     @click="${() => this.clickedMenuItem(linkItem)}"
-                     class="${RouterService.getInstance().getPath() == linkItem.href ? 'navItem selected' : 'navItem'}"
-                  >
-                     <component-icon iconClazz="${linkItem.icon}" class="navitemIcon"></component-icon>
-                     <component-text>${linkItem.text}</component-text>
-                  </div>
+                  <component-navigation-link iconClazz="${linkItem.iconClazz}" text="${linkItem.text}" href="${linkItem.href}"></component-navigation-link>
                `
             )}
+            <slot name="links"></slot>
             ${guard(
                this.contentAfter,
                () =>

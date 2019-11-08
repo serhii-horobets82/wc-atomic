@@ -1,5 +1,5 @@
 import './index';
 
-declare module "wc-atomic" {
+declare module "@domoskanonos/wc-atomic" {
     export * from './index';
 }

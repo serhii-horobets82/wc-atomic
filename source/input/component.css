@@ -4,7 +4,7 @@ input {
     line-height: var(--line-height);
     box-sizing : border-box;
     width: 100%;
-    padding-left: var(--min-padding);
+    padding-left: var(--min-space);
     background-color: var(--app-color-background);
     color: var(--app-color-on-background);
 }

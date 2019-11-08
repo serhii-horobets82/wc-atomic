@@ -8,6 +8,6 @@ select {
   //border: 0.1rem solid var(--app-color-primary-contrast);
   height: var(--line-height-large);
   line-height: var(--line-height);
-  padding-left: var(--min-padding);
+  padding-left: var(--min-space);
   width: 100%;
 }

@@ -8,10 +8,10 @@
     cursor: pointer;
 }
 component-text {
-    padding-left: var(--medium-padding);
+    padding-left: var(--medium-space);
 }
 component-icon {
-    padding-right: var(--medium-padding);
+    padding-right: var(--medium-space);
 }
 .accordionContent.closed {
     display: none;
