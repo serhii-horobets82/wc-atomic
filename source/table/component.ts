@@ -1,15 +1,15 @@
-import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {guard} from 'lit-html/directives/guard';
-import {repeat} from 'lit-html/directives/repeat';
-import {InputComponent, InputInputData} from '../input/component';
-import {DatalistComponent, DatalistInputData} from '../datalist/component';
-import {TextComponent, TextInputData} from '../text/component';
-import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
-import {ButtonComponent, ButtonInputData} from '../button/component';
-import {IconComponent} from '../icon/component';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
-import {KeyValueData} from '../form/component';
+import { css, customElement, html, property, TemplateResult, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { guard } from 'lit-html/directives/guard';
+import { repeat } from 'lit-html/directives/repeat';
+import { InputComponent, InputInputData } from '../input/component';
+import { DatalistComponent, DatalistInputData } from '../datalist/component';
+import { TextComponent, TextInputData } from '../text/component';
+import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
+import { ButtonComponent, ButtonInputData } from '../button/component';
+import { IconComponent } from '../icon/component';
+import { HttpClientService } from '@domoskanonos/frontend-basis';
+import { KeyValueData } from '../form/component';
 
 const componentCSS = require('./component.css');
 
@@ -638,7 +638,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CHANGED, columnChangedData);
    }
 
-   private getItemSize() : number {
+   private getItemSize(): number {
       let size: number = Number(this.sizeComboboxInputData.selectedValue);
       return size;
    }
@@ -648,8 +648,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    }
 
    private currentPageItemEndIndex() {
-      let endIndex =(Number(this.getItemSize() * (this.page - 1)) + this.numberOfElements)
+      let endIndex = Number(this.getItemSize() * (this.page - 1)) + this.numberOfElements;
       return endIndex;
    }
-
 }

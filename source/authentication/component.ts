@@ -1,7 +1,7 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {FormComponent, FormComponentOutputData} from '../form/component';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { FormComponent, FormComponentOutputData } from '../form/component';
+import { HttpClientService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -70,7 +70,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
          let loginPromise = HttpClientService.getInstance().login(formOutputData.formData);
          loginPromise
-             .then((isAuthenticated: boolean) => {
+            .then((isAuthenticated: boolean) => {
                this.isAuthenticated = isAuthenticated;
 
                if (this.isAuthenticated) {
@@ -81,7 +81,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
                   this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_SUCCESSFULLY, eventData);
                }
             })
-             .catch((reason: string) => {
+            .catch((reason: string) => {
                console.log('authenitcate failure, reason: ' + reason);
 
                this.isAuthenticated = false;

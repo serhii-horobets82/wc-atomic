@@ -1,4 +1,4 @@
-import {LitElement, property, TemplateResult} from 'lit-element';
+import { LitElement, property, TemplateResult } from 'lit-element';
 import {
    BasicService,
    DataReceiverListener,
@@ -179,7 +179,6 @@ export class AppData extends AbstractInputData {
 }
 
 export abstract class AbstractApp extends AbstractComponent<AppData, undefined> {
-
    /**
     * doing stuff before first rendering, f.e. load data from server
     */
@@ -204,8 +203,7 @@ export abstract class AbstractApp extends AbstractComponent<AppData, undefined> 
     * so you can catch all underlying events.
     *
     */
-   protected registerEventListener(): void {
-   }
+   protected registerEventListener(): void {}
 
    getDefaultInputData(): AppData {
       return <AppData>{};
@@ -215,6 +213,5 @@ export abstract class AbstractApp extends AbstractComponent<AppData, undefined> 
       return undefined;
    }
 
-   protected inputDataChanged(): void {
-   }
+   protected inputDataChanged(): void {}
 }

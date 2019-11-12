@@ -1,40 +1,37 @@
-import {css, customElement, html, unsafeCSS} from 'lit-element';
-import {AbstractComponent} from '../../abstract-component/component';
-import {LinkInputData} from '../../link/component';
+import { css, customElement, html, unsafeCSS } from 'lit-element';
+import { AbstractComponent } from '../../abstract-component/component';
+import { LinkInputData } from '../../link/component';
 
 const componentCSS = require('./component.css');
 
-export class NavigationSectionInputData extends LinkInputData {
-}
+export class NavigationSectionInputData extends LinkInputData {}
 
 @customElement('component-navigation-section')
 export class NavigationSectionComponent extends AbstractComponent<NavigationSectionInputData, any> {
-    static styles = css`
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'NavigationSectionComponent';
+   static IDENTIFIER: string = 'NavigationSectionComponent';
 
-    render() {
-        return html`
+   render() {
+      return html`
          <div>
             Header
             <slot></slot>
          </div>
       `;
-    }
+   }
 
-    getDefaultInputData(): NavigationSectionInputData {
-        return <NavigationSectionInputData>{
-            componentIdentifier: NavigationSectionComponent.IDENTIFIER
-        };
-    }
+   getDefaultInputData(): NavigationSectionInputData {
+      return <NavigationSectionInputData>{
+         componentIdentifier: NavigationSectionComponent.IDENTIFIER
+      };
+   }
 
-    getOutputData(): any {
-        return {};
-    }
+   getOutputData(): any {
+      return {};
+   }
 
-    protected inputDataChanged() {
-    }
-
+   protected inputDataChanged() {}
 }

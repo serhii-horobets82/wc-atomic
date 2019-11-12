@@ -1,9 +1,9 @@
-import { customElement, html, TemplateResult } from 'lit-element';
-import { PageIntroduction } from './page-introduction';
-import { AbstractApp } from '../abstract-component/component';
-import { PageInput } from './page-input';
-import { PageGetStarted } from './page-get-started';
-import { RouterService } from '@domoskanonos/frontend-basis';
+import {customElement, html, TemplateResult} from 'lit-element';
+import {PageIntroduction} from './page-introduction';
+import {AbstractApp} from '../abstract-component/component';
+import {PageInputComponent} from './page-input';
+import {PageGetStarted} from './page-get-started';
+import {RouterService} from '@domoskanonos/frontend-basis';
 
 @customElement('app-root')
 class ShowcaseApp extends AbstractApp {
@@ -13,7 +13,7 @@ class ShowcaseApp extends AbstractApp {
       switch (path) {
          case '#input':
             return html`
-               ${new PageInput()}
+               ${new PageInputComponent()}
             `;
          case '#getStarted':
             return html`

@@ -1,8 +1,8 @@
-import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
-import {DataProtection} from '../data-protection/component';
+import { css, html, property, query, TemplateResult, unsafeCSS } from 'lit-element';
+import { DataProtection } from '../data-protection/component';
 
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {IconInputData} from '../icon/component';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { IconInputData } from '../icon/component';
 
 const componentCSS = require('./component.css');
 
@@ -11,7 +11,6 @@ export class BasisTemplateInputData extends AbstractInputData {
 }
 
 export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInputData, undefined> {
-
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -89,7 +88,5 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
       //if (this.mainElement != undefined) this.mainElement.setAttribute('class', this.menuCss);
       if (this.leftElement != undefined) this.leftElement.setAttribute('class', this.menuCss);
       if (this.topElement != undefined) this.topElement.setAttribute('class', this.menuCss);
-
    }
-
 }

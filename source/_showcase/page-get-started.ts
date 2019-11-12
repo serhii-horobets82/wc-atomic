@@ -11,13 +11,11 @@ export class PageGetStarted extends PageAbstract {
                <component-text slot="header">Base Project</component-text>
             </component-h1>
             <component-text>
-                clone base template from github to start your client app
-                <component-link href="https://github.com/domoskanonos/wc-atomic-template">https://github.com/domoskanonos/wc-atomic-template</component-link>
+               clone base template from github to start your client app
+               <component-link href="https://github.com/domoskanonos/wc-atomic-template"
+                  >https://github.com/domoskanonos/wc-atomic-template</component-link
+               >
             </component-text>
-            
-            
-            
-            
          </component-flex-container>
       `;
    }

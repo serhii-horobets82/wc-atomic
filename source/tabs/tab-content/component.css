@@ -1,0 +1,3 @@
+.hide, ::slotted(.hide) {
+    display: none;
+}

@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
  */
 public class ModuleGenerator {
 
-    private static File projectSourceRoot = new File("source");
+    public static File PROJECT_SOURCE_ROOT = new File("source");
 
-    private static Set<String> ignoreFiles = new HashSet<>();
+    private static Set<String> IGNORE_FILES = new HashSet<>();
 
     static {
-        ignoreFiles.add("index.ts");
-        ignoreFiles.add("index.d.ts");
-        ignoreFiles.add("_showcase");
+        IGNORE_FILES.add("index.ts");
+        IGNORE_FILES.add("index.d.ts");
+        IGNORE_FILES.add("_showcase");
     }
 
     public static void main(String[] args) throws IOException {
@@ -28,14 +28,14 @@ public class ModuleGenerator {
         String imports = createImports();
         String exports = createExports();
 
-        File indexts = new File(projectSourceRoot, "index.ts");
+        File indexts = new File(PROJECT_SOURCE_ROOT, "index.ts");
         Files.writeString(indexts.toPath(), imports + exports, StandardOpenOption.CREATE);
 
     }
 
 
     public static String createImports() throws IOException {
-        List<String> items = createImportStatement(projectSourceRoot);
+        List<String> items = createImportStatement(PROJECT_SOURCE_ROOT);
 
         String output = "";
         for (String item : items) {
@@ -48,13 +48,13 @@ public class ModuleGenerator {
         List<String> imports = new ArrayList<>();
         for (File childFile : file.listFiles()) {
             if (childFile.isDirectory()) {
-                if (ignoreFiles.contains(childFile.getName())) {
+                if (IGNORE_FILES.contains(childFile.getName())) {
                     continue;
                 }
                 imports.addAll(createImportStatement(childFile));
             }
             if (childFile.getName().endsWith(".ts")) {
-                if (ignoreFiles.contains(childFile.getName())) {
+                if (IGNORE_FILES.contains(childFile.getName())) {
                     continue;
                 }
                 System.out.println("parse file: " + file.getAbsolutePath());
@@ -91,7 +91,7 @@ public class ModuleGenerator {
     }
 
     public static String createExports() throws IOException {
-        List<String> items = createExportStatement(projectSourceRoot);
+        List<String> items = createExportStatement(PROJECT_SOURCE_ROOT);
 
         items.add("import './scss/index.scss';");
         items.add("import './_showcase/showcase-app';");
@@ -107,13 +107,13 @@ public class ModuleGenerator {
         List<String> exports = new ArrayList<>();
         for (File childFile : file.listFiles()) {
             if (childFile.isDirectory()) {
-                if (ignoreFiles.contains(childFile.getName())) {
+                if (IGNORE_FILES.contains(childFile.getName())) {
                     continue;
                 }
                 exports.addAll(createExportStatement(childFile));
             }
             if (childFile.getName().endsWith(".ts")) {
-                if (ignoreFiles.contains(childFile.getName())) {
+                if (IGNORE_FILES.contains(childFile.getName())) {
                     continue;
                 }
                 String exportStatement = "export {";
@@ -149,7 +149,7 @@ public class ModuleGenerator {
     }
 
     private static String getPath(File childFile) {
-        return String.format(".%s", childFile.getAbsolutePath().replace(projectSourceRoot.getAbsolutePath(), "").replace("\\", "/").replace(".ts", ""));
+        return String.format(".%s", childFile.getAbsolutePath().replace(PROJECT_SOURCE_ROOT.getAbsolutePath(), "").replace("\\", "/").replace(".ts", ""));
     }
 
 }
