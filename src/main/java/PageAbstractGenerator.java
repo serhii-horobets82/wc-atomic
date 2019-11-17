@@ -59,9 +59,14 @@ public class PageAbstractGenerator {
 
         File showCaseFolder = new File(ModuleGenerator.PROJECT_SOURCE_ROOT, "_showcase");
         List<Link> links = new ArrayList<>();
+        List<String> i18n = new ArrayList<>();
 
         for (File file : showCaseFolder.listFiles()) {
+            if(!file.getName().endsWith(".ts")){
+                continue;
+            }
             String link = file.getName().replace("-", "").replace(".ts", "");
+            i18n.add(link);
             links.add(new Link("#" + link, "${this.i18nService.getValue(\"" + link + "\")}"));
         }
 
@@ -75,6 +80,39 @@ public class PageAbstractGenerator {
         if (page.exists()) {
             page.delete();
         }
+        Files.writeString(page.toPath(), writer.toString(), StandardOpenOption.CREATE);
+
+
+        createI18n("de", i18n);
+        createI18n("en", i18n);
+
+
+    }
+
+    private static void createI18n(String lang, List<String> i18ns) throws IOException {
+
+        VelocityEngine velocityEngine = getEngine();
+
+        velocityEngine.init();
+        Template t = velocityEngine
+                .getTemplate("i18n.vm");
+
+        VelocityContext context = new VelocityContext();
+
+
+        File showCaseFolder = new File(ModuleGenerator.PROJECT_SOURCE_ROOT, "_showcase");
+
+        context.put("i18ns", i18ns);
+
+        StringWriter writer = new StringWriter();
+
+        t.merge(context, writer);
+
+        File page = new File(showCaseFolder, "message-" + lang + ".json");
+        if (page.exists()) {
+            page.delete();
+        }
+
         Files.writeString(page.toPath(), writer.toString(), StandardOpenOption.CREATE);
 
     }

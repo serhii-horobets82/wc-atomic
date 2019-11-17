@@ -1,0 +1,13 @@
+{
+  "pagegetstarted": "pagegetstarted",
+  "pageinput": "Eingabefelder",
+  "pageintroduction": "pageintroduction",
+  "language": "Sprache",
+  "tab_example": "Beispiel",
+  "tab_html": "HTML",
+  "tab_css": "CSS",
+  "property_name": "Name",
+  "property_typ": "Typ",
+  "property_allowed_values": "Mögliche Werte",
+  "property_example": "Beispiel"
+}

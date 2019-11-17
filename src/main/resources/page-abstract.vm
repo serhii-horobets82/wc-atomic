@@ -12,9 +12,9 @@ export abstract class PageAbstract extends BasisTemplate {
 
     getLeftComponent(): TemplateResult {
         return html`<component-navigation>
-                        <component-navigation-link slot="links" iconClazz="" text="Introduction" href="#introduction"></component-navigation-link>
-                        <component-navigation-link slot="links" iconClazz="" text="Get started" href="#getStarted"></component-navigation-link>
-                        <component-navigation-section slot="links">
+                        <component-navigation-link slot="navigationItems" iconClazz="" text="Introduction" href="#introduction"></component-navigation-link>
+                        <component-navigation-link slot="navigationItems" iconClazz="" text="Get started" href="#getStarted"></component-navigation-link>
+                        <component-navigation-section slot="navigationItems">
                             #foreach( $link in $links )
                                 <component-navigation-link iconClazz="" text="${link.i18n}" href="${link.link}"></component-navigation-link>
                             #end

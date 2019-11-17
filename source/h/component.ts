@@ -1,16 +1,31 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
-export class HInputData extends AbstractInputData {
-   headerType?: number;
-   headerText?: string;
-   subheaderText?: string;
-   clazz?: string;
+export enum HTypes {
+   H1 = 'H1',
+   H2 = 'H2',
+   H3 = 'H3',
+   H4 = 'H4',
+   H5 = 'H5',
+   H6 = 'H6',
+   SUBTITLE1 = 'SUBTITLE1',
+   SUBTITLE2 = 'SUBTITLE2',
+   BODY1 = 'BODY1',
+   BODY2 = 'BODY2',
+   BUTTON = 'BUTTON',
+   CAPTION = 'CAPTION',
+   OVERLINE = 'OVERLINE'
 }
 
-export abstract class HComponent extends AbstractComponent<HInputData, any> {
+export class HInputData extends AbstractInputData {
+   hType: HTypes = HTypes.H2;
+   text?: string;
+}
+
+@customElement('component-h')
+export class HComponent extends AbstractComponent<HInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -18,52 +33,22 @@ export abstract class HComponent extends AbstractComponent<HInputData, any> {
    static IDENTIFIER: string = 'HComponent';
 
    @property()
+   hType: HTypes = HTypes.H2;
+
+   @property()
    text: string = '';
 
-   @property()
-   subtext: string = '';
-
-   @property()
-   clazz: string = '';
-
-   static create(headerType: number): HComponent {
-      switch (headerType) {
-         case 1:
-            return new H1Component();
-         case 2:
-            return new H2Component();
-         case 3:
-            return new H3Component();
-      }
-      return new H1Component();
-   }
-
-   static createFromInputData(inputData: HInputData): HComponent {
-      let header: HComponent;
-      switch (inputData.headerType) {
-         case 1:
-            header = new H1Component();
-            break;
-         case 2:
-            header = new H2Component();
-            break;
-         case 3:
-            header = new H3Component();
-            break;
-         default:
-            header = new H1Component();
-      }
-      header.inputData = inputData;
-      return header;
+   render() {
+      return html`
+            <span class="${this.hType.toString()}">${this.text}<slot></slot></span>
+      `;
    }
 
    getDefaultInputData(): HInputData {
       return <HInputData>{
-         componentIdentifier: H1Component.IDENTIFIER,
-         headerType: 1,
-         headerText: 'Lorem ipsum dolor sit amet',
-         subheaderText: 'Consetetur sadipscing elitr',
-         clazz: ''
+         componentIdentifier: HComponent.IDENTIFIER,
+         hType: HTypes.H2,
+         text: 'Lorem ipsum dolor sit amet',
       };
    }
 
@@ -72,50 +57,7 @@ export abstract class HComponent extends AbstractComponent<HInputData, any> {
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
-      this.text = this.basicService.getValue(this.inputData.headerText, '');
-      this.subtext = this.basicService.getValue(this.inputData.subheaderText, '');
+      this.text = this.basicService.getValue(this.inputData.text, '');
    }
 }
 
-@customElement('component-h1')
-export class H1Component extends HComponent {
-   static IDENTIFIER: string = 'H1Component';
-
-   render() {
-      return html`
-         <div class="headerBox ${this.clazz}">
-            <h1 class="header">${this.text}<slot name="header"></slot><slot></slot></h1>
-            <h2 class="subheader">${this.subtext}<slot name="subheader"></slot></h2>
-         </div>
-      `;
-   }
-}
-
-@customElement('component-h2')
-export class H2Component extends HComponent {
-   static IDENTIFIER: string = 'H2Component';
-
-   render() {
-      return html`
-         <div class="headerBox ${this.clazz}">
-            <h2 class="header">${this.text}</h2>
-            <h3 class="subheader">${this.subtext}</h3>
-         </div>
-      `;
-   }
-}
-
-@customElement('component-h3')
-export class H3Component extends HComponent {
-   static IDENTIFIER: string = 'H3Component';
-
-   render() {
-      return html`
-         <div class="headerBox ${this.clazz}">
-            <h3 class="header">${this.text}</h3>
-            <h4 class="subheader">${this.subtext}</h4>
-         </div>
-      `;
-   }
-}

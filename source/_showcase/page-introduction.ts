@@ -7,18 +7,18 @@ export class PageIntroduction extends PageAbstract {
       return html`
          <component-flex-container gridClazz="grid_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-h1>
+            <component-h>
                <component-text slot="header">WC-Atomic</component-text>
                <component-text slot="subheader">Build beautiful Webclients</component-text>
-            </component-h1>
+            </component-h>
             <component-text>
                With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
                and open source project on github and npm
             </component-text>
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-h1>
+            <component-h>
                <component-text slot="header">Installation with NPM</component-text>
-            </component-h1>
+            </component-h>
             <component-text>
                If you want to use the WC-Atomic Componentent Libary in your project, simple install via NPM:
             </component-text>

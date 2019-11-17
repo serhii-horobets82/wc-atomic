@@ -1,4 +1,4 @@
-import { LitElement, property, TemplateResult } from 'lit-element';
+import {LitElement, property, TemplateResult} from 'lit-element';
 import {
    BasicService,
    DataReceiverListener,
@@ -25,7 +25,9 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
 
    protected basicService: BasicService = new BasicService();
    protected slotService: SlotService = new SlotService();
-   protected i18nService: I18nService = new I18nService(localStorage);
+   protected i18nService: I18nService = I18nService.getInstance();
+   protected screenHeight: number = window.innerHeight;
+   protected screenWidth: number = window.innerWidth;
 
    @property()
    private _inputData: INPUT_DATA = <INPUT_DATA>{};

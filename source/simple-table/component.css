@@ -1,0 +1,23 @@
+table, ::slotted(table) {
+    border-spacing: 0;
+    width: 100%;
+}
+
+td, th {
+    vertical-align: top;
+    padding: var(--medium-space);
+    box-sizing: border-box;
+    text-align: left;
+    border-bottom: 1px solid var(--app-color-border);
+    border-left: 1px solid var(--app-color-border);
+}
+
+tr > td:last-of-type, th:last-of-type {
+    border-right: 1px solid var(--app-color-border);
+}
+
+th {
+    border-top: 1px solid var(--app-color-border);
+    background-color: var(--app-color-surface);
+    color: var(--app-color-on-surface);
+}

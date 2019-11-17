@@ -56,7 +56,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
 
    protected render() {
       return html`
-         <form novalidate @component-button-click="${this.formButtonClicked}">
+         <form @component-button-click="${this.formButtonClicked}">
             <slot id="slotElement"></slot>
             ${guard(
                this.buttonInputDatas,

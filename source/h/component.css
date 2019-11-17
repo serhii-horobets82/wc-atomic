@@ -1,23 +1,76 @@
-@import "../css/text_alignment.css";
-
-.headerBox {
-  width: 100%;
-}
-
-.header {
-  width: 100%;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  color: var(--app-color-on-background);
-  text-transform: uppercase;
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6,
+.SUBTITLE1,
+.SUBTITLE2,
+.BODY1,
+.BODY2,
+.BUTTON,
+.CAPTION,
+.OVERLINE {
+  clear: both;
+  display: table;
+  white-space: nowrap;
   margin: 0;
-  line-height: 150%;
+  padding: 0;
+  box-sizing: border-box;
+  text-size-adjust:100%;
 }
 
-.subheader {
-  width: 100%;
-  color: var(--app-color-secondary);
-  text-transform: none;
-  //font-style: italic;
+
+.H1 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.H2 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.H3 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.H4 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.H5 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.H6 {
+    font-size: 4rem;
+    letter-spacing: 0rem;
+    line-height: 125%;
+}
+
+.SUBTITLE1 {
+}
+
+.SUBTITLE2 {
+}
+
+.BODY1 {
+}
+
+.BODY2 {
+}
+
+.BUTTON {
+}
+
+.CAPTION {
 }

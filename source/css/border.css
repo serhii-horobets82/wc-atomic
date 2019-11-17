@@ -1,0 +1,19 @@
+.basicBorder {
+    border: 1px solid var(--app-color-border);
+}
+
+.basicBorderBottom {
+    border-bottom: 1px solid var(--app-color-border);
+}
+
+.basicBorderTop {
+    border-top: 1px solid var(--app-color-border);
+}
+
+.basicBorderLeft {
+    border-left: 1px solid var(--app-color-border);
+}
+
+.basicBorderRight {
+    border-right: 1px solid var(--app-color-border);
+}

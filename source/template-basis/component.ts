@@ -1,8 +1,8 @@
-import { css, html, property, query, TemplateResult, unsafeCSS } from 'lit-element';
-import { DataProtection } from '../data-protection/component';
+import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
+import {DataProtection} from '../data-protection/component';
 
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { IconInputData } from '../icon/component';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {IconInputData} from '../icon/component';
 
 const componentCSS = require('./component.css');
 
@@ -27,8 +27,8 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    private topElement: HTMLElement | undefined;
    @query('#left')
    private leftElement: HTMLElement | undefined;
-   //@query('#main')
-   //private mainElement: HTMLElement | undefined;
+   @query('#main')
+   private mainElement: HTMLElement | undefined;
 
    menuCss: string = '';
 
@@ -85,8 +85,9 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
          this.menuCss = 'basicShadow';
       }
 
-      //if (this.mainElement != undefined) this.mainElement.setAttribute('class', this.menuCss);
+      if (this.mainElement != undefined) this.mainElement.setAttribute('class', this.menuCss);
       if (this.leftElement != undefined) this.leftElement.setAttribute('class', this.menuCss);
       if (this.topElement != undefined) this.topElement.setAttribute('class', this.menuCss);
    }
+
 }

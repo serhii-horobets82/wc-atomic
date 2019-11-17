@@ -1,6 +1,6 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { KeyValueData } from '../form/component';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {KeyValueData} from '../form/component';
 
 const componentCSS = require('./component.css');
 
@@ -71,6 +71,12 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    placeholder: string = '';
 
    @property()
+   required: boolean = false;
+
+   @property()
+   multiple: boolean = false;
+
+   @property()
    maxlength: number = 255;
 
    @property()
@@ -81,6 +87,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
    @property()
    size: number = 50;
+
+   @property()
+   validationMessage: string = '';
 
    @query('#inputElement')
    private textfieldElemet: HTMLInputElement | undefined;
@@ -99,10 +108,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       return html`
          <input
             id="inputElement"
-            multiple=""
             name="${this.name}"
-            @keyup="${this.keyup}"
-            @change="${(event: Event) => this.change(event)}"
             type="${this.type}"
             value="${this.prepareValue(this.value)}"
             placeholder="${this.placeholder}"
@@ -110,8 +116,13 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             maxlength="${this.maxlength}"
             min="${this.min}"
             max="${this.max}"
+            ?required="${this.required}"
+            ?multiple="${this.multiple}"
+            @keyup="${this.keyup}"
+            @change="${(event: Event) => this.change(event)}"
          />
          <slot></slot>
+         ${this.validationMessage}
       `;
    }
 
@@ -124,12 +135,15 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       inputDataChangedEvent.type = this.type;
       inputDataChangedEvent.element = <HTMLInputElement>event.target;
       inputDataChangedEvent.outputData = this.getOutputData();
+      //TODO: VALIDATION einbauen, wenn string länger null dann invalid, oder nachfragen
+      if (this.textfieldElemet != null && this.textfieldElemet.validationMessage != this.validationMessage) {
+         this.validationMessage = this.textfieldElemet.validationMessage;
+      }
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
    }
 
    getOutputData(): KeyValueData {
       let value = this.textfieldElemet != null ? this.textfieldElemet.value : this.value;
-
       switch (this.type) {
          case HTMLInputTypes.CHECKBOX:
             value = this.textfieldElemet != null ? this.basicService.getValue(this.textfieldElemet.checked, false) : false;
@@ -169,5 +183,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       }
       //return this.basicService.beautifyText(value);
       return value;
+   }
+
+   private ddd() {
+      return 'requr';
    }
 }

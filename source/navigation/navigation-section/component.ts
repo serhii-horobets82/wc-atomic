@@ -17,7 +17,7 @@ export class NavigationSectionComponent extends AbstractComponent<NavigationSect
    render() {
       return html`
          <div>
-            Header
+            <slot name="section"></slot>
             <slot></slot>
          </div>
       `;

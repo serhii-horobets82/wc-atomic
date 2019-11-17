@@ -23,7 +23,7 @@
 #left {
     height: calc(100% - var(--menubar-height));
     width: var(--menu-size);
-    transition: left 0.5s linear;
+    transition: left 0.25s linear;
     position: fixed;
     z-index: 1;
     top: var(--menubar-height);
@@ -35,18 +35,28 @@
 
 #left.menuClosed {
     left: calc(-1 * var(--menu-size));
-    transition: left 0.5s linear;
+    transition: left 0.25s linear;
 }
+
 #main {
     padding-top: var(--menubar-height);
     color: var(--app-color-on-background);
     background-color: var(--app-color-background);
     min-height: 100%;
-    margin-left: var(--menu-size);
-    transition: margin-left 0.5s linear;
-
 }
 #main.menuClosed {
     margin-left: 0;
-    transition: margin-left 0.5s linear;
+}
+
+@media screen and (min-width: 521px) {
+
+    #main {
+        transition: margin-left 0.25s linear;
+        margin-left: var(--menu-size);
+    }
+
+    #main.menuClosed {
+        margin-left: 0;
+        transition: margin-left 0.25s linear;
+    }
 }

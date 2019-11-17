@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,6 +23,7 @@ public class PageComponentGenerator {
         IGNORE_FILES.add("_showcase");
         IGNORE_FILES.add("abstract");
         IGNORE_FILES.add("abstract-component");
+        IGNORE_FILES.add("template-basis");
     }
 
     public static void main(String[] args) throws IOException {
@@ -36,7 +35,8 @@ public class PageComponentGenerator {
     }
 
     private static void createComponentViewPages(File file) throws IOException {
-        List<String> imports = new ArrayList<>();
+
+
         for (File childFile : file.listFiles()) {
             if (childFile.isDirectory()) {
                 if (IGNORE_FILES.contains(childFile.getName())) {
@@ -50,9 +50,26 @@ public class PageComponentGenerator {
                 }
                 String content = Files.readString(childFile.toPath());
                 int lineIndex = 0;
+                String customElementTag = "";
+                String customElementPageTag = "";
+                int indexStart = -1;
+                int indexEnd = -1;
+                int customElementStartIndex = -1;
                 for (String line : content.lines().collect(Collectors.toList())) {
-                    int indexStart = line.indexOf("export class") + 12;
-                    int indexEnd = line.indexOf("extends Abstract");
+
+                    if (customElementPageTag.length() == 0) {
+                        customElementStartIndex = line.indexOf("@customElement('");
+                        if (customElementStartIndex > -1) {
+                            customElementTag = line.substring(customElementStartIndex + 16, line.lastIndexOf("'"));
+                            customElementPageTag = customElementTag.replace("component", "page");
+                        }
+                    }
+
+                    if (customElementPageTag.length() > 0) {
+                        indexStart = line.indexOf("export class") + 12;
+                        indexEnd = line.indexOf("extends ");
+                    }
+
                     if (indexStart > 11 && indexEnd > -1) {
 
                         String componentName = line.substring(indexStart, indexEnd).trim();
@@ -61,11 +78,12 @@ public class PageComponentGenerator {
 
                         velocityEngine.init();
                         Template t = velocityEngine
-                                .getTemplate("component-view.vm");
+                                .getTemplate("page-component.vm");
 
                         VelocityContext context = new VelocityContext();
                         context.put("componentName", componentName);
-
+                        context.put("customElementTag", "<" + customElementTag + "></" + customElementTag + ">");
+                        context.put("customElementPageTag", customElementPageTag);
 
                         StringWriter writer = new StringWriter();
                         t.merge(context, writer);
