@@ -2,8 +2,8 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
-import { TextComponent } from '../../text/component';
 import { AccordionItemComponent, AccordionItemInputData } from '../item/component';
+import {TypographyComponent} from "../../typography/component";
 
 const componentCSS = require('./component.css');
 
@@ -49,7 +49,7 @@ export class AccordionComponent extends AbstractComponent<AccordionInputData, an
             {
                componentIdentifier: AccordionItemComponent.IDENTIFIER,
                header: 'Mein Accordion',
-               componentData: new TextComponent().getDefaultInputData(),
+               componentData: new TypographyComponent().getDefaultInputData(),
                stateClazz: 'closed'
             }
          ]

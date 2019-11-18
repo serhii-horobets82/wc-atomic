@@ -1,6 +1,5 @@
 import { LinkComponent } from '../link/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { TextComponent } from '../text/component';
 import { ButtonComponent } from '../button/component';
 import { CodeComponent } from '../code/component';
 import { ComboboxComponent } from '../combobox/component';
@@ -10,7 +9,6 @@ import { TextareaComponent } from '../textarea/component';
 import { InputComponent } from '../input/component';
 import { FormElementComponent } from '../form-element/component';
 import { SearchComponent } from '../search/component';
-import { H1Component, H2Component, H3Component } from '../h/component';
 import { AccordionComponent } from '../accordion/container/component';
 import { ImgSliderComponent } from '../img-slider/component';
 import { ImgSliderSelectorComponent } from '../img-slider-selector/component';
@@ -29,6 +27,7 @@ import { SpacerComponent } from '../spacer/component';
 import { I18NSelectorComponent } from '../i18n-selector/component';
 import { ListComponent } from '../list/container/component';
 import { ListItemComponent } from '../list/item/component';
+import {TypographyComponent} from "../typography/component";
 
 export class ComponentLoader {
    static INSTANCE: ComponentLoader = new ComponentLoader();
@@ -57,14 +56,8 @@ export class ComponentLoader {
          case SearchComponent.IDENTIFIER:
             component = new SearchComponent();
             break;
-         case H1Component.IDENTIFIER:
-            component = new H1Component();
-            break;
-         case H2Component.IDENTIFIER:
-            component = new H2Component();
-            break;
-         case H3Component.IDENTIFIER:
-            component = new H3Component();
+         case TypographyComponent.IDENTIFIER:
+            component = new TypographyComponent();
             break;
          case FormComponent.IDENTIFIER:
             component = new FormComponent();
@@ -95,9 +88,6 @@ export class ComponentLoader {
             break;
          case CodeComponent.IDENTIFIER:
             component = new CodeComponent();
-            break;
-         case TextComponent.IDENTIFIER:
-            component = new TextComponent();
             break;
          case ButtonComponent.IDENTIFIER:
             component = new ButtonComponent();

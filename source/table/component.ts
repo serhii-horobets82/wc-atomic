@@ -4,12 +4,13 @@ import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { InputComponent, InputInputData } from '../input/component';
 import { DatalistComponent, DatalistInputData } from '../datalist/component';
-import { TextComponent, TextInputData } from '../text/component';
 import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
 import { ButtonComponent, ButtonInputData } from '../button/component';
 import { IconComponent } from '../icon/component';
 import { HttpClientService } from '@domoskanonos/frontend-basis';
 import { KeyValueData } from '../form/component';
+import {TypographyComponent, TypographyInputData} from "../typography/component";
+import {PageTypographyComponent} from "../_showcase/page-typography";
 
 const componentCSS = require('./component.css');
 
@@ -417,9 +418,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         (<InputInputData>inputData).name = columnKey;
                         break;
                      default:
-                     case TextComponent.IDENTIFIER:
-                        (<TextInputData>inputData).text = this.basicService.beautifyText(columnValue);
-                        (<TextInputData>inputData).clazz = 'ellipsis';
+                     case TypographyComponent.IDENTIFIER:
+                        (<TypographyInputData>inputData).text = this.basicService.beautifyText(columnValue);
+                        (<TypographyInputData>inputData).clazz = 'ellipsis';
                         break;
                      case ComboboxComponent.IDENTIFIER:
                         break;
@@ -555,7 +556,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    private createFilterComponent(header: TableHeaderInputData) {
       let componentIdentifier = header.componentInputData.componentIdentifier;
       switch (componentIdentifier) {
-         case TextComponent.IDENTIFIER:
+         case TypographyComponent.IDENTIFIER:
             return html`
                <component-inputfield
                   value="${header.searchValue}"
@@ -588,10 +589,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       let componentInputData = column.componentInputData;
       let componentIdentifier = componentInputData.componentIdentifier;
       switch (componentIdentifier) {
-         case TextComponent.IDENTIFIER:
-            (<TextInputData>componentInputData).clazz = 'ellipsis';
+         case TypographyComponent.IDENTIFIER:
+            (<TypographyInputData>componentInputData).clazz = 'ellipsis';
             return html`
-               <component-text .inputData="${componentInputData}"></component-text>
+               <component-typography .inputData="${componentInputData}"></component-typography>
             `;
          case IconComponent.IDENTIFIER:
             return html`

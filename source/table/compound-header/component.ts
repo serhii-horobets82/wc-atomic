@@ -25,7 +25,7 @@ export class TableCompoundHeader extends AbstractComponent<TableCompoundHeaderIn
    render() {
       return html`
          <div class="compoundHeader" style="${this.cssStyle}">
-            <component-text>${this.text}</component-text>
+            <component-typography>${this.text}</component-typography>
             <slot></slot>
          </div>
       `;

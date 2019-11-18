@@ -33,7 +33,7 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
             class="${RouterService.getInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
          >
             <component-icon iconClazz="${this.iconClazz}" class="navitemIcon"></component-icon>
-            <component-text>${this.text}</component-text>
+            <component-typography>${this.text}</component-typography>
          </div>
       `;
    }

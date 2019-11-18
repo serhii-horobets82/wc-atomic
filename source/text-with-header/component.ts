@@ -1,16 +1,15 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { H1Component, HInputData } from '../h/component';
-import { TextComponent, TextInputData } from '../text/component';
+import {TypographyInputData} from "../typography/component";
 
 const componentCSS = require('./component.css');
 
 export class TextWithHeaderInputData extends AbstractInputData {
-   headerInputData?: HInputData;
-   textInputData?: TextInputData;
+   headerInputData?: TypographyInputData;
+   textInputData?: TypographyInputData;
 }
 
-@customElement('component-text-with-header')
+@customElement('component-typography-with-header')
 export class TextWithHeaderComponent extends AbstractComponent<TextWithHeaderInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -19,23 +18,23 @@ export class TextWithHeaderComponent extends AbstractComponent<TextWithHeaderInp
    static IDENTIFIER: string = 'TextWithHeaderComponent';
 
    @property()
-   headerInputData: HInputData = <HInputData>{};
+   headerInputData: TypographyInputData = <TypographyInputData>{};
 
    @property()
-   textInputData: TextInputData = <TextInputData>{};
+   textInputData: TypographyInputData = <TypographyInputData>{};
 
    render() {
       return html`
-         ${H1Component.createFromInputData(this.headerInputData)}
-         <component-text .inputData="${this.textInputData}"></component-text>
+         <component-typography .inputData="${this.headerInputData}"></component-typography>
+         <component-typography .inputData="${this.textInputData}"></component-typography>
       `;
    }
 
    getDefaultInputData(): TextWithHeaderInputData {
       return <TextWithHeaderInputData>{
          componentIdentifier: TextWithHeaderComponent.IDENTIFIER,
-         headerInputData: new H1Component().getDefaultInputData(),
-         textInputData: new TextComponent().getDefaultInputData()
+         headerInputData: new TypographyInputData(),
+         textInputData: new TypographyInputData()
       };
    }
 
@@ -44,7 +43,7 @@ export class TextWithHeaderComponent extends AbstractComponent<TextWithHeaderInp
    }
 
    protected inputDataChanged() {
-      this.headerInputData = this.basicService.getValue(this.inputData.headerInputData, new HInputData());
-      this.textInputData = this.basicService.getValue(this.inputData.textInputData, new TextInputData());
+      this.headerInputData = this.basicService.getValue(this.inputData.headerInputData, new TypographyInputData());
+      this.textInputData = this.basicService.getValue(this.inputData.textInputData, new TypographyInputData());
    }
 }

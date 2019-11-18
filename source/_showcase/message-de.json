@@ -1,5 +1,8 @@
 {
   "pagegetstarted": "pagegetstarted",
+  "pagetypography": "Typography",
+  "typographyType": "Typ",
+  "typographyTypeDescription": "Beschreibung",
   "pageinput": "Eingabefelder",
   "pageintroduction": "pageintroduction",
   "language": "Sprache",

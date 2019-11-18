@@ -19,13 +19,16 @@ export enum HTypes {
    OVERLINE = 'OVERLINE'
 }
 
-export class HInputData extends AbstractInputData {
+export class TypographyInputData extends AbstractInputData {
    hType: HTypes = HTypes.H2;
    text?: string;
+   clazz?: string;
+   cssStyle?: string;
+   title?: string;
 }
 
-@customElement('component-h')
-export class HComponent extends AbstractComponent<HInputData, any> {
+@customElement('component-typography')
+export class TypographyComponent extends AbstractComponent<TypographyInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -33,21 +36,29 @@ export class HComponent extends AbstractComponent<HInputData, any> {
    static IDENTIFIER: string = 'HComponent';
 
    @property()
-   hType: HTypes = HTypes.H2;
+   hType: HTypes = HTypes.BODY1;
 
    @property()
    text: string = '';
 
+   @property()
+   title: string = '';
+
+   @property()
+   clazz: string = '';
+
+   @property()
+   cssStyle: string = '';
    render() {
       return html`
             <span class="${this.hType.toString()}">${this.text}<slot></slot></span>
       `;
    }
 
-   getDefaultInputData(): HInputData {
-      return <HInputData>{
-         componentIdentifier: HComponent.IDENTIFIER,
-         hType: HTypes.H2,
+   getDefaultInputData(): TypographyInputData {
+      return <TypographyInputData>{
+         componentIdentifier: TypographyComponent.IDENTIFIER,
+         hType: HTypes.BODY1,
          text: 'Lorem ipsum dolor sit amet',
       };
    }
@@ -58,6 +69,10 @@ export class HComponent extends AbstractComponent<HInputData, any> {
 
    protected inputDataChanged() {
       this.text = this.basicService.getValue(this.inputData.text, '');
+      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
+      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
+      this.title = this.basicService.getValue(this.inputData.title, '');
+
    }
 }
 

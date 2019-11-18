@@ -7,28 +7,28 @@ export class PageIntroduction extends PageAbstract {
       return html`
          <component-flex-container gridClazz="grid_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-h>
-               <component-text slot="header">WC-Atomic</component-text>
-               <component-text slot="subheader">Build beautiful Webclients</component-text>
-            </component-h>
-            <component-text>
+            <component-typography>
+               <component-typography slot="header">WC-Atomic</component-typography>
+               <component-typography slot="subheader">Build beautiful Webclients</component-typography>
+            </component-typography>
+            <component-typography>
                With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
                and open source project on github and npm
-            </component-text>
+            </component-typography>
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-h>
-               <component-text slot="header">Installation with NPM</component-text>
-            </component-h>
-            <component-text>
+            <component-typography>
+               <component-typography slot="header">Installation with NPM</component-typography>
+            </component-typography>
+            <component-typography>
                If you want to use the WC-Atomic Componentent Libary in your project, simple install via NPM:
-            </component-text>
+            </component-typography>
             <component-code>npm install -g @domoskanonos/wc-atomic</component-code>
-            <component-text> or directly in your <b>package.json</b>: </component-text>
+            <component-typography> or directly in your <b>package.json</b>: </component-typography>
             <component-code>"dependencies": { ..., "@domoskanonos/frontend-basis": "*" }</component-code>
 
-            <component-text>
+            <component-typography>
                found sources on github:
-            </component-text>
+            </component-typography>
             <component-code>https://github.com/domoskanonos/wc-atomic</component-code>
          </component-flex-container>
       `;

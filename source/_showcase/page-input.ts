@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
 import {InputComponent} from '../input/component';
-import {HTypes} from '../h/component';
+import {HTypes} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from "../combobox/component";
 
@@ -11,12 +11,12 @@ export class PageInputComponent extends PageAbstract {
         return html`
          <component-flex-container gridClazz="grid_50">
          
-         <component-h>Input Components</component-h>
-         <component-text>This component is the main component for formular, like contact formular, login formular</component-text>
+         <component-typography>Input Components</component-typography>
+         <component-typography>This component is the main component for formular, like contact formular, login formular</component-typography>
 
 
 
-        <component-h .hType="${HTypes.H2}">Properties of component</component-h>
+        <component-typography .hType="${HTypes.H2}">Properties of component</component-typography>
 
         <component-simple-table .headers="${[
             this.i18nService.getValue('property_name'),
@@ -42,7 +42,7 @@ export class PageInputComponent extends PageAbstract {
         </component-simple-table>
 
 
-         <component-h>Simple Textfield</component-h>
+         <component-typography>Simple Textfield</component-typography>
          
             <component-tabs>
                <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
@@ -57,7 +57,7 @@ export class PageInputComponent extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="htmlContent">
                   <component-code>
-                     <component-text text="<component-inputfield></component-inputfield>"></component-text>
+                     <component-typography text="<component-inputfield></component-inputfield>"></component-typography>
                   </component-code>
                </component-tab-content>
                <component-tab-content slot="tabContent" id="cssContent">
@@ -70,7 +70,7 @@ export class PageInputComponent extends PageAbstract {
                </component-tab-content>
             </component-tabs>
 
-         <component-h>Datefield</component-h>
+         <component-typography>Datefield</component-typography>
          
             <component-tabs>
                <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
@@ -93,13 +93,13 @@ export class PageInputComponent extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="htmlContent">
                   <component-code>
-                     <component-text text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-text>
+                     <component-typography text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-typography>
                   </component-code>
                </component-tab-content>
             </component-tabs>
 
 
-         <component-h>Number</component-h>
+         <component-typography>Number</component-typography>
          
             <component-tabs>
                <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
@@ -113,12 +113,12 @@ export class PageInputComponent extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="htmlContent">
                   <component-code>
-                     <component-text text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-text>
+                     <component-typography text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-typography>
                   </component-code>
                </component-tab-content>
             </component-tabs>
 
-        <component-h>Email</component-h>
+        <component-typography>Email</component-typography>
          
             <component-tabs>
                <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
@@ -132,7 +132,7 @@ export class PageInputComponent extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="htmlContent">
                   <component-code>
-                     <component-text text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-text>
+                     <component-typography text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-typography>
                   </component-code>
                </component-tab-content>
             </component-tabs>

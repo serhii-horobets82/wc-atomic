@@ -10,7 +10,7 @@ export class TextareaInputData extends AbstractInputData {
    rows?: number;
 }
 
-@customElement('component-textarea')
+@customElement('component-typographyarea')
 export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyValueData> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -18,7 +18,7 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
 
    static IDENTIFIER: string = 'TextareaComponent';
 
-   static EVENT_KEY_UP_CHANGE: string = 'component-textarea-keyup';
+   static EVENT_KEY_UP_CHANGE: string = 'component-typographyarea-keyup';
 
    @property()
    name: string = '';

@@ -135,7 +135,6 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       inputDataChangedEvent.type = this.type;
       inputDataChangedEvent.element = <HTMLInputElement>event.target;
       inputDataChangedEvent.outputData = this.getOutputData();
-      //TODO: VALIDATION einbauen, wenn string länger null dann invalid, oder nachfragen
       if (this.textfieldElemet != null && this.textfieldElemet.validationMessage != this.validationMessage) {
          this.validationMessage = this.textfieldElemet.validationMessage;
       }

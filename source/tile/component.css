@@ -1,11 +1,10 @@
 @import '../css/shadow.css';
 
-.tile {
+.tile,::slotted(.tile) {
    box-sizing: border-box;
    background-color: var(--app-color-surface);
    color: var(--app-color-on-surface);
-   margin-bottom: var(--medium-space);
-   display: flex;
    justify-content: center;
    align-items: center;
+   overflow: auto;
 }

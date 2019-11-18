@@ -27,7 +27,12 @@ export abstract class PageAbstract extends BasisTemplate {
                href="#getStarted"
             ></component-navigation-link>
             <component-navigation-section slot="links">
-               <component-text slot="section" text="Komponenten"></component-text>
+               <component-typography slot="section" text="Komponenten"></component-typography>
+               <component-navigation-link
+                  iconClazz=""
+                  text="${this.i18nService.getValue('pagetypography')}"
+                  href="#pagetypography"
+               ></component-navigation-link>
                <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageinput')}"
@@ -37,11 +42,6 @@ export abstract class PageAbstract extends BasisTemplate {
                   iconClazz=""
                   text="${this.i18nService.getValue('pageform')}"
                   href="#pageform"
-               ></component-navigation-link>
-               <component-navigation-link
-                  iconClazz=""
-                  text="${this.i18nService.getValue('pagetypography')}"
-                  href="#pagetypography"
                ></component-navigation-link>
             </component-navigation-section>
          </component-navigation>

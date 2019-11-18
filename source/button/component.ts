@@ -68,7 +68,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
       return html`
          <button class="${this.clazz} ${this.selected ? 'selected' : ''}" @click="${this.clicked}">
             <component-icon .inputData="${this.icon}"></component-icon>
-            <component-text clazz="ellipsis centerText" text="${this.text}"></component-text>
+            <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
          </button>
       `;
    }

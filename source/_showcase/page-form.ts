@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
 import {InputComponent} from '../input/component';
-import {HTypes} from '../h/component';
+import {HTypes} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from "../combobox/component";
 

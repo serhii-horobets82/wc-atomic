@@ -1,6 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
-import { TextComponent } from '../../text/component';
 import { ComponentLoader } from '../../abstract/component-loader';
 
 const componentCSS = require('./component.css');
@@ -34,7 +33,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
                               class="accordionHeader" 
                               @click="${() => this.toogle()}"
                            >
-                              <component-text text="${this.header}"></component-text>
+                              <component-typography text="${this.header}"></component-typography>
                               <component-icon style="float:right;"
                                  iconClazz="${this.stateClazz == 'closed' ? 'fas fa-angle-right' : 'fas fa-angle-up'}"
                               ></component-icon>
@@ -67,7 +66,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
       return <AccordionItemInputData>{
          componentIdentifier: AccordionItemComponent.IDENTIFIER,
          header: 'Mein Accordion',
-         componentData: new TextComponent().getDefaultInputData(),
+         componentData: new HComponent().getDefaultInputData(),
          stateClazz: 'closed'
       };
    }

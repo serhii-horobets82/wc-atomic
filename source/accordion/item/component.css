@@ -7,7 +7,7 @@
     line-height: var(--line-height-big);
     cursor: pointer;
 }
-component-text {
+component-typography {
     padding-left: var(--medium-space);
 }
 component-icon {

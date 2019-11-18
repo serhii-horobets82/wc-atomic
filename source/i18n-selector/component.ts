@@ -27,7 +27,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    render() {
       return html`
          <component-flex-container gridClazz="grid_100 alignItemsCenter">
-            <component-text>${this.getI18NValue('language')}</component-text>&nbsp;
+            <component-typography>${this.getI18NValue('language')}</component-typography>&nbsp;
             <component-combobox
                .inputData="${this.comboboxInputData}"
                @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"
