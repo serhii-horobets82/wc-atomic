@@ -14,10 +14,10 @@ import {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/com
 import {FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 import {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
-import {TypographyInputData,TypographyComponent} from './typography/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
+import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
 import {ImgInputData,ImgComponent} from './img/component';
 import {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 import {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
@@ -45,6 +45,7 @@ import {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
+import {TypographyInputData,TypographyComponent} from './typography/component';
 export {ComponentLoader} from './abstract/component-loader';
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
@@ -61,10 +62,10 @@ export {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/com
 export {FlexContainerInputData,FlexComponent} from './flex-container/component';
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 export {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
-export {TypographyInputData,TypographyComponent} from './typography/component';
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
+export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
 export {ImgInputData,ImgComponent} from './img/component';
 export {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
@@ -92,7 +93,6 @@ export {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-import './scss/index.scss';
-import './_showcase/showcase-app';
+export {TypographyInputData,TypographyComponent} from './typography/component';
 import './scss/index.scss';
 import './_showcase/showcase-app';

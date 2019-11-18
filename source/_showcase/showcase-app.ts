@@ -8,6 +8,7 @@ import messageEN from './message-en.json';
 import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
+import './page-icon.ts';
 import './page-form.ts';
 import './page-typography.ts';
 import './showcase-app.ts';
@@ -26,6 +27,8 @@ class ShowcaseApp extends AbstractApp {
       let path = RouterService.getInstance().getPath();
       console.log('current path: '.concat(path));
       switch (path) {
+          case '#pageicon':
+              return html`<page-icon></page-icon>`;
           case '#pageinput':
               return html`<page-inputfield></page-inputfield>`;
           case '#pagetypography':

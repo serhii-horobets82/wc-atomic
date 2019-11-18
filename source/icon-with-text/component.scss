@@ -1,0 +1,32 @@
+@import '../scss/iconfont';
+@import '../scss/fortawesome-load';
+@import '../scss/fortawesome';
+
+:host{
+  line-height: var(--line-height);
+  height: var(--line-height);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.active {
+  color: var(--app-color-primary-contrast);
+}
+
+.passiv {
+  color: var(--app-color-primary-discreet);
+}
+
+.error {
+  color: var(--app-color-error);
+}
+
+.warning {
+  color: var(--app-error-warning);
+}
+
+.success {
+  color: var(--app-color-success);
+}
