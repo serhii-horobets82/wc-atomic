@@ -1,5 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
+import {TypographyTypes, TypographyInputData} from "../typography/component";
 
 @customElement('page-get-started')
 export class PageGetStarted extends PageAbstract {
@@ -7,9 +8,7 @@ export class PageGetStarted extends PageAbstract {
       return html`
          <component-flex-container gridClazz="grid_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-typography1>
-               <component-typography slot="header">Base Project</component-typography>
-            </component-typography1>
+            <component-typography .type="${TypographyTypes.H2}">Base Project</component-typography>
             <component-typography>
                clone base template from github to start your client app
                <component-link href="https://github.com/domoskanonos/wc-atomic-template"

@@ -8,7 +8,9 @@ import messageEN from './message-en.json';
 import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
+import './page-menubar.ts';
 import './page-icon.ts';
+import './page-img.ts';
 import './page-form.ts';
 import './page-typography.ts';
 import './showcase-app.ts';
@@ -29,10 +31,14 @@ class ShowcaseApp extends AbstractApp {
       switch (path) {
           case '#pageicon':
               return html`<page-icon></page-icon>`;
+          case '#pageimg':
+              return html`<page-img></page-img>`;
           case '#pageinput':
               return html`<page-inputfield></page-inputfield>`;
           case '#pagetypography':
               return html`<page-typography></page-typography>`;
+          case '#pagemenubar':
+              return html`<page-menubar></page-menubar>`;
           case '#pageform':
               return html`<page-form></page-form>`;
           case '#getStarted':

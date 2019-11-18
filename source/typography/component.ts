@@ -3,7 +3,7 @@ import {AbstractComponent, AbstractInputData} from '../abstract-component/compon
 
 const componentCSS = require('./component.css');
 
-export enum HTypes {
+export enum TypographyTypes {
    H1 = 'H1',
    H2 = 'H2',
    H3 = 'H3',
@@ -20,7 +20,7 @@ export enum HTypes {
 }
 
 export class TypographyInputData extends AbstractInputData {
-   hType: HTypes = HTypes.H2;
+   type: TypographyTypes = TypographyTypes.H2;
    text?: string;
    clazz?: string;
    cssStyle?: string;
@@ -36,7 +36,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    static IDENTIFIER: string = 'HComponent';
 
    @property()
-   hType: HTypes = HTypes.BODY1;
+   type: TypographyTypes = TypographyTypes.BODY1;
 
    @property()
    text: string = '';
@@ -51,14 +51,14 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    cssStyle: string = '';
    render() {
       return html`
-            <span class="${this.hType.toString()}">${this.text}<slot></slot></span>
+            <span class="${this.type.toString()}">${this.text}<slot></slot></span>
       `;
    }
 
    getDefaultInputData(): TypographyInputData {
       return <TypographyInputData>{
          componentIdentifier: TypographyComponent.IDENTIFIER,
-         hType: HTypes.BODY1,
+         type: TypographyTypes.BODY1,
          text: 'Lorem ipsum dolor sit amet',
       };
    }

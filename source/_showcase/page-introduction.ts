@@ -1,5 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
+import { TypographyTypes } from '../typography/component';
 
 @customElement('page-introduction')
 export class PageIntroduction extends PageAbstract {
@@ -7,10 +8,8 @@ export class PageIntroduction extends PageAbstract {
       return html`
          <component-flex-container gridClazz="grid_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-typography>
-               <component-typography slot="header">WC-Atomic</component-typography>
-               <component-typography slot="subheader">Build beautiful Webclients</component-typography>
-            </component-typography>
+            <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>
+            <component-typography .type="${TypographyTypes.H3}">Build beautiful Webclients</component-typography>
             <component-typography>
                With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
                and open source project on github and npm
@@ -25,7 +24,6 @@ export class PageIntroduction extends PageAbstract {
             <component-code>npm install -g @domoskanonos/wc-atomic</component-code>
             <component-typography> or directly in your <b>package.json</b>: </component-typography>
             <component-code>"dependencies": { ..., "@domoskanonos/frontend-basis": "*" }</component-code>
-
             <component-typography>
                found sources on github:
             </component-typography>

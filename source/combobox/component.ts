@@ -4,6 +4,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 import { KeyValueData } from '../form/component';
+import {TypographyTypes} from "../typography/component";
 
 const componentCSS = require('./component.css');
 
@@ -15,6 +16,7 @@ export class ComboboxOption {
 
 export class ComboboxInputData extends AbstractInputData {
    name: string = '';
+   label: string = '';
    size: number = 1;
    cssStyle: string = '';
    selectedValue: string = '';
@@ -35,6 +37,9 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    name: string = '';
 
    @property()
+   label: string = '';
+
+   @property()
    size: number = 1;
 
    @property()
@@ -48,6 +53,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
    protected inputDataChanged() {
       this.name = this.basicService.getValue(this.inputData.name, '');
+      this.label = this.basicService.getValue(this.inputData.label, '');
       this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
       this.size = this.basicService.getValue(this.inputData.size, 1);
       this.selectedValue = this.basicService.getValue(this.inputData.selectedValue, '');
@@ -56,7 +62,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
    render() {
       return html`
-         <select
+         <component-typography .type="${TypographyTypes.CAPTION}">${this.label}</component-typography><select
             name="${this.name}"
             style="${this.cssStyle}"
             size="${this.size}"

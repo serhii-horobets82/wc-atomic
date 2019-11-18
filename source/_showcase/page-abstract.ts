@@ -7,6 +7,7 @@ export abstract class PageAbstract extends BasisTemplate {
          <component-menubar>
             <component-spacer slot="leftComponents" clazz="mediumPaddingLeft"></component-spacer>
             <component-icon slot="leftComponents" iconClazz="fas fa-bars" clickable="true"></component-icon>
+            <component-i18n-selector slot="rightComponents"></component-i18n-selector>
          </component-menubar>
       `;
    }
@@ -40,8 +41,18 @@ export abstract class PageAbstract extends BasisTemplate {
                ></component-navigation-link>
                <component-navigation-link
                   iconClazz=""
+                  text="${this.i18nService.getValue('pagemenubar')}"
+                  href="#pagemenubar"
+               ></component-navigation-link>
+                <component-navigation-link
+                  iconClazz=""
                   text="${this.i18nService.getValue('pageicon')}"
                   href="#pageicon"
+               ></component-navigation-link>
+                <component-navigation-link
+                  iconClazz=""
+                  text="${this.i18nService.getValue('pageimg')}"
+                  href="#pageimg"
                ></component-navigation-link>
                <component-navigation-link
                   iconClazz=""

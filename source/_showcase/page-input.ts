@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
 import {InputComponent} from '../input/component';
-import {HTypes} from '../typography/component';
+import {TypographyTypes} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from "../combobox/component";
 
@@ -11,12 +11,12 @@ export class PageInputComponent extends PageAbstract {
         return html`
          <component-flex-container gridClazz="grid_50">
          
-         <component-typography>Input Components</component-typography>
+         <component-typography .type="${TypographyTypes.H2}">Input Components</component-typography>
          <component-typography>This component is the main component for formular, like contact formular, login formular</component-typography>
 
 
 
-        <component-typography .hType="${HTypes.H2}">Properties of component</component-typography>
+        <component-typography .type="${TypographyTypes.H2}">Properties of component</component-typography>
 
         <component-simple-table .headers="${[
             this.i18nService.getValue('property_name'),
@@ -42,7 +42,7 @@ export class PageInputComponent extends PageAbstract {
         </component-simple-table>
 
 
-         <component-typography>Simple Textfield</component-typography>
+         <component-typography .type="${TypographyTypes.H2}">Simple Textfield</component-typography>
          
             <component-tabs>
                <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(

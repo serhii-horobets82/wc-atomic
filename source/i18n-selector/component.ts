@@ -2,6 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
 import { KeyValueData } from '../form/component';
+import {Key} from "readline";
 
 const componentCSS = require('./component.css');
 
@@ -20,19 +21,19 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    static EVENT_CHANGE_LANG: string = 'component-i18n-selector-change-lang';
 
    @property()
-   comboboxInputData: ComboboxInputData = <ComboboxInputData>{};
+   languages: ComboboxOption[] = [<ComboboxOption>{
+      value: 'de-DE',
+      text: 'Deutsch',
+      selected: true
+   }, <ComboboxOption>{value: 'en-EN', text: 'English'}];
 
    private outputData: KeyValueData = <KeyValueData>{};
 
    render() {
       return html`
-         <component-flex-container gridClazz="grid_100 alignItemsCenter">
-            <component-typography>${this.getI18NValue('language')}</component-typography>&nbsp;
-            <component-combobox
-               .inputData="${this.comboboxInputData}"
+            <component-combobox .options="${this.languages}" label="${this.getI18NValue('language')}"
                @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"
-            ></component-combobox>
-         </component-flex-container>
+            ></component-combobox> 
       `;
    }
 
@@ -40,20 +41,13 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
       return <I18NInputData>{
          componentIdentifier: I18NSelectorComponent.IDENTIFIER,
          selectedLanguage: this.i18nService.getLanguage(),
+         label: this.getI18NValue('language'),
          languages: []
       };
    }
 
    inputDataChanged() {
-      let compoboxInputData: ComboboxInputData = <ComboboxInputData>{};
-
-      if (this.inputData.languages != undefined) {
-         this.inputData.languages.forEach((keyValueData) => {
-            compoboxInputData.options.push(<ComboboxOption>{ value: keyValueData.key, text: keyValueData.value });
-         });
-      }
-
-      this.comboboxInputData = compoboxInputData;
+      this.languages = this.basicService.getValue(this.inputData.languages, []);
    }
 
    getOutputData(): KeyValueData {

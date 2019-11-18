@@ -1,7 +1,7 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
 import {InputComponent} from '../input/component';
-import {HTypes} from '../typography/component';
+import {TypographyComponent, TypographyTypes} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from '../combobox/component';
 
@@ -10,10 +10,10 @@ export class PageTypographyComponent extends PageAbstract {
     getMainComponent(): TemplateResult {
         return html`
          <component-flex-container gridClazz="grid_50">
-            <component-typography .hType="${HTypes.H2}">Typography</component-typography>
-            <component-typography .hType="${HTypes.BODY1}">Some Content</component-typography>
+            <component-typography .type="${TypographyTypes.H2}">Typography</component-typography>
+            <component-typography .type="${TypographyTypes.BODY1}">Some Content</component-typography>
 
-            <component-typography .hType="${HTypes.H2}">Types of Typography</component-typography>
+            <component-typography .type="${TypographyTypes.H2}">Types of Typography</component-typography>
 
             <component-simple-table
                .headers="${[this.i18nService.getValue('typographyType'), this.i18nService.getValue('typographyTypeDescription')]}"
@@ -35,7 +35,7 @@ export class PageTypographyComponent extends PageAbstract {
             >
             </component-simple-table>
 
-            <component-typography .hType="${HTypes.H2}">Properties of component</component-typography>
+            <component-typography .type="${TypographyTypes.H2}">Properties of component</component-typography>
 
             <component-typography>Header</component-typography>
 
@@ -48,27 +48,27 @@ export class PageTypographyComponent extends PageAbstract {
                <component-tab-content slot="tabContent" id="exampleContent" selected="true">
                   <component-tile cssStyle="height:500px;">
                      <h1>
-                        <component-typography .hType="${HTypes.H1}">Headline 1</component-typography>
-                        <component-typography .hType="${HTypes.H2}">Headline 2</component-typography>
-                        <component-typography .hType="${HTypes.H3}">Headline 3</component-typography>
-                        <component-typography .hType="${HTypes.H4}">Headline 4</component-typography>
-                        <component-typography .hType="${HTypes.H5}">Headline 5</component-typography>
-                        <component-typography .hType="${HTypes.H6}">Headline 6</component-typography>
-                        <component-typography .hType="${HTypes.SUBTITLE1}">Subtitle 1</component-typography>
-                        <component-typography .hType="${HTypes.SUBTITLE2}">Subtitle 2</component-typography>
-                        <component-typography .hType="${HTypes.BODY1}" text=""
+                        <component-typography .type="${TypographyTypes.H1}">Headline 1</component-typography>
+                        <component-typography .type="${TypographyTypes.H2}">Headline 2</component-typography>
+                        <component-typography .type="${TypographyTypes.H3}">Headline 3</component-typography>
+                        <component-typography .type="${TypographyTypes.H4}">Headline 4</component-typography>
+                        <component-typography .type="${TypographyTypes.H5}">Headline 5</component-typography>
+                        <component-typography .type="${TypographyTypes.H6}">Headline 6</component-typography>
+                        <component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
+                        <component-typography .type="${TypographyTypes.SUBTITLE2}">Subtitle 2</component-typography>
+                        <component-typography .type="${TypographyTypes.BODY1}" text=""
                            >Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
                            suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos
                            laborum fugiat deleniti? Eum quasi quidem quibusdam.</component-typography
                         >
-                        <component-typography .hType="${HTypes.BODY2}"
+                        <component-typography .type="${TypographyTypes.BODY2}"
                            >Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt
                            voluptatum officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe
                            inventore, soluta id accusantium voluptas beatae.</component-typography
                         >
-                        <component-typography .hType="${HTypes.BUTTON}">BUTTON TEXT</component-typography>
-                        <component-typography .hType="${HTypes.CAPTION}">Caption text</component-typography>
-                        <component-typography .hType="${HTypes.OVERLINE}">OVERLINE TEXT</component-typography>
+                        <component-typography .type="${TypographyTypes.BUTTON}">BUTTON TEXT</component-typography>
+                        <component-typography .type="${TypographyTypes.CAPTION}">Caption text</component-typography>
+                        <component-typography .type="${TypographyTypes.OVERLINE}">OVERLINE TEXT</component-typography>
                      </h1>
                   </component-tile>
                </component-tab-content>
@@ -79,9 +79,9 @@ export class PageTypographyComponent extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="cssContent">
                   <component-code>
-                     ${InputComponent.styles
+                     ${TypographyComponent.styles
             .toString()
-            .substr(0, InputComponent.styles.toString().indexOf('/*#') - 3)
+            .substr(0, TypographyComponent.styles.toString().indexOf('/*#') - 3)
             .trim()}
                   </component-code>
                </component-tab-content>

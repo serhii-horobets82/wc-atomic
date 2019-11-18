@@ -13,7 +13,7 @@ export class Page${componentName} extends PageAbstract {
 
 
 
-        <component-typography .hType="${HTypes.H2}">Properties of component</component-typography>
+        <component-typography .type="${types.H2}">Properties of component</component-typography>
 
         <component-simple-table .headers="${[
            this.i18nService.getValue('property_name'),
