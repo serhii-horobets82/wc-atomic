@@ -82,6 +82,14 @@ export class TableContent {
 
 @customElement('component-table')
 export class TableComponent extends AbstractComponent<TableInputData, undefined> {
+   get headers(): TableHeaderInputData[] {
+      return this._headers;
+   }
+
+   set headers(value: TableHeaderInputData[]) {
+      this._headers = value;
+      this.calculateDefaultHeaderWidth();
+   }
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -94,7 +102,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    private itemSizeDefaultValue: number = 5;
 
    @property()
-   headers: TableHeaderInputData[] = [];
+   private _headers: TableHeaderInputData[] = [];
 
    @property()
    rows: RowInputData[] = [];
@@ -158,6 +166,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       ]
    };
 
+   protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
+      this.loadData();
+   }
+
    render() {
       return html`
          <div class="header">
@@ -211,14 +223,14 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
          <div class="table">
             ${guard(
-               [this.headers],
+               [this._headers],
                () =>
                   html`
                      <div class="head">
                         ${repeat(
-                           this.headers,
+                           this._headers,
                            (header) => html`
-                              <span class="headColumn" ?style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
+                              <span class="headColumn" style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
                                  <span
                                     >${this.getI18NValue(
                                        this.getPageName()
@@ -242,9 +254,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         )}
                         ${this.filtering
                            ? repeat(
-                                this.headers,
+                                this._headers,
                                 (header) => html`
-                                   <span class="filterColumn" style="width: ${header.widthPercent}%">
+                                   <span class="filterColumn" style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
                                       ${this.createFilterComponent(header)}
                                    </span>
                                 `
@@ -269,7 +281,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                             ${repeat(
                                                row.colums,
                                                (column, columnIndex) => html`
-                                                  <span class="column" style="width: ${this.headers[columnIndex].widthPercent}%;">
+                                                  <span class="column" style="width: ${this._headers[columnIndex].widthPercent}%;">
                                                      ${this.createColumnComponent(row, column, rowIndex, columnIndex)}
                                                   </span>
                                                `
@@ -317,25 +329,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       this.paging = this.basicService.getValue(this.inputData.paging, true);
       this.filtering = this.basicService.getValue(this.inputData.filtering, true);
       this.sorting = this.basicService.getValue(this.inputData.sorting, true);
-      this.headers = this.basicService.getValue(this.inputData.headers, []);
-
-      let headerWithUsed: number = 0;
-      let headerCountUndefined: number = 0;
-      this.headers.forEach((header: TableHeaderInputData) => {
-         if (header.widthPercent != undefined) {
-            headerWithUsed += header.widthPercent;
-         } else {
-            headerCountUndefined++;
-         }
-      });
-
-      let defaultHeaderWidthPercent: number = (100 - headerWithUsed) / headerCountUndefined;
-      this.headers.forEach((header) => {
-         if (header.widthPercent == undefined) {
-            header.widthPercent = defaultHeaderWidthPercent;
-         }
-         this.setSortingIconClazz(header, this.sort);
-      });
+      this._headers = this.basicService.getValue(this.inputData.headers, []);
 
       this.loadData();
    }
@@ -347,7 +341,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    private loadData() {
       //where clause - START
       let whereClause = '';
-      this.headers.forEach((header) => {
+      this._headers.forEach((header) => {
          if (this.basicService.isNotBlank(header.searchValue)) {
             whereClause = whereClause.concat(header.columnKey, '=', header.searchValue);
          }
@@ -398,7 +392,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
                let columnsInputDatas: ColumnInputData[] = [];
 
-               for (const tableHeaderInput of this.headers) {
+               for (const tableHeaderInput of this._headers) {
                   let columnKey = tableHeaderInput.columnKey;
                   let columnValue: any = {};
 
@@ -504,7 +498,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
       console.log('new sorting: ' + this.sort);
       this.setSortingIconClazz(header, this.sort);
-      this.headers = this.headers.map((item) => item);
+      this._headers = this._headers.map((item) => item);
       this.loadData();
    }
 
@@ -651,5 +645,25 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    private currentPageItemEndIndex() {
       let endIndex = Number(this.getItemSize() * (this.page - 1)) + this.numberOfElements;
       return endIndex;
+   }
+
+   private calculateDefaultHeaderWidth() {
+      let headerWithUsed: number = 0;
+      let headerCountUndefined: number = 0;
+      this._headers.forEach((header: TableHeaderInputData) => {
+         if (header.widthPercent != undefined) {
+            headerWithUsed += header.widthPercent;
+         } else {
+            headerCountUndefined++;
+         }
+      });
+
+      let defaultHeaderWidthPercent: number = (100 - headerWithUsed) / headerCountUndefined;
+      this._headers.forEach((header) => {
+         if (header.widthPercent == undefined) {
+            header.widthPercent = defaultHeaderWidthPercent;
+         }
+         this.setSortingIconClazz(header, this.sort);
+      });
    }
 }
