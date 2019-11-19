@@ -15,8 +15,8 @@
   }
 
   .row.odd {
-    color: var(--app-color-on-primary-50);
-    background-color: var(--app-color-primary-50);
+    color: var(--app-color-on-surface);
+    background-color: var(--app-color-surface);
   }
 
   .headColumn, .filterColumn, .column {

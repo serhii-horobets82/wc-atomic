@@ -42,7 +42,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
    render() {
       return html`
          <div class="${this.clazz}">
-            <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
+            <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween"  columnFlexBasisValue="auto">
                <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
                   ${guard(
                      this.leftInputData,

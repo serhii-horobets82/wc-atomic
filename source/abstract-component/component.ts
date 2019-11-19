@@ -174,10 +174,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
 export class AppData extends AbstractInputData {
    name?: string;
    description?: string;
-   isSecured?: boolean;
-   loginPage?: string;
-   httpClient?: HttpClientService;
-   router?: RouterService;
 }
 
 export abstract class AbstractApp extends AbstractComponent<AppData, undefined> {

@@ -16,10 +16,10 @@ const componentCSS = require('./component.css');
 
 export class TableHeaderInputData {
    columnKey: string = '';
-   valueProperty: KeyValueData = KeyValueData.prototype;
+   valueProperty?: KeyValueData = KeyValueData.prototype;
    widthPercent?: number;
-   sortingIconClazz: string = '';
-   searchValue: string = '';
+   sortingIconClazz?: string = '';
+   searchValue?: string = '';
    componentInputData: AbstractInputData = AbstractInputData.prototype;
 }
 
@@ -133,6 +133,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    sizeComboboxInputData = <ComboboxInputData>{
       componentIdentifier: ComboboxComponent.IDENTIFIER,
       selectedValue: String(this.itemSizeDefaultValue),
+       label: this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page')),
       options: [
          <ComboboxOption>{
             text: '5',
@@ -169,9 +170,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                           ${this.getI18NValue(this.i18nTablePrefix.concat('items_of'))}: ${this.totalElements}</span
                        >
 
-                       <span slot="mainComponents"
-                          >${this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page'))}&nbsp;</span
-                       >
                        <component-combobox
                           slot="mainComponents"
                           .inputData="${this.sizeComboboxInputData}"
@@ -220,7 +218,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         ${repeat(
                            this.headers,
                            (header) => html`
-                              <span class="headColumn" style="width: ${header.widthPercent}%">
+                              <span class="headColumn" ?style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
                                  <span
                                     >${this.getI18NValue(
                                        this.getPageName()
@@ -283,9 +281,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                           )}
                        `
                  )
-               : html`
+               : html`<div class="row">
                     ${this.getI18NValue(this.i18nTablePrefix.concat('no_data'))}
+                    </div>
                  `}
+            
          </div>
 
          <div class="footer"></div>
