@@ -1,2 +1,6 @@
 .tabHeader, ::slotted(.tabHeader) {
 }
+
+.tabContent, ::slotted(.tabContent){
+    display: block;
+}

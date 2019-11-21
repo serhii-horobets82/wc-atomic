@@ -7,11 +7,29 @@ import { ComponentLoader } from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 
+export enum FlexPaddingAlignment {
+   HORIZONTAL = 'PADDING_ALIGNMENT_HORIZONTAL',
+   VERTICAL = 'PADDING_ALIGNMENT_VERTICAL',
+   BOTH = 'PADDING_ALIGNMENT_BOTH',
+}
+
+export enum FlexPadding {
+   ZERO = 'PADDING_ZERO',
+   LITTLE = 'PADDING_LITTLE',
+   SMALL = 'PADDING_SMALL',
+   MEDIUM = 'PADDING_MEDIUM',
+   BIG = 'PADDING_BIG',
+   MAX = 'PADDING_MAX',
+}
+
 export class FlexContainerInputData extends AbstractInputData {
-   gridClazz?: string;
+   containerClazz?: string;
    itemClazz?: string;
-   columnFlexBasisValue?: string = '100%';
-   columnFlexBasisValues?: string[];
+   itemFlexBasisValue?: string = 'auto';
+   itemFlexBasisValues?: string[];
+   paddingAlignment: FlexPaddingAlignment = FlexPaddingAlignment.BOTH;
+   padding: FlexPadding = FlexPadding.ZERO;
+   headlessPadding: boolean = false;
    componentsInputData?: AbstractInputData[];
 }
 
@@ -61,23 +79,32 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    }
 
    @property()
-   gridClazz: string = 'grid_100';
+   paddingAlignment: FlexPaddingAlignment = FlexPaddingAlignment.BOTH;
+
+   @property()
+   padding: FlexPadding = FlexPadding.ZERO;
+
+   @property()
+   headlessPadding: boolean = false;
+
+   @property()
+   containerClazz: string = 'container_100';
 
    @property()
    itemClazz: string = '';
 
    @property()
-   columnFlexBasisValues: string[] = [];
+   itemFlexBasisValues: string[] = [];
 
    @property()
-   columnFlexBasisValue: string = '100%';
+   itemFlexBasisValue: string = 'auto';
 
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;
 
    render() {
       return html`
-         <div class="grid ${this.gridClazz}">
+         <div class="flex_container ${this.padding} ${this.paddingAlignment} ${this.containerClazz} ${this.headlessPadding ? 'HEADLESS_PADDING' : ''}">
             ${guard(
                this.componentsInputData,
                () =>
@@ -85,7 +112,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                      ${repeat(
                         this.componentsInputData,
                         (componentInputData, index) => html`
-                           <div class="grid_content ${this.itemClazz}" style="${this.getFlexBasis(index)};">
+                           <div class="flex_item ${this.padding} ${this.paddingAlignment} ${this.itemClazz}" style="${this.getFlexItemStyle(index)};">
                               ${this.createComponentFromData(componentInputData)}
                            </div>
                         `
@@ -97,14 +124,14 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       `;
    }
 
-   getFlexBasis(index: number): string {
+   getFlexItemStyle(index: number): string {
       let flexBasisValue =
-         this.columnFlexBasisValues !== undefined
-            ? this.columnFlexBasisValues[index] !== undefined
-               ? this.columnFlexBasisValues[index]
-               : this.columnFlexBasisValue
+          this.itemFlexBasisValues !== undefined
+              ? this.itemFlexBasisValues[index] !== undefined
+              ? this.itemFlexBasisValues[index]
+              : this.itemFlexBasisValue
             : undefined;
-      return 'flex-basis: ' + flexBasisValue + ';max-width: ' + flexBasisValue;
+      return 'flex-basis: '.concat(this.basicService.getValue(flexBasisValue, '')).concat(';max-width: ').concat(this.basicService.getValue(flexBasisValue, ''));
    }
 
    updated(_changedProperties: Map<PropertyKey, unknown>): void {
@@ -123,9 +150,14 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          let element: Element = elements[index];
 
          let classList = element.classList;
-         if (!classList.contains('grid_content')) {
-            classList.add('grid_content');
-         }
+         //if (!classList.contains('flex_item')) {
+         classList.add('flex_item');
+         //}
+
+         classList.add(this.paddingAlignment);
+         classList.add(this.padding);
+
+
          if (this.itemClazz.length > 0 && !classList.contains(this.itemClazz)) {
             let itemClazzesSplitted: string[] = this.itemClazz.split(' ');
             itemClazzesSplitted.forEach((itemClazz) => {
@@ -135,7 +167,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
          let currentStyle: string | null = element.getAttribute('style');
          if (currentStyle === null) {
-            element.setAttribute('style', this.getFlexBasis(index) + ';');
+            element.setAttribute('style', this.getFlexItemStyle(index) + ';');
          } else {
             let currentStyles = currentStyle.split(';');
             currentStyle = '';
@@ -144,7 +176,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                   currentStyle += value + ';';
                }
             });
-            currentStyle += this.getFlexBasis(index) + ';';
+            currentStyle += this.getFlexItemStyle(index) + ';';
             element.setAttribute('style', currentStyle);
          }
       }
@@ -153,14 +185,17 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    inputDataChanged() {
       this.componentsInputData = this.inputData.componentsInputData !== undefined ? this.inputData.componentsInputData : [];
 
-      this.gridClazz = this.inputData.gridClazz !== undefined ? this.inputData.gridClazz : 'grid_100';
+      this.containerClazz = this.inputData.containerClazz !== undefined ? this.inputData.containerClazz : 'container_100';
 
       this.itemClazz = this.inputData.itemClazz !== undefined ? this.inputData.itemClazz : '';
 
-      this.columnFlexBasisValue =
-         this.inputData.columnFlexBasisValue !== undefined ? this.inputData.columnFlexBasisValue : 'auto';
+      this.itemFlexBasisValue =
+          this.inputData.itemFlexBasisValue !== undefined ? this.inputData.itemFlexBasisValue : 'auto';
 
-      this.columnFlexBasisValues = this.inputData.columnFlexBasisValues !== undefined ? this.inputData.columnFlexBasisValues : [];
+      this.itemFlexBasisValues = this.inputData.itemFlexBasisValues !== undefined ? this.inputData.itemFlexBasisValues : [];
+
+      this.headlessPadding = this.basicService.getValue(this.inputData.headlessPadding, false);
+
    }
 
    getOutputData(): undefined {
@@ -170,9 +205,6 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    getDefaultInputData(): FlexContainerInputData {
       return <FlexContainerInputData>{
          componentIdentifier: FlexComponent.IDENTIFIER,
-         gridClazz: 'grid_100',
-         columnFlexBasisValues: ['50%', '50%'],
-         componentsInputData: [new ImgComponent().getDefaultInputData(), new ImgComponent().getDefaultInputData()]
       };
    }
 }

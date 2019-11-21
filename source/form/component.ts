@@ -120,7 +120,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          ],
          flexContainerInputData: <FlexContainerInputData>{
             componentIdentifier: FlexComponent.IDENTIFIER,
-            gridClazz: 'grid_100',
+            gridClazz: 'container_100',
             columnFlexBasisValue: '30%',
             componentsInputData: [
                <FormElementInputData>{

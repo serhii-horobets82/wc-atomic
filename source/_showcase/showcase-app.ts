@@ -9,7 +9,8 @@ import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
 import './page-menubar.ts';
-import './page-primary-title';
+import './page-primary-title.ts';
+import './page-layout.ts';
 import './page-icon.ts';
 import './page-card.ts';
 import './page-table.ts';
@@ -64,6 +65,8 @@ class ShowcaseApp extends AbstractApp {
               return html`<page-typography></page-typography>`;
           case '#pagemenubar':
               return html`<page-menubar></page-menubar>`;
+          case '#pagelayout':
+              return html`<page-layout></page-layout>`;
           case '#pageform':
               return html`<page-form></page-form>`;
           case '#getStarted':

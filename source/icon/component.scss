@@ -2,6 +2,9 @@
 @import '../scss/fortawesome-load';
 @import '../scss/fortawesome';
 
+@import './gmi/material-icons.css';
+
+
 :host{
   line-height: var(--line-height);
   height: var(--line-height);

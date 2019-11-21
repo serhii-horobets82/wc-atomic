@@ -9,7 +9,7 @@ import { ToolbarJustifyContent } from '../toolbar/component';
 export class PagePrimaryTitleComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container gridClazz="grid_25">
+         <component-flex-container containerClazz="container_25">
             <component-primary-title
                thumbnail="https://picsum.photos/300/300"
                .primaryTitle="${<TypographyInputData>{

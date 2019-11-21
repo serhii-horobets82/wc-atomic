@@ -4,12 +4,14 @@ import {InputComponent} from '../input/component';
 import {TypographyComponent, TypographyTypes} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from '../combobox/component';
+import {FlexPadding} from "../flex-container/component";
 
 @customElement('page-typography')
 export class PageTypographyComponent extends PageAbstract {
     getMainComponent(): TemplateResult {
         return html`
-         <component-flex-container gridClazz="grid_50">
+         <component-flex-container containerClazz="container_100" .padding="${FlexPadding.MAX}" container_25="100%">
+         
             <component-typography .type="${TypographyTypes.H2}">Typography</component-typography>
             <component-typography .type="${TypographyTypes.BODY1}">Some Content</component-typography>
 

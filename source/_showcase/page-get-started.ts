@@ -6,7 +6,7 @@ import {TypographyTypes, TypographyInputData} from "../typography/component";
 export class PageGetStarted extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container gridClazz="grid_50">
+         <component-flex-container containerClazz="container_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
             <component-typography .type="${TypographyTypes.H2}">Base Project</component-typography>
             <component-typography>

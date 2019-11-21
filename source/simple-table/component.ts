@@ -6,7 +6,7 @@ import {repeat} from 'lit-html/directives/repeat';
 const componentCSS = require('./component.css');
 
 export class SimpleTableRowData extends AbstractInputData {
-    columns: string[] = [];
+    columns: any[] = [];
 }
 
 export class SimpleTableData extends AbstractInputData {
@@ -83,4 +83,5 @@ export class SimpleTableComponent extends AbstractComponent<SimpleTableData, und
 
     protected inputDataChanged() {
     }
+
 }

@@ -18,9 +18,12 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    @property()
    clazz: string = '';
 
+   @property()
+   cssStyle: string = '';
+
    render() {
       return html`
-         <div class="${this.clazz}"><slot></slot></div>
+         <div class="${this.clazz}" style="${this.cssStyle}"><slot></slot></div>
       `;
    }
 

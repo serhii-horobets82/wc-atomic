@@ -31,6 +31,11 @@ export abstract class PageAbstract extends BasisTemplate {
                <component-typography slot="section" text="Komponenten"></component-typography>
                <component-navigation-link
                   iconClazz=""
+                  text="${this.i18nService.getValue('pagelayout')}"
+                  href="#pagelayout"
+               ></component-navigation-link>
+               <component-navigation-link
+                  iconClazz=""
                   text="${this.i18nService.getValue('pagetypography')}"
                   href="#pagetypography"
                ></component-navigation-link>

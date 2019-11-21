@@ -19,7 +19,6 @@ export class TileComponent extends AbstractComponent<TileInputData, undefined> {
    cssStyle: string = '';
 
    inputDataChanged() {}
-
    render() {
       return html`
          <div class="tile basicShadow" style="${this.cssStyle}">

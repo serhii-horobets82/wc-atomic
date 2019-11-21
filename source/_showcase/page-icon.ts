@@ -8,7 +8,7 @@ export class PageIconComponent extends PageAbstract {
         return html`
         
         
-         <component-flex-container gridClazz="grid_50">
+         <component-flex-container containerClazz="container_50">
          
             <component-icon iconClazz="fas fa-question"></component-icon>
             

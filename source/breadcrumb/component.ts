@@ -23,7 +23,7 @@ export class BreadcrumbComponent extends AbstractComponent<BreadcrumbInputData, 
 
    render() {
       return html`
-         <component-flex-container gridClazz="grid_100 alignItemsCenter">
+         <component-flex-container containerClazz="container_100 alignItemsCenter">
             ${guard(
                this.links,
                () =>

@@ -7,6 +7,8 @@
            content="width=device-width, initial-scale=1.0, user-scalable=no"
    />
    <link href="https://fonts.googleapis.com/css?family=Roboto+Regular&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+         rel="stylesheet">
    <title>Komponentenframework</title>
    <style>
       body {
@@ -15,9 +17,12 @@
       }
       :root {
 
-         --min-space: 5pt;
-         --medium-space: 15pt;
-         --max-space: 30pt;
+         --little-space: 9pt;
+         --small-space: 18pt;
+         --medium-space: 27pt;
+         --big-space: 36pt;
+         --max-space: 45pt;
+
 
          --font-size: 16px;
          --font-size-small: 16px;
@@ -45,16 +50,16 @@
          --app-color-error: #B00020;
          --app-error-warning: #FFCC00;
          --app-color-info: #40A6CE;
-         --app-color-primary: #FFDE03;
-         --app-color-secondary: #0336FF;
-         --app-color-surface: #FAFAFA;
+         --app-color-primary: #202124;
+         --app-color-secondary: #6200EE;
+         --app-color-surface: #F2F2F2;
          --app-color-background: #FFFFFF;
 
          --app-color-on-success: #000000;
          --app-color-on-error: #FFFFFF;
          --app-error-on-warning: #000000;
          --app-color-on-info: #FFFFFF;
-         --app-color-on-primary: #000000;
+         --app-color-on-primary: #FFFFFF;
          --app-color-on-secondary: #FFFFFF;
          --app-color-on-surface: #000000;
          --app-color-on-background: #000000;
@@ -78,8 +83,8 @@
          }
 
          body {
-            padding-left: var(--min-space);
-            padding-right: var(--min-space);
+            padding-left: var(--little-space);
+            padding-right: var(--little-space);
          }
       }
    </style>

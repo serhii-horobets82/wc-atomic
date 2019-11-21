@@ -11,7 +11,7 @@ import { LinkComponent, LinkInputData } from '../link/component';
 export class PageCardComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container gridClazz="grid_25">
+         <component-flex-container containerClazz="container_25">
             <component-card>
                <component-primary-title
                   thumbnail="https://picsum.photos/300/300"
@@ -29,7 +29,7 @@ export class PageCardComponent extends PageAbstract {
                   >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                   dolore magna aliquyam erat, sed diam voluptua.</component-typography
                >
-               <component-flex-container columnFlexBasisValue="50%">
+               <component-flex-container container_25="50%">
                   <component-toolbar>
                      <component-link href="https://material.io/components/cards/#anatomy">Description</component-link>
                      <component-link

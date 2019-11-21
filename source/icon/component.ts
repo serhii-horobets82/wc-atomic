@@ -16,9 +16,12 @@ const componentCSS = require('./component.scss');
  * 3 = passiv
  */
 export class IconInputData extends AbstractInputData {
+   componentIdentifier = IconComponent.IDENTIFIER;
    iconClazz?: string;
+   icon?: string;
    cssStyle?: string;
    clickable?: boolean;
+   clickData?: any;
    status?: number;
 }
 
@@ -36,6 +39,9 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    iconClazz: string = '';
 
    @property()
+   icon: string = '';
+
+   @property()
    cssStyle: string = '';
 
    @property()
@@ -43,6 +49,9 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
    @property()
    clickable: boolean = false;
+
+   @property()
+   clickData: any;
 
    @property()
    status: number = 1;
@@ -57,7 +66,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                ? 'passiv'
                : ''}"
             @click="${this.clicked}"
-         ></span>
+         ><i class="material-icons">${this.icon}</i></span>
       `;
    }
 
@@ -65,6 +74,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
       if (this.clickable) {
          this.dispatchSimpleCustomEvent(IconComponent.EVENT_CLICK, {
             status: this.status,
+            clickData: this.clickData,
             clickable: this.clickable,
             iconClazz: this.iconClazz
          });
@@ -82,6 +92,8 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
    inputDataChanged() {
       this.iconClazz = this.basicService.getValue(this.inputData.iconClazz, '');
+      this.clickData = this.basicService.getValue(this.inputData.clickData, undefined);
+      this.icon = this.basicService.getValue(this.inputData.icon, '');
       this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
       this.status = this.basicService.getValue(this.inputData.status, 1);
       this.clickable = this.basicService.getValue(this.inputData.clickable, false);

@@ -29,13 +29,13 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
 
     render() {
         return html`
-         <component-flex-container gridClazz="grid_100" .columnFlexBasisValues="${this.thumbnail != undefined ? ["20%", "80%"] : ["100%"]}">
+         <component-flex-container containerClazz="container_100" .container_25s="${this.thumbnail != undefined ? ["20%", "80%"] : ["100%"]}">
             ${this.thumbnail
             ? html`
                     <component-img clazz="roundImage" src="${this.thumbnail}"></component-img>
                  `
             : html``}
-            <component-flex-container gridClazz="grid_100" columnFlexBasisValue="100%">
+            <component-flex-container containerClazz="container_100" container_25="100%">
                ${this.primaryTitle
             ? html`
                        <component-typography .inputData="${this.primaryTitle}"></component-typography>

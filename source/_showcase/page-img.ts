@@ -10,7 +10,7 @@ export class PageImgComponent extends PageAbstract {
         return html`
         
         
-         <component-flex-container gridClazz="grid_50">
+         <component-flex-container containerClazz="container_50">
          
         
         <component-teaser>

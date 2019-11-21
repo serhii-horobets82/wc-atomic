@@ -1,90 +1,90 @@
 .minPadding,
 ::slotted(.minPadding) {
    box-sizing: border-box;
-   padding: var(--min-space);
+   padding: var(--little-space);
 }
 
 .mediumPadding,
 ::slotted(.mediumPadding) {
    box-sizing: border-box;
-   padding: var(--medium-space);
+   padding: var(--small-space);
 }
 
 .maxPadding,
 ::slotted(.maxPadding) {
    box-sizing: border-box;
-   padding: var(--max-space);
+   padding: var(--medium-space);
 }
 
 .minPaddingLeft,
 ::slotted(.minPaddingLeft) {
    box-sizing: border-box;
-   padding-left: var(--min-space);
+   padding-left: var(--little-space);
 }
 
 .mediumPaddingLeft,
 ::slotted(.mediumPaddingLeft) {
    box-sizing: border-box;
-   padding-left: var(--medium-space);
+   padding-left: var(--small-space);
 }
 
 .maxPaddingLeft,
 ::slotted(.maxPaddingLeft) {
    box-sizing: border-box;
-   padding-left: var(--max-space);
+   padding-left: var(--medium-space);
 }
 
 .minPaddingRight,
 ::slotted(.minPaddingRight) {
    box-sizing: border-box;
-   padding-right: var(--min-space);
+   padding-right: var(--little-space);
 }
 
 .mediumPaddingRight,
 ::slotted(.mediumPaddingRight) {
    box-sizing: border-box;
-   padding-right: var(--medium-space);
+   padding-right: var(--small-space);
 }
 
 .maxPaddingRight,
 ::slotted(.maxPaddingRight) {
    box-sizing: border-box;
-   padding-right: var(--max-space);
+   padding-right: var(--medium-space);
 }
 .minPaddingTop,
 ::slotted(.minPaddingTop) {
    box-sizing: border-box;
-   padding-top: var(--min-space);
+   padding-top: var(--little-space);
 }
 
 .mediumPaddingTop,
 ::slotted(.mediumPaddingTop) {
    box-sizing: border-box;
-   padding-top: var(--medium-space);
+   padding-top: var(--small-space);
 }
 
 .maxPaddingTop,
 ::slotted(.maxPaddingTop) {
    box-sizing: border-box;
-   padding-top: var(--max-space);
+   padding-top: var(--medium-space);
 }
 
 .minPaddingBottom,
 ::slotted(.minPaddingBottom) {
    box-sizing: border-box;
-   padding-bottom: var(--min-space);
+   padding-bottom: var(--little-space);
 }
 
 .mediumPaddingBottom,
 ::slotted(.mediumPaddingBottom) {
    box-sizing: border-box;
-   padding-bottom: var(--medium-space);
+   padding-bottom: var(--small-space);
 }
 
 .maxPaddingBottom,
 ::slotted(.maxPaddingBottom) {
    box-sizing: border-box;
-   padding-bottom: var(--max-space);
+   padding-bottom: var(--medium-space);
 }
 
 @media only screen and (max-width: 1024px),

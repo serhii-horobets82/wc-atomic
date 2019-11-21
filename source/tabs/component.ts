@@ -25,7 +25,7 @@ export class TabsComponent extends AbstractComponent<TabsInputData, undefined> {
 
    render() {
       return html`
-         <component-flex-container gridClazz="grid_100" columnFlexBasisValue="100%">
+         <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%">
             <div class="tabHeader" @component-tab-click="${(event: CustomEvent) => this.tabClicked(event)}">
                <slot id="tabSlot" name="tab"></slot>
             </div>

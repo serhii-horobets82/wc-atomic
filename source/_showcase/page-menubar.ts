@@ -6,7 +6,7 @@ import { InputComponent } from '../input/component';
 export class PageMenubarComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container gridClazz="grid_50">
+         <component-flex-container containerClazz="container_50">
 
             <component-menubar>
                <component-icon slot="leftComponents" iconClazz="fas fa-bars" clickable="true"></component-icon>
