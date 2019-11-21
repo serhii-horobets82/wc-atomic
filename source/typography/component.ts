@@ -20,6 +20,7 @@ export enum TypographyTypes {
 }
 
 export class TypographyInputData extends AbstractInputData {
+   componentIdentifier = TypographyComponent.IDENTIFIER;
    type: TypographyTypes = TypographyTypes.H2;
    text?: string;
    clazz?: string;
@@ -72,7 +73,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
       this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
       this.clazz = this.basicService.getValue(this.inputData.clazz, '');
       this.title = this.basicService.getValue(this.inputData.title, '');
-
+      this.type = this.basicService.getValue(this.inputData.type, TypographyTypes.BODY1);
    }
 }
 

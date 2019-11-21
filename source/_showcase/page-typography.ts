@@ -58,8 +58,7 @@ export class PageTypographyComponent extends PageAbstract {
                         <component-typography .type="${TypographyTypes.SUBTITLE2}">Subtitle 2</component-typography>
                         <component-typography .type="${TypographyTypes.BODY1}" text=""
                            >Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-                           suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-                           laborum fugiat deleniti? Eum quasi quidem quibusdam.</component-typography
+                           suscipit, quam beatae rerum inventore consectetur</component-typography
                         >
                         <component-typography .type="${TypographyTypes.BODY2}"
                            >Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt
@@ -86,6 +85,11 @@ export class PageTypographyComponent extends PageAbstract {
                   </component-code>
                </component-tab-content>
             </component-tabs>
+            
+            
+            <component-code> Some Code</component-code>
+            
+            
          </component-flex-container>
       `;
     }

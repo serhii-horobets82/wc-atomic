@@ -1,0 +1,3 @@
+div, ::slotted(.div) {
+    width: 100%;
+}

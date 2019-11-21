@@ -146,6 +146,13 @@ export class PageInputComponent extends PageAbstract {
 <component-combobox .options="${[<ComboboxOption>{value:'', text:''},<ComboboxOption>{value:'item1', text:'First Entry'},<ComboboxOption>{value:'item2', text:'Second Entry'},<ComboboxOption>{value:'item3', text:'Third Entry'}]}">
 </component-combobox>
 
+
+
+<component-search></component-search>
+
+<component-textarea></component-textarea>
+
+
          </component-flex-container>
          
       `;

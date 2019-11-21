@@ -1,0 +1,11 @@
+@import '../css/border.css';
+@import '../css/shadow.css';
+.card, slot {
+    overflow: hidden;
+    display: block;
+}
+
+slot {
+    display: flex;
+    flex-direction: column;
+}

@@ -47,9 +47,7 @@ export class ImgComponent extends AbstractComponent<ImgInputData, undefined> {
    }
 
    render() {
-      return html`
-         <span class="${this.clazz}"><img src="${this.src}" style="${this.cssStyle}"/></span>${this.text}
-      `;
+      return html`<span class="${this.clazz}"><img src="${this.src}" style="${this.cssStyle}"/></span>`;
    }
 
    getOutputData(): undefined {

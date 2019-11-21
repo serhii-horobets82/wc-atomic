@@ -27,25 +27,6 @@ H1,
     display: block;
 }
 
-.H1,
-.H2 {
-    margin-top: var(--max-space);
-    margin-bottom: var(--max-space);
-}
-
-
-.H3,
-.H4 {
-    margin-top: var(--medium-space);
-    margin-bottom: var(--medium-space);
-}
-
-.H5,
-.H6 {
-    margin-top: var(--min-space);
-    margin-bottom: var(--min-space);
-}
-
 .H1 {
     font-size: 6rem;
     line-height: 6rem;

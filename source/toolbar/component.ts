@@ -3,16 +3,22 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ComponentLoader } from '../abstract/component-loader';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
-import { IconComponent } from '../icon/component';
-import { AuthenticatedIconComponent } from '../authenticated-icon/component';
 
 const componentCSS = require('./component.css');
 
+export enum ToolbarJustifyContent {
+    FLEX_START = 'flex-start',
+    FLEX_END = 'flex-end',
+    CENTER = 'center',
+    SPACE_BETWEEN = 'space-between',
+    SPACE_AROUND = 'space-around',
+    SPACE_EVENLY = 'space-evenly'
+}
+
+
 export class ToolbarInputData extends AbstractInputData {
-   clazz?: string;
-   leftInputData: AbstractInputData[] = [];
-   mainInputData: AbstractInputData[] = [];
-   rightInputData: AbstractInputData[] = [];
+    toolbarInputData: AbstractInputData[] = [];
+    justifyContent: string = ToolbarJustifyContent.FLEX_START;
 }
 
 @customElement('component-toolbar')
@@ -23,82 +29,38 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
 
    static IDENTIFIER: string = 'ToolbarComponent';
 
-   @property()
-   leftInputData: AbstractInputData[] = [];
+    @property()
+    toolbarInputData: AbstractInputData[] = [];
 
-   @property()
-   mainInputData: AbstractInputData[] = [];
+    @property()
+    justifyContent: string = ToolbarJustifyContent.FLEX_START;
 
-   @property()
-   rightInputData: AbstractInputData[] = [];
-
-   @property()
-   clazz: string = 'toolbar';
-
-   constructor() {
+    constructor() {
       super();
    }
 
    render() {
       return html`
-         <div class="${this.clazz}">
-            <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween"  columnFlexBasisValue="auto">
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
-                  ${guard(
-                     this.leftInputData,
-                     () =>
-                        html`
-                           ${repeat(
-                              this.leftInputData,
-                              (inputData) => html`
-                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
-                              `
-                           )}
+         <div class="toolbar" style="justify-content:${this.justifyContent};">
+            <slot></slot>
+            ${guard(
+          this.toolbarInputData,
+          () =>
+              html`
+                     ${repeat(
+                  this.toolbarInputData,
+                  (inputData) => html`
+                           ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
                         `
-                  )}
-                  <slot name="leftComponents"></slot>
-               </component-flex-container>
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
-                  ${guard(
-                     this.mainInputData,
-                     () =>
-                        html`
-                           ${repeat(
-                              this.mainInputData,
-                              (inputData) => html`
-                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
-                              `
-                           )}
-                        `
-                  )}<slot name="mainComponents"></slot>
-               </component-flex-container>
-               <component-flex-container gridClazz="grid_100 alignItemsCenter justifyContentSpaceBetween">
-                  ${guard(
-                     this.rightInputData,
-                     () =>
-                        html`
-                           ${repeat(
-                              this.rightInputData,
-                              (inputData) => html`
-                                 ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
-                              `
-                           )}
-                        `
-                  )}
-                  <slot name="rightComponents"></slot>
-               </component-flex-container>
-            </component-flex-container>
+              )}
+                  `
+      )}
          </div>
       `;
    }
 
    getDefaultInputData(): ToolbarInputData {
-      return <ToolbarInputData>{
-         componentIdentifier: ToolbarComponent.IDENTIFIER,
-         leftInputData: [new IconComponent().getDefaultInputData()],
-         mainInputData: [],
-         rightInputData: [new AuthenticatedIconComponent().getDefaultInputData()]
-      };
+       return <ToolbarInputData>{};
    }
 
    getOutputData(): any {
@@ -106,9 +68,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, 'toolbar');
-      this.leftInputData = this.inputData.leftInputData;
-      this.mainInputData = this.inputData.mainInputData;
-      this.rightInputData = this.inputData.rightInputData;
+       this.toolbarInputData = this.inputData.toolbarInputData;
+       this.justifyContent = this.basicService.getValue(this.justifyContent, ToolbarJustifyContent.FLEX_START);
    }
 }

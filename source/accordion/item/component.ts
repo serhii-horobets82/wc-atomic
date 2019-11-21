@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { ComponentLoader } from '../../abstract/component-loader';
+import {TypographyInputData} from "../../typography/component";
 
 const componentCSS = require('./component.css');
 
@@ -19,7 +20,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
    static IDENTIFIER: string = 'AccordionItemComponent';
 
    @property()
-   componentData: AbstractInputData = <AbstractInputData>{};
+   componentData: AbstractInputData | undefined;
 
    @property()
    header: string = '';
@@ -40,7 +41,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
                            </div>
                            <div class="accordionContent ${this.stateClazz}">
                               ${
-                                 this.componentData != null
+          this.componentData != undefined
                                     ? ComponentLoader.INSTANCE.createComponentFromInputData(this.componentData)
                                     : ''
                               }
@@ -66,7 +67,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
       return <AccordionItemInputData>{
          componentIdentifier: AccordionItemComponent.IDENTIFIER,
          header: 'Mein Accordion',
-         componentData: new HComponent().getDefaultInputData(),
+         componentData: TypographyInputData.prototype,
          stateClazz: 'closed'
       };
    }

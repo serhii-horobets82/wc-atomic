@@ -9,7 +9,9 @@ import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
 import './page-menubar.ts';
+import './page-primary-title';
 import './page-icon.ts';
+import './page-card.ts';
 import './page-table.ts';
 import './page-img.ts';
 import './page-form.ts';
@@ -48,6 +50,10 @@ class ShowcaseApp extends AbstractApp {
       switch (path) {
           case '#pageicon':
               return html`<page-icon></page-icon>`;
+          case '#pagecard':
+              return html`<page-card></page-card>`;
+          case '#pageprimarytitle':
+              return html`<page-primary-title></page-primary-title>`;
           case '#pagetable':
               return html`<page-table></page-table>`;
           case '#pageimg':

@@ -3,15 +3,19 @@
    padding: 0;
    font-size: 0;
    letter-spacing: 0;
+   line-height: 0;
 }
+
 img {
    box-sizing: border-box;
    height: auto;
    width: auto;
 }
+
 .clickable {
    cursor: pointer;
 }
+
 .zoomImageWrapped {
    overflow: hidden;
 }
@@ -39,66 +43,15 @@ img {
    border-radius: 50%;
    width: 100%;
 }
+
 .imageWithBorder img {
    box-sizing: border-box;
 }
 .imageWithBorder img {
-   border: 0.1em solid var(--app-color-primary-contrast);
+   border: 0.1em solid var(--app-color-border);
    padding: 0.25em;
    width: 100%;
 }
-.imageSlider {
-   position: relative;
-   overflow: hidden;
-}
-.imageSlider .unselected {
-   display: none;
-}
-.imageSlider .selected {
-   display: block;
-}
-.imageSlider .absoluteImg img {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-}
-.imageSlider .imgDescription {
-   position: absolute;
-   right: 0;
-   left: 0;
-   bottom: 2rem;
-   width: 100%;
-   padding: 1rem;
-}
-.imageSlider .imgControl {
-   width: 1rem;
-   height: 1rem;
-   cursor: pointer;
-   margin-top: 0.5rem;
-   margin-left: 0.5rem;
-}
-.imageSlider .imgControlContainer {
-   position: absolute;
-   right: 2rem;
-   top: 0;
-   height: 100%;
-   width: 2rem;
-   text-align: center;
-}
-.imageSlider .imgControlContainer .selected, .imageSlider .imgControlContainer .unselected {
-   display: block;
-}
-.bgImage {
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: center;
-   position: fixed;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   z-index: -1;
-}
+
 @media only screen and (max-width: 768px), only screen and (orientation: portrait) {
 }
