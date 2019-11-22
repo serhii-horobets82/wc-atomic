@@ -10,41 +10,7 @@
 ::slotted(.flex_container) {
    margin: auto;
    display: flex;
-   flex-wrap: wrap;
-   justify-content: flex-start;
    box-sizing: border-box;
-}
-
-.flex_container.PADDING_ALIGNMENT_HORIZONTAL,
-::slotted(.flex_container.PADDING_ALIGNMENT_HORIZONTAL), .flex_container.PADDING_ALIGNMENT_VERTICAL,
-::slotted(.flex_container.PADDING_ALIGNMENT_VERTICAL), .flex_container.PADDING_ALIGNMENT_BOTH,
-::slotted(.flex_container.PADDING_ALIGNMENT_BOTH) {
-   padding: 0;
-}
-
-.flex_container.PADDING_LITTLE, ::slotted(.flex_container.PADDING_LITTLE) {
-   padding-bottom: var(--little-space);
-   padding-left: var(--little-space);
-}
-
-.flex_container.PADDING_SMALL, ::slotted(.flex_container.PADDING_SMALL) {
-   padding-bottom: var(--small-space);
-   padding-left: var(--small-space);
-}
-
-.flex_container.PADDING_MEDIUM, ::slotted(.flex_container.PADDING_MEDIUM) {
-   padding-bottom: var(--medium-space);
-   padding-left: var(--medium-space);
-}
-
-.flex_container.PADDING_BIG, ::slotted(.flex_container.PADDING_BIG) {
-   padding-bottom: var(--big-space);
-   padding-left: var(--big-space);
-}
-
-.flex_container.PADDING_MAX, ::slotted(.flex_container.PADDING_MAX) {
-   padding-bottom: var(--max-space);
-   padding-left: var(--max-space);
 }
 
 .alignItemsCenter,
@@ -95,40 +61,43 @@
 .flex_item, ::slotted(.flex_item) {
    align-self: stretch;
    box-sizing: border-box;
+
 }
 
 .PADDING_LITTLE, ::slotted(.PADDING_LITTLE) {
-   padding-top: var(--little-space);
-   padding-right: var(--little-space);
+   padding: var(--little-space);
 }
 
 .PADDING_SMALL, ::slotted(.PADDING_SMALL) {
-   padding-top: var(--small-space);
-   padding-right: var(--small-space);
+   padding: var(--small-space);
 }
 
 .PADDING_MEDIUM, ::slotted(.PADDING_MEDIUM) {
-   padding-top: var(--medium-space);
-   padding-right: var(--medium-space);
+   padding: var(--medium-space);
 }
 
 .PADDING_BIG, ::slotted(.PADDING_BIG) {
-   padding-top: var(--big-space);
-   padding-right: var(--big-space);
+   padding: var(--big-space);
 }
 
 .PADDING_MAX, ::slotted(.PADDING_MAX) {
-   padding-top: var(--max-space);
-   padding-right: var(--max-space);
+   padding: var(--max-space);
 }
 
 .PADDING_ALIGNMENT_HORIZONTAL, ::slotted(.PADDING_ALIGNMENT_HORIZONTAL) {
    padding-right: 0;
+   padding-left: 0;
 }
 
 .PADDING_ALIGNMENT_VERTICAL, ::slotted(.PADDING_ALIGNMENT_VERTICAL) {
+   padding-bottom: 0;
    padding-top: 0;
 }
+
+.PADDING_ALIGNMENT_NONE, ::slotted(.PADDING_ALIGNMENT_NONE) {
+   padding: 0;
+}
+
 
 /*
   ##Device = Tablets, Ipads (portrait)

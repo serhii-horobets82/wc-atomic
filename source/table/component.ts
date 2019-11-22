@@ -185,7 +185,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                        <component-combobox
                           slot="mainComponents"
                           .inputData="${this.sizeComboboxInputData}"
-                          @combobox-component-selection-change="${(event: CustomEvent) => this.changeSize(event)}"
+                          @combobox-selection-change="${(event: CustomEvent) => this.changeSize(event)}"
                        ></component-combobox>
 
                        <component-icon

@@ -3,9 +3,9 @@ import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import { ImgComponent, ImgInputData } from '../img/component';
 import { TypographyInputData, TypographyTypes } from '../typography/component';
-import { ToolbarJustifyContent } from '../toolbar/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { LinkComponent, LinkInputData } from '../link/component';
+import {FlexJustifyContent} from "../flex-container/component";
 
 @customElement('page-card')
 export class PageCardComponent extends PageAbstract {
@@ -38,7 +38,7 @@ export class PageCardComponent extends PageAbstract {
                      ></component-link>
                   </component-toolbar>
 
-                  <component-toolbar .justifyContent="${ToolbarJustifyContent.FLEX_END}">
+                  <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
                      <component-icon iconClazz="fas fa-bars"></component-icon>
                      <component-icon iconClazz="fas fa-bars"></component-icon>
                      <component-icon iconClazz="fas fa-bars"></component-icon>

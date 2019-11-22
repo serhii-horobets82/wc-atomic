@@ -1,25 +1,81 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
-import { ImgComponent } from '../img/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ComponentLoader } from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 
-export enum FlexPaddingAlignment {
+export enum KeylineAlignment {
    HORIZONTAL = 'PADDING_ALIGNMENT_HORIZONTAL',
    VERTICAL = 'PADDING_ALIGNMENT_VERTICAL',
    BOTH = 'PADDING_ALIGNMENT_BOTH',
+   NONE = 'PADDING_ALIGNMENT_NONE'
 }
 
-export enum FlexPadding {
+export enum KeylineSize {
    ZERO = 'PADDING_ZERO',
    LITTLE = 'PADDING_LITTLE',
    SMALL = 'PADDING_SMALL',
    MEDIUM = 'PADDING_MEDIUM',
    BIG = 'PADDING_BIG',
-   MAX = 'PADDING_MAX',
+   MAX = 'PADDING_MAX'
+}
+
+export enum FlexDirection {
+   ROW = 'row',
+   ROW_REVERSE = 'row-reverse',
+   COLUMN = 'column',
+   COLUMN_REVERSE = 'column-reverse'
+}
+
+export enum FlexWrap {
+   WRAP = 'wrap',
+   NO_WRAP = 'nowrap',
+   WRAP_REVERSE = 'wrap-reverse'
+}
+
+export enum FlexJustifyContent {
+   FLEX_START = 'flex-start',
+   FLEX_END = 'flex-end',
+   CENTER = 'center',
+   SPACE_BETWEEN = 'space-between',
+   SPACE_AROUND = 'space-around',
+   SPACE_EVENLY = 'space-evenly'
+}
+
+export enum AlignItems {
+   FLEX_START = 'flex-start',
+   FLEX_END = 'flex-end',
+   CENTER = 'center',
+   STRETCH = 'stretch',
+   SPACE_AROUND = 'space-around',
+   SPACE_EVENLY = 'space-evenly',
+   SPACE_BETWEEN = 'space-between',
+   START = 'start',
+   END = 'end',
+   BASELINE = 'baseline',
+   FIRST_BASELINE = 'first baseline',
+   LAST_BASLINE = 'last baseline',
+   SAFE = 'safe',
+   UNSAFE = 'unsafe'
+}
+
+export enum AlignContent {
+   FLEX_START = 'flex-start',
+   FLEX_END = 'flex-end',
+   CENTER = 'center',
+   STRETCH = 'stretch',
+   SPACE_AROUND = 'space-around',
+   SPACE_EVENLY = 'space-evenly',
+   SPACE_BETWEEN = 'space-between',
+   START = 'start',
+   END = 'end',
+   BASELINE = 'baseline',
+   FIRST_BASELINE = 'first baseline',
+   LAST_BASLINE = 'last baseline',
+   SAFE = 'safe',
+   UNSAFE = 'unsafe'
 }
 
 export class FlexContainerInputData extends AbstractInputData {
@@ -27,9 +83,13 @@ export class FlexContainerInputData extends AbstractInputData {
    itemClazz?: string;
    itemFlexBasisValue?: string = 'auto';
    itemFlexBasisValues?: string[];
-   paddingAlignment: FlexPaddingAlignment = FlexPaddingAlignment.BOTH;
-   padding: FlexPadding = FlexPadding.ZERO;
-   headlessPadding: boolean = false;
+   direction: FlexDirection = FlexDirection.ROW;
+   flexWrap: FlexWrap = FlexWrap.WRAP;
+   justifyContent: FlexJustifyContent = FlexJustifyContent.FLEX_START;
+   alignItems: AlignItems = AlignItems.STRETCH;
+   alignContent: AlignContent = AlignContent.STRETCH;
+   keylineAlignment: KeylineAlignment = KeylineAlignment.BOTH;
+   keylineSize: KeylineSize = KeylineSize.ZERO;
    componentsInputData?: AbstractInputData[];
 }
 
@@ -79,13 +139,25 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    }
 
    @property()
-   paddingAlignment: FlexPaddingAlignment = FlexPaddingAlignment.BOTH;
+   direction: FlexDirection = FlexDirection.ROW;
 
    @property()
-   padding: FlexPadding = FlexPadding.ZERO;
+   wrap: FlexWrap = FlexWrap.WRAP;
 
    @property()
-   headlessPadding: boolean = false;
+   justifyContent: FlexJustifyContent = FlexJustifyContent.FLEX_START;
+
+   @property()
+   alignItems: AlignItems = AlignItems.STRETCH;
+
+   @property()
+   alignContent: AlignContent = AlignContent.STRETCH;
+
+   @property()
+   keylineAlignment: KeylineAlignment = KeylineAlignment.BOTH;
+
+   @property()
+   keylineSize: KeylineSize = KeylineSize.ZERO;
 
    @property()
    containerClazz: string = 'container_100';
@@ -104,7 +176,11 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    render() {
       return html`
-         <div class="flex_container ${this.padding} ${this.paddingAlignment} ${this.containerClazz} ${this.headlessPadding ? 'HEADLESS_PADDING' : ''}">
+         <div
+            class="flex_container ${this.keylineSize} ${this.keylineAlignment} ${this.containerClazz}"
+            style="flex-direction: ${this.direction}; flex-wrap: ${this.wrap}; justify-content: ${this
+               .justifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
+         >
             ${guard(
                this.componentsInputData,
                () =>
@@ -112,7 +188,10 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                      ${repeat(
                         this.componentsInputData,
                         (componentInputData, index) => html`
-                           <div class="flex_item ${this.padding} ${this.paddingAlignment} ${this.itemClazz}" style="${this.getFlexItemStyle(index)};">
+                           <div
+                              class="flex_item ${this.keylineSize} ${this.keylineAlignment} ${this.itemClazz}"
+                              style="${this.getFlexItemStyle(index)};"
+                           >
                               ${this.createComponentFromData(componentInputData)}
                            </div>
                         `
@@ -126,12 +205,15 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    getFlexItemStyle(index: number): string {
       let flexBasisValue =
-          this.itemFlexBasisValues !== undefined
-              ? this.itemFlexBasisValues[index] !== undefined
-              ? this.itemFlexBasisValues[index]
-              : this.itemFlexBasisValue
+         this.itemFlexBasisValues !== undefined
+            ? this.itemFlexBasisValues[index] !== undefined
+               ? this.itemFlexBasisValues[index]
+               : this.itemFlexBasisValue
             : undefined;
-      return 'flex-basis: '.concat(this.basicService.getValue(flexBasisValue, '')).concat(';max-width: ').concat(this.basicService.getValue(flexBasisValue, ''));
+      return 'flex-basis: '
+         .concat(this.basicService.getValue(flexBasisValue, ''))
+         .concat(';max-width: ')
+         .concat(this.basicService.getValue(flexBasisValue, ''));
    }
 
    updated(_changedProperties: Map<PropertyKey, unknown>): void {
@@ -154,9 +236,19 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          classList.add('flex_item');
          //}
 
-         classList.add(this.paddingAlignment);
-         classList.add(this.padding);
+         classList.remove(KeylineAlignment.VERTICAL);
+         classList.remove(KeylineAlignment.HORIZONTAL);
+         classList.remove(KeylineAlignment.BOTH);
+         classList.remove(KeylineAlignment.NONE);
+         classList.add(this.keylineAlignment);
 
+         classList.remove(KeylineSize.ZERO);
+         classList.remove(KeylineSize.LITTLE);
+         classList.remove(KeylineSize.SMALL);
+         classList.remove(KeylineSize.MEDIUM);
+         classList.remove(KeylineSize.BIG);
+         classList.remove(KeylineSize.MAX);
+         classList.add(this.keylineSize);
 
          if (this.itemClazz.length > 0 && !classList.contains(this.itemClazz)) {
             let itemClazzesSplitted: string[] = this.itemClazz.split(' ');
@@ -183,19 +275,18 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    }
 
    inputDataChanged() {
-      this.componentsInputData = this.inputData.componentsInputData !== undefined ? this.inputData.componentsInputData : [];
-
-      this.containerClazz = this.inputData.containerClazz !== undefined ? this.inputData.containerClazz : 'container_100';
-
-      this.itemClazz = this.inputData.itemClazz !== undefined ? this.inputData.itemClazz : '';
-
-      this.itemFlexBasisValue =
-          this.inputData.itemFlexBasisValue !== undefined ? this.inputData.itemFlexBasisValue : 'auto';
-
-      this.itemFlexBasisValues = this.inputData.itemFlexBasisValues !== undefined ? this.inputData.itemFlexBasisValues : [];
-
-      this.headlessPadding = this.basicService.getValue(this.inputData.headlessPadding, false);
-
+      this.containerClazz = this.basicService.getValue(this.inputData.containerClazz, 'container_100');
+      this.itemClazz = this.basicService.getValue(this.inputData.itemClazz, '');
+      this.itemFlexBasisValue = this.basicService.getValue(this.inputData.itemFlexBasisValue, 'auto');
+      this.itemFlexBasisValues = this.basicService.getValue(this.inputData.itemFlexBasisValues, []);
+      this.direction = this.basicService.getValue(this.inputData.direction, this.direction);
+      this.wrap = this.basicService.getValue(this.inputData.flexWrap, this.wrap);
+      this.justifyContent = this.basicService.getValue(this.inputData.justifyContent, this.justifyContent);
+      this.alignItems = this.basicService.getValue(this.inputData.alignItems, this.alignItems);
+      this.alignContent = this.basicService.getValue(this.inputData.alignContent, this.alignContent);
+      this.keylineAlignment = this.basicService.getValue(this.inputData.keylineAlignment, this.keylineAlignment);
+      this.keylineSize = this.basicService.getValue(this.inputData.keylineSize, this.keylineSize);
+      this.componentsInputData = this.basicService.getValue(this.inputData.componentsInputData, []);
    }
 
    getOutputData(): undefined {
@@ -204,7 +295,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    getDefaultInputData(): FlexContainerInputData {
       return <FlexContainerInputData>{
-         componentIdentifier: FlexComponent.IDENTIFIER,
+         componentIdentifier: FlexComponent.IDENTIFIER
       };
    }
 }

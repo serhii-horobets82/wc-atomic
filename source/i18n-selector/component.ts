@@ -32,7 +32,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    render() {
       return html`
             <component-combobox .options="${this.languages}" label="${this.getI18NValue('language')}"
-               @combobox-component-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"
+               @combobox-selection-change="${(event: CustomEvent) => this.changeLanguage(event)}"
             ></component-combobox> 
       `;
    }

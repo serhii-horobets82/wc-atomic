@@ -3,7 +3,7 @@ import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import { ImgComponent, ImgInputData } from '../img/component';
 import { TypographyInputData, TypographyTypes } from '../typography/component';
-import { ToolbarJustifyContent } from '../toolbar/component';
+import {FlexJustifyContent} from "../flex-container/component";
 
 @customElement('page-primary-title')
 export class PagePrimaryTitleComponent extends PageAbstract {

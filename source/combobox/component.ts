@@ -12,6 +12,15 @@ export class ComboboxOption {
    value: string = '';
    text: string = '';
    selected: boolean = false;
+
+   static enumToComboboxItems(enumeration: any): ComboboxOption[] {
+      let options: ComboboxOption[] = [];
+      Object.keys(enumeration).forEach(key => {
+         options.push(<ComboboxOption>{value: key, text: enumeration[key]});
+      });
+      return options;
+   }
+
 }
 
 export class ComboboxInputData extends AbstractInputData {
@@ -31,7 +40,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
    static IDENTIFIER: string = 'ComboboxComponent';
 
-   static EVENT_SELECTION_CHANGE: string = 'combobox-component-selection-change';
+   static EVENT_SELECTION_CHANGE: string = 'combobox-selection-change';
 
    @property()
    name: string = '';
