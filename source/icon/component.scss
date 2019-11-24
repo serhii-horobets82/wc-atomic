@@ -4,10 +4,13 @@
 
 @import './gmi/material-icons.css';
 
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--icon-size-space);
+  height: var(--icon-size-space);
 
-:host{
-  line-height: var(--line-height);
-  height: var(--line-height);
 }
 
 .clickable {

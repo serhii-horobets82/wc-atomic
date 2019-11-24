@@ -58,6 +58,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
    render() {
       return html`
+<span class="icon-container">
          <span
             title="${this.title}"
             class="${this.iconClazz} ${this.clickable ? 'clickable' : ''} ${this.status === 2
@@ -67,6 +68,8 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                : ''}"
             @click="${this.clicked}"
          ><i class="material-icons">${this.icon}</i></span>
+    </span>
+    
       `;
    }
 

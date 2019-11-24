@@ -7,10 +7,9 @@ import { ComponentLoader } from '../abstract/component-loader';
 const componentCSS = require('./component.css');
 
 export enum KeylineAlignment {
-   HORIZONTAL = 'PADDING_ALIGNMENT_HORIZONTAL',
-   VERTICAL = 'PADDING_ALIGNMENT_VERTICAL',
-   BOTH = 'PADDING_ALIGNMENT_BOTH',
-   NONE = 'PADDING_ALIGNMENT_NONE'
+   HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL',
+   VERTICAL = 'KEYLINE_ALIGNMENT_VERTICAL',
+   BOTH = 'KEYLINE_ALIGNMENT_BOTH',
 }
 
 export enum KeylineSize {
@@ -49,9 +48,6 @@ export enum AlignItems {
    FLEX_END = 'flex-end',
    CENTER = 'center',
    STRETCH = 'stretch',
-   SPACE_AROUND = 'space-around',
-   SPACE_EVENLY = 'space-evenly',
-   SPACE_BETWEEN = 'space-between',
    START = 'start',
    END = 'end',
    BASELINE = 'baseline',
@@ -177,7 +173,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    render() {
       return html`
          <div
-            class="flex_container ${this.keylineSize} ${this.keylineAlignment} ${this.containerClazz}"
+            class="flex_container ${this.containerClazz}"
             style="flex-direction: ${this.direction}; flex-wrap: ${this.wrap}; justify-content: ${this
                .justifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
          >
@@ -188,10 +184,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                      ${repeat(
                         this.componentsInputData,
                         (componentInputData, index) => html`
-                           <div
-                              class="flex_item ${this.keylineSize} ${this.keylineAlignment} ${this.itemClazz}"
-                              style="${this.getFlexItemStyle(index)};"
-                           >
+                           <div class="flex_item ${this.itemClazz}" style="${this.getFlexItemStyle(index)};">
                               ${this.createComponentFromData(componentInputData)}
                            </div>
                         `
@@ -232,14 +225,11 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          let element: Element = elements[index];
 
          let classList = element.classList;
-         //if (!classList.contains('flex_item')) {
          classList.add('flex_item');
-         //}
 
-         classList.remove(KeylineAlignment.VERTICAL);
-         classList.remove(KeylineAlignment.HORIZONTAL);
          classList.remove(KeylineAlignment.BOTH);
-         classList.remove(KeylineAlignment.NONE);
+         classList.remove(KeylineAlignment.HORIZONTAL);
+         classList.remove(KeylineAlignment.VERTICAL);
          classList.add(this.keylineAlignment);
 
          classList.remove(KeylineSize.ZERO);
@@ -249,6 +239,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          classList.remove(KeylineSize.BIG);
          classList.remove(KeylineSize.MAX);
          classList.add(this.keylineSize);
+
 
          if (this.itemClazz.length > 0 && !classList.contains(this.itemClazz)) {
             let itemClazzesSplitted: string[] = this.itemClazz.split(' ');

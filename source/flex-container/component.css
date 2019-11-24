@@ -59,42 +59,44 @@
 }
 
 .flex_item, ::slotted(.flex_item) {
-   align-self: stretch;
    box-sizing: border-box;
-
 }
 
 .PADDING_LITTLE, ::slotted(.PADDING_LITTLE) {
-   padding: var(--little-space);
+   padding-right: var(--little-space);
+   padding-bottom: var(--little-space);
 }
 
 .PADDING_SMALL, ::slotted(.PADDING_SMALL) {
-   padding: var(--small-space);
+   padding-right: var(--small-space);
+   padding-bottom: var(--small-space);
 }
 
 .PADDING_MEDIUM, ::slotted(.PADDING_MEDIUM) {
-   padding: var(--medium-space);
+   padding-right: var(--medium-space);
+   padding-bottom: var(--medium-space);
+
 }
 
 .PADDING_BIG, ::slotted(.PADDING_BIG) {
-   padding: var(--big-space);
+   padding-right: var(--big-space);
+   padding-bottom: var(--big-space);
 }
 
 .PADDING_MAX, ::slotted(.PADDING_MAX) {
-   padding: var(--max-space);
+   padding-right: var(--max-space);
+   padding-bottom: var(--max-space);
 }
 
-.PADDING_ALIGNMENT_HORIZONTAL, ::slotted(.PADDING_ALIGNMENT_HORIZONTAL) {
+.KEYLINE_ALIGNMENT_HORIZONTAL, ::slotted(.KEYLINE_ALIGNMENT_HORIZONTAL) {
    padding-right: 0;
-   padding-left: 0;
 }
 
-.PADDING_ALIGNMENT_VERTICAL, ::slotted(.PADDING_ALIGNMENT_VERTICAL) {
+.KEYLINE_ALIGNMENT_VERTICAL, ::slotted(.KEYLINE_ALIGNMENT_VERTICAL) {
    padding-bottom: 0;
-   padding-top: 0;
 }
 
-.PADDING_ALIGNMENT_NONE, ::slotted(.PADDING_ALIGNMENT_NONE) {
+.PADDING_ALIGNMENT_BOTH, ::slotted(.PADDING_ALIGNMENT_BOTH) {
    padding: 0;
 }
 

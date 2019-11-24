@@ -23,6 +23,9 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    @property()
    menuSwitchIconClazz = 'fas fa-bars';
 
+   @property()
+   menuCss: string = 'menuClosed basicShadow';
+
    @query('#top')
    private topElement: HTMLElement | undefined;
    @query('#left')
@@ -30,18 +33,16 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    @query('#main')
    private mainElement: HTMLElement | undefined;
 
-   menuCss: string = '';
-
    render() {
       return html`
          <div class="container" @component-icon-click="${this.menuItemClicked}">
-            <top id="top" class="basicShadow">
+            <top id="top" class="${this.menuCss}">
                ${this.getTopContent()}
             </top>
-            <div id="left" class="basicShadow">
+            <div id="left" class="${this.menuCss}">
                ${this.getLeftComponent()}
             </div>
-            <div id="main">
+            <div id="main" class="${this.menuCss}">
                ${this.getMainComponent()}
             </div>
          </div>
@@ -85,9 +86,6 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
          this.menuCss = 'basicShadow';
       }
 
-      if (this.mainElement != undefined) this.mainElement.setAttribute('class', this.menuCss);
-      if (this.leftElement != undefined) this.leftElement.setAttribute('class', this.menuCss);
-      if (this.topElement != undefined) this.topElement.setAttribute('class', this.menuCss);
    }
 
 }

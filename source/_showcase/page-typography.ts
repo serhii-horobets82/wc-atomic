@@ -10,7 +10,7 @@ import {KeylineSize} from "../flex-container/component";
 export class PageTypographyComponent extends PageAbstract {
     getMainComponent(): TemplateResult {
         return html`
-         <component-flex-container containerClazz="container_100" .padding="${KeylineSize.MAX}" container_25="100%">
+         <component-flex-container containerClazz="container_75" .padding="${KeylineSize.MAX}" itemFlexBasisValue="100%">
          
             <component-typography .type="${TypographyTypes.H2}">Typography</component-typography>
             <component-typography .type="${TypographyTypes.BODY1}">Some Content</component-typography>
