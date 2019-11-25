@@ -7,6 +7,7 @@ export class PageIconComponent extends PageAbstract {
     getMainComponent(): TemplateResult {
         return html`
         
+        based on: <component-link href="https://material.io/resources/icons/?style=baseline">Google Material Icons</component-link>
         
          <component-flex-container containerClazz="container_50">
          

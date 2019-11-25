@@ -6,7 +6,7 @@ export abstract class PageAbstract extends BasisTemplate {
       return html`
          <component-menubar>
             <component-spacer slot="leftComponents" clazz="mediumPaddingLeft"></component-spacer>
-            <component-icon slot="leftComponents" iconClazz="fas fa-bars" clickable="true"></component-icon>
+            <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
             <component-i18n-selector slot="rightComponents"></component-i18n-selector>
          </component-menubar>
       `;

@@ -21,7 +21,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    title = '';
 
    @property()
-   menuSwitchIconClazz = 'fas fa-bars';
+   menuSwitchIcon = 'menu';
 
    @property()
    menuCss: string = 'menuClosed basicShadow';
@@ -72,8 +72,8 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    }
 
    menuItemClicked(event: CustomEvent) {
-      let iid: IconInputData = event.detail;
-      if (this.basicService.isEqual(iid.iconClazz, this.menuSwitchIconClazz)) {
+      let id: IconInputData = event.detail;
+      if (this.basicService.isEqual(id.icon, this.menuSwitchIcon)) {
          console.log('menuItemClicked...');
          this.toogleMenu();
       }

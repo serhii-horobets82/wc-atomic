@@ -17,7 +17,6 @@ const componentCSS = require('./component.scss');
  */
 export class IconInputData extends AbstractInputData {
    componentIdentifier = IconComponent.IDENTIFIER;
-   iconClazz?: string;
    icon?: string;
    cssStyle?: string;
    clickable?: boolean;
@@ -34,9 +33,6 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    static IDENTIFIER: string = 'IconComponent';
 
    static EVENT_CLICK: string = 'component-icon-click';
-
-   @property()
-   iconClazz: string = '';
 
    @property()
    icon: string = '';
@@ -61,7 +57,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 <span class="icon-container">
          <span
             title="${this.title}"
-            class="${this.iconClazz} ${this.clickable ? 'clickable' : ''} ${this.status === 2
+            class="${this.clickable ? 'clickable' : ''} ${this.status === 2
                ? 'active'
                : this.status === 3
                ? 'passiv'
@@ -79,7 +75,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
             status: this.status,
             clickData: this.clickData,
             clickable: this.clickable,
-            iconClazz: this.iconClazz
+            icon: this.icon
          });
       }
    }
@@ -94,7 +90,6 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    }
 
    inputDataChanged() {
-      this.iconClazz = this.basicService.getValue(this.inputData.iconClazz, '');
       this.clickData = this.basicService.getValue(this.inputData.clickData, undefined);
       this.icon = this.basicService.getValue(this.inputData.icon, '');
       this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
