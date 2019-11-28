@@ -101,5 +101,5 @@ export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyInputData,TypographyComponent} from './typography/component';
 
-//Auskommentieren bei erstellen neuer Version auf NPM
+//Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
 //import './_showcase/showcase-app';
