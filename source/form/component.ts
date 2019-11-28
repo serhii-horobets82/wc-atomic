@@ -120,25 +120,6 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          ],
          flexContainerInputData: <FlexContainerInputData>{
             componentIdentifier: FlexComponent.IDENTIFIER,
-            gridClazz: 'container_100',
-            columnFlexBasisValue: '30%',
-            componentsInputData: [
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Gib deinen Namen ein',
-                  componentData: new InputComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Beschreibe dich',
-                  componentData: new TextareaComponent().getDefaultInputData()
-               },
-               <FormElementInputData>{
-                  componentIdentifier: FormElementComponent.IDENTIFIER,
-                  label: 'Eine Auswahl',
-                  componentData: new ComboboxComponent().getDefaultInputData()
-               }
-            ]
          }
       };
    }

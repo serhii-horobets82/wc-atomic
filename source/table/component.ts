@@ -343,7 +343,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       let whereClause = '';
       this._headers.forEach((header) => {
          if (this.basicService.isNotBlank(header.searchValue)) {
-            whereClause = whereClause.concat(header.columnKey, '=', header.searchValue);
+            whereClause = whereClause.concat(header.columnKey).concat('=').concat(this.basicService.getValue(header.searchValue, ''));
          }
       });
       if (whereClause.length > 0) {

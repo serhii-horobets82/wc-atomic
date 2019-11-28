@@ -47,12 +47,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
          clazz: '',
          text: 'Mein Button',
          href: '/',
-         clickEventData: 'defaultClick',
-         icon: <IconInputData>{
-            iconClazz: 'fas fa-angle-right',
-            clickable: true,
-            status: 1
-         }
+         clickEventData: 'defaultClick'
       };
    }
 

@@ -106,6 +106,6 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
    }
 
    private clickedMenuItem(linkItem: NavigationLinkInputData) {
-      RouterService.getInstance().navigate(linkItem.href);
+       RouterService.getInstance().navigate(this.basicService.getValue(linkItem.href, ''));
    }
 }
