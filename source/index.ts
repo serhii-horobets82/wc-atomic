@@ -100,5 +100,6 @@ export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyInputData,TypographyComponent} from './typography/component';
-import './scss/index.scss';
-import './_showcase/showcase-app';
+
+//Auskommentieren bei erstellen neuer Version auf NPM
+//import './_showcase/showcase-app';
