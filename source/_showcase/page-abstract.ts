@@ -2,6 +2,11 @@ import { html, TemplateResult } from 'lit-element';
 import { BasisTemplate } from '../index';
 
 export abstract class PageAbstract extends BasisTemplate {
+
+   getAppTitle(): string {
+      return "Showcase App";
+   }
+
    getTopContent(): TemplateResult {
       return html`
          <component-menubar>

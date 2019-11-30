@@ -7,7 +7,6 @@ import {IconInputData} from '../icon/component';
 const componentCSS = require('./component.css');
 
 export class BasisTemplateInputData extends AbstractInputData {
-   title?: string;
 }
 
 export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInputData, undefined> {
@@ -17,8 +16,11 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    static IDENTIFIER: string = 'DefaultTemplate';
 
-   @property()
-   title = '';
+   constructor() {
+      super();
+      let titleTag = document.getElementsByTagName("TITLE")[0];
+      titleTag.textContent = this.getAppTitle();
+   }
 
    @property()
    menuSwitchIcon = 'menu';
@@ -56,8 +58,9 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    abstract getTopContent(): TemplateResult;
 
+   abstract getAppTitle(): string;
+
    protected inputDataChanged(): void {
-      this.title = this.basicService.getValue(this.inputData.title, '');
    }
 
    public getOutputData(): undefined {
@@ -67,7 +70,6 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    getDefaultInputData(): BasisTemplateInputData {
       return <BasisTemplateInputData>{
          componentIdentifier: BasisTemplate.IDENTIFIER,
-         title: ''
       };
    }
 
