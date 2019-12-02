@@ -63,6 +63,9 @@ public class ModuleGenerator {
                 int lineIndex = 0;
                 for (String line : content.lines().collect(Collectors.toList())) {
                     int index = line.indexOf("class ");
+                    if(index==-1){
+                        index = line.indexOf("enum ");
+                    }
                     if (index > -1) {
                         int endIndex = -1;
                         if (line.indexOf("{") != -1) {
@@ -93,8 +96,8 @@ public class ModuleGenerator {
     public static String createExports() throws IOException {
         List<String> items = createExportStatement(PROJECT_SOURCE_ROOT);
 
-        items.add("import './scss/index.scss';");
-        items.add("import './_showcase/showcase-app';");
+        items.add("//Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen");
+        items.add("//import './_showcase/showcase-app';");
 
         String output = "";
         for (String item : items) {
@@ -121,6 +124,9 @@ public class ModuleGenerator {
                 int lineIndex = 0;
                 for (String line : content.lines().collect(Collectors.toList())) {
                     int index = line.indexOf("class ");
+                    if(index==-1){
+                        index = line.indexOf("enum ");
+                    }
                     if (index > -1) {
                         int endIndex = -1;
                         if (line.indexOf("{") != -1) {

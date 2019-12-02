@@ -13,7 +13,7 @@ import {ContentSliderInputData,ContentSliderComponent} from './content-slider/co
 import {DataProtectionInputData,DataProtection} from './data-protection/component';
 import {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/component';
 import {DividerInputData,DividerComponent} from './divider/component';
-import {FlexContainerInputData,FlexComponent} from './flex-container/component';
+import {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 import {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
@@ -23,7 +23,7 @@ import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/comp
 import {ImgInputData,ImgComponent} from './img/component';
 import {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 import {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
-import {InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
+import {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
 import {LinkInputData,LinkComponent} from './link/component';
 import {ListInputData,ListComponent} from './list/container/component';
 import {ListItemInputData,ListItemComponent} from './list/item/component';
@@ -48,7 +48,7 @@ import {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-import {TypographyInputData,TypographyComponent} from './typography/component';
+import {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
 export {ComponentLoader} from './abstract/component-loader';
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
@@ -64,7 +64,7 @@ export {ContentSliderInputData,ContentSliderComponent} from './content-slider/co
 export {DataProtectionInputData,DataProtection} from './data-protection/component';
 export {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/component';
 export {DividerInputData,DividerComponent} from './divider/component';
-export {FlexContainerInputData,FlexComponent} from './flex-container/component';
+export {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 export {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
@@ -74,7 +74,7 @@ export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/comp
 export {ImgInputData,ImgComponent} from './img/component';
 export {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
-export {InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
+export {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
 export {LinkInputData,LinkComponent} from './link/component';
 export {ListInputData,ListComponent} from './list/container/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
@@ -99,7 +99,6 @@ export {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-export {TypographyInputData,TypographyComponent} from './typography/component';
-
+export {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
 //import './_showcase/showcase-app';

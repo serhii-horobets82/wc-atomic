@@ -36,7 +36,7 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
          ? html`
               <component-icon
                  title="${this.getI18NValue('component_authentication_icon_title_logout')}"
-                 iconClazz="fas fa-sign-out-alt"
+                 icon="power_settings_new"
                  clickable="true"
                  @click="${() => this.logout()}"
               ></component-icon>
@@ -44,7 +44,7 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
          : html`
               <component-icon
                  title="${this.getI18NValue('component_authentication_icon_title_login')}"
-                 iconClazz="fas fa-sign-in-alt"
+                 icon="account_circle"
                  clickable="true"
                  @click="${() => this.login()}"
               ></component-icon>
