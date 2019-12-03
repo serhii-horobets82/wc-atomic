@@ -17,25 +17,25 @@ export class PageLayoutComponent extends PageAbstract {
    @property()
    itemFlexBasisValue: string = 'auto';
    @property()
-   direction: FlexDirection = FlexDirection.ROW;
+   direction: string = FlexDirection.ROW;
 
    @property()
-   wrap: FlexWrap = FlexWrap.WRAP;
+   wrap: string = FlexWrap.WRAP;
 
    @property()
-   justifyContent: FlexJustifyContent = FlexJustifyContent.FLEX_START;
+   justifyContent: string = FlexJustifyContent.FLEX_START;
 
    @property()
-   alignItems: AlignItems = AlignItems.STRETCH;
+   alignItems: string = AlignItems.STRETCH;
 
    @property()
-   alignContent: AlignContent = AlignContent.STRETCH;
+   alignContent: string = AlignContent.STRETCH;
 
    @property()
-   keylineAlignment: KeylineAlignment = KeylineAlignment.BOTH;
+   keylineAlignment: string = KeylineAlignment.BOTH;
 
    @property()
-   keylineSize: KeylineSize = KeylineSize.LITTLE;
+   keylineSize: string = KeylineSize.LITTLE;
 
    getMainComponent(): TemplateResult {
       return html`
@@ -54,35 +54,35 @@ export class PageLayoutComponent extends PageAbstract {
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
                      label="FlexDirection"
-                     selectedValue="${this.basicService.getEnumKey(this.direction, FlexDirection)}"
+                     selectedValue="${this.direction}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
                   ></component-combobox>
 
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
                      label="FlexWrap"
-                     selectedValue="${this.basicService.getEnumKey(this.wrap, FlexWrap)}"
+                     selectedValue="${this.wrap}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
                   ></component-combobox>
 
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
                      label="FlexJustifyContent"
-                     selectedValue="${this.basicService.getEnumKey(this.justifyContent, FlexJustifyContent)}"
+                     selectedValue="${this.justifyContent}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
                   ></component-combobox>
 
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
                      label="AlignItems"
-                     selectedValue="${this.basicService.getEnumKey(this.alignItems, AlignItems)}"
+                     selectedValue="${this.alignItems}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
                   ></component-combobox>
 
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
                      label="AlignContent"
-                     selectedValue="${this.basicService.getEnumKey(this.alignContent, AlignContent)}"
+                     selectedValue="${this.alignContent}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
                   ></component-combobox>
                </component-tab-content>

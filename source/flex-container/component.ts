@@ -6,72 +6,72 @@ import { ComponentLoader } from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 
-export enum KeylineAlignment {
-   HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL',
-   VERTICAL = 'KEYLINE_ALIGNMENT_VERTICAL',
-   BOTH = 'KEYLINE_ALIGNMENT_BOTH',
+export class KeylineAlignment {
+   static HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL';
+   static VERTICAL = 'KEYLINE_ALIGNMENT_VERTICAL';
+   static BOTH = 'KEYLINE_ALIGNMENT_BOTH';
 }
 
-export enum KeylineSize {
-   ZERO = 'PADDING_ZERO',
-   LITTLE = 'PADDING_LITTLE',
-   SMALL = 'PADDING_SMALL',
-   MEDIUM = 'PADDING_MEDIUM',
-   BIG = 'PADDING_BIG',
-   MAX = 'PADDING_MAX'
+export class KeylineSize {
+   static ZERO = 'PADDING_ZERO';
+   static LITTLE = 'PADDING_LITTLE';
+   static SMALL = 'PADDING_SMALL';
+   static MEDIUM = 'PADDING_MEDIUM';
+   static BIG = 'PADDING_BIG';
+   static MAX = 'PADDING_MAX';
 }
 
-export enum FlexDirection {
-   ROW = 'row',
-   ROW_REVERSE = 'row-reverse',
-   COLUMN = 'column',
-   COLUMN_REVERSE = 'column-reverse'
+export class FlexDirection {
+   static ROW = 'row';
+   static ROW_REVERSE = 'row-reverse';
+   static COLUMN = 'column';
+   static COLUMN_REVERSE = 'column-reverse';
 }
 
-export enum FlexWrap {
-   WRAP = 'wrap',
-   NO_WRAP = 'nowrap',
-   WRAP_REVERSE = 'wrap-reverse'
+export class FlexWrap {
+   static WRAP = 'wrap';
+   static NO_WRAP = 'nowrap';
+   static WRAP_REVERSE = 'wrap-reverse';
 }
 
-export enum FlexJustifyContent {
-   FLEX_START = 'flex-start',
-   FLEX_END = 'flex-end',
-   CENTER = 'center',
-   SPACE_BETWEEN = 'space-between',
-   SPACE_AROUND = 'space-around',
-   SPACE_EVENLY = 'space-evenly'
+export class FlexJustifyContent {
+   static FLEX_START = 'flex-start';
+   static FLEX_END = 'flex-end';
+   static CENTER = 'center';
+   static SPACE_BETWEEN = 'space-between';
+   static SPACE_AROUND = 'space-around';
+   static SPACE_EVENLY = 'space-evenly';
 }
 
-export enum AlignItems {
-   FLEX_START = 'flex-start',
-   FLEX_END = 'flex-end',
-   CENTER = 'center',
-   STRETCH = 'stretch',
-   START = 'start',
-   END = 'end',
-   BASELINE = 'baseline',
-   FIRST_BASELINE = 'first baseline',
-   LAST_BASLINE = 'last baseline',
-   SAFE = 'safe',
-   UNSAFE = 'unsafe'
+export class AlignItems {
+   static FLEX_START = 'flex-start';
+   static FLEX_END = 'flex-end';
+   static CENTER = 'center';
+   static STRETCH = 'stretch';
+   static START = 'start';
+   static END = 'end';
+   static BASELINE = 'baseline';
+   static FIRST_BASELINE = 'first baseline';
+   static LAST_BASLINE = 'last baseline';
+   static SAFE = 'safe';
+   static UNSAFE = 'unsafe';
 }
 
-export enum AlignContent {
-   FLEX_START = 'flex-start',
-   FLEX_END = 'flex-end',
-   CENTER = 'center',
-   STRETCH = 'stretch',
-   SPACE_AROUND = 'space-around',
-   SPACE_EVENLY = 'space-evenly',
-   SPACE_BETWEEN = 'space-between',
-   START = 'start',
-   END = 'end',
-   BASELINE = 'baseline',
-   FIRST_BASELINE = 'first baseline',
-   LAST_BASLINE = 'last baseline',
-   SAFE = 'safe',
-   UNSAFE = 'unsafe'
+export class AlignContent {
+   static FLEX_START = 'flex-start';
+   static FLEX_END = 'flex-end';
+   static CENTER = 'center';
+   static STRETCH = 'stretch';
+   static SPACE_AROUND = 'space-around';
+   static SPACE_EVENLY = 'space-evenly';
+   static SPACE_BETWEEN = 'space-between';
+   static START = 'start';
+   static END = 'end';
+   static BASELINE = 'baseline';
+   static FIRST_BASELINE = 'first baseline';
+   static LAST_BASLINE = 'last baseline';
+   static SAFE = 'safe';
+   static UNSAFE = 'unsafe';
 }
 
 export class FlexContainerInputData extends AbstractInputData {
@@ -79,13 +79,13 @@ export class FlexContainerInputData extends AbstractInputData {
    itemClazz?: string;
    itemFlexBasisValue?: string = 'auto';
    itemFlexBasisValues?: string[];
-   direction: FlexDirection = FlexDirection.ROW;
-   flexWrap: FlexWrap = FlexWrap.WRAP;
-   justifyContent: FlexJustifyContent = FlexJustifyContent.FLEX_START;
-   alignItems: AlignItems = AlignItems.STRETCH;
-   alignContent: AlignContent = AlignContent.STRETCH;
-   keylineAlignment: KeylineAlignment = KeylineAlignment.BOTH;
-   keylineSize: KeylineSize = KeylineSize.ZERO;
+   direction: string = FlexDirection.ROW;
+   flexWrap: string = FlexWrap.WRAP;
+   justifyContent: string = FlexJustifyContent.FLEX_START;
+   alignItems: string = AlignItems.STRETCH;
+   alignContent: string = AlignContent.STRETCH;
+   keylineAlignment: string = KeylineAlignment.BOTH;
+   keylineSize: string = KeylineSize.ZERO;
    componentsInputData?: AbstractInputData[];
 }
 
@@ -135,25 +135,25 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    }
 
    @property()
-   direction: FlexDirection = FlexDirection.ROW;
+   direction: string = FlexDirection.ROW;
 
    @property()
-   wrap: FlexWrap = FlexWrap.WRAP;
+   wrap: string = FlexWrap.WRAP;
 
    @property()
-   justifyContent: FlexJustifyContent = FlexJustifyContent.FLEX_START;
+   justifyContent: string = FlexJustifyContent.FLEX_START;
 
    @property()
-   alignItems: AlignItems = AlignItems.STRETCH;
+   alignItems: string = AlignItems.STRETCH;
 
    @property()
-   alignContent: AlignContent = AlignContent.STRETCH;
+   alignContent: string = AlignContent.STRETCH;
 
    @property()
-   keylineAlignment: KeylineAlignment = KeylineAlignment.BOTH;
+   keylineAlignment: string = KeylineAlignment.BOTH;
 
    @property()
-   keylineSize: KeylineSize = KeylineSize.ZERO;
+   keylineSize: string = KeylineSize.ZERO;
 
    @property()
    containerClazz: string = 'container_100';
