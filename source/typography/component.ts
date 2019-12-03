@@ -21,7 +21,7 @@ export class TypographyTypes {
 
 export class TypographyInputData extends AbstractInputData {
    componentIdentifier = TypographyComponent.IDENTIFIER;
-   type: TypographyTypes = TypographyTypes.H2;
+   type: string = TypographyTypes.H2;
    text?: string;
    clazz?: string;
    cssStyle?: string;
@@ -37,7 +37,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    static IDENTIFIER: string = 'HComponent';
 
    @property()
-   type: TypographyTypes = TypographyTypes.BODY1;
+   type: string = TypographyTypes.BODY1;
 
    @property()
    text: string = '';
