@@ -1,8 +1,5 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { InputComponent } from '../input/component';
-import { FormElementComponent, FormElementInputData } from '../form-element/component';
-import { TextareaComponent } from '../textarea/component';
-import { ComboboxComponent } from '../combobox/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FlexComponent, FlexContainerInputData } from '../flex-container/component';
 import { ButtonComponent, ButtonInputData } from '../button/component';
@@ -82,20 +79,18 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          let elements: Element[] = this.slotElement.assignedElements();
          for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
             let element: Element = elements[elementIndex];
-            if (element instanceof FormElementComponent) {
+            if (element instanceof InputComponent) {
                let elementOutputData = element.getOutputData();
-               for (const value of elementOutputData.data) {
-                  if (formElementIndex > 0) {
-                     json = json.concat(',');
-                  }
-                  json = json.concat('"');
-                  json = json.concat(value.key);
-                  json = json.concat('":"');
-                  json = json.concat(value.value);
-                  json = json.concat('"');
-                  formElementIndex++;
-                  formData.append(value.key, value.value);
+               if (formElementIndex > 0) {
+                  json = json.concat(',');
                }
+               json = json.concat('"');
+               json = json.concat(elementOutputData.key);
+               json = json.concat('":"');
+               json = json.concat(elementOutputData.value);
+               json = json.concat('"');
+               formElementIndex++;
+               formData.append(elementOutputData.key, elementOutputData.value);
             }
          }
       }
@@ -119,7 +114,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
             }
          ],
          flexContainerInputData: <FlexContainerInputData>{
-            componentIdentifier: FlexComponent.IDENTIFIER,
+            componentIdentifier: FlexComponent.IDENTIFIER
          }
       };
    }

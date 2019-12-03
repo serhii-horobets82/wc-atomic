@@ -14,7 +14,6 @@ import {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/com
 import {DividerInputData,DividerComponent} from './divider/component';
 import {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
-import {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
@@ -65,7 +64,6 @@ export {DatalistOption,DatalistInputData,DatalistComponent} from './datalist/com
 export {DividerInputData,DividerComponent} from './divider/component';
 export {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
-export {FormElementInputData,FormElementOutputData,FormElementComponent} from './form-element/component';
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
@@ -101,4 +99,4 @@ export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-//import './_showcase/showcase-app';
+import './_showcase/showcase-app';

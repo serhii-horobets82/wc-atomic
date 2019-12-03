@@ -6,7 +6,6 @@ import { ImgComponent } from '../img/component';
 import { IconComponent } from '../icon/component';
 import { TextareaComponent } from '../textarea/component';
 import { InputComponent } from '../input/component';
-import { FormElementComponent } from '../form-element/component';
 import { SearchComponent } from '../search/component';
 import { AccordionComponent } from '../accordion/container/component';
 import { ImgSliderComponent } from '../img-slider/component';
@@ -63,9 +62,6 @@ export class ComponentLoader {
             break;
          case FormComponent.IDENTIFIER:
             component = new FormComponent();
-            break;
-         case FormElementComponent.IDENTIFIER:
-            component = new FormElementComponent();
             break;
          case SpacerComponent.IDENTIFIER:
             component = new SpacerComponent();
