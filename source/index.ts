@@ -1,4 +1,3 @@
-import {ComponentLoader} from './abstract/component-loader';
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
@@ -49,7 +48,7 @@ import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 import {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
-export {ComponentLoader} from './abstract/component-loader';
+import {ComponentLoader} from './abstract/component-loader';
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
 export {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
@@ -100,5 +99,6 @@ export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
+export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
 //import './_showcase/showcase-app';
