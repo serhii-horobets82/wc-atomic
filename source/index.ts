@@ -99,4 +99,4 @@ export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyTypes,TypographyInputData,TypographyComponent} from './typography/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-import './_showcase/showcase-app';
+//import './_showcase/showcase-app';
