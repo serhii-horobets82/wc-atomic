@@ -1,10 +1,11 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
 import {InputComponent} from '../input/component';
-import {TypographyComponent, TypographyTypes} from '../typography/component';
+import {TypographyComponent} from '../typography/component';
 import {SimpleTableRowData} from '../simple-table/component';
 import {ComboboxOption} from '../combobox/component';
 import {KeylineSize} from "../flex-container/component";
+import {TypographyTypes} from "../a";
 
 @customElement('page-typography')
 export class PageTypographyComponent extends PageAbstract {

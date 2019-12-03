@@ -1,6 +1,5 @@
 import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { TypographyTypes } from '../typography/component';
 import {
    AlignContent,
    AlignItems,
@@ -11,6 +10,7 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
+import {TypographyTypes} from "../a";
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {

@@ -2,7 +2,7 @@ import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import {ImgComponent, ImgInputData} from "../img/component";
-import {TypographyTypes} from "../typography/component";
+import {TypographyTypes} from "../a";
 
 @customElement('page-img')
 export class PageImgComponent extends PageAbstract {
