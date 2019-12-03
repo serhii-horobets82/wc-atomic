@@ -1,8 +1,23 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {TypographyTypes} from "../a";
 
 const componentCSS = require('./component.css');
+
+export class TypographyTypes {
+   static H1 = 'H1';
+   static H2 = 'H2';
+   static H3 = 'H3';
+   static H4 = 'H4';
+   static H5 = 'H5';
+   static H6 = 'H6';
+   static SUBTITLE1 = 'SUBTITLE1';
+   static SUBTITLE2 = 'SUBTITLE2';
+   static BODY1 = 'BODY1';
+   static BODY2 = 'BODY2';
+   static BUTTON = 'BUTTON';
+   static CAPTION = 'CAPTION';
+   static OVERLINE = 'OVERLINE';
+}
 
 export class TypographyInputData extends AbstractInputData {
    componentIdentifier = TypographyComponent.IDENTIFIER;

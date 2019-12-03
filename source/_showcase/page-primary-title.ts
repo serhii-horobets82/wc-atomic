@@ -2,9 +2,8 @@ import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import { ImgComponent, ImgInputData } from '../img/component';
-import { TypographyInputData} from '../typography/component';
+import {TypographyInputData, TypographyTypes} from '../typography/component';
 import {FlexJustifyContent} from "../flex-container/component";
-import {TypographyTypes} from "../a";
 
 @customElement('page-primary-title')
 export class PagePrimaryTitleComponent extends PageAbstract {

@@ -1,6 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import {TypographyTypes} from "../a";
+import {TypographyTypes} from "..";
 
 const componentCSS = require('./component.css');
 

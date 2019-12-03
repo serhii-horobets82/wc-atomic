@@ -1,5 +1,4 @@
-import {TypographyTypes} from "./a";
-export {TypographyTypes} from "./a";
+
 
 import {ComponentLoader} from './abstract/component-loader';
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
@@ -51,7 +50,7 @@ import {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-import {TypographyInputData,TypographyComponent} from './typography/component';
+import {TypographyInputData, TypographyComponent, TypographyTypes} from './typography/component';
 export {ComponentLoader} from './abstract/component-loader';
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
@@ -105,3 +104,4 @@ export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyInputData,TypographyComponent} from './typography/component';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
 //import './_showcase/showcase-app';
+export {TypographyTypes} from "./typography/component";

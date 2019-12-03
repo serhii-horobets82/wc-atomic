@@ -10,7 +10,7 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
-import {TypographyTypes} from "../a";
+import {TypographyTypes} from "..";
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {

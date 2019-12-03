@@ -1,6 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import {TypographyTypes} from "../a";
+import {TypographyTypes} from "..";
 
 @customElement('page-introduction')
 export class PageIntroduction extends PageAbstract {
