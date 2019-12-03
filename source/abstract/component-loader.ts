@@ -1,4 +1,3 @@
-import { LinkComponent } from '../link/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ButtonComponent } from '../button/component';
 import { CodeComponent } from '../code/component';
@@ -28,6 +27,9 @@ import { I18NSelectorComponent } from '../i18n-selector/component';
 import { ListComponent } from '../list/container/component';
 import { ListItemComponent } from '../list/item/component';
 import {TypographyComponent} from "../typography/component";
+import { LinkComponent } from '../link/component';
+import { NavigationLinkComponent } from '../navigation/navigation-link/component';
+
 
 export class ComponentLoader {
    static INSTANCE: ComponentLoader = new ComponentLoader();
