@@ -125,7 +125,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             @keyup="${this.keyup}"
             @change="${(event: Event) => this.change(event)}"
          />
-         ${this.type == HTMLInputTypes.CHECKBOX ? html`<component-typography>${this.value}</component-typography>` : ''}
+         ${this.type == HTMLInputTypes.CHECKBOX ? html`<component-typography>${this.placeholder}</component-typography>` : ''}
          <slot></slot>
          ${this.validationMessage}
       `;
