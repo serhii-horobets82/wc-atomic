@@ -72,33 +72,25 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
    }
 
    public getOutputData(): FormComponentOutputData {
+
       let formData = new FormData();
-      let json: string = '{';
-      let formElementIndex = 0;
+      let json: any = {};
+
       if (this.slotElement != null) {
          let elements: Element[] = this.slotElement.assignedElements();
          for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
             let element: Element = elements[elementIndex];
             if (element instanceof InputComponent) {
                let elementOutputData = element.getOutputData();
-               if (formElementIndex > 0) {
-                  json = json.concat(',');
-               }
-               json = json.concat('"');
-               json = json.concat(elementOutputData.key);
-               json = json.concat('":"');
-               json = json.concat(elementOutputData.value);
-               json = json.concat('"');
-               formElementIndex++;
+               json[elementOutputData.key] = elementOutputData.value;
                formData.append(elementOutputData.key, elementOutputData.value);
             }
          }
       }
-      json = json.concat('}');
-      console.log('form outputData: ' + json);
 
       let outputData = <FormComponentOutputData>{};
-      outputData.jsonObject = JSON.parse(json);
+      outputData.jsonObject = json;
+
       outputData.formData = formData;
 
       return outputData;
