@@ -148,6 +148,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
          case HTMLInputTypes.CHECKBOX:
             value = this.textfieldElemet != null ? this.basicService.getValue(this.textfieldElemet.checked, false) : false;
             break;
+         case HTMLInputTypes.DATE:
+            value = this.textfieldElemet?.valueAsDate;
+            break;
          default:
             break;
       }
