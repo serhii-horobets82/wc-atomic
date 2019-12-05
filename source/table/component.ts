@@ -60,10 +60,10 @@ export class TableInputData extends AbstractInputData {
 }
 
 export class ColumnEventData {
-   row?: RowInputData;
-   rowIndex?: number;
-   columnIndex?: number;
-   newValue: any;
+   row: RowInputData = <RowInputData>{};
+   rowIndex: number = -1;
+   columnIndex: number = -1;
+   sourceEvent: CustomEvent = <CustomEvent>{};
 }
 
 export class TableContent {
@@ -647,7 +647,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
          row: row,
          rowIndex: rowIndex,
          columnIndex: columnIndex,
-         newValue: event.detail
+         sourceEvent: event.detail
       };
 
       this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CHANGED, columnChangedData);
@@ -658,7 +658,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
          row: row,
          rowIndex: rowIndex,
          columnIndex: columnIndex,
-         newValue: event.detail
+         sourceEvent: event.detail
       };
       this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CLICKED, columnChangedData);
    }
