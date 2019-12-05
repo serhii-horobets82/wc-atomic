@@ -26,7 +26,7 @@ export class DialogComponent extends AbstractComponent<DialogInputData, any> {
             <div class="wrapperInside">
                <!-- Dialog -->
                <div class="dialogContainer">
-                  <slot></slot>jj
+                  <slot></slot>
                </div>
             </div>
          </div>

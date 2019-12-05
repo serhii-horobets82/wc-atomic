@@ -1,0 +1,4 @@
+.hide, ::slotted(.hide) {
+    display: none;
+    visibility: hidden;
+}

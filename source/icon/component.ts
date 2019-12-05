@@ -52,20 +52,19 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    @property()
    status: number = 1;
 
+   @property()
+   rendered: boolean = true;
+
    render() {
       return html`
-<span class="icon-container">
-         <span
-            title="${this.title}"
-            class="${this.clickable ? 'clickable' : ''} ${this.status === 2
-               ? 'active'
-               : this.status === 3
-               ? 'passiv'
-               : ''}"
-            @click="${this.clicked}"
-         ><i class="material-icons">${this.icon}</i></span>
-    </span>
-    
+         <span class="icon-container ${!this.rendered ? 'hide' : ''}">
+            <span
+               title="${this.title}"
+               class="${this.clickable ? 'clickable' : ''} ${this.status === 2 ? 'active' : this.status === 3 ? 'passiv' : ''}"
+               @click="${this.clicked}"
+               ><i class="material-icons">${this.icon}</i></span
+            >
+         </span>
       `;
    }
 
