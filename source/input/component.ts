@@ -74,6 +74,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    required: boolean = false;
 
    @property()
+   disabled: boolean = false;
+
+   @property()
    checked: boolean = false;
 
    @property()
@@ -120,6 +123,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             min="${this.min}"
             max="${this.max}"
             ?required="${this.required}"
+            ?disabled="${this.disabled}"
             ?checked="${this.checked}"
             ?multiple="${this.multiple}"
             @keyup="${this.keyup}"
