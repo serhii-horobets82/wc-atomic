@@ -33,7 +33,7 @@ import {PrimaryTitleInputData,PrimaryTitleComponent} from './primary-title/compo
 import {SearchInputData,SearchComponent} from './search/component';
 import {SimpleTableRowData,SimpleTableData,SimpleTableComponent} from './simple-table/component';
 import {SpacerInputData,SpacerComponent} from './spacer/component';
-import {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnChangedEventData,TableContent,TableComponent} from './table/component';
+import {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnEventData,TableContent,TableComponent} from './table/component';
 import {TableCompoundHeaderInputData,TableCompoundHeader} from './table/compound-header/component';
 import {TabsInputData,TabsComponent} from './tabs/component';
 import {TabInputData,TabComponent} from './tabs/tab/component';
@@ -83,7 +83,7 @@ export {PrimaryTitleInputData,PrimaryTitleComponent} from './primary-title/compo
 export {SearchInputData,SearchComponent} from './search/component';
 export {SimpleTableRowData,SimpleTableData,SimpleTableComponent} from './simple-table/component';
 export {SpacerInputData,SpacerComponent} from './spacer/component';
-export {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnChangedEventData,TableContent,TableComponent} from './table/component';
+export {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnEventData,TableContent,TableComponent} from './table/component';
 export {TableCompoundHeaderInputData,TableCompoundHeader} from './table/compound-header/component';
 export {TabsInputData,TabsComponent} from './tabs/component';
 export {TabInputData,TabComponent} from './tabs/tab/component';

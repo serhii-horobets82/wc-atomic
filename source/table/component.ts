@@ -59,7 +59,7 @@ export class TableInputData extends AbstractInputData {
    headers?: TableHeaderInputData[];
 }
 
-export class ColumnChangedEventData {
+export class ColumnEventData {
    row?: RowInputData;
    rowIndex?: number;
    columnIndex?: number;
@@ -643,7 +643,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
     * @param columnIndex
     */
    private createColumnChangeEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
-      let columnChangedData: ColumnChangedEventData = {
+      let columnChangedData: ColumnEventData = {
          row: row,
          rowIndex: rowIndex,
          columnIndex: columnIndex,
@@ -654,7 +654,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    }
 
    private createColumnClickEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
-      let columnChangedData: ColumnChangedEventData = {
+      let columnChangedData: ColumnEventData = {
          row: row,
          rowIndex: rowIndex,
          columnIndex: columnIndex,
