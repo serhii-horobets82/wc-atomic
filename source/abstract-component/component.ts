@@ -3,7 +3,6 @@ import {
    BasicService,
    DataReceiverListener,
    DataReceiverService,
-   HttpClientService,
    I18nService,
    RouterService,
    SlotService,
@@ -23,7 +22,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       super();
    }
 
-   protected basicService: BasicService = new BasicService();
+   protected basicService: BasicService = BasicService.getInstance();
    protected slotService: SlotService = new SlotService();
    protected i18nService: I18nService = I18nService.getInstance();
    protected screenHeight: number = window.innerHeight;
