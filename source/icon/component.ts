@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
-const componentCSS = require('./component.scss');
+const componentCSS = require('./component.css');
 
 /**
  * iconClazz:

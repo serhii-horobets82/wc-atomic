@@ -3,6 +3,7 @@ import {DataProtection} from '../data-protection/component';
 
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {IconInputData} from '../icon/component';
+import {DialogComponent} from "..";
 
 const componentCSS = require('./component.css');
 

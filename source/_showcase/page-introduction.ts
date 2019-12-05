@@ -6,6 +6,7 @@ import {TypographyTypes} from "..";
 export class PageIntroduction extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
+
          <component-flex-container containerClazz="container_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
             <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>

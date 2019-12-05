@@ -46,8 +46,9 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
 
    render() {
       return html`
-         <div style="${this.isAccepted ? 'display: none;' : ''}">
-            <component-button .inputData="${this.buttonInputData}" @click="${this.accept}">${this.lawText}</component-button>
+            <component-dialog style="${this.isAccepted ? 'display: none;' : ''}">
+               <component-button .inputData="${this.buttonInputData}" @click="${this.accept}">${this.lawText}</component-button>
+            </component-dialog>
          </div>
       `;
    }

@@ -1,0 +1,39 @@
+.hide {
+    display: none;
+    visibility: hidden;
+}
+
+.fullScreen {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.opacScreen {
+    z-index: 20;
+    opacity: .85;
+    background-color: var(--app-color-border);
+}
+
+.wrapperOutside {
+    display: table;
+    z-index: 30;
+}
+
+.wrapperInside {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.dialogContainer {
+    width: 80%;
+    height: auto;
+    background-color: var(--app-color-background);
+    padding: 0;
+    margin: 0 auto;
+}
