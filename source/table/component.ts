@@ -1,16 +1,16 @@
-import { css, customElement, html, property, TemplateResult, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { guard } from 'lit-html/directives/guard';
-import { repeat } from 'lit-html/directives/repeat';
-import { InputComponent, InputInputData } from '../input/component';
-import { DatalistComponent, DatalistInputData } from '../datalist/component';
-import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
-import { ButtonComponent, ButtonInputData } from '../button/component';
-import { IconComponent } from '../icon/component';
-import { HttpClientService } from '@domoskanonos/frontend-basis';
-import { KeyValueData } from '../form/component';
-import {TypographyComponent, TypographyInputData} from "../typography/component";
-import {PageTypographyComponent} from "../_showcase/page-typography";
+import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {guard} from 'lit-html/directives/guard';
+import {repeat} from 'lit-html/directives/repeat';
+import {InputComponent, InputInputData} from '../input/component';
+import {DatalistComponent, DatalistInputData} from '../datalist/component';
+import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
+import {ButtonComponent, ButtonInputData} from '../button/component';
+import {IconComponent} from '../icon/component';
+import {HttpClientService} from '@domoskanonos/frontend-basis';
+import {KeyValueData} from '../form/component';
+import {TypographyComponent, TypographyInputData} from '../typography/component';
+import {PageTypographyComponent} from '../_showcase/page-typography';
 
 const componentCSS = require('./component.css');
 
@@ -97,6 +97,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    static IDENTIFIER: string = 'TableComponent';
 
    static EVENT_COLUMN_CHANGED: string = 'component-table-column-changed';
+   static EVENT_COLUMN_CLICKED: string = 'component-table-column-clicked';
 
    private i18nTablePrefix = 'table_';
    private itemSizeDefaultValue: number = 5;
@@ -141,7 +142,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    sizeComboboxInputData = <ComboboxInputData>{
       componentIdentifier: ComboboxComponent.IDENTIFIER,
       selectedValue: String(this.itemSizeDefaultValue),
-       label: this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page')),
+      label: this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page')),
       options: [
          <ComboboxOption>{
             text: '5',
@@ -230,17 +231,20 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         ${repeat(
                            this._headers,
                            (header) => html`
-                              <span class="headColumn" style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
+                              <span
+                                 class="headColumn"
+                                 style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}"
+                              >
                                  <span
                                     >${this.getI18NValue(
-                                       this.getPageName()
-                                          .concat('_')
-                                          .concat(this.i18nTablePrefix)
-                                          .concat(header.columnKey)
-                                    )}</span
+                               this.getPageName()
+                                   .concat('_')
+                                   .concat(this.i18nTablePrefix)
+                                   .concat(header.columnKey)
+                           )}</span
                                  >
                                  ${this.sorting
-                                    ? html`
+                               ? html`
                                          <component-icon
                                             slot="rightComponents"
                                             iconClazz="${header.sortingIconClazz}"
@@ -248,7 +252,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                             @click="${() => this.updateSortProperty(header)}"
                                          ></component-icon>
                                       `
-                                    : html``}
+                               : html``}
                               </span>
                            `
                         )}
@@ -256,7 +260,12 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                            ? repeat(
                                 this._headers,
                                 (header) => html`
-                                   <span class="filterColumn" style="${header.widthPercent != undefined ? 'width:' + header.widthPercent + '%' : undefined}">
+                                   <span
+                                      class="filterColumn"
+                                      style="${header.widthPercent != undefined
+                                    ? 'width:' + header.widthPercent + '%'
+                                    : undefined}"
+                                   >
                                       ${this.createFilterComponent(header)}
                                    </span>
                                 `
@@ -279,25 +288,28 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                                       () =>
                                          html`
                                             ${repeat(
-                                               row.colums,
-                                               (column, columnIndex) => html`
-                                                  <span class="column" style="width: ${this._headers[columnIndex].widthPercent}%;">
+                                             row.colums,
+                                             (column, columnIndex) => html`
+                                                  <span
+                                                     class="column"
+                                                     style="width: ${this._headers[columnIndex].widthPercent}%;"
+                                                  >
                                                      ${this.createColumnComponent(row, column, rowIndex, columnIndex)}
                                                   </span>
                                                `
-                                            )}
+                                         )}
                                          `
-                                   )}
+                             )}
                                 </div>
                              `
-                          )}
+                       )}
                        `
-                 )
-               : html`<div class="row">
-                    ${this.getI18NValue(this.i18nTablePrefix.concat('no_data'))}
+          )
+          : html`
+                    <div class="row">
+                       ${this.getI18NValue(this.i18nTablePrefix.concat('no_data'))}
                     </div>
                  `}
-            
          </div>
 
          <div class="footer"></div>
@@ -343,7 +355,10 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       let whereClause = '';
       this._headers.forEach((header) => {
          if (this.basicService.isNotBlank(header.searchValue)) {
-            whereClause = whereClause.concat(header.columnKey).concat('=').concat(this.basicService.getValue(header.searchValue, ''));
+            whereClause = whereClause
+                .concat(header.columnKey)
+                .concat('=')
+                .concat(this.basicService.getValue(header.searchValue, ''));
          }
       });
       if (whereClause.length > 0) {
@@ -590,7 +605,12 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             `;
          case IconComponent.IDENTIFIER:
             return html`
-               <component-icon .inputData="${componentInputData}"></component-icon>
+               <component-icon
+                  @component-icon-click="${(event: CustomEvent) => {
+               this.createColumnClickEvent(row, event, rowIndex, columnIndex);
+            }}"
+                  .inputData="${componentInputData}"
+               ></component-icon>
             `;
          case InputComponent.IDENTIFIER:
             return html`
@@ -633,6 +653,16 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CHANGED, columnChangedData);
    }
 
+   private createColumnClickEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
+      let columnChangedData: ColumnChangedEventData = {
+         row: row,
+         rowIndex: rowIndex,
+         columnIndex: columnIndex,
+         newValue: event.detail
+      };
+      this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CLICKED, columnChangedData);
+   }
+
    private getItemSize(): number {
       let size: number = Number(this.sizeComboboxInputData.selectedValue);
       return size;
@@ -666,4 +696,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
          this.setSortingIconClazz(header, this.sort);
       });
    }
+
+
 }
