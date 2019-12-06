@@ -1,12 +1,28 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import {TypographyTypes} from "..";
+import { SpacerSize, TypographyTypes } from '..';
+import { SpacerAlignment } from '../spacer/component';
 
 @customElement('page-introduction')
 export class PageIntroduction extends PageAbstract {
+   getTopContent(): TemplateResult {
+      return html`
+         <component-top-app-bar>
+            <component-spacer slot="leftComponents" clazz="mediumPaddingLeft"></component-spacer>
+            <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
+            <component-spacer
+               slot="leftComponents"
+               size="${SpacerSize.SMALL}"
+               alignment="${SpacerAlignment.HORIZONTAL}"
+            ></component-spacer>
+            <component-typography slot="leftComponents" type="${TypographyTypes.H6}">Introduction</component-typography>
+            <component-i18n-selector slot="rightComponents"></component-i18n-selector>
+         </component-top-app-bar>
+      `;
+   }
+
    getMainComponent(): TemplateResult {
       return html`
-
          <component-flex-container containerClazz="container_50">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
             <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>

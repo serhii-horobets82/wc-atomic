@@ -8,11 +8,11 @@ export class PageMenubarComponent extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_50">
 
-            <component-menubar>
+            <component-top-app-bar>
                <component-icon slot="leftComponents" iconClazz="fas fa-bars" clickable="true"></component-icon>
                <span slot="mainComponents">My Menu</span>
                <component-icon slot="rightComponents" iconClazz="fas fas fa-share-alt" clickable="true"></component-icon>
-            </component-menubar>
+            </component-top-app-bar>
          </component-flex-container>
       `;
    }

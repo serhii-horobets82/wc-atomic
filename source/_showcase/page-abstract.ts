@@ -1,19 +1,15 @@
-import { html, TemplateResult } from 'lit-element';
-import { BasisTemplate } from '../index';
+import {html, TemplateResult} from 'lit-element';
+import {BasisTemplate, TypographyTypes} from '../index';
 
 export abstract class PageAbstract extends BasisTemplate {
 
-   getAppTitle(): string {
-      return "Showcase App";
-   }
-
    getTopContent(): TemplateResult {
       return html`
-         <component-menubar>
+         <component-top-app-bar>
             <component-spacer slot="leftComponents" clazz="mediumPaddingLeft"></component-spacer>
             <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
             <component-i18n-selector slot="rightComponents"></component-i18n-selector>
-         </component-menubar>
+         </component-top-app-bar>
       `;
    }
 

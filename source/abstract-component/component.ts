@@ -183,6 +183,14 @@ export abstract class AbstractApp extends AbstractComponent<AppData, undefined> 
       return Promise.resolve();
    }
 
+   constructor() {
+      super();
+      let titleTag = document.getElementsByTagName("TITLE")[0];
+      titleTag.textContent = this.getAppTitle();
+   }
+
+   abstract getAppTitle(): string;
+
    render(): TemplateResult {
       return this.renderPage();
    }

@@ -27,7 +27,7 @@ import {
 
 
 @customElement('app-root')
-class ShowcaseApp extends AbstractApp {
+export class ShowcaseApp extends AbstractApp {
 
     async preRender(): Promise<void> {
         I18nService.getInstance().saveData(messageDE);
@@ -77,4 +77,8 @@ class ShowcaseApp extends AbstractApp {
               return html`<page-introduction></page-introduction>`;
       }
    }
+
+    getAppTitle(): string {
+        return "WC-Atomic Template";
+    }
 }

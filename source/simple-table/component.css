@@ -5,7 +5,7 @@ table, ::slotted(table) {
 
 td, th {
     vertical-align: top;
-    padding: var(--small-space);
+    padding: var(--space-small);
     box-sizing: border-box;
     text-align: left;
     border-bottom: 1px solid var(--app-color-border);

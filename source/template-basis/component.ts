@@ -17,12 +17,6 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    static IDENTIFIER: string = 'DefaultTemplate';
 
-   constructor() {
-      super();
-      let titleTag = document.getElementsByTagName("TITLE")[0];
-      titleTag.textContent = this.getAppTitle();
-   }
-
    @property()
    menuSwitchIcon = 'menu';
 
@@ -58,8 +52,6 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
    abstract getLeftComponent(): TemplateResult;
 
    abstract getTopContent(): TemplateResult;
-
-   abstract getAppTitle(): string;
 
    protected inputDataChanged(): void {
    }

@@ -28,7 +28,7 @@
   }
 
   .head:first-child, .row .column:first-child {
-    padding-left: var(--little-space);
+    padding-left: var(--space-little);
   }
 
   .compoundHeaders, ::slotted(.compoundHeaders) {

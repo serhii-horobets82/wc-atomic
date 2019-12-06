@@ -1,10 +1,26 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
+export class SpacerAlignment {
+   static BOTH: string = '';
+   static HORIZONTAL: string = 'horizontalAlignment';
+   static VERTICAL: string = 'verticalAlignment';
+}
+
+export class SpacerSize {
+   static ZERO: string = '';
+   static LITTLE: string = 'spaceLittle';
+   static SMALL: string = 'spaceSmall';
+   static MEDIUM: string = 'spaceMedium';
+   static BIG: string = 'spaceBig';
+   static MAX: string = 'spaceMax';
+}
+
 export class SpacerInputData extends AbstractInputData {
-   clazz?: string;
+   size: string = SpacerSize.ZERO;
+   alignment: string = SpacerAlignment.BOTH;
 }
 
 @customElement('component-spacer')
@@ -16,19 +32,19 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    static IDENTIFIER: string = 'SpacerComponent';
 
    @property()
-   clazz: string = '';
+   size: string = SpacerSize.ZERO;
 
    @property()
-   cssStyle: string = '';
+   alignment: string = SpacerAlignment.BOTH;
 
    render() {
       return html`
-         <div class="${this.clazz}" style="${this.cssStyle}"><slot></slot></div>
+         <div class="${this.size} ${this.alignment}"><slot></slot></div>
       `;
    }
 
    getDefaultInputData(): any {
-      return <SpacerInputData>{ clazz: '' };
+      return <SpacerInputData>{size: SpacerSize.ZERO, alignment: SpacerAlignment.BOTH};
    }
 
    getOutputData(): undefined {
@@ -36,6 +52,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
+      this.size = this.basicService.getValue(this.inputData.size, SpacerSize.ZERO);
+      this.alignment = this.basicService.getValue(this.inputData.alignment, SpacerAlignment.BOTH);
    }
 }

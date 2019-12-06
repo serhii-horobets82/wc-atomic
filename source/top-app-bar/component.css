@@ -1,6 +1,6 @@
 @import '../css/color.css';
 
-.menubar {
+.topappbar {
     width: 100%;
     display: grid;
     grid-template-rows: var(--menubar-height);

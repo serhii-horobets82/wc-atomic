@@ -1,5 +1,5 @@
 textarea {
-  padding-left: var(--little-space);
+  padding-left: var(--space-little);
   font: inherit;
   line-height: var(--line-height);
   box-sizing : border-box;

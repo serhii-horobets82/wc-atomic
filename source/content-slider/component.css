@@ -15,8 +15,8 @@
    filter: brightness(var(--app-hover-brightness));
 }
 component-icon {
-   padding-left: var(--small-space);
-   padding-right: var(--small-space);
+   padding-left: var(--space-small);
+   padding-right: var(--space-small);
 }
 .content.closed {
    display: none;

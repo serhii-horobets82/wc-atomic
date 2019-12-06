@@ -13,7 +13,7 @@ button {
     text-transform: uppercase;
     box-sizing: border-box;
     font-family: inherit;
-    padding: var(--little-space) var(--small-space) var(--little-space) var(--small-space);
+    padding: var(--space-little) var(--space-small) var(--space-little) var(--space-small);
 }
 button:hover, .selected {
     background: var(--app-color-primary);

@@ -1,5 +1,4 @@
 @import '../css/color.css';
-@import '../css/padding.css';
 
 *,
 ::slotted(*) {
@@ -63,29 +62,29 @@
 }
 
 .PADDING_LITTLE, ::slotted(.PADDING_LITTLE) {
-   padding-right: var(--little-space);
-   padding-bottom: var(--little-space);
+   padding-right: var(--space-little);
+   padding-bottom: var(--space-little);
 }
 
 .PADDING_SMALL, ::slotted(.PADDING_SMALL) {
-   padding-right: var(--small-space);
-   padding-bottom: var(--small-space);
+   padding-right: var(--space-small);
+   padding-bottom: var(--space-small);
 }
 
 .PADDING_MEDIUM, ::slotted(.PADDING_MEDIUM) {
-   padding-right: var(--medium-space);
-   padding-bottom: var(--medium-space);
+   padding-right: var(--space-medium);
+   padding-bottom: var(--space-medium);
 
 }
 
 .PADDING_BIG, ::slotted(.PADDING_BIG) {
-   padding-right: var(--big-space);
-   padding-bottom: var(--big-space);
+   padding-right: var(--space-big);
+   padding-bottom: var(--space-big);
 }
 
 .PADDING_MAX, ::slotted(.PADDING_MAX) {
-   padding-right: var(--max-space);
-   padding-bottom: var(--max-space);
+   padding-right: var(--space-max);
+   padding-bottom: var(--space-max);
 }
 
 .KEYLINE_ALIGNMENT_HORIZONTAL, ::slotted(.KEYLINE_ALIGNMENT_HORIZONTAL) {

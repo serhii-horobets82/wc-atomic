@@ -4,8 +4,8 @@
     height: var(--line-height-big);
     background-color: var(--app-color-surface);
     color: var(--app-color-on-surface);
-    padding-left: var(--medium-space);
-    padding-right: var(--medium-space);
+    padding-left: var(--space-medium);
+    padding-right: var(--space-medium);
     float: left;
 }
 
