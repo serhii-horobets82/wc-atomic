@@ -1,2 +1,1 @@
-- TODO: Date formating server client:
-https://www.baeldung.com/spring-boot-formatting-json-dates
+- Menü Flex Between machen damit alle icons im mobile auch angezeigt werden

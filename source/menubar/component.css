@@ -4,7 +4,7 @@
     width: 100%;
     display: grid;
     grid-template-rows: var(--menubar-height);
-    grid-template-columns: var(--menu-size) auto auto;
+    grid-template-columns: auto auto auto;
     background-color: var(--app-color-primary);
     color: var(--app-color-on-primary);
 }

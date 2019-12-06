@@ -32,8 +32,6 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
    @property()
    rightInputData: AbstractInputData[] = [];
 
-   @property()
-   clazz: string = 'menubar';
 
    constructor() {
       super();
@@ -41,7 +39,7 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
 
    render() {
       return html`
-         <div class="menubar ${this.clazz}">
+         <div class="menubar">
             <div class="left">
                ${guard(
                   this.leftInputData,
@@ -105,7 +103,6 @@ export class MenubarComponent extends AbstractComponent<MenubarInputData, undefi
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
       this.leftInputData = this.inputData.leftInputData;
       this.mainInputData = this.inputData.mainInputData;
       this.rightInputData = this.inputData.rightInputData;
