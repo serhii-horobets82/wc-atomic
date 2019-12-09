@@ -24,7 +24,7 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
       return html`
          <div class="searchBox">
             <component-inputfield id="textfieldComponent"></component-inputfield
-            ><component-icon iconClazz="icon-search" clickable="true" @component-icon-click="${this.clicked}"></component-icon>
+            ><component-icon icon="search" clickable="true" @component-icon-click="${this.clicked}"></component-icon>
          </div>
       `;
    }

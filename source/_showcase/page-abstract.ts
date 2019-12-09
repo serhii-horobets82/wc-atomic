@@ -8,7 +8,7 @@ export abstract class PageAbstract extends BasisTemplate {
          <component-top-app-bar>
             <component-spacer slot="leftComponents" clazz="mediumPaddingLeft"></component-spacer>
             <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
-            <component-i18n-selector slot="rightComponents"></component-i18n-selector>
+            <component-icon slot="rightComponents" icon="search" clickable="true"></component-icon>
          </component-top-app-bar>
       `;
    }

@@ -16,7 +16,8 @@ export class PageIntroduction extends PageAbstract {
                alignment="${SpacerAlignment.HORIZONTAL}"
             ></component-spacer>
             <component-typography slot="leftComponents" type="${TypographyTypes.H6}">Introduction</component-typography>
-            <component-i18n-selector slot="rightComponents"></component-i18n-selector>
+            <component-icon slot="rightComponents" icon="search" clickable="true"></component-icon>
+            <component-search slot="prominentComponents" ></component-search>
          </component-top-app-bar>
       `;
    }
