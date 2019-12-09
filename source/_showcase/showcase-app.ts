@@ -38,10 +38,7 @@ export class ShowcaseApp extends AbstractApp {
         config.credentials = Credentials.INCLUDE;
         config.cors = CorsMode.CORS;
         config.defaultContentType = 'application/json';
-        config.isSecured = true;
-        config.loginPath = '/dologin';
-        config.logoutPath = '/dologout';
-
+        
         return super.preRender();
     }
 

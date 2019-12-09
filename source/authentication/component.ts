@@ -1,13 +1,15 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { FormComponent, FormComponentOutputData } from '../form/component';
-import { HttpClientService } from '@domoskanonos/frontend-basis';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {FormComponent, FormComponentOutputData} from '../form/component';
+import {SecureService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
-export class LoginInputData extends AbstractInputData {}
+export class LoginInputData extends AbstractInputData {
+}
 
-export class AuthenticatedSuccessfullyEventData {}
+export class AuthenticatedSuccessfullyEventData {
+}
 
 export class AuthenticatedFailureEventData {
    reason?: string;
@@ -37,11 +39,17 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    formComponent: FormComponent | undefined;
 
    @property()
-   isAuthenticated: boolean = HttpClientService.getInstance().isAuthenticated();
+   isAuthenticated: boolean = false;
+
+   @property()
+   loginPath: string = '';
+
+   @property()
+   logoutPath: string = '';
 
    render() {
       return !this.isAuthenticated
-         ? html`
+          ? html`
               <component-form id="authenitcate-form">
                     <component-inputfield name="username" placeholder="${this.getI18NValue('component_authentication_username')}"></component-inputfield>
                     <component-inputfield type="password" name="password" placeholder="${this.getI18NValue('component_authentication_password')}"></component-inputfield>
@@ -51,7 +59,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
                  ></component-button>
               </component-form>
            `
-         : html`
+          : html`
               <component-form id="logout-form">
                  <component-button
                     text="${this.getI18NValue('component_authentication_logout')}"
@@ -64,7 +72,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    private login() {
       if (this.formComponent != null) {
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let loginPromise = HttpClientService.getInstance().login(formOutputData.formData);
+         let loginPromise = SecureService.getInstance().login(this.loginPath, formOutputData.formData);
          loginPromise
             .then((isAuthenticated: boolean) => {
                this.isAuthenticated = isAuthenticated;
@@ -90,15 +98,15 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    }
 
    private logout() {
-      HttpClientService.getInstance()
-         .logout()
-         .then((isAuthenticated: boolean) => {
-            this.isAuthenticated = isAuthenticated;
+      SecureService.getInstance()
+          .logout(this.logoutPath)
+          .then((isAuthenticated: boolean) => {
+             this.isAuthenticated = isAuthenticated;
 
-            let eventData: LogoutEventData = {};
+             let eventData: LogoutEventData = {};
 
-            this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
-         });
+             this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
+          });
    }
 
    protected inputDataChanged() {}
@@ -120,4 +128,5 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
          AuthenticationComponent.EVENT_AUTHENTICATION_FAILURE
       ];
    }
+
 }
