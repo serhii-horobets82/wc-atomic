@@ -20,6 +20,10 @@
     justify-self: end;
 }
 
+.prominent {
+
+}
+
 .left ,.center,.right {
     display: flex;
     flex-direction: row;

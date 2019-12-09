@@ -9,49 +9,48 @@ import { AuthenticatedIconComponent } from '../authenticated-icon/component';
 const componentCSS = require('./component.css');
 
 export class TopAppBarInputData extends AbstractInputData {
-    leftInputData: AbstractInputData[] = [];
-    mainInputData: AbstractInputData[] = [];
-    rightInputData: AbstractInputData[] = [];
+   leftInputData: AbstractInputData[] = [];
+   mainInputData: AbstractInputData[] = [];
+   rightInputData: AbstractInputData[] = [];
 }
 
 @customElement('component-top-app-bar')
 export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, undefined> {
-    static styles = css`
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'ToolbarComponent';
+   static IDENTIFIER: string = 'ToolbarComponent';
 
-    @property()
-    leftInputData: AbstractInputData[] = [];
+   @property()
+   leftInputData: AbstractInputData[] = [];
 
-    @property()
-    mainInputData: AbstractInputData[] = [];
+   @property()
+   mainInputData: AbstractInputData[] = [];
 
-    @property()
-    rightInputData: AbstractInputData[] = [];
+   @property()
+   rightInputData: AbstractInputData[] = [];
 
+   constructor() {
+      super();
+   }
 
-    constructor() {
-        super();
-    }
-
-    render() {
-        return html`
+   render() {
+      return html`
          <div class="topappbar">
             <div class="left">
                ${guard(
-            this.leftInputData,
-            () =>
-                html`
+                  this.leftInputData,
+                  () =>
+                     html`
                         ${repeat(
-                    this.leftInputData,
-                    (inputData) => html`
+                           this.leftInputData,
+                           (inputData) => html`
                               ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
                            `
-                )}
+                        )}
                      `
-        )}
+               )}
                <slot name="leftComponents"></slot>
             </div>
 
@@ -71,39 +70,42 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
             </div>
             <div class="right">
                ${guard(
-            this.rightInputData,
-            () =>
-                html`
+                  this.rightInputData,
+                  () =>
+                     html`
                         ${repeat(
-                    this.rightInputData,
-                    (inputData) => html`
+                           this.rightInputData,
+                           (inputData) => html`
                               ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
                            `
-                )}
+                        )}
                      `
-        )}
+               )}
                <slot name="rightComponents"></slot>
+            </div>
+            <div class="prominent">
+               <slot name="prominentComponents"></slot>
             </div>
          </div>
       `;
-    }
+   }
 
-    getDefaultInputData(): TopAppBarInputData {
-        return <TopAppBarInputData>{
-            componentIdentifier: TopAppBarComponent.IDENTIFIER,
-            leftInputData: [new IconComponent().getDefaultInputData()],
-            mainInputData: [],
-            rightInputData: [new AuthenticatedIconComponent().getDefaultInputData()]
-        };
-    }
+   getDefaultInputData(): TopAppBarInputData {
+      return <TopAppBarInputData>{
+         componentIdentifier: TopAppBarComponent.IDENTIFIER,
+         leftInputData: [new IconComponent().getDefaultInputData()],
+         mainInputData: [],
+         rightInputData: [new AuthenticatedIconComponent().getDefaultInputData()]
+      };
+   }
 
-    getOutputData(): any {
-        return undefined;
-    }
+   getOutputData(): any {
+      return undefined;
+   }
 
-    protected inputDataChanged() {
-        this.leftInputData = this.basicService.getValue(this.inputData.leftInputData, []);
-        this.mainInputData = this.basicService.getValue(this.inputData.mainInputData, []);
-        this.rightInputData = this.basicService.getValue(this.inputData.rightInputData, []);
-    }
+   protected inputDataChanged() {
+      this.leftInputData = this.basicService.getValue(this.inputData.leftInputData, []);
+      this.mainInputData = this.basicService.getValue(this.inputData.mainInputData, []);
+      this.rightInputData = this.basicService.getValue(this.inputData.rightInputData, []);
+   }
 }
