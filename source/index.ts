@@ -2,6 +2,8 @@ import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstrac
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 import {AuthenticatedIconInputData,AuthenticatedIconComponent} from './authenticated-icon/component';
+import {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
+import {RegisterInputData,RegisterComponent} from './register/component';
 import {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
@@ -75,6 +77,7 @@ export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slide
 export {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
 export {LinkInputData,LinkComponent} from './link/component';
 export {ListInputData,ListComponent} from './list/container/component';
+export {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
 export {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
 export {NavigationInputData,NavigationComponent} from './navigation/component';
@@ -88,6 +91,7 @@ export {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInp
 export {TableCompoundHeaderInputData,TableCompoundHeader} from './table/compound-header/component';
 export {TabsInputData,TabsComponent} from './tabs/component';
 export {TabInputData,TabComponent} from './tabs/tab/component';
+export {RegisterInputData,RegisterComponent} from './register/component';
 export {TabContentInputData,TabContentComponent} from './tabs/tab-content/component';
 export {TeaserContainerInputData,TeaserComponent} from './teaser/component';
 export {TeaserElementInputData,TeaserElementComponent} from './teaser/teaser-element/component';
