@@ -11,7 +11,7 @@ export class PageFormComponent extends PageAbstract {
         return html`
          <component-flex-container containerClazz="container_50">
          <component-authenticated-icon></component-authenticated-icon>
-         <component-authentication></component-authentication>
+         <component-authentication loginPath="/dologin"></component-authentication>
 
          <component-register registerPath="/AUTH/REGISTER"></component-register>
          

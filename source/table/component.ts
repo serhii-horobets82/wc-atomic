@@ -11,6 +11,7 @@ import {HttpClientService} from '@domoskanonos/frontend-basis';
 import {KeyValueData} from '../form/component';
 import {TypographyComponent, TypographyInputData} from '../typography/component';
 import {PageTypographyComponent} from '../_showcase/page-typography';
+import {HttpClientRequest} from '@domoskanonos/frontend-basis/source/http-client-service';
 
 const componentCSS = require('./component.css');
 
@@ -371,17 +372,19 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
          .concat(this.requestParams)
          .concat('&page=')
          .concat(String(this.page - 1))
-         .concat('&size=')
-         .concat(
-            String(this.getItemSize())
-               .concat('&sort=')
-               .concat(String(this.sort))
-               .concat(whereClause)
-         );
+          .concat('&size=')
+          .concat(
+              String(this.getItemSize())
+                  .concat('&sort=')
+                  .concat(String(this.sort))
+                  .concat(whereClause)
+          );
 
       console.log('table path prefix: ' + requestPath);
 
-      let responsePromise = HttpClientService.getInstance().get(requestPath);
+      let request: HttpClientRequest = new HttpClientRequest();
+      request.path = requestPath;
+      let responsePromise = HttpClientService.getInstance().request(request);
       responsePromise.then((response: any) => {
          let bodyTextPromise: Promise<string> = response.text();
          bodyTextPromise.then((tableContentAsJson) => {
