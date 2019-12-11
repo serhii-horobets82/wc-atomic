@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
-import {HttpSecureClientService} from '@domoskanonos/frontend-basis';
+import {HttpClientService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -72,7 +72,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    private login() {
       if (this.formComponent != null) {
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let loginPromise = HttpSecureClientService.getInstance().login(this.loginPath, formOutputData.formData);
+         let loginPromise = HttpClientService.getInstance().login(this.loginPath, formOutputData.formData);
          loginPromise
             .then((isAuthenticated: boolean) => {
                this.isAuthenticated = isAuthenticated;
@@ -92,7 +92,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    }
 
    private logout() {
-      HttpSecureClientService.getInstance()
+      HttpClientService.getInstance()
           .logout(this.logoutPath)
           .then((isAuthenticated: boolean) => {
              this.isAuthenticated = isAuthenticated;
