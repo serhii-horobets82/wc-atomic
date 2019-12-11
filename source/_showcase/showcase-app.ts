@@ -19,10 +19,7 @@ import './page-form.ts';
 import './page-typography.ts';
 import './showcase-app.ts';
 import {
-    HttpClientIF,
     HttpClientService,
-    CorsMode,
-    Credentials
 } from "@domoskanonos/frontend-basis/source/http-client-service";
 
 
@@ -35,10 +32,7 @@ export class ShowcaseApp extends AbstractApp {
 
         let config = HttpClientService.getInstance().config;
         config.baseURL = 'http://v220190910399797452.supersrv.de:8099';
-        config.credentials = Credentials.INCLUDE;
-        config.cors = CorsMode.CORS;
-        config.defaultContentType = 'application/json';
-        
+
         return super.preRender();
     }
 

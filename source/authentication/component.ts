@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
-import {SecureService} from '@domoskanonos/frontend-basis';
+import {HttpSecureClientService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -72,39 +72,31 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    private login() {
       if (this.formComponent != null) {
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let loginPromise = SecureService.getInstance().login(this.loginPath, formOutputData.formData);
+         let loginPromise = HttpSecureClientService.getInstance().login(this.loginPath, formOutputData.formData);
          loginPromise
             .then((isAuthenticated: boolean) => {
                this.isAuthenticated = isAuthenticated;
-
                if (this.isAuthenticated) {
                   console.log('successfully authenitcated.');
-
                   let eventData: AuthenticatedSuccessfullyEventData = {};
-
                   this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_SUCCESSFULLY, eventData);
                }
             })
             .catch((reason: string) => {
                console.log('authenitcate failure, reason: ' + reason);
-
                this.isAuthenticated = false;
-
                let eventData: AuthenticatedFailureEventData = { reason: reason };
-
                this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_FAILURE, eventData);
             });
       }
    }
 
    private logout() {
-      SecureService.getInstance()
+      HttpSecureClientService.getInstance()
           .logout(this.logoutPath)
           .then((isAuthenticated: boolean) => {
              this.isAuthenticated = isAuthenticated;
-
              let eventData: LogoutEventData = {};
-
              this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
           });
    }
