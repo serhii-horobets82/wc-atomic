@@ -39,9 +39,9 @@ export class PageCardComponent extends PageAbstract {
                   </component-toolbar>
 
                   <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
-                     <component-icon iconClazz="fas fa-bars"></component-icon>
-                     <component-icon iconClazz="fas fa-bars"></component-icon>
-                     <component-icon iconClazz="fas fa-bars"></component-icon>
+                     <component-icon icon="favorite_border"></component-icon>
+                     <component-icon icon="star_border"></component-icon>
+                     <component-icon icon="star_border"></component-icon>
                   </component-toolbar>
                </component-flex-container>
             </component-card>

@@ -47,6 +47,10 @@ export class PageIntroduction extends PageAbstract {
             </component-typography>
             <component-code>https://github.com/domoskanonos/wc-atomic</component-code>
          </component-flex-container>
+         
+                     <component-divider></component-divider>
+
+         
       `;
    }
 }

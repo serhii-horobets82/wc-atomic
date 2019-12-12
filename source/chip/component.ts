@@ -3,26 +3,26 @@ import {AbstractComponent, AbstractInputData} from '../abstract-component/compon
 
 const componentCSS = require('./component.css');
 
-export class DividerInputData extends AbstractInputData {
-    componentIdentifier = DividerComponent.IDENTIFIER;
+export class ChipInputData extends AbstractInputData {
+    componentIdentifier = ChipComponent.IDENTIFIER;
 }
 
-@customElement('component-divider')
-export class DividerComponent extends AbstractComponent<DividerInputData, undefined> {
+@customElement('component-chip')
+export class ChipComponent extends AbstractComponent<ChipInputData, undefined> {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'DividerComponent';
+    static IDENTIFIER: string = 'ChipComponent';
 
     render() {
         return html`
-         <div class="basicBorderBottom"></div>
+         <div>CHIP Componenten: NOT IMPLEMENTED YET</div>
       `;
     }
 
     getDefaultInputData(): any {
-        return <DividerInputData>{};
+        return <ChipComponent>{};
     }
 
     getOutputData(): undefined {

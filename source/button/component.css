@@ -15,17 +15,9 @@ button {
     font-family: inherit;
     padding: var(--space-little) var(--space-small) var(--space-little) var(--space-small);
 }
-button:hover, .selected {
-    background: var(--app-color-primary);
-    color: var(--app-color-on-primary);
-    transition: color 100ms linear, background-color 100ms linear, border 100ms linear;
-}
 
 @media only screen and (max-width: 800px), only screen and (orientation: portrait) {
     button, .btn {
     width:100%;
     }
-
-
-
 }

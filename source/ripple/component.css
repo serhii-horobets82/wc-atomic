@@ -1,0 +1,15 @@
+/* Ripple effect */
+::slotted(*) {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+::slotted(*:hover) {
+    background: var(--app-color-border) radial-gradient(circle, transparent 1%, var(--app-color-border)  1%) center/15000%;
+}
+
+::slotted(*:active) {
+    background-color: var(--app-color-border) ;
+    background-size: 100%;
+    transition: background 0s;
+}

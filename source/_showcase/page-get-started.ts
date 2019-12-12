@@ -15,6 +15,8 @@ export class PageGetStarted extends PageAbstract {
                   >https://github.com/domoskanonos/wc-atomic-template</component-link
                >
             </component-typography>
+            
+            
          </component-flex-container>
       `;
    }

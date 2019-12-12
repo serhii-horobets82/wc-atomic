@@ -17,6 +17,8 @@ import {DividerInputData,DividerComponent} from './divider/component';
 import {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
+import {ChipInputData,ChipComponent} from './chip/component';
+import {RippleInputData,RippleComponent} from './ripple/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
@@ -69,6 +71,8 @@ export {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,A
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
+export {ChipInputData,ChipComponent} from './chip/component';
+export {RippleInputData,RippleComponent} from './ripple/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
 export {ImgInputData,ImgComponent} from './img/component';
