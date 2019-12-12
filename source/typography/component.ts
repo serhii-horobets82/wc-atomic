@@ -52,7 +52,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    cssStyle: string = '';
    render() {
       return html`
-            <span class="${this.type.toString()}">${this.text}<slot></slot></span>
+            <span class="${this.type.toString()} ${this.clazz}" style="${this.cssStyle}">${this.text}<slot></slot></span>
       `;
    }
 

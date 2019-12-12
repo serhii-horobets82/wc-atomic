@@ -167,9 +167,6 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    @property()
    itemFlexBasisValue: string = 'auto';
 
-   @query('#slotElement')
-   slotElement: HTMLSlotElement | undefined;
-
    render() {
       return html`
          <div
@@ -180,46 +177,30 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
             ${guard(
                this.componentsInputData,
                () =>
-                  html`
+                   html`
                      ${repeat(
-                        this.componentsInputData,
-                        (componentInputData, index) => html`
+                       this.componentsInputData,
+                       (componentInputData, index) => html`
                            <div class="flex_item ${this.itemClazz}" style="${this.getFlexItemStyle(index)};">
                               ${this.createComponentFromData(componentInputData)}
                            </div>
                         `
-                     )}
+                   )}
                   `
-            )}
-            <slot id="slotElement"></slot>
+      )}
+            <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
          </div>
       `;
    }
 
-   getFlexItemStyle(index: number): string {
-      let flexBasisValue =
-         this.itemFlexBasisValues !== undefined
-            ? this.itemFlexBasisValues[index] !== undefined
-               ? this.itemFlexBasisValues[index]
-               : this.itemFlexBasisValue
-            : undefined;
-      return 'flex-basis: '
-         .concat(this.basicService.getValue(flexBasisValue, ''))
-         .concat(';max-width: ')
-         .concat(this.basicService.getValue(flexBasisValue, ''));
-   }
+   slotChanged(event: Event) {
+      let slotElement: HTMLSlotElement = <HTMLSlotElement>event.target;
 
-   updated(_changedProperties: Map<PropertyKey, unknown>): void {
-      if (this.shadowRoot === null) {
-         console.debug('shadow root not active');
+      if (slotElement == null) {
          return;
       }
 
-      if (this.slotElement == null) {
-         return;
-      }
-
-      let elements: Element[] = this.slotElement.assignedElements();
+      let elements: Element[] = slotElement.assignedElements();
 
       for (let index = 0; index < elements.length; index++) {
          let element: Element = elements[index];
@@ -263,6 +244,19 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
             element.setAttribute('style', currentStyle);
          }
       }
+   }
+
+   getFlexItemStyle(index: number): string {
+      let flexBasisValue =
+          this.itemFlexBasisValues !== undefined
+              ? this.itemFlexBasisValues[index] !== undefined
+              ? this.itemFlexBasisValues[index]
+              : this.itemFlexBasisValue
+              : undefined;
+      return 'flex-basis: '
+          .concat(this.basicService.getValue(flexBasisValue, ''))
+         .concat(';max-width: ')
+         .concat(this.basicService.getValue(flexBasisValue, ''));
    }
 
    inputDataChanged() {
