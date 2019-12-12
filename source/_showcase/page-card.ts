@@ -1,30 +1,33 @@
-import { customElement, html, TemplateResult } from 'lit-element';
-import { PageAbstract } from './page-abstract';
-import { InputComponent } from '../input/component';
-import { ImgComponent, ImgInputData } from '../img/component';
+import {customElement, html, TemplateResult} from 'lit-element';
+import {PageAbstract} from './page-abstract';
+import {InputComponent} from '../input/component';
+import {RichMediaComponent, RichMediaInputData} from '../rich-media/component';
 import {TypographyInputData, TypographyTypes} from '../typography/component';
-import { SimpleTableRowData } from '../simple-table/component';
-import { LinkComponent, LinkInputData } from '../link/component';
-import {FlexJustifyContent} from "../flex-container/component";
+import {SimpleTableRowData} from '../simple-table/component';
+import {LinkComponent, LinkInputData} from '../link/component';
+import {FlexJustifyContent} from '../flex-container/component';
 
 @customElement('page-card')
 export class PageCardComponent extends PageAbstract {
-   getMainComponent(): TemplateResult {
-      return html`
+    getMainComponent(): TemplateResult {
+        return html`
          <component-flex-container containerClazz="container_25">
             <component-card>
                <component-primary-title
-                  thumbnail="https://picsum.photos/300/300"
+                  .richMedia="${<RichMediaInputData>{
+            src: 'https://picsum.photos/300/300',
+            clazz: 'imageWidthHundred'
+        }}"
                   .primaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.H6,
-                     text: 'Title goes here'
-                  }}"
+            type: TypographyTypes.H6,
+            text: 'Title goes here'
+        }}"
                   .secondaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.CAPTION,
-                     text: 'Secondary text'
-                  }}"
+            type: TypographyTypes.CAPTION,
+            text: 'Secondary text'
+        }}"
                ></component-primary-title>
-               <component-img src="https://picsum.photos/300/300"></component-img>
+               <component-rich-media src="https://picsum.photos/300/300" clazz="imageWidthHundred"></component-rich-media>
                <component-typography .type="${TypographyTypes.BODY1}"
                   >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                   dolore magna aliquyam erat, sed diam voluptua.</component-typography
@@ -89,9 +92,8 @@ export class PageCardComponent extends PageAbstract {
                <component-accordion-item header="Accordion 2">Lorem Ipsum 2</component-accordion-item>
                <component-accordion-item header="Accordion 3">Lorem Ipsum 3</component-accordion-item>
             </component-accordion>
-            
+
             <component-divider></component-divider>
-            
          </component-flex-container>
       `;
    }

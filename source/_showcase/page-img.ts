@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
-import {ImgComponent, ImgInputData} from "../img/component";
+import {RichMediaComponent, RichMediaInputData} from "../rich-media/component";
 import {TypographyTypes} from "../typography/component";
 
 @customElement('page-img')
@@ -15,7 +15,7 @@ export class PageImgComponent extends PageAbstract {
         
         <component-teaser>
                         <component-teaser-element slot="content" selected="true">
-                            <component-img slot="background" cssStyle="height:600px;" src="https://picsum.photos/800/500"></component-img>
+                            <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/800/500"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-typography .type="${TypographyTypes.H6}" text="[1] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
@@ -23,7 +23,7 @@ export class PageImgComponent extends PageAbstract {
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:600px;" src="https://picsum.photos/300/300"></component-img>
+                            <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/300/300"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-typography .type="${TypographyTypes.H6}" text="[2] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
@@ -31,7 +31,7 @@ export class PageImgComponent extends PageAbstract {
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:600px;" src="https://picsum.photos/500/500"></component-img>
+                            <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/500/500"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-typography .type="${TypographyTypes.H6}" text="[3] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
@@ -39,7 +39,7 @@ export class PageImgComponent extends PageAbstract {
                             </component-spacer>
                         </component-teaser-element>
                         <component-teaser-element slot="content">
-                            <component-img slot="background" cssStyle="height:600px;" src="https://picsum.photos/400/400"></component-img>
+                            <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/400/400"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
                                 <component-typography .type="${TypographyTypes.H6}" text="[4] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
@@ -53,13 +53,13 @@ export class PageImgComponent extends PageAbstract {
                     </component-teaser> 
         
          
-            <component-img src="https://picsum.photos/300/300" text="Mein Bild"></component-img>
+            <component-rich-media src="https://picsum.photos/300/300" text="Mein Bild"></component-rich-media>
             
-            <component-img clazz="roundImage" src="https://picsum.photos/300/300"></component-img>
+            <component-rich-media clazz="roundImage" src="https://picsum.photos/300/300"></component-rich-media>
 
-            <component-img clazz="zoomImageWrapped" src="https://picsum.photos/300/300"></component-img>
+            <component-rich-media clazz="zoomImageWrapped" src="https://picsum.photos/300/300"></component-rich-media>
 
-            <component-img clazz="clickable" src="https://picsum.photos/300/300"></component-img>
+            <component-rich-media clazz="clickable" src="https://picsum.photos/300/300"></component-rich-media>
             
             
          </component-flex-container>

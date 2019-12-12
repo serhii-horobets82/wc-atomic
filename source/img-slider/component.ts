@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
-import { ImgComponent, ImgInputData } from '../img/component';
+import { RichMediaComponent, RichMediaInputData } from '../rich-media/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
@@ -20,10 +20,10 @@ const componentCSS = require('./component.css');
 export class ImgSliderInputData extends AbstractInputData {
    sliderType?: number;
    maxSize?: string;
-   imgs?: ImgInputData[];
+   imgs?: RichMediaInputData[];
 }
 
-@customElement('component-img-slider')
+@customElement('component-rich-media-slider')
 export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -31,10 +31,10 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
 
    static IDENTIFIER: string = 'ImgSliderComponent';
 
-   static EVENT_CLICK: string = 'component-img-slider-click';
+   static EVENT_CLICK: string = 'component-rich-media-slider-click';
 
    @property()
-   imgs: ImgInputData[] = [];
+   imgs: RichMediaInputData[] = [];
 
    @property()
    maxSize: string = '250px';
@@ -55,11 +55,11 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
                      ${repeat(
                         this.imgs,
                         (item) => html`
-                           <component-img
+                           <component-rich-media
                               clazz="${item.clazz} ${this.sliderType == 1 ? 'imageHeightHundred' : 'imageWidthHundred'}"
                               src="${item.src}"
                               @click="${() => this.clicked(item)}"
-                           ></component-img>
+                           ></component-rich-media>
                         `
                      )}
                   `
@@ -84,58 +84,58 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
          maxSize: '500px',
          sliderType: 2,
          imgs: [
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/350/350'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/450/450'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/550/550'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/300/300'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/400/400'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/500/500'
             },
-            <ImgInputData>{
-               componentIdentifier: ImgComponent.IDENTIFIER,
+            <RichMediaInputData>{
+               componentIdentifier: RichMediaComponent.IDENTIFIER,
                clazz: '',
                src: 'https://picsum.photos/600/600'
             }
@@ -143,7 +143,7 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
       };
    }
 
-   private clicked(item: ImgInputData) {
+   private clicked(item: RichMediaInputData) {
       this.dispatchSimpleCustomEvent(ImgSliderComponent.EVENT_CLICK, item);
    }
 }

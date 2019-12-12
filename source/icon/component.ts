@@ -56,18 +56,18 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    rendered: boolean = true;
 
    render() {
-      return html`
+      return this.rendered ? html`
          <span
-            class="icon-container ${!this.rendered ? 'hide' : ''} ${this.clickable ? 'clickable' : ''} ${this.status === 2
-               ? 'active'
-               : this.status === 3
-               ? 'passiv'
-               : ''}"
+            class="icon-container ${this.clickable ? 'clickable' : ''} ${this.status === 2
+          ? 'active'
+          : this.status === 3
+              ? 'passiv'
+              : ''}"
             title="${this.title}"
             @click="${this.clicked}"
             ><i class="material-icons">${this.icon}</i>
          </span>
-      `;
+      ` : html``;
    }
 
    async clicked() {

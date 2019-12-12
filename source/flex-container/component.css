@@ -59,6 +59,7 @@
 
 .flex_item, ::slotted(.flex_item) {
    box-sizing: border-box;
+   overflow: hidden;
 }
 
 .PADDING_LITTLE, ::slotted(.PADDING_LITTLE) {
@@ -125,7 +126,7 @@
 
    .flex_item,
    ::slotted(.flex_item) {
-      flex-basis: 100% !important;
-      max-width: 100% !important;
-   }
+      /**flex-basis: 100% !important;*/
+      /**max-width: 100% !important;*/
+}
 }

@@ -2,7 +2,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ButtonComponent } from '../button/component';
 import { CodeComponent } from '../code/component';
 import { ComboboxComponent } from '../combobox/component';
-import { ImgComponent } from '../img/component';
+import { RichMediaComponent } from '../rich-media/component';
 import { IconComponent } from '../icon/component';
 import { TextareaComponent } from '../textarea/component';
 import { InputComponent } from '../input/component';
@@ -75,8 +75,8 @@ export class ComponentLoader {
          case IconComponent.IDENTIFIER:
             component = new IconComponent();
             break;
-         case ImgComponent.IDENTIFIER:
-            component = new ImgComponent();
+         case RichMediaComponent.IDENTIFIER:
+            component = new RichMediaComponent();
             break;
          case ComboboxComponent.IDENTIFIER:
             component = new ComboboxComponent();

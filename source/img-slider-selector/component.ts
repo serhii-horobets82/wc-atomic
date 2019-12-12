@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ImgSliderComponent, ImgSliderInputData } from '../img-slider/component';
-import { ImgInputData } from '../img/component';
+import { RichMediaInputData } from '../rich-media/component';
 
 const componentCSS = require('./component.css');
 
@@ -10,7 +10,7 @@ export class ImgSliderSelectorInputData extends AbstractInputData {
    imgSlider?: ImgSliderInputData;
 }
 
-@customElement('component-img-slider-selector')
+@customElement('component-rich-media-slider-selector')
 export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelectorInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
@@ -25,28 +25,28 @@ export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelec
    maxHeight: string = '';
 
    @property()
-   imgs: ImgInputData[] = [];
+   imgs: RichMediaInputData[] = [];
 
    @property()
-   selectedImg: ImgInputData = <ImgInputData>{};
+   selectedImg: RichMediaInputData = <RichMediaInputData>{};
 
    @property()
    columnFlexBasisValues: string[] = ['30%', '70%'];
 
    render() {
       return html`
-         <div @component-img-slider-click="${this.sliderItemClicked}" class="sliderSelector" style="height: ${this.maxHeight};">
-            <component-img-slider
+         <div @component-rich-media-slider-click="${this.sliderItemClicked}" class="sliderSelector" style="height: ${this.maxHeight};">
+            <component-rich-media-slider
                style="flex-basis: ${this.imgs.length > 1 ? this.columnFlexBasisValues[0] : '0%'}"
                maxSize="${this.maxHeight}"
                sliderType="${this.sliderType}"
                .imgs="${this.imgs}"
-            ></component-img-slider>
+            ></component-rich-media-slider>
 
-            <component-img
+            <component-rich-media
                .inputData="${this.selectedImg}"
                style="flex-basis: ${this.imgs.length > 1 ? this.columnFlexBasisValues[1] : 'auto'}"
-            ></component-img>
+            ></component-rich-media>
          </div>
       `;
    }
@@ -57,7 +57,7 @@ export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelec
          this.sliderType = this.basicService.getValue(this.inputData.imgSlider.sliderType, 1);
          this.imgs = this.basicService.getValue(this.inputData.imgSlider.imgs, []);
          if (this.imgs !== undefined && this.imgs.length > 0) {
-            this.selectedImg = this.basicService.getValue(this.imgs[0], new ImgInputData());
+            this.selectedImg = this.basicService.getValue(this.imgs[0], new RichMediaInputData());
          }
       }
    }
@@ -74,7 +74,7 @@ export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelec
    }
 
    sliderItemClicked(event: CustomEvent) {
-      let img: ImgInputData = <ImgInputData>event.detail;
+      let img: RichMediaInputData = <RichMediaInputData>event.detail;
       this.selectedImg = img;
    }
 }

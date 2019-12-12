@@ -9,3 +9,7 @@ slot {
     display: flex;
     flex-direction: column;
 }
+
+card-primary, ::slotted(card-primary) {
+    padding: var(--space-medium);
+}

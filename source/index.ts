@@ -7,7 +7,7 @@ import {RegisterInputData,RegisterComponent} from './register/component';
 import {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
-import {CardInputData,CardComponent} from './card/component';
+import {CardActionArea, CardInputData,CardComponent} from './card/component';
 import {CodeInputData,CodeComponent} from './code/component';
 import {ComboboxOption,ComboboxInputData,ComboboxComponent} from './combobox/component';
 import {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
@@ -18,11 +18,12 @@ import {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,A
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {ChipInputData,ChipComponent} from './chip/component';
+import {ContainerInputData,ContainerComponent} from './container/component';
 import {RippleInputData,RippleComponent} from './ripple/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
-import {ImgInputData,ImgComponent} from './img/component';
+import {RichMediaType, RichMediaInputData,RichMediaComponent} from './rich-media/component';
 import {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 import {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
 import {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
@@ -60,7 +61,8 @@ export {AuthenticatedIconInputData,AuthenticatedIconComponent} from './authentic
 export {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 export {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 export {ButtonInputData,ButtonComponent} from './button/component';
-export {CardInputData,CardComponent} from './card/component';
+export {CardActionArea, CardInputData,CardComponent} from './card/component';
+export {ContainerInputData,ContainerComponent} from './container/component';
 export {CodeInputData,CodeComponent} from './code/component';
 export {ComboboxOption,ComboboxInputData,ComboboxComponent} from './combobox/component';
 export {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
@@ -75,7 +77,7 @@ export {ChipInputData,ChipComponent} from './chip/component';
 export {RippleInputData,RippleComponent} from './ripple/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
-export {ImgInputData,ImgComponent} from './img/component';
+export {RichMediaType, RichMediaInputData,RichMediaComponent} from './rich-media/component';
 export {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
 export {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from './input/component';
@@ -109,4 +111,4 @@ export {TypographyTypes, TypographyInputData, TypographyComponent} from './typog
 export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-//import './_showcase/showcase-app';
+import './_showcase/showcase-app';

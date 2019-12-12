@@ -92,7 +92,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       if (this.basicService.isNotEmpty(this._inputData)) {
          this.dataReceiverChannels = this.basicService.getValue(this._inputData.dataReceiverChannels, []);
       } else {
-         throw new Error('empty input data: ' + JSON.stringify(this));
+         //throw new Error('empty input data: ' + JSON.stringify(this));
+         this._inputData = <INPUT_DATA>{};
       }
 
       this.inputDataChanged();

@@ -1,69 +1,65 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {TypographyInputData} from '../typography/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { TypographyInputData } from '../typography/component';
+import { RichMediaInputData, SpacerAlignment, SpacerSize } from '..';
 
 const componentCSS = require('./component.scss');
 
 export class PrimaryTitleInputData extends AbstractInputData {
-    thumbnail?: string;
-    primaryTitle: TypographyInputData | undefined;
-    secondaryTitle: TypographyInputData | undefined;
+   thumbnail?: string;
+   primaryTitle: TypographyInputData | undefined;
+   secondaryTitle: TypographyInputData | undefined;
 }
 
 @customElement('component-primary-title')
 export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputData, any> {
-    static styles = css`
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'PrimaryTitleComponent';
+   static IDENTIFIER: string = 'PrimaryTitleComponent';
 
-    @property()
-    thumbnail: string | undefined;
+   @property()
+   richMedia: RichMediaInputData | undefined;
 
-    @property()
-    primaryTitle: TypographyInputData | undefined;
+   @property()
+   primaryTitle: TypographyInputData = new TypographyInputData();
 
-    @property()
-    secondaryTitle: TypographyInputData | undefined;
+   @property()
+   secondaryTitle: TypographyInputData = new TypographyInputData();
 
-    render() {
-        return html`
-         <component-flex-container containerClazz="container_100" .itemFlexBasisValues="${this.thumbnail != undefined ? ["20%", "80%"] : ["100%"]}">
-            ${this.thumbnail
-            ? html`
-                    <component-img clazz="roundImage" src="${this.thumbnail}"></component-img>
-                 `
-            : html``}
-            <component-flex-container containerClazz="container_100" container_25="100%">
-               ${this.primaryTitle
-            ? html`
-                       <component-typography .inputData="${this.primaryTitle}"></component-typography>
-                    `
-            : html``}
-               ${this.secondaryTitle
-            ? html`
-                       <component-typography .inputData="${this.secondaryTitle}"></component-typography>
-                    `
-            : html``}
-            </component-flex-container>
+   render() {
+      return html`
+         <component-flex-container
+            containerClazz="container_100"
+            .itemFlexBasisValues="${this.richMedia != undefined ? ['20%', '80%'] : ['100%']}"
+         >
+            <component-container .rendered="${this.richMedia != undefined}">
+               <component-rich-media .inputData="${this.richMedia}"></component-rich-media>
+            </component-container>
+            <component-spacer .size="${SpacerSize.MEDIUM}" .alignment="${SpacerAlignment.BOTH}">
+               <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%" .>
+                  <component-typography .inputData="${this.primaryTitle}"></component-typography>
+                  <component-typography .inputData="${this.secondaryTitle}"></component-typography>
+               </component-flex-container>
+            </component-spacer>
          </component-flex-container>
       `;
-    }
+   }
 
-    getDefaultInputData(): PrimaryTitleInputData {
-        return <PrimaryTitleInputData>{
-            componentIdentifier: PrimaryTitleComponent.IDENTIFIER
-        };
-    }
+   getDefaultInputData(): PrimaryTitleInputData {
+      return <PrimaryTitleInputData>{
+         componentIdentifier: PrimaryTitleComponent.IDENTIFIER
+      };
+   }
 
-    inputDataChanged() {
-        this.thumbnail = this.basicService.getValue(this.inputData.thumbnail, '');
-        this.primaryTitle = this.basicService.getValue(this.inputData.primaryTitle, undefined);
-        this.secondaryTitle = this.basicService.getValue(this.inputData.secondaryTitle, undefined);
-    }
+   inputDataChanged() {
+      this.richMedia = this.basicService.getValue(this.inputData.thumbnail, undefined);
+      this.primaryTitle = this.basicService.getValue(this.inputData.primaryTitle, undefined);
+      this.secondaryTitle = this.basicService.getValue(this.inputData.secondaryTitle, undefined);
+   }
 
-    getOutputData(): any {
-        return undefined;
-    }
+   getOutputData(): any {
+      return undefined;
+   }
 }

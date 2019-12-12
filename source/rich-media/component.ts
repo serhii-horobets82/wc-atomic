@@ -3,15 +3,21 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 
 const componentCSS = require('./component.css');
 
-export class ImgInputData extends AbstractInputData {
+export class RichMediaInputData extends AbstractInputData {
    src: string = '';
-   clazz: string = '';
+   clazz: string = 'imageWidthHundred';
    text: string = '';
    cssStyle: string = '';
 }
 
-@customElement('component-img')
-export class ImgComponent extends AbstractComponent<ImgInputData, undefined> {
+export class RichMediaType extends AbstractInputData {
+   static IMG: string = 'IMG';
+   static MOVIE: string = 'MOVIE';
+}
+
+
+@customElement('component-rich-media')
+export class RichMediaComponent extends AbstractComponent<RichMediaInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -30,9 +36,12 @@ export class ImgComponent extends AbstractComponent<ImgInputData, undefined> {
    @property()
    text: string = '';
 
-   getDefaultInputData(): ImgInputData {
-      return <ImgInputData>{
-         componentIdentifier: ImgComponent.IDENTIFIER,
+   @property()
+   rendered: boolean = true;
+
+   getDefaultInputData(): RichMediaInputData {
+      return <RichMediaInputData>{
+         componentIdentifier: RichMediaComponent.IDENTIFIER,
          src: 'https://picsum.photos/300/300',
          clazz: 'imageWidthHundred',
          text: ''
@@ -47,7 +56,7 @@ export class ImgComponent extends AbstractComponent<ImgInputData, undefined> {
    }
 
    render() {
-      return html`<span class="${this.clazz}"><img src="${this.src}" style="${this.cssStyle}"/></span>`;
+      return this.rendered ? html`<span class="${this.clazz}"><img src="${this.src}" style="${this.cssStyle}"/></span>` : html``;
    }
 
    getOutputData(): undefined {
