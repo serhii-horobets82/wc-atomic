@@ -1,0 +1,5 @@
+div {
+    padding-bottom: var(--space-medium);
+    padding-left: var(--space-medium);
+    padding-right: var(--space-medium);
+}

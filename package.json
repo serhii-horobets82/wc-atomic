@@ -33,7 +33,7 @@
    },
    "dependencies": {
       "lit-element": "^2.2.1",
-      "@domoskanonos/frontend-basis": "^1.0.128"
+      "@domoskanonos/frontend-basis": "^1.0.129"
    },
    "author": "",
    "scripts": {

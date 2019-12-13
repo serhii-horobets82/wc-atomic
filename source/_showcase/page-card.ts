@@ -13,87 +13,48 @@ export class PageCardComponent extends PageAbstract {
         return html`
          <component-flex-container containerClazz="container_25">
             <component-card>
-               <component-primary-title
-                  .richMedia="${<RichMediaInputData>{
-            src: 'https://picsum.photos/300/300',
-            clazz: 'imageWidthHundred'
-        }}"
-                  .primaryTitle="${<TypographyInputData>{
-            type: TypographyTypes.H6,
-            text: 'Title goes here'
-        }}"
-                  .secondaryTitle="${<TypographyInputData>{
-            type: TypographyTypes.CAPTION,
-            text: 'Secondary text'
-        }}"
-               ></component-primary-title>
-               <component-rich-media src="https://picsum.photos/300/300" clazz="imageWidthHundred"></component-rich-media>
-               <component-typography .type="${TypographyTypes.BODY1}"
-                  >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                  dolore magna aliquyam erat, sed diam voluptua.</component-typography
-               >
-               <component-flex-container container_25="50%">
-                  <component-toolbar>
-                     <component-link href="https://material.io/components/cards/#anatomy">Description</component-link>
-                     <component-link
-                        text="Examples"
-                        href="https://material-components.github.io/material-components-web-catalog/#/component/card"
-                     ></component-link>
-                  </component-toolbar>
 
-                  <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
-                     <component-icon icon="favorite_border"></component-icon>
-                     <component-icon icon="star_border"></component-icon>
-                     <component-icon icon="star_border"></component-icon>
-                  </component-toolbar>
-               </component-flex-container>
+<component-ripple
+            >
+
+               <component-rich-media
+                  src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+                  clazz="imageWidthHundred"
+               ></component-rich-media>
+
+
+
+               <component-card-primary-title>
+                  <component-primary-title
+                     .primaryTitle="${<TypographyInputData>{
+            type: TypographyTypes.H4,
+            text: 'Our Changing Planet'
+        }}"
+                     .secondaryTitle="${<TypographyInputData>{
+            type: TypographyTypes.SUBTITLE2,
+            text: 'by Kurt Wagner'
+        }}"
+                  ></component-primary-title>
+               </component-card-primary-title>
+
+               <component-card-supporting-text>
+                  <component-typography .type="${TypographyTypes.BODY2}"
+                     >Visit ten places on our planet that are undergoing the biggest changes today.</component-typography
+                  >
+               </component-card-supporting-text>
+</component-ripple>
+
+               <component-card-actions>
+                  <component-flex-container>
+                     <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                        <component-icon icon="favorite_border"></component-icon>
+                        <component-icon icon="star_border"></component-icon>
+                        <component-icon icon="star_border"></component-icon>
+                     </component-toolbar>
+                  </component-flex-container>
+               </component-card-actions>
             </component-card>
-
-            <component-simple-table
-               .headers="${['Lorem', 'Ipsum', 'Dolorem']}"
-               .rows="${[
-                  <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
-                  <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
-                  <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
-                  <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
-                  <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] }
-               ]}"
-            >
-            </component-simple-table>
-
-            <component-list>
-               <component-list-item clazz="primaryColor">
-                  <component-spacer clazz="mediumPaddingLeft"></component-spacer>
-                  <component-text text="Lorem Ipsum Dolorem"></component-text>
-               </component-list-item>
-               <component-list-item>
-                  <component-spacer clazz="mediumPaddingLeft"></component-spacer>
-                  <component-text text="Lorem Ipsum Dolorem"></component-text>
-               </component-list-item>
-               <component-list-item>
-                  <component-spacer clazz="mediumPaddingLeft"></component-spacer>
-                  <component-text text="Lorem Ipsum Dolorem"></component-text>
-               </component-list-item>
-            </component-list>
-
-            <component-breadcrumb
-               .links="${[
-                  <LinkInputData>{
-                     componentIdentifier: LinkComponent.IDENTIFIER,
-                     text: 'Home',
-                     href: '/'
-                  }
-               ]}"
-            >
-            </component-breadcrumb>
-
-            <component-accordion>
-               <component-accordion-item header="Accordion 1">Lorem Ipsum 1</component-accordion-item>
-               <component-accordion-item header="Accordion 2">Lorem Ipsum 2</component-accordion-item>
-               <component-accordion-item header="Accordion 3">Lorem Ipsum 3</component-accordion-item>
-            </component-accordion>
-
-            <component-divider></component-divider>
+            
          </component-flex-container>
       `;
    }

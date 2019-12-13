@@ -37,12 +37,10 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
             <component-container .rendered="${this.richMedia != undefined}">
                <component-rich-media .inputData="${this.richMedia}"></component-rich-media>
             </component-container>
-            <component-spacer .size="${SpacerSize.MEDIUM}" .alignment="${SpacerAlignment.BOTH}">
-               <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%" .>
-                  <component-typography .inputData="${this.primaryTitle}"></component-typography>
-                  <component-typography .inputData="${this.secondaryTitle}"></component-typography>
-               </component-flex-container>
-            </component-spacer>
+            <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%" .>
+               <component-typography .inputData="${this.primaryTitle}"></component-typography>
+               <component-typography .inputData="${this.secondaryTitle}"></component-typography>
+            </component-flex-container>
          </component-flex-container>
       `;
    }

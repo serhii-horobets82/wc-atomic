@@ -16,9 +16,7 @@ export class RippleComponent extends AbstractComponent<RippleInputData, undefine
     static IDENTIFIER: string = 'ChipComponent';
 
     render() {
-        return html`
-         <div class="ripple"><slot></slot></div>
-      `;
+        return html`<div><slot></slot></div>`;
     }
 
     getDefaultInputData(): any {

@@ -1,13 +1,9 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {FlexComponent, RichMediaComponent, PrimaryTitleComponent, TypographyComponent} from '..';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { FlexComponent, RichMediaComponent, PrimaryTitleComponent, TypographyComponent, CardPrimaryTitleComponent } from '..';
+import { SlotService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
-
-export class CardActionArea {
-   static CARD: string = 'CARD';
-   static RICH_MEDIA_ACTIONS: string = 'RICH_MEDIA_ACTIONS';
-}
 
 export class CardInputData extends AbstractInputData {
    componentIdentifier = CardComponent.IDENTIFIER;
@@ -21,9 +17,6 @@ export class CardComponent extends AbstractComponent<CardInputData, undefined> {
 
    static IDENTIFIER: string = 'CardComponent';
 
-   @property()
-   cardActionArea: string = CardActionArea.CARD;
-
    render() {
       return html`
          <div class="card basicBorder basicShadow">
@@ -36,8 +29,7 @@ export class CardComponent extends AbstractComponent<CardInputData, undefined> {
       return new CardInputData();
    }
 
-   protected inputDataChanged() {
-   }
+   protected inputDataChanged() {}
 
    getOutputData(): undefined {
       return undefined;

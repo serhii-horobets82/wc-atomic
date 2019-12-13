@@ -23,7 +23,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    }
 
    protected basicService: BasicService = BasicService.getInstance();
-   protected slotService: SlotService = new SlotService();
    protected i18nService: I18nService = I18nService.getInstance();
    protected screenHeight: number = window.innerHeight;
    protected screenWidth: number = window.innerWidth;
