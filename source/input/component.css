@@ -1,14 +1,16 @@
 input {
     font: inherit;
-    height: var(--line-height-large);
-    line-height: var(--line-height);
-    box-sizing : border-box;
+    box-sizing: border-box;
     width: 100%;
-    padding-left: var(--space-little);
-    background-color: var(--app-color-background);
-    color: var(--app-color-on-background);
+    border: transparent;
 }
-
 input[type="checkbox"] {
     width: auto;
 }
+
+.box {
+
+
+}
+
+

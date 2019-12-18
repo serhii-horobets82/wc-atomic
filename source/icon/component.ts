@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 
 const componentCSS = require('./component.css');
 
+
 /**
  * iconClazz:
  * clazzName for the icon

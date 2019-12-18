@@ -28,6 +28,14 @@ export class TypographyInputData extends AbstractInputData {
    title?: string;
 }
 
+export class MessageType {
+   static DEFAULT: string = '';
+   static SUCCESS: string = 'success';
+   static ERROR: string = 'error';
+   static WARNING: string = 'warning';
+   static INFO: string = 'info';
+}
+
 @customElement('component-typography')
 export class TypographyComponent extends AbstractComponent<TypographyInputData, any> {
    static styles = css`
@@ -50,9 +58,13 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
 
    @property()
    cssStyle: string = '';
+
+   @property()
+   messageType: string = MessageType.DEFAULT;
+
    render() {
       return html`
-            <span class="${this.type.toString()} ${this.clazz}" style="${this.cssStyle}">${this.text}<slot></slot></span>
+            <span class="${this.type.toString()} ${this.clazz} ${this.messageType}" style="${this.cssStyle}">${this.text}<slot></slot></span>
       `;
    }
 

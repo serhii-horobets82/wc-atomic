@@ -2,11 +2,29 @@
     color: var(--app-color-on-surface);
     background-color: var(--app-color-surface);
 }
+
 .secondaryColor, ::slotted(.secondaryColor) {
     color: var(--app-color-on-secondary);
     background-color: var(--app-color-secondary);
 }
+
 .primaryColor, ::slotted(.primaryColor) {
     color: var(--app-color-on-primary);
     background-color: var(--app-color-primary);
+}
+
+.success, ::slotted(.success) {
+    color: var(--app-color-on-success);
+}
+
+.error, ::slotted(.error) {
+    color: var(--app-color-on-error);
+}
+
+.warning, ::slotted(.warning) {
+    color: var(--app-error-on-warning);
+}
+
+.info, ::slotted(.info) {
+    color: var(--app-color-on-info);
 }

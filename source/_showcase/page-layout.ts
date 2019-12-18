@@ -10,7 +10,7 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
-import {TypographyTypes} from "..";
+import {SpacerSize, TypographyTypes} from "..";
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
@@ -112,7 +112,7 @@ export class PageLayoutComponent extends PageAbstract {
             </component-tabs>
 
             <component-flex-container
-               containerClazz="surfaceColor"
+               containerClazz=""
                itemFlexBasisValue="${this.itemFlexBasisValue}"
                .direction="${this.direction}"
                .wrap="${this.wrap}"
@@ -140,10 +140,23 @@ export class PageLayoutComponent extends PageAbstract {
                <component-spacer
                   cssStyle="width:50px; height: 50px; background-color:var(--app-color-primary)"
                ></component-spacer>
+               
+               <component-spacer .size="${SpacerSize.BIG}"
+                 cssStyle="background-color:var(--app-color-primary)"
+               ></component-spacer>
+
+               <component-spacer .size="${SpacerSize.BIG}"
+                 cssStyle="background-color:var(--app-color-primary)"
+               ></component-spacer>
+
+               <component-spacer .size="${SpacerSize.BIG}"
+                 cssStyle="background-color:var(--app-color-primary)"
+               ></component-spacer>
+
             </component-flex-container>
 
             <component-code>
-               &lt;component-flex-container containerClazz="surfaceColor"
+               &lt;component-flex-container containerClazz=""
                .direction="$&#123;FlexDirection.${this.basicService.getEnumKey(this.direction, FlexDirection)}&#125;"
                .wrap="$&#123;FlexWrap.${this.basicService.getEnumKey(this.wrap, FlexWrap)}&#125;"
                .justifyContent="$&#123;FlexJustifyContent.${this.basicService.getEnumKey(
@@ -153,7 +166,7 @@ export class PageLayoutComponent extends PageAbstract {
                .alignItems="$&#123;AlignItems.${this.basicService.getEnumKey(this.alignItems, AlignItems)}&#125;"
                .alignContent="$&#123;AlignContent.${this.basicService.getEnumKey(this.alignContent, AlignContent)}&#125;"
                itemFlexBasisValue="${this.itemFlexBasisValue}"
-               .keylineSize="$&#123;FlexWrap.${this.basicService.getEnumKey(this.keylineSize, KeylineSize)}&#125;"
+               .keylineSize="$&#123;KeylineSize.${this.basicService.getEnumKey(this.keylineSize, KeylineSize)}&#125;"
                .keylineAlignment="$&#123;KeylineAlignment.${this.basicService.getEnumKey(
                   this.keylineAlignment,
                   KeylineAlignment

@@ -95,10 +95,16 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    size: number = 50;
 
    @property()
-   validationMessage: string = '';
+   leadingIcon: string = '';
+
+   @property()
+   trailingIcon: string = '';
+
+   @property()
+   assistiveText: string = '';
 
    @query('#inputElement')
-   private textfieldElemet: HTMLInputElement | undefined;
+   private inputElemet: HTMLInputElement | undefined;
 
    getDefaultInputData(): InputInputData {
       return <InputInputData>{
@@ -112,26 +118,30 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
    render() {
       return html`
-         <input
-            id="inputElement"
-            name="${this.name}"
-            type="${this.type}"
-            value="${this.prepareValue(this.value)}"
-            placeholder="${this.placeholder}"
-            size="${this.size}"
-            maxlength="${this.maxlength}"
-            min="${this.min}"
-            max="${this.max}"
-            ?required="${this.required}"
-            ?disabled="${this.disabled}"
-            ?checked="${this.checked}"
-            ?multiple="${this.multiple}"
-            @keyup="${this.keyup}"
-            @change="${(event: Event) => this.change(event)}"
-         />
-         ${this.type == HTMLInputTypes.CHECKBOX ? html`<component-typography>${this.placeholder}</component-typography>` : ''}
-         <slot></slot>
-         ${this.validationMessage}
+         <component-input-box
+            labelText="${this.placeholder}"
+            assistiveText="${this.assistiveText}"
+            leadingIcon="${this.leadingIcon}"
+            trailingIcon="${this.trailingIcon}"
+         >
+            <input
+               id="inputElement"
+               name="${this.name}"
+               type="${this.type}"
+               value="${this.prepareValue(this.value)}"
+               placeholder="${this.placeholder}"
+               size="${this.size}"
+               maxlength="${this.maxlength}"
+               min="${this.min}"
+               max="${this.max}"
+               ?required="${this.required}"
+               ?disabled="${this.disabled}"
+               ?checked="${this.checked}"
+               ?multiple="${this.multiple}"
+               @keyup="${this.keyup}"
+               @change="${(event: Event) => this.change(event)}"
+            />
+         </component-input-box>
       `;
    }
 
@@ -144,21 +154,21 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       inputDataChangedEvent.type = this.type;
       inputDataChangedEvent.element = <HTMLInputElement>event.target;
       inputDataChangedEvent.outputData = this.getOutputData();
-      if (this.textfieldElemet != null && this.textfieldElemet.validationMessage != this.validationMessage) {
-         this.validationMessage = this.textfieldElemet.validationMessage;
+      if (this.inputElemet != null && this.inputElemet.validationMessage != this.assistiveText) {
+         this.assistiveText = this.inputElemet.validationMessage;
       }
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
    }
 
    getOutputData(): KeyValueData {
-      let value = this.textfieldElemet != null ? this.textfieldElemet.value : this.value;
+      let value = this.inputElemet != null ? this.inputElemet.value : this.value;
       switch (this.type) {
          case HTMLInputTypes.CHECKBOX:
-            value = this.textfieldElemet != null ? this.basicService.getValue(this.textfieldElemet.checked, false) : false;
+            value = this.inputElemet != null ? this.basicService.getValue(this.inputElemet.checked, false) : false;
             break;
          case HTMLInputTypes.DATETIME_LOCAL:
          case HTMLInputTypes.DATE:
-            value = this.textfieldElemet?.valueAsDate;
+            value = this.inputElemet?.valueAsDate;
             break;
          default:
             break;

@@ -32,6 +32,9 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    static IDENTIFIER: string = 'SpacerComponent';
 
    @property()
+   cssStyle: string = '';
+
+   @property()
    size: string = SpacerSize.ZERO;
 
    @property()
@@ -39,7 +42,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
 
    render() {
       return html`
-         <div class="${this.size} ${this.alignment}"><slot></slot></div>
+         <div class="${this.size} ${this.alignment}" style="${this.cssStyle}"><slot></slot></div>
       `;
    }
 

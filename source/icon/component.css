@@ -31,16 +31,20 @@
   height: var(--icon-size-space);
 }
 
+active:focus {
+  opacity: 0.87;
+}
+
+active {
+  opacity: 0.54;
+}
+
+.inactive {
+  opacity: 0.38;
+}
+
 .clickable {
   cursor: pointer;
-}
-
-.active {
-  color: var(--app-color-secondary);
-}
-
-.passiv {
-  color: var(--app-color-surface);
 }
 
 .error {
