@@ -1,0 +1,23 @@
+slot {
+    padding: .5vw;
+    font-size: 0;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-flow: row wrap;
+    display: -webkit-box;
+    display: flex;
+}
+
+::slotted(*) {
+    box-flex: auto;
+    flex: auto;
+    width: 300px;
+    margin: .5vw;
+}
+
+@media screen and (max-width: 400px) {
+    div, component-rich-media { margin: 0; }
+    header { padding: 0; }
+
+}

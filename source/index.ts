@@ -11,6 +11,7 @@ import {ButtonInputData,ButtonComponent} from './button/component';
 import {CardActionInputData,CardActionComponent} from './card/actions/component';
 import {CardRichMediaInputData,CardRichMediaComponent} from './card/card-rich-media/component';
 import {CardPrimaryTitleInputData,CardPrimaryTitleComponent} from './card/primary-title/component';
+import {ElementListInputData,ElementListComponent} from './element-list/component';
 import {CardSupportingTextInputData,CardSupportingTextComponent} from './card/supporting-text/component';
 import {CardInputData,CardComponent} from './card/component';
 import {CodeInputData,CodeComponent} from './code/component';
@@ -70,6 +71,7 @@ export {CardActionInputData,CardActionComponent} from './card/actions/component'
 export {CardRichMediaInputData,CardRichMediaComponent} from './card/card-rich-media/component';
 export {InputBoxInputData,InputBoxComponent} from './input-box/component';
 export {CardPrimaryTitleInputData,CardPrimaryTitleComponent} from './card/primary-title/component';
+export {ElementListInputData,ElementListComponent} from './element-list/component';
 export {CardSupportingTextInputData,CardSupportingTextComponent} from './card/supporting-text/component';
 export {CardInputData,CardComponent} from './card/component';
 export {ContainerInputData,ContainerComponent} from './container/component';

@@ -65,10 +65,20 @@ export abstract class PageAbstract extends BasisTemplate {
                   text="${this.i18nService.getValue('pageimg')}"
                   href="#pageimg"
                ></component-navigation-link>
+                <component-navigation-link
+                  iconClazz=""
+                  text="${this.i18nService.getValue('pageelementlist')}"
+                  href="#pageelementlist"
+               ></component-navigation-link>     
                <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageform')}"
                   href="#pageform"
+               ></component-navigation-link>
+               <component-navigation-link
+                  iconClazz=""
+                  text="${this.i18nService.getValue('pagecc')}"
+                  href="#pagecc"
                ></component-navigation-link>
                <component-navigation-link
                   iconClazz=""

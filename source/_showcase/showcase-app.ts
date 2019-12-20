@@ -13,6 +13,8 @@ import './page-primary-title.ts';
 import './page-layout.ts';
 import './page-icon.ts';
 import './page-card.ts';
+import './page-cc.ts';
+import './page-element-list';
 import './page-table.ts';
 import './page-img.ts';
 import './page-form.ts';
@@ -50,6 +52,8 @@ export class ShowcaseApp extends AbstractApp {
               return html`<page-table></page-table>`;
           case '#pageimg':
               return html`<page-img></page-img>`;
+          case '#pageelementlist':
+              return html`<page-element-list></page-element-list>`;
           case '#pageinput':
               return html`<page-inputfield></page-inputfield>`;
           case '#pagetypography':
@@ -60,6 +64,8 @@ export class ShowcaseApp extends AbstractApp {
               return html`<page-layout></page-layout>`;
           case '#pageform':
               return html`<page-form></page-form>`;
+          case '#pagecc':
+              return html`<page-cc></page-cc>`;
           case '#getStarted':
               return html`<page-get-started></page-get-started>`;
           case '':
