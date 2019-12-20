@@ -1,6 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {KeyValueData} from '../form/component';
+import {MessageType} from '..';
 
 const componentCSS = require('./component.css');
 
@@ -62,13 +63,19 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    name: string = '';
 
    @property()
-   value: any = '';
+   value: string = '';
+
+   @property()
+   oldValue: string = '';
 
    @property()
    type: string = HTMLInputTypes.TEXT;
 
    @property()
    placeholder: string = '';
+
+   @property()
+   label: string = '';
 
    @property()
    required: boolean = false;
@@ -92,6 +99,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    max: number = 255;
 
    @property()
+   step: number = 1;
+
+   @property()
    size: number = 50;
 
    @property()
@@ -103,26 +113,34 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    @property()
    assistiveText: string = '';
 
+   @property()
+   infoText: string = '';
+
+   @property()
+   automaticInfoText: boolean = true;
+
+   @property()
+   assistiveTextMessageType: string = MessageType.DEFAULT;
+
    @query('#inputElement')
    private inputElemet: HTMLInputElement | undefined;
 
-   getDefaultInputData(): InputInputData {
-      return <InputInputData>{
-         componentIdentifier: InputComponent.IDENTIFIER,
-         name: 'textfield',
-         text: 'name',
-         value: '',
-         placeholder: 'Gib einen Text ein'
-      };
+   protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
+      super.firstUpdated(_changedProperties);
+      if (this.automaticInfoText) {
+         this.infoText = this.getInfoText();
+      }
    }
 
    render() {
       return html`
          <component-input-box
-            labelText="${this.placeholder}"
+            labelText="${this.label.length == 0 ? this.placeholder : this.label}"
             assistiveText="${this.assistiveText}"
             leadingIcon="${this.leadingIcon}"
             trailingIcon="${this.trailingIcon}"
+            infoText="${this.infoText}"
+            assistiveTextMessageType="${this.assistiveTextMessageType}"
          >
             <input
                id="inputElement"
@@ -134,49 +152,71 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
                maxlength="${this.maxlength}"
                min="${this.min}"
                max="${this.max}"
+               step="${this.step}"
                ?required="${this.required}"
                ?disabled="${this.disabled}"
                ?checked="${this.checked}"
                ?multiple="${this.multiple}"
                @keyup="${this.keyup}"
                @change="${(event: Event) => this.change(event)}"
+               @onfocus="${(this.oldValue = this.value)}"
             />
          </component-input-box>
       `;
    }
 
    async keyup() {
+      if (this.automaticInfoText) {
+         this.infoText = this.getInfoText();
+      }
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_KEY_UP_CHANGE, this.getOutputData());
    }
 
    async change(event: Event) {
+      if (this.inputElemet != null) {
+         if (this.inputElemet.validationMessage.length == 0) {
+            this.value = this.inputElemet.value;
+            this.oldValue = this.inputElemet.value;
+            this.assistiveTextMessageType = MessageType.DEFAULT;
+         }
+
+         if (this.inputElemet.validationMessage != this.assistiveText) {
+            this.assistiveText = this.inputElemet.validationMessage;
+            if (this.inputElemet.validationMessage.length > 0) {
+               this.assistiveTextMessageType = MessageType.ERROR;
+            }
+         }
+      }
+
       let inputDataChangedEvent: InputDataChangeEvent = <InputDataChangeEvent>{};
       inputDataChangedEvent.type = this.type;
       inputDataChangedEvent.element = <HTMLInputElement>event.target;
       inputDataChangedEvent.outputData = this.getOutputData();
-      if (this.inputElemet != null && this.inputElemet.validationMessage != this.assistiveText) {
-         this.assistiveText = this.inputElemet.validationMessage;
-      }
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
    }
 
    getOutputData(): KeyValueData {
-      let value = this.inputElemet != null ? this.inputElemet.value : this.value;
-      switch (this.type) {
-         case HTMLInputTypes.CHECKBOX:
-            value = this.inputElemet != null ? this.basicService.getValue(this.inputElemet.checked, false) : false;
-            break;
-         case HTMLInputTypes.DATETIME_LOCAL:
-         case HTMLInputTypes.DATE:
-            value = this.inputElemet?.valueAsDate;
-            break;
-         default:
-            break;
+      let outputValue: any = this.oldValue;
+      if (this.inputElemet != null) {
+         if (this.inputElemet.validationMessage.length == 0) {
+            outputValue = this.inputElemet.value;
+            switch (this.type) {
+               case HTMLInputTypes.CHECKBOX:
+                  outputValue = this.inputElemet != null ? this.basicService.getValue(this.inputElemet.checked, false) : false;
+                  break;
+               case HTMLInputTypes.DATETIME_LOCAL:
+               case HTMLInputTypes.DATE:
+                  outputValue = this.inputElemet?.valueAsDate;
+                  break;
+               default:
+                  break;
+            }
+         }
       }
 
       return <KeyValueData>{
          key: this.name,
-         value: value
+         value: outputValue
       };
    }
 
@@ -207,7 +247,59 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       return value;
    }
 
-   private ddd() {
-      return 'requr';
+   private getInfoText(): string {
+      switch (this.type) {
+         case HTMLInputTypes.BUTTON:
+            return '';
+         case HTMLInputTypes.CHECKBOX:
+            return '';
+         case HTMLInputTypes.COLOR:
+            return '';
+         case HTMLInputTypes.DATE:
+            return '';
+         case HTMLInputTypes.DATETIME_LOCAL:
+            return '';
+         case HTMLInputTypes.EMAIL:
+            return '';
+         case HTMLInputTypes.FILE:
+            return '';
+         case HTMLInputTypes.HIDDEN:
+            return '';
+         case HTMLInputTypes.IMAGE:
+            return '';
+         case HTMLInputTypes.MONTH:
+            return '';
+         case HTMLInputTypes.PASSWORD:
+            return '';
+         case HTMLInputTypes.RADIO:
+            return '';
+         case HTMLInputTypes.RANGE:
+            return '';
+         case HTMLInputTypes.RESET:
+            return '';
+         case HTMLInputTypes.SEARCH:
+            return '';
+         case HTMLInputTypes.SUBMIT:
+            return '';
+         case HTMLInputTypes.TEL:
+            return '';
+         case HTMLInputTypes.NUMBER:
+            return this.min
+                .toString()
+                .concat('-')
+                .concat(this.max.toString());
+         case HTMLInputTypes.TEXT:
+            return (this.inputElemet != undefined ? this.inputElemet.value.length : 0)
+                .toString()
+                .concat('/')
+                .concat(this.max.toString());
+         case HTMLInputTypes.TIME:
+            return '';
+         case HTMLInputTypes.URL:
+            return '';
+         case HTMLInputTypes.WEEK:
+            return '';
+      }
+      return '';
    }
 }

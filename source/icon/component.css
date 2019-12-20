@@ -27,19 +27,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var(--icon-size-space);
-  height: var(--icon-size-space);
 }
 
-active:focus {
+.ACTIVE_FOCUSED {
   opacity: 0.87;
 }
 
-active {
+.ACTIVE {
   opacity: 0.54;
 }
 
-.inactive {
+.INACTIVE {
   opacity: 0.38;
 }
 

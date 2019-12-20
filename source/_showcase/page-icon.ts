@@ -1,22 +1,267 @@
-import { customElement, html, TemplateResult } from 'lit-element';
+import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputComponent } from '../input/component';
+import { HTMLInputTypes } from '../input/component';
+import {
+   AlignContent,
+   AlignItems,
+   ComboboxOption,
+   FlexDirection,
+   FlexJustifyContent,
+   FlexWrap,
+   IconComponent,
+   KeylineAlignment,
+   KeylineSize,
+   SpacerAlignment,
+   SpacerSize,
+   TypographyTypes
+} from '..';
+import { IconState } from '../icon/component';
 
 @customElement('page-icon')
 export class PageIconComponent extends PageAbstract {
-    getMainComponent(): TemplateResult {
-        return html`
-        
-        based on: <component-link href="https://material.io/resources/icons/?style=baseline">Google Material Icons</component-link>
-        
-         <component-flex-container containerClazz="container_50">
-         
-            <component-icon iconClazz="fas fa-question"></component-icon>
-            
-            <component-icon-with-text iconClazz="fas fa-question" text="Mein Konto"></component-icon-with-text>
-        
+   @property()
+   icon: string = 'thumb_up_alt';
+
+   @property()
+   iconSize: number = 96;
+
+   @property()
+   iconState: string = IconState.DEFAULT;
+
+   @property()
+   color: string = '';
+
+   @property()
+   clickable: boolean = false;
+
+   getMainComponent(): TemplateResult {
+      return html`
+         <component-spacer clazz="mediumPaddingTop"></component-spacer>
+         <component-flex-container containerClazz="container_75" .justifyContent="${FlexJustifyContent.FLEX_START}"
+               .alignItems="${AlignItems.CENTER}">
+            <component-icon
+               .clickable="false"
+               icon="thumb_up_alt"
+               color="#25498d"
+               iconSize="96"
+               iconState="${IconState.DEFAULT}"
+               .withIconSpace="${false}"
+            ></component-icon>
+
+            <component-typography type="${TypographyTypes.H2}">Icon Component</component-typography>
          </component-flex-container>
-        
-`;
-}
+
+         <component-flex-container containerClazz="container_75" itemFlexBasisValue="50%">
+            <component-flex-container .keylineSize="${KeylineSize.ZERO}" itemFlexBasisValue="100%">
+               <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+               <component-typography type="${TypographyTypes.BODY1}"
+                  ><i>Icon Component</i> ist eine Komponente mit der man die Google Material Icons in seine Anwendung integrieren
+                  kann. Sie basiert auf den Google Material Design Richtlinien:
+                  <component-link href="https://material.io/design/iconography/system-icons.html#design-principles"
+                     >Google Material Design Richtlinien</component-link
+                  >
+               </component-typography>
+               <component-typography type="${TypographyTypes.BODY1}"
+                  >Eine Übersicht aller Icons kannst du hier finden :
+                  <component-link href="https://material.io/resources/icons/?style=baseline"
+                     >Google Material Icons</component-link
+                  >
+               </component-typography>
+            </component-flex-container>
+            <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%">
+               <component-form>
+                  <component-inputfield
+                     label="Klickbar ?"
+                     .type="${HTMLInputTypes.CHECKBOX}"
+                     @component-inputfield-change="${(event: CustomEvent) => (this.clickable = event.detail.outputData.value)}"
+                  ></component-inputfield>
+                  <component-inputfield
+                     label="Farbe"
+                     .type="${HTMLInputTypes.COLOR}"
+                     @component-inputfield-change="${(event: CustomEvent) => (this.color = event.detail.outputData.value)}"
+                  ></component-inputfield>
+
+                  <component-inputfield
+                     .required="${true}"
+                     label="Größe"
+                     .type="${HTMLInputTypes.NUMBER}"
+                     min="18"
+                     max="256"
+                     step="1"
+                     value="${this.iconSize}"
+                     @component-inputfield-change="${(event: CustomEvent) => (this.iconSize = event.detail.outputData.value)}"
+                  ></component-inputfield>
+
+                  <component-combobox
+                     @combobox-selection-change="${(event: CustomEvent) => (this.iconState = event.detail.value)}"
+                     label="Status"
+                     selectedValue="${this.iconState}"
+                     .options="${[
+                        <ComboboxOption>{ value: 'DEFAULT', text: 'IconState.DEFAULT' },
+                        <ComboboxOption>{ value: 'ACTIVE_FOCUSED', text: 'IconState.ACTIVE_FOCUSED' },
+                        <ComboboxOption>{ value: 'ACTIVE', text: 'IconState.ACTIVE' },
+                        <ComboboxOption>{ value: 'INACTIVE', text: 'IconState.INACTIVE' }
+                     ]}"
+                  ></component-combobox>
+               </component-form>
+
+               <component-flex-container containerClazz="container_100">
+                  <component-icon
+                     icon="sports_motorsports"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="sports_rugby"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="sports_soccer"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="sports_tennis"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="sports_volleyball"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="thumb_down_alt"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="thumb_up_alt"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="whatshot"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="check_box"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="check_box_outline_blank"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="indeterminate_check_box"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="radio_button_checked"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="radio_button_unchecked"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="star"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="star_border"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="star_half"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="toggle_off"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+                  <component-icon
+                     icon="toggle_on"
+                     clickable="true"
+                     @component-icon-click="${(event: CustomEvent) => {
+                        this.icon = (<IconComponent>event.detail).icon;
+                     }}"
+                  ></component-icon>
+               </component-flex-container>
+            </component-flex-container>
+
+            <component-flex-container
+               containerClazz=""
+               .direction="${FlexDirection.ROW}"
+               .wrap="${FlexWrap.WRAP}"
+               .justifyContent="${FlexJustifyContent.CENTER}"
+               .alignItems="${AlignItems.CENTER}"
+               .alignContent="${AlignContent.STRETCH}"
+               itemFlexBasisValue="auto"
+               .keylineSize="${KeylineSize.ZERO}"
+               .keylineAlignment="${KeylineAlignment.BOTH}"
+            >
+               <component-icon
+                  .clickable="${this.clickable}"
+                  icon="${this.icon}"
+                  color="${this.color}"
+                  iconSize="${this.iconSize}"
+                  iconState="${this.iconState}"
+               ></component-icon>
+            </component-flex-container>
+
+            <component-code
+               >&lt;component-icon .clickable="${this.clickable}" icon="${this.icon}" color="${this.color}"
+               .iconSize="${this.iconSize}" iconState="$&#123;IconState.${this.iconState}&#125;" &gt;&lt;/component-icon&gt;
+            </component-code>
+         </component-flex-container>
+
+         <component-flex-container containerClazz="container_75"> </component-flex-container>
+      `;
+   }
 }

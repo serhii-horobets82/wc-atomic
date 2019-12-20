@@ -71,7 +71,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    assistiveText: string = '';
 
    @property()
-   assistiveTextMessageType: string = MessageType.prototype.DEFAULT;
+   assistiveTextMessageType: string = MessageType.DEFAULT;
 
    @query('#selectElement')
    private selectElemet: HTMLSelectElement | undefined;

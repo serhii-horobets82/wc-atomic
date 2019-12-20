@@ -22,7 +22,7 @@ export class SearchComponent extends AbstractComponent<SearchInputData, any> {
 
    render() {
       return html`
-            <component-inputfield id="textfieldComponent" trailingIcon="search"></component-inputfield>
+            <component-inputfield id="textfieldComponent" .automaticInfoText="${false}" trailingIcon="search"></component-inputfield>
       `;
    }
 

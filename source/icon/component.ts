@@ -3,19 +3,13 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 
 const componentCSS = require('./component.css');
 
+export class IconState {
+   static DEFAULT: string = 'DEFAULT';
+   static ACTIVE_FOCUSED: string = 'ACTIVE_FOCUSED';
+   static INACTIVE: string = 'INACTIVE';
+   static ACTIVE: string = 'ACTIVE';
+}
 
-/**
- * iconClazz:
- * clazzName for the icon
- *
- * clickable:
- * if true, mouse is cursor type pointer and a event is pushed.
- *
- * status:
- * 1 = normal
- * 2 = aktiv
- * 3 = passiv
- */
 export class IconInputData extends AbstractInputData {
    componentIdentifier = IconComponent.IDENTIFIER;
    icon?: string;
@@ -39,7 +33,13 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    icon: string = '';
 
    @property()
-   cssStyle: string = '';
+   color: string = '';
+
+   @property()
+   iconSize: number = 24;
+
+   @property()
+   withIconSpace: boolean = true;
 
    @property()
    title: string = '';
@@ -51,30 +51,41 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    clickData: any;
 
    @property()
-   status: number = 1;
+   iconState: string = IconState.DEFAULT;
 
    @property()
    rendered: boolean = true;
 
    render() {
-      return this.rendered ? html`
-         <span
-            class="icon-container ${this.clickable ? 'clickable' : ''} ${this.status === 2
-          ? 'active'
-          : this.status === 3
-              ? 'passiv'
-              : ''}"
-            title="${this.title}"
-            @click="${this.clicked}"
-            ><i class="material-icons">${this.icon}</i>
-         </span>
-      ` : html``;
+      return this.rendered
+         ? html`
+              <span
+                 class="icon-container ${this.clickable ? 'clickable' : ''}"
+                 title="${this.title}"
+                 @click="${this.clicked}"
+                 style="${this.withIconSpace && this.iconSize != undefined
+                    ? 'height:'
+                         .concat((this.iconSize * 2).toString())
+                         .concat('px;')
+                         .concat('width:')
+                         .concat((this.iconSize * 2).toString())
+                         .concat('px;')
+                    : ''}"
+                 ><i
+                    class="material-icons ${this.iconState}"
+                    style="${this.color.length > 0 ? 'color: '.concat(this.color).concat(';') : ''} ${this.iconSize != undefined
+                       ? 'font-size: ' + this.iconSize.toString().concat('px;')
+                       : ''}"
+                    >${this.icon}</i
+                 >
+              </span>
+           `
+         : html``;
    }
 
    async clicked() {
       if (this.clickable) {
          this.dispatchSimpleCustomEvent(IconComponent.EVENT_CLICK, {
-            status: this.status,
             clickData: this.clickData,
             clickable: this.clickable,
             icon: this.icon
@@ -82,20 +93,9 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
       }
    }
 
-   getDefaultInputData(): IconInputData {
-      return <IconInputData>{
-         componentIdentifier: IconComponent.IDENTIFIER,
-         iconClazz: 'fas fa-question',
-         clickable: true,
-         status: 1
-      };
-   }
-
    inputDataChanged() {
       this.clickData = this.basicService.getValue(this.inputData.clickData, undefined);
       this.icon = this.basicService.getValue(this.inputData.icon, '');
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
-      this.status = this.basicService.getValue(this.inputData.status, 1);
       this.clickable = this.basicService.getValue(this.inputData.clickable, false);
    }
 

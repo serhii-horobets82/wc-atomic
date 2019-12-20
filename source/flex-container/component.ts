@@ -145,6 +145,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    @property()
    alignItems: string = AlignItems.STRETCH;
+   //TODO: WENN alignItems center dann vielleicht height = 100 % ?    height: 100%; Diskussion
 
    @property()
    alignContent: string = AlignContent.STRETCH;

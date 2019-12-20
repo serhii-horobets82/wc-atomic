@@ -155,8 +155,7 @@ export class PageLayoutComponent extends PageAbstract {
 
             </component-flex-container>
 
-            <component-code>
-               &lt;component-flex-container containerClazz=""
+            <component-code>&lt;component-flex-container containerClazz=""
                .direction="$&#123;FlexDirection.${this.basicService.getEnumKey(this.direction, FlexDirection)}&#125;"
                .wrap="$&#123;FlexWrap.${this.basicService.getEnumKey(this.wrap, FlexWrap)}&#125;"
                .justifyContent="$&#123;FlexJustifyContent.${this.basicService.getEnumKey(

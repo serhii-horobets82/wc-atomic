@@ -30,7 +30,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    @property()
    private _inputData: INPUT_DATA = <INPUT_DATA>{};
 
-   public abstract getDefaultInputData(): INPUT_DATA;
+   //public abstract getDefaultInputData(): INPUT_DATA;
 
    public abstract getOutputData(): OUTPUT_DATA;
 

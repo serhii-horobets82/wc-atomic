@@ -12,31 +12,6 @@
    box-sizing: border-box;
 }
 
-.alignItemsCenter,
-::slotted(.alignItemsCenter) {
-   align-items: center;
-}
-
-.alignItemsTop,
-::slotted(.alignItemsTop) {
-   align-self: flex-start;
-}
-
-.justifyContentSpaceBetween,
-::slotted(.justifyContentSpaceBetween) {
-   justify-content: space-between;
-}
-
-.justifyContentSpaceAround,
-::slotted(.justifyContentSpaceAround) {
-   justify-content: space-around;
-}
-
-.justifyContentSpaceBetween,
-::slotted(.justifyContentSpaceBetween) {
-   justify-content: space-between;
-}
-
 .container_100,
 ::slotted(.container_100) {
    width: 100%;
