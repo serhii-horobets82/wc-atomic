@@ -6,6 +6,7 @@ import { ButtonComponent, ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { ComponentLoader } from '../abstract/component-loader';
+import { InputBoxComponent } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -54,7 +55,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
    protected render() {
       return html`
          <form @component-button-click="${this.formButtonClicked}">
-            <slot id="slotElement"></slot>
+            <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
             ${guard(
                this.buttonInputDatas,
                () =>
@@ -71,8 +72,19 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
       `;
    }
 
-   public getOutputData(): FormComponentOutputData {
+   slotChanged(event: Event) {
+      let slotElement: HTMLSlotElement = <HTMLSlotElement>event.target;
+      if (slotElement == null) {
+         return;
+      }
+      let elements: Element[] = slotElement.assignedElements();
+      for (let index = 0; index < elements.length; index++) {
+         let element: Element = elements[index];
+         element.classList.add('formElement');
+      }
+   }
 
+   public getOutputData(): FormComponentOutputData {
       let formData = new FormData();
       let json: any = {};
 

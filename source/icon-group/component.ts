@@ -53,17 +53,6 @@ export class IconGroupComponent extends AbstractComponent<IconGroupInputData, un
       this.dispatchCompoundCustomEvent(IconGroupComponent.EVENT_ICON_CLICK, event, index);
    }
 
-   getDefaultInputData(): IconGroupInputData {
-      return <IconGroupInputData>{
-         componentIdentifier: IconGroupComponent.IDENTIFIER,
-         icons: [
-            new IconComponent().getDefaultInputData(),
-            new IconComponent().getDefaultInputData(),
-            new IconComponent().getDefaultInputData()
-         ]
-      };
-   }
-
    inputDataChanged() {
       this.icons = this.basicService.getValue(this.inputData.icons, []);
       this.clazz = this.basicService.getValue(this.inputData.clazz, '');

@@ -1,6 +1,7 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { KeyValueData } from '../form/component';
+import { MessageType } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -29,6 +30,27 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
    @property()
    rows: number = 0;
 
+   @property()
+   leadingIcon: string = '';
+
+   @property()
+   trailingIcon: string = '';
+
+   @property()
+   assistiveText: string = '';
+
+   @property()
+   infoText: string = '';
+
+   @property()
+   automaticInfoText: boolean = true;
+
+   @property()
+   assistiveTextMessageType: string = MessageType.DEFAULT;
+
+   @property()
+   label: string = '';
+
    @query('#textareaElement')
    private textareaElement: HTMLTextAreaElement | undefined;
 
@@ -51,7 +73,16 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
 
    render() {
       return html`
-         <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.rows}">${this.value}</textarea>
+         <component-input-box
+            labelText="${this.label}"
+            assistiveText="${this.assistiveText}"
+            leadingIcon="${this.leadingIcon}"
+            trailingIcon="${this.trailingIcon}"
+            infoText="${this.infoText}"
+            assistiveTextMessageType="${this.assistiveTextMessageType}"
+         >
+            <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.rows}">${this.value}</textarea>
+         </component-input-box>
       `;
    }
 

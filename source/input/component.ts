@@ -57,6 +57,10 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
    static EVENT_KEY_UP_CHANGE: string = 'component-inputfield-keyup';
 
+   static EVENT_ON_FOCUS_OUT: string = 'component-inputfield-focus-out';
+
+   static EVENT_ON_FOCUS: string = 'component-inputfield-focus';
+
    static EVENT_CHANGE: string = 'component-inputfield-change';
 
    @property()
@@ -122,6 +126,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    @property()
    assistiveTextMessageType: string = MessageType.DEFAULT;
 
+   @property()
+   selected: boolean = false;
+
    @query('#inputElement')
    private inputElemet: HTMLInputElement | undefined;
 
@@ -140,6 +147,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             leadingIcon="${this.leadingIcon}"
             trailingIcon="${this.trailingIcon}"
             infoText="${this.infoText}"
+            .selected="${this.selected}"
             assistiveTextMessageType="${this.assistiveTextMessageType}"
          >
             <input
@@ -159,7 +167,8 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
                ?multiple="${this.multiple}"
                @keyup="${this.keyup}"
                @change="${(event: Event) => this.change(event)}"
-               @onfocus="${(this.oldValue = this.value)}"
+               @focus="${(event: Event) => this.focused(event)}"
+               @focusout="${(event: Event) => this.focusout(event)}"
             />
          </component-input-box>
       `;
@@ -170,6 +179,19 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
          this.infoText = this.getInfoText();
       }
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_KEY_UP_CHANGE, this.getOutputData());
+   }
+
+   async focused(event: Event) {
+      console.log('event: '.concat(JSON.stringify(event)));
+      this.oldValue = this.value;
+      this.selected = true;
+      this.dispatchSimpleCustomEvent(InputComponent.EVENT_ON_FOCUS, this.getOutputData());
+   }
+
+   async focusout(event: Event) {
+      console.log('event: '.concat(JSON.stringify(event)));
+      this.selected = false;
+      this.dispatchSimpleCustomEvent(InputComponent.EVENT_ON_FOCUS_OUT, this.getOutputData());
    }
 
    async change(event: Event) {
@@ -240,6 +262,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
          case HTMLInputTypes.NUMBER:
             //value = Number(value);
             break;
+         case HTMLInputTypes.BUTTON:
+            value = this.label;
+            break;
          default:
             break;
       }
@@ -302,4 +327,5 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       }
       return '';
    }
+
 }

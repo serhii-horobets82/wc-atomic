@@ -1,16 +1,27 @@
-@import "../css/border.css";
-
+.labelContainer {
+   position: relative;
+}
+.label {
+   position: absolute;
+   top: -10px;
+   left: var(--space-medium);
+   background-color: white;
+   padding-left: var(--space-small);
+   padding-right: var(--space-small);
+}
 .box {
-    box-sizing: border-box;
-    width: 100%;
-    background-color: var(--app-color-background);
-    color: var(--app-color-on-background);
-    caret-color: var(--app-color-primary);
-    height: var(--line-height-big);
-    line-height: var(--line-height-big);
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+   box-sizing: border-box;
+   width: 100%;
+   height: var(--line-height-big);
+   line-height: var(--line-height-big);
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+   align-items: center;
+   border: 1px solid var(--app-color-border);
+}
+.selected {
+   border-bottom: 3px solid var(--app-color-primary);
 }
 
 .label {

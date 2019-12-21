@@ -7,7 +7,8 @@ import {
    FlexJustifyContent,
    FlexWrap,
    KeylineAlignment,
-   KeylineSize, MessageType,
+   KeylineSize,
+   MessageType,
    TypographyTypes
 } from '..';
 
@@ -48,26 +49,35 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
 
    render() {
       return html`
-         <div class="label">${this.labelText}</div>
-         <div class="box basicBorder">
-            <component-icon .rendered="${this.leadingIcon.length > 0}" icon="${this.leadingIcon}"></component-icon>
-            <slot></slot>
-            <component-icon .rendered="${this.trailingIcon.length > 0}" icon="${this.trailingIcon}"></component-icon>
+         <div
+            class="container">
+            <div class="labelContainer">
+               <div class="label">${this.labelText}</div>
+            </div>
+            <div class="box ${this.selected ? 'selected' : ''}">
+               <component-icon .rendered="${this.leadingIcon.length > 0}" icon="${this.leadingIcon}"></component-icon>
+               <slot></slot>
+               <component-icon .rendered="${this.trailingIcon.length > 0}" icon="${this.trailingIcon}"></component-icon>
+            </div>
+            <component-flex-container
+               containerClazz=""
+               .direction="${FlexDirection.ROW}"
+               .wrap="${FlexWrap.WRAP}"
+               .justifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
+               .alignItems="${AlignItems.STRETCH}"
+               .alignContent="${AlignContent.STRETCH}"
+               itemFlexBasisValue="auto"
+               .keylineSize="${KeylineSize.ZERO}"
+               .keylineAlignment="${KeylineAlignment.BOTH}"
+            >
+               <component-typography
+                  .type="${TypographyTypes.OVERLINE}"
+                  messageType="${this.assistiveTextMessageType}"
+                  text="${this.assistiveText}"
+               ></component-typography>
+               <component-typography .type="${TypographyTypes.OVERLINE}" text="${this.infoText}"></component-typography>
+            </component-flex-container>
          </div>
-         <component-flex-container
-            containerClazz=""
-            .direction="${FlexDirection.ROW}"
-            .wrap="${FlexWrap.WRAP}"
-            .justifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
-            .alignItems="${AlignItems.STRETCH}"
-            .alignContent="${AlignContent.STRETCH}"
-            itemFlexBasisValue="auto"
-            .keylineSize="${KeylineSize.ZERO}"
-            .keylineAlignment="${KeylineAlignment.BOTH}"
-         >
-            <component-typography .type="${TypographyTypes.OVERLINE}" messageType="${this.assistiveTextMessageType}" text="${this.assistiveText}"></component-typography>
-            <component-typography .type="${TypographyTypes.OVERLINE}" text="${this.infoText}"></component-typography>
-         </component-flex-container>
       `;
    }
 
@@ -81,4 +91,5 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
 
    protected inputDataChanged() {
    }
+
 }

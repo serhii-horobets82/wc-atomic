@@ -1,7 +1,11 @@
 textarea {
-  padding-left: var(--space-little);
-  font: inherit;
-  line-height: var(--line-height);
-  box-sizing : border-box;
-  width: 100%;
+    padding-left: var(--space-little);
+    font: inherit;
+    box-sizing: border-box;
+    width: 100%;
+    line-height: var(--line-height);
+}
+
+textarea:focus {
+    outline: none;
 }
