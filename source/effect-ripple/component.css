@@ -4,9 +4,11 @@ div {
     cursor: pointer;
 }
 
+
 div:hover {
     background: var(--app-color-surface) radial-gradient(circle, transparent 1%, var(--app-color-surface) 1%) center/15000%;
 }
+
 
 div:active {
     background-color: var(--app-color-border);

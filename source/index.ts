@@ -25,7 +25,8 @@ import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponen
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {ChipInputData,ChipComponent} from './chip/component';
 import {ContainerInputData,ContainerComponent} from './container/component';
-import {RippleInputData,RippleComponent} from './ripple/component';
+import {RippleComponent} from './effect-ripple/component';
+import {HoverComponent} from './effect-hover/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
@@ -86,7 +87,8 @@ export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponen
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
 export {ChipInputData,ChipComponent} from './chip/component';
-export {RippleInputData,RippleComponent} from './ripple/component';
+export {RippleComponent} from './effect-ripple/component';
+export {HoverComponent} from './effect-hover/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
 export {RichMediaType, RichMediaInputData,RichMediaComponent} from './rich-media/component';

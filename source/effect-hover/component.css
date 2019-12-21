@@ -1,0 +1,3 @@
+:hover, ::slotted(:hover) {
+    background-color: blue;
+}
