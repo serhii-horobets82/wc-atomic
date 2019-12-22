@@ -13,8 +13,16 @@ export class PageInputComponent extends PageAbstract {
             <component-form>
                <component-inputfield
                   .type="${HTMLInputTypes.TEXT}"
-                  label="Text"
-                  leadingIcon="thumb_up_alt"
+                  label="Benutzername"
+                  trailingIcon="account_circle"
+                  required="true"
+               ></component-inputfield>
+               <component-inputfield
+                  .type="${HTMLInputTypes.PASSWORD}"
+                  label="Passwort"
+                  trailingIcon="vpn_key"
+                  minlength="8"
+                  required="true"
                ></component-inputfield>
                <component-inputfield
                   .type="${HTMLInputTypes.WEEK}"
@@ -24,7 +32,7 @@ export class PageInputComponent extends PageAbstract {
                ></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.DATETIME_LOCAL}" label="Datetime_Local"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.DATE}" label="Date"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.BUTTON}" label="Button"></component-inputfield>
+               <component-inputfield .type="${HTMLInputTypes.TEL}" label="Telefon"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.CHECKBOX}" label="Checkbox"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.COLOR}" label="Color"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.EMAIL}" label="Email"></component-inputfield>

@@ -1,5 +1,5 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import {
    AlignContent,
    AlignItems,
@@ -13,6 +13,12 @@ import {
 } from '..';
 
 const componentCSS = require('./component.css');
+
+export class InputBoxVariation {
+   static MINIMIZE = 'MINIMIZE';
+   static FILLED = 'FILLED';
+   static OUTLINED = 'OUTLINED';
+}
 
 export class InputBoxInputData extends AbstractInputData {
    code?: string;
@@ -47,11 +53,13 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
    @property()
    selected: boolean = false;
 
+   @property()
+   showLabel: boolean = false;
+
    render() {
       return html`
-         <div
-            class="container">
-            <div class="labelContainer">
+         <div class="container">
+            <div class="labelContainer ${this.selected || this.showLabel ? 'selected' : ''}">
                <div class="label">${this.labelText}</div>
             </div>
             <div class="box ${this.selected ? 'selected' : ''}">
@@ -89,7 +97,5 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
       return undefined;
    }
 
-   protected inputDataChanged() {
-   }
-
+   protected inputDataChanged() {}
 }

@@ -1,8 +1,10 @@
 @import '../css/border.css';
 @import '../css/shadow.css';
-.card, slot {
+
+.card, ::slotted(card), slot, ::slotted(slot) {
     overflow: hidden;
     display: block;
+    box-sizing: border-box;
 }
 
 slot {

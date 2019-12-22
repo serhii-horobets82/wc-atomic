@@ -1,0 +1,7 @@
+{
+   "users_table_firstName": "Vorname",
+   "users_table_lastName": "Name",
+   "users_table_city": "Stadt",
+   "users_table_email": "Email",
+   "users_table_aktionen": "Aktion"
+}

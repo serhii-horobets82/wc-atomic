@@ -1,15 +1,14 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {FormComponent, FormComponentOutputData} from '../form/component';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { FormComponent, FormComponentOutputData } from '../form/component';
+import { HttpClientService } from '@domoskanonos/frontend-basis';
+import { HTMLInputTypes, TypographyTypes } from '..';
 
 const componentCSS = require('./component.css');
 
-export class LoginInputData extends AbstractInputData {
-}
+export class LoginInputData extends AbstractInputData {}
 
-export class AuthenticatedSuccessfullyEventData {
-}
+export class AuthenticatedSuccessfullyEventData {}
 
 export class AuthenticatedFailureEventData {
    reason?: string;
@@ -49,23 +48,45 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
 
    render() {
       return !this.isAuthenticated
-          ? html`
-              <component-form id="authenitcate-form">
-                    <component-inputfield name="username" placeholder="${this.getI18NValue('component_authentication_username')}"></component-inputfield>
-                    <component-inputfield type="password" name="password" placeholder="${this.getI18NValue('component_authentication_password')}"></component-inputfield>
-                 <component-button
-                    text="${this.getI18NValue('component_authentication_login')}"
-                    @click="${() => this.login()}"
-                 ></component-button>
-              </component-form>
+         ? html`
+              <component-card>
+                 <component-form id="authenitcate-form">
+                    <component-typography .type="${TypographyTypes.H4}"
+                       >${this.getI18NValue('component_authentication')}</component-typography
+                    >
+                    <component-inputfield
+                       name="username"
+                       .type="${HTMLInputTypes.TEXT}"
+                       label="${this.getI18NValue('component_authentication_username')}"
+                       trailingIcon="account_circle"
+                       required="true"
+                    ></component-inputfield>
+                    <component-inputfield
+                       .type="${HTMLInputTypes.PASSWORD}"
+                       label="${this.getI18NValue('component_authentication_password')}"
+                       name="password"
+                       trailingIcon="vpn_key"
+                       required="true"
+                    ></component-inputfield>
+                    <component-button
+                       text="${this.getI18NValue('component_authentication_login')}"
+                       @click="${() => this.login()}"
+                    ></component-button>
+                 </component-form>
+              </component-card>
            `
-          : html`
-              <component-form id="logout-form">
-                 <component-button
-                    text="${this.getI18NValue('component_authentication_logout')}"
-                    @click="${() => this.logout()}"
-                 ></component-button>
-              </component-form>
+         : html`
+              <component-card>
+                 <component-form id="logout-form">
+                    <component-typography .type="${TypographyTypes.H4}"
+                       >${this.getI18NValue('component_authentication')}</component-typography
+                    >
+                    <component-button
+                       text="${this.getI18NValue('component_authentication_logout')}"
+                       @click="${() => this.logout()}"
+                    ></component-button>
+                 </component-form>
+              </component-card>
            `;
    }
 
@@ -93,12 +114,12 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
 
    private logout() {
       HttpClientService.getInstance()
-          .logout(this.logoutPath)
-          .then((isAuthenticated: boolean) => {
-             this.isAuthenticated = isAuthenticated;
-             let eventData: LogoutEventData = {};
-             this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
-          });
+         .logout(this.logoutPath)
+         .then((isAuthenticated: boolean) => {
+            this.isAuthenticated = isAuthenticated;
+            let eventData: LogoutEventData = {};
+            this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
+         });
    }
 
    protected inputDataChanged() {}
@@ -120,5 +141,4 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
          AuthenticationComponent.EVENT_AUTHENTICATION_FAILURE
       ];
    }
-
 }

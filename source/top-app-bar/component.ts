@@ -90,15 +90,6 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
       `;
    }
 
-   getDefaultInputData(): TopAppBarInputData {
-      return <TopAppBarInputData>{
-         componentIdentifier: TopAppBarComponent.IDENTIFIER,
-         leftInputData: [new IconComponent().getDefaultInputData()],
-         mainInputData: [],
-         rightInputData: [new AuthenticatedIconComponent().getDefaultInputData()]
-      };
-   }
-
    getOutputData(): any {
       return undefined;
    }

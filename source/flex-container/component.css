@@ -32,56 +32,58 @@
    width: 25%;
 }
 
-.flex_item, ::slotted(.flex_item) {
+.flex_item,
+::slotted(.flex_item) {
    box-sizing: border-box;
    overflow: hidden;
 }
 
-.PADDING_LITTLE, ::slotted(.PADDING_LITTLE) {
+.PADDING_LITTLE,
+::slotted(.PADDING_LITTLE) {
    padding-right: var(--space-little);
    padding-bottom: var(--space-little);
 }
 
-.PADDING_SMALL, ::slotted(.PADDING_SMALL) {
+.PADDING_SMALL,
+::slotted(.PADDING_SMALL) {
    padding-right: var(--space-small);
    padding-bottom: var(--space-small);
 }
 
-.PADDING_MEDIUM, ::slotted(.PADDING_MEDIUM) {
+.PADDING_MEDIUM,
+::slotted(.PADDING_MEDIUM) {
    padding-right: var(--space-medium);
    padding-bottom: var(--space-medium);
-
 }
 
-.PADDING_BIG, ::slotted(.PADDING_BIG) {
+.PADDING_BIG,
+::slotted(.PADDING_BIG) {
    padding-right: var(--space-big);
    padding-bottom: var(--space-big);
 }
 
-.PADDING_MAX, ::slotted(.PADDING_MAX) {
+.PADDING_MAX,
+::slotted(.PADDING_MAX) {
    padding-right: var(--space-max);
    padding-bottom: var(--space-max);
 }
 
-.KEYLINE_ALIGNMENT_HORIZONTAL, ::slotted(.KEYLINE_ALIGNMENT_HORIZONTAL) {
+.KEYLINE_ALIGNMENT_HORIZONTAL,
+::slotted(.KEYLINE_ALIGNMENT_HORIZONTAL) {
    padding-right: 0;
 }
 
-.KEYLINE_ALIGNMENT_VERTICAL, ::slotted(.KEYLINE_ALIGNMENT_VERTICAL) {
+.KEYLINE_ALIGNMENT_VERTICAL,
+::slotted(.KEYLINE_ALIGNMENT_VERTICAL) {
    padding-bottom: 0;
 }
 
-.PADDING_ALIGNMENT_BOTH, ::slotted(.PADDING_ALIGNMENT_BOTH) {
+.PADDING_ALIGNMENT_BOTH,
+::slotted(.PADDING_ALIGNMENT_BOTH) {
    padding: 0;
 }
 
-
-/*
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (max-width: 1280px) {
+@media only screen and (max-width: 768px) {
    .container_100,
    .container_75,
    .container_50,
@@ -92,16 +94,4 @@
    ::slotted(.container_25) {
       width: 100%;
    }
-}
-
-@media only screen and (max-width: 768px) {
-   .flexContainer,
-   ::slotted(.flexContainer) {
-   }
-
-   .flex_item,
-   ::slotted(.flex_item) {
-      /**flex-basis: 100% !important;*/
-      /**max-width: 100% !important;*/
-}
 }

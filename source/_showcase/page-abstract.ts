@@ -1,8 +1,7 @@
-import {html, TemplateResult} from 'lit-element';
-import {BasisTemplate, TypographyTypes} from '../index';
+import { html, TemplateResult } from 'lit-element';
+import { BasisTemplate, TypographyTypes } from '../index';
 
 export abstract class PageAbstract extends BasisTemplate {
-
    getTopContent(): TemplateResult {
       return html`
          <component-top-app-bar>
@@ -17,7 +16,6 @@ export abstract class PageAbstract extends BasisTemplate {
       return html`
          <component-navigation>
             <component-navigation-link
-               slot="links"
                iconClazz=""
                text="Introduction"
                href="#introduction"
@@ -30,6 +28,17 @@ export abstract class PageAbstract extends BasisTemplate {
             ></component-navigation-link>
             <component-navigation-section slot="links">
                <component-typography slot="section" text="Komponenten"></component-typography>
+               <component-navigation-link icon="" text="Dashboard" href="#dashboard"></component-navigation-link>
+               <component-navigation-link icon="face" text="Users" href="#users"></component-navigation-link>
+               <component-navigation-link icon="settings_applications" text="Einstellungen" href="#settings"></component-navigation-link>
+               <component-navigation-link
+                  slot="links"
+                  icon=""
+                  text="Change Password"
+                  href="#changepassword"
+               ></component-navigation-link>
+               <component-navigation-link icon="" text="Register" href="#register"></component-navigation-link>
+               <component-navigation-link icon="" text="Abmelden" href="#logout"></component-navigation-link>
                <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pagelayout')}"
@@ -50,26 +59,26 @@ export abstract class PageAbstract extends BasisTemplate {
                   text="${this.i18nService.getValue('pagemenubar')}"
                   href="#pagemenubar"
                ></component-navigation-link>
-                <component-navigation-link
+               <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageicon')}"
                   href="#pageicon"
                ></component-navigation-link>
-                <component-navigation-link
+               <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pagetable')}"
                   href="#pagetable"
                ></component-navigation-link>
-                <component-navigation-link
+               <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageimg')}"
                   href="#pageimg"
                ></component-navigation-link>
-                <component-navigation-link
+               <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageelementlist')}"
                   href="#pageelementlist"
-               ></component-navigation-link>     
+               ></component-navigation-link>
                <component-navigation-link
                   iconClazz=""
                   text="${this.i18nService.getValue('pageform')}"

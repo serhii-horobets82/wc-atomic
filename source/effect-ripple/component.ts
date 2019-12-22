@@ -10,7 +10,7 @@ export class RippleComponent extends LitElement {
 
    render() {
       return html`
-         <div><slot></slot></div>
+         <span><slot></slot></span>
       `;
    }
 }

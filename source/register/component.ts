@@ -1,7 +1,8 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {FormComponent, FormComponentOutputData} from '../form/component';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { FormComponent, FormComponentOutputData } from '../form/component';
+import { HttpClientService } from '@domoskanonos/frontend-basis';
+import { HTMLInputTypes, TypographyTypes } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -29,21 +30,32 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, unde
 
    render() {
       return html`
-         <component-form id="register-form">
-            <component-inputfield
-               name="username"
-               placeholder="${this.getI18NValue('component_register_username')}"
-            ></component-inputfield>
-            <component-inputfield
-               type="password"
-               name="password"
-               placeholder="${this.getI18NValue('component_register_password')}"
-            ></component-inputfield>
-            <component-button
-               text="${this.getI18NValue('component_register_submit')}"
-               @click="${() => this.register()}"
-            ></component-button>
-         </component-form>
+         <component-card>
+            <component-form id="register-form">
+               <component-typography .type="${TypographyTypes.H4}"
+                  >${this.getI18NValue('component_register')}</component-typography
+               >
+               <component-inputfield
+                  name="username"
+                  .type="${HTMLInputTypes.EMAIL}"
+                  label="${this.getI18NValue('component_register_username')}"
+                  trailingIcon="account_circle"
+                  required="true"
+               ></component-inputfield>
+               <component-inputfield
+                  .type="${HTMLInputTypes.PASSWORD}"
+                  label="${this.getI18NValue('component_register_password')}"
+                  name="password"
+                  trailingIcon="vpn_key"
+                  minlength="8"
+                  required="true"
+               ></component-inputfield>
+               <component-button
+                  text="${this.getI18NValue('component_register_submit')}"
+                  @click="${() => this.register()}"
+               ></component-button>
+            </component-form>
+         </component-card>
       `;
    }
 
@@ -52,19 +64,16 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, unde
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
          let registerPromise = HttpClientService.getInstance().sendFormData(this.registerPath, formOutputData.formData);
          registerPromise
-             .then((response: Response) => {
-                console.log('registrered: ' + response);
-             })
-             .catch((reason: string) => {
-                console.log('authenitcate failure, reason: ' + reason);
-             });
+            .then((response: Response) => {
+               console.log('registrered: ' + response);
+            })
+            .catch((reason: string) => {
+               console.log('authenitcate failure, reason: ' + reason);
+            });
       }
-      
    }
 
-
-   protected inputDataChanged() {
-   }
+   protected inputDataChanged() {}
 
    getDefaultInputData(): RegisterInputData {
       return <RegisterInputData>{
@@ -75,5 +84,4 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, unde
    getOutputData(): any {
       return undefined;
    }
-
 }

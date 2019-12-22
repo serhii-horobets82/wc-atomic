@@ -1,23 +1,16 @@
-@import "../css/alignment.css";
-
-.maxWidth {
-    width: 100%;
-}
-
 button {
     cursor: pointer;
     border: none;
-    border: 0.1rem solid var(--app-color-surface);
-    background-color: var(--app-color-surface);
-    color: var(--app-color-on-surface);
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
     text-transform: uppercase;
     box-sizing: border-box;
     font-family: inherit;
-    padding: var(--space-little) var(--space-small) var(--space-little) var(--space-small);
+    padding: var(--space-medium) var(--space-normal);
 }
 
-@media only screen and (max-width: 800px), only screen and (orientation: portrait) {
+@media only screen and (orientation: portrait) {
     button, .btn {
-    width:100%;
+        width:100%;
     }
 }

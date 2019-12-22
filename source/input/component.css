@@ -4,10 +4,15 @@ input {
    width: 100%;
    border: none;
    padding-left: var(--space-normal);
+    background-color: transparent;
 }
 
 input:focus {
    outline: none;
+}
+
+input:focus::placeholder {
+    color: transparent;
 }
 
 input[type='checkbox'] {
@@ -18,7 +23,6 @@ input[type='color'] {
     padding-left: 0;
     height: var(--line-height-big);
     line-height: var(--line-height-big);
-    background-color: transparent;
 }
 
 input,

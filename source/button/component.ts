@@ -41,16 +41,6 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    @property()
    clickEventData: any = {};
 
-   getDefaultInputData(): ButtonInputData {
-      return <ButtonInputData>{
-         componentIdentifier: ButtonComponent.IDENTIFIER,
-         clazz: '',
-         text: 'Mein Button',
-         href: '/',
-         clickEventData: 'defaultClick'
-      };
-   }
-
    protected inputDataChanged() {
       this.icon = this.basicService.getValue(this.inputData.icon, <IconInputData>{});
       this.text = this.basicService.getValue(this.inputData.text, '');
@@ -63,7 +53,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
       return html`
          <component-ripple>
             <button class=" ${this.selected ? 'selected' : ''}" @click="${this.clicked}">
-               <component-icon .inputData="${this.icon}"></component-icon>
+               <component-icon .inputData="${this.icon}" .rendered="${this.icon.icon != undefined}"></component-icon>
                <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
                <slot></slot>
             </button>

@@ -1,6 +1,13 @@
 .labelContainer {
    position: relative;
+   visibility: hidden;
 }
+
+.labelContainer.selected {
+   position: relative;
+   visibility: visible;
+}
+
 .label {
    position: absolute;
    top: -10px;
@@ -20,7 +27,7 @@
    align-items: center;
    border: 1px solid var(--app-color-border);
 }
-.selected {
+.box.selected {
    border-bottom: 3px solid var(--app-color-primary);
 }
 

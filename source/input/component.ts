@@ -6,7 +6,6 @@ import {MessageType} from '..';
 const componentCSS = require('./component.css');
 
 export enum HTMLInputTypes {
-   BUTTON = 'button',
    CHECKBOX = 'checkbox',
    COLOR = 'color',
    DATE = 'date',
@@ -100,6 +99,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    min: number = 0;
 
    @property()
+   minlength: string = '';
+
+   @property()
    max: number = 255;
 
    @property()
@@ -148,6 +150,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             trailingIcon="${this.trailingIcon}"
             infoText="${this.infoText}"
             .selected="${this.selected}"
+            .showLabel="${this.value.length > 0}"
             assistiveTextMessageType="${this.assistiveTextMessageType}"
          >
             <input
@@ -155,8 +158,9 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
                name="${this.name}"
                type="${this.type}"
                value="${this.prepareValue(this.value)}"
-               placeholder="${this.placeholder}"
+               placeholder="${this.placeholder.length == 0 ? this.label : this.placeholder}"
                size="${this.size}"
+               minlength="${this.minlength}"
                maxlength="${this.maxlength}"
                min="${this.min}"
                max="${this.max}"
@@ -262,9 +266,6 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
          case HTMLInputTypes.NUMBER:
             //value = Number(value);
             break;
-         case HTMLInputTypes.BUTTON:
-            value = this.label;
-            break;
          default:
             break;
       }
@@ -274,8 +275,6 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
 
    private getInfoText(): string {
       switch (this.type) {
-         case HTMLInputTypes.BUTTON:
-            return '';
          case HTMLInputTypes.CHECKBOX:
             return '';
          case HTMLInputTypes.COLOR:
@@ -293,8 +292,6 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
          case HTMLInputTypes.IMAGE:
             return '';
          case HTMLInputTypes.MONTH:
-            return '';
-         case HTMLInputTypes.PASSWORD:
             return '';
          case HTMLInputTypes.RADIO:
             return '';
@@ -314,6 +311,7 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
                 .concat('-')
                 .concat(this.max.toString());
          case HTMLInputTypes.TEXT:
+         case HTMLInputTypes.PASSWORD:
             return (this.inputElemet != undefined ? this.inputElemet.value.length : 0)
                 .toString()
                 .concat('/')
@@ -327,5 +325,4 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
       }
       return '';
    }
-
 }

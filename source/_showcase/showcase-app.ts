@@ -4,6 +4,7 @@ import {RouterService} from '@domoskanonos/frontend-basis';
 import {I18nService} from "@domoskanonos/frontend-basis/source/i18n-service";
 import messageDE from './message-de.json';
 import messageEN from './message-en.json';
+import messageDEUser from './message-user-de.json';
 
 import './page-introduction';
 import './page-get-started';
@@ -23,6 +24,12 @@ import './showcase-app.ts';
 import {
     HttpClientService,
 } from "@domoskanonos/frontend-basis/source/http-client-service";
+import {PageLogin} from "./page-login";
+import {PageRegister} from "./page-register";
+import {PageChangePassword} from "./change-password";
+import {PageSettings} from "./page-settings";
+import {PageUsers} from "./page-users";
+import {PageUser} from "./page-user";
 
 
 @customElement('app-root')
@@ -31,6 +38,9 @@ export class ShowcaseApp extends AbstractApp {
     async preRender(): Promise<void> {
         I18nService.getInstance().saveData(messageDE);
         I18nService.getInstance().saveData(messageEN, 'en-EN');
+
+        I18nService.getInstance().addData(messageDEUser);
+        I18nService.getInstance().addData(messageEN, 'en-EN');
 
         let config = HttpClientService.getInstance().config;
         config.baseURL = 'http://v220190910399797452.supersrv.de:8099';
@@ -41,17 +51,42 @@ export class ShowcaseApp extends AbstractApp {
    renderPage(): TemplateResult {
       let path = RouterService.getInstance().getPath();
       console.log('current path: '.concat(path));
-      switch (path) {
-          case '#pageicon':
-              return html`<page-icon></page-icon>`;
-          case '#pagecard':
-              return html`<page-card></page-card>`;
-          case '#pageprimarytitle':
-              return html`<page-primary-title></page-primary-title>`;
-          case '#pagetable':
-              return html`<page-table></page-table>`;
-          case '#pageimg':
-              return html`<page-img></page-img>`;
+       switch (path) {
+           case '#login':
+           case '#logout':
+               return html`
+               ${new PageLogin()}
+            `;
+           case '#register':
+               return html`
+               ${new PageRegister()}
+            `;
+           case '#changepassword':
+               return html`
+               ${new PageChangePassword()}
+            `;
+           case '#settings':
+               return html`
+               ${new PageSettings()}
+            `;
+           case '#users':
+               return html`
+               ${new PageUsers()}
+            `;
+           case '#useredit':
+               return html`
+               ${new PageUser()}
+            `;
+           case '#pageicon':
+               return html`<page-icon></page-icon>`;
+           case '#pagecard':
+               return html`<page-card></page-card>`;
+           case '#pageprimarytitle':
+               return html`<page-primary-title></page-primary-title>`;
+           case '#pagetable':
+               return html`<page-table></page-table>`;
+           case '#pageimg':
+               return html`<page-img></page-img>`;
           case '#pageelementlist':
               return html`<page-element-list></page-element-list>`;
           case '#pageinput':
