@@ -1,12 +1,10 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { InputComponent } from '../input/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { FlexComponent, FlexContainerInputData } from '../flex-container/component';
-import { ButtonComponent, ButtonInputData } from '../button/component';
+import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { ComponentLoader } from '../abstract/component-loader';
-import { InputBoxComponent } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -21,10 +19,7 @@ export class FormComponentOutputData {
 }
 
 export class FormComponentInputData extends AbstractInputData {
-   gridClazz?: string;
-   columnClazz?: string;
    buttonInputDatas?: ButtonInputData[];
-   flexContainerInputData?: FlexContainerInputData;
 }
 
 @customElement('component-form')
@@ -38,23 +33,17 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
    `;
 
    @property()
-   gridClazz: string | undefined;
-
-   @property()
-   columnClazz: string | undefined;
-
-   @property()
    buttonInputDatas: ButtonInputData[] = [];
-
-   @property()
-   flexContainerInputData: FlexContainerInputData | undefined;
 
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;
 
+   @query('#htmlForm')
+   htmlForm: HTMLFormElement | undefined;
+
    protected render() {
       return html`
-         <form @component-button-click="${this.formButtonClicked}">
+         <form id="htmlForm" @component-button-click="${this.formButtonClicked}">
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
             ${guard(
                this.buttonInputDatas,
@@ -84,6 +73,21 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
       }
    }
 
+   public isValid(): boolean {
+      if (this.slotElement != null) {
+         let elements: Element[] = this.slotElement.assignedElements();
+         for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
+            let element: Element = elements[elementIndex];
+            if (element instanceof InputComponent) {
+               if (!element.isValid()) {
+                  return false;
+               }
+            }
+         }
+      }
+      return true;
+   }
+
    public getOutputData(): FormComponentOutputData {
       let formData = new FormData();
       let json: any = {};
@@ -108,26 +112,8 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
       return outputData;
    }
 
-   getDefaultInputData(): FormComponentInputData {
-      return <FormComponentInputData>{
-         componentIdentifier: FormComponent.IDENTIFIER,
-         buttonInputDatas: [
-            <ButtonInputData>{
-               componentIdentifier: ButtonComponent.IDENTIFIER,
-               text: 'Senden'
-            }
-         ],
-         flexContainerInputData: <FlexContainerInputData>{
-            componentIdentifier: FlexComponent.IDENTIFIER
-         }
-      };
-   }
-
    inputDataChanged(): void {
-      this.gridClazz = this.inputData.gridClazz;
-      this.columnClazz = this.inputData.columnClazz;
       this.buttonInputDatas = this.inputData.buttonInputDatas !== undefined ? this.inputData.buttonInputDatas : [];
-      this.flexContainerInputData = this.inputData.flexContainerInputData;
    }
 
    private formButtonClicked(event: CustomEvent) {

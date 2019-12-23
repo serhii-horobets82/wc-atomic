@@ -28,7 +28,7 @@ export abstract class PageAbstract extends BasisTemplate {
             ></component-navigation-link>
             <component-navigation-section slot="links">
                <component-typography slot="section" text="Komponenten"></component-typography>
-               <component-navigation-link icon="" text="Dashboard" href="#dashboard"></component-navigation-link>
+               <component-navigation-link icon="dashboard" text="Dashboard" href="#dashboard"></component-navigation-link>
                <component-navigation-link icon="face" text="Users" href="#users"></component-navigation-link>
                <component-navigation-link icon="settings_applications" text="Einstellungen" href="#settings"></component-navigation-link>
                <component-navigation-link
@@ -65,7 +65,7 @@ export abstract class PageAbstract extends BasisTemplate {
                   href="#pageicon"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon="table_chart"
                   text="${this.i18nService.getValue('pagetable')}"
                   href="#pagetable"
                ></component-navigation-link>

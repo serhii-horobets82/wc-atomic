@@ -195,12 +195,26 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
    async focusout(event: Event) {
       console.log('event: '.concat(JSON.stringify(event)));
       this.selected = false;
+      this.validate();
       this.dispatchSimpleCustomEvent(InputComponent.EVENT_ON_FOCUS_OUT, this.getOutputData());
    }
 
    async change(event: Event) {
+
+      let inputDataChangedEvent: InputDataChangeEvent = <InputDataChangeEvent>{};
+      inputDataChangedEvent.type = this.type;
+      inputDataChangedEvent.element = <HTMLInputElement>event.target;
+      inputDataChangedEvent.outputData = this.getOutputData();
+      this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
+   }
+
+   public isValid(): boolean {
+      return this.inputElemet != null ? this.inputElemet.validity.valid : false;
+   }
+
+   public validate(): void {
       if (this.inputElemet != null) {
-         if (this.inputElemet.validationMessage.length == 0) {
+         if (this.inputElemet.validity.valid) {
             this.value = this.inputElemet.value;
             this.oldValue = this.inputElemet.value;
             this.assistiveTextMessageType = MessageType.DEFAULT;
@@ -213,12 +227,6 @@ export class InputComponent extends AbstractComponent<InputInputData, KeyValueDa
             }
          }
       }
-
-      let inputDataChangedEvent: InputDataChangeEvent = <InputDataChangeEvent>{};
-      inputDataChangedEvent.type = this.type;
-      inputDataChangedEvent.element = <HTMLInputElement>event.target;
-      inputDataChangedEvent.outputData = this.getOutputData();
-      this.dispatchSimpleCustomEvent(InputComponent.EVENT_CHANGE, inputDataChangedEvent);
    }
 
    getOutputData(): KeyValueData {

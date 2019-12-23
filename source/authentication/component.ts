@@ -50,13 +50,13 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
       return !this.isAuthenticated
          ? html`
               <component-card>
-                 <component-form id="authenitcate-form">
+                 <component-form id="authenitcate-form" @oninvalid="${()=>alert('INVALID')}">
                     <component-typography .type="${TypographyTypes.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
                     <component-inputfield
                        name="username"
-                       .type="${HTMLInputTypes.TEXT}"
+                       .type="${HTMLInputTypes.EMAIL}"
                        label="${this.getI18NValue('component_authentication_username')}"
                        trailingIcon="account_circle"
                        required="true"
@@ -71,6 +71,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
                     <component-button
                        text="${this.getI18NValue('component_authentication_login')}"
                        @click="${() => this.login()}"
+                       disabled="true"
                     ></component-button>
                  </component-form>
               </component-card>
@@ -92,6 +93,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
 
    private login() {
       if (this.formComponent != null) {
+         alert(this.formComponent.isValid());
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
          let loginPromise = HttpClientService.getInstance().login(this.loginPath, formOutputData.formData);
          loginPromise

@@ -26,19 +26,30 @@ export class PageInputComponent extends PageAbstract {
                ></component-inputfield>
                <component-inputfield
                   .type="${HTMLInputTypes.WEEK}"
-                  leadingIcon="thumb_up_alt"
-                  trailingIcon="thumb_down_alt"
+                  leadingIcon="calendar_today"
                   label="Week"
                ></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.DATETIME_LOCAL}" label="Datetime_Local"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.DATE}" label="Date"></component-inputfield>
+               <component-inputfield
+                  leadingIcon="calendar_today"
+                  .type="${HTMLInputTypes.DATETIME_LOCAL}"
+                  label="Datetime_Local"
+               ></component-inputfield>
+               <component-inputfield
+                  leadingIcon="calendar_today"
+                  .type="${HTMLInputTypes.DATE}"
+                  label="Date"
+               ></component-inputfield>
+               <component-inputfield
+                  leadingIcon="calendar_today"
+                  .type="${HTMLInputTypes.MONTH}"
+                  label="Month"
+               ></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.TEL}" label="Telefon"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.CHECKBOX}" label="Checkbox"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.COLOR}" label="Color"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.EMAIL}" label="Email"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.FILE}" label="File"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.IMAGE}" label="Image"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.MONTH}" label="Month"></component-inputfield>
                <component-inputfield .type="${HTMLInputTypes.NUMBER}" label="Number"></component-inputfield>
                <component-search></component-search>
                <component-textarea label="Dein Text"></component-textarea>
