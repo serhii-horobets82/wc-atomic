@@ -9,6 +9,10 @@ button {
     padding: var(--space-medium) var(--space-normal);
 }
 
+button.disabled {
+    opacity: 0.5;
+}
+
 @media only screen and (orientation: portrait) {
     button, .btn {
         width:100%;

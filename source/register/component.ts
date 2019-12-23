@@ -1,29 +1,24 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FormComponent, FormComponentOutputData } from '../form/component';
-import { HttpClientService } from '@domoskanonos/frontend-basis';
 import { HTMLInputTypes, TypographyTypes } from '..';
 
 const componentCSS = require('./component.css');
 
-export class RegisterInputData extends AbstractInputData {
-   registerPath: string = '';
-}
+export class RegisterInputData extends AbstractInputData {}
 
 @customElement('component-register')
-export class RegisterComponent extends AbstractComponent<RegisterInputData, undefined> {
+export class RegisterComponent extends AbstractComponent<RegisterInputData, FormComponentOutputData> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
    static IDENTIFIER: string = 'RegisterComponent';
+   static EVENT_SUBMIT: string = 'component-register-submit';
 
    constructor() {
       super();
    }
-
-   @property()
-   registerPath: string = '';
 
    @query('#register-form')
    formComponent: FormComponent | undefined;
@@ -52,7 +47,7 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, unde
                ></component-inputfield>
                <component-button
                   text="${this.getI18NValue('component_register_submit')}"
-                  @click="${() => this.register()}"
+                  @component-button-click="${() => this.register()}"
                ></component-button>
             </component-form>
          </component-card>
@@ -60,28 +55,22 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, unde
    }
 
    private register() {
-      if (this.formComponent != null) {
-         let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let registerPromise = HttpClientService.getInstance().sendFormData(this.registerPath, formOutputData.formData);
-         registerPromise
-            .then((response: Response) => {
-               console.log('registrered: ' + response);
-            })
-            .catch((reason: string) => {
-               console.log('authenitcate failure, reason: ' + reason);
-            });
+      if (this.formComponent?.validate()) {
+         this.dispatchSimpleCustomEvent(RegisterComponent.EVENT_SUBMIT, this.getOutputData());
       }
    }
 
    protected inputDataChanged() {}
 
-   getDefaultInputData(): RegisterInputData {
-      return <RegisterInputData>{
-         componentIdentifier: RegisterComponent.IDENTIFIER
-      };
+   getOutputData(): FormComponentOutputData {
+      if (this.formComponent?.isValid()) {
+         let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
+         return formOutputData;
+      }
+      return FormComponentOutputData.prototype;
    }
 
-   getOutputData(): any {
-      return undefined;
+   getEventList(): string[] {
+      return [RegisterComponent.EVENT_SUBMIT];
    }
 }

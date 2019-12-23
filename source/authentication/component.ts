@@ -50,7 +50,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
       return !this.isAuthenticated
          ? html`
               <component-card>
-                 <component-form id="authenitcate-form" @oninvalid="${()=>alert('INVALID')}">
+                 <component-form id="authenitcate-form" @click="${() => this.formComponent?.validate()}">
                     <component-typography .type="${TypographyTypes.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
@@ -70,8 +70,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
                     ></component-inputfield>
                     <component-button
                        text="${this.getI18NValue('component_authentication_login')}"
-                       @click="${() => this.login()}"
-                       disabled="true"
+                       @component-button-click="${() => this.login()}"
                     ></component-button>
                  </component-form>
               </component-card>

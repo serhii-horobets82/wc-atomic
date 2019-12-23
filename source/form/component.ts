@@ -4,7 +4,8 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
-import { ComponentLoader } from '../abstract/component-loader';
+import {ComponentLoader} from '../abstract/component-loader';
+import {MessageType} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -86,6 +87,19 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          }
       }
       return true;
+   }
+
+   public validate(): boolean {
+      if (this.slotElement != null) {
+         let elements: Element[] = this.slotElement.assignedElements();
+         for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
+            let element: Element = elements[elementIndex];
+            if (element instanceof InputComponent) {
+               element.validate();
+            }
+         }
+      }
+      return this.isValid();
    }
 
    public getOutputData(): FormComponentOutputData {

@@ -39,6 +39,9 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    selected: boolean = false;
 
    @property()
+   disabled: boolean = false;
+
+   @property()
    clickEventData: any = {};
 
    protected inputDataChanged() {
@@ -52,7 +55,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    render() {
       return html`
          <component-ripple>
-            <button class=" ${this.selected ? 'selected' : ''}" @click="${this.clicked}">
+            <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
                <component-icon .inputData="${this.icon}" .rendered="${this.icon.icon != undefined}"></component-icon>
                <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
                <slot></slot>
@@ -62,7 +65,9 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    }
 
    async clicked() {
-      this.dispatchSimpleCustomEvent(ButtonComponent.EVENT_CLICK, this.clickEventData);
+      if (!this.disabled) {
+         this.dispatchSimpleCustomEvent(ButtonComponent.EVENT_CLICK, this.clickEventData);
+      }
    }
 
    getOutputData(): any {
