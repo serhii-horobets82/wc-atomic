@@ -93,6 +93,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
             assistiveTextMessageType="${this.assistiveTextMessageType}"
             leadingIcon="${this.leadingIcon}"
             trailingIcon="${this.trailingIcon}"
+            showLabel="true"
          >
             <select
                id="selectElement"

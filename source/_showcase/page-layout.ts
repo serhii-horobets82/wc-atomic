@@ -10,7 +10,7 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
-import {SpacerSize, TypographyTypes} from "..";
+import { SpacerSize, TypographyTypes } from '..';
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
@@ -48,68 +48,62 @@ export class PageLayoutComponent extends PageAbstract {
                   Beispielkomponente begutachten, sowie den zugehörigen Quelltext anschauen.</component-typography
                >
             </component-flex-container>
-            <component-tabs>
-               <component-tab slot="tab" selected="true" tabContentId="containerTab">Container</component-tab>
-               <component-tab-content slot="tabContent" id="containerTab" selected="true">
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
-                     label="FlexDirection"
-                     selectedValue="${this.direction}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
-                  ></component-combobox>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
-                     label="FlexWrap"
-                     selectedValue="${this.wrap}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
-                  ></component-combobox>
+            <component-form>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
+                  label="FlexDirection"
+                  selectedValue="${this.direction}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
+               ></component-combobox>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
-                     label="FlexJustifyContent"
-                     selectedValue="${this.justifyContent}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
-                  ></component-combobox>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
+                  label="FlexWrap"
+                  selectedValue="${this.wrap}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
+               ></component-combobox>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
-                     label="AlignItems"
-                     selectedValue="${this.alignItems}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
-                  ></component-combobox>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
+                  label="FlexJustifyContent"
+                  selectedValue="${this.justifyContent}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
+               ></component-combobox>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
-                     label="AlignContent"
-                     selectedValue="${this.alignContent}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
-                  ></component-combobox>
-               </component-tab-content>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
+                  label="AlignItems"
+                  selectedValue="${this.alignItems}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
+               ></component-combobox>
 
-               <component-tab slot="tab" tabContentId="itemTab">Item</component-tab>
-               <component-tab-content slot="tabContent" id="itemTab">
-                  itemFlexBasisValue (css: flex-basis):
-                  <component-inputfield
-                     value="${this.itemFlexBasisValue}"
-                     @component-inputfield-change="${(event: CustomEvent) => this.changeItemFlexBasis(event)}"
-                  ></component-inputfield>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
+                  label="AlignContent"
+                  selectedValue="${this.alignContent}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
+               ></component-combobox>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
-                     label="KeylineAlignment"
-                     selectedValue="${this.basicService.getEnumKey(this.keylineAlignment, KeylineAlignment)}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineAlignment(event)}"
-                  ></component-combobox>
+               <component-inputfield
+                  value="${this.itemFlexBasisValue}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeItemFlexBasis(event)}"
+               ></component-inputfield>
 
-                  <component-combobox
-                     .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
-                     label="KeylineSize"
-                     selectedValue="${this.basicService.getEnumKey(this.keylineSize, KeylineSize)}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
-                  ></component-combobox>
-               </component-tab-content>
-            </component-tabs>
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
+                  label="KeylineAlignment"
+                  selectedValue="${this.basicService.getEnumKey(this.keylineAlignment, KeylineAlignment)}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineAlignment(event)}"
+               ></component-combobox>
+
+               <component-combobox
+                  .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
+                  label="KeylineSize"
+                  selectedValue="${this.basicService.getEnumKey(this.keylineSize, KeylineSize)}"
+                  @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
+               ></component-combobox>
+            </component-form>
 
             <component-flex-container
                containerClazz=""
@@ -140,22 +134,25 @@ export class PageLayoutComponent extends PageAbstract {
                <component-spacer
                   cssStyle="width:50px; height: 50px; background-color:var(--app-color-primary)"
                ></component-spacer>
-               
-               <component-spacer .size="${SpacerSize.BIG}"
-                 cssStyle="background-color:var(--app-color-primary)"
+
+               <component-spacer
+                  .size="${SpacerSize.BIG}"
+                  cssStyle="background-color:var(--app-color-primary)"
                ></component-spacer>
 
-               <component-spacer .size="${SpacerSize.BIG}"
-                 cssStyle="background-color:var(--app-color-primary)"
+               <component-spacer
+                  .size="${SpacerSize.BIG}"
+                  cssStyle="background-color:var(--app-color-primary)"
                ></component-spacer>
 
-               <component-spacer .size="${SpacerSize.BIG}"
-                 cssStyle="background-color:var(--app-color-primary)"
+               <component-spacer
+                  .size="${SpacerSize.BIG}"
+                  cssStyle="background-color:var(--app-color-primary)"
                ></component-spacer>
-
             </component-flex-container>
 
-            <component-code>&lt;component-flex-container containerClazz=""
+            <component-code
+               >&lt;component-flex-container containerClazz=""
                .direction="$&#123;FlexDirection.${this.basicService.getEnumKey(this.direction, FlexDirection)}&#125;"
                .wrap="$&#123;FlexWrap.${this.basicService.getEnumKey(this.wrap, FlexWrap)}&#125;"
                .justifyContent="$&#123;FlexJustifyContent.${this.basicService.getEnumKey(

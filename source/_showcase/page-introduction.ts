@@ -23,6 +23,14 @@ export class PageIntroduction extends PageAbstract {
 
    getMainComponent(): TemplateResult {
       return html`
+         <component-flex-container containerClazz="container_100" .itemFlexBasisValues="${['33%', '66%']}">
+            <component-rich-media src="https://picsum.photos/600/480" text="Mein Bild"></component-rich-media>
+            <component-typography>
+               With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
+               and open source project on github and npm
+            </component-typography>
+         </component-flex-container>
+
          <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
             <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>
