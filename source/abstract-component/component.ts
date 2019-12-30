@@ -55,6 +55,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       }
    }
 
+
+
    disconnectedCallback(): void {
       console.log('disconnected');
       if (this.dataReceiverChannels != undefined) {

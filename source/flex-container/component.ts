@@ -75,10 +75,9 @@ export class AlignContent {
 }
 
 export class FlexContainerInputData extends AbstractInputData {
-   containerClazz?: string;
-   itemClazz?: string;
-   itemFlexBasisValue?: string = 'auto';
-   itemFlexBasisValues?: string[];
+   containerClazz: string = 'container_100';
+   itemFlexBasisValue: string = 'auto';
+   itemFlexBasisValues: string[] = [];
    direction: string = FlexDirection.ROW;
    flexWrap: string = FlexWrap.WRAP;
    justifyContent: string = FlexJustifyContent.FLEX_START;
@@ -86,7 +85,7 @@ export class FlexContainerInputData extends AbstractInputData {
    alignContent: string = AlignContent.STRETCH;
    keylineAlignment: string = KeylineAlignment.BOTH;
    keylineSize: string = KeylineSize.ZERO;
-   componentsInputData?: AbstractInputData[];
+   inputDataItems: AbstractInputData[] = [];
 }
 
 @customElement('component-flex-container')
@@ -98,54 +97,16 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    static IDENTIFIER: string = 'FlexComponent';
 
    @property()
-   private _componentsInputData: AbstractInputData[] = [];
-
-   constructor() {
-      super();
-   }
-
-   get componentsInputData(): AbstractInputData[] {
-      return this._componentsInputData !== undefined ? this._componentsInputData : [];
-   }
-
-   set componentsInputData(value: AbstractInputData[]) {
-      this._componentsInputData = value;
-   }
-
-   @property()
-   private _componentsMap = new Map<AbstractInputData, AbstractComponent<any, any>>();
-
-   get componentsMap(): Map<AbstractInputData, AbstractComponent<any, any>> {
-      return this._componentsMap;
-   }
-
-   set componentsMap(value: Map<AbstractInputData, AbstractComponent<any, any>>) {
-      this._componentsMap = value;
-   }
-
-   protected createComponentFromData(componentInputData: AbstractInputData): AbstractComponent<any, any> {
-      console.log('create component from inputData= ' + componentInputData.componentIdentifier);
-      let component = this._componentsMap.get(componentInputData);
-      if (component == null) {
-         component = ComponentLoader.INSTANCE.createComponentFromInputData(componentInputData);
-         this._componentsMap.set(componentInputData, component);
-      }
-      console.log('component created: ' + componentInputData.componentIdentifier);
-      return component;
-   }
-
-   @property()
    direction: string = FlexDirection.ROW;
 
    @property()
-   wrap: string = FlexWrap.WRAP;
+   flexWrap: string = FlexWrap.WRAP;
 
    @property()
    justifyContent: string = FlexJustifyContent.FLEX_START;
 
    @property()
    alignItems: string = AlignItems.STRETCH;
-   //TODO: WENN alignItems center dann vielleicht height = 100 % ?    height: 100%; Diskussion
 
    @property()
    alignContent: string = AlignContent.STRETCH;
@@ -157,46 +118,70 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    keylineSize: string = KeylineSize.ZERO;
 
    @property()
-   containerClazz: string = 'container_100';
+   containerClazz: string = new FlexContainerInputData().containerClazz;
 
    @property()
-   itemClazz: string = '';
+   itemFlexBasisValue: string = new FlexContainerInputData().itemFlexBasisValue;
 
    @property()
-   itemFlexBasisValues: string[] = [];
+   itemFlexBasisValues: string[] = new FlexContainerInputData().itemFlexBasisValues;
 
    @property()
-   itemFlexBasisValue: string = 'auto';
+   inputDataItems: AbstractInputData[] = [];
+
+   @query('#slotElement')
+   slotElement: HTMLSlotElement | undefined;
 
    render() {
       return html`
          <div
             class="flex_container ${this.containerClazz}"
-            style="flex-direction: ${this.direction}; flex-wrap: ${this.wrap}; justify-content: ${this
+            style="flex-direction: ${this.direction}; flex-wrap: ${this.flexWrap}; justify-content: ${this
                .justifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
          >
             ${guard(
-               this.componentsInputData,
+               this.inputDataItems,
                () =>
-                   html`
+                  html`
                      ${repeat(
-                       this.componentsInputData,
-                       (componentInputData, index) => html`
-                           <div class="flex_item ${this.itemClazz}" style="${this.getFlexItemStyle(index)};">
-                              ${this.createComponentFromData(componentInputData)}
+                        this.inputDataItems,
+                        (componentInputData, index) => html`
+                           <div class="flex_item" style="${this.getFlexItemStyle(index)};">
+                              ${ComponentLoader.INSTANCE.createComponentFromInputData(componentInputData)}
                            </div>
                         `
-                   )}
+                     )}
                   `
-      )}
+            )}
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
          </div>
       `;
    }
 
+   protected update(changedProperties: Map<PropertyKey, unknown>): void {
+      super.update(changedProperties);
+      if (
+         changedProperties.get('itemFlexBasisValue') != undefined ||
+         changedProperties.get('itemFlexBasisValues') != undefined ||
+         changedProperties.get('keylineAlignment') != undefined ||
+         changedProperties.get('keylineSize') != undefined
+      ) {
+         this.changeSlotElementStyle();
+      }
+   }
+
    slotChanged(event: Event) {
       let slotElement: HTMLSlotElement = <HTMLSlotElement>event.target;
+      this.changeElementStyle(slotElement);
+   }
 
+   private changeSlotElementStyle() {
+      if (this.slotElement != undefined) {
+         this.changeElementStyle(this.slotElement);
+      }
+   }
+
+   private changeElementStyle(slotElement: HTMLSlotElement) {
       if (slotElement == null) {
          return;
       }
@@ -222,14 +207,6 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          classList.remove(KeylineSize.MAX);
          classList.add(this.keylineSize);
 
-
-         if (this.itemClazz.length > 0 && !classList.contains(this.itemClazz)) {
-            let itemClazzesSplitted: string[] = this.itemClazz.split(' ');
-            itemClazzesSplitted.forEach((itemClazz) => {
-               classList.add(itemClazz);
-            });
-         }
-
          let currentStyle: string | null = element.getAttribute('style');
          if (currentStyle === null) {
             element.setAttribute('style', this.getFlexItemStyle(index) + ';');
@@ -247,41 +224,30 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       }
    }
 
-   getFlexItemStyle(index: number): string {
-      let flexBasisValue =
-          this.itemFlexBasisValues !== undefined
-              ? this.itemFlexBasisValues[index] !== undefined
-              ? this.itemFlexBasisValues[index]
-              : this.itemFlexBasisValue
-              : undefined;
+   private getFlexItemStyle(index: number): string {
+      let flexBasisValue = this.basicService.getValue(this.itemFlexBasisValues[index], this.itemFlexBasisValue);
       return 'flex-basis: '
-          .concat(this.basicService.getValue(flexBasisValue, ''))
+         .concat(flexBasisValue)
          .concat(';max-width: ')
-         .concat(this.basicService.getValue(flexBasisValue, ''));
+         .concat(flexBasisValue);
    }
 
    inputDataChanged() {
-      this.containerClazz = this.basicService.getValue(this.inputData.containerClazz, 'container_100');
-      this.itemClazz = this.basicService.getValue(this.inputData.itemClazz, '');
-      this.itemFlexBasisValue = this.basicService.getValue(this.inputData.itemFlexBasisValue, 'auto');
-      this.itemFlexBasisValues = this.basicService.getValue(this.inputData.itemFlexBasisValues, []);
-      this.direction = this.basicService.getValue(this.inputData.direction, this.direction);
-      this.wrap = this.basicService.getValue(this.inputData.flexWrap, this.wrap);
-      this.justifyContent = this.basicService.getValue(this.inputData.justifyContent, this.justifyContent);
-      this.alignItems = this.basicService.getValue(this.inputData.alignItems, this.alignItems);
-      this.alignContent = this.basicService.getValue(this.inputData.alignContent, this.alignContent);
-      this.keylineAlignment = this.basicService.getValue(this.inputData.keylineAlignment, this.keylineAlignment);
-      this.keylineSize = this.basicService.getValue(this.inputData.keylineSize, this.keylineSize);
-      this.componentsInputData = this.basicService.getValue(this.inputData.componentsInputData, []);
+      let defaultData: FlexContainerInputData = new FlexContainerInputData();
+      this.containerClazz = this.basicService.getValue(this.inputData.containerClazz, defaultData.containerClazz);
+      this.itemFlexBasisValue = this.basicService.getValue(this.inputData.itemFlexBasisValue, defaultData.itemFlexBasisValue);
+      this.itemFlexBasisValues = this.basicService.getValue(this.inputData.itemFlexBasisValues, defaultData.itemFlexBasisValues);
+      this.justifyContent = this.basicService.getValue(this.inputData.justifyContent, defaultData.justifyContent);
+      this.alignItems = this.basicService.getValue(this.inputData.alignItems, defaultData.alignItems);
+      this.alignContent = this.basicService.getValue(this.inputData.alignContent, defaultData.alignContent);
+      this.flexWrap = this.basicService.getValue(this.inputData.flexWrap, defaultData.flexWrap);
+      this.direction = this.basicService.getValue(this.inputData.direction, defaultData.direction);
+      this.keylineAlignment = this.basicService.getValue(this.inputData.keylineAlignment, defaultData.keylineAlignment);
+      this.keylineSize = this.basicService.getValue(this.inputData.keylineSize, defaultData.keylineSize);
+      this.inputDataItems = this.basicService.getValue(this.inputData.inputDataItems, defaultData.inputDataItems);
    }
 
    getOutputData(): undefined {
       return undefined;
-   }
-
-   getDefaultInputData(): FlexContainerInputData {
-      return <FlexContainerInputData>{
-         componentIdentifier: FlexComponent.IDENTIFIER
-      };
    }
 }
