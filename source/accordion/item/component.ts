@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { ComponentLoader } from '../../abstract/component-loader';
-import {TypographyInputData} from "../../typography/component";
+import { TypographyInputData } from '../../typography/component';
 
 const componentCSS = require('./component.css');
 
@@ -36,12 +36,12 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
                            >
                               <component-typography text="${this.header}"></component-typography>
                               <component-icon style="float:right;"
-                                 iconClazz="${this.stateClazz == 'closed' ? 'fas fa-angle-right' : 'fas fa-angle-up'}"
+                                 icon="${this.stateClazz == 'closed' ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}"
                               ></component-icon>
                            </div>
                            <div class="accordionContent ${this.stateClazz}">
                               ${
-          this.componentData != undefined
+                                 this.componentData != undefined
                                     ? ComponentLoader.INSTANCE.createComponentFromInputData(this.componentData)
                                     : ''
                               }

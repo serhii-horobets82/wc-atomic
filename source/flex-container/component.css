@@ -83,7 +83,7 @@
    padding: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) and (orientation: portrait) {
    .container_100,
    .container_75,
    .container_50,
@@ -92,6 +92,12 @@
    ::slotted(.container_75),
    ::slotted(.container_50),
    ::slotted(.container_25) {
-      width: 100%;
+      /**width: 100%;**/
+   }
+
+   .flex_item,
+   ::slotted(.flex_item) {
+      max-width: 100% !important;
+      flex-basis: 100% !important;
    }
 }

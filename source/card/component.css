@@ -1,17 +1,22 @@
 @import '../css/border.css';
 @import '../css/shadow.css';
 
-.card, ::slotted(card), slot, ::slotted(slot) {
-    overflow: hidden;
-    display: block;
-    box-sizing: border-box;
+.card,
+::slotted(card),
+slot,
+::slotted(slot) {
+   overflow: hidden;
+   display: block;
+   box-sizing: border-box;
+   height: 100%;
 }
 
 slot {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 
-card-primary, ::slotted(card-primary) {
-    padding: var(--space-medium);
+card-primary,
+::slotted(card-primary) {
+   padding: var(--space-medium);
 }

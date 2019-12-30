@@ -4,7 +4,5 @@
    box-sizing: border-box;
    background-color: var(--app-color-surface);
    color: var(--app-color-on-surface);
-   justify-content: center;
-   align-items: center;
-   overflow: auto;
+   overflow: hidden;
 }

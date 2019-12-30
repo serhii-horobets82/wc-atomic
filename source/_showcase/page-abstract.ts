@@ -16,13 +16,13 @@ export abstract class PageAbstract extends BasisTemplate {
       return html`
          <component-navigation>
             <component-navigation-link
-               iconClazz=""
+               icon=""
                text="Introduction"
                href="#introduction"
             ></component-navigation-link>
             <component-navigation-link
                slot="links"
-               iconClazz=""
+               icon=""
                text="Get started"
                href="#getStarted"
             ></component-navigation-link>
@@ -40,27 +40,27 @@ export abstract class PageAbstract extends BasisTemplate {
                <component-navigation-link icon="" text="Register" href="#register"></component-navigation-link>
                <component-navigation-link icon="" text="Abmelden" href="#logout"></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pagelayout')}"
                   href="#pagelayout"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pagetypography')}"
                   href="#pagetypography"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageinput')}"
                   href="#pageinput"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pagemenubar')}"
                   href="#pagemenubar"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageicon')}"
                   href="#pageicon"
                ></component-navigation-link>
@@ -70,32 +70,32 @@ export abstract class PageAbstract extends BasisTemplate {
                   href="#pagetable"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageimg')}"
                   href="#pageimg"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageelementlist')}"
                   href="#pageelementlist"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageform')}"
                   href="#pageform"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pagecc')}"
                   href="#pagecc"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pagecard')}"
                   href="#pagecard"
                ></component-navigation-link>
                <component-navigation-link
-                  iconClazz=""
+                  icon=""
                   text="${this.i18nService.getValue('pageprimarytitle')}"
                   href="#pageprimarytitle"
                ></component-navigation-link>

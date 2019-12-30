@@ -6,7 +6,7 @@ import { RichMediaInputData, SpacerAlignment, SpacerSize } from '..';
 const componentCSS = require('./component.scss');
 
 export class PrimaryTitleInputData extends AbstractInputData {
-   thumbnail?: string;
+   richMedia: RichMediaInputData | undefined;
    primaryTitle: TypographyInputData | undefined;
    secondaryTitle: TypographyInputData | undefined;
 }
@@ -52,7 +52,7 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
    }
 
    inputDataChanged() {
-      this.richMedia = this.basicService.getValue(this.inputData.thumbnail, undefined);
+      this.richMedia = this.basicService.getValue(this.inputData.richMedia, undefined);
       this.primaryTitle = this.basicService.getValue(this.inputData.primaryTitle, undefined);
       this.secondaryTitle = this.basicService.getValue(this.inputData.secondaryTitle, undefined);
    }

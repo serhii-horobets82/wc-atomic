@@ -38,7 +38,8 @@ H1,
 
 .H2 {
     font-size: 3.75rem;
-    line-height: 3.75rem;
+    line-height: 4.25rem;
+    vertical-align: top;
     font-weight: 300;
     letter-spacing: -0.03125rem;
 }
@@ -53,6 +54,7 @@ H1,
 .H4 {
     font-size: 2.125rem;
     line-height: 2.125rem;
+    height: 2.375rem;
     font-weight: 400;
     letter-spacing: 0.015625rem;
 }

@@ -11,15 +11,15 @@ export class PagePrimaryTitleComponent extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_25">
             <component-primary-title
-               thumbnail="https://picsum.photos/300/300"
+               .richMedia="${<RichMediaInputData>{src: 'https://picsum.photos/50/50'}}"
                .primaryTitle="${<TypographyInputData>{
-                  type: TypographyTypes.H6,
-                  text: 'Title goes here'
-               }}"
+          type: TypographyTypes.H6,
+          text: 'Title goes here'
+      }}"
                .secondaryTitle="${<TypographyInputData>{
-                  type: TypographyTypes.CAPTION,
-                  text: 'Secondary text'
-               }}"
+          type: TypographyTypes.CAPTION,
+          text: 'Secondary text'
+      }}"
             ></component-primary-title>
          </component-flex-container>
       `;

@@ -42,20 +42,6 @@ export class AccordionComponent extends AbstractComponent<AccordionInputData, an
       `;
    }
 
-   getDefaultInputData(): AccordionInputData {
-      return <AccordionInputData>{
-         componentIdentifier: AccordionComponent.IDENTIFIER,
-         items: [
-            {
-               componentIdentifier: AccordionItemComponent.IDENTIFIER,
-               header: 'Mein Accordion',
-               componentData: new TypographyComponent().getDefaultInputData(),
-               stateClazz: 'closed'
-            }
-         ]
-      };
-   }
-
    getOutputData(): any {
       return {};
    }

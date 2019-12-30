@@ -1,5 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {AlignContent, AlignItems, FlexDirection, FlexJustifyContent, FlexWrap, KeylineAlignment, KeylineSize} from '..';
 
 const componentCSS = require('./component.css');
 
@@ -22,7 +23,7 @@ export class TileComponent extends AbstractComponent<TileInputData, undefined> {
    render() {
       return html`
          <div class="tile basicShadow" style="${this.cssStyle}">
-            <slot></slot>
+               <slot></slot>
          </div>
       `;
    }

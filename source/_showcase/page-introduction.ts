@@ -1,6 +1,20 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { ComboboxOption, HTMLInputTypes, SpacerSize, TypographyTypes } from '..';
+import {
+   AlignContent,
+   AlignItems,
+   ComboboxOption,
+   FlexDirection,
+   FlexJustifyContent,
+   FlexWrap,
+   HTMLInputTypes,
+   KeylineAlignment,
+   KeylineSize,
+   RichMediaInputData,
+   SpacerSize,
+   TypographyInputData,
+   TypographyTypes
+} from '..';
 import { SpacerAlignment } from '../spacer/component';
 
 @customElement('page-introduction')
@@ -23,34 +37,155 @@ export class PageIntroduction extends PageAbstract {
 
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_100" .itemFlexBasisValues="${['33%', '66%']}">
-            <component-rich-media src="https://picsum.photos/600/480" text="Mein Bild"></component-rich-media>
-            <component-typography>
-               With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
-               and open source project on github and npm
-            </component-typography>
+         <component-flex-container
+            containerClazz="container_100"
+            .direction="${FlexDirection.ROW}"
+            .wrap="${FlexWrap.WRAP}"
+            .justifyContent="${FlexJustifyContent.CENTER}"
+            .alignItems="${AlignItems.CENTER}"
+            .alignContent="${AlignContent.FLEX_START}"
+            itemFlexBasisValue="50%"
+            .keylineSize="${KeylineSize.ZERO}"
+            .keylineAlignment="${KeylineAlignment.BOTH}"
+         >
+            <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+               <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>
+               <component-typography .type="${TypographyTypes.H6}"
+                  >Erstelle wunderbare PWA Single Page Anwendungen</component-typography
+               >
+               <component-typography>
+                  WC-Atomic ist ein Open Source Projekt mit dem sie moderne PWA und Single Page Anwendungen bauen können. Das
+                  Framework basiert auf
+                  <component-link href="https://lit-element.polymer-project.org/">Lit-Element</component-link> und Typescript.
+               </component-typography>
+            </component-flex-container>
+
+            <component-rich-media src="https://picsum.photos/1200/400" text="Mein Bild"></component-rich-media>
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
-            <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>
-            <component-typography .type="${TypographyTypes.H3}">Build beautiful Webclients</component-typography>
-            <component-typography>
-               With WC-Atomic you can build beautiful websites. WC-Atomic is written in Webcomponents, Lit-Element and Typescript
-               and open source project on github and npm
-            </component-typography>
-            <component-spacer clazz="mediumPaddingTop"></component-spacer>
-            <component-typography .type="${TypographyTypes.H3}">Installation with NPM</component-typography>
-            <component-typography>
-               If you want to use the WC-Atomic Componentent Libary in your project, simple install via NPM:
-            </component-typography>
-            <component-code>npm install -g @domoskanonos/wc-atomic</component-code>
-            <component-typography> or directly in your <b>package.json</b>: </component-typography>
-            <component-code>"dependencies": { ..., "@domoskanonos/frontend-basis": "*" }</component-code>
-            <component-typography>
-               found sources on github:
-            </component-typography>
-            <component-code>https://github.com/domoskanonos/wc-atomic</component-code>
+         <component-flex-container
+            containerClazz="container_100"
+            .direction="${FlexDirection.ROW}"
+            .wrap="${FlexWrap.WRAP}"
+            .justifyContent="${FlexJustifyContent.CENTER}"
+            .alignItems="${AlignItems.CENTER}"
+            .alignContent="${AlignContent.FLEX_START}"
+            itemFlexBasisValue="25%"
+            .keylineSize="${KeylineSize.ZERO}"
+            .keylineAlignment="${KeylineAlignment.BOTH}"
+         >
+            <component-rich-media src="https://picsum.photos/500/400" text="Mein Bild"></component-rich-media>
+            <component-rich-media src="https://picsum.photos/550/400" text="Mein Bild"></component-rich-media>
+            <component-rich-media src="https://picsum.photos/600/400" text="Mein Bild"></component-rich-media>
+
+            <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+               <component-typography .type="${TypographyTypes.H4}">Bildquelle</component-typography>
+               <component-typography .type="${TypographyTypes.BODY1}">
+                  Die hier abgebildeten Fotos stammen von:
+                  <component-link href="https://picsum.photos">https://picsum.photos</component-link></component-typography
+               >
+            </component-flex-container>
+         </component-flex-container>
+
+         <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+            <component-typography .type="${TypographyTypes.H4}">Installation und Quelldateien</component-typography>
+            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+
+            <component-flex-container
+               containerClazz="container_100"
+               itemFlexBasisValue="33.3%"
+               .keylineSize="${KeylineSize.MEDIUM}"
+               .keylineAlignment="${KeylineAlignment.BOTH}"
+            >
+               <component-card>
+                  <component-card-primary-title>
+                     <component-primary-title
+                        .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/50/50' }}"
+                        .primaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.H4,
+                           text: 'Installation'
+                        }}"
+                        .secondaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.SUBTITLE2,
+                           text: 'für Node JS and npm'
+                        }}"
+                     ></component-primary-title>
+                  </component-card-primary-title>
+                  <component-card-supporting-text>
+                     <component-code>npm install -g @domoskanonos/wc-atomic</component-code>
+                  </component-card-supporting-text>
+
+                  <component-card-actions>
+                     <component-flex-container>
+                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                           <component-icon icon="favorite_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                        </component-toolbar>
+                     </component-flex-container>
+                  </component-card-actions>
+               </component-card>
+
+               <component-card>
+                  <component-card-primary-title>
+                     <component-primary-title
+                        .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/50/50' }}"
+                        .primaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.H4,
+                           text: 'Referenzieren'
+                        }}"
+                        .secondaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.SUBTITLE2,
+                           text: 'Als Abhängigkeit in die package.json eintragen'
+                        }}"
+                     ></component-primary-title>
+                  </component-card-primary-title>
+                  <component-card-supporting-text>
+                     <component-code>"dependencies": { ..., "@domoskanonos/frontend-basis": "*" }</component-code>
+                  </component-card-supporting-text>
+
+                  <component-card-actions>
+                     <component-flex-container>
+                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                           <component-icon icon="favorite_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                        </component-toolbar>
+                     </component-flex-container>
+                  </component-card-actions>
+               </component-card>
+
+               <component-card>
+                  <component-card-primary-title>
+                     <component-primary-title
+                        .primaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.H4,
+                           text: 'Quelldateien'
+                        }}"
+                        .secondaryTitle="${<TypographyInputData>{
+                           type: TypographyTypes.SUBTITLE2,
+                           text: 'Quelldateien als Open Source auf Github'
+                        }}"
+                     ></component-primary-title>
+                  </component-card-primary-title>
+                  <component-card-supporting-text>
+                     <component-link href="https://github.com/domoskanonos/wc-atomic"
+                        >https://github.com/domoskanonos/wc-atomic</component-link
+                     >
+                  </component-card-supporting-text>
+
+                  <component-card-actions>
+                     <component-flex-container>
+                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                           <component-icon icon="favorite_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                           <component-icon icon="star_border"></component-icon>
+                        </component-toolbar>
+                     </component-flex-container>
+                  </component-card-actions>
+               </component-card>
+            </component-flex-container>
          </component-flex-container>
       `;
    }

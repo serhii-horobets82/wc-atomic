@@ -37,19 +37,13 @@ export class PageIconComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          <component-spacer clazz="mediumPaddingTop"></component-spacer>
-         <component-flex-container containerClazz="container_75" .justifyContent="${FlexJustifyContent.FLEX_START}"
-               .alignItems="${AlignItems.CENTER}">
-            <component-icon
-               .clickable="false"
-               icon="thumb_up_alt"
-               color="#25498d"
-               iconSize="96"
-               iconState="${IconState.DEFAULT}"
-               .withIconSpace="${false}"
-            ></component-icon>
 
-            <component-typography type="${TypographyTypes.H2}">Icon Component</component-typography>
-         </component-flex-container>
+
+         <component-tile cssStyle="height: 400px;">
+
+                       <component-rich-media clazz="imageWidthHundred" src="https://picsum.photos/900/400"></component-rich-media>
+
+         </component-tile>
 
          <component-flex-container containerClazz="container_75" itemFlexBasisValue="50%">
             <component-flex-container .keylineSize="${KeylineSize.ZERO}" itemFlexBasisValue="100%">

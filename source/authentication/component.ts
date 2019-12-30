@@ -17,16 +17,14 @@ export class AuthenticatedFailureEventData {
 export class LogoutEventData {}
 
 @customElement('component-authentication')
-export class AuthenticationComponent extends AbstractComponent<LoginInputData, undefined> {
+export class AuthenticationComponent extends AbstractComponent<LoginInputData, FormComponentOutputData> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
    static IDENTIFIER: string = 'AuthenticationComponent';
 
-   static EVENT_AUTHENTICATION_SUCCESSFULLY: string = 'component-authentication-event-success';
-
-   static EVENT_AUTHENTICATION_FAILURE: string = 'component-authentication-event-failure';
+   static EVENT_AUTHENTICATION_LOGIN: string = 'component-authentication-event-login';
 
    static EVENT_AUTHENTICATION_LOGOUT: string = 'component-authentication-event-logout';
 
@@ -39,12 +37,6 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
 
    @property()
    isAuthenticated: boolean = false;
-
-   @property()
-   loginPath: string = '';
-
-   @property()
-   logoutPath: string = '';
 
    render() {
       return !this.isAuthenticated
@@ -91,55 +83,23 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, u
    }
 
    private login() {
-      if (this.formComponent != null) {
-         alert(this.formComponent.isValid());
-         let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let loginPromise = HttpClientService.getInstance().login(this.loginPath, formOutputData.formData);
-         loginPromise
-            .then((isAuthenticated: boolean) => {
-               this.isAuthenticated = isAuthenticated;
-               if (this.isAuthenticated) {
-                  console.log('successfully authenitcated.');
-                  let eventData: AuthenticatedSuccessfullyEventData = {};
-                  this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_SUCCESSFULLY, eventData);
-               }
-            })
-            .catch((reason: string) => {
-               console.log('authenitcate failure, reason: ' + reason);
-               this.isAuthenticated = false;
-               let eventData: AuthenticatedFailureEventData = { reason: reason };
-               this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_FAILURE, eventData);
-            });
+      if (this.formComponent != null && this.formComponent.isValid()) {
+         this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGIN, this.getOutputData());
       }
    }
 
    private logout() {
-      HttpClientService.getInstance()
-         .logout(this.logoutPath)
-         .then((isAuthenticated: boolean) => {
-            this.isAuthenticated = isAuthenticated;
-            let eventData: LogoutEventData = {};
-            this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, eventData);
-         });
+      this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT, this.getOutputData());
    }
 
    protected inputDataChanged() {}
 
-   getDefaultInputData(): LoginInputData {
-      return <LoginInputData>{
-         componentIdentifier: AuthenticationComponent.IDENTIFIER
-      };
-   }
-
-   getOutputData(): any {
-      return undefined;
+   getOutputData(): FormComponentOutputData {
+      return this.formComponent != undefined ? this.formComponent.getOutputData() : FormComponentOutputData.prototype;
    }
 
    getEventList(): string[] {
-      return [
-         AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT,
-         AuthenticationComponent.EVENT_AUTHENTICATION_SUCCESSFULLY,
-         AuthenticationComponent.EVENT_AUTHENTICATION_FAILURE
-      ];
+      return [AuthenticationComponent.EVENT_AUTHENTICATION_LOGIN, AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT];
    }
+
 }

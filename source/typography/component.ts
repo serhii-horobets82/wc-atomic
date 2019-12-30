@@ -1,5 +1,5 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
@@ -64,7 +64,9 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
 
    render() {
       return html`
-            <span class="${this.type.toString()} ${this.clazz} ${this.messageType}" style="${this.cssStyle}">${this.text}<slot></slot></span>
+         <span class="${this.type.toString()} ${this.clazz} ${this.messageType}" style="${this.cssStyle}"
+            >${this.text}<slot></slot
+         ></span>
       `;
    }
 
@@ -72,7 +74,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
       return <TypographyInputData>{
          componentIdentifier: TypographyComponent.IDENTIFIER,
          type: TypographyTypes.BODY1,
-         text: 'Lorem ipsum dolor sit amet',
+         text: 'Lorem ipsum dolor sit amet'
       };
    }
 
@@ -88,4 +90,3 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
       this.type = this.basicService.getValue(this.inputData.type, TypographyTypes.BODY1);
    }
 }
-

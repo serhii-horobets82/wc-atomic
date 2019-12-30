@@ -4,8 +4,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
-import {ComponentLoader} from '../abstract/component-loader';
-import {MessageType} from "..";
+import { ComponentLoader } from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 

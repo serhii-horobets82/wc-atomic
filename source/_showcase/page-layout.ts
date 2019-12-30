@@ -12,6 +12,7 @@ import {
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
 import { SpacerSize, TypographyTypes } from '..';
+import { IconState } from '../icon/component';
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
@@ -45,13 +46,28 @@ export class PageLayoutComponent extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_75" .keylineSize="${KeylineSize.MEDIUM}" itemFlexBasisValue="50%">
             <component-flex-container .keylineSize="${KeylineSize.MEDIUM}" itemFlexBasisValue="100%">
-               <component-typography type="${TypographyTypes.H2}">Seiten-Layout</component-typography>
+               <component-flex-container
+                  containerClazz="container_100"
+                  .justifyContent="${FlexJustifyContent.FLEX_START}"
+                  .alignItems="${AlignItems.CENTER}"
+               >
+                  <component-icon
+                     .clickable="false"
+                     icon="dashboard"
+                     color="#25498d"
+                     iconSize="96"
+                     iconState="${IconState.DEFAULT}"
+                     .withIconSpace="${false}"
+                  ></component-icon>
+
+                  <component-typography type="${TypographyTypes.H2}">Layout System</component-typography>
+               </component-flex-container>
+
                <component-typography type="${TypographyTypes.BODY1}"
                   ><i>Component Flex Container</i> basiert auf dem HTML 5 Flex Contaier Layout (display: flex). Auf dieser Seite
                   können Sie die Komponente und deren Attribute ausführlich testen. Sie können das Ergebnis Ihrer Auswahl in der
                   Beispielkomponente begutachten, sowie den zugehörigen Quelltext anschauen.</component-typography
                >
-
                <component-form>
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
