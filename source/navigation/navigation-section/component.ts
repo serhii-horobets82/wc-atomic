@@ -4,10 +4,8 @@ import { LinkInputData } from '../../link/component';
 
 const componentCSS = require('./component.css');
 
-export class NavigationSectionInputData extends LinkInputData {}
-
 @customElement('component-navigation-section')
-export class NavigationSectionComponent extends AbstractComponent<NavigationSectionInputData, any> {
+export class NavigationSectionComponent extends AbstractComponent<LinkInputData, any> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -23,8 +21,8 @@ export class NavigationSectionComponent extends AbstractComponent<NavigationSect
       `;
    }
 
-   getDefaultInputData(): NavigationSectionInputData {
-      return <NavigationSectionInputData>{
+   getDefaultInputData(): LinkInputData {
+      return <LinkInputData>{
          componentIdentifier: NavigationSectionComponent.IDENTIFIER
       };
    }
