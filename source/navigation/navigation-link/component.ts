@@ -1,12 +1,15 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent } from '../../abstract-component/component';
+import {AbstractComponent, AbstractInputData} from '../../abstract-component/component';
 import { LinkInputData } from '../../link/component';
 import { RouterService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
-export class NavigationLinkInputData extends LinkInputData {
-   iconClazz?: string;
+export class NavigationLinkInputData extends AbstractInputData {
+   iconClazz?: string = '';
+   text?: string = '';
+   target?: string = '';
+   href?: string = '';
 }
 
 @customElement('component-navigation-link')
