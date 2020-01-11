@@ -4,7 +4,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 import { KeyValueData } from '../form/component';
-import { MessageType } from '..';
+import {MessageType} from "../typography/component";
 
 const componentCSS = require('./component.css');
 

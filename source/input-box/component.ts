@@ -8,9 +8,9 @@ import {
    FlexWrap,
    KeylineAlignment,
    KeylineSize,
-   MessageType,
    TypographyTypes
 } from '..';
+import {MessageType} from "../typography/component";
 
 const componentCSS = require('./component.css');
 

@@ -1,7 +1,7 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { KeyValueData } from '../form/component';
-import { MessageType } from '..';
+import {MessageType} from "../typography/component";
 
 const componentCSS = require('./component.css');
 
