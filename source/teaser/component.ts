@@ -81,43 +81,43 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
 
    selectSlotItem(teaserElementMenuComponent: TeaserElementMenuComponent) {
       console.log('teaserElementMenuComponent clicked');
-      this.slotService.setProperty(this.menuSlotElement, 'selected', false, TeaserElementMenuComponent, null);
+      //this.slotService.setProperty(this.menuSlotElement, 'selected', false, TeaserElementMenuComponent, null);
       teaserElementMenuComponent.inputData.selected = true;
       teaserElementMenuComponent.selected = true;
 
-      let indexOf: number = this.slotService.indexOf(this.menuSlotElement, teaserElementMenuComponent);
-      console.log(indexOf);
+      //let indexOf: number = this.slotService.indexOf(this.menuSlotElement, teaserElementMenuComponent);
+      //console.log(indexOf);
 
-      this.slotService.setProperty(this.contentSlotElement, 'selected', false, TeaserElementComponent, null);
-      let teaserElementComponent: TeaserElementComponent | null = this.slotService.getElement(
-         this.contentSlotElement,
-         TeaserElementComponent,
-         indexOf
-      );
-      if (teaserElementComponent != null) {
-         teaserElementComponent.inputData.selected = true;
-         teaserElementComponent.selected = true;
-      }
+      //this.slotService.setProperty(this.contentSlotElement, 'selected', false, TeaserElementComponent, null);
+      //let teaserElementComponent: TeaserElementComponent | null = this.slotService.getElement(
+        // this.contentSlotElement,
+        // TeaserElementComponent,
+        // indexOf
+      //);
+      //if (teaserElementComponent != null) {
+        // teaserElementComponent.inputData.selected = true;
+         //teaserElementComponent.selected = true;
+     // }
    }
 
    nextItem() {
       console.log('select next slot element');
-      let teaserElementMenuComponent: TeaserElementMenuComponent | null = this.slotService.getElementByProperty(
-         this.menuSlotElement,
-         TeaserElementMenuComponent,
-         'selected'
-      );
-      console.info(JSON.stringify(teaserElementMenuComponent));
-      if (teaserElementMenuComponent != null) {
-         let teaserElementMenuComponentNext: TeaserElementMenuComponent | null = this.slotService.nextElement(
-            this.menuSlotElement,
-            TeaserElementMenuComponent,
-            teaserElementMenuComponent
-         );
-         if (teaserElementMenuComponentNext != null) {
-            this.selectSlotItem(teaserElementMenuComponentNext);
-         }
-      }
+      //let teaserElementMenuComponent: TeaserElementMenuComponent | null = this.slotService.getElementByProperty(
+        // this.menuSlotElement,
+        // TeaserElementMenuComponent,
+        // 'selected'
+      //);
+      //console.info(JSON.stringify(teaserElementMenuComponent));
+      //if (teaserElementMenuComponent != null) {
+       //  let teaserElementMenuComponentNext: TeaserElementMenuComponent | null = this.slotService.nextElement(
+         //   this.menuSlotElement,
+          //  TeaserElementMenuComponent,
+           // teaserElementMenuComponent
+         //);
+         //if (teaserElementMenuComponentNext != null) {
+           // this.selectSlotItem(teaserElementMenuComponentNext);
+        // }
+      //}
    }
 
    selectShadowDomItem(item: TeaserElementInputData) {

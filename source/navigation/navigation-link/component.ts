@@ -11,6 +11,11 @@ export class NavigationLinkInputData extends LinkInputData {
 
 @customElement('component-navigation-link')
 export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInputData, any> {
+
+    protected inputDataChanged(): void {
+
+    }
+
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;

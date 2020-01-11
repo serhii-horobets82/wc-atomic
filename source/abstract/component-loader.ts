@@ -138,7 +138,7 @@ export class ComponentLoader {
       if (component === undefined) {
          throw new Error('component is undefined ');
       }
-      component.inputData = component.getDefaultInputData();
+      //component.inputData = component.getDefaultInputData();
 
       return component;
    }
