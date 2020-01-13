@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { IconInputData } from '../icon/component';
+import {SpacerAlignment, SpacerSize} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -24,7 +25,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    static EVENT_CLICK: string = 'component-button-click';
 
    @property()
-   icon: IconInputData = <IconInputData>{};
+   icon: string = '';
 
    @property()
    clazz: string = '';
@@ -56,7 +57,8 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
       return html`
          <component-ripple>
             <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
-               <component-icon .inputData="${this.icon}" .rendered="${this.icon.icon != undefined}"></component-icon>
+               <component-icon icon="${this.icon}" .rendered="${this.icon != undefined}" .withIconSpace="${false}"></component-icon>
+               <component-spacer size="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
                <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
                <slot></slot>
             </button>

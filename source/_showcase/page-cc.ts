@@ -7,7 +7,16 @@ import { LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData } 
 export class PageElementList extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
+
+
+
+
+
          <component-authenticated-icon></component-authenticated-icon>
+
+            <component-button text="420 Kalorien gegessen" icon="restaurant"></component-button>
+
+
 
          <component-simple-table
             .headers="${['Lorem', 'Ipsum', 'Dolorem']}"

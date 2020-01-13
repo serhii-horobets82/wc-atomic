@@ -7,6 +7,10 @@ button {
     box-sizing: border-box;
     font-family: inherit;
     padding: var(--space-medium) var(--space-normal);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 button.disabled {
