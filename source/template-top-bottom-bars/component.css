@@ -1,0 +1,77 @@
+@import "../css/shadow.css";
+.container {
+    height: calc(100vh - var(--menubar-height));
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#top {
+    position: fixed;
+    width: calc(100%);
+    height: var(--menubar-height);
+    right: 0;
+    z-index: 10;
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+}
+
+#top.menuClosed {
+    width: 100%;
+}
+
+#bottom {
+    position: fixed;
+    width: calc(100%);
+    height: var(--menubar-height);
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+}
+
+#bottom.menuClosed {
+    width: 100%;
+}
+
+#left {
+    height: calc(100% - var(--menubar-height));
+    width: var(--menu-size);
+    transition: left 0.25s linear;
+    position: fixed;
+    z-index: 1;
+    top: var(--menubar-height);
+    left: 0;
+    overflow-x: hidden;
+    background-color: var(--app-color-primary);
+    color: var(--app-color-on-primary);
+}
+
+#left.menuClosed {
+    left: calc(-1 * var(--menu-size));
+    transition: left 0.25s linear;
+}
+
+#main {
+    padding-top: var(--menubar-height);
+    color: var(--app-color-on-background);
+    background-color: var(--app-color-background);
+    min-height: 100%;
+}
+#main.menuClosed {
+    margin-left: 0;
+}
+
+@media screen and (min-width: 521px) {
+
+    #main {
+        transition: margin-left 0.25s linear;
+        margin-left: var(--menu-size);
+    }
+
+    #main.menuClosed {
+        margin-left: 0;
+        transition: margin-left 0.25s linear;
+    }
+}

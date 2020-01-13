@@ -1,16 +1,16 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { IconInputData } from '../icon/component';
-import { TypographyInputData } from '../typography/component';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {IconState} from '../icon/component';
+import {TypographyTypes} from '../typography/component';
 
 const componentCSS = require('./component.scss');
 
 export class IconWithTextInputData extends AbstractInputData {
-   iconClazz?: string;
-   cssStyle?: string;
-   clickable?: boolean;
-   status?: number;
-   text?: string;
+   icon: string = '';
+   cssStyle: string = '';
+   clickable: boolean = false;
+   iconState: string = IconState.DEFAULT;
+   text: string = '';
 }
 
 @customElement('component-icon-with-text')
@@ -22,7 +22,7 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
    static IDENTIFIER: string = 'IconWithTextComponent';
 
    @property()
-   iconClazz: string = '';
+   icon: string = '';
 
    @property()
    cssStyle: string = '';
@@ -34,36 +34,27 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
    clickable: boolean = false;
 
    @property()
-   status: number = 1;
+   iconState: string = IconState.DEFAULT;
 
    @property()
    text: string = '';
 
    render() {
       return html`
-         <component-flex-container>
-            <component-icon iconClazz="${this.iconClazz}"></component-icon>
-            <component-typography text="fdfdfo"></component-typography>
-         </component-flex-container>
+         <div class="icon-with-text ${this.clickable ? 'clickable' : ''}">
+            <component-icon .withIconSpace="${false}" icon="${this.icon}" .iconState="${this.iconState}"></component-icon>
+            <component-typography .type="${TypographyTypes.OVERLINE}" text="${this.text}"></component-typography>
+         </div>
       `;
    }
 
-   getDefaultInputData(): IconInputData {
-      return <IconInputData>{
-         componentIdentifier: IconWithTextComponent.IDENTIFIER,
-         iconClazz: 'fas fa-question',
-         clickable: true,
-         status: 1,
-         text: 'Text'
-      };
-   }
-
    inputDataChanged() {
-      this.iconClazz = this.basicService.getValue(this.inputData.iconClazz, '');
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
-      this.status = this.basicService.getValue(this.inputData.status, 1);
-      this.clickable = this.basicService.getValue(this.inputData.clickable, false);
-      this.text = this.basicService.getValue(this.inputData.text, '');
+      let defaultData: IconWithTextInputData = new IconWithTextInputData();
+      this.icon = this.basicService.getValue(this.inputData.iconState, defaultData.icon);
+      this.iconState = this.basicService.getValue(this.inputData.iconState, defaultData.iconState);
+      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, defaultData.cssStyle);
+      this.clickable = this.basicService.getValue(this.inputData.clickable, defaultData.clickable);
+      this.text = this.basicService.getValue(this.inputData.text, defaultData.text);
    }
 
    getOutputData(): any {
