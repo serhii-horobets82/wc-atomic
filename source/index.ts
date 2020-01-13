@@ -129,5 +129,5 @@ export {TypographyTypes, TypographyInputData, TypographyComponent} from './typog
 export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-import './_showcase/showcase-app';
-export {MessageType} from "./typography/component";
+//import './_showcase/showcase-app';
+//export {MessageType} from "./typography/component";
