@@ -29,15 +29,15 @@
   align-items: center;
 }
 
-.ACTIVE_FOCUSED {
+.active-focused {
   opacity: 0.87;
 }
 
-.ACTIVE {
+.active {
   opacity: 0.54;
 }
 
-.INACTIVE {
+.inactive {
   opacity: 0.38;
 }
 

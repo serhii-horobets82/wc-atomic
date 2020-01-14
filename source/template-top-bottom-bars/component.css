@@ -22,17 +22,29 @@
 
 #bottom {
     position: fixed;
-    width: calc(100%);
-    height: var(--menubar-height);
+    width: var(--menubar-height);
+    height: calc(50%);
     right: 0;
-    bottom: 0;
+    bottom: 25%;
     z-index: 10;
     background-color: var(--app-color-primary);
     color: var(--app-color-on-primary);
 }
 
-#bottom.menuClosed {
-    width: 100%;
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    #bottom {
+        position: fixed;
+        width: calc(100%);
+        height: var(--menubar-height);
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        background-color: var(--app-color-primary);
+        color: var(--app-color-on-primary);
+    }
+    #bottom.menuClosed {
+        width: 100%;
+    }
 }
 
 #left {

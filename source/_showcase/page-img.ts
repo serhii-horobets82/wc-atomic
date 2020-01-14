@@ -12,6 +12,8 @@ export class PageImgComponent extends PageAbstract {
         
          <component-flex-container containerClazz="container_50">
          
+         
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/gG_JWPF99vA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
         <component-teaser>
                         <component-teaser-element slot="content" selected="true">

@@ -4,10 +4,10 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 const componentCSS = require('./component.css');
 
 export class IconState {
-   static DEFAULT: string = 'DEFAULT';
-   static ACTIVE_FOCUSED: string = 'ACTIVE_FOCUSED';
-   static INACTIVE: string = 'INACTIVE';
-   static ACTIVE: string = 'ACTIVE';
+   static DEFAULT: string = 'default';
+   static ACTIVE_FOCUSED: string = 'active-focused';
+   static INACTIVE: string = 'inactive';
+   static ACTIVE: string = 'active';
 }
 
 export class IconInputData extends AbstractInputData {

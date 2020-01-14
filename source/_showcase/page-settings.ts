@@ -2,6 +2,7 @@ import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import {HttpClientService} from '@domoskanonos/frontend-basis';
 import {FlexJustifyContent, SpacerSize, TopBottomTemplate, TypographyTypes} from '..';
+import {IconState} from "../icon/component";
 
 @customElement('page-settings')
 export class PageSettings extends TopBottomTemplate {
@@ -33,7 +34,7 @@ export class PageSettings extends TopBottomTemplate {
    getBottomContent(): TemplateResult {
       return html`
          <component-bottom-app-bar .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}">
-            <component-icon-with-text .clickable="${true}" icon="home" text="Home"></component-icon-with-text>
+            <component-icon-with-text .clickable="${true}" .iconState="${IconState.ACTIVE}" icon="home" text="Home"></component-icon-with-text>
             <component-icon-with-text icon="home" text="Home"></component-icon-with-text>
             <component-icon-with-text icon="home" text="Home"></component-icon-with-text>
             <component-icon-with-text icon="home" text="Home"></component-icon-with-text>

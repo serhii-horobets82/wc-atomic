@@ -3,8 +3,16 @@
 .bottom-app-bar {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
-    height: var(--menubar-height);
+    height: 100%;
+    align-content: space-around;
 
 }
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    .bottom-app-bar {
+        height: var(--menubar-height);
+    }
+}
+
