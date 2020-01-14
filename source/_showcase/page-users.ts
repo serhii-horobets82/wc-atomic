@@ -1,6 +1,6 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 
-import {RouterService, HttpClientService} from '@domoskanonos/frontend-basis';
+import {RouterService, HttpClientService, SecureService} from '@domoskanonos/frontend-basis';
 import {PageAbstract} from "./page-abstract";
 import {
    ColumnEventData,
@@ -43,7 +43,7 @@ export class PageUsers extends PageAbstract {
           RouterService.getInstance().navigate('#useredit')}"
             ></component-icon>
             <component-authenticated-icon
-               .isAuthenticated="${HttpClientService.getInstance().isAuthenticated()}"
+               .isAuthenticated="${SecureService.getInstance().isAuthenticated()}"
                loginPage="#login"
                logoutPage="#logout"
                slot="rightComponents"

@@ -1,6 +1,6 @@
-import {AbstractCRUDRepository, AuthUser} from "@domoskanonos/frontend-basis";
+import {BasicRemoteRepository, AuthUser} from "@domoskanonos/frontend-basis";
 
-export class UserRepository extends AbstractCRUDRepository<AuthUser> {
+export class UserRepository extends BasicRemoteRepository<AuthUser> {
 
     private static instance: UserRepository;
 

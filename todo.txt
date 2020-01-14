@@ -1,3 +1,6 @@
+TODO:
+- passwort reset component: Passwort neu senden
+- passwort erneuern
 - Auto Resize von FlexContainer nur mit flag
 - Bottom Menü beim neuen layout auf der rechten seite
 - Rich Media mit Video

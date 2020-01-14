@@ -1,6 +1,5 @@
 import { customElement, html, TemplateResult } from 'lit-element';
-import { PageAbstract } from './page-abstract';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
+import {HttpClientService, SecureService} from '@domoskanonos/frontend-basis';
 import {FlexJustifyContent, SpacerSize, TopBottomTemplate, TypographyTypes} from '..';
 import {IconState} from "../icon/component";
 
@@ -13,7 +12,7 @@ export class PageSettings extends TopBottomTemplate {
             <component-spacer slot="leftComponents" size="${SpacerSize.SMALL}"></component-spacer>
             <component-typography slot="leftComponents" .type="${TypographyTypes.H6}">Einstellungen</component-typography>
             <component-authenticated-icon
-               .isAuthenticated="${HttpClientService.getInstance().isAuthenticated()}"
+               .isAuthenticated="${SecureService.getInstance().isAuthenticated()}"
                loginPage="#login"
                logoutPage="#logout"
                slot="rightComponents"
