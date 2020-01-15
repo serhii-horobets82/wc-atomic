@@ -34,8 +34,11 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
    @property()
    href: string = '';
 
+   @property()
+   rendered: boolean = true;
+
    render() {
-      return html`
+      return this.rendered ? html`
          <div
             @click="${() => this.linkClicked()}"
             class="${RouterService.getInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
@@ -43,7 +46,7 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
             <component-icon icon="${this.icon}" class="navitemIcon"></component-icon>
             <component-typography>${this.text}</component-typography>
          </div>
-      `;
+      ` : html``;
    }
 
    getDefaultInputData(): NavigationLinkInputData {

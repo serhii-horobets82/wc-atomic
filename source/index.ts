@@ -3,6 +3,7 @@ import {AccordionInputData,AccordionComponent} from './accordion/container/compo
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 import {AuthenticatedIconInputData,AuthenticatedIconComponent} from './authenticated-icon/component';
 import {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
+import {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/component';
 import {RegisterInputData,RegisterComponent} from './register/component';
 import {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
@@ -100,6 +101,7 @@ export {HTMLInputTypes,InputInputData,InputDataChangeEvent,InputComponent} from 
 export {LinkInputData,LinkComponent} from './link/component';
 export {ListInputData,ListComponent} from './list/container/component';
 export {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
+export {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
 export {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
 export {BottomAppBarInputData,BottomAppBarComponent} from './bottom-app-bar/component';

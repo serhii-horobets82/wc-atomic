@@ -11,12 +11,14 @@ export class ChangePasswordInputData extends AbstractInputData {
 }
 
 @customElement('component-change-password')
-export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInputData, undefined> {
+export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInputData, FormComponentOutputData> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
    static IDENTIFIER: string = 'ChangePasswordComponent';
+
+   static EVENT_CHANGE_PASSWORD: string = 'component-change-password';
 
    constructor() {
       super();
@@ -73,24 +75,28 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
          let registerPromise = HttpClientService.getInstance().sendFormData(this.changePasswordPath, formOutputData.formData);
          registerPromise
-            .then((response: Response) => {
-               console.log('password changed: ' + response);
-            })
-            .catch((reason: string) => {
-               console.log('change password failure, reason: ' + reason);
-            });
+             .then((response: Response) => {
+                console.log('password changed: ' + response);
+             })
+             .catch((reason: string) => {
+                console.log('change password failure, reason: ' + reason);
+             });
       }
    }
 
-   protected inputDataChanged() {}
-
-   getDefaultInputData(): ChangePasswordInputData {
-      return <ChangePasswordInputData>{
-         componentIdentifier: ChangePasswordComponent.IDENTIFIER
-      };
+   private logout() {
+      this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
    }
 
-   getOutputData(): any {
-      return undefined;
+   protected inputDataChanged() {
    }
+
+   getOutputData(): FormComponentOutputData {
+      return this.formComponent != undefined ? this.formComponent.getOutputData() : FormComponentOutputData.prototype;
+   }
+
+   getEventList(): string[] {
+      return [ChangePasswordComponent.EVENT_CHANGE_PASSWORD];
+   }
+
 }

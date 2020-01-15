@@ -5,7 +5,6 @@ import {
    DataReceiverService,
    I18nService,
    RouterService,
-   SlotService,
    UIRefresherListener,
    UiRefresherService
 } from '@domoskanonos/frontend-basis';
