@@ -71,7 +71,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    }
 
    private changePassword() {
-      if (this.formComponent != null) {
+      if (this.formComponent?.validate()) {
          let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
          let registerPromise = HttpClientService.getInstance().sendFormData(this.changePasswordPath, formOutputData.formData);
          registerPromise

@@ -55,10 +55,9 @@ export class ResetPasswordComponent extends AbstractComponent<ResetPasswordInput
    }
 
    private resetPassword() {
-      if (this.formComponent != null && this.formComponent.isValid()) {
+      if (this.formComponent?.validate()) {
          this.dispatchSimpleCustomEvent(ResetPasswordComponent.EVENT_RESET_PASSWORD, this.getOutputData());
       }
-
    }
 
    protected inputDataChanged() {
