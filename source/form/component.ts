@@ -44,6 +44,13 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
    protected render() {
       return html`
          <form id="htmlForm" @component-button-click="${this.formButtonClicked}">
+            
+            <slot name="header"></slot>
+
+            <div class="errorMessages">
+                <slot name="errorMessages"></slot>
+            </div>
+            
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
             ${guard(
                this.buttonInputDatas,

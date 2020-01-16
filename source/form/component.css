@@ -12,6 +12,10 @@ form {
     padding-right: var(--space-medium);
 }
 
+.errorMessages {
+    color: var(--app-color-error);
+}
+
 @media only screen and (orientation: portrait) {
     form {
     }

@@ -27,25 +27,34 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    @property()
    changePasswordPath: string = '';
 
+   @property()
+   errorMessage: string = '';
+
    @query('#change-password-form')
    formComponent: FormComponent | undefined;
+
+   @query('#new-password-inputfield')
+   newPasswordInputField: HTMLInputElement | undefined;
+
+   @query('#repeat-new-password-inputfield')
+   repeatNewPasswordInputField: HTMLInputElement | undefined;
 
    render() {
       return html`
          <component-card>
             <component-form id="change-password-form">
-               <component-typography .type="${TypographyTypes.H4}"
+               <component-typography slot="header" .type="${TypographyTypes.H4}"
                   >${this.getI18NValue('component_change_password')}</component-typography
                >
                <component-inputfield
                   .type="${HTMLInputTypes.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_current_password')}"
                   trailingIcon="vpn_key"
-                  minlength="8"
                   required="true"
                   name="password_current"
                ></component-inputfield>
                <component-inputfield
+                  id="new-password-inputfield"
                   .type="${HTMLInputTypes.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_new_password')}"
                   trailingIcon="vpn_key"
@@ -54,6 +63,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                   name="password_new"
                ></component-inputfield>
                <component-inputfield
+                  id="repeat-new-password-inputfield"
                   .type="${HTMLInputTypes.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_repeat_new_password')}"
                   trailingIcon="vpn_key"
@@ -65,13 +75,22 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                   text="${this.getI18NValue('component_change_password_submit')}"
                   @click="${() => this.changePassword()}"
                ></component-button>
+
+               <component-typography slot="errorMessages" .type="${TypographyTypes.OVERLINE}" text="${this.errorMessage}"
+                  ></component-typography>
+               
             </component-form>
          </component-card>
       `;
    }
 
    private changePassword() {
-      this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
+      this.errorMessage = '';
+      if (this.newPasswordInputField?.value != this.repeatNewPasswordInputField?.value) {
+         this.errorMessage = this.i18nService.getValue("component_change_password_error_samepasswordcheck");
+      } else if (this.formComponent != null && this.formComponent.isValid()) {
+         this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
+      }
    }
 
    protected inputDataChanged() {
