@@ -22,7 +22,7 @@
 
 #bottom {
     position: fixed;
-    width: var(--menubar-height);
+    width: 100px;
     height: calc(50%);
     right: 0;
     bottom: 25%;

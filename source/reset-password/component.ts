@@ -43,7 +43,7 @@ export class ResetPasswordComponent extends AbstractComponent<ResetPasswordInput
                   trailingIcon="vpn_key"
                   minlength="8"
                   required="true"
-                  name="password_current"
+                  name="email"
                ></component-inputfield>
                <component-button
                   text="${this.getI18NValue('component_reset_password_submit')}"

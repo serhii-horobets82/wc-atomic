@@ -31,7 +31,7 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, Form
                   >${this.getI18NValue('component_register')}</component-typography
                >
                <component-inputfield
-                  name="username"
+                  name="email"
                   .type="${HTMLInputTypes.EMAIL}"
                   label="${this.getI18NValue('component_register_username')}"
                   trailingIcon="account_circle"

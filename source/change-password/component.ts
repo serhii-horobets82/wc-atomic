@@ -71,20 +71,6 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    }
 
    private changePassword() {
-      if (this.formComponent?.validate()) {
-         let formOutputData: FormComponentOutputData = this.formComponent.getOutputData();
-         let registerPromise = HttpClientService.getInstance().sendFormData(this.changePasswordPath, formOutputData.formData);
-         registerPromise
-             .then((response: Response) => {
-                console.log('password changed: ' + response);
-             })
-             .catch((reason: string) => {
-                console.log('change password failure, reason: ' + reason);
-             });
-      }
-   }
-
-   private logout() {
       this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
    }
 
