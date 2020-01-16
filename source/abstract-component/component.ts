@@ -22,7 +22,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    }
 
    protected basicService: BasicService = BasicService.getInstance();
-   protected i18nService: I18nService = I18nService.getInstance();
    protected screenHeight: number = window.innerHeight;
    protected screenWidth: number = window.innerWidth;
 
@@ -128,7 +127,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    }
 
    public getI18NValue(key: string): string | null | undefined {
-      return this.i18nService.getValue(key);
+      return I18nService.getInstance().getValue(key);
    }
 
    objToString(obj: any) {

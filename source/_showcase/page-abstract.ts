@@ -1,5 +1,6 @@
 import { html, TemplateResult } from 'lit-element';
 import { BasisTemplate, TypographyTypes } from '../index';
+import { I18nService } from '@domoskanonos/frontend-basis';
 
 export abstract class PageAbstract extends BasisTemplate {
    getTopContent(): TemplateResult {
@@ -41,62 +42,62 @@ export abstract class PageAbstract extends BasisTemplate {
                <component-navigation-link icon="" text="Abmelden" href="#logout"></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pagelayout')}"
+                  text="${I18nService.getInstance().getValue('pagelayout')}"
                   href="#pagelayout"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pagetypography')}"
+                  text="${I18nService.getInstance().getValue('pagetypography')}"
                   href="#pagetypography"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageinput')}"
+                  text="${I18nService.getInstance().getValue('pageinput')}"
                   href="#pageinput"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pagemenubar')}"
+                  text="${I18nService.getInstance().getValue('pagemenubar')}"
                   href="#pagemenubar"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageicon')}"
+                  text="${I18nService.getInstance().getValue('pageicon')}"
                   href="#pageicon"
                ></component-navigation-link>
                <component-navigation-link
                   icon="table_chart"
-                  text="${this.i18nService.getValue('pagetable')}"
+                  text="${I18nService.getInstance().getValue('pagetable')}"
                   href="#pagetable"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageimg')}"
+                  text="${I18nService.getInstance().getValue('pageimg')}"
                   href="#pageimg"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageelementlist')}"
+                  text="${I18nService.getInstance().getValue('pageelementlist')}"
                   href="#pageelementlist"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageform')}"
+                  text="${I18nService.getInstance().getValue('pageform')}"
                   href="#pageform"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pagecc')}"
+                  text="${I18nService.getInstance().getValue('pagecc')}"
                   href="#pagecc"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pagecard')}"
+                  text="${I18nService.getInstance().getValue('pagecard')}"
                   href="#pagecard"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${this.i18nService.getValue('pageprimarytitle')}"
+                  text="${I18nService.getInstance().getValue('pageprimarytitle')}"
                   href="#pageprimarytitle"
                ></component-navigation-link>
             </component-navigation-section>

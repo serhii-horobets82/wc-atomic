@@ -67,7 +67,7 @@ public class PageAbstractGenerator {
             }
             String link = file.getName().replace("-", "").replace(".ts", "");
             i18n.add(link);
-            links.add(new Link("#" + link, "${this.i18nService.getValue(\"" + link + "\")}"));
+            links.add(new Link("#" + link, "${I18nService.getInstance().getValue(\"" + link + "\")}"));
         }
 
         context.put("links", links);

@@ -1,8 +1,8 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { FormComponent, FormComponentOutputData } from '../form/component';
-import { HttpClientService } from '@domoskanonos/frontend-basis';
-import { HTMLInputTypes, TypographyTypes } from '..';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {FormComponent, FormComponentOutputData} from '../form/component';
+import {I18nService} from '@domoskanonos/frontend-basis';
+import {HTMLInputTypes, TypographyTypes} from '..';
 
 const componentCSS = require('./component.css');
 
@@ -33,6 +33,9 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    @query('#change-password-form')
    formComponent: FormComponent | undefined;
 
+   @query('#current-password-inputfield')
+   currentPasswordInputField: HTMLInputElement | undefined;
+
    @query('#new-password-inputfield')
    newPasswordInputField: HTMLInputElement | undefined;
 
@@ -47,6 +50,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                   >${this.getI18NValue('component_change_password')}</component-typography
                >
                <component-inputfield
+                  id="current-password-inputfield"
                   .type="${HTMLInputTypes.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_current_password')}"
                   trailingIcon="vpn_key"
@@ -87,7 +91,9 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    private changePassword() {
       this.errorMessage = '';
       if (this.newPasswordInputField?.value != this.repeatNewPasswordInputField?.value) {
-         this.errorMessage = this.i18nService.getValue("component_change_password_error_samepasswordcheck");
+         this.errorMessage = I18nService.getInstance().getValue("component_change_password_error_samepasswordcheck");
+      } else if (this.currentPasswordInputField?.value == this.newPasswordInputField?.value) {
+         this.errorMessage = I18nService.getInstance().getValue("component_change_password_error_samepasswordcheck_current_new");
       } else if (this.formComponent != null && this.formComponent.isValid()) {
          this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
       }

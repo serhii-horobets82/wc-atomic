@@ -92,7 +92,7 @@
    ::slotted(.container_75),
    ::slotted(.container_50),
    ::slotted(.container_25) {
-      /**width: 100%;**/
+      width: 100%;
    }
 
    .flex_item,

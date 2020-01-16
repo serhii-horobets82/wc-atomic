@@ -16,10 +16,10 @@ export class Page${componentName} extends PageAbstract {
         <component-typography .type="${types.H2}">Properties of component</component-typography>
 
         <component-simple-table .headers="${[
-           this.i18nService.getValue('property_name'),
-           this.i18nService.getValue('property_typ'),
-           this.i18nService.getValue('property_allowed_values'),
-           this.i18nService.getValue('property_example')
+           I18nService.getInstance().getValue('property_name'),
+           I18nService.getInstance().getValue('property_typ'),
+           I18nService.getInstance().getValue('property_allowed_values'),
+           I18nService.getInstance().getValue('property_example')
         ]}" .rows="${[
          <SimpleTableRowData>{ columns: ['value', 'string', '', 'my value'] },
          <SimpleTableRowData>{ columns: ['placeholder', 'string', '', 'my placeholder'] },
@@ -42,11 +42,11 @@ export class Page${componentName} extends PageAbstract {
          <component-typography>Simple Textfield</component-typography>
 
             <component-tabs>
-               <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
+               <component-tab slot="tab" selected="true" tabContentId="exampleContent">${I18nService.getInstance().getValue(
                   'tab_example'
                )}</component-tab>
-               <component-tab slot="tab" tabContentId="htmlContent">${this.i18nService.getValue('tab_html')}</component-tab>
-               <component-tab slot="tab" tabContentId="cssContent">${this.i18nService.getValue('tab_css')}</component-tab>
+               <component-tab slot="tab" tabContentId="htmlContent">${I18nService.getInstance().getValue('tab_html')}</component-tab>
+               <component-tab slot="tab" tabContentId="cssContent">${I18nService.getInstance().getValue('tab_css')}</component-tab>
                <component-tab-content slot="tabContent" id="exampleContent" selected="true">
                   <component-tile cssStyle="height:500px; width:500px;">
                      <component-inputfield></component-inputfield>
@@ -70,10 +70,10 @@ export class Page${componentName} extends PageAbstract {
          <component-typography>Datefield</component-typography>
 
             <component-tabs>
-               <component-tab slot="tab" selected="true" tabContentId="exampleContent">${this.i18nService.getValue(
+               <component-tab slot="tab" selected="true" tabContentId="exampleContent">${I18nService.getInstance().getValue(
                   'tab_example'
                )}</component-tab>
-               <component-tab slot="tab" tabContentId="htmlContent">${this.i18nService.getValue('tab_html')}</component-tab>
+               <component-tab slot="tab" tabContentId="htmlContent">${I18nService.getInstance().getValue('tab_html')}</component-tab>
                <component-tab-content slot="tabContent" id="exampleContent" selected="true">
                   <component-tile cssStyle="height:500px; width:500px;">
                      <component-inputfield type="date"></component-inputfield>

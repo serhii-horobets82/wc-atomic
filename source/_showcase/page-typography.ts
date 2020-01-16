@@ -6,6 +6,7 @@ import { SimpleTableRowData } from '../simple-table/component';
 import { AlignItems, FlexJustifyContent, KeylineSize } from '../flex-container/component';
 import { IconState } from '../icon/component';
 import { SpacerAlignment, SpacerSize } from '..';
+import { I18nService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-typography')
 export class PageTypographyComponent extends PageAbstract {
@@ -34,7 +35,7 @@ export class PageTypographyComponent extends PageAbstract {
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-simple-table
-               .headers="${[this.i18nService.getValue('typographyType'), this.i18nService.getValue('typographyTypeDescription')]}"
+               .headers="${[I18nService.getInstance().getValue('typographyType'), I18nService.getInstance().getValue('typographyTypeDescription')]}"
                .rows="${[
                   <SimpleTableRowData>{ columns: ['H1', 'Headline'] },
                   <SimpleTableRowData>{ columns: ['H2', 'Headline'] },

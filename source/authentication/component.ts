@@ -42,7 +42,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
       return !this.isAuthenticated
          ? html`
               <component-card>
-                 <component-form id="authenitcate-form" @click="${() => this.formComponent?.validate()}">
+                 <component-form id="authenitcate-form">
                     <component-typography .type="${TypographyTypes.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >

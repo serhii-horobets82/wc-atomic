@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobox/component';
 import { KeyValueData } from '../form/component';
 import {Key} from "readline";
+import { I18nService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -40,7 +41,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    getDefaultInputData(): I18NInputData {
       return <I18NInputData>{
          componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-         selectedLanguage: this.i18nService.getLanguage(),
+         selectedLanguage: I18nService.getInstance().getLanguage(),
          label: this.getI18NValue('language'),
          languages: []
       };
@@ -56,7 +57,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
 
    private changeLanguage(event: CustomEvent) {
       this.outputData = event.detail;
-      this.i18nService.setLanguage(this.outputData.value);
+      I18nService.getInstance().setLanguage(this.outputData.value);
       this.dispatchSimpleCustomEvent(I18NSelectorComponent.EVENT_CHANGE_LANG, this.getOutputData());
    }
 }
