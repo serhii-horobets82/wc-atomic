@@ -1,3 +1,7 @@
 TODO:
+- Toolbar überarbeiten: Horizontal and vertical toolbar app footer dann löschen
+- chip erstellen
+- Kein Card Element um die ganzen default forms
 - Auto Resize von FlexContainer nur mit flag
 - Rich Media mit Video
+c
