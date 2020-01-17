@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { TypographyInputData, TypographyTypes } from '../typography/component';
-import { LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData } from '..';
+import {LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData, SpacerSize} from '..';
 
 @customElement('page-cc')
 export class PageElementList extends PageAbstract {
@@ -9,9 +9,11 @@ export class PageElementList extends PageAbstract {
       return html`
 
 
-<component-chip>
-<component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
-</component-chip>
+
+
+                <component-chip .spacerSize="${SpacerSize.BIG}">
+                    <component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
+                </component-chip>
 
 
 

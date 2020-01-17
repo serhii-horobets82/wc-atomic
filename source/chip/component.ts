@@ -1,37 +1,40 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { SpacerSize, TypographyTypes } from '..';
 
 const componentCSS = require('./component.css');
 
 export class ChipInputData extends AbstractInputData {
-    componentIdentifier = ChipComponent.IDENTIFIER;
+   spacerSize: SpacerSize = SpacerSize.LITTLE;
 }
 
 @customElement('component-chip')
 export class ChipComponent extends AbstractComponent<ChipInputData, undefined> {
-    static styles = css`
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'ChipComponent';
+   static IDENTIFIER: string = 'ChipComponent';
 
-    @property()
-    clazz: string = 'primaryColor';
+   @property()
+   clazz: string = 'primaryColor';
 
-    render() {
-        return html`
-         <span class="${this.clazz}"><slot></slot></span>        
+   @property()
+   spacerSize: SpacerSize = SpacerSize.LITTLE;
+
+   render() {
+      return html`
+         <span class="chip ${this.clazz} ${this.spacerSize}">
+            <slot></slot>
+         </span>
       `;
-    }
+   }
 
-    getDefaultInputData(): any {
-        return <ChipComponent>{};
-    }
+   getOutputData(): undefined {
+      return undefined;
+   }
 
-    getOutputData(): undefined {
-        return undefined;
-    }
-
-    protected inputDataChanged() {
-    }
+   protected inputDataChanged() {
+      this.spacerSize = this.inputData.spacerSize;
+   }
 }

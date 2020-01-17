@@ -35,19 +35,15 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    cssStyle: string = '';
 
    @property()
-   size: string = SpacerSize.ZERO;
+   spacerSize: string = SpacerSize.ZERO;
 
    @property()
-   alignment: string = SpacerAlignment.BOTH;
+   spacerAlignment: string = SpacerAlignment.BOTH;
 
    render() {
       return html`
-         <div class="${this.size} ${this.alignment}" style="${this.cssStyle}"><slot></slot></div>
+         <span class="spacer ${this.spacerSize} ${this.spacerAlignment}" style="${this.cssStyle}"><slot></slot></span>
       `;
-   }
-
-   getDefaultInputData(): any {
-      return <SpacerInputData>{size: SpacerSize.ZERO, alignment: SpacerAlignment.BOTH};
    }
 
    getOutputData(): undefined {
@@ -55,7 +51,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    }
 
    protected inputDataChanged() {
-      this.size = this.basicService.getValue(this.inputData.size, SpacerSize.ZERO);
-      this.alignment = this.basicService.getValue(this.inputData.alignment, SpacerAlignment.BOTH);
+      this.spacerSize = this.basicService.getValue(this.inputData.size, SpacerSize.ZERO);
+      this.spacerAlignment = this.basicService.getValue(this.inputData.alignment, SpacerAlignment.BOTH);
    }
 }

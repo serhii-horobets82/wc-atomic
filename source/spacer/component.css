@@ -1,5 +1,7 @@
-div, ::slotted(.div) {
-    width: 100%;
+@import "../css/spacer.css";
+
+.spacer, ::slotted(.spacer) {
+    display: inline-block;
 }
 
 .horizontalAlignment {
@@ -10,34 +12,4 @@ div, ::slotted(.div) {
 .verticalAlignment {
     padding-left: 0;
     padding-right: 0;
-}
-
-.spaceLittle,
-::slotted(.spaceLittle) {
-    box-sizing: border-box;
-    padding: var(--space-little);
-}
-
-.spaceSmall,
-::slotted(.spaceSmall) {
-    box-sizing: border-box;
-    padding: var(--space-small);
-}
-
-.spaceMedium,
-::slotted(.spaceMedium) {
-    box-sizing: border-box;
-    padding: var(--space-medium);
-}
-
-.spaceBig,
-::slotted(.spaceBig) {
-    box-sizing: border-box;
-    padding: var(--space-big);
-}
-
-.spaceMax,
-::slotted(.spaceMax) {
-    box-sizing: border-box;
-    padding: var(--space-max);
 }
