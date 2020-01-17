@@ -15,9 +15,12 @@ export class ChipComponent extends AbstractComponent<ChipInputData, undefined> {
 
     static IDENTIFIER: string = 'ChipComponent';
 
+    @property()
+    clazz: string = 'primaryColor';
+
     render() {
         return html`
-         <div>CHIP Componenten: NOT IMPLEMENTED YET</div>
+         <span class="${this.clazz}"><slot></slot></span>        
       `;
     }
 

@@ -1,5 +1,5 @@
-@import "../css/border.css";
+@import "../css/color.css";
 
 div, ::slotted(.div) {
-    width: 100%;
+
 }

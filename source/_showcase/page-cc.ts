@@ -9,6 +9,9 @@ export class PageElementList extends PageAbstract {
       return html`
 
 
+<component-chip>
+<component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
+</component-chip>
 
 
 
