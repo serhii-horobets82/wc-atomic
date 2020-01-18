@@ -2,6 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
+import {ComponentLoader} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -59,7 +60,7 @@ export class SimpleTableComponent extends AbstractComponent<SimpleTableData, und
                             row.columns,
                             (value) =>
                                 html`
-                                                   <td colspan="1" rowspan="1">${value}</td>
+                                                   <td colspan="1" rowspan="1">${this.renderValue(value)}</td>
                                              `
                         )}
                                     </tr>
@@ -84,4 +85,10 @@ export class SimpleTableComponent extends AbstractComponent<SimpleTableData, und
     protected inputDataChanged() {
     }
 
+    private renderValue(value: any) {
+        if (value instanceof AbstractInputData) {
+            return ComponentLoader.INSTANCE.createComponentFromInputData(value);
+        }
+        return value;
+    }
 }

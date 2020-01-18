@@ -1,11 +1,13 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { TypographyInputData, TypographyTypes } from '../typography/component';
-import {LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData, SpacerSize} from '..';
+import {IconInputData, LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData, SpacerSize} from '..';
 
 @customElement('page-cc')
 export class PageElementList extends PageAbstract {
    getMainComponent(): TemplateResult {
+       let icon : IconInputData = new IconInputData();
+       icon.icon = 'menu';
       return html`
 
 
@@ -26,7 +28,7 @@ export class PageElementList extends PageAbstract {
          <component-simple-table
             .headers="${['Lorem', 'Ipsum', 'Dolorem']}"
             .rows="${[
-               <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
+               <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', icon] },
                <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
                <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
                <SimpleTableRowData>{ columns: ['Lorem', 'Ipsum', 'Dolorem'] },
