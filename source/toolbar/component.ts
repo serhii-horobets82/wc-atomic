@@ -3,50 +3,69 @@ import {AbstractComponent, AbstractInputData} from '../abstract-component/compon
 import {ComponentLoader} from '../abstract/component-loader';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {FlexJustifyContent} from "../flex-container/component";
+import {FlexJustifyContent} from '../flex-container/component';
 
 const componentCSS = require('./component.css');
 
+export class ToolbarAlignment {
+    static HORIZONTAL: string = 'horizontalAlignment';
+    static VERTICAL: string = 'verticalAlignment';
+}
 
 export class ToolbarInputData extends AbstractInputData {
     toolbarInputData: AbstractInputData[] = [];
-    justifyContent: string = FlexJustifyContent.FLEX_START;
+    flexJustifyContent: string = FlexJustifyContent.FLEX_START;
+    toolbarAlignment: string = ToolbarAlignment.HORIZONTAL;
+    height: string = 'auto';
+    width: string = 'auto';
 }
 
 @customElement('component-toolbar')
 export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefined> {
-   static styles = css`
+    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-   static IDENTIFIER: string = 'ToolbarComponent';
+    static IDENTIFIER: string = 'ToolbarComponent';
 
     @property()
     toolbarInputData: AbstractInputData[] = [];
 
     @property()
-    justifyContent: string = FlexJustifyContent.FLEX_START;
+    toolbarAlignment: string = ToolbarAlignment.HORIZONTAL;
+
+    @property()
+    flexJustifyContent: string = FlexJustifyContent.FLEX_START;
+
+    @property()
+    height: string = 'auto';
+
+    @property()
+    width: string = 'auto';
 
     constructor() {
-      super();
-   }
+        super();
+    }
 
-   render() {
-      return html`
-         <div class="toolbar" style="justify-content:${this.justifyContent};">
+    render() {
+        return html`
+         <div
+            class="toolbar ${this.toolbarAlignment}"
+            style="justify-content:${this.flexJustifyContent};height:${this.height};width:${this.width};"
+         >
             <slot></slot>
             ${guard(
-          this.toolbarInputData,
-          () =>
-              html`
+            this.toolbarInputData,
+            () =>
+                html`
                      ${repeat(
-                  this.toolbarInputData,
-                  (inputData) => html`
+                    this.toolbarInputData,
+                    (inputData) => html`
                            ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
                         `
-              )}
+                )}
                   `
-      )}
+        )}
          </div>
       `;
    }
@@ -60,7 +79,11 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
    }
 
    protected inputDataChanged() {
+       let defaultData: ToolbarInputData = new ToolbarInputData();
        this.toolbarInputData = this.inputData.toolbarInputData;
-       this.justifyContent = this.basicService.getValue(this.justifyContent, FlexJustifyContent.FLEX_START);
+       this.toolbarAlignment = this.basicService.getValue(this.toolbarAlignment, defaultData.toolbarAlignment);
+       this.flexJustifyContent = this.basicService.getValue(this.flexJustifyContent, defaultData.flexJustifyContent);
+       this.height = this.basicService.getValue(this.height, defaultData.height);
+       this.width = this.basicService.getValue(this.width, defaultData.width);
    }
 }

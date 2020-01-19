@@ -12,6 +12,13 @@
    box-sizing: border-box;
 }
 
+
+.container_min_content,
+::slotted(.container_min_content) {
+width: min-content;
+height: min-content;
+}
+
 .container_100,
 ::slotted(.container_100) {
    width: 100%;

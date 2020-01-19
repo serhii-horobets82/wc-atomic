@@ -1,5 +1,6 @@
 @import '../css/border.css';
 @import '../css/shadow.css';
+@import '../css/color.css';
 
 .card,
 ::slotted(card),

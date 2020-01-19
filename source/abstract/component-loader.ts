@@ -6,7 +6,6 @@ import { RichMediaComponent } from '../rich-media/component';
 import { IconComponent } from '../icon/component';
 import { TextareaComponent } from '../textarea/component';
 import { InputComponent } from '../input/component';
-import { SearchComponent } from '../search/component';
 import { AccordionComponent } from '../accordion/container/component';
 import { ImgSliderComponent } from '../img-slider/component';
 import { ImgSliderSelectorComponent } from '../img-slider-selector/component';
@@ -27,7 +26,6 @@ import { ListComponent } from '../list/container/component';
 import { ListItemComponent } from '../list/item/component';
 import {TypographyComponent} from "../typography/component";
 import { LinkComponent } from '../link/component';
-import { NavigationLinkComponent } from '../navigation/navigation-link/component';
 
 
 export class ComponentLoader {
@@ -53,9 +51,6 @@ export class ComponentLoader {
             break;
          case TeaserComponent.IDENTIFIER:
             component = new TeaserComponent();
-            break;
-         case SearchComponent.IDENTIFIER:
-            component = new SearchComponent();
             break;
          case TypographyComponent.IDENTIFIER:
             component = new TypographyComponent();

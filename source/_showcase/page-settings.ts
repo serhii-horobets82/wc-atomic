@@ -68,62 +68,62 @@ export class PageSettings extends TopBottomTemplate {
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pagelayout')}"
-                  href="#pagelayout"
+                  href="pagelayout"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pagetypography')}"
-                  href="#pagetypography"
+                  href="pagetypography"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageinput')}"
-                  href="#pageinput"
+                  href="pageinput"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagemenubar')}"
-                  href="#pagemenubar"
+                  text="${I18nService.getInstance().getValue('pagebars')}"
+                  href="pagebars"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageicon')}"
-                  href="#pageicon"
+                  href="pageicon"
                ></component-navigation-link>
                <component-navigation-link
                   icon="table_chart"
                   text="${I18nService.getInstance().getValue('pagetable')}"
-                  href="#pagetable"
+                  href="pagetable"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageimg')}"
-                  href="#pageimg"
+                  href="pageimg"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageelementlist')}"
-                  href="#pageelementlist"
+                  href="pageelementlist"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageform')}"
-                  href="#pageform"
+                  href="pageform"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pagecc')}"
-                  href="#pagecc"
+                  href="pagecc"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pagecard')}"
-                  href="#pagecard"
+                  href="pagecard"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
                   text="${I18nService.getInstance().getValue('pageprimarytitle')}"
-                  href="#pageprimarytitle"
+                  href="pageprimarytitle"
                ></component-navigation-link>
             </component-navigation-section>
          </component-navigation>

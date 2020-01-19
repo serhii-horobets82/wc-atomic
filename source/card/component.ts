@@ -17,9 +17,12 @@ export class CardComponent extends AbstractComponent<CardInputData, undefined> {
 
    static IDENTIFIER: string = 'CardComponent';
 
+   @property()
+   clazz : string = '';
+
    render() {
       return html`
-         <div class="card basicBorder basicShadow">
+         <div class="card basicBorder basicShadow ${this.clazz}">
             <slot></slot>
          </div>
       `;

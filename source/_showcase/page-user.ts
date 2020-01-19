@@ -35,8 +35,6 @@ export class PageUser extends PageAbstract {
                     user.birthday,
                     new Date()
                 );
-                this.password = user.password;
-                this.createdBy = user.createdBy;
                 this.active = user.active;
             })
             .catch((reason) => {
@@ -180,7 +178,6 @@ export class PageUser extends PageAbstract {
    private save() {
       if (this.formComponent != null) {
          let user: AuthUser = this.formComponent.getOutputData().jsonObject;
-         user.createdBy = this.createdBy;
          console.log('info: ' + JSON.stringify(user));
          if (this.user?.id != null) {
              console.log('update user, id=' + this.user.id);

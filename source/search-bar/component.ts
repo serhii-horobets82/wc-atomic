@@ -7,17 +7,17 @@ import {FlexJustifyContent} from "..";
 
 const componentCSS = require('./component.css');
 
-export class BottomAppBarInputData extends AbstractInputData {
+export class SearchBarInputData extends AbstractInputData {
     componentsInputData: AbstractInputData[] = [];
 }
 
-@customElement('component-bottom-app-bar')
-export class BottomAppBarComponent extends AbstractComponent<BottomAppBarInputData, undefined> {
+@customElement('component-search-bar')
+export class SearchBarComponent extends AbstractComponent<SearchBarInputData, undefined> {
     static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'BottomAppBarComponent';
+    static IDENTIFIER: string = 'SearchBarComponent';
 
     @property()
     componentsInputData: AbstractInputData[] = [];
@@ -31,7 +31,7 @@ export class BottomAppBarComponent extends AbstractComponent<BottomAppBarInputDa
 
     render() {
         return html`
-         <div class="bottom-app-bar" style="justify-content: ${this.flexJustifyContent};">           
+         <div class="search-bar" style="justify-content: ${this.flexJustifyContent};">           
                ${guard(
             this.componentsInputData,
             () =>

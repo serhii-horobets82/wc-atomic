@@ -3,8 +3,6 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ComponentLoader } from '../abstract/component-loader';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
-import { IconComponent } from '../icon/component';
-import { AuthenticatedIconComponent } from '../authenticated-icon/component';
 
 const componentCSS = require('./component.css');
 

@@ -40,11 +40,10 @@ import {ListInputData,ListComponent} from './list/container/component';
 import {ListItemInputData,ListItemComponent} from './list/item/component';
 import {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
 import {NavigationInputData,NavigationComponent} from './navigation/component';
-import {BottomAppBarInputData,BottomAppBarComponent} from './bottom-app-bar/component';
+import {SearchBarInputData,SearchBarComponent} from './search-bar/component';
 import {NavigationLinkInputData,NavigationLinkComponent} from './navigation/navigation-link/component';
 import {NavigationSectionComponent} from './navigation/navigation-section/component';
 import {PrimaryTitleInputData,PrimaryTitleComponent} from './primary-title/component';
-import {SearchInputData,SearchComponent} from './search/component';
 import {SimpleTableRowData,SimpleTableData,SimpleTableComponent} from './simple-table/component';
 import {SpacerAlignment, SpacerSize, SpacerInputData,SpacerComponent} from './spacer/component';
 import {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnEventData,TableContent,TableComponent} from './table/component';
@@ -104,12 +103,11 @@ export {ChangePasswordInputData, ChangePasswordComponent} from './change-passwor
 export {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
 export {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
-export {BottomAppBarInputData,BottomAppBarComponent} from './bottom-app-bar/component';
+export {SearchBarInputData,SearchBarComponent} from './search-bar/component';
 export {NavigationInputData,NavigationComponent} from './navigation/component';
 export {NavigationLinkInputData,NavigationLinkComponent} from './navigation/navigation-link/component';
 export {NavigationSectionComponent} from './navigation/navigation-section/component';
 export {PrimaryTitleInputData,PrimaryTitleComponent} from './primary-title/component';
-export {SearchInputData,SearchComponent} from './search/component';
 export {SimpleTableRowData,SimpleTableData,SimpleTableComponent} from './simple-table/component';
 export {SpacerAlignment, SpacerSize, SpacerInputData,SpacerComponent} from './spacer/component';
 export {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInputData,ColumnEventData,TableContent,TableComponent} from './table/component';
@@ -131,5 +129,5 @@ export {TypographyTypes, TypographyInputData, TypographyComponent} from './typog
 export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-//import './_showcase/showcase-app';
-//export {MessageType} from "./typography/component";
+import './_showcase/showcase-app';
+export {MessageType} from "./typography/component";

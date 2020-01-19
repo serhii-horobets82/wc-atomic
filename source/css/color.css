@@ -1,3 +1,8 @@
+.backgroundColor, ::slotted(.backgroundColor) {
+    color: var(--app-color-on-background);
+    background-color: var(--app-color-background);
+}
+
 .surfaceColor, ::slotted(.surfaceColor) {
     color: var(--app-color-on-surface);
     background-color: var(--app-color-surface);

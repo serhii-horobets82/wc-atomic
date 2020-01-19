@@ -97,13 +97,13 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    static IDENTIFIER: string = 'FlexComponent';
 
    @property()
-   direction: string = FlexDirection.ROW;
+   flexDirection: string = FlexDirection.ROW;
 
    @property()
    flexWrap: string = FlexWrap.WRAP;
 
    @property()
-   justifyContent: string = FlexJustifyContent.FLEX_START;
+   flexJustifyContent: string = FlexJustifyContent.FLEX_START;
 
    @property()
    alignItems: string = AlignItems.STRETCH;
@@ -136,8 +136,8 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       return html`
          <div
             class="flex_container ${this.containerClazz}"
-            style="flex-direction: ${this.direction}; flex-wrap: ${this.flexWrap}; justify-content: ${this
-               .justifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
+            style="flex-direction: ${this.flexDirection}; flex-wrap: ${this.flexWrap}; justify-content: ${this
+               .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
          >
             ${guard(
                this.inputDataItems,
@@ -237,11 +237,11 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       this.containerClazz = this.basicService.getValue(this.inputData.containerClazz, defaultData.containerClazz);
       this.itemFlexBasisValue = this.basicService.getValue(this.inputData.itemFlexBasisValue, defaultData.itemFlexBasisValue);
       this.itemFlexBasisValues = this.basicService.getValue(this.inputData.itemFlexBasisValues, defaultData.itemFlexBasisValues);
-      this.justifyContent = this.basicService.getValue(this.inputData.justifyContent, defaultData.justifyContent);
+      this.flexJustifyContent = this.basicService.getValue(this.inputData.justifyContent, defaultData.justifyContent);
       this.alignItems = this.basicService.getValue(this.inputData.alignItems, defaultData.alignItems);
       this.alignContent = this.basicService.getValue(this.inputData.alignContent, defaultData.alignContent);
       this.flexWrap = this.basicService.getValue(this.inputData.flexWrap, defaultData.flexWrap);
-      this.direction = this.basicService.getValue(this.inputData.direction, defaultData.direction);
+      this.flexDirection = this.basicService.getValue(this.inputData.direction, defaultData.direction);
       this.keylineAlignment = this.basicService.getValue(this.inputData.keylineAlignment, defaultData.keylineAlignment);
       this.keylineSize = this.basicService.getValue(this.inputData.keylineSize, defaultData.keylineSize);
       this.inputDataItems = this.basicService.getValue(this.inputData.inputDataItems, defaultData.inputDataItems);

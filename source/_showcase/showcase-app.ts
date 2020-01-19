@@ -9,7 +9,7 @@ import messageDEUser from './message-user-de.json';
 import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
-import './page-menubar.ts';
+import './page-bars.js';
 import './page-primary-title.ts';
 import './page-layout.ts';
 import './page-icon.ts';
@@ -20,7 +20,9 @@ import './page-table.ts';
 import './page-img.ts';
 import './page-form.ts';
 import './page-typography.ts';
+import './page-bars.ts';
 import './showcase-app.ts';
+
 import {
     HttpClientService,
 } from "@domoskanonos/frontend-basis/source/http-client-service";
@@ -30,6 +32,7 @@ import {PageChangePassword} from "./change-password";
 import {PageSettings} from "./page-settings";
 import {PageUsers} from "./page-users";
 import {PageUser} from "./page-user";
+
 
 
 @customElement('app-root')
@@ -49,62 +52,62 @@ export class ShowcaseApp extends AbstractApp {
     }
 
    renderPage(): TemplateResult {
-      let path = RouterService.getInstance().getPath();
+      let path = RouterService.getInstance().getCurrentPage();
       console.log('current path: '.concat(path));
        switch (path) {
-           case '#login':
-           case '#logout':
+           case 'login':
+           case 'logout':
                return html`
                ${new PageLogin()}
             `;
-           case '#register':
+           case 'register':
                return html`
                ${new PageRegister()}
             `;
-           case '#changepassword':
+           case 'changepassword':
                return html`
                ${new PageChangePassword()}
             `;
-           case '#settings':
+           case 'settings':
                return html`
                ${new PageSettings()}
             `;
-           case '#users':
+           case 'users':
                return html`
                ${new PageUsers()}
             `;
-           case '#useredit':
+           case 'useredit':
                return html`
                ${new PageUser()}
             `;
-           case '#pageicon':
+           case 'pageicon':
                return html`<page-icon></page-icon>`;
-           case '#pagecard':
+           case 'pagecard':
                return html`<page-card></page-card>`;
-           case '#pageprimarytitle':
+           case 'pageprimarytitle':
                return html`<page-primary-title></page-primary-title>`;
-           case '#pagetable':
+           case 'pagetable':
                return html`<page-table></page-table>`;
-           case '#pageimg':
+           case 'pageimg':
                return html`<page-img></page-img>`;
-          case '#pageelementlist':
+          case 'pageelementlist':
               return html`<page-element-list></page-element-list>`;
-          case '#pageinput':
+          case 'pageinput':
               return html`<page-inputfield></page-inputfield>`;
-          case '#pagetypography':
+          case 'pagetypography':
               return html`<page-typography></page-typography>`;
-          case '#pagemenubar':
-              return html`<page-menubar></page-menubar>`;
-          case '#pagelayout':
+          case 'pagebars':
+              return html`<page-bars></page-bars>`;
+          case 'pagelayout':
               return html`<page-layout></page-layout>`;
-          case '#pageform':
+          case 'pageform':
               return html`<page-form></page-form>`;
-          case '#pagecc':
+          case 'pagecc':
               return html`<page-cc></page-cc>`;
-          case '#getStarted':
+          case 'getStarted':
               return html`<page-get-started></page-get-started>`;
           case '':
-          case '#dashboard':
+          case 'dashboard':
           default:
               return html`<page-introduction></page-introduction>`;
       }

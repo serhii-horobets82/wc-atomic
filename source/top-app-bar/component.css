@@ -1,12 +1,8 @@
-@import '../css/color.css';
-
 .topappbar {
     width: 100%;
     display: grid;
     grid-template-rows: var(--menubar-height);
     grid-template-columns: auto auto auto;
-    background-color: var(--app-color-primary);
-    color: var(--app-color-on-primary);
 }
 
 .left {
