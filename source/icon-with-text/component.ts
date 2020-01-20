@@ -43,10 +43,13 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
 
    render() {
       return html`
-         <div class="icon-with-text${this.clickable ? ' clickable' : ''} ${this.iconState}">
+         <component-toolbar
+            .toolbarAlignment="${ToolbarAlignment.VERTICAL}"
+            class="${this.iconState}${this.clickable ? ' clickable' : ''}"
+         >
             <component-icon .withIconSpace="${false}" icon="${this.icon}" .iconState="${this.iconState}"></component-icon>
             <component-typography .type="${TypographyType.OVERLINE}" text="${this.text}"></component-typography>
-         </div>
+         </component-toolbar>
       `;
    }
 
