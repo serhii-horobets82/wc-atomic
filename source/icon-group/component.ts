@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { IconComponent, IconInputData } from '../icon/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -54,8 +55,8 @@ export class IconGroupComponent extends AbstractComponent<IconGroupInputData, un
    }
 
    inputDataChanged() {
-      this.icons = this.basicService.getValue(this.inputData.icons, []);
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
+      this.icons = BasicService.getInstance().getValue(this.inputData.icons, []);
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
    }
 
    getOutputData(): undefined {

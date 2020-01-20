@@ -2,6 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
 import {HTMLInputTypes, TypographyTypes} from '..';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 

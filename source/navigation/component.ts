@@ -5,6 +5,7 @@ import { ComponentLoader } from '../abstract/component-loader';
 import { repeat } from 'lit-html/directives/repeat';
 import { RouterService } from '@domoskanonos/frontend-basis';
 import { NavigationLinkInputData } from './navigation-link/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -95,10 +96,10 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
-      this.links = this.basicService.getValue(this.inputData.links, []);
-      this.contentBefore = this.basicService.getValue(this.inputData.contentBefore, []);
-      this.contentAfter = this.basicService.getValue(this.inputData.contentAfter, []);
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
+      this.links = BasicService.getInstance().getValue(this.inputData.links, []);
+      this.contentBefore = BasicService.getInstance().getValue(this.inputData.contentBefore, []);
+      this.contentAfter = BasicService.getInstance().getValue(this.inputData.contentAfter, []);
    }
 
    getOutputData(): any {
@@ -106,6 +107,6 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
    }
 
    private clickedMenuItem(linkItem: NavigationLinkInputData) {
-       RouterService.getInstance().navigate(this.basicService.getValue(linkItem.href, ''));
+       RouterService.getInstance().navigate(BasicService.getInstance().getValue(linkItem.href, ''));
    }
 }

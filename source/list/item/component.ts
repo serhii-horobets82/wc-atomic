@@ -1,5 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -45,7 +46,7 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
    }
 
    protected inputDataChanged() {
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
-      this.content = this.basicService.getValue(this.inputData.content, '');
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
+      this.content = BasicService.getInstance().getValue(this.inputData.content, '');
    }
 }

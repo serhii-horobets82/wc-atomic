@@ -73,7 +73,7 @@ export abstract class TopBottomTemplate extends AbstractComponent<TopBottomTempl
 
    menuItemClicked(event: CustomEvent) {
       let id: IconInputData = event.detail;
-      if (this.basicService.isEqual(id.icon, this.menuSwitchIcon)) {
+      if (BasicService.getInstance().isEqual(id.icon, this.menuSwitchIcon)) {
          console.log('menuItemClicked...');
          this.toogleMenu();
       }

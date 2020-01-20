@@ -4,6 +4,7 @@ import { ComboboxComponent, ComboboxInputData, ComboboxOption } from '../combobo
 import { KeyValueData } from '../form/component';
 import {Key} from "readline";
 import { I18nService } from '@domoskanonos/frontend-basis';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -48,7 +49,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    }
 
    inputDataChanged() {
-      this.languages = this.basicService.getValue(this.inputData.languages, []);
+      this.languages = BasicService.getInstance().getValue(this.inputData.languages, []);
    }
 
    getOutputData(): KeyValueData {

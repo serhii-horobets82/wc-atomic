@@ -1,4 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 
@@ -45,6 +46,6 @@ export class TeaserElementMenuComponent extends AbstractComponent<TeaserMenuElem
    }
 
    protected inputDataChanged() {
-      this.selected = this.basicService.getValue(this.inputData.selected, false);
+      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
    }
 }

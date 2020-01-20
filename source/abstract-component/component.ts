@@ -21,7 +21,6 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       super();
    }
 
-   protected basicService: BasicService = BasicService.getInstance();
    protected screenHeight: number = window.innerHeight;
    protected screenWidth: number = window.innerWidth;
 
@@ -88,8 +87,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    set inputData(value: INPUT_DATA) {
       this._inputData = value;
       console.debug('input data changed, new value=' + JSON.stringify(this._inputData));
-      if (this.basicService.isNotEmpty(this._inputData)) {
-         this.dataReceiverChannels = this.basicService.getValue(this._inputData.dataReceiverChannels, []);
+      if (BasicService.getInstance().isNotEmpty(this._inputData)) {
+         this.dataReceiverChannels = BasicService.getInstance().getValue(this._inputData.dataReceiverChannels, []);
       } else {
          //throw new Error('empty input data: ' + JSON.stringify(this));
          this._inputData = <INPUT_DATA>{};

@@ -2,6 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { NavigationComponent } from '../navigation/component';
 import { ComponentLoader } from '../abstract/component-loader';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -65,7 +66,7 @@ export class ContentSliderComponent extends AbstractComponent<ContentSliderInput
 
    protected inputDataChanged(): void {
       this.open = this.inputData.open;
-      this.componentInputData = this.basicService.getValue(this.inputData.componentInputData, AbstractInputData.prototype);
+      this.componentInputData = BasicService.getInstance().getValue(this.inputData.componentInputData, AbstractInputData.prototype);
    }
 
    getOutputData(): undefined {

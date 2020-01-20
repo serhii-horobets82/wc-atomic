@@ -3,6 +3,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { RichMediaComponent, RichMediaInputData } from '../rich-media/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -69,9 +70,9 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
    }
 
    inputDataChanged(): void {
-      this.imgs = this.basicService.getValue(this.inputData.imgs, []);
-      this.sliderType = this.basicService.getValue(this.inputData.sliderType, 1);
-      this.maxSize = this.basicService.getValue(this.inputData.maxSize, 1);
+      this.imgs = BasicService.getInstance().getValue(this.inputData.imgs, []);
+      this.sliderType = BasicService.getInstance().getValue(this.inputData.sliderType, 1);
+      this.maxSize = BasicService.getInstance().getValue(this.inputData.maxSize, 1);
    }
 
    getOutputData(): undefined {

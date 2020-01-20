@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ComponentLoader } from '../abstract/component-loader';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -93,8 +94,8 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
    }
 
    protected inputDataChanged() {
-      this.leftInputData = this.basicService.getValue(this.inputData.leftInputData, []);
-      this.mainInputData = this.basicService.getValue(this.inputData.mainInputData, []);
-      this.rightInputData = this.basicService.getValue(this.inputData.rightInputData, []);
+      this.leftInputData = BasicService.getInstance().getValue(this.inputData.leftInputData, []);
+      this.mainInputData = BasicService.getInstance().getValue(this.inputData.mainInputData, []);
+      this.rightInputData = BasicService.getInstance().getValue(this.inputData.rightInputData, []);
    }
 }

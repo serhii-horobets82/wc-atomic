@@ -9,7 +9,7 @@ import messageDEUser from './message-user-de.json';
 import './page-introduction';
 import './page-get-started';
 import './page-input.ts';
-import './page-bars.js';
+import './page-bars.ts';
 import './page-primary-title.ts';
 import './page-layout.ts';
 import './page-icon.ts';
@@ -20,7 +20,6 @@ import './page-table.ts';
 import './page-img.ts';
 import './page-form.ts';
 import './page-typography.ts';
-import './page-bars.ts';
 import './showcase-app.ts';
 
 import {

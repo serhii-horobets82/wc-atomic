@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { RouterService } from '@domoskanonos/frontend-basis';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.scss');
 
@@ -61,9 +62,9 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
    }
 
    inputDataChanged() {
-      this.isAuthenticated = this.basicService.getValue(this.inputData.isAuthenticated, false);
-      this.loginPage = this.basicService.getValue(this.inputData.loginPage, '');
-      this.logoutPage = this.basicService.getValue(this.inputData.logoutPage, '');
+      this.isAuthenticated = BasicService.getInstance().getValue(this.inputData.isAuthenticated, false);
+      this.loginPage = BasicService.getInstance().getValue(this.inputData.loginPage, '');
+      this.logoutPage = BasicService.getInstance().getValue(this.inputData.logoutPage, '');
    }
 
    getOutputData(): any {

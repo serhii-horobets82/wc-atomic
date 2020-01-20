@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ButtonComponent, ButtonInputData } from '../button/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -74,7 +75,7 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
    }
 
    protected inputDataChanged() {
-      this.buttonInputData = this.basicService.getValue(this.inputData.buttonInputData, new ButtonInputData());
-      this.lawText = this.basicService.getValue(this.inputData.lawtext, '');
+      this.buttonInputData = BasicService.getInstance().getValue(this.inputData.buttonInputData, new ButtonInputData());
+      this.lawText = BasicService.getInstance().getValue(this.inputData.lawtext, '');
    }
 }

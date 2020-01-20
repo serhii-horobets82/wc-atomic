@@ -2,6 +2,7 @@ import { css, customElement, html, property, query, unsafeCSS } from 'lit-elemen
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 import { KeyValueData } from '../form/component';
 import {MessageType} from "../typography/component";
@@ -77,12 +78,12 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    private selectElemet: HTMLSelectElement | undefined;
 
    protected inputDataChanged() {
-      this.name = this.basicService.getValue(this.inputData.name, '');
-      this.label = this.basicService.getValue(this.inputData.label, '');
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
-      this.size = this.basicService.getValue(this.inputData.size, 1);
-      this.selectedValue = this.basicService.getValue(this.inputData.selectedValue, '');
-      this.options = this.basicService.getValue(this.inputData.options, <ComboboxOption>{});
+      this.name = BasicService.getInstance().getValue(this.inputData.name, '');
+      this.label = BasicService.getInstance().getValue(this.inputData.label, '');
+      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
+      this.size = BasicService.getInstance().getValue(this.inputData.size, 1);
+      this.selectedValue = BasicService.getInstance().getValue(this.inputData.selectedValue, '');
+      this.options = BasicService.getInstance().getValue(this.inputData.options, <ComboboxOption>{});
    }
 
    render() {
@@ -110,7 +111,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
                         this.options,
                         (option) => option.value,
                         (option) =>
-                           this.basicService.isEqual(this.selectedValue, option.value)
+                           BasicService.getInstance().isEqual(this.selectedValue, option.value)
                               ? html`
                                    <option value="${option.value}" selected>${option.text}</option>
                                 `

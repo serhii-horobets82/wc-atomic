@@ -2,6 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { TypographyInputData } from '../typography/component';
 import { RichMediaInputData, SpacerAlignment, SpacerSize } from '..';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.scss');
 
@@ -52,9 +53,9 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
    }
 
    inputDataChanged() {
-      this.richMedia = this.basicService.getValue(this.inputData.richMedia, undefined);
-      this.primaryTitle = this.basicService.getValue(this.inputData.primaryTitle, undefined);
-      this.secondaryTitle = this.basicService.getValue(this.inputData.secondaryTitle, undefined);
+      this.richMedia = BasicService.getInstance().getValue(this.inputData.richMedia, undefined);
+      this.primaryTitle = BasicService.getInstance().getValue(this.inputData.primaryTitle, undefined);
+      this.secondaryTitle = BasicService.getInstance().getValue(this.inputData.secondaryTitle, undefined);
    }
 
    getOutputData(): any {

@@ -1,16 +1,16 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {IconState} from '../icon/component';
-import {TypographyTypes} from '../typography/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { IconInputData, IconState } from '../icon/component';
+import { TypographyInputData, TypographyTypes } from '../typography/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
+import { ToolbarAlignment } from '../toolbar/component';
 
 const componentCSS = require('./component.scss');
 
 export class IconWithTextInputData extends AbstractInputData {
-   icon: string = '';
-   cssStyle: string = '';
+   iconInputData: IconInputData = new IconInputData();
+   typographyInputData: TypographyInputData = new TypographyInputData();
    clickable: boolean = false;
-   iconState: string = IconState.DEFAULT;
-   text: string = '';
 }
 
 @customElement('component-icon-with-text')
@@ -22,39 +22,32 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
    static IDENTIFIER: string = 'IconWithTextComponent';
 
    @property()
-   icon: string = '';
-
+   iconInputData: IconInputData = new IconWithTextInputData().iconInputData;
    @property()
-   cssStyle: string = '';
-
-   @property()
-   title: string = '';
-
+   typographyInputData: TypographyInputData = new IconWithTextInputData().typographyInputData;
    @property()
    clickable: boolean = false;
 
-   @property()
-   iconState: string = IconState.DEFAULT;
-
-   @property()
-   text: string = '';
-
    render() {
       return html`
-         <div class="icon-with-text${this.clickable ? ' clickable' : ''} ${this.iconState}">
-            <component-icon .withIconSpace="${false}" icon="${this.icon}" .iconState="${this.iconState}"></component-icon>
-            <component-typography .type="${TypographyTypes.OVERLINE}" text="${this.text}"></component-typography>
-         </div>
+         <component-toolbar
+            .toolbarAlignment="${ToolbarAlignment.VERTICAL}"
+            class="${this.clickable ? ' clickable' : ''} ${this.iconInputData.iconState}"
+         >
+            <component-icon .inputData="${this.iconInputData}"></component-icon>
+            <component-typography .inputData="${this.typographyInputData}"></component-typography>
+         </component-toolbar>
       `;
    }
 
    inputDataChanged() {
       let defaultData: IconWithTextInputData = new IconWithTextInputData();
-      this.icon = this.basicService.getValue(this.inputData.iconState, defaultData.icon);
-      this.iconState = this.basicService.getValue(this.inputData.iconState, defaultData.iconState);
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, defaultData.cssStyle);
-      this.clickable = this.basicService.getValue(this.inputData.clickable, defaultData.clickable);
-      this.text = this.basicService.getValue(this.inputData.text, defaultData.text);
+      this.iconInputData = BasicService.getInstance().getValue(this.inputData.iconInputData, defaultData.iconInputData);
+      this.typographyInputData = BasicService.getInstance().getValue(
+         this.inputData.typographyInputData,
+         defaultData.typographyInputData
+      );
+      this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
    }
 
    getOutputData(): any {

@@ -4,6 +4,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { TeaserElementComponent, TeaserElementInputData } from './teaser-element/component';
 import { TeaserElementMenuComponent } from './teaser-menu-element/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -150,7 +151,7 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
    }
 
    protected inputDataChanged() {
-      this.items = this.basicService.getValue(this.inputData.items, []);
+      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
       if (this.items.length > 0) {
          this.selectShadowDomItem(this.items[0]);
       }

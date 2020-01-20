@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import {TypographyInputData} from "../typography/component";
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -43,7 +44,7 @@ export class TextWithHeaderComponent extends AbstractComponent<TextWithHeaderInp
    }
 
    protected inputDataChanged() {
-      this.headerInputData = this.basicService.getValue(this.inputData.headerInputData, new TypographyInputData());
-      this.textInputData = this.basicService.getValue(this.inputData.textInputData, new TypographyInputData());
+      this.headerInputData = BasicService.getInstance().getValue(this.inputData.headerInputData, new TypographyInputData());
+      this.textInputData = BasicService.getInstance().getValue(this.inputData.textInputData, new TypographyInputData());
    }
 }

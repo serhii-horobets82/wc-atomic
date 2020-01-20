@@ -4,6 +4,7 @@ import {ComponentLoader} from '../abstract/component-loader';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
 import {FlexJustifyContent} from '../flex-container/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -81,9 +82,9 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
    protected inputDataChanged() {
        let defaultData: ToolbarInputData = new ToolbarInputData();
        this.toolbarInputData = this.inputData.toolbarInputData;
-       this.toolbarAlignment = this.basicService.getValue(this.toolbarAlignment, defaultData.toolbarAlignment);
-       this.flexJustifyContent = this.basicService.getValue(this.flexJustifyContent, defaultData.flexJustifyContent);
-       this.height = this.basicService.getValue(this.height, defaultData.height);
-       this.width = this.basicService.getValue(this.width, defaultData.width);
+       this.toolbarAlignment = BasicService.getInstance().getValue(this.toolbarAlignment, defaultData.toolbarAlignment);
+       this.flexJustifyContent = BasicService.getInstance().getValue(this.flexJustifyContent, defaultData.flexJustifyContent);
+       this.height = BasicService.getInstance().getValue(this.height, defaultData.height);
+       this.width = BasicService.getInstance().getValue(this.width, defaultData.width);
    }
 }

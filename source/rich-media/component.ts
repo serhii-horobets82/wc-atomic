@@ -1,5 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -49,10 +50,10 @@ export class RichMediaComponent extends AbstractComponent<RichMediaInputData, un
    }
 
    protected inputDataChanged() {
-      this.src = this.basicService.getValue(this.inputData.src, '');
-      this.text = this.basicService.getValue(this.inputData.text, '');
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
+      this.src = BasicService.getInstance().getValue(this.inputData.src, '');
+      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
+      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
    }
 
    render() {

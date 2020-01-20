@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { LinkComponent, LinkInputData } from '../link/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -50,7 +51,7 @@ export class BreadcrumbComponent extends AbstractComponent<BreadcrumbInputData, 
    }
 
    inputDataChanged() {
-      this.links = this.basicService.getValue(this.inputData.links, []);
+      this.links = BasicService.getInstance().getValue(this.inputData.links, []);
    }
 
    getDefaultInputData(): BreadcrumbInputData {

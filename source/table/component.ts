@@ -12,6 +12,7 @@ import {KeyValueData} from '../form/component';
 import {TypographyComponent, TypographyInputData} from '../typography/component';
 import {PageTypographyComponent} from '../_showcase/page-typography';
 import {HttpClientRequest} from '@domoskanonos/frontend-basis/source/http-client-service';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -333,16 +334,16 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    }
 
    inputDataChanged(): void {
-      this.sort = this.basicService.getValue(this.inputData.sort, '');
-      this.requestParams = this.basicService.getValue(this.inputData.requestParams, '');
+      this.sort = BasicService.getInstance().getValue(this.inputData.sort, '');
+      this.requestParams = BasicService.getInstance().getValue(this.inputData.requestParams, '');
       this.sizeComboboxInputData.selectedValue = String(
-         this.basicService.getValue(this.inputData.size, this.itemSizeDefaultValue)
+         BasicService.getInstance().getValue(this.inputData.size, this.itemSizeDefaultValue)
       );
-      this.requestPath = this.basicService.getValue(this.inputData.requestPath, '');
-      this.paging = this.basicService.getValue(this.inputData.paging, true);
-      this.filtering = this.basicService.getValue(this.inputData.filtering, true);
-      this.sorting = this.basicService.getValue(this.inputData.sorting, true);
-      this._headers = this.basicService.getValue(this.inputData.headers, []);
+      this.requestPath = BasicService.getInstance().getValue(this.inputData.requestPath, '');
+      this.paging = BasicService.getInstance().getValue(this.inputData.paging, true);
+      this.filtering = BasicService.getInstance().getValue(this.inputData.filtering, true);
+      this.sorting = BasicService.getInstance().getValue(this.inputData.sorting, true);
+      this._headers = BasicService.getInstance().getValue(this.inputData.headers, []);
 
       this.loadData();
    }
@@ -355,11 +356,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       //where clause - START
       let whereClause = '';
       this._headers.forEach((header) => {
-         if (this.basicService.isNotBlank(header.searchValue)) {
+         if (BasicService.getInstance().isNotBlank(header.searchValue)) {
             whereClause = whereClause
                 .concat(header.columnKey)
                 .concat('=')
-                .concat(this.basicService.getValue(header.searchValue, ''));
+                .concat(BasicService.getInstance().getValue(header.searchValue, ''));
          }
       });
       if (whereClause.length > 0) {
@@ -422,7 +423,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                      }
                   });
 
-                  let inputData = this.basicService.clone(tableHeaderInput.componentInputData);
+                  let inputData = BasicService.getInstance().clone(tableHeaderInput.componentInputData);
 
                   switch (inputData.componentIdentifier) {
                      case InputComponent.IDENTIFIER:
@@ -431,7 +432,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         break;
                      default:
                      case TypographyComponent.IDENTIFIER:
-                        (<TypographyInputData>inputData).text = this.basicService.beautifyText(columnValue);
+                        (<TypographyInputData>inputData).text = BasicService.getInstance().beautifyText(columnValue);
                         (<TypographyInputData>inputData).clazz = 'ellipsis';
                         break;
                      case ComboboxComponent.IDENTIFIER:
@@ -448,7 +449,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   }
 
                   if (tableHeaderInput.valueProperty != undefined) {
-                     inputData[tableHeaderInput.valueProperty.key] = this.basicService.beautifyText(
+                     inputData[tableHeaderInput.valueProperty.key] = BasicService.getInstance().beautifyText(
                         row[tableHeaderInput.valueProperty.value]
                      );
                   }

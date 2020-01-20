@@ -1,5 +1,6 @@
 import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -51,7 +52,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    }
 
    protected inputDataChanged() {
-      this.spacerSize = this.basicService.getValue(this.inputData.size, SpacerSize.ZERO);
-      this.spacerAlignment = this.basicService.getValue(this.inputData.alignment, SpacerAlignment.BOTH);
+      this.spacerSize = BasicService.getInstance().getValue(this.inputData.size, SpacerSize.ZERO);
+      this.spacerAlignment = BasicService.getInstance().getValue(this.inputData.alignment, SpacerAlignment.BOTH);
    }
 }

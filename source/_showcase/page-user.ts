@@ -29,9 +29,9 @@ export class PageUser extends PageAbstract {
                 this.user = user;
                 this.firstName = user.firstName;
                 this.lastName = user.lastName;
-                this.city = this.basicService.getValue(user.city, '');
+                this.city = BasicService.getInstance().getValue(user.city, '');
                 this.email = user.email;
-                this.birthday = this.basicService.getValue(
+                this.birthday = BasicService.getInstance().getValue(
                     user.birthday,
                     new Date()
                 );

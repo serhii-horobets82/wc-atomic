@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { ComponentLoader } from '../../abstract/component-loader';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
@@ -81,8 +82,8 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
    }
 
    protected inputDataChanged() {
-      this.selected = this.basicService.getValue(this.inputData.selected, false);
-      this.foregroundContent = this.basicService.getValue(this.inputData.foregroundContent, []);
-      this.backgroundContent = this.basicService.getValue(this.inputData.backgroundContent, []);
+      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
+      this.foregroundContent = BasicService.getInstance().getValue(this.inputData.foregroundContent, []);
+      this.backgroundContent = BasicService.getInstance().getValue(this.inputData.backgroundContent, []);
    }
 }

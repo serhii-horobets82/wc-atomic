@@ -1,5 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -35,6 +36,6 @@ export class CodeComponent extends AbstractComponent<CodeInputData, undefined> {
    }
 
    protected inputDataChanged() {
-      this.code = this.basicService.getValue(this.inputData.code, '');
+      this.code = BasicService.getInstance().getValue(this.inputData.code, '');
    }
 }

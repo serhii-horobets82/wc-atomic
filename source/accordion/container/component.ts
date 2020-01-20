@@ -3,7 +3,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { AccordionItemComponent, AccordionItemInputData } from '../item/component';
-import {TypographyComponent} from "../../typography/component";
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -47,6 +47,6 @@ export class AccordionComponent extends AbstractComponent<AccordionInputData, an
    }
 
    protected inputDataChanged() {
-      this.items = this.basicService.getValue(this.inputData.items, []);
+      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
    }
 }

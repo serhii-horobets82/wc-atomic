@@ -1,6 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import {TypographyTypes} from "..";
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -34,9 +35,9 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
    }
 
    protected inputDataChanged() {
-      this.href = this.basicService.getValue(this.inputData.href, '');
-      this.target = this.basicService.getValue(this.inputData.target, '');
-      this.text = this.basicService.getValue(this.inputData.text, '');
+      this.href = BasicService.getInstance().getValue(this.inputData.href, '');
+      this.target = BasicService.getInstance().getValue(this.inputData.target, '');
+      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
    }
 
    getDefaultInputData(): LinkInputData {

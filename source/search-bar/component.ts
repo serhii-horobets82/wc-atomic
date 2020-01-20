@@ -1,59 +1,62 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {ComponentLoader} from '../abstract/component-loader';
-import {guard} from 'lit-html/directives/guard';
-import {repeat} from 'lit-html/directives/repeat';
-import {FlexJustifyContent} from "..";
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { ComponentLoader } from '../abstract/component-loader';
+import { guard } from 'lit-html/directives/guard';
+import { repeat } from 'lit-html/directives/repeat';
+import { FlexJustifyContent, HTMLInputTypes } from '..';
 
 const componentCSS = require('./component.css');
 
-export class SearchBarInputData extends AbstractInputData {
-    componentsInputData: AbstractInputData[] = [];
-}
+export class SearchBarInputData extends AbstractInputData {}
+
+export class SearchBarOutputData {}
 
 @customElement('component-search-bar')
-export class SearchBarComponent extends AbstractComponent<SearchBarInputData, undefined> {
-    static styles = css`
+export class SearchBarComponent extends AbstractComponent<SearchBarInputData, SearchBarOutputData> {
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'SearchBarComponent';
+   static IDENTIFIER: string = 'SearchBarComponent';
 
-    @property()
-    componentsInputData: AbstractInputData[] = [];
+   constructor() {
+      super();
+   }
 
-    @property()
-    flexJustifyContent: FlexJustifyContent = FlexJustifyContent.SPACE_AROUND;
+   @property()
+   leadingIcon: string = 'menu';
+   leadingIconActive: string = 'arrow_back';
+   @property()
+   trailingIcon: string = 'search';
+   trailingIconActive: string = 'close';
 
-    constructor() {
-        super();
-    }
-
-    render() {
-        return html`
-         <div class="search-bar" style="justify-content: ${this.flexJustifyContent};">           
-               ${guard(
-            this.componentsInputData,
-            () =>
-                html`
-                        ${repeat(
-                    this.componentsInputData,
-                    (inputData) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
-                           `
-                )}
-                     `
-        )}
-               <slot></slot>
+   render() {
+      return html`
+         <div class="search-bar" style="">
+            <slot></slot>
+            <component-inputfield
+               .automaticInfoText="${false}"
+               @component-inputfield-focus="${() => this.textfieldOnFocus()}"
+               @component-inputfield-focus-out="${() => this.textfieldOnFocusOut()}"
+               .type="${HTMLInputTypes.TEXT}"
+               trailingIcon="${this.trailingIcon}"
+               leadingIcon="${this.leadingIcon}"
+            ></component-inputfield>
          </div>
       `;
-    }
+   }
 
-    getOutputData(): any {
-        return undefined;
-    }
+   getOutputData(): SearchBarOutputData {
+      return new SearchBarOutputData();
+   }
 
-    protected inputDataChanged() {
-        this.componentsInputData = this.basicService.getValue(this.inputData.componentsInputData, []);
-    }
+   protected inputDataChanged() {}
+
+   private textfieldOnFocus() {
+      this.trailingIcon = 'close';
+   }
+
+   private textfieldOnFocusOut() {
+      this.trailingIcon = 'search';
+   }
 }

@@ -3,6 +3,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { ListItemInputData } from '../item/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -52,6 +53,6 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
    }
 
    protected inputDataChanged() {
-      this.items = this.basicService.getValue(this.inputData.items, []);
+      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
    }
 }

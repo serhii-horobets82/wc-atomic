@@ -1,5 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -83,10 +84,10 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    }
 
    protected inputDataChanged() {
-      this.text = this.basicService.getValue(this.inputData.text, '');
-      this.cssStyle = this.basicService.getValue(this.inputData.cssStyle, '');
-      this.clazz = this.basicService.getValue(this.inputData.clazz, '');
-      this.title = this.basicService.getValue(this.inputData.title, '');
-      this.type = this.basicService.getValue(this.inputData.type, TypographyTypes.BODY1);
+      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
+      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
+      this.title = BasicService.getInstance().getValue(this.inputData.title, '');
+      this.type = BasicService.getInstance().getValue(this.inputData.type, TypographyTypes.BODY1);
    }
 }

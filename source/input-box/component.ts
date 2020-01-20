@@ -5,12 +5,13 @@ import {
    AlignItems,
    FlexDirection,
    FlexJustifyContent,
-   FlexWrap,
+   FlexWrap, IconInputData,
    KeylineAlignment,
    KeylineSize,
    TypographyTypes
 } from '..';
 import {MessageType} from "../typography/component";
+import {BasicService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -21,7 +22,15 @@ export class InputBoxVariation {
 }
 
 export class InputBoxInputData extends AbstractInputData {
-   code?: string;
+   inputBoxVariation = new InputBoxVariation();
+   labelText: string = '';
+   infoText: string = '';
+   assistiveText: IconInputData = new IconInputData();
+   assistiveTextMessageType: string = MessageType.DEFAULT;
+   leadingIcon: IconInputData = new IconInputData();
+   trailingIcon: IconInputData = new IconInputData();
+   selected: boolean = false;
+   showLabel: boolean = false;
 }
 
 @customElement('component-input-box')
@@ -33,22 +42,25 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
    static IDENTIFIER: string = 'InputBoxComponent';
 
    @property()
+   inputBoxVariation: InputBoxVariation = InputBoxVariation.MINIMIZE;
+
+   @property()
    labelText: string = '';
-
-   @property()
-   leadingIcon: string = '';
-
-   @property()
-   trailingIcon: string = '';
 
    @property()
    assistiveText: string = '';
 
    @property()
+   infoText: string = '';
+
+   @property()
    assistiveTextMessageType: string = MessageType.DEFAULT;
 
    @property()
-   infoText: string = '';
+   leadingIcon: IconInputData = new IconInputData();
+
+   @property()
+   trailingIcon: IconInputData = new IconInputData();
 
    @property()
    selected: boolean = false;
@@ -63,9 +75,9 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
                <div class="label">${this.labelText}</div>
             </div>
             <div class="box ${this.selected ? 'selected' : ''}">
-               <component-icon .rendered="${this.leadingIcon.length > 0}" icon="${this.leadingIcon}"></component-icon>
+               <component-icon .rendered="${BasicService.getInstance().isNotBlank(this.leadingIcon.icon)}" .inputData="${this.leadingIcon}"></component-icon>
                <slot></slot>
-               <component-icon .rendered="${this.trailingIcon.length > 0}" icon="${this.trailingIcon}"></component-icon>
+               <component-icon .rendered="${BasicService.getInstance().isNotBlank(this.trailingIcon.icon)}" .inputData="${this.trailingIcon}"></component-icon>
             </div>
             <component-flex-container
                containerClazz=""

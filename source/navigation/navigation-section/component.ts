@@ -1,6 +1,7 @@
 import { css, customElement, html, unsafeCSS } from 'lit-element';
 import { AbstractComponent } from '../../abstract-component/component';
 import { LinkInputData } from '../../link/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 

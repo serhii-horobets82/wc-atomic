@@ -2,6 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
 import { ComponentLoader } from '../../abstract/component-loader';
 import { TypographyInputData } from '../../typography/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -77,8 +78,8 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
    }
 
    protected inputDataChanged() {
-      this.componentData = this.basicService.getValue(this.inputData.componentData, AbstractInputData.prototype);
-      this.header = this.basicService.getValue(this.inputData.header, '');
-      this.stateClazz = this.basicService.getValue(this.inputData.stateClazz, '');
+      this.componentData = BasicService.getInstance().getValue(this.inputData.componentData, AbstractInputData.prototype);
+      this.header = BasicService.getInstance().getValue(this.inputData.header, '');
+      this.stateClazz = BasicService.getInstance().getValue(this.inputData.stateClazz, '');
    }
 }

@@ -3,7 +3,8 @@ import {DataProtection} from '../data-protection/component';
 
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {IconInputData} from '../icon/component';
-import {DialogComponent} from "..";
+import { BasicService } from '@domoskanonos/frontend-basis';
+
 
 const componentCSS = require('./component.css');
 
@@ -68,7 +69,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    menuItemClicked(event: CustomEvent) {
       let id: IconInputData = event.detail;
-      if (this.basicService.isEqual(id.icon, this.menuSwitchIcon)) {
+      if (BasicService.getInstance().isEqual(id.icon, this.menuSwitchIcon)) {
          console.log('menuItemClicked...');
          this.toogleMenu();
       }

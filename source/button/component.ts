@@ -2,6 +2,7 @@ import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { IconInputData } from '../icon/component';
 import {SpacerAlignment, SpacerSize} from "..";
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -46,11 +47,11 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    clickEventData: any = {};
 
    protected inputDataChanged() {
-      this.icon = this.basicService.getValue(this.inputData.icon, <IconInputData>{});
-      this.text = this.basicService.getValue(this.inputData.text, '');
-      this.href = this.basicService.getValue(this.inputData.href, '/');
-      this.selected = this.basicService.getValue(this.inputData.selected, false);
-      this.clickEventData = this.basicService.getValue(this.inputData.clickEventData, {});
+      this.icon = BasicService.getInstance().getValue(this.inputData.icon, <IconInputData>{});
+      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
+      this.href = BasicService.getInstance().getValue(this.inputData.href, '/');
+      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
+      this.clickEventData = BasicService.getInstance().getValue(this.inputData.clickEventData, {});
    }
 
    render() {
