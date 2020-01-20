@@ -1,7 +1,7 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FormComponent, FormComponentOutputData } from '../form/component';
-import { HTMLInputTypes, TypographyType } from '..';
+import { InputfieldType, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -33,13 +33,13 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, Form
                >
                <component-inputfield
                   name="email"
-                  .type="${HTMLInputTypes.EMAIL}"
+                  .type="${InputfieldType.EMAIL}"
                   label="${this.getI18NValue('component_register_username')}"
                   trailingIcon="account_circle"
                   required="true"
                ></component-inputfield>
                <component-inputfield
-                  .type="${HTMLInputTypes.PASSWORD}"
+                  .type="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_register_password')}"
                   name="password"
                   trailingIcon="vpn_key"

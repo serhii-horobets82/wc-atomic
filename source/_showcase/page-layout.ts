@@ -57,7 +57,7 @@ export class PageLayoutComponent extends PageAbstract {
                      icon="dashboard"
                      color="#25498d"
                      iconSize="96"
-                     iconState="${IconState.DEFAULT}"
+                     iconState="${IconState.ACTIVE_FOCUSED}"
                      .withIconSpace="${false}"
                   ></component-icon>
 

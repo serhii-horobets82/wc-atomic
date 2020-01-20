@@ -3,7 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { ComponentLoader } from '../abstract/component-loader';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
-import { FlexJustifyContent, HTMLInputTypes } from '..';
+import { FlexJustifyContent, InputfieldType, IconInputData, InputBoxInputData } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -24,11 +24,9 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    }
 
    @property()
-   leadingIcon: string = 'menu';
-   leadingIconActive: string = 'arrow_back';
+   leadingIcon: IconInputData = <IconInputData>{ icon: 'menu' };
    @property()
-   trailingIcon: string = 'search';
-   trailingIconActive: string = 'close';
+   trailingIcon: IconInputData = <IconInputData>{ icon: 'menu' };
 
    render() {
       return html`
@@ -38,9 +36,12 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
                .automaticInfoText="${false}"
                @component-inputfield-focus="${() => this.textfieldOnFocus()}"
                @component-inputfield-focus-out="${() => this.textfieldOnFocusOut()}"
-               .type="${HTMLInputTypes.TEXT}"
-               trailingIcon="${this.trailingIcon}"
-               leadingIcon="${this.leadingIcon}"
+               .inputfieldType="${InputfieldType.TEXT}"
+               .inputBoxInputData="${<InputBoxInputData>{
+                  selected: false,
+                  leadingIcon: this.leadingIcon,
+                  trailingIcon: this.trailingIcon
+               }}}"
             ></component-inputfield>
          </div>
       `;
@@ -53,10 +54,10 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    protected inputDataChanged() {}
 
    private textfieldOnFocus() {
-      this.trailingIcon = 'close';
+      //this.trailingIcon = 'close';
    }
 
    private textfieldOnFocusOut() {
-      this.trailingIcon = 'search';
+      //this.trailingIcon = 'search';
    }
 }

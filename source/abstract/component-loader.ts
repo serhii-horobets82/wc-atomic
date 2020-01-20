@@ -5,7 +5,7 @@ import { ComboboxComponent } from '../combobox/component';
 import { RichMediaComponent } from '../rich-media/component';
 import { IconComponent } from '../icon/component';
 import { TextareaComponent } from '../textarea/component';
-import { InputComponent } from '../input/component';
+import { InputfieldComponent } from '../inputfield/component';
 import { AccordionComponent } from '../accordion/container/component';
 import { ImgSliderComponent } from '../img-slider/component';
 import { ImgSliderSelectorComponent } from '../img-slider-selector/component';
@@ -18,7 +18,6 @@ import { TileComponent } from '../tile/component';
 import { BreadcrumbComponent } from '../breadcrumb/component';
 import { ToolbarComponent } from '../toolbar/component';
 import { TextWithHeaderComponent } from '../text-with-header/component';
-import { DatalistComponent } from '../datalist/component';
 import { AuthenticatedIconComponent } from '../authenticated-icon/component';
 import { SpacerComponent } from '../spacer/component';
 import { I18NSelectorComponent } from '../i18n-selector/component';
@@ -61,8 +60,8 @@ export class ComponentLoader {
          case SpacerComponent.IDENTIFIER:
             component = new SpacerComponent();
             break;
-         case InputComponent.IDENTIFIER:
-            component = new InputComponent();
+         case InputfieldComponent.IDENTIFIER:
+            component = new InputfieldComponent();
             break;
          case TextareaComponent.IDENTIFIER:
             component = new TextareaComponent();
@@ -75,9 +74,6 @@ export class ComponentLoader {
             break;
          case ComboboxComponent.IDENTIFIER:
             component = new ComboboxComponent();
-            break;
-         case DatalistComponent.IDENTIFIER:
-            component = new DatalistComponent();
             break;
          case CodeComponent.IDENTIFIER:
             component = new CodeComponent();

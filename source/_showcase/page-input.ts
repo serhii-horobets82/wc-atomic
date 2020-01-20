@@ -1,9 +1,9 @@
-import { customElement, html, TemplateResult } from 'lit-element';
+import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { HTMLInputTypes, InputComponent } from '../input/component';
+import { InputfieldType, InputfieldComponent } from '../inputfield/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { ComboboxOption } from '../combobox/component';
-import { SpacerAlignment, SpacerSize, TypographyType } from '..';
+import { IconInputData, InputBoxInputData, SpacerAlignment, SpacerSize, TypographyType } from '..';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
@@ -11,48 +11,18 @@ export class PageInputComponent extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
             <component-form>
-               <component-inputfield
-                  .type="${HTMLInputTypes.TEXT}"
-                  label="Benutzername"
-                  trailingIcon="account_circle"
-                  required="true"
-               ></component-inputfield>
-               <component-inputfield
-                  .type="${HTMLInputTypes.PASSWORD}"
-                  label="Passwort"
-                  trailingIcon="vpn_key"
-                  minlength="8"
-                  required="true"
-               ></component-inputfield>
-               <component-inputfield
-                  .type="${HTMLInputTypes.WEEK}"
-                  leadingIcon="calendar_today"
-                  label="Week"
-               ></component-inputfield>
-               <component-inputfield
-                  leadingIcon="calendar_today"
-                  .type="${HTMLInputTypes.DATETIME_LOCAL}"
-                  label="Datetime_Local"
-               ></component-inputfield>
-               <component-inputfield
-                  leadingIcon="calendar_today"
-                  .type="${HTMLInputTypes.DATE}"
-                  label="Date"
-               ></component-inputfield>
-               <component-inputfield
-                  leadingIcon="calendar_today"
-                  .type="${HTMLInputTypes.MONTH}"
-                  label="Month"
-               ></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.TEL}" label="Telefon"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.CHECKBOX}" label="Checkbox"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.COLOR}" label="Color"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.EMAIL}" label="Email"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.FILE}" label="File"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.IMAGE}" label="Image"></component-inputfield>
-               <component-inputfield .type="${HTMLInputTypes.NUMBER}" label="Number"></component-inputfield>
-               <component-search></component-search>
-               <component-textarea label="Dein Text"></component-textarea>
+               <component-inputbox>
+                  <component-inputfield
+                     .inputfieldType="${InputfieldType.TEXT}"
+                     label="Benutzername"
+                     .inputBoxInputData="${<InputBoxInputData>{
+                        labelText: 'Benutzername',
+                        trailingIcon: <IconInputData>{ icon: 'account_circle' }
+                     }}"
+                     required="true"
+                  ></component-inputfield>
+               </component-inputbox>
+
                <component-combobox
                   .required="${true}"
                   label="Wähle ein Land aus"
@@ -70,7 +40,6 @@ export class PageInputComponent extends PageAbstract {
                      <ComboboxOption>{ text: 'Frankreich', value: 'fr' }
                   ]}"
                ></component-combobox>
-               <component-datalist></component-datalist>
             </component-form>
          </component-flex-container>
       `;

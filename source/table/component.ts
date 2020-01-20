@@ -2,15 +2,13 @@ import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {InputComponent, InputInputData} from '../input/component';
-import {DatalistComponent, DatalistInputData} from '../datalist/component';
+import {InputfieldComponent, InputfieldInputData} from '../inputfield/component';
 import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
 import {ButtonComponent, ButtonInputData} from '../button/component';
 import {IconComponent} from '../icon/component';
 import {HttpClientService} from '@domoskanonos/frontend-basis';
 import {KeyValueData} from '../form/component';
 import {TypographyComponent, TypographyInputData} from '../typography/component';
-import {PageTypographyComponent} from '../_showcase/page-typography';
 import {HttpClientRequest} from '@domoskanonos/frontend-basis/source/http-client-service';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
@@ -426,9 +424,9 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   let inputData = BasicService.getInstance().clone(tableHeaderInput.componentInputData);
 
                   switch (inputData.componentIdentifier) {
-                     case InputComponent.IDENTIFIER:
-                        (<InputInputData>inputData).value = columnValue;
-                        (<InputInputData>inputData).name = columnKey;
+                     case InputfieldComponent.IDENTIFIER:
+                        (<InputfieldInputData>inputData).value = columnValue;
+                        (<InputfieldInputData>inputData).name = columnKey;
                         break;
                      default:
                      case TypographyComponent.IDENTIFIER:
@@ -436,9 +434,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         (<TypographyInputData>inputData).clazz = 'ellipsis';
                         break;
                      case ComboboxComponent.IDENTIFIER:
-                        break;
-                     case DatalistComponent.IDENTIFIER:
-                        (<DatalistInputData>inputData).selectedValue = columnValue;
                         break;
                      case ButtonComponent.IDENTIFIER:
                         (<ButtonInputData>inputData).text = columnValue;
@@ -578,7 +573,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   }}"
                ></component-inputfield>
             `;
-         case InputComponent.IDENTIFIER:
+         case InputfieldComponent.IDENTIFIER:
             return html`
                <component-inputfield
                   value="${header.searchValue}"
@@ -616,7 +611,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   .inputData="${componentInputData}"
                ></component-icon>
             `;
-         case InputComponent.IDENTIFIER:
+         case InputfieldComponent.IDENTIFIER:
             return html`
                <component-inputfield
                   .inputData="${componentInputData}"
@@ -624,15 +619,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                      this.createColumnChangeEvent(row, event, rowIndex, columnIndex);
                   }}"
                ></component-inputfield>
-            `;
-         case DatalistComponent.IDENTIFIER:
-            return html`
-               <component-datalist
-                  .inputData="${componentInputData}"
-                  @combobox-datalist-selection-change="${(event: CustomEvent) => {
-                     this.createColumnChangeEvent(row, event, rowIndex, columnIndex);
-                  }}"
-               ></component-datalist>
             `;
          default:
             return html``;

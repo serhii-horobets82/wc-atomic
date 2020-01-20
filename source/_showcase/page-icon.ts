@@ -1,6 +1,6 @@
 import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { HTMLInputTypes } from '../input/component';
+import { InputfieldType } from '../inputfield/component';
 import {
    AlignContent,
    AlignItems,
@@ -26,7 +26,7 @@ export class PageIconComponent extends PageAbstract {
    iconSize: number = 96;
 
    @property()
-   iconState: string = IconState.DEFAULT;
+   iconState: string = IconState.ACTIVE_FOCUSED;
 
    @property()
    color: string = '';
@@ -48,7 +48,7 @@ export class PageIconComponent extends PageAbstract {
                   icon="thumb_up_alt"
                   color="#25498d"
                   iconSize="96"
-                  iconState="${IconState.DEFAULT}"
+                  iconState="${IconState.ACTIVE_UNFOCUSED}"
                   .withIconSpace="${false}"
                ></component-icon>
 
@@ -78,19 +78,19 @@ export class PageIconComponent extends PageAbstract {
                <component-form>
                   <component-inputfield
                      label="Klickbar ?"
-                     .type="${HTMLInputTypes.CHECKBOX}"
+                     .type="${InputfieldType.CHECKBOX}"
                      @component-inputfield-change="${(event: CustomEvent) => (this.clickable = event.detail.outputData.value)}"
                   ></component-inputfield>
                   <component-inputfield
                      label="Farbe"
-                     .type="${HTMLInputTypes.COLOR}"
+                     .type="${InputfieldType.COLOR}"
                      @component-inputfield-change="${(event: CustomEvent) => (this.color = event.detail.outputData.value)}"
                   ></component-inputfield>
 
                   <component-inputfield
                      .required="${true}"
                      label="Größe"
-                     .type="${HTMLInputTypes.NUMBER}"
+                     .type="${InputfieldType.NUMBER}"
                      min="18"
                      max="256"
                      step="1"

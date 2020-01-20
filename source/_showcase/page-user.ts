@@ -9,7 +9,8 @@ import {PageAbstract} from './page-abstract';
 import {
     ParamService,
     RouterService,
-    AuthUser
+    AuthUser,
+    BasicService
 } from '@domoskanonos/frontend-basis';
 import {WebApiService} from '@domoskanonos/frontend-basis';
 import {UserRepository} from "./controller-user";

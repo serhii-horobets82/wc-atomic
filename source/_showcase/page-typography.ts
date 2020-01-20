@@ -1,6 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputComponent } from '../input/component';
+import { InputfieldComponent } from '../inputfield/component';
 import { TypographyComponent, TypographyType } from '../typography/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { AlignItems, FlexJustifyContent, KeylineSize } from '../flex-container/component';

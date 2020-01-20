@@ -73,7 +73,7 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
 
    render() {
       return html`
-         <component-input-box
+         <component-inputbox
             labelText="${this.label}"
             assistiveText="${this.assistiveText}"
             leadingIcon="${this.leadingIcon}"
@@ -82,7 +82,7 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
             assistiveTextMessageType="${this.assistiveTextMessageType}"
          >
             <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.rows}">${this.value}</textarea>
-         </component-input-box>
+         </component-inputbox>
       `;
    }
 

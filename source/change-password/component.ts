@@ -2,7 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
 import {I18nService} from '@domoskanonos/frontend-basis';
-import {HTMLInputTypes, TypographyType} from '..';
+import {InputfieldType, TypographyType} from '..';
 
 const componentCSS = require('./component.css');
 
@@ -51,7 +51,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                >
                <component-inputfield
                   id="current-password-inputfield"
-                  .type="${HTMLInputTypes.PASSWORD}"
+                  .type="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_current_password')}"
                   trailingIcon="vpn_key"
                   required="true"
@@ -59,7 +59,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                ></component-inputfield>
                <component-inputfield
                   id="new-password-inputfield"
-                  .type="${HTMLInputTypes.PASSWORD}"
+                  .type="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_new_password')}"
                   trailingIcon="vpn_key"
                   minlength="8"
@@ -68,7 +68,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                ></component-inputfield>
                <component-inputfield
                   id="repeat-new-password-inputfield"
-                  .type="${HTMLInputTypes.PASSWORD}"
+                  .type="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_repeat_new_password')}"
                   trailingIcon="vpn_key"
                   minlength="8"

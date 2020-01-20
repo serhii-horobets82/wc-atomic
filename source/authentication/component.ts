@@ -2,7 +2,7 @@ import { css, customElement, html, property, query, unsafeCSS } from 'lit-elemen
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FormComponent, FormComponentOutputData } from '../form/component';
 import { HttpClientService } from '@domoskanonos/frontend-basis';
-import { HTMLInputTypes, TypographyType } from '..';
+import { InputfieldType, TypographyType } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -48,13 +48,13 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
                     >
                     <component-inputfield
                        name="username"
-                       .type="${HTMLInputTypes.EMAIL}"
+                       .type="${InputfieldType.EMAIL}"
                        label="${this.getI18NValue('component_authentication_username')}"
                        trailingIcon="account_circle"
                        required="true"
                     ></component-inputfield>
                     <component-inputfield
-                       .type="${HTMLInputTypes.PASSWORD}"
+                       .type="${InputfieldType.PASSWORD}"
                        label="${this.getI18NValue('component_authentication_password')}"
                        name="password"
                        trailingIcon="vpn_key"

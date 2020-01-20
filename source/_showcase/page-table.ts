@@ -1,6 +1,6 @@
 import {customElement, html, TemplateResult} from 'lit-element';
 import {PageAbstract} from './page-abstract';
-import {HTMLInputTypes, InputComponent, InputInputData} from '../input/component';
+import {InputfieldType, InputfieldComponent, InputfieldInputData} from '../inputfield/component';
 import {TableHeaderInputData} from "../table/component";
 import {TypographyComponent, TypographyInputData} from "../typography/component";
 
@@ -25,9 +25,9 @@ export class PageTableComponent extends PageAbstract {
             columnKey: 'email',
             searchValue: '',
         }, <TableHeaderInputData>{
-            componentInputData: <InputInputData>{
-                componentIdentifier: InputComponent.IDENTIFIER,
-                type: HTMLInputTypes.CHECKBOX
+            componentInputData: <InputfieldInputData>{
+                componentIdentifier: InputfieldComponent.IDENTIFIER,
+                inputfieldType: InputfieldType.CHECKBOX
             },
             columnKey: 'active',
             searchValue: '',

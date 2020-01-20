@@ -7,7 +7,7 @@ import {
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
-   HTMLInputTypes,
+   InputfieldType,
    KeylineAlignment,
    KeylineSize,
    RichMediaInputData,

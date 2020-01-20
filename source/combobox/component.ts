@@ -88,7 +88,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
 
    render() {
       return html`
-         <component-input-box
+         <component-inputbox
             labelText="${this.label}"
             assistiveText="${this.assistiveText}"
             assistiveTextMessageType="${this.assistiveTextMessageType}"
@@ -122,7 +122,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
                   `
                )}
             </select>
-         </component-input-box>
+         </component-inputbox>
       `;
    }
 

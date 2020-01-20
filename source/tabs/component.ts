@@ -2,6 +2,7 @@ import { css, customElement, html, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { TabContentComponent } from './tab-content/component';
 import { TabComponent } from './tab/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 

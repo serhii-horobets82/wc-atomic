@@ -4,6 +4,7 @@ import {DataProtection} from '../data-protection/component';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {IconInputData} from '../icon/component';
 import {DialogComponent} from "..";
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 

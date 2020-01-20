@@ -1,5 +1,5 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { InputComponent } from '../input/component';
+import { InputfieldComponent } from '../inputfield/component';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
@@ -86,7 +86,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          let elements: Element[] = this.slotElement.assignedElements();
          for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
             let element: Element = elements[elementIndex];
-            if (element instanceof InputComponent) {
+            if (element instanceof InputfieldComponent) {
                if (!element.isValid()) {
                   return false;
                }
@@ -101,7 +101,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          let elements: Element[] = this.slotElement.assignedElements();
          for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
             let element: Element = elements[elementIndex];
-            if (element instanceof InputComponent) {
+            if (element instanceof InputfieldComponent) {
                element.validate();
             }
          }
@@ -117,7 +117,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
          let elements: Element[] = this.slotElement.assignedElements();
          for (let elementIndex = 0; elementIndex < elements.length; elementIndex++) {
             let element: Element = elements[elementIndex];
-            if (element instanceof InputComponent) {
+            if (element instanceof InputfieldComponent) {
                let elementOutputData = element.getOutputData();
                json[elementOutputData.key] = elementOutputData.value;
                formData.append(elementOutputData.key, elementOutputData.value);
