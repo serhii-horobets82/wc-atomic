@@ -49,8 +49,8 @@ export class PageIntroduction extends PageAbstract {
             .keylineAlignment="${KeylineAlignment.BOTH}"
          >
             <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
-               <component-typography .type="${TypographyType.H2}">WC-Atomic</component-typography>
-               <component-typography .type="${TypographyType.H6}"
+               <component-typography .typographyType="${TypographyType.H2}">WC-Atomic</component-typography>
+               <component-typography .typographyType="${TypographyType.H6}"
                   >Erstelle wunderbare PWA Single Page Anwendungen</component-typography
                >
                <component-typography>
@@ -79,8 +79,8 @@ export class PageIntroduction extends PageAbstract {
             <component-rich-media src="https://picsum.photos/600/400" text="Mein Bild"></component-rich-media>
 
             <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
-               <component-typography .type="${TypographyType.H4}">Bildquelle</component-typography>
-               <component-typography .type="${TypographyType.BODY1}">
+               <component-typography .typographyType="${TypographyType.H4}">Bildquelle</component-typography>
+               <component-typography .typographyType="${TypographyType.BODY1}">
                   Die hier abgebildeten Fotos stammen von:
                   <component-link href="https://picsum.photos">https://picsum.photos</component-link></component-typography
                >
@@ -89,7 +89,7 @@ export class PageIntroduction extends PageAbstract {
 
          <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
-            <component-typography .type="${TypographyType.H4}">Installation und Quelldateien</component-typography>
+            <component-typography .typographyType="${TypographyType.H4}">Installation und Quelldateien</component-typography>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-flex-container

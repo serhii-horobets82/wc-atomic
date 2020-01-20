@@ -1,27 +1,33 @@
-import { customElement, html, property, TemplateResult } from 'lit-element';
+import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputfieldType, InputfieldComponent } from '../inputfield/component';
-import { SimpleTableRowData } from '../simple-table/component';
+import { InputfieldType } from '../inputfield/component';
 import { ComboboxOption } from '../combobox/component';
-import { IconInputData, InputBoxInputData, SpacerAlignment, SpacerSize, TypographyType } from '..';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
+         <component-search-bar placeholder="Suche nach allem"></component-search-bar>
             <component-form>
-               <component-inputbox>
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.TEXT}"
-                     label="Benutzername"
-                     .inputBoxInputData="${<InputBoxInputData>{
-                        labelText: 'Benutzername',
-                        trailingIcon: <IconInputData>{ icon: 'account_circle' }
-                     }}"
-                     required="true"
-                  ></component-inputfield>
-               </component-inputbox>
+               ${this.createInputfield(InputfieldType.TEXT, 'TEXT', 'account_circle', '')}
+               ${this.createInputfield(InputfieldType.PASSWORD, 'PASSWORD', '', '')}
+               ${this.createInputfield(InputfieldType.NUMBER, 'NUMBER', '', '')}
+               ${this.createInputfield(InputfieldType.TEL, 'TEL', '', '')}
+               ${this.createInputfield(InputfieldType.CHECKBOX, 'CHECKBOX', '', '')}
+               ${this.createInputfield(InputfieldType.URL, 'URL', '', '')}
+               ${this.createInputfield(InputfieldType.EMAIL, 'EMAIL', '', '')}
+               ${this.createInputfield(InputfieldType.SEARCH, 'SEARCH', '', '')}
+               ${this.createInputfield(InputfieldType.RANGE, 'RANGE', '', '')}
+               ${this.createInputfield(InputfieldType.RESET, 'RESET', '', '')}
+               ${this.createInputfield(InputfieldType.SUBMIT, 'SUBMIT', '', '')}
+               ${this.createInputfield(InputfieldType.TIME, 'TIME', '', '')}
+               ${this.createInputfield(InputfieldType.WEEK, 'WEEK', '', '')}
+               ${this.createInputfield(InputfieldType.MONTH, 'MONTH', '', '')}
+               ${this.createInputfield(InputfieldType.DATE, 'DATE', '', '')}
+               ${this.createInputfield(InputfieldType.DATETIME_LOCAL, 'DATETIME_LOCAL', '', '')}
+               ${this.createInputfield(InputfieldType.HIDDEN, 'HIDDEN', '', '')}
+               ${this.createInputfield(InputfieldType.COLOR, 'COLOR', '', '')}
 
                <component-combobox
                   .required="${true}"
@@ -42,6 +48,18 @@ export class PageInputComponent extends PageAbstract {
                ></component-combobox>
             </component-form>
          </component-flex-container>
+      `;
+   }
+
+   private createInputfield(type: InputfieldType, labelText: string, trailingIcon: string, leadingIcon: string) {
+      return html`
+         <component-inputfield
+            .inputfieldType="${type}"
+            label="${labelText}"
+            trailingIcon="${trailingIcon}"
+            leadingIcon="${leadingIcon}"
+            required="true"
+         ></component-inputfield>
       `;
    }
 }

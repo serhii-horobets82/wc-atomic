@@ -31,7 +31,7 @@ export class PageUsers extends PageAbstract {
             ></component-spacer>
             <component-typography
                slot="leftComponents"
-               .type="${TypographyType.H6}"
+               .typographyType="${TypographyType.H6}"
                >Benutzerliste</component-typography
             >
             <component-icon

@@ -30,7 +30,7 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
 
    render() {
       return html`
-         <a href="${this.href}" target="${this.target}"><component-typography .type="${TypographyType.BUTTON}">${this.text}<slot></slot></component-typography></a>
+         <a href="${this.href}" target="${this.target}"><component-typography .typographyType="${TypographyType.BUTTON}">${this.text}<slot></slot></component-typography></a>
       `;
    }
 

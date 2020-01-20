@@ -10,7 +10,7 @@ export class PageSettings extends TopBottomTemplate {
          <component-top-app-bar>
             <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
             <component-spacer slot="leftComponents" size="${SpacerSize.SMALL}"></component-spacer>
-            <component-typography slot="leftComponents" .type="${TypographyType.H6}">Einstellungen</component-typography>
+            <component-typography slot="leftComponents" .typographyType="${TypographyType.H6}">Einstellungen</component-typography>
             <component-authenticated-icon
                .isAuthenticated="${SecureService.getInstance().isAuthenticated()}"
                loginPage="#login"
@@ -23,7 +23,7 @@ export class PageSettings extends TopBottomTemplate {
 
    getMainComponent(): TemplateResult {
       return html`
-         <component-typography .type="${TypographyType.H4}">Settings</component-typography>
+         <component-typography .typographyType="${TypographyType.H4}">Settings</component-typography>
          <component-form>
             <component-i18n-selector></component-i18n-selector>
          </component-form>

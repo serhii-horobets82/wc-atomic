@@ -14,7 +14,7 @@ export class PageElementList extends PageAbstract {
 
 
                 <component-chip .spacerSize="${SpacerSize.BIG}">
-                    <component-typography .type="${TypographyType.SUBTITLE1}">Subtitle 1</component-typography>
+                    <component-typography .typographyType="${TypographyType.SUBTITLE1}">Subtitle 1</component-typography>
                 </component-chip>
 
 

@@ -31,7 +31,7 @@ export class PageCardComponent extends PageAbstract {
                      ></component-primary-title>
                   </component-card-primary-title>
                   <component-card-supporting-text>
-                     <component-typography .type="${TypographyType.BODY2}"
+                     <component-typography .typographyType="${TypographyType.BODY2}"
                         >Visit ten places on our planet that are undergoing the biggest changes today.</component-typography
                      >
                   </component-card-supporting-text>

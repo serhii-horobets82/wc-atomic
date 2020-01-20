@@ -9,7 +9,7 @@ import { LinkComponent, LinkInputData, TypographyType } from '..';
 export class PageFormComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_50">
+         <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
             <component-authentication loginPath="/dologin"></component-authentication>
             <component-register></component-register>
             <component-change-password registerPath="/AUTH/CP"></component-change-password>

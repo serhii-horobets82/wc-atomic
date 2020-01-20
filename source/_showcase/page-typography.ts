@@ -31,7 +31,7 @@ export class PageTypographyComponent extends PageAbstract {
             </component-flex-container>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
-            <component-typography .type="${TypographyType.H4}">Types of Typography</component-typography>
+            <component-typography .typographyType="${TypographyType.H4}">Types of Typography</component-typography>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-simple-table
@@ -69,7 +69,7 @@ export class PageTypographyComponent extends PageAbstract {
                >Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
                beatae rerum inventore consectetur</component-typography
             >
-            <component-typography .type="${TypographyType.BODY2}"
+            <component-typography .typographyType="${TypographyType.BODY2}"
                >Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum
                officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id
                accusantium voluptas beatae.</component-typography

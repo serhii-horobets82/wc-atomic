@@ -7,7 +7,6 @@ import {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/c
 import {RegisterInputData,RegisterComponent} from './register/component';
 import {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
-import {InputBoxInputData,InputBoxComponent} from './inputbox/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
 import {CardActionInputData,CardActionComponent} from './card/actions/component';
 import {CardRichMediaInputData,CardRichMediaComponent} from './card/card-rich-media/component';
@@ -71,7 +70,6 @@ export {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 export {ButtonInputData,ButtonComponent} from './button/component';
 export {CardActionInputData,CardActionComponent} from './card/actions/component';
 export {CardRichMediaInputData,CardRichMediaComponent} from './card/card-rich-media/component';
-export {InputBoxInputData,InputBoxComponent} from './inputbox/component';
 export {CardPrimaryTitleInputData,CardPrimaryTitleComponent} from './card/primary-title/component';
 export {ElementListInputData,ElementListComponent} from './element-list/component';
 export {CardSupportingTextInputData,CardSupportingTextComponent} from './card/supporting-text/component';
@@ -127,5 +125,5 @@ export {TypographyType, TypographyInputData, TypographyComponent} from './typogr
 export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-import './_showcase/showcase-app';
-export {MessageType} from "./typography/component";
+//import './_showcase/showcase-app';
+//export {MessageType} from "./typography/component";

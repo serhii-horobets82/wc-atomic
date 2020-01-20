@@ -1,15 +1,22 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { ComponentLoader } from '../abstract/component-loader';
-import { guard } from 'lit-html/directives/guard';
-import { repeat } from 'lit-html/directives/repeat';
-import { FlexJustifyContent, InputfieldType, IconInputData, InputBoxInputData } from '..';
+import { InputfieldType, IconInputData, KeyValueData, InputfieldComponent } from '..';
+import { EventIconClickData } from '../icon/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
 export class SearchBarInputData extends AbstractInputData {}
 
-export class SearchBarOutputData {}
+export class SearchBarState {
+   static NORMAL: string = 'NORMAL';
+   static SEARCH: string = 'SEARCH';
+   static MOUSE_OUT: string = 'MOUSE_OUT';
+}
+
+export class SearchBarOutputData {
+   value: string = '';
+}
 
 @customElement('component-search-bar')
 export class SearchBarComponent extends AbstractComponent<SearchBarInputData, SearchBarOutputData> {
@@ -24,40 +31,93 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    }
 
    @property()
-   leadingIcon: IconInputData = <IconInputData>{ icon: 'menu' };
+   placeholder: string = '';
+
    @property()
-   trailingIcon: IconInputData = <IconInputData>{ icon: 'menu' };
+   searchBarState: string = SearchBarState.NORMAL;
+
+   @property()
+   trailingIcon: string = 'search';
+
+   @property()
+   leadingIcon: string = '';
+
+   @query('#inputfieldComponent')
+   private inputfieldComponent: InputfieldComponent | undefined;
 
    render() {
       return html`
-         <div class="search-bar" style="">
+         <div class="search-bar" style="" @mouseout="${() => this.mouseOut()}">
             <slot></slot>
             <component-inputfield
+               id="inputfieldComponent"
+               @component-inputfield-keyup="${() => this.keyUp()}"
+               @component-icon-click="${(event: CustomEvent) => {
+                  this.iconClicked(event);
+               }}"
+               placeholder="${this.placeholder}"
                .automaticInfoText="${false}"
                @component-inputfield-focus="${() => this.textfieldOnFocus()}"
                @component-inputfield-focus-out="${() => this.textfieldOnFocusOut()}"
                .inputfieldType="${InputfieldType.TEXT}"
-               .inputBoxInputData="${<InputBoxInputData>{
-                  selected: false,
-                  leadingIcon: this.leadingIcon,
-                  trailingIcon: this.trailingIcon
-               }}}"
+               leadingIcon="${this.leadingIcon}"
+               trailingIcon="${this.trailingIcon}"
+               .leadingIconClickable="${true}"
+               .trailingIconClickable="${true}"
             ></component-inputfield>
          </div>
       `;
    }
 
    getOutputData(): SearchBarOutputData {
-      return new SearchBarOutputData();
+      let searchBarOutputData = new SearchBarOutputData();
+      if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
+         searchBarOutputData.value = this.inputfieldComponent.inputElemet.value;
+      }
+      return searchBarOutputData;
    }
 
    protected inputDataChanged() {}
 
    private textfieldOnFocus() {
-      //this.trailingIcon = 'close';
+      this.searchBarState = SearchBarState.SEARCH;
+      this.leadingIcon = 'keyboard_backspace';
    }
 
    private textfieldOnFocusOut() {
-      //this.trailingIcon = 'search';
+      if (this.searchBarState === SearchBarState.MOUSE_OUT) {
+         this.leadingIcon = '';
+         this.setTrailingIcon();
+      }
+      this.searchBarState = SearchBarState.NORMAL;
+   }
+
+   private iconClicked(event: CustomEvent) {
+      let data: EventIconClickData = event.detail;
+      switch (data.icon) {
+         case 'close':
+            if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
+               this.inputfieldComponent.inputElemet.value = '';
+               this.inputfieldComponent.inputElemet.focus();
+            }
+            this.setTrailingIcon();
+            break;
+      }
+   }
+
+   private mouseOut() {
+      this.searchBarState = SearchBarState.MOUSE_OUT;
+   }
+
+   private keyUp() {
+      this.setTrailingIcon();
+   }
+
+   private setTrailingIcon() {
+      if (BasicService.getInstance().isNotBlank(this.getOutputData().value)) {
+         this.trailingIcon = 'close';
+      } else {
+         this.trailingIcon = 'search';
+      }
    }
 }

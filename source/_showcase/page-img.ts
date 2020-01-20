@@ -19,7 +19,7 @@ export class PageImgComponent extends PageAbstract {
                         <component-teaser-element slot="content" selected="true">
                             <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/800/500"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
-                                <component-typography .type="${TypographyType.H6}" text="[1] Lorem ipsum dolor sit amet"></component-typography>
+                                <component-typography .typographyType="${TypographyType.H6}" text="[1] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
                            suscipit, quam beatae rerum inventore consectetur</component-typography>
                             </component-spacer>
@@ -27,7 +27,7 @@ export class PageImgComponent extends PageAbstract {
                         <component-teaser-element slot="content">
                             <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/300/300"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
-                                <component-typography .type="${TypographyType.H6}" text="[2] Lorem ipsum dolor sit amet"></component-typography>
+                                <component-typography .typographyType="${TypographyType.H6}" text="[2] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
                            suscipit, quam beatae rerum inventore consectetur</component-typography>
                             </component-spacer>
@@ -35,7 +35,7 @@ export class PageImgComponent extends PageAbstract {
                         <component-teaser-element slot="content">
                             <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/500/500"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
-                                <component-typography .type="${TypographyType.H6}" text="[3] Lorem ipsum dolor sit amet"></component-typography>
+                                <component-typography .typographyType="${TypographyType.H6}" text="[3] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
                            suscipit, quam beatae rerum inventore consectetur</component-typography>
                             </component-spacer>
@@ -43,7 +43,7 @@ export class PageImgComponent extends PageAbstract {
                         <component-teaser-element slot="content">
                             <component-rich-media slot="background" cssStyle="height:600px;" src="https://picsum.photos/400/400"></component-rich-media>
                             <component-spacer clazz="minPadding" slot="foreground">
-                                <component-typography .type="${TypographyType.H6}" text="[4] Lorem ipsum dolor sit amet"></component-typography>
+                                <component-typography .typographyType="${TypographyType.H6}" text="[4] Lorem ipsum dolor sit amet"></component-typography>
                                 <component-typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
                            suscipit, quam beatae rerum inventore consectetur</component-typography>
                             </component-spacer>

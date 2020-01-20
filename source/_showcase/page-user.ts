@@ -84,7 +84,7 @@ export class PageUser extends PageAbstract {
             ></component-spacer>
             <component-typography
                slot="leftComponents"
-               .type="${TypographyType.H6}"
+               .typographyType="${TypographyType.H6}"
                >Benutzer bearbeiten</component-typography
             >
             <component-icon
@@ -124,7 +124,7 @@ export class PageUser extends PageAbstract {
             ></component-button>
          </component-dialog>
 
-         <component-typography .type="${TypographyType.H4}"
+         <component-typography .typographyType="${TypographyType.H4}"
             >Benutzer bearbeiten</component-typography
          >
          <component-form id="user-form">

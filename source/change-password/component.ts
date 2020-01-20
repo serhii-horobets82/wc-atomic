@@ -46,12 +46,12 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
       return html`
          <component-card>
             <component-form id="change-password-form">
-               <component-typography slot="header" .type="${TypographyType.H4}"
+               <component-typography slot="header" .typographyType="${TypographyType.H4}"
                   >${this.getI18NValue('component_change_password')}</component-typography
                >
                <component-inputfield
                   id="current-password-inputfield"
-                  .type="${InputfieldType.PASSWORD}"
+                  .inputfieldType="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_current_password')}"
                   trailingIcon="vpn_key"
                   required="true"
@@ -59,7 +59,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                ></component-inputfield>
                <component-inputfield
                   id="new-password-inputfield"
-                  .type="${InputfieldType.PASSWORD}"
+                  .inputfieldType="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_new_password')}"
                   trailingIcon="vpn_key"
                   minlength="8"
@@ -68,7 +68,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                ></component-inputfield>
                <component-inputfield
                   id="repeat-new-password-inputfield"
-                  .type="${InputfieldType.PASSWORD}"
+                  .inputfieldType="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_change_password_repeat_new_password')}"
                   trailingIcon="vpn_key"
                   minlength="8"
@@ -80,7 +80,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                   @click="${() => this.changePassword()}"
                ></component-button>
 
-               <component-typography slot="errorMessages" .type="${TypographyType.OVERLINE}" text="${this.errorMessage}"
+               <component-typography slot="errorMessages" .typographyType="${TypographyType.OVERLINE}" text="${this.errorMessage}"
                   ></component-typography>
                
             </component-form>

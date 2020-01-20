@@ -78,19 +78,19 @@ export class PageIconComponent extends PageAbstract {
                <component-form>
                   <component-inputfield
                      label="Klickbar ?"
-                     .type="${InputfieldType.CHECKBOX}"
+                     .inputfieldType="${InputfieldType.CHECKBOX}"
                      @component-inputfield-change="${(event: CustomEvent) => (this.clickable = event.detail.outputData.value)}"
                   ></component-inputfield>
                   <component-inputfield
                      label="Farbe"
-                     .type="${InputfieldType.COLOR}"
+                     .inputfieldType="${InputfieldType.COLOR}"
                      @component-inputfield-change="${(event: CustomEvent) => (this.color = event.detail.outputData.value)}"
                   ></component-inputfield>
 
                   <component-inputfield
                      .required="${true}"
                      label="Größe"
-                     .type="${InputfieldType.NUMBER}"
+                     .inputfieldType="${InputfieldType.NUMBER}"
                      min="18"
                      max="256"
                      step="1"

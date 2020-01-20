@@ -1,7 +1,12 @@
 .search-bar {
+   box-sizing: border-box;
+   width: 100%;
+   height: var(--line-height-big);
+   line-height: var(--line-height-big);
    display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+   align-items: center;
 }
 
 component-inputfield {

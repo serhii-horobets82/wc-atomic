@@ -8,7 +8,7 @@ export class PageGetStarted extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
-            <component-typography .type="${TypographyType.H2}">Base Project</component-typography>
+            <component-typography .typographyType="${TypographyType.H2}">Base Project</component-typography>
             <component-typography>
                clone base template from github to start your client app
                <component-link href="https://github.com/domoskanonos/wc-atomic-template"

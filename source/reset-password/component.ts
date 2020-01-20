@@ -34,12 +34,12 @@ export class ResetPasswordComponent extends AbstractComponent<ResetPasswordInput
       return html`
          <component-card>
             <component-form id="reset-password-form">
-               <component-typography .type="${TypographyType.H4}"
+               <component-typography .typographyType="${TypographyType.H4}"
                   >${this.getI18NValue('component_reset_password_header')}</component-typography
                >
                <slot></slot>
                <component-inputfield
-                  .type="${InputfieldType.EMAIL}"
+                  .inputfieldType="${InputfieldType.EMAIL}"
                   label="${this.getI18NValue('component_reset_password_email')}"
                   trailingIcon="vpn_key"
                   minlength="8"

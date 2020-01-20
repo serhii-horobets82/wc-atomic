@@ -1,3 +1,29 @@
+.labelContainer {
+   position: relative;
+   visibility: hidden;
+}
+
+.label {
+   position: absolute;
+   top: -10px;
+   left: var(--space-medium);
+   background-color: white;
+   padding-left: var(--space-small);
+   padding-right: var(--space-small);
+}
+.box {
+   box-sizing: border-box;
+   width: 100%;
+   height: var(--line-height-big);
+   line-height: var(--line-height-big);
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+   align-items: center;
+}
+
+
+
 input {
    font: inherit;
    box-sizing: border-box;
@@ -11,10 +37,6 @@ input {
 
 input:focus {
    outline: none;
-}
-
-input:focus::placeholder {
-   color: transparent;
 }
 
 input[type='checkbox'] {
@@ -32,4 +54,22 @@ input[type='color'] {
 ::-webkit-clear-button {
    height: var(--line-height);
    line-height: var(--line-height);
+}
+
+
+.labelContainer.showLabelText {
+   position: relative;
+   visibility: visible;
+}
+
+input.showLabelText:focus::placeholder {
+   color: transparent;
+}
+
+.box.showBorder {
+   border: 1px solid var(--app-color-border);
+}
+
+.box.showSelectedBorder {
+   border-bottom: 3px solid var(--app-color-primary);
 }

@@ -23,6 +23,12 @@ export class IconInputData extends AbstractInputData {
    rendered: boolean = true;
 }
 
+export class EventIconClickData {
+   icon: string = '';
+   clickData?: any;
+   clickable: boolean = false;
+}
+
 @customElement('component-icon')
 export class IconComponent extends AbstractComponent<IconInputData, any> {
    static styles = css`
@@ -110,7 +116,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
    async clicked() {
       if (this.clickable) {
-         this.dispatchSimpleCustomEvent(IconComponent.EVENT_CLICK, {
+         this.dispatchSimpleCustomEvent(IconComponent.EVENT_CLICK, <EventIconClickData>{
             clickData: this.clickData,
             clickable: this.clickable,
             icon: this.icon

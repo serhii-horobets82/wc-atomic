@@ -43,18 +43,18 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
          ? html`
               <component-card>
                  <component-form id="authenitcate-form">
-                    <component-typography .type="${TypographyType.H4}"
+                    <component-typography .typographyType="${TypographyType.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
                     <component-inputfield
                        name="username"
-                       .type="${InputfieldType.EMAIL}"
+                       .inputfieldType="${InputfieldType.EMAIL}"
                        label="${this.getI18NValue('component_authentication_username')}"
                        trailingIcon="account_circle"
                        required="true"
                     ></component-inputfield>
                     <component-inputfield
-                       .type="${InputfieldType.PASSWORD}"
+                       .inputfieldType="${InputfieldType.PASSWORD}"
                        label="${this.getI18NValue('component_authentication_password')}"
                        name="password"
                        trailingIcon="vpn_key"
@@ -70,7 +70,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
          : html`
               <component-card>
                  <component-form id="logout-form">
-                    <component-typography .type="${TypographyType.H4}"
+                    <component-typography .typographyType="${TypographyType.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
                     <component-button

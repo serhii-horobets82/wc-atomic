@@ -28,18 +28,18 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, Form
       return html`
          <component-card>
             <component-form id="register-form">
-               <component-typography .type="${TypographyType.H4}"
+               <component-typography .typographyType="${TypographyType.H4}"
                   >${this.getI18NValue('component_register')}</component-typography
                >
                <component-inputfield
                   name="email"
-                  .type="${InputfieldType.EMAIL}"
+                  .inputfieldType="${InputfieldType.EMAIL}"
                   label="${this.getI18NValue('component_register_username')}"
                   trailingIcon="account_circle"
                   required="true"
                ></component-inputfield>
                <component-inputfield
-                  .type="${InputfieldType.PASSWORD}"
+                  .inputfieldType="${InputfieldType.PASSWORD}"
                   label="${this.getI18NValue('component_register_password')}"
                   name="password"
                   trailingIcon="vpn_key"
