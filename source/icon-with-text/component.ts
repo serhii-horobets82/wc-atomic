@@ -8,9 +8,11 @@ import { ToolbarAlignment } from '../toolbar/component';
 const componentCSS = require('./component.scss');
 
 export class IconWithTextInputData extends AbstractInputData {
-   iconInputData: IconInputData = new IconInputData();
-   typographyInputData: TypographyInputData = new TypographyInputData();
+   icon: string = '';
+   cssStyle: string = '';
    clickable: boolean = false;
+   iconState: string = IconState.ACTIVE_FOCUSED;
+   text: string = '';
 }
 
 @customElement('component-icon-with-text')
@@ -22,32 +24,39 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
    static IDENTIFIER: string = 'IconWithTextComponent';
 
    @property()
-   iconInputData: IconInputData = new IconWithTextInputData().iconInputData;
+   icon: string = '';
+
    @property()
-   typographyInputData: TypographyInputData = new IconWithTextInputData().typographyInputData;
+   cssStyle: string = '';
+
+   @property()
+   title: string = '';
+
    @property()
    clickable: boolean = false;
 
+   @property()
+   iconState: string = IconState.ACTIVE_FOCUSED;
+
+   @property()
+   text: string = '';
+
    render() {
       return html`
-         <component-toolbar
-            .toolbarAlignment="${ToolbarAlignment.VERTICAL}"
-            class="${this.clickable ? ' clickable' : ''} ${this.iconInputData.iconState}"
-         >
-            <component-icon .inputData="${this.iconInputData}"></component-icon>
-            <component-typography .inputData="${this.typographyInputData}"></component-typography>
-         </component-toolbar>
+         <div class="icon-with-text${this.clickable ? ' clickable' : ''} ${this.iconState}">
+            <component-icon .withIconSpace="${false}" icon="${this.icon}" .iconState="${this.iconState}"></component-icon>
+            <component-typography .type="${TypographyType.OVERLINE}" text="${this.text}"></component-typography>
+         </div>
       `;
    }
 
    inputDataChanged() {
       let defaultData: IconWithTextInputData = new IconWithTextInputData();
-      this.iconInputData = BasicService.getInstance().getValue(this.inputData.iconInputData, defaultData.iconInputData);
-      this.typographyInputData = BasicService.getInstance().getValue(
-         this.inputData.typographyInputData,
-         defaultData.typographyInputData
-      );
+      this.icon = BasicService.getInstance().getValue(this.inputData.iconState, defaultData.icon);
+      this.iconState = BasicService.getInstance().getValue(this.inputData.iconState, defaultData.iconState);
+      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
       this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
+      this.text = BasicService.getInstance().getValue(this.inputData.text, defaultData.text);
    }
 
    getOutputData(): any {
