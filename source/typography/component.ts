@@ -4,7 +4,7 @@ import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
-export class TypographyTypes {
+export class TypographyType {
    static H1 = 'H1';
    static H2 = 'H2';
    static H3 = 'H3';
@@ -20,21 +20,21 @@ export class TypographyTypes {
    static OVERLINE = 'OVERLINE';
 }
 
-export class TypographyInputData extends AbstractInputData {
-   componentIdentifier = TypographyComponent.IDENTIFIER;
-   type: string = TypographyTypes.H2;
-   text?: string;
-   clazz?: string;
-   cssStyle?: string;
-   title?: string;
-}
-
 export class MessageType {
    static DEFAULT: string = '';
    static SUCCESS: string = 'success';
    static ERROR: string = 'error';
    static WARNING: string = 'warning';
    static INFO: string = 'info';
+}
+
+export class TypographyInputData extends AbstractInputData {
+   componentIdentifier = TypographyComponent.IDENTIFIER;
+   typographyType: string = TypographyType.H2;
+   text: string = '';
+   clazz: string = '';
+   cssStyle: string = '';
+   title: string = '';
 }
 
 @customElement('component-typography')
@@ -46,7 +46,10 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    static IDENTIFIER: string = 'HComponent';
 
    @property()
-   type: string = TypographyTypes.BODY1;
+   messageType: string = MessageType.DEFAULT;
+
+   @property()
+   typographyType: string = TypographyType.BODY1;
 
    @property()
    text: string = '';
@@ -60,12 +63,9 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    @property()
    cssStyle: string = '';
 
-   @property()
-   messageType: string = MessageType.DEFAULT;
-
    render() {
       return html`
-         <span class="${this.type.toString()} ${this.clazz} ${this.messageType}" style="${this.cssStyle}"
+         <span class="${this.typographyType.toString()} ${this.clazz} ${this.messageType}" style="${this.cssStyle}"
             >${this.text}<slot></slot
          ></span>
       `;
@@ -74,7 +74,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    getDefaultInputData(): TypographyInputData {
       return <TypographyInputData>{
          componentIdentifier: TypographyComponent.IDENTIFIER,
-         type: TypographyTypes.BODY1,
+         typographyType: TypographyType.BODY1,
          text: 'Lorem ipsum dolor sit amet'
       };
    }
@@ -84,10 +84,11 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    }
 
    protected inputDataChanged() {
-      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
-      this.title = BasicService.getInstance().getValue(this.inputData.title, '');
-      this.type = BasicService.getInstance().getValue(this.inputData.type, TypographyTypes.BODY1);
+      let defaultData: TypographyInputData = new TypographyInputData();
+      this.text = BasicService.getInstance().getValue(this.inputData.text, defaultData.text);
+      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
+      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, defaultData.clazz);
+      this.title = BasicService.getInstance().getValue(this.inputData.title, defaultData.title);
+      this.typographyType = BasicService.getInstance().getValue(this.inputData.typographyType, defaultData.typographyType);
    }
 }

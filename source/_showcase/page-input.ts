@@ -3,7 +3,7 @@ import { PageAbstract } from './page-abstract';
 import { HTMLInputTypes, InputComponent } from '../input/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { ComboboxOption } from '../combobox/component';
-import { SpacerAlignment, SpacerSize, TypographyTypes } from '..';
+import { SpacerAlignment, SpacerSize, TypographyType } from '..';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {

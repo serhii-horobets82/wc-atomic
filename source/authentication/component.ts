@@ -2,7 +2,7 @@ import { css, customElement, html, property, query, unsafeCSS } from 'lit-elemen
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FormComponent, FormComponentOutputData } from '../form/component';
 import { HttpClientService } from '@domoskanonos/frontend-basis';
-import { HTMLInputTypes, TypographyTypes } from '..';
+import { HTMLInputTypes, TypographyType } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -43,7 +43,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
          ? html`
               <component-card>
                  <component-form id="authenitcate-form">
-                    <component-typography .type="${TypographyTypes.H4}"
+                    <component-typography .type="${TypographyType.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
                     <component-inputfield
@@ -70,7 +70,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
          : html`
               <component-card>
                  <component-form id="logout-form">
-                    <component-typography .type="${TypographyTypes.H4}"
+                    <component-typography .type="${TypographyType.H4}"
                        >${this.getI18NValue('component_authentication')}</component-typography
                     >
                     <component-button

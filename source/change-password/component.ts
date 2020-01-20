@@ -2,7 +2,7 @@ import {css, customElement, html, property, query, unsafeCSS} from 'lit-element'
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
 import {I18nService} from '@domoskanonos/frontend-basis';
-import {HTMLInputTypes, TypographyTypes} from '..';
+import {HTMLInputTypes, TypographyType} from '..';
 
 const componentCSS = require('./component.css');
 
@@ -46,7 +46,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
       return html`
          <component-card>
             <component-form id="change-password-form">
-               <component-typography slot="header" .type="${TypographyTypes.H4}"
+               <component-typography slot="header" .type="${TypographyType.H4}"
                   >${this.getI18NValue('component_change_password')}</component-typography
                >
                <component-inputfield
@@ -80,7 +80,7 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
                   @click="${() => this.changePassword()}"
                ></component-button>
 
-               <component-typography slot="errorMessages" .type="${TypographyTypes.OVERLINE}" text="${this.errorMessage}"
+               <component-typography slot="errorMessages" .type="${TypographyType.OVERLINE}" text="${this.errorMessage}"
                   ></component-typography>
                
             </component-form>

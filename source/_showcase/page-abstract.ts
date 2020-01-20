@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-element';
-import { BasisTemplate, TypographyTypes } from '../index';
+import { BasisTemplate, TypographyType } from '../index';
 import { I18nService } from '@domoskanonos/frontend-basis';
 
 export abstract class PageAbstract extends BasisTemplate {

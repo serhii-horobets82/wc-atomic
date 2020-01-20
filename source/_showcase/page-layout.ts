@@ -11,8 +11,9 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
-import { SpacerSize, TypographyTypes } from '..';
+import { SpacerSize, TypographyType } from '..';
 import { IconState } from '../icon/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
@@ -60,10 +61,10 @@ export class PageLayoutComponent extends PageAbstract {
                      .withIconSpace="${false}"
                   ></component-icon>
 
-                  <component-typography type="${TypographyTypes.H2}">Layout System</component-typography>
+                  <component-typography type="${TypographyType.H2}">Layout System</component-typography>
                </component-flex-container>
 
-               <component-typography type="${TypographyTypes.BODY1}"
+               <component-typography type="${TypographyType.BODY1}"
                   ><i>Component Flex Container</i> basiert auf dem HTML 5 Flex Contaier Layout (display: flex). Auf dieser Seite
                   können Sie die Komponente und deren Attribute ausführlich testen. Sie können das Ergebnis Ihrer Auswahl in der
                   Beispielkomponente begutachten, sowie den zugehörigen Quelltext anschauen.</component-typography

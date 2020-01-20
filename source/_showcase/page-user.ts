@@ -13,7 +13,7 @@ import {
 } from '@domoskanonos/frontend-basis';
 import {WebApiService} from '@domoskanonos/frontend-basis';
 import {UserRepository} from "./controller-user";
-import {FormComponent, SpacerSize, TypographyTypes} from "..";
+import {FormComponent, SpacerSize, TypographyType} from "..";
 
 @customElement('page-user')
 export class PageUser extends PageAbstract {
@@ -83,7 +83,7 @@ export class PageUser extends PageAbstract {
             ></component-spacer>
             <component-typography
                slot="leftComponents"
-               .type="${TypographyTypes.H6}"
+               .type="${TypographyType.H6}"
                >Benutzer bearbeiten</component-typography
             >
             <component-icon
@@ -123,7 +123,7 @@ export class PageUser extends PageAbstract {
             ></component-button>
          </component-dialog>
 
-         <component-typography .type="${TypographyTypes.H4}"
+         <component-typography .type="${TypographyType.H4}"
             >Benutzer bearbeiten</component-typography
          >
          <component-form id="user-form">

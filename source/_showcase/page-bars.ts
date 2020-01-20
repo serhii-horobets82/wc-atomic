@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { IconInputData, IconState } from '../icon/component';
-import { FlexJustifyContent, TypographyInputData } from '..';
+import { FlexJustifyContent, TypographyInputData, TypographyType } from '..';
 import { RouterService } from '@domoskanonos/frontend-basis';
 import { ToolbarAlignment } from '../toolbar/component';
 
@@ -53,21 +53,24 @@ export class PageBars extends PageAbstract {
                .flexJustifyContent="${flexJustifyContent}"
                .toolbarAlignment="${toolbarAlignment}"
             >
-               <component-icon-with-text
-                  .iconInputData="${<IconInputData>{
-                     iconState: IconState.ACTIVE_UNFOCUSED,
-                     icon: 'home',
-                     clickable: true
-                  }}"
-                  .typographyInputData="${<TypographyInputData>{ text: 'Kochbuch' }}"
-               ></component-icon-with-text>
-               <component-icon-with-text icon="how_to_reg" text="Profil"></component-icon-with-text>
-               <component-icon-with-text icon="camera_alt" text="Barcode"></component-icon-with-text>
-               <component-icon-with-text icon="list_alt" text="Manager"></component-icon-with-text>
-               <component-icon-with-text icon="trending_up" text="Training"></component-icon-with-text>
-               <component-icon-with-text icon="import_export" text="2,00"></component-icon-with-text>
+               ${this.createIcon('home', 'Zuhause')} ${this.createIcon('how_to_reg', 'Profil')}
+               ${this.createIcon('camera_alt', 'Barcode')} ${this.createIcon('list_alt', 'Manager')}
+               ${this.createIcon('trending_up', 'Training')} ${this.createIcon('import_export', '2,00')}
             </component-toolbar>
          </component-flex-container>
+      `;
+   }
+
+   createIcon(icon: string, text: string) {
+      return html`
+         <component-icon-with-text
+            .iconInputData="${<IconInputData>{
+               iconState: IconState.ACTIVE_UNFOCUSED,
+               icon: icon,
+               clickable: true
+            }}"
+            .typographyInputData="${<TypographyInputData>{ text: text, typographyType: TypographyType.CAPTION }}"
+         ></component-icon-with-text>
       `;
    }
 }

@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
-import { TypographyComponent, TypographyTypes } from '../typography/component';
+import { TypographyComponent, TypographyType } from '../typography/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { AlignItems, FlexJustifyContent, KeylineSize } from '../flex-container/component';
 import { IconState } from '../icon/component';
@@ -23,15 +23,15 @@ export class PageTypographyComponent extends PageAbstract {
                   icon="font_download"
                   color="#25498d"
                   iconSize="96"
-                  iconState="${IconState.DEFAULT}"
+                  iconState="${IconState.ACTIVE_FOCUSED}"
                   .withIconSpace="${false}"
                ></component-icon>
 
-               <component-typography type="${TypographyTypes.H2}">Typography</component-typography>
+               <component-typography .typographyType="${TypographyType.H2}">Typography</component-typography>
             </component-flex-container>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
-            <component-typography .type="${TypographyTypes.H4}">Types of Typography</component-typography>
+            <component-typography .type="${TypographyType.H4}">Types of Typography</component-typography>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-simple-table
@@ -57,26 +57,26 @@ export class PageTypographyComponent extends PageAbstract {
          
          <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%">
 
-            <component-typography .type="${TypographyTypes.H1}">Headline 1</component-typography>
-            <component-typography .type="${TypographyTypes.H2}">Headline 2</component-typography>
-            <component-typography .type="${TypographyTypes.H3}">Headline 3</component-typography>
-            <component-typography .type="${TypographyTypes.H4}">Headline 4</component-typography>
-            <component-typography .type="${TypographyTypes.H5}">Headline 5</component-typography>
-            <component-typography .type="${TypographyTypes.H6}">Headline 6</component-typography>
-            <component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
-            <component-typography .type="${TypographyTypes.SUBTITLE2}">Subtitle 2</component-typography>
-            <component-typography .type="${TypographyTypes.BODY1}" text=""
+            <component-typography .typographyType="${TypographyType.H1}">Headline 1</component-typography>
+            <component-typography .typographyType="${TypographyType.H2}">Headline 2</component-typography>
+            <component-typography .typographyType="${TypographyType.H3}">Headline 3</component-typography>
+            <component-typography .typographyType="${TypographyType.H4}">Headline 4</component-typography>
+            <component-typography .typographyType="${TypographyType.H5}">Headline 5</component-typography>
+            <component-typography .typographyType="${TypographyType.H6}">Headline 6</component-typography>
+            <component-typography .typographyType="${TypographyType.SUBTITLE1}">Subtitle 1</component-typography>
+            <component-typography .typographyType="${TypographyType.SUBTITLE2}">Subtitle 2</component-typography>
+            <component-typography .typographyType="${TypographyType.BODY1}" text=""
                >Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
                beatae rerum inventore consectetur</component-typography
             >
-            <component-typography .type="${TypographyTypes.BODY2}"
+            <component-typography .type="${TypographyType.BODY2}"
                >Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum
                officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id
                accusantium voluptas beatae.</component-typography
             >
-            <component-typography .type="${TypographyTypes.BUTTON}">BUTTON TEXT</component-typography>
-            <component-typography .type="${TypographyTypes.CAPTION}">Caption text</component-typography>
-            <component-typography .type="${TypographyTypes.OVERLINE}">OVERLINE TEXT</component-typography>
+            <component-typography .typographyType="${TypographyType.BUTTON}">BUTTON TEXT</component-typography>
+            <component-typography .typographyType="${TypographyType.CAPTION}">Caption text</component-typography>
+            <component-typography .typographyType="${TypographyType.OVERLINE}">OVERLINE TEXT</component-typography>
           
           </component-flex-container>  
             

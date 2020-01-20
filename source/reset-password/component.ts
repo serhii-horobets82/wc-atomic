@@ -1,7 +1,7 @@
 import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {FormComponent, FormComponentOutputData} from '../form/component';
-import {HTMLInputTypes, TypographyTypes} from '..';
+import {HTMLInputTypes, TypographyType} from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -34,7 +34,7 @@ export class ResetPasswordComponent extends AbstractComponent<ResetPasswordInput
       return html`
          <component-card>
             <component-form id="reset-password-form">
-               <component-typography .type="${TypographyTypes.H4}"
+               <component-typography .type="${TypographyType.H4}"
                   >${this.getI18NValue('component_reset_password_header')}</component-typography
                >
                <slot></slot>

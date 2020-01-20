@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { IconInputData, IconState } from '../icon/component';
-import { TypographyInputData, TypographyTypes } from '../typography/component';
+import { TypographyInputData, TypographyType } from '../typography/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
 import { ToolbarAlignment } from '../toolbar/component';
 

@@ -10,7 +10,7 @@ import {
    TableHeaderInputData,
    TypographyComponent,
    TypographyInputData,
-   TypographyTypes
+   TypographyType
 } from "..";
 
 
@@ -31,7 +31,7 @@ export class PageUsers extends PageAbstract {
             ></component-spacer>
             <component-typography
                slot="leftComponents"
-               .type="${TypographyTypes.H6}"
+               .type="${TypographyType.H6}"
                >Benutzerliste</component-typography
             >
             <component-icon

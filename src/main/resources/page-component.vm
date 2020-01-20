@@ -29,7 +29,7 @@ export class Page${componentName} extends PageAbstract {
          <SimpleTableRowData>{ columns: ['max', 'number', '', ''] },
          <SimpleTableRowData>{
             columns: [
-               'type',
+               'typographyType',
                'string',
                'button, checkbox, color, date, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, time, url, week',
                'text'
@@ -81,7 +81,7 @@ export class Page${componentName} extends PageAbstract {
                </component-tab-content>
                <component-tab-content slot="tabContent" id="htmlContent">
                   <component-code>
-                     <component-typography text="<component-inputfield type=&quot;date&quot;></component-inputfield>"></component-typography>
+                     <component-typography text="<component-inputfield typographyType=&quot;date&quot;></component-inputfield>"></component-typography>
                   </component-code>
                </component-tab-content>
             </component-tabs>

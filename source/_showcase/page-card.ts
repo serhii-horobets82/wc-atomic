@@ -2,7 +2,7 @@ import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import { RichMediaComponent, RichMediaInputData } from '../rich-media/component';
-import { TypographyInputData, TypographyTypes } from '../typography/component';
+import { TypographyInputData, TypographyType } from '../typography/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { LinkComponent, LinkInputData } from '../link/component';
 import { FlexJustifyContent } from '../flex-container/component';
@@ -21,17 +21,17 @@ export class PageCardComponent extends PageAbstract {
                   <component-card-primary-title>
                      <component-primary-title
                         .primaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.H4,
+                           typographyType: TypographyType.H4,
                            text: 'Our Changing Planet'
                         }}"
                         .secondaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.SUBTITLE2,
+                           typographyType: TypographyType.SUBTITLE2,
                            text: 'by Kurt Wagner'
                         }}"
                      ></component-primary-title>
                   </component-card-primary-title>
                   <component-card-supporting-text>
-                     <component-typography .type="${TypographyTypes.BODY2}"
+                     <component-typography .type="${TypographyType.BODY2}"
                         >Visit ten places on our planet that are undergoing the biggest changes today.</component-typography
                      >
                   </component-card-supporting-text>

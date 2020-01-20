@@ -3,7 +3,7 @@ import { PageAbstract } from './page-abstract';
 import { InputComponent } from '../input/component';
 import { SimpleTableRowData } from '../simple-table/component';
 import { ComboboxOption } from '../combobox/component';
-import { LinkComponent, LinkInputData, TypographyTypes } from '..';
+import { LinkComponent, LinkInputData, TypographyType } from '..';
 
 @customElement('page-form')
 export class PageFormComponent extends PageAbstract {

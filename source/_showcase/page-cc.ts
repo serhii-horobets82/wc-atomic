@@ -1,6 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { TypographyInputData, TypographyTypes } from '../typography/component';
+import { TypographyInputData, TypographyType } from '../typography/component';
 import {IconInputData, LinkComponent, LinkInputData, RichMediaInputData, SimpleTableRowData, SpacerSize} from '..';
 
 @customElement('page-cc')
@@ -14,7 +14,7 @@ export class PageElementList extends PageAbstract {
 
 
                 <component-chip .spacerSize="${SpacerSize.BIG}">
-                    <component-typography .type="${TypographyTypes.SUBTITLE1}">Subtitle 1</component-typography>
+                    <component-typography .type="${TypographyType.SUBTITLE1}">Subtitle 1</component-typography>
                 </component-chip>
 
 
@@ -42,11 +42,11 @@ export class PageElementList extends PageAbstract {
                <component-primary-title
                   .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/150/150' }}"
                   .primaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.H6,
+                     typographyType: TypographyType.H6,
                      text: 'Title goes here'
                   }}"
                   .secondaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.CAPTION,
+                     typographyType: TypographyType.CAPTION,
                      text: 'Secondary text'
                   }}"
                ></component-primary-title>
@@ -55,11 +55,11 @@ export class PageElementList extends PageAbstract {
                <component-primary-title
                   .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/100/100' }}"
                   .primaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.H6,
+                     typographyType: TypographyType.H6,
                      text: 'Title goes here'
                   }}"
                   .secondaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.CAPTION,
+                     typographyType: TypographyType.CAPTION,
                      text: 'Secondary text'
                   }}"
                ></component-primary-title>
@@ -68,11 +68,11 @@ export class PageElementList extends PageAbstract {
                <component-primary-title
                   .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/50/50' }}"
                   .primaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.H6,
+                     typographyType: TypographyType.H6,
                      text: 'Title goes here'
                   }}"
                   .secondaryTitle="${<TypographyInputData>{
-                     type: TypographyTypes.CAPTION,
+                     typographyType: TypographyType.CAPTION,
                      text: 'Secondary text'
                   }}"
                ></component-primary-title>

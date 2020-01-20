@@ -13,7 +13,7 @@ import {
    RichMediaInputData,
    SpacerSize,
    TypographyInputData,
-   TypographyTypes
+   TypographyType
 } from '..';
 import { SpacerAlignment } from '../spacer/component';
 
@@ -29,7 +29,7 @@ export class PageIntroduction extends PageAbstract {
                size="${SpacerSize.SMALL}"
                alignment="${SpacerAlignment.HORIZONTAL}"
             ></component-spacer>
-            <component-typography slot="leftComponents" type="${TypographyTypes.H6}">Introduction</component-typography>
+            <component-typography slot="leftComponents" type="${TypographyType.H6}">Introduction</component-typography>
             <component-icon slot="rightComponents" icon="search" clickable="true"></component-icon>
          </component-top-app-bar>
       `;
@@ -49,8 +49,8 @@ export class PageIntroduction extends PageAbstract {
             .keylineAlignment="${KeylineAlignment.BOTH}"
          >
             <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
-               <component-typography .type="${TypographyTypes.H2}">WC-Atomic</component-typography>
-               <component-typography .type="${TypographyTypes.H6}"
+               <component-typography .type="${TypographyType.H2}">WC-Atomic</component-typography>
+               <component-typography .type="${TypographyType.H6}"
                   >Erstelle wunderbare PWA Single Page Anwendungen</component-typography
                >
                <component-typography>
@@ -79,8 +79,8 @@ export class PageIntroduction extends PageAbstract {
             <component-rich-media src="https://picsum.photos/600/400" text="Mein Bild"></component-rich-media>
 
             <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
-               <component-typography .type="${TypographyTypes.H4}">Bildquelle</component-typography>
-               <component-typography .type="${TypographyTypes.BODY1}">
+               <component-typography .type="${TypographyType.H4}">Bildquelle</component-typography>
+               <component-typography .type="${TypographyType.BODY1}">
                   Die hier abgebildeten Fotos stammen von:
                   <component-link href="https://picsum.photos">https://picsum.photos</component-link></component-typography
                >
@@ -89,7 +89,7 @@ export class PageIntroduction extends PageAbstract {
 
          <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
-            <component-typography .type="${TypographyTypes.H4}">Installation und Quelldateien</component-typography>
+            <component-typography .type="${TypographyType.H4}">Installation und Quelldateien</component-typography>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-flex-container
@@ -103,11 +103,11 @@ export class PageIntroduction extends PageAbstract {
                      <component-primary-title
                         .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/50/50' }}"
                         .primaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.H4,
+                           typographyType: TypographyType.H4,
                            text: 'Installation'
                         }}"
                         .secondaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.SUBTITLE2,
+                           typographyType: TypographyType.SUBTITLE2,
                            text: 'für Node JS and npm'
                         }}"
                      ></component-primary-title>
@@ -132,11 +132,11 @@ export class PageIntroduction extends PageAbstract {
                      <component-primary-title
                         .richMedia="${<RichMediaInputData>{ src: 'https://picsum.photos/50/50' }}"
                         .primaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.H4,
+                           typographyType: TypographyType.H4,
                            text: 'Referenzieren'
                         }}"
                         .secondaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.SUBTITLE2,
+                           typographyType: TypographyType.SUBTITLE2,
                            text: 'Als Abhängigkeit in die package.json eintragen'
                         }}"
                      ></component-primary-title>
@@ -160,11 +160,11 @@ export class PageIntroduction extends PageAbstract {
                   <component-card-primary-title>
                      <component-primary-title
                         .primaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.H4,
+                           typographyType: TypographyType.H4,
                            text: 'Quelldateien'
                         }}"
                         .secondaryTitle="${<TypographyInputData>{
-                           type: TypographyTypes.SUBTITLE2,
+                           typographyType: TypographyType.SUBTITLE2,
                            text: 'Quelldateien als Open Source auf Github'
                         }}"
                      ></component-primary-title>

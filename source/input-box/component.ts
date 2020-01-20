@@ -8,7 +8,7 @@ import {
    FlexWrap, IconInputData,
    KeylineAlignment,
    KeylineSize,
-   TypographyTypes
+   TypographyType
 } from '..';
 import {MessageType} from "../typography/component";
 import {BasicService} from '@domoskanonos/frontend-basis';
@@ -91,11 +91,11 @@ export class InputBoxComponent extends AbstractComponent<InputBoxInputData, unde
                .keylineAlignment="${KeylineAlignment.BOTH}"
             >
                <component-typography
-                  .type="${TypographyTypes.OVERLINE}"
+                  .type="${TypographyType.OVERLINE}"
                   messageType="${this.assistiveTextMessageType}"
                   text="${this.assistiveText}"
                ></component-typography>
-               <component-typography .type="${TypographyTypes.OVERLINE}" text="${this.infoText}"></component-typography>
+               <component-typography .type="${TypographyType.OVERLINE}" text="${this.infoText}"></component-typography>
             </component-flex-container>
          </div>
       `;

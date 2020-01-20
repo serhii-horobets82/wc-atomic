@@ -13,7 +13,7 @@ import {
    KeylineSize,
    SpacerAlignment,
    SpacerSize,
-   TypographyTypes
+   TypographyType
 } from '..';
 import { IconState } from '../icon/component';
 
@@ -52,7 +52,7 @@ export class PageIconComponent extends PageAbstract {
                   .withIconSpace="${false}"
                ></component-icon>
 
-               <component-typography type="${TypographyTypes.H2}">Icon Component</component-typography>
+               <component-typography type="${TypographyType.H2}">Icon Component</component-typography>
                
                
             </component-flex-container>
@@ -60,14 +60,14 @@ export class PageIconComponent extends PageAbstract {
          <component-flex-container containerClazz="container_75" itemFlexBasisValue="50%">
             <component-flex-container .keylineSize="${KeylineSize.ZERO}" itemFlexBasisValue="100%">
                <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
-               <component-typography type="${TypographyTypes.BODY1}"
+               <component-typography type="${TypographyType.BODY1}"
                   ><i>Icon Component</i> ist eine Komponente mit der man die Google Material Icons in seine Anwendung integrieren
                   kann. Sie basiert auf den Google Material Design Richtlinien:
                   <component-link href="https://material.io/design/iconography/system-icons.html#design-principles"
                      >Google Material Design Richtlinien</component-link
                   >
                </component-typography>
-               <component-typography type="${TypographyTypes.BODY1}"
+               <component-typography type="${TypographyType.BODY1}"
                   >Eine Übersicht aller Icons kannst du hier finden :
                   <component-link href="https://material.io/resources/icons/?style=baseline"
                      >Google Material Icons</component-link

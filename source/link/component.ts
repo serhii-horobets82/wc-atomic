@@ -1,6 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import {TypographyTypes} from "..";
+import {TypographyType} from "..";
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -30,7 +30,7 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
 
    render() {
       return html`
-         <a href="${this.href}" target="${this.target}"><component-typography .type="${TypographyTypes.BUTTON}">${this.text}<slot></slot></component-typography></a>
+         <a href="${this.href}" target="${this.target}"><component-typography .type="${TypographyType.BUTTON}">${this.text}<slot></slot></component-typography></a>
       `;
    }
 

@@ -1,7 +1,7 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { FormComponent, FormComponentOutputData } from '../form/component';
-import { HTMLInputTypes, TypographyTypes } from '..';
+import { HTMLInputTypes, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -28,7 +28,7 @@ export class RegisterComponent extends AbstractComponent<RegisterInputData, Form
       return html`
          <component-card>
             <component-form id="register-form">
-               <component-typography .type="${TypographyTypes.H4}"
+               <component-typography .type="${TypographyType.H4}"
                   >${this.getI18NValue('component_register')}</component-typography
                >
                <component-inputfield

@@ -60,7 +60,7 @@ import {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-import {TypographyTypes, TypographyInputData, TypographyComponent, MessageType} from './typography/component';
+import {TypographyType, TypographyInputData, TypographyComponent, MessageType} from './typography/component';
 import {DialogInputData, DialogComponent} from './dialog/component';
 import {ComponentLoader} from './abstract/component-loader';
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
@@ -125,7 +125,7 @@ export {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-heade
 export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
-export {TypographyTypes, TypographyInputData, TypographyComponent} from './typography/component';
+export {TypographyType, TypographyInputData, TypographyComponent} from './typography/component';
 export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen

@@ -1,6 +1,6 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { SpacerSize, TypographyTypes } from '..';
+import { SpacerSize, TypographyType } from '..';
 
 const componentCSS = require('./component.css');
 
