@@ -4,7 +4,9 @@ input {
    width: 100%;
    border: none;
    padding-left: var(--space-normal);
-    background-color: transparent;
+   background-color: transparent;
+   height: var(--line-height);
+   line-height: var(--line-height);
 }
 
 input:focus {
@@ -12,7 +14,7 @@ input:focus {
 }
 
 input:focus::placeholder {
-    color: transparent;
+   color: transparent;
 }
 
 input[type='checkbox'] {
@@ -20,12 +22,11 @@ input[type='checkbox'] {
 }
 
 input[type='color'] {
-    padding-left: 0;
-    height: var(--line-height-big);
-    line-height: var(--line-height-big);
+   padding-left: 0;
+   height: var(--line-height-big);
+   line-height: var(--line-height-big);
 }
 
-input,
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button,
 ::-webkit-clear-button {
