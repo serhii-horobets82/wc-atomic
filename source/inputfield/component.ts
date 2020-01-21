@@ -13,7 +13,7 @@ import {
    KeylineAlignment,
    KeylineSize
 } from '..';
-import {NotifyType} from "../meta-data/notify-type";
+import { NotifyType } from '../meta-data/notify-type';
 
 const componentCSS = require('./component.css');
 
@@ -400,7 +400,9 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    }
 
    private showLabelText(): boolean {
-      return (this.selected || this.inputfieldType === InputfieldType.RANGE) && BasicService.getInstance().isNotBlank(this.label);
+      return (
+         ((this.selected || this.inputfieldType === InputfieldType.RANGE) && BasicService.getInstance().isNotBlank(this.label)) ||
+         (BasicService.getInstance().isNotBlank(this.inputElemet?.value) && BasicService.getInstance().isNotBlank(this.label))
+      );
    }
-
 }

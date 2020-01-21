@@ -21,7 +21,7 @@ export class SpacerSize {
 
 export class SpacerInputData extends AbstractInputData {
    size: string = SpacerSize.ZERO;
-   alignment: string = SpacerAlignment.BOTH;
+   spacerAlignment: string = SpacerAlignment.BOTH;
 }
 
 @customElement('component-spacer')
@@ -53,6 +53,6 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
 
    protected inputDataChanged() {
       this.spacerSize = BasicService.getInstance().getValue(this.inputData.size, SpacerSize.ZERO);
-      this.spacerAlignment = BasicService.getInstance().getValue(this.inputData.alignment, SpacerAlignment.BOTH);
+      this.spacerAlignment = BasicService.getInstance().getValue(this.inputData.spacerAlignment, SpacerAlignment.BOTH);
    }
 }
