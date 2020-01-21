@@ -13,7 +13,7 @@ export class PageCardComponent extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_25">
             <component-card>
-               <component-ripple>
+               <effect-ripple>
                   <component-rich-media
                      src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
                      clazz="imageWidthHundred"
@@ -35,7 +35,7 @@ export class PageCardComponent extends PageAbstract {
                         >Visit ten places on our planet that are undergoing the biggest changes today.</component-typography
                      >
                   </component-card-supporting-text>
-               </component-ripple>
+               </effect-ripple>
                <component-card-actions>
                   <component-flex-container>
                      <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">

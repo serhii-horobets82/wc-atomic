@@ -1,9 +1,19 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { KeyValueData } from '../form/component';
-import { MessageType, TypographyType } from '../typography/component';
+import { TypographyType } from '../typography/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import { AlignContent, AlignItems, FlexDirection, FlexJustifyContent, FlexWrap, KeylineAlignment, KeylineSize } from '..';
+import {
+   AlignContent,
+   AlignItems,
+   ElementState,
+   FlexDirection,
+   FlexJustifyContent,
+   FlexWrap,
+   KeylineAlignment,
+   KeylineSize
+} from '..';
+import {NotifyType} from "../meta-data/notify-type";
 
 const componentCSS = require('./component.css');
 
@@ -49,7 +59,7 @@ export class InputfieldInputData extends AbstractInputData {
    labelText: string = '';
    infoText: string = '';
    assistiveText: string = '';
-   assistiveTextMessageType: string = MessageType.DEFAULT;
+   assistiveTextMessageType: string = ElementState.DEFAULT;
    leadingIcon: string = '';
    trailingIcon: string = '';
    leadingIconClickable: boolean = false;
@@ -134,7 +144,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    infoText: string = new InputfieldInputData().infoText;
 
    @property()
-   assistiveTextMessageType: string = MessageType.DEFAULT;
+   assistiveTextMessageType: string = ElementState.DEFAULT;
 
    @property()
    leadingIcon: string = new InputfieldInputData().leadingIcon;
@@ -256,12 +266,12 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
          if (this.inputElemet.validity.valid) {
             this.value = this.inputElemet.value;
             this.oldValue = this.inputElemet.value;
-            this.assistiveTextMessageType = MessageType.DEFAULT;
+            this.assistiveTextMessageType = ElementState.DEFAULT;
          }
          if (this.inputElemet.validationMessage != this.assistiveText) {
             this.assistiveText = this.inputElemet.validationMessage;
             if (this.inputElemet.validationMessage.length > 0) {
-               this.assistiveTextMessageType = MessageType.ERROR;
+               this.assistiveTextMessageType = NotifyType.ERROR;
             }
          }
       }

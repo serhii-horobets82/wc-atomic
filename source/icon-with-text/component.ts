@@ -1,9 +1,10 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { IconInputData, IconState } from '../icon/component';
-import { TypographyInputData, TypographyType } from '../typography/component';
+import { IconInputData } from '../icon/component';
+import {TypographyInputData, TypographyType} from '../typography/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
 import { ToolbarAlignment } from '../toolbar/component';
+import {ElementState} from "../meta-data/element-state";
 
 const componentCSS = require('./component.scss');
 
@@ -11,7 +12,7 @@ export class IconWithTextInputData extends AbstractInputData {
    icon: string = '';
    cssStyle: string = '';
    clickable: boolean = false;
-   iconState: string = IconState.ACTIVE_FOCUSED;
+   elementState: string = ElementState.ACTIVE_FOCUSED;
    text: string = '';
 }
 
@@ -36,7 +37,7 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
    clickable: boolean = false;
 
    @property()
-   iconState: string = IconState.ACTIVE_FOCUSED;
+   elementState: string = ElementState.ACTIVE_FOCUSED;
 
    @property()
    text: string = '';
@@ -45,18 +46,18 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
       return html`
          <component-toolbar
             .toolbarAlignment="${ToolbarAlignment.VERTICAL}"
-            class="${this.iconState}${this.clickable ? ' clickable' : ''}"
+            class="${this.elementState}${this.clickable ? ' clickable' : ''}"
          >
-            <component-icon .withIconSpace="${false}" icon="${this.icon}" .iconState="${this.iconState}"></component-icon>
-            <component-typography .type="${TypographyType.OVERLINE}" text="${this.text}"></component-typography>
+            <component-icon .withIconSpace="${false}" icon="${this.icon}" .elementState="${this.elementState}"></component-icon>
+            <component-typography .typographyType="${TypographyType.OVERLINE}" text="${this.text}"></component-typography>
          </component-toolbar>
       `;
    }
 
    inputDataChanged() {
       let defaultData: IconWithTextInputData = new IconWithTextInputData();
-      this.icon = BasicService.getInstance().getValue(this.inputData.iconState, defaultData.icon);
-      this.iconState = BasicService.getInstance().getValue(this.inputData.iconState, defaultData.iconState);
+      this.icon = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.icon);
+      this.elementState = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.elementState);
       this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
       this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
       this.text = BasicService.getInstance().getValue(this.inputData.text, defaultData.text);

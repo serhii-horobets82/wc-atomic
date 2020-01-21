@@ -5,7 +5,8 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 import { KeyValueData } from '../form/component';
-import {MessageType} from "../typography/component";
+import {ElementState} from "..";
+import {NotifyType} from "../meta-data/notify-type";
 
 const componentCSS = require('./component.css');
 
@@ -20,6 +21,15 @@ export class ComboboxOption {
       });
       return options;
    }
+
+   static clazzToComboboxItems(enumeration: any): ComboboxOption[] {
+      let options: ComboboxOption[] = [];
+      Object.keys(enumeration).forEach((key) => {
+         options.push(<ComboboxOption>{ value: enumeration[key], text: key });
+      });
+      return options;
+   }
+
 }
 
 export class ComboboxInputData extends AbstractInputData {
@@ -72,7 +82,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    assistiveText: string = '';
 
    @property()
-   assistiveTextMessageType: string = MessageType.DEFAULT;
+   assistiveTextMessageType: string = ElementState.DEFAULT;
 
    @query('#selectElement')
    private selectElemet: HTMLSelectElement | undefined;
@@ -133,9 +143,9 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
       if (this.selectElemet != null && this.selectElemet.validationMessage != this.assistiveText) {
          this.assistiveText = this.selectElemet.validationMessage;
          if (this.selectElemet.validationMessage.length > 0) {
-            this.assistiveTextMessageType = MessageType.ERROR;
+            this.assistiveTextMessageType = NotifyType.ERROR;
          } else {
-            this.assistiveTextMessageType = MessageType.DEFAULT;
+            this.assistiveTextMessageType = ElementState.DEFAULT;
          }
       }
       this.dispatchSimpleCustomEvent(ComboboxComponent.EVENT_SELECTION_CHANGE, this.getOutputData());

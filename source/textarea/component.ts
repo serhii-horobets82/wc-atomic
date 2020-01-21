@@ -1,7 +1,7 @@
 import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { KeyValueData } from '../form/component';
-import {MessageType} from "../typography/component";
+import {ElementState} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -46,7 +46,7 @@ export class TextareaComponent extends AbstractComponent<TextareaInputData, KeyV
    automaticInfoText: boolean = true;
 
    @property()
-   assistiveTextMessageType: string = MessageType.DEFAULT;
+   assistiveTextMessageType: string = ElementState.DEFAULT;
 
    @property()
    label: string = '';

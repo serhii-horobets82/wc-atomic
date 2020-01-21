@@ -29,20 +29,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
 }
 
 .clickable {
   cursor: pointer;
 }
 
-.error {
-  color: var(--app-color-error);
+.border:hover {
+  border-radius: 50%;
+  background-color: var(--app-color-border);
 }
 
-.warning {
-  color: var(--app-error-warning);
-}
-
-.success {
-  color: var(--app-color-success);
-}

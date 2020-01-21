@@ -1,0 +1,15 @@
+.success, ::slotted(.success) {
+    color: var(--app-color-on-success);
+}
+
+.error, ::slotted(.error) {
+    color: var(--app-color-on-error);
+}
+
+.warning, ::slotted(.warning) {
+    color: var(--app-error-on-warning);
+}
+
+.info, ::slotted(.info) {
+    color: var(--app-color-on-info);
+}

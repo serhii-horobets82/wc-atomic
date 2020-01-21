@@ -1,8 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { IconInputData, IconState } from '../icon/component';
-import { FlexJustifyContent, TypographyInputData, TypographyType } from '..';
-import { RouterService } from '@domoskanonos/frontend-basis';
+import { ComboboxOption, ElementState, FlexJustifyContent } from '..';
 import { ToolbarAlignment } from '../toolbar/component';
 
 @customElement('page-bars')
@@ -63,14 +61,14 @@ export class PageBars extends PageAbstract {
 
    createIcon(icon: string, text: string) {
       return html`
-         <component-icon-with-text
-            .iconInputData="${<IconInputData>{
-               iconState: IconState.ACTIVE_UNFOCUSED,
-               icon: icon,
-               clickable: true
-            }}"
-            .typographyInputData="${<TypographyInputData>{ text: text, typographyType: TypographyType.CAPTION }}"
-         ></component-icon-with-text>
+         <effect-ripple>
+            <component-icon-with-text
+               .elementState="${ElementState.ACTIVE_FOCUSED}"
+               icon="${icon}"
+               .clickable="${true}"
+               text="${text}"
+            ></component-icon-with-text>
+         </effect-ripple>
       `;
    }
 }

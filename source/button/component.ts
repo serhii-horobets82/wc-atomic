@@ -56,14 +56,14 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
 
    render() {
       return html`
-         <component-ripple>
+         <effect-ripple>
             <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
                <component-icon icon="${this.icon}" .rendered="${this.icon != undefined}" .withIconSpace="${false}"></component-icon>
                <component-spacer size="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
                <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
                <slot></slot>
             </button>
-         </component-ripple>
+         </effect-ripple>
       `;
    }
 

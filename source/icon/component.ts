@@ -1,14 +1,9 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
+import { ElementState } from '..';
 
 const componentCSS = require('./component.css');
-
-export class IconState {
-   static ACTIVE_FOCUSED: string = 'active-focused';
-   static INACTIVE: string = 'inactive';
-   static ACTIVE_UNFOCUSED: string = 'active';
-}
 
 export class IconInputData extends AbstractInputData {
    componentIdentifier = IconComponent.IDENTIFIER;
@@ -17,9 +12,10 @@ export class IconInputData extends AbstractInputData {
    withIconSpace: boolean = true;
    title: string = '';
    color: string = '';
+   clazz: string = '';
    clickable: boolean = false;
    clickData?: any;
-   iconState: string = IconState.ACTIVE_UNFOCUSED;
+   elementState: string = ElementState.ACTIVE_UNFOCUSED;
    rendered: boolean = true;
 }
 
@@ -46,6 +42,9 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    color: string = new IconInputData().color;
 
    @property()
+   clazz: string = new IconInputData().clazz;
+
+   @property()
    iconSize: number = new IconInputData().iconSize;
 
    @property()
@@ -61,7 +60,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    clickData: any;
 
    @property()
-   iconState: string = new IconInputData().iconState;
+   elementState: string = new IconInputData().elementState;
 
    @property()
    rendered: boolean = new IconInputData().rendered;
@@ -70,7 +69,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
       return this.rendered
          ? html`
               <span
-                 class="icon-container ${this.clickable ? 'clickable' : ''}"
+                 class="icon-container ${this.clazz} ${this.clickable ? 'clickable' : ''}"
                  title="${this.title}"
                  @click="${this.clicked}"
                  style="${this.withIconSpace && this.iconSize != undefined
@@ -82,7 +81,7 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                          .concat('px;')
                     : ''}"
                  ><i
-                    class="material-icons ${this.iconState}"
+                    class="material-icons ${this.elementState}"
                     style="${this.color.length > 0 ? 'color: '.concat(this.color).concat(';') : ''} ${this.iconSize != undefined
                        ? 'font-size: ' + this.iconSize.toString().concat('px;')
                        : ''}"
@@ -100,9 +99,10 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
       this.withIconSpace = BasicService.getInstance().getValue(this.inputData.withIconSpace, defaultData.withIconSpace);
       this.title = BasicService.getInstance().getValue(this.inputData.title, defaultData.title);
       this.color = BasicService.getInstance().getValue(this.inputData.color, defaultData.color);
+      this.clazz = BasicService.getInstance().getValue(this.inputData.color, defaultData.clazz);
       this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
       this.clickData = BasicService.getInstance().getValue(this.inputData.clickData, defaultData.clickData);
-      this.iconState = BasicService.getInstance().getValue(this.inputData.iconState, defaultData.iconState);
+      this.elementState = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.elementState);
       this.rendered = BasicService.getInstance().getValue(this.inputData.rendered, defaultData.rendered);
    }
 
@@ -123,5 +123,4 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
          });
       }
    }
-
 }

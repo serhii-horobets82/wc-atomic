@@ -11,8 +11,7 @@ import {
    KeylineSize
 } from '../flex-container/component';
 import { ComboboxOption } from '../combobox/component';
-import { SpacerSize, TypographyType } from '..';
-import { IconState } from '../icon/component';
+import {ElementState, SpacerSize, TypographyType} from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-layout')
@@ -57,7 +56,7 @@ export class PageLayoutComponent extends PageAbstract {
                      icon="dashboard"
                      color="#25498d"
                      iconSize="96"
-                     iconState="${IconState.ACTIVE_FOCUSED}"
+                     elementState="${ElementState.ACTIVE_FOCUSED}"
                      .withIconSpace="${false}"
                   ></component-icon>
 

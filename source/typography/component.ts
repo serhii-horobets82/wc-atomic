@@ -1,6 +1,7 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { BasicService } from '@domoskanonos/frontend-basis';
+import {css, customElement, html, property, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {BasicService} from '@domoskanonos/frontend-basis';
+import {ElementState} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -18,14 +19,6 @@ export class TypographyType {
    static BUTTON = 'BUTTON';
    static CAPTION = 'CAPTION';
    static OVERLINE = 'OVERLINE';
-}
-
-export class MessageType {
-   static DEFAULT: string = '';
-   static SUCCESS: string = 'success';
-   static ERROR: string = 'error';
-   static WARNING: string = 'warning';
-   static INFO: string = 'info';
 }
 
 export class TypographyInputData extends AbstractInputData {
@@ -46,7 +39,7 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
    static IDENTIFIER: string = 'HComponent';
 
    @property()
-   messageType: string = MessageType.DEFAULT;
+   messageType: string = ElementState.DEFAULT;
 
    @property()
    typographyType: string = TypographyType.BODY1;
