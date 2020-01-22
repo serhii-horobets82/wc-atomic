@@ -8,7 +8,8 @@ const componentCSS = require('./component.css');
 export class IconInputData extends AbstractInputData {
    componentIdentifier = IconComponent.IDENTIFIER;
    icon: string = '';
-   iconSize: number = 24;
+   size: number = 24;
+   sizeUnit: string = 'px';
    withIconSpace: boolean = true;
    title: string = '';
    color: string = '';
@@ -45,7 +46,10 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    clazz: string = new IconInputData().clazz;
 
    @property()
-   iconSize: number = new IconInputData().iconSize;
+   size: number = new IconInputData().size;
+
+   @property()
+   sizeUnit: string = new IconInputData().sizeUnit;
 
    @property()
    withIconSpace: boolean = new IconInputData().withIconSpace;
@@ -72,18 +76,18 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                  class="icon-container ${this.clazz} ${this.clickable ? 'clickable' : ''}"
                  title="${this.title}"
                  @click="${this.clicked}"
-                 style="${this.withIconSpace && this.iconSize != undefined
+                 style="${this.withIconSpace && this.size != undefined
                     ? 'height:'
-                         .concat((this.iconSize * 2).toString())
+                         .concat((this.size * 2).toString())
                          .concat('px;')
                          .concat('width:')
-                         .concat((this.iconSize * 2).toString())
+                         .concat((this.size * 2).toString())
                          .concat('px;')
                     : ''}"
                  ><i
                     class="material-icons ${this.elementState}"
-                    style="${this.color.length > 0 ? 'color: '.concat(this.color).concat(';') : ''} ${this.iconSize != undefined
-                       ? 'font-size: ' + this.iconSize.toString().concat('px;')
+                    style="${this.color.length > 0 ? 'color: '.concat(this.color).concat(';') : ''} ${this.size != undefined
+                       ? 'font-size: ' + this.size.toString().concat(this.sizeUnit.concat(';'))
                        : ''}"
                     >${this.icon}</i
                  >
@@ -95,7 +99,8 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
    inputDataChanged() {
       let defaultData = new IconInputData();
       this.icon = BasicService.getInstance().getValue(this.inputData.icon, defaultData.icon);
-      this.iconSize = BasicService.getInstance().getValue(this.inputData.iconSize, defaultData.iconSize);
+      this.size = BasicService.getInstance().getValue(this.inputData.size, defaultData.size);
+      this.sizeUnit = BasicService.getInstance().getValue(this.inputData.sizeUnit, defaultData.sizeUnit);
       this.withIconSpace = BasicService.getInstance().getValue(this.inputData.withIconSpace, defaultData.withIconSpace);
       this.title = BasicService.getInstance().getValue(this.inputData.title, defaultData.title);
       this.color = BasicService.getInstance().getValue(this.inputData.color, defaultData.color);
