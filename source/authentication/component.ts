@@ -67,6 +67,11 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
                        text="${this.getI18NValue('component_authentication_login')}"
                        @component-button-click="${() => this.login()}"
                     ></component-button>
+                    <component-typography
+                       slot="errorMessages"
+                       .typographyType="${TypographyType.OVERLINE}"
+                       text="${this.errorMessage}"
+                    ></component-typography>
                  </component-form>
               </component-card>
            `
@@ -80,13 +85,6 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
                        text="${this.getI18NValue('component_authentication_logout')}"
                        @click="${() => this.logout()}"
                     ></component-button>
-
-                    <component-typography
-                       slot="errorMessages"
-                       .typographyType="${TypographyType.OVERLINE}"
-                       text="${this.errorMessage}"
-                    ></component-typography>
-                    
                  </component-form>
               </component-card>
            `;
