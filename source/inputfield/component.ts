@@ -401,7 +401,11 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
 
    private showLabelText(): boolean {
       return (
-         ((this.selected || this.inputfieldType === InputfieldType.RANGE) && BasicService.getInstance().isNotBlank(this.label)) ||
+         ((this.selected ||
+            this.inputfieldType === InputfieldType.RANGE ||
+            this.inputfieldType === InputfieldType.DATE ||
+            this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
+            BasicService.getInstance().isNotBlank(this.label)) ||
          (BasicService.getInstance().isNotBlank(this.inputElemet?.value) && BasicService.getInstance().isNotBlank(this.label))
       );
    }

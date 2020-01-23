@@ -83,7 +83,7 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
    }
 
    private login() {
-      if (this.formComponent != null && this.formComponent.isValid()) {
+      if (this.formComponent != null && this.formComponent.validate()) {
          this.dispatchSimpleCustomEvent(AuthenticationComponent.EVENT_AUTHENTICATION_LOGIN, this.getOutputData());
       }
    }
