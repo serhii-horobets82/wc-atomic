@@ -38,6 +38,9 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
    @property()
    isAuthenticated: boolean = false;
 
+   @property()
+   errorMessage: string = '';
+
    render() {
       return !this.isAuthenticated
          ? html`
@@ -77,6 +80,13 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
                        text="${this.getI18NValue('component_authentication_logout')}"
                        @click="${() => this.logout()}"
                     ></component-button>
+
+                    <component-typography
+                       slot="errorMessages"
+                       .typographyType="${TypographyType.OVERLINE}"
+                       text="${this.errorMessage}"
+                    ></component-typography>
+                    
                  </component-form>
               </component-card>
            `;
@@ -101,5 +111,4 @@ export class AuthenticationComponent extends AbstractComponent<LoginInputData, F
    getEventList(): string[] {
       return [AuthenticationComponent.EVENT_AUTHENTICATION_LOGIN, AuthenticationComponent.EVENT_AUTHENTICATION_LOGOUT];
    }
-
 }
