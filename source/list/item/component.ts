@@ -25,12 +25,9 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
 
    render() {
       return html`
-         <effect-ripple>
-            <div class="listItem ${this.clazz}">
-               <component-flex-container>
-                  <slot></slot>
-               </component-flex-container></div
-         ></effect-ripple>
+         <div class="listItem ${this.clazz}">
+            <slot></slot>
+         </div>
       `;
    }
 
