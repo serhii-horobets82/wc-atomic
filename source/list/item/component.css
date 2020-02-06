@@ -5,10 +5,9 @@
 
 .listItem,
 ::slotted(.listItem) {
-   height: var(--toolbar-height);
-   line-height: var(--toolbar-height);
    border-style: solid;
    border-width: 1px 1px 0px 1px;
    border-color: var(--app-color-border);
    overflow: hidden;
+   box-sizing: border-box;
 }
