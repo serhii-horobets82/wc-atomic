@@ -186,7 +186,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                   name="${this.name}"
                   type="${this.inputfieldType}"
                   value="${this.prepareValue(this.value)}"
-                  placeholder="${this.placeholder}"
+                  placeholder="${BasicService.getInstance().isBlank(this.placeholder) && !this.showLabelText() ? this.label : this.placeholder}"
                   size="${this.size}"
                   minlength="${this.minlength}"
                   maxlength="${this.maxlength}"

@@ -127,5 +127,4 @@ export {DialogInputData, DialogComponent} from './dialog/component';
 export {ComponentLoader} from './abstract/component-loader';
 export {ElementState} from "./meta-data/element-state";
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-//import './_showcase/showcase-app';
-
+import './_showcase/showcase-app';
