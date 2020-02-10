@@ -3,7 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { RouterService } from '@domoskanonos/frontend-basis';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
-const componentCSS = require('./component.scss');
+const componentCSS = require('./component.css');
 
 export class AuthenticatedIconInputData extends AbstractInputData {
    isAuthenticated?: boolean;

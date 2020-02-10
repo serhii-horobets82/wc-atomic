@@ -1,6 +1,0 @@
-{
-#foreach( $i18n in $i18ns )
-"${i18n}": "${i18n}",
-#end
-"language": "Sprache"
-}

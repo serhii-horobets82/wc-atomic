@@ -6,7 +6,7 @@ import { BasicService } from '@domoskanonos/frontend-basis';
 import { ToolbarAlignment } from '../toolbar/component';
 import {ElementState} from "../meta-data/element-state";
 
-const componentCSS = require('./component.scss');
+const componentCSS = require('./component.css');
 
 export class IconWithTextInputData extends AbstractInputData {
    icon: string = '';

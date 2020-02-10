@@ -4,7 +4,7 @@ import { TypographyInputData } from '../typography/component';
 import { RichMediaInputData, SpacerAlignment, SpacerSize } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
-const componentCSS = require('./component.scss');
+const componentCSS = require('./component.css');
 
 export class PrimaryTitleInputData extends AbstractInputData {
    richMedia: RichMediaInputData | undefined;

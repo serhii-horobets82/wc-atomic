@@ -18,26 +18,6 @@ module.exports = {
       rules: [
          { test: /\.ts$/, use: { loader: 'ts-loader', options: { transpileOnly: true } } },
          {
-            test: /\.scss$/,
-            include: /index\.scss/,
-            use: [
-               'style-loader',
-               { loader: 'css-loader', options: { sourceMap: true } },
-               'postcss-loader',
-               { loader: 'sass-loader', options: { sourceMap: true } }
-            ]
-         },
-         {
-            test: /\.scss$/,
-            exclude: /index\.scss$/,
-            use: [
-               'to-string-loader',
-               { loader: 'css-loader', options: { sourceMap: true } },
-               'postcss-loader',
-               { loader: 'sass-loader', options: { sourceMap: true } }
-            ]
-         },
-         {
             test: /\.css$/,
             include: /index\.css$/,
             use: ['style-loader', { loader: 'css-loader', options: { sourceMap: true } }, 'postcss-loader']
@@ -61,4 +41,4 @@ module.exports = {
    plugins: [new HtmlWebpackPlugin({ template: './source/index.html' })]
 };
 
-//module.exports.plugins.push(new BundleAnalyzerPlugin({generateStatsFile: true}));
+//module.exports.plugins.push(new BundleAnalyzerPlugin({ generateStatsFile: true }));
