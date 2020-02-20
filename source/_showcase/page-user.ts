@@ -22,17 +22,17 @@ export class PageUser extends PageAbstract {
         super();
 
         let userid: number | null = Number(
-            ParamService.getInstance().getParam('userid')
+            ParamService.getUniqueInstance().getParam('userid')
         );
-        let userPromise = UserRepository.getInstance().find(userid);
+        let userPromise = UserRepository.getUniqueInstance().find(userid);
         userPromise
             .then((user) => {
                 this.user = user;
                 this.firstName = user.firstName;
                 this.lastName = user.lastName;
-                this.city = BasicService.getInstance().getValue(user.city, '');
+                this.city = BasicService.getUniqueInstance().getValue(user.city, '');
                 this.email = user.email;
-                this.birthday = BasicService.getInstance().getValue(
+                this.birthday = BasicService.getUniqueInstance().getValue(
                     user.birthday,
                     new Date()
                 );
@@ -76,7 +76,7 @@ export class PageUser extends PageAbstract {
                clickable="true"
                title="cancel editing user"
                @component-icon-click="${() =>
-            RouterService.getInstance().back()}"
+            RouterService.getUniqueInstance().back()}"
             ></component-icon>
             <component-spacer
                slot="leftComponents"
@@ -182,19 +182,19 @@ export class PageUser extends PageAbstract {
          console.log('info: ' + JSON.stringify(user));
          if (this.user?.id != null) {
              console.log('update user, id=' + this.user.id);
-             UserRepository.getInstance()
+             UserRepository.getUniqueInstance()
                  .update(this.user.id, user)
                  .then((value) => {
-                     WebApiService.getInstance().notify(
+                     WebApiService.getUniqueInstance().notify(
                          'Benutzer aktualisiert!' + value
                      );
                  });
          } else {
-            UserRepository.getInstance()
+            UserRepository.getUniqueInstance()
                .persist(user)
                .then((user) => {
                    this.user = user;
-                   WebApiService.getInstance().notify(
+                   WebApiService.getUniqueInstance().notify(
                        'Neuen Benutzer angelegt!'
                    );
                });
@@ -205,11 +205,11 @@ export class PageUser extends PageAbstract {
    private delete() {
       if (this.user?.id != null) {
           console.log('delete user, id=' + this.user.id);
-          UserRepository.getInstance()
+          UserRepository.getUniqueInstance()
               .delete(this.user.id)
               .then((value) => {
                   console.log(value);
-                  RouterService.getInstance().navigate('#users');
+                  RouterService.getUniqueInstance().navigate('#users');
               });
       }
    }

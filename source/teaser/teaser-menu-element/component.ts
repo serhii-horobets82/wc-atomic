@@ -46,6 +46,6 @@ export class TeaserElementMenuComponent extends AbstractComponent<TeaserMenuElem
    }
 
    protected inputDataChanged() {
-      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
+      this.selected = BasicService.getUniqueInstance().getValue(this.inputData.selected, false);
    }
 }

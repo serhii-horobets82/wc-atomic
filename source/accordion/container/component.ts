@@ -47,6 +47,6 @@ export class AccordionComponent extends AbstractComponent<AccordionInputData, an
    }
 
    protected inputDataChanged() {
-      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
+      this.items = BasicService.getUniqueInstance().getValue(this.inputData.items, []);
    }
 }

@@ -56,11 +56,11 @@ export class IconWithTextComponent extends AbstractComponent<IconWithTextInputDa
 
    inputDataChanged() {
       let defaultData: IconWithTextInputData = new IconWithTextInputData();
-      this.icon = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.icon);
-      this.elementState = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.elementState);
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
-      this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
-      this.text = BasicService.getInstance().getValue(this.inputData.text, defaultData.text);
+      this.icon = BasicService.getUniqueInstance().getValue(this.inputData.elementState, defaultData.icon);
+      this.elementState = BasicService.getUniqueInstance().getValue(this.inputData.elementState, defaultData.elementState);
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
+      this.clickable = BasicService.getUniqueInstance().getValue(this.inputData.clickable, defaultData.clickable);
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, defaultData.text);
    }
 
    getOutputData(): any {

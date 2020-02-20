@@ -62,9 +62,9 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
    }
 
    inputDataChanged() {
-      this.isAuthenticated = BasicService.getInstance().getValue(this.inputData.isAuthenticated, false);
-      this.loginPage = BasicService.getInstance().getValue(this.inputData.loginPage, '');
-      this.logoutPage = BasicService.getInstance().getValue(this.inputData.logoutPage, '');
+      this.isAuthenticated = BasicService.getUniqueInstance().getValue(this.inputData.isAuthenticated, false);
+      this.loginPage = BasicService.getUniqueInstance().getValue(this.inputData.loginPage, '');
+      this.logoutPage = BasicService.getUniqueInstance().getValue(this.inputData.logoutPage, '');
    }
 
    getOutputData(): any {
@@ -72,10 +72,10 @@ export class AuthenticatedIconComponent extends AbstractComponent<AuthenticatedI
    }
 
    private login() {
-      RouterService.getInstance().navigate(this.loginPage);
+      RouterService.getUniqueInstance().navigate(this.loginPage);
    }
 
    private logout() {
-      RouterService.getInstance().navigate(this.logoutPage);
+      RouterService.getUniqueInstance().navigate(this.logoutPage);
    }
 }

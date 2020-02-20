@@ -82,8 +82,8 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
    }
 
    protected inputDataChanged() {
-      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
-      this.foregroundContent = BasicService.getInstance().getValue(this.inputData.foregroundContent, []);
-      this.backgroundContent = BasicService.getInstance().getValue(this.inputData.backgroundContent, []);
+      this.selected = BasicService.getUniqueInstance().getValue(this.inputData.selected, false);
+      this.foregroundContent = BasicService.getUniqueInstance().getValue(this.inputData.foregroundContent, []);
+      this.backgroundContent = BasicService.getUniqueInstance().getValue(this.inputData.backgroundContent, []);
    }
 }

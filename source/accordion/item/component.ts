@@ -78,8 +78,8 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
    }
 
    protected inputDataChanged() {
-      this.componentData = BasicService.getInstance().getValue(this.inputData.componentData, AbstractInputData.prototype);
-      this.header = BasicService.getInstance().getValue(this.inputData.header, '');
-      this.stateClazz = BasicService.getInstance().getValue(this.inputData.stateClazz, '');
+      this.componentData = BasicService.getUniqueInstance().getValue(this.inputData.componentData, AbstractInputData.prototype);
+      this.header = BasicService.getUniqueInstance().getValue(this.inputData.header, '');
+      this.stateClazz = BasicService.getUniqueInstance().getValue(this.inputData.stateClazz, '');
    }
 }

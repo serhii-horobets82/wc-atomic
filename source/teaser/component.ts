@@ -151,7 +151,7 @@ export class TeaserComponent extends AbstractComponent<TeaserContainerInputData,
    }
 
    protected inputDataChanged() {
-      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
+      this.items = BasicService.getUniqueInstance().getValue(this.inputData.items, []);
       if (this.items.length > 0) {
          this.selectShadowDomItem(this.items[0]);
       }

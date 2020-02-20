@@ -49,7 +49,7 @@ export class TabsComponent extends AbstractComponent<TabsInputData, undefined> {
 
    private tabClicked(event: CustomEvent): void {
       let elementId: string = event.detail;
-      if (BasicService.getInstance().isBlank(elementId)) {
+      if (BasicService.getUniqueInstance().isBlank(elementId)) {
          return;
       }
       [this.tabSlot, this.tabContentSlot].forEach((slot) => {

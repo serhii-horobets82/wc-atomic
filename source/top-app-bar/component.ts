@@ -94,8 +94,8 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
    }
 
    protected inputDataChanged() {
-      this.leftInputData = BasicService.getInstance().getValue(this.inputData.leftInputData, []);
-      this.mainInputData = BasicService.getInstance().getValue(this.inputData.mainInputData, []);
-      this.rightInputData = BasicService.getInstance().getValue(this.inputData.rightInputData, []);
+      this.leftInputData = BasicService.getUniqueInstance().getValue(this.inputData.leftInputData, []);
+      this.mainInputData = BasicService.getUniqueInstance().getValue(this.inputData.mainInputData, []);
+      this.rightInputData = BasicService.getUniqueInstance().getValue(this.inputData.rightInputData, []);
    }
 }

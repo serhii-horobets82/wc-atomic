@@ -78,10 +78,10 @@ export class TypographyComponent extends AbstractComponent<TypographyInputData, 
 
    protected inputDataChanged() {
       let defaultData: TypographyInputData = new TypographyInputData();
-      this.text = BasicService.getInstance().getValue(this.inputData.text, defaultData.text);
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, defaultData.clazz);
-      this.title = BasicService.getInstance().getValue(this.inputData.title, defaultData.title);
-      this.typographyType = BasicService.getInstance().getValue(this.inputData.typographyType, defaultData.typographyType);
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, defaultData.text);
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.clazz, defaultData.clazz);
+      this.title = BasicService.getUniqueInstance().getValue(this.inputData.title, defaultData.title);
+      this.typographyType = BasicService.getUniqueInstance().getValue(this.inputData.typographyType, defaultData.typographyType);
    }
 }

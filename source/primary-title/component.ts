@@ -53,9 +53,9 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
    }
 
    inputDataChanged() {
-      this.richMedia = BasicService.getInstance().getValue(this.inputData.richMedia, undefined);
-      this.primaryTitle = BasicService.getInstance().getValue(this.inputData.primaryTitle, undefined);
-      this.secondaryTitle = BasicService.getInstance().getValue(this.inputData.secondaryTitle, undefined);
+      this.richMedia = BasicService.getUniqueInstance().getValue(this.inputData.richMedia, undefined);
+      this.primaryTitle = BasicService.getUniqueInstance().getValue(this.inputData.primaryTitle, undefined);
+      this.secondaryTitle = BasicService.getUniqueInstance().getValue(this.inputData.secondaryTitle, undefined);
    }
 
    getOutputData(): any {

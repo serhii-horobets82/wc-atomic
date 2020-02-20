@@ -53,6 +53,6 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
    }
 
    protected inputDataChanged() {
-      this.items = BasicService.getInstance().getValue(this.inputData.items, []);
+      this.items = BasicService.getUniqueInstance().getValue(this.inputData.items, []);
    }
 }

@@ -42,12 +42,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
       if (this.dataReceiverChannels != undefined) {
          this.dataReceiverChannels.forEach((channel) => {
-            DataReceiverService.getInstance().register(channel, this);
+            DataReceiverService.getUniqueInstance().register(channel, this);
          });
       }
       if (this.uiRefreshChannels != undefined) {
          this.uiRefreshChannels.forEach((channel) => {
-            UiRefresherService.getInstance().register(channel, this);
+            UiRefresherService.getUniqueInstance().register(channel, this);
          });
       }
    }
@@ -58,12 +58,12 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       console.log('disconnected');
       if (this.dataReceiverChannels != undefined) {
          this.dataReceiverChannels.forEach((channel) => {
-            DataReceiverService.getInstance().unregister(channel, this);
+            DataReceiverService.getUniqueInstance().unregister(channel, this);
          });
       }
       if (this.uiRefreshChannels != undefined) {
          this.uiRefreshChannels.forEach((channel) => {
-            UiRefresherService.getInstance().unregister(channel, this);
+            UiRefresherService.getUniqueInstance().unregister(channel, this);
          });
       }
    }
@@ -87,8 +87,8 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    set inputData(value: INPUT_DATA) {
       this._inputData = value;
       console.debug('input data changed, new value=' + JSON.stringify(this._inputData));
-      if (BasicService.getInstance().isNotEmpty(this._inputData)) {
-         this.dataReceiverChannels = BasicService.getInstance().getValue(this._inputData.dataReceiverChannels, []);
+      if (BasicService.getUniqueInstance().isNotEmpty(this._inputData)) {
+         this.dataReceiverChannels = BasicService.getUniqueInstance().getValue(this._inputData.dataReceiverChannels, []);
       } else {
          //throw new Error('empty input data: ' + JSON.stringify(this));
          this._inputData = <INPUT_DATA>{};
@@ -126,7 +126,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    }
 
    public getI18NValue(key: string): string | null | undefined {
-      return I18nService.getInstance().getValue(key);
+      return I18nService.getUniqueInstance().getValue(key);
    }
 
    objToString(obj: any) {
@@ -163,7 +163,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
    }
 
    protected getPageName(): string {
-      return RouterService.getInstance()
+      return RouterService.getUniqueInstance()
          .getPath()
          .replace('#', '');
    }
@@ -196,7 +196,7 @@ export abstract class AbstractApp extends AbstractComponent<AppData, undefined> 
 
    firstUpdated() {
       this.registerEventListener();
-      RouterService.getInstance().subscribe(() => this.requestUpdate());
+      RouterService.getUniqueInstance().subscribe(() => this.requestUpdate());
    }
 
    abstract renderPage(): TemplateResult;

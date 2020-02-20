@@ -52,7 +52,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    }
 
    protected inputDataChanged() {
-      this.spacerSize = BasicService.getInstance().getValue(this.inputData.size, SpacerSize.ZERO);
-      this.spacerAlignment = BasicService.getInstance().getValue(this.inputData.spacerAlignment, SpacerAlignment.BOTH);
+      this.spacerSize = BasicService.getUniqueInstance().getValue(this.inputData.size, SpacerSize.ZERO);
+      this.spacerAlignment = BasicService.getUniqueInstance().getValue(this.inputData.spacerAlignment, SpacerAlignment.BOTH);
    }
 }

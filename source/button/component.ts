@@ -47,11 +47,11 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    clickEventData: any = {};
 
    protected inputDataChanged() {
-      this.icon = BasicService.getInstance().getValue(this.inputData.icon, <IconInputData>{});
-      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
-      this.href = BasicService.getInstance().getValue(this.inputData.href, '/');
-      this.selected = BasicService.getInstance().getValue(this.inputData.selected, false);
-      this.clickEventData = BasicService.getInstance().getValue(this.inputData.clickEventData, {});
+      this.icon = BasicService.getUniqueInstance().getValue(this.inputData.icon, <IconInputData>{});
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, '');
+      this.href = BasicService.getUniqueInstance().getValue(this.inputData.href, '/');
+      this.selected = BasicService.getUniqueInstance().getValue(this.inputData.selected, false);
+      this.clickEventData = BasicService.getUniqueInstance().getValue(this.inputData.clickEventData, {});
    }
 
    render() {

@@ -40,10 +40,10 @@ export class PageUsers extends PageAbstract {
                title="add user"
                clickable="true"
                @component-icon-click="${() =>
-          RouterService.getInstance().navigate('#useredit')}"
+          RouterService.getUniqueInstance().navigate('#useredit')}"
             ></component-icon>
             <component-authenticated-icon
-               .isAuthenticated="${SecureService.getInstance().isAuthenticated()}"
+               .isAuthenticated="${SecureService.getUniqueInstance().isAuthenticated()}"
                loginPage="#login"
                logoutPage="#logout"
                slot="rightComponents"
@@ -114,7 +114,7 @@ export class PageUsers extends PageAbstract {
 
    editUser(id: number) {
       console.log('edit user, id=%s', id);
-      RouterService.getInstance().navigate(
+      RouterService.getUniqueInstance().navigate(
           '?userid='.concat(id.toString()).concat('#useredit')
       );
    }

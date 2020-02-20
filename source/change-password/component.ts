@@ -91,9 +91,9 @@ export class ChangePasswordComponent extends AbstractComponent<ChangePasswordInp
    private changePassword() {
       this.errorMessage = '';
       if (this.newPasswordInputField?.value != this.repeatNewPasswordInputField?.value) {
-         this.errorMessage = I18nService.getInstance().getValue("component_change_password_error_samepasswordcheck");
+         this.errorMessage = I18nService.getUniqueInstance().getValue("component_change_password_error_samepasswordcheck");
       } else if (this.currentPasswordInputField?.value == this.newPasswordInputField?.value) {
-         this.errorMessage = I18nService.getInstance().getValue("component_change_password_error_samepasswordcheck_current_new");
+         this.errorMessage = I18nService.getUniqueInstance().getValue("component_change_password_error_samepasswordcheck_current_new");
       } else if (this.formComponent != null && this.formComponent.isValid()) {
          this.dispatchSimpleCustomEvent(ChangePasswordComponent.EVENT_CHANGE_PASSWORD, this.getOutputData());
       }

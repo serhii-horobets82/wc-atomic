@@ -34,7 +34,7 @@ export class PageTypographyComponent extends PageAbstract {
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-simple-table
-               .headers="${[I18nService.getInstance().getValue('typographyType'), I18nService.getInstance().getValue('typographyTypeDescription')]}"
+               .headers="${[I18nService.getUniqueInstance().getValue('typographyType'), I18nService.getUniqueInstance().getValue('typographyTypeDescription')]}"
                .rows="${[
                   <SimpleTableRowData>{ columns: ['H1', 'Headline'] },
                   <SimpleTableRowData>{ columns: ['H2', 'Headline'] },

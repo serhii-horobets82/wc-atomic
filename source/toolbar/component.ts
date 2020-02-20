@@ -82,9 +82,9 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
    protected inputDataChanged() {
        let defaultData: ToolbarInputData = new ToolbarInputData();
        this.toolbarInputData = this.inputData.toolbarInputData;
-       this.toolbarAlignment = BasicService.getInstance().getValue(this.toolbarAlignment, defaultData.toolbarAlignment);
-       this.flexJustifyContent = BasicService.getInstance().getValue(this.flexJustifyContent, defaultData.flexJustifyContent);
-       this.height = BasicService.getInstance().getValue(this.height, defaultData.height);
-       this.width = BasicService.getInstance().getValue(this.width, defaultData.width);
+       this.toolbarAlignment = BasicService.getUniqueInstance().getValue(this.toolbarAlignment, defaultData.toolbarAlignment);
+       this.flexJustifyContent = BasicService.getUniqueInstance().getValue(this.flexJustifyContent, defaultData.flexJustifyContent);
+       this.height = BasicService.getUniqueInstance().getValue(this.height, defaultData.height);
+       this.width = BasicService.getUniqueInstance().getValue(this.width, defaultData.width);
    }
 }

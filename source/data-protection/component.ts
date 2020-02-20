@@ -75,7 +75,7 @@ export class DataProtection extends AbstractComponent<DataProtectionInputData, a
    }
 
    protected inputDataChanged() {
-      this.buttonInputData = BasicService.getInstance().getValue(this.inputData.buttonInputData, new ButtonInputData());
-      this.lawText = BasicService.getInstance().getValue(this.inputData.lawtext, '');
+      this.buttonInputData = BasicService.getUniqueInstance().getValue(this.inputData.buttonInputData, new ButtonInputData());
+      this.lawText = BasicService.getUniqueInstance().getValue(this.inputData.lawtext, '');
    }
 }

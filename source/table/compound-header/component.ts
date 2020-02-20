@@ -44,7 +44,7 @@ export class TableCompoundHeader extends AbstractComponent<TableCompoundHeaderIn
    }
 
    protected inputDataChanged() {
-      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, '');
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, '');
    }
 }

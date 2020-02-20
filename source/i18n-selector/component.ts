@@ -42,14 +42,14 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    getDefaultInputData(): I18NInputData {
       return <I18NInputData>{
          componentIdentifier: I18NSelectorComponent.IDENTIFIER,
-         selectedLanguage: I18nService.getInstance().getLanguage(),
+         selectedLanguage: I18nService.getUniqueInstance().getLanguage(),
          label: this.getI18NValue('language'),
          languages: []
       };
    }
 
    inputDataChanged() {
-      this.languages = BasicService.getInstance().getValue(this.inputData.languages, []);
+      this.languages = BasicService.getUniqueInstance().getValue(this.inputData.languages, []);
    }
 
    getOutputData(): KeyValueData {
@@ -58,7 +58,7 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
 
    private changeLanguage(event: CustomEvent) {
       this.outputData = event.detail;
-      I18nService.getInstance().setLanguage(this.outputData.value);
+      I18nService.getUniqueInstance().setLanguage(this.outputData.value);
       this.dispatchSimpleCustomEvent(I18NSelectorComponent.EVENT_CHANGE_LANG, this.getOutputData());
    }
 }

@@ -66,7 +66,7 @@ export class ContentSliderComponent extends AbstractComponent<ContentSliderInput
 
    protected inputDataChanged(): void {
       this.open = this.inputData.open;
-      this.componentInputData = BasicService.getInstance().getValue(this.inputData.componentInputData, AbstractInputData.prototype);
+      this.componentInputData = BasicService.getUniqueInstance().getValue(this.inputData.componentInputData, AbstractInputData.prototype);
    }
 
    getOutputData(): undefined {

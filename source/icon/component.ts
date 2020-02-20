@@ -98,17 +98,17 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
 
    inputDataChanged() {
       let defaultData = new IconInputData();
-      this.icon = BasicService.getInstance().getValue(this.inputData.icon, defaultData.icon);
-      this.size = BasicService.getInstance().getValue(this.inputData.size, defaultData.size);
-      this.sizeUnit = BasicService.getInstance().getValue(this.inputData.sizeUnit, defaultData.sizeUnit);
-      this.withIconSpace = BasicService.getInstance().getValue(this.inputData.withIconSpace, defaultData.withIconSpace);
-      this.title = BasicService.getInstance().getValue(this.inputData.title, defaultData.title);
-      this.color = BasicService.getInstance().getValue(this.inputData.color, defaultData.color);
-      this.clazz = BasicService.getInstance().getValue(this.inputData.color, defaultData.clazz);
-      this.clickable = BasicService.getInstance().getValue(this.inputData.clickable, defaultData.clickable);
-      this.clickData = BasicService.getInstance().getValue(this.inputData.clickData, defaultData.clickData);
-      this.elementState = BasicService.getInstance().getValue(this.inputData.elementState, defaultData.elementState);
-      this.rendered = BasicService.getInstance().getValue(this.inputData.rendered, defaultData.rendered);
+      this.icon = BasicService.getUniqueInstance().getValue(this.inputData.icon, defaultData.icon);
+      this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, defaultData.size);
+      this.sizeUnit = BasicService.getUniqueInstance().getValue(this.inputData.sizeUnit, defaultData.sizeUnit);
+      this.withIconSpace = BasicService.getUniqueInstance().getValue(this.inputData.withIconSpace, defaultData.withIconSpace);
+      this.title = BasicService.getUniqueInstance().getValue(this.inputData.title, defaultData.title);
+      this.color = BasicService.getUniqueInstance().getValue(this.inputData.color, defaultData.color);
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.color, defaultData.clazz);
+      this.clickable = BasicService.getUniqueInstance().getValue(this.inputData.clickable, defaultData.clickable);
+      this.clickData = BasicService.getUniqueInstance().getValue(this.inputData.clickData, defaultData.clickData);
+      this.elementState = BasicService.getUniqueInstance().getValue(this.inputData.elementState, defaultData.elementState);
+      this.rendered = BasicService.getUniqueInstance().getValue(this.inputData.rendered, defaultData.rendered);
    }
 
    getOutputData(): any {

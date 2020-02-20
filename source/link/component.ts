@@ -35,9 +35,9 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
    }
 
    protected inputDataChanged() {
-      this.href = BasicService.getInstance().getValue(this.inputData.href, '');
-      this.target = BasicService.getInstance().getValue(this.inputData.target, '');
-      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
+      this.href = BasicService.getUniqueInstance().getValue(this.inputData.href, '');
+      this.target = BasicService.getUniqueInstance().getValue(this.inputData.target, '');
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, '');
    }
 
    getDefaultInputData(): LinkInputData {

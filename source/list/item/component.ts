@@ -43,7 +43,7 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
    }
 
    protected inputDataChanged() {
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
-      this.content = BasicService.getInstance().getValue(this.inputData.content, '');
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.clazz, '');
+      this.content = BasicService.getUniqueInstance().getValue(this.inputData.content, '');
    }
 }

@@ -114,7 +114,7 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    }
 
    private setTrailingIcon() {
-      if (BasicService.getInstance().isNotBlank(this.getOutputData().value)) {
+      if (BasicService.getUniqueInstance().isNotBlank(this.getOutputData().value)) {
          this.trailingIcon = 'close';
       } else {
          this.trailingIcon = 'search';

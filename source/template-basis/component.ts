@@ -69,7 +69,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    menuItemClicked(event: CustomEvent) {
       let id: IconInputData = event.detail;
-      if (BasicService.getInstance().isEqual(id.icon, this.menuSwitchIcon)) {
+      if (BasicService.getUniqueInstance().isEqual(id.icon, this.menuSwitchIcon)) {
          console.log('menuItemClicked...');
          this.toogleMenu();
       }

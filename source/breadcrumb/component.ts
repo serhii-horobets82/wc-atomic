@@ -51,7 +51,7 @@ export class BreadcrumbComponent extends AbstractComponent<BreadcrumbInputData, 
    }
 
    inputDataChanged() {
-      this.links = BasicService.getInstance().getValue(this.inputData.links, []);
+      this.links = BasicService.getUniqueInstance().getValue(this.inputData.links, []);
    }
 
    getDefaultInputData(): BreadcrumbInputData {

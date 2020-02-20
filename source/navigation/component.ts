@@ -96,10 +96,10 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
    }
 
    protected inputDataChanged() {
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
-      this.links = BasicService.getInstance().getValue(this.inputData.links, []);
-      this.contentBefore = BasicService.getInstance().getValue(this.inputData.contentBefore, []);
-      this.contentAfter = BasicService.getInstance().getValue(this.inputData.contentAfter, []);
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.clazz, '');
+      this.links = BasicService.getUniqueInstance().getValue(this.inputData.links, []);
+      this.contentBefore = BasicService.getUniqueInstance().getValue(this.inputData.contentBefore, []);
+      this.contentAfter = BasicService.getUniqueInstance().getValue(this.inputData.contentAfter, []);
    }
 
    getOutputData(): any {
@@ -107,6 +107,6 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
    }
 
    private clickedMenuItem(linkItem: NavigationLinkInputData) {
-       RouterService.getInstance().navigate(BasicService.getInstance().getValue(linkItem.href, ''));
+       RouterService.getUniqueInstance().navigate(BasicService.getUniqueInstance().getValue(linkItem.href, ''));
    }
 }

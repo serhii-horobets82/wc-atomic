@@ -54,11 +54,11 @@ export class ImgSliderSelectorComponent extends AbstractComponent<ImgSliderSelec
 
    inputDataChanged() {
       if (this.inputData.imgSlider != undefined) {
-         this.maxHeight = BasicService.getInstance().getValue(this.inputData.imgSlider.maxSize, 1);
-         this.sliderType = BasicService.getInstance().getValue(this.inputData.imgSlider.sliderType, 1);
-         this.imgs = BasicService.getInstance().getValue(this.inputData.imgSlider.imgs, []);
+         this.maxHeight = BasicService.getUniqueInstance().getValue(this.inputData.imgSlider.maxSize, 1);
+         this.sliderType = BasicService.getUniqueInstance().getValue(this.inputData.imgSlider.sliderType, 1);
+         this.imgs = BasicService.getUniqueInstance().getValue(this.inputData.imgSlider.imgs, []);
          if (this.imgs !== undefined && this.imgs.length > 0) {
-            this.selectedImg = BasicService.getInstance().getValue(this.imgs[0], new RichMediaInputData());
+            this.selectedImg = BasicService.getUniqueInstance().getValue(this.imgs[0], new RichMediaInputData());
          }
       }
    }

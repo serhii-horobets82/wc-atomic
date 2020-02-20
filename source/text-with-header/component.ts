@@ -44,7 +44,7 @@ export class TextWithHeaderComponent extends AbstractComponent<TextWithHeaderInp
    }
 
    protected inputDataChanged() {
-      this.headerInputData = BasicService.getInstance().getValue(this.inputData.headerInputData, new TypographyInputData());
-      this.textInputData = BasicService.getInstance().getValue(this.inputData.textInputData, new TypographyInputData());
+      this.headerInputData = BasicService.getUniqueInstance().getValue(this.inputData.headerInputData, new TypographyInputData());
+      this.textInputData = BasicService.getUniqueInstance().getValue(this.inputData.textInputData, new TypographyInputData());
    }
 }

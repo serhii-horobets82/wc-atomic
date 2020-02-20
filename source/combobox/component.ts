@@ -88,12 +88,12 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    private selectElemet: HTMLSelectElement | undefined;
 
    protected inputDataChanged() {
-      this.name = BasicService.getInstance().getValue(this.inputData.name, '');
-      this.label = BasicService.getInstance().getValue(this.inputData.label, '');
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
-      this.size = BasicService.getInstance().getValue(this.inputData.size, 1);
-      this.selectedValue = BasicService.getInstance().getValue(this.inputData.selectedValue, '');
-      this.options = BasicService.getInstance().getValue(this.inputData.options, <ComboboxOption>{});
+      this.name = BasicService.getUniqueInstance().getValue(this.inputData.name, '');
+      this.label = BasicService.getUniqueInstance().getValue(this.inputData.label, '');
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, '');
+      this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, 1);
+      this.selectedValue = BasicService.getUniqueInstance().getValue(this.inputData.selectedValue, '');
+      this.options = BasicService.getUniqueInstance().getValue(this.inputData.options, <ComboboxOption>{});
    }
 
    render() {
@@ -121,7 +121,7 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
                         this.options,
                         (option) => option.value,
                         (option) =>
-                           BasicService.getInstance().isEqual(this.selectedValue, option.value)
+                           BasicService.getUniqueInstance().isEqual(this.selectedValue, option.value)
                               ? html`
                                    <option value="${option.value}" selected>${option.text}</option>
                                 `

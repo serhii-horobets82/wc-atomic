@@ -332,16 +332,16 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    }
 
    inputDataChanged(): void {
-      this.sort = BasicService.getInstance().getValue(this.inputData.sort, '');
-      this.requestParams = BasicService.getInstance().getValue(this.inputData.requestParams, '');
+      this.sort = BasicService.getUniqueInstance().getValue(this.inputData.sort, '');
+      this.requestParams = BasicService.getUniqueInstance().getValue(this.inputData.requestParams, '');
       this.sizeComboboxInputData.selectedValue = String(
-         BasicService.getInstance().getValue(this.inputData.size, this.itemSizeDefaultValue)
+         BasicService.getUniqueInstance().getValue(this.inputData.size, this.itemSizeDefaultValue)
       );
-      this.requestPath = BasicService.getInstance().getValue(this.inputData.requestPath, '');
-      this.paging = BasicService.getInstance().getValue(this.inputData.paging, true);
-      this.filtering = BasicService.getInstance().getValue(this.inputData.filtering, true);
-      this.sorting = BasicService.getInstance().getValue(this.inputData.sorting, true);
-      this._headers = BasicService.getInstance().getValue(this.inputData.headers, []);
+      this.requestPath = BasicService.getUniqueInstance().getValue(this.inputData.requestPath, '');
+      this.paging = BasicService.getUniqueInstance().getValue(this.inputData.paging, true);
+      this.filtering = BasicService.getUniqueInstance().getValue(this.inputData.filtering, true);
+      this.sorting = BasicService.getUniqueInstance().getValue(this.inputData.sorting, true);
+      this._headers = BasicService.getUniqueInstance().getValue(this.inputData.headers, []);
 
       this.loadData();
    }
@@ -354,11 +354,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       //where clause - START
       let whereClause = '';
       this._headers.forEach((header) => {
-         if (BasicService.getInstance().isNotBlank(header.searchValue)) {
+         if (BasicService.getUniqueInstance().isNotBlank(header.searchValue)) {
             whereClause = whereClause
                 .concat(header.columnKey)
                 .concat('=')
-                .concat(BasicService.getInstance().getValue(header.searchValue, ''));
+                .concat(BasicService.getUniqueInstance().getValue(header.searchValue, ''));
          }
       });
       if (whereClause.length > 0) {
@@ -383,7 +383,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
       let request: HttpClientRequest = new HttpClientRequest();
       request.path = requestPath;
-      let responsePromise = HttpClientService.getInstance().request(request);
+      let responsePromise = HttpClientService.getUniqueInstance().request(request);
       responsePromise.then((response: any) => {
          let bodyTextPromise: Promise<string> = response.text();
          bodyTextPromise.then((tableContentAsJson) => {
@@ -421,7 +421,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                      }
                   });
 
-                  let inputData = BasicService.getInstance().clone(tableHeaderInput.componentInputData);
+                  let inputData = BasicService.getUniqueInstance().clone(tableHeaderInput.componentInputData);
 
                   switch (inputData.componentIdentifier) {
                      case InputfieldComponent.IDENTIFIER:
@@ -430,7 +430,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         break;
                      default:
                      case TypographyComponent.IDENTIFIER:
-                        (<TypographyInputData>inputData).text = BasicService.getInstance().beautifyText(columnValue);
+                        (<TypographyInputData>inputData).text = BasicService.getUniqueInstance().beautifyText(columnValue);
                         (<TypographyInputData>inputData).clazz = 'ellipsis';
                         break;
                      case ComboboxComponent.IDENTIFIER:
@@ -444,7 +444,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                   }
 
                   if (tableHeaderInput.valueProperty != undefined) {
-                     inputData[tableHeaderInput.valueProperty.key] = BasicService.getInstance().beautifyText(
+                     inputData[tableHeaderInput.valueProperty.key] = BasicService.getUniqueInstance().beautifyText(
                         row[tableHeaderInput.valueProperty.value]
                      );
                   }

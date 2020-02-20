@@ -41,7 +41,7 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
       return this.rendered ? html`
          <div
             @click="${() => this.linkClicked()}"
-            class="${RouterService.getInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
+            class="${RouterService.getUniqueInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
          >
             <component-icon icon="${this.icon}" class="navitemIcon"></component-icon>
             <component-typography>${this.text}</component-typography>
@@ -60,6 +60,6 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
    }
 
    private linkClicked() {
-      RouterService.getInstance().navigate(this.href);
+      RouterService.getUniqueInstance().navigate(this.href);
    }
 }

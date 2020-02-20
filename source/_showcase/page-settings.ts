@@ -11,7 +11,7 @@ export class PageSettings extends TopBottomTemplate {
             <component-spacer slot="leftComponents" size="${SpacerSize.SMALL}"></component-spacer>
             <component-typography slot="leftComponents" .typographyType="${TypographyType.H6}">Einstellungen</component-typography>
             <component-authenticated-icon
-               .isAuthenticated="${SecureService.getInstance().isAuthenticated()}"
+               .isAuthenticated="${SecureService.getUniqueInstance().isAuthenticated()}"
                loginPage="#login"
                logoutPage="#logout"
                slot="rightComponents"
@@ -66,62 +66,62 @@ export class PageSettings extends TopBottomTemplate {
                <component-navigation-link icon="" text="Abmelden" href="#logout"></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagelayout')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagelayout')}"
                   href="pagelayout"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagetypography')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagetypography')}"
                   href="pagetypography"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageinput')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageinput')}"
                   href="pageinput"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagebars')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagebars')}"
                   href="pagebars"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageicon')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageicon')}"
                   href="pageicon"
                ></component-navigation-link>
                <component-navigation-link
                   icon="table_chart"
-                  text="${I18nService.getInstance().getValue('pagetable')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagetable')}"
                   href="pagetable"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageimg')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageimg')}"
                   href="pageimg"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageelementlist')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageelementlist')}"
                   href="pageelementlist"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageform')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageform')}"
                   href="pageform"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagecc')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagecc')}"
                   href="pagecc"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pagecard')}"
+                  text="${I18nService.getUniqueInstance().getValue('pagecard')}"
                   href="pagecard"
                ></component-navigation-link>
                <component-navigation-link
                   icon=""
-                  text="${I18nService.getInstance().getValue('pageprimarytitle')}"
+                  text="${I18nService.getUniqueInstance().getValue('pageprimarytitle')}"
                   href="pageprimarytitle"
                ></component-navigation-link>
             </component-navigation-section>

@@ -38,20 +38,20 @@ import {PageUser} from "./page-user";
 export class ShowcaseApp extends AbstractApp {
 
     async preRender(): Promise<void> {
-        I18nService.getInstance().saveData(messageDE);
-        I18nService.getInstance().saveData(messageEN, 'en-EN');
+        I18nService.getUniqueInstance().saveData(messageDE);
+        I18nService.getUniqueInstance().saveData(messageEN, 'en-EN');
 
-        I18nService.getInstance().addData(messageDEUser);
-        I18nService.getInstance().addData(messageEN, 'en-EN');
+        I18nService.getUniqueInstance().addData(messageDEUser);
+        I18nService.getUniqueInstance().addData(messageEN, 'en-EN');
 
-        let config = HttpClientService.getInstance().config;
+        let config = HttpClientService.getUniqueInstance().config;
         config.baseURL = 'http://v220190910399797452.supersrv.de:8099';
 
         return super.preRender();
     }
 
    renderPage(): TemplateResult {
-      let path = RouterService.getInstance().getCurrentPage();
+      let path = RouterService.getUniqueInstance().getCurrentPage();
       console.log('current path: '.concat(path));
        switch (path) {
            case 'login':

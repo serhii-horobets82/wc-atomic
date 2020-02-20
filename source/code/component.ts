@@ -36,6 +36,6 @@ export class CodeComponent extends AbstractComponent<CodeInputData, undefined> {
    }
 
    protected inputDataChanged() {
-      this.code = BasicService.getInstance().getValue(this.inputData.code, '');
+      this.code = BasicService.getUniqueInstance().getValue(this.inputData.code, '');
    }
 }

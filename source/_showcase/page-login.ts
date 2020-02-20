@@ -12,7 +12,7 @@ import {
 @customElement('page-login')
 export class PageLogin extends PageAbstract {
     @property()
-    isAuthenticated: boolean = SecureService.getInstance().isAuthenticated();
+    isAuthenticated: boolean = SecureService.getUniqueInstance().isAuthenticated();
 
     getMainComponent(): TemplateResult {
         return html`
@@ -23,7 +23,7 @@ export class PageLogin extends PageAbstract {
     }
 
     logout() {
-        SecureService.getInstance()
+        SecureService.getUniqueInstance()
             .logout('/dologout')
             .then((isAuthenticated: boolean) => {
                 this.isAuthenticated = isAuthenticated;
@@ -34,7 +34,7 @@ export class PageLogin extends PageAbstract {
 
     login(event: CustomEvent) {
         let formOutputData: FormComponentOutputData = event.detail;
-        SecureService.getInstance().login(formOutputData.formData, "#dashboard", "#login");
+        SecureService.getUniqueInstance().login(formOutputData.formData, "#dashboard", "#login");
     }
 
 }

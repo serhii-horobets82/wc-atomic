@@ -50,10 +50,10 @@ export class RichMediaComponent extends AbstractComponent<RichMediaInputData, un
    }
 
    protected inputDataChanged() {
-      this.src = BasicService.getInstance().getValue(this.inputData.src, '');
-      this.text = BasicService.getInstance().getValue(this.inputData.text, '');
-      this.cssStyle = BasicService.getInstance().getValue(this.inputData.cssStyle, '');
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
+      this.src = BasicService.getUniqueInstance().getValue(this.inputData.src, '');
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, '');
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, '');
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.clazz, '');
    }
 
    render() {

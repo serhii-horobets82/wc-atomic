@@ -55,8 +55,8 @@ export class IconGroupComponent extends AbstractComponent<IconGroupInputData, un
    }
 
    inputDataChanged() {
-      this.icons = BasicService.getInstance().getValue(this.inputData.icons, []);
-      this.clazz = BasicService.getInstance().getValue(this.inputData.clazz, '');
+      this.icons = BasicService.getUniqueInstance().getValue(this.inputData.icons, []);
+      this.clazz = BasicService.getUniqueInstance().getValue(this.inputData.clazz, '');
    }
 
    getOutputData(): undefined {

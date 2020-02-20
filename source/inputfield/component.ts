@@ -177,7 +177,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
             </div>
             <div class="box${this.showSelectedBorder() ? ' showSelectedBorder' : ''}${this.showBorder() ? ' showBorder' : ''}">
                <component-icon
-                  .rendered="${BasicService.getInstance().isNotBlank(this.leadingIcon)}"
+                  .rendered="${BasicService.getUniqueInstance().isNotBlank(this.leadingIcon)}"
                   icon="${this.leadingIcon}"
                   .clickable="${this.leadingIconClickable}"
                ></component-icon>
@@ -186,7 +186,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                   name="${this.name}"
                   type="${this.inputfieldType}"
                   value="${this.prepareValue(this.value)}"
-                  placeholder="${BasicService.getInstance().isBlank(this.placeholder) && !this.showLabelText() ? this.label : this.placeholder}"
+                  placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) && !this.showLabelText() ? this.label : this.placeholder}"
                   size="${this.size}"
                   minlength="${this.minlength}"
                   maxlength="${this.maxlength}"
@@ -203,7 +203,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                   @focusout="${(event: Event) => this.focusout(event)}"
                />
                <component-icon
-                  .rendered="${BasicService.getInstance().isNotBlank(this.trailingIcon)}"
+                  .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
                   icon="${this.trailingIcon}"
                   .clickable="${this.trailingIconClickable}"
                ></component-icon>
@@ -285,7 +285,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
                   outputValue =
-                     this.inputElemet != null ? BasicService.getInstance().getValue(this.inputElemet.checked, false) : false;
+                     this.inputElemet != null ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false) : false;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
@@ -309,25 +309,25 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
 
    protected inputDataChanged() {
       let defaultData = new InputfieldInputData();
-      this.name = BasicService.getInstance().getValue(this.inputData.name, defaultData.name);
-      this.value = BasicService.getInstance().getValue(this.inputData.value, defaultData.value);
-      this.inputfieldType = BasicService.getInstance().getValue(this.inputData.inputfieldType, defaultData.inputfieldType);
-      this.placeholder = BasicService.getInstance().getValue(this.inputData.placeholder, defaultData.placeholder);
-      this.maxlength = BasicService.getInstance().getValue(this.inputData.maxlength, defaultData.maxlength);
-      this.size = BasicService.getInstance().getValue(this.inputData.size, defaultData.size);
-      this.min = BasicService.getInstance().getValue(this.inputData.min, defaultData.min);
-      this.max = BasicService.getInstance().getValue(this.inputData.max, defaultData.max);
-      //this.inputBoxInputData = BasicService.getInstance().getValue(this.inputBoxInputData, this.inputBoxInputData);
+      this.name = BasicService.getUniqueInstance().getValue(this.inputData.name, defaultData.name);
+      this.value = BasicService.getUniqueInstance().getValue(this.inputData.value, defaultData.value);
+      this.inputfieldType = BasicService.getUniqueInstance().getValue(this.inputData.inputfieldType, defaultData.inputfieldType);
+      this.placeholder = BasicService.getUniqueInstance().getValue(this.inputData.placeholder, defaultData.placeholder);
+      this.maxlength = BasicService.getUniqueInstance().getValue(this.inputData.maxlength, defaultData.maxlength);
+      this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, defaultData.size);
+      this.min = BasicService.getUniqueInstance().getValue(this.inputData.min, defaultData.min);
+      this.max = BasicService.getUniqueInstance().getValue(this.inputData.max, defaultData.max);
+      //this.inputBoxInputData = BasicService.getUniqueInstance().getValue(this.inputBoxInputData, this.inputBoxInputData);
 
-      this.label = BasicService.getInstance().getValue(this.inputData.labelText, this.label);
-      this.infoText = BasicService.getInstance().getValue(this.inputData.infoText, this.infoText);
-      this.assistiveText = BasicService.getInstance().getValue(this.inputData.assistiveText, this.assistiveText);
-      this.assistiveTextMessageType = BasicService.getInstance().getValue(
+      this.label = BasicService.getUniqueInstance().getValue(this.inputData.labelText, this.label);
+      this.infoText = BasicService.getUniqueInstance().getValue(this.inputData.infoText, this.infoText);
+      this.assistiveText = BasicService.getUniqueInstance().getValue(this.inputData.assistiveText, this.assistiveText);
+      this.assistiveTextMessageType = BasicService.getUniqueInstance().getValue(
          this.inputData.assistiveTextMessageType,
          this.assistiveTextMessageType
       );
-      this.leadingIcon = BasicService.getInstance().getValue(this.inputData.leadingIcon, this.leadingIcon);
-      this.trailingIcon = BasicService.getInstance().getValue(this.inputData.trailingIcon, this.trailingIcon);
+      this.leadingIcon = BasicService.getUniqueInstance().getValue(this.inputData.leadingIcon, this.leadingIcon);
+      this.trailingIcon = BasicService.getUniqueInstance().getValue(this.inputData.trailingIcon, this.trailingIcon);
    }
 
    private prepareValue(value: any): any {
@@ -338,7 +338,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
          default:
             break;
       }
-      //return BasicService.getInstance().beautifyText(value);
+      //return BasicService.getUniqueInstance().beautifyText(value);
       return value;
    }
 
@@ -367,12 +367,12 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
          case InputfieldType.WEEK:
             break;
          case InputfieldType.NUMBER:
-            this.infoText = BasicService.getInstance()
+            this.infoText = BasicService.getUniqueInstance()
                .getValue(this.min, '')
                .toString()
                .concat('-')
                .concat(
-                  BasicService.getInstance()
+                  BasicService.getUniqueInstance()
                      .getValue(this.max, '')
                      .toString()
                );
@@ -383,7 +383,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                .toString()
                .concat('/')
                .concat(
-                  BasicService.getInstance()
+                  BasicService.getUniqueInstance()
                      .getValue(this.maxlength, '0')
                      .toString()
                );
@@ -392,7 +392,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    }
 
    private showBorder(): boolean {
-      return BasicService.getInstance().isNotBlank(this.label);
+      return BasicService.getUniqueInstance().isNotBlank(this.label);
    }
 
    private showSelectedBorder(): boolean {
@@ -405,8 +405,8 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
             this.inputfieldType === InputfieldType.RANGE ||
             this.inputfieldType === InputfieldType.DATE ||
             this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
-            BasicService.getInstance().isNotBlank(this.label)) ||
-         (BasicService.getInstance().isNotBlank(this.inputElemet?.value) && BasicService.getInstance().isNotBlank(this.label))
+            BasicService.getUniqueInstance().isNotBlank(this.label)) ||
+         (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) && BasicService.getUniqueInstance().isNotBlank(this.label))
       );
    }
 }

@@ -18,7 +18,7 @@ export class PageRegister extends PageAbstract {
 
    private register(event: CustomEvent) {
       let formOutputData: FormComponentOutputData = event.detail;
-      let registerPromise = HttpClientService.getInstance().sendFormData("/AUTH/REGISTER", formOutputData.formData);
+      let registerPromise = HttpClientService.getUniqueInstance().sendFormData("/AUTH/REGISTER", formOutputData.formData);
       registerPromise
           .then((response: Response) => {
              console.log('registrered: ' + response);

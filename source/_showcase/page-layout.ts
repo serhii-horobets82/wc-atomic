@@ -113,14 +113,14 @@ export class PageLayoutComponent extends PageAbstract {
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
                      label="KeylineAlignment"
-                     selectedValue="${BasicService.getInstance().getEnumKey(this.keylineAlignment, KeylineAlignment)}"
+                     selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineAlignment, KeylineAlignment)}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineAlignment(event)}"
                   ></component-combobox>
 
                   <component-combobox
                      .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
                      label="KeylineSize"
-                     selectedValue="${BasicService.getInstance().getEnumKey(this.keylineSize, KeylineSize)}"
+                     selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
                   ></component-combobox>
                </component-form>
@@ -176,17 +176,17 @@ export class PageLayoutComponent extends PageAbstract {
 
                <component-code
                   >&lt;component-flex-container containerClazz="container_100"
-                  .direction="$&#123;FlexDirection.${BasicService.getInstance().getEnumKey(this.direction, FlexDirection)}&#125;"
-                  .wrap="$&#123;FlexWrap.${BasicService.getInstance().getEnumKey(this.wrap, FlexWrap)}&#125;"
-                  .justifyContent="$&#123;FlexJustifyContent.${BasicService.getInstance().getEnumKey(
+                  .direction="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(this.direction, FlexDirection)}&#125;"
+                  .wrap="$&#123;FlexWrap.${BasicService.getUniqueInstance().getEnumKey(this.wrap, FlexWrap)}&#125;"
+                  .justifyContent="$&#123;FlexJustifyContent.${BasicService.getUniqueInstance().getEnumKey(
                      this.justifyContent,
                      FlexJustifyContent
                   )}&#125;"
-                  .alignItems="$&#123;AlignItems.${BasicService.getInstance().getEnumKey(this.alignItems, AlignItems)}&#125;"
-                  .alignContent="$&#123;AlignContent.${BasicService.getInstance().getEnumKey(this.alignContent, AlignContent)}&#125;"
+                  .alignItems="$&#123;AlignItems.${BasicService.getUniqueInstance().getEnumKey(this.alignItems, AlignItems)}&#125;"
+                  .alignContent="$&#123;AlignContent.${BasicService.getUniqueInstance().getEnumKey(this.alignContent, AlignContent)}&#125;"
                   itemFlexBasisValue="${this.itemFlexBasisValue}"
-                  .keylineSize="$&#123;KeylineSize.${BasicService.getInstance().getEnumKey(this.keylineSize, KeylineSize)}&#125;"
-                  .keylineAlignment="$&#123;KeylineAlignment.${BasicService.getInstance().getEnumKey(
+                  .keylineSize="$&#123;KeylineSize.${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}&#125;"
+                  .keylineAlignment="$&#123;KeylineAlignment.${BasicService.getUniqueInstance().getEnumKey(
                      this.keylineAlignment,
                      KeylineAlignment
                   )}&#125;"

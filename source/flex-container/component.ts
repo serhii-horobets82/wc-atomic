@@ -226,7 +226,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    }
 
    private getFlexItemStyle(index: number): string {
-      let flexBasisValue = BasicService.getInstance().getValue(this.itemFlexBasisValues[index], this.itemFlexBasisValue);
+      let flexBasisValue = BasicService.getUniqueInstance().getValue(this.itemFlexBasisValues[index], this.itemFlexBasisValue);
       return 'flex-basis: '
          .concat(flexBasisValue)
          .concat(';max-width: ')
@@ -235,17 +235,17 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    inputDataChanged() {
       let defaultData: FlexContainerInputData = new FlexContainerInputData();
-      this.containerClazz = BasicService.getInstance().getValue(this.inputData.containerClazz, defaultData.containerClazz);
-      this.itemFlexBasisValue = BasicService.getInstance().getValue(this.inputData.itemFlexBasisValue, defaultData.itemFlexBasisValue);
-      this.itemFlexBasisValues = BasicService.getInstance().getValue(this.inputData.itemFlexBasisValues, defaultData.itemFlexBasisValues);
-      this.flexJustifyContent = BasicService.getInstance().getValue(this.inputData.justifyContent, defaultData.justifyContent);
-      this.alignItems = BasicService.getInstance().getValue(this.inputData.alignItems, defaultData.alignItems);
-      this.alignContent = BasicService.getInstance().getValue(this.inputData.alignContent, defaultData.alignContent);
-      this.flexWrap = BasicService.getInstance().getValue(this.inputData.flexWrap, defaultData.flexWrap);
-      this.flexDirection = BasicService.getInstance().getValue(this.inputData.direction, defaultData.direction);
-      this.keylineAlignment = BasicService.getInstance().getValue(this.inputData.keylineAlignment, defaultData.keylineAlignment);
-      this.keylineSize = BasicService.getInstance().getValue(this.inputData.keylineSize, defaultData.keylineSize);
-      this.inputDataItems = BasicService.getInstance().getValue(this.inputData.inputDataItems, defaultData.inputDataItems);
+      this.containerClazz = BasicService.getUniqueInstance().getValue(this.inputData.containerClazz, defaultData.containerClazz);
+      this.itemFlexBasisValue = BasicService.getUniqueInstance().getValue(this.inputData.itemFlexBasisValue, defaultData.itemFlexBasisValue);
+      this.itemFlexBasisValues = BasicService.getUniqueInstance().getValue(this.inputData.itemFlexBasisValues, defaultData.itemFlexBasisValues);
+      this.flexJustifyContent = BasicService.getUniqueInstance().getValue(this.inputData.justifyContent, defaultData.justifyContent);
+      this.alignItems = BasicService.getUniqueInstance().getValue(this.inputData.alignItems, defaultData.alignItems);
+      this.alignContent = BasicService.getUniqueInstance().getValue(this.inputData.alignContent, defaultData.alignContent);
+      this.flexWrap = BasicService.getUniqueInstance().getValue(this.inputData.flexWrap, defaultData.flexWrap);
+      this.flexDirection = BasicService.getUniqueInstance().getValue(this.inputData.direction, defaultData.direction);
+      this.keylineAlignment = BasicService.getUniqueInstance().getValue(this.inputData.keylineAlignment, defaultData.keylineAlignment);
+      this.keylineSize = BasicService.getUniqueInstance().getValue(this.inputData.keylineSize, defaultData.keylineSize);
+      this.inputDataItems = BasicService.getUniqueInstance().getValue(this.inputData.inputDataItems, defaultData.inputDataItems);
    }
 
    getOutputData(): undefined {

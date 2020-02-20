@@ -70,9 +70,9 @@ export class ImgSliderComponent extends AbstractComponent<ImgSliderInputData, un
    }
 
    inputDataChanged(): void {
-      this.imgs = BasicService.getInstance().getValue(this.inputData.imgs, []);
-      this.sliderType = BasicService.getInstance().getValue(this.inputData.sliderType, 1);
-      this.maxSize = BasicService.getInstance().getValue(this.inputData.maxSize, 1);
+      this.imgs = BasicService.getUniqueInstance().getValue(this.inputData.imgs, []);
+      this.sliderType = BasicService.getUniqueInstance().getValue(this.inputData.sliderType, 1);
+      this.maxSize = BasicService.getUniqueInstance().getValue(this.inputData.maxSize, 1);
    }
 
    getOutputData(): undefined {
