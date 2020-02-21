@@ -77,19 +77,19 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
                  title="${this.title}"
                  @click="${this.clicked}"
                  style="${this.withIconSpace && this.size != undefined
-                    ? 'height:'
-                         .concat((this.size * 2).toString())
-                         .concat('px;')
-                         .concat('width:')
-                         .concat((this.size * 2).toString())
-                         .concat('px;')
-                    : ''}"
+              ? 'height:'
+                  .concat((this.size * 2).toString())
+                  .concat('px;')
+                  .concat('width:')
+                  .concat((this.size * 2).toString())
+                  .concat('px;')
+              : ''}"
                  ><i
                     class="material-icons ${this.elementState}"
                     style="${this.color.length > 0 ? 'color: '.concat(this.color).concat(';') : ''} ${this.size != undefined
-                       ? 'font-size: ' + this.size.toString().concat(this.sizeUnit.concat(';'))
-                       : ''}"
-                    >${this.icon}</i
+              ? 'font-size: ' + this.size.toString().concat(this.sizeUnit.concat(';'))
+              : ''}"
+                    >${this.convertNumeric(this.icon)}</i
                  >
               </span>
            `
@@ -127,5 +127,13 @@ export class IconComponent extends AbstractComponent<IconInputData, any> {
             icon: this.icon
          });
       }
+   }
+
+   private convertNumeric(icon: string) {
+      //TODO: ALLE ICONS REIN: https://stackoverflow.com/questions/49212903/materialize-icons-doesnt-work-in-javafx-browser
+      let numericValues: any = {};
+      numericValues['add'] = "&#xE145;";
+      let numericValue: string = numericValues[icon];
+      return numericValue != undefined ? numericValue : icon;
    }
 }
