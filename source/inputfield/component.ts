@@ -41,6 +41,7 @@ export enum InputfieldType {
 }
 
 export class InputfieldInputData extends AbstractInputData {
+   componentIdentifier = InputfieldComponent.IDENTIFIER;
    inputfieldType: string = InputfieldType.TEXT;
    name: string = '';
    value: string = '';
