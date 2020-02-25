@@ -24,7 +24,7 @@ export class KeylineSize {
 
 export class FlexDirection {
    static ROW = 'row';
-   static ROW_REVERSE = 'row-reverse';
+   static ROW_REVERSE = 'rowData-reverse';
    static COLUMN = 'column';
    static COLUMN_REVERSE = 'column-reverse';
 }

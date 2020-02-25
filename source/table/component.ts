@@ -6,11 +6,11 @@ import {InputfieldComponent, InputfieldInputData} from '../inputfield/component'
 import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
 import {ButtonComponent, ButtonInputData} from '../button/component';
 import {IconComponent} from '../icon/component';
-import {HttpClientService} from '@domoskanonos/frontend-basis';
+import {BasicService, HttpClientService} from '@domoskanonos/frontend-basis';
 import {KeyValueData} from '../form/component';
 import {TypographyComponent, TypographyInputData} from '../typography/component';
 import {HttpClientRequest} from '@domoskanonos/frontend-basis/source/http-client-service';
-import { BasicService } from '@domoskanonos/frontend-basis';
+import {IteratorComponentService} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -59,13 +59,6 @@ export class TableInputData extends AbstractInputData {
    headers?: TableHeaderInputData[];
 }
 
-export class ColumnEventData {
-   row: RowInputData = <RowInputData>{};
-   rowIndex: number = -1;
-   columnIndex: number = -1;
-   sourceEvent: CustomEvent = <CustomEvent>{};
-}
-
 export class TableContent {
    content: any[] = [];
    pageable: Pageable = Pageable.prototype;
@@ -96,8 +89,6 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
    static IDENTIFIER: string = 'TableComponent';
 
-   static EVENT_COLUMN_CHANGED: string = 'component-table-column-changed';
-   static EVENT_COLUMN_CLICKED: string = 'component-table-column-clicked';
 
    private i18nTablePrefix = 'table_';
    private itemSizeDefaultValue: number = 5;
@@ -171,11 +162,11 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       this.loadData();
    }
 
-   render() {
+   render(): TemplateResult {
       return html`
          <div class="header">
             ${this.paging
-               ? html`
+          ? html`
                     <component-toolbar>
                        <component-spacer slot="leftComponents" clazz="minPaddingLeft"></component-spacer>
                        <span slot="leftComponents"
@@ -281,23 +272,23 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                        html`
                           ${repeat(
                              this.rows,
-                             (row, rowIndex) => html`
+                           (rowData, rowIndex) => html`
                                 <div class="row ${rowIndex % 2 == 0 ? 'odd' : 'even'}">
                                    ${guard(
-                                      row.colums,
-                                      () =>
-                                         html`
+                               rowData.colums,
+                               () =>
+                                   html`
                                             ${repeat(
-                                             row.colums,
-                                             (column, columnIndex) => html`
+                                       rowData.colums,
+                                       (columnInputData, columnIndex) => html`
                                                   <span
                                                      class="column"
                                                      style="width: ${this._headers[columnIndex].widthPercent}%;"
                                                   >
-                                                     ${this.createColumnComponent(row, column, rowIndex, columnIndex)}
+                                                     ${IteratorComponentService.getUniqueInstance().createColumnComponent(this, rowData, columnInputData.componentInputData, rowIndex, columnIndex)}
                                                   </span>
                                                `
-                                         )}
+                                   )}
                                          `
                              )}
                                 </div>
@@ -402,7 +393,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             //this.rows.splice(0,this.rows.length);
 
             content.forEach((row, index) => {
-               console.debug('row= ' + JSON.stringify(row));
+               console.debug('rowData= ' + JSON.stringify(row));
                console.debug('index= ' + index);
 
                let keys = Object.keys(row);
@@ -588,70 +579,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
       }
    }
 
-   private createColumnComponent(
-      row: RowInputData,
-      column: ColumnInputData,
-      rowIndex: number,
-      columnIndex: number
-   ): TemplateResult {
-      let componentInputData = column.componentInputData;
-      let componentIdentifier = componentInputData.componentIdentifier;
-      switch (componentIdentifier) {
-         case TypographyComponent.IDENTIFIER:
-            (<TypographyInputData>componentInputData).clazz = 'ellipsis';
-            return html`
-               <component-typography .inputData="${componentInputData}"></component-typography>
-            `;
-         case IconComponent.IDENTIFIER:
-            return html`
-               <component-icon
-                  @component-icon-click="${(event: CustomEvent) => {
-               this.createColumnClickEvent(row, event, rowIndex, columnIndex);
-            }}"
-                  .inputData="${componentInputData}"
-               ></component-icon>
-            `;
-         case InputfieldComponent.IDENTIFIER:
-            return html`
-               <component-inputfield
-                  .inputData="${componentInputData}"
-                  @component-inputfield-change="${(event: CustomEvent) => {
-                     this.createColumnChangeEvent(row, event, rowIndex, columnIndex);
-                  }}"
-               ></component-inputfield>
-            `;
-         default:
-            return html``;
-      }
-   }
 
-   /**
-    * if column value change, dispatch a simple custom event with all necessery data for parent object.
-    * @param row
-    * @param event
-    * @param rowIndex
-    * @param columnIndex
-    */
-   private createColumnChangeEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
-      let columnChangedData: ColumnEventData = {
-         row: row,
-         rowIndex: rowIndex,
-         columnIndex: columnIndex,
-         sourceEvent: event.detail
-      };
-
-      this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CHANGED, columnChangedData);
-   }
-
-   private createColumnClickEvent(row: RowInputData, event: CustomEvent, rowIndex: number, columnIndex: number) {
-      let columnChangedData: ColumnEventData = {
-         row: row,
-         rowIndex: rowIndex,
-         columnIndex: columnIndex,
-         sourceEvent: event.detail
-      };
-      this.dispatchSimpleCustomEvent(TableComponent.EVENT_COLUMN_CLICKED, columnChangedData);
-   }
 
    private getItemSize(): number {
       let size: number = Number(this.sizeComboboxInputData.selectedValue);

@@ -152,7 +152,7 @@ export abstract class AbstractComponent<INPUT_DATA extends AbstractInputData, OU
       });
    }
 
-   protected dispatchSimpleCustomEvent(eventName: string, data?: any) {
+   dispatchSimpleCustomEvent(eventName: string, data?: any) {
       console.log('dispatch simple custom event: ' + eventName + ', data=' + JSON.stringify(data));
       let valueChanged = new CustomEvent(eventName, {
          detail: data,

@@ -56,7 +56,7 @@ export class PageUsers extends PageAbstract {
       return html`
          <component-flex-container containerClazz="container_75">
             <component-table
-               @component-table-column-clicked="${(event: CustomEvent) => {
+               @component-iterator-column-clicked="${(event: CustomEvent) => {
          this.columnTableClickedEvent(event);
       }}"
                requestPath="/AUTHUSER/FIND"
@@ -108,7 +108,7 @@ export class PageUsers extends PageAbstract {
    private columnTableClickedEvent(event: CustomEvent) {
       let data = <ColumnEventData>event.detail;
       if (data.columnIndex === 4) {
-         this.editUser(data.row.source.id);
+         this.editUser(data.rowData.source.id);
       }
    }
 

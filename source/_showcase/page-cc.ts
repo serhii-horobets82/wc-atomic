@@ -7,7 +7,8 @@ import {IconInputData, LinkComponent, LinkInputData, RichMediaInputData, SimpleT
 export class PageElementList extends PageAbstract {
    getMainComponent(): TemplateResult {
        let icon : IconInputData = new IconInputData();
-       icon.icon = 'menu';
+       icon.icon = 'add';
+       icon.clickable= true;
       return html`
 
 
