@@ -2,7 +2,7 @@ import {css, customElement, html, property, unsafeCSS} from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {ComponentLoader} from "..";
+import { ComponentLoader } from '../abstract/component-loader';
 
 const componentCSS = require('./component.css');
 
