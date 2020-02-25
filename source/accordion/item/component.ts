@@ -43,7 +43,7 @@ export class AccordionItemComponent extends AbstractComponent<AccordionItemInput
                            <div class="accordionContent ${this.stateClazz}">
                               ${
                                  this.componentData != undefined
-                                    ? ComponentLoader.INSTANCE.createComponentFromInputData(this.componentData)
+                                    ? ComponentLoader.getUniqueInstance().createComponentFromInputData(this.componentData)
                                     : ''
                               }
                                 <slot></slot>                           

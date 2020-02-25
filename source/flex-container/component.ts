@@ -148,7 +148,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                         this.inputDataItems,
                         (componentInputData, index) => html`
                            <div class="flex_item" style="${this.getFlexItemStyle(index)};">
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(componentInputData)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(componentInputData)}
                            </div>
                         `
                      )}

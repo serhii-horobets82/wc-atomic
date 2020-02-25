@@ -87,7 +87,7 @@ export class SimpleTableComponent extends AbstractComponent<SimpleTableData, und
 
     private renderValue(value: any) {
         if (value instanceof AbstractInputData) {
-            return ComponentLoader.INSTANCE.createComponentFromInputData(value);
+            return ComponentLoader.getUniqueInstance().createComponentFromInputData(value);
         }
         return value;
     }

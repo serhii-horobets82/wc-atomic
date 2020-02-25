@@ -60,7 +60,7 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
                      ${repeat(
                         this.buttonInputDatas,
                         (buttonInputData) => html`
-                           ${ComponentLoader.INSTANCE.createComponentFromInputData(buttonInputData)}
+                           ${ComponentLoader.getUniqueInstance().createComponentFromInputData(buttonInputData)}
                         `
                      )}
                   `

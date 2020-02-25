@@ -42,7 +42,7 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
                         ${repeat(
                            this.backgroundContent,
                            (item) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(item)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(item)}
                            `
                         )}
                      `
@@ -57,7 +57,7 @@ export class TeaserElementComponent extends AbstractComponent<TeaserElementInput
                         ${repeat(
                            this.foregroundContent,
                            (item) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(item)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(item)}
                            `
                         )}
                      `

@@ -28,7 +28,15 @@ import { LinkComponent } from '../link/component';
 
 
 export class ComponentLoader {
-   static INSTANCE: ComponentLoader = new ComponentLoader();
+
+   private static uniqueInstance: ComponentLoader;
+
+   static getUniqueInstance() {
+      if (!ComponentLoader.uniqueInstance) {
+         ComponentLoader.uniqueInstance = new ComponentLoader();
+      }
+      return ComponentLoader.uniqueInstance;
+   }
 
    public createComponentFromInputData(componentInputData: AbstractInputData): AbstractComponent<AbstractInputData, any> {
       let component = this.createComponent(componentInputData.componentIdentifier);

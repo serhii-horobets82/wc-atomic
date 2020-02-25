@@ -37,7 +37,7 @@ export class ContentSliderComponent extends AbstractComponent<ContentSliderInput
                ></component-icon>
             </div>
             <div class="content ${this.open ? '' : 'closed'}">
-               ${ComponentLoader.INSTANCE.createComponentFromInputData(this.componentInputData)}
+               ${ComponentLoader.getUniqueInstance().createComponentFromInputData(this.componentInputData)}
             </div>
          </div>
       `;

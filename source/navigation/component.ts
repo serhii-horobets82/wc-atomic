@@ -61,7 +61,7 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
                      ${repeat(
                         this.contentBefore,
                         (inputData) => html`
-                           ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                           ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                         `
                      )}
                   `
@@ -85,7 +85,7 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
                      ${repeat(
                         this.contentAfter,
                         (inputData) => html`
-                           ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                           ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                         `
                      )}
                   `

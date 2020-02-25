@@ -62,7 +62,7 @@ export class ToolbarComponent extends AbstractComponent<ToolbarInputData, undefi
                      ${repeat(
                     this.toolbarInputData,
                     (inputData) => html`
-                           ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                           ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                         `
                 )}
                   `

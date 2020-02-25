@@ -45,7 +45,7 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
                         ${repeat(
                            this.leftInputData,
                            (inputData) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                            `
                         )}
                      `
@@ -61,7 +61,7 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
                         ${repeat(
                            this.mainInputData,
                            (inputData) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                            `
                         )}
                      `
@@ -75,7 +75,7 @@ export class TopAppBarComponent extends AbstractComponent<TopAppBarInputData, un
                         ${repeat(
                            this.rightInputData,
                            (inputData) => html`
-                              ${ComponentLoader.INSTANCE.createComponentFromInputData(inputData)}
+                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(inputData)}
                            `
                         )}
                      `
