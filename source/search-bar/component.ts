@@ -42,6 +42,9 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    @property()
    leadingIcon: string = '';
 
+   @property()
+   value: string = '';
+
    @query('#inputfieldComponent')
    private inputfieldComponent: InputfieldComponent | undefined;
 
@@ -56,6 +59,7 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
                   this.iconClicked(event);
                }}"
                placeholder="${this.placeholder}"
+               value="${this.value}"
                .automaticInfoText="${false}"
                @component-inputfield-focus="${() => this.textfieldOnFocus()}"
                @component-inputfield-focus-out="${() => this.textfieldOnFocusOut()}"
