@@ -1,8 +1,10 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { KeyValueData } from '../form/component';
-import { TypographyType } from '../typography/component';
-import { BasicService } from '@domoskanonos/frontend-basis';
+import {repeat} from 'lit-html/directives/repeat';
+import {guard} from 'lit-html/directives/guard';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {KeyValueData} from '../form/component';
+import {TypographyType} from '../typography/component';
+import {BasicService} from '@domoskanonos/frontend-basis';
 import {
    AlignContent,
    AlignItems,
@@ -18,6 +20,7 @@ import { NotifyType } from '../meta-data/notify-type';
 const componentCSS = require('./component.css');
 
 export enum InputfieldType {
+   TEXTAREA = 'textarea',
    CHECKBOX = 'checkbox',
    COLOR = 'color',
    DATE = 'date',
@@ -30,14 +33,13 @@ export enum InputfieldType {
    PASSWORD = 'password',
    RADIO = 'radio',
    RANGE = 'range',
-   RESET = 'reset',
    SEARCH = 'search',
-   SUBMIT = 'submit',
    TEL = 'tel',
    TEXT = 'text',
    TIME = 'time',
    URL = 'url',
-   WEEK = 'week'
+   WEEK = 'week',
+   COMBOBOX = 'combobox'
 }
 
 export class InputfieldInputData extends AbstractInputData {
@@ -172,7 +174,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
 
    render() {
       return html`
-         <div class="container">
+         <div class="container ${this.inputfieldType == InputfieldType.HIDDEN ? 'hide' : ''} ">
             <div class="labelContainer${this.showLabelText() ? ' showLabelText' : ''}">
                <div class="label">${this.label}</div>
             </div>
@@ -182,27 +184,60 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                   icon="${this.leadingIcon}"
                   .clickable="${this.leadingIconClickable}"
                ></component-icon>
-               <input
-                  id="inputElement"
-                  name="${this.name}"
-                  type="${this.inputfieldType}"
-                  value="${this.prepareValue(this.value)}"
-                  placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) && !this.showLabelText() ? this.label : this.placeholder}"
-                  size="${this.size}"
-                  minlength="${this.minlength}"
-                  maxlength="${this.maxlength}"
-                  min="${this.min}"
-                  max="${this.max}"
-                  step="${this.step}"
-                  ?required="${this.required}"
-                  ?disabled="${this.disabled}"
-                  ?checked="${this.checked}"
-                  ?multiple="${this.multiple}"
-                  @keyup="${this.keyup}"
-                  @change="${(event: Event) => this.change(event)}"
-                  @focus="${(event: Event) => this.focused(event)}"
-                  @focusout="${(event: Event) => this.focusout(event)}"
-               />
+               ${this.inputfieldType == InputfieldType.COMBOBOX
+          ? html`
+                       <select id="selectElement" ?required="${this.required}" name="${this.name}" size="${this.size}">
+                          ${guard(
+              [this.options],
+              () => html`
+                                ${repeat(
+                  this.options,
+                  (option) => option.value,
+                  (option) =>
+                      BasicService.getUniqueInstance().isEqual(this.selectedValue, option.value)
+                          ? html`
+                                              <option value="${option.value}" selected>${option.text}</option>
+                                           `
+                          : html`
+                                              <option value="${option.value}">${option.text}</option>
+                                           `
+              )}
+                             `
+          )}
+                       </select>
+                    `
+          : this.inputfieldType == InputfieldType.TEXTAREA
+              ? html`
+                       <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.size}">
+${this.value}</textarea
+                       >
+                    `
+              : html`
+                       <input
+                          id="inputElement"
+                          name="${this.name}"
+                          type="${this.inputfieldType}"
+                          value="${this.prepareValue(this.value)}"
+                          placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) && !this.showLabelText()
+                  ? this.label
+                  : this.placeholder}"
+                          size="${this.size}"
+                          minlength="${this.minlength}"
+                          maxlength="${this.maxlength}"
+                          min="${this.min}"
+                          max="${this.max}"
+                          step="${this.step}"
+                          ?required="${this.required}"
+                          ?disabled="${this.disabled}"
+                          ?checked="${this.checked}"
+                          ?multiple="${this.multiple}"
+                          @keyup="${this.keyup}"
+                          @change="${(event: Event) => this.change(event)}"
+                          @focus="${(event: Event) => this.focused(event)}"
+                          @focusout="${(event: Event) => this.focusout(event)}"
+                       />
+                    `}
+
                <component-icon
                   .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
                   icon="${this.trailingIcon}"
@@ -286,7 +321,9 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
                   outputValue =
-                     this.inputElemet != null ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false) : false;
+                      this.inputElemet != null
+                          ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
+                          : false;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
@@ -324,8 +361,8 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
       this.infoText = BasicService.getUniqueInstance().getValue(this.inputData.infoText, this.infoText);
       this.assistiveText = BasicService.getUniqueInstance().getValue(this.inputData.assistiveText, this.assistiveText);
       this.assistiveTextMessageType = BasicService.getUniqueInstance().getValue(
-         this.inputData.assistiveTextMessageType,
-         this.assistiveTextMessageType
+          this.inputData.assistiveTextMessageType,
+          this.assistiveTextMessageType
       );
       this.leadingIcon = BasicService.getUniqueInstance().getValue(this.inputData.leadingIcon, this.leadingIcon);
       this.trailingIcon = BasicService.getUniqueInstance().getValue(this.inputData.trailingIcon, this.trailingIcon);
@@ -369,25 +406,25 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
             break;
          case InputfieldType.NUMBER:
             this.infoText = BasicService.getUniqueInstance()
-               .getValue(this.min, '')
-               .toString()
-               .concat('-')
-               .concat(
-                  BasicService.getUniqueInstance()
-                     .getValue(this.max, '')
-                     .toString()
-               );
+                .getValue(this.min, '')
+                .toString()
+                .concat('-')
+                .concat(
+                    BasicService.getUniqueInstance()
+                        .getValue(this.max, '')
+                        .toString()
+                );
             break;
          case InputfieldType.TEXT:
          case InputfieldType.PASSWORD:
             this.infoText = this.value.length
-               .toString()
-               .concat('/')
-               .concat(
-                  BasicService.getUniqueInstance()
-                     .getValue(this.maxlength, '0')
-                     .toString()
-               );
+                .toString()
+                .concat('/')
+                .concat(
+                    BasicService.getUniqueInstance()
+                        .getValue(this.maxlength, '0')
+                        .toString()
+                );
             break;
       }
    }
@@ -397,17 +434,25 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    }
 
    private showSelectedBorder(): boolean {
-      return this.showBorder() && this.selected && this.inputfieldType !== InputfieldType.RANGE;
+      return this.showBorder() && this.selected && this.inputfieldType !== InputfieldType.RANGE && this.inputfieldType !== InputfieldType.COLOR;
    }
 
    private showLabelText(): boolean {
       return (
-         ((this.selected ||
-            this.inputfieldType === InputfieldType.RANGE ||
-            this.inputfieldType === InputfieldType.DATE ||
-            this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
-            BasicService.getUniqueInstance().isNotBlank(this.label)) ||
-         (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) && BasicService.getUniqueInstance().isNotBlank(this.label))
+          ((this.selected ||
+              this.inputfieldType === InputfieldType.COLOR ||
+              this.inputfieldType === InputfieldType.COMBOBOX ||
+              this.inputfieldType === InputfieldType.TEXTAREA ||
+              this.inputfieldType === InputfieldType.RANGE ||
+              this.inputfieldType === InputfieldType.CHECKBOX ||
+              this.inputfieldType === InputfieldType.MONTH ||
+              this.inputfieldType === InputfieldType.TIME ||
+              this.inputfieldType === InputfieldType.WEEK ||
+              this.inputfieldType === InputfieldType.DATE ||
+              this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
+              BasicService.getUniqueInstance().isNotBlank(this.label)) ||
+          (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) &&
+              BasicService.getUniqueInstance().isNotBlank(this.label))
       );
    }
 }

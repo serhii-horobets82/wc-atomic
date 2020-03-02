@@ -34,13 +34,10 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    placeholder: string = '';
 
    @property()
-   searchBarState: string = SearchBarState.NORMAL;
+   trailingIcon: string = '';
 
    @property()
-   trailingIcon: string = 'search';
-
-   @property()
-   leadingIcon: string = '';
+   leftIcon: string = 'search';
 
    @property()
    value: string = '';
@@ -50,21 +47,26 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
 
    render() {
       return html`
-         <div class="search-bar" style="" @mouseout="${() => this.mouseOut()}">
+         <div class="search-bar">
             <slot></slot>
+            <component-icon
+               @component-icon-click="${() => {
+                  this.leftIconClicked();
+               }}"
+               icon="${this.leftIcon}"
+               clickable="true"
+            ></component-icon>
             <component-inputfield
                id="inputfieldComponent"
-               @component-inputfield-keyup="${() => this.keyUp()}"
+               @component-inputfield-keyup="${() => this.textfieldKeyUp()}"
                @component-icon-click="${(event: CustomEvent) => {
-                  this.iconClicked(event);
+                  this.textfieldIconClicked(event);
                }}"
                placeholder="${this.placeholder}"
                value="${this.value}"
                .automaticInfoText="${false}"
                @component-inputfield-focus="${() => this.textfieldOnFocus()}"
-               @component-inputfield-focus-out="${() => this.textfieldOnFocusOut()}"
                .inputfieldType="${InputfieldType.TEXT}"
-               leadingIcon="${this.leadingIcon}"
                trailingIcon="${this.trailingIcon}"
                .leadingIconClickable="${true}"
                .trailingIconClickable="${true}"
@@ -84,19 +86,11 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    protected inputDataChanged() {}
 
    private textfieldOnFocus() {
-      this.searchBarState = SearchBarState.SEARCH;
-      this.leadingIcon = 'keyboard_backspace';
+      this.leftIcon = 'keyboard_backspace';
+      this.setTrailingIcon();
    }
 
-   private textfieldOnFocusOut() {
-      if (this.searchBarState === SearchBarState.MOUSE_OUT) {
-         this.leadingIcon = '';
-         this.setTrailingIcon();
-      }
-      this.searchBarState = SearchBarState.NORMAL;
-   }
-
-   private iconClicked(event: CustomEvent) {
+   private textfieldIconClicked(event: CustomEvent) {
       let data: EventIconClickData = event.detail;
       switch (data.icon) {
          case 'close':
@@ -104,16 +98,11 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
                this.inputfieldComponent.inputElemet.value = '';
                this.inputfieldComponent.inputElemet.focus();
             }
-            this.setTrailingIcon();
             break;
       }
    }
 
-   private mouseOut() {
-      this.searchBarState = SearchBarState.MOUSE_OUT;
-   }
-
-   private keyUp() {
+   private textfieldKeyUp() {
       this.setTrailingIcon();
    }
 
@@ -121,7 +110,24 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
       if (BasicService.getUniqueInstance().isNotBlank(this.getOutputData().value)) {
          this.trailingIcon = 'close';
       } else {
-         this.trailingIcon = 'search';
+         this.trailingIcon = '';
+      }
+   }
+
+   private leftIconClicked() {
+      if (this.leftIcon == 'keyboard_backspace') {
+         if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
+            console.log('leave search mode...');
+            this.inputfieldComponent.inputElemet.value = '';
+         }
+         this.leftIcon = 'search';
+         this.trailingIcon = '';
+      } else if (this.leftIcon == 'search') {
+         console.log('enter search mode...');
+         this.leftIcon = 'keyboard_backspace';
+         if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
+            this.inputfieldComponent.inputElemet.focus();
+         }
       }
    }
 }

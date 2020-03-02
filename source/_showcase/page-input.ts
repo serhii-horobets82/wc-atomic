@@ -19,8 +19,6 @@ export class PageInputComponent extends PageAbstract {
                ${this.createInputfield(InputfieldType.EMAIL, 'EMAIL', '', '')}
                ${this.createInputfield(InputfieldType.SEARCH, 'SEARCH', '', '')}
                ${this.createInputfield(InputfieldType.RANGE, 'RANGE', '', '')}
-               ${this.createInputfield(InputfieldType.RESET, 'RESET', '', '')}
-               ${this.createInputfield(InputfieldType.SUBMIT, 'SUBMIT', '', '')}
                ${this.createInputfield(InputfieldType.TIME, 'TIME', '', '')}
                ${this.createInputfield(InputfieldType.WEEK, 'WEEK', '', '')}
                ${this.createInputfield(InputfieldType.MONTH, 'MONTH', '', '')}
@@ -28,8 +26,10 @@ export class PageInputComponent extends PageAbstract {
                ${this.createInputfield(InputfieldType.DATETIME_LOCAL, 'DATETIME_LOCAL', '', '')}
                ${this.createInputfield(InputfieldType.HIDDEN, 'HIDDEN', '', '')}
                ${this.createInputfield(InputfieldType.COLOR, 'COLOR', '', '')}
+               ${this.createInputfield(InputfieldType.COMBOBOX, 'COMBOBOX', '', '')}
+               ${this.createInputfield(InputfieldType.TEXTAREA, 'TEXTAREA', '', '')}
 
-               <component-combobox
+               <component-inputfield inputfieldType="${InputfieldType.COMBOBOX}"
                   .required="${true}"
                   label="Wähle ein Land aus"
                   selectedValue="de"
@@ -45,7 +45,7 @@ export class PageInputComponent extends PageAbstract {
                      <ComboboxOption>{ text: 'England', value: 'en' },
                      <ComboboxOption>{ text: 'Frankreich', value: 'fr' }
                   ]}"
-               ></component-combobox>
+               ></component-inputfield>
             </component-form>
          </component-flex-container>
       `;
@@ -59,6 +59,7 @@ export class PageInputComponent extends PageAbstract {
             trailingIcon="${trailingIcon}"
             leadingIcon="${leadingIcon}"
             required="true"
+            size="5"
          ></component-inputfield>
       `;
    }

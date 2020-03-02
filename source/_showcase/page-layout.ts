@@ -69,40 +69,40 @@ export class PageLayoutComponent extends PageAbstract {
                   Beispielkomponente begutachten, sowie den zugehörigen Quelltext anschauen.</component-typography
                >
                <component-form>
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
                      label="FlexDirection"
                      selectedValue="${this.direction}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
                      label="FlexWrap"
                      selectedValue="${this.wrap}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
                      label="FlexJustifyContent"
                      selectedValue="${this.justifyContent}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
                      label="AlignItems"
                      selectedValue="${this.alignItems}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
                      label="AlignContent"
                      selectedValue="${this.alignContent}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
                   <component-inputfield
                      label="itemFlexBasisValue"
@@ -110,19 +110,20 @@ export class PageLayoutComponent extends PageAbstract {
                      @component-inputfield-change="${(event: CustomEvent) => this.changeItemFlexBasis(event)}"
                   ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
                      label="KeylineAlignment"
                      selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineAlignment, KeylineAlignment)}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineAlignment(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
 
-                  <component-combobox
+                  <component-inputfield
                      .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
                      label="KeylineSize"
                      selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
-                  ></component-combobox>
+                  ></component-inputfield>
+                  
                </component-form>
             </component-flex-container>
 

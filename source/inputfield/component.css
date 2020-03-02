@@ -1,3 +1,5 @@
+@import '../css/visibility.css';
+
 .labelContainer {
    position: relative;
    visibility: hidden;
@@ -14,7 +16,7 @@
 .box {
    box-sizing: border-box;
    width: 100%;
-   height: var(--line-height-big);
+   min-height: var(--line-height-big);
    line-height: var(--line-height-big);
    display: flex;
    flex-wrap: nowrap;
@@ -22,20 +24,17 @@
    align-items: center;
 }
 
-
-
-input {
+input, select, textarea {
    font: inherit;
    box-sizing: border-box;
    width: 100%;
    border: none;
    padding-left: var(--space-normal);
    background-color: transparent;
-   height: var(--line-height);
    line-height: var(--line-height);
 }
 
-input:focus {
+input:focus, select:focus, textarea:focus {
    outline: none;
 }
 

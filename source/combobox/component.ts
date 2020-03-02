@@ -5,8 +5,8 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 import { KeyValueData } from '../form/component';
-import {ElementState} from "..";
-import {NotifyType} from "../meta-data/notify-type";
+import { ElementState } from '..';
+import { NotifyType } from '../meta-data/notify-type';
 
 const componentCSS = require('./component.css');
 
@@ -22,14 +22,13 @@ export class ComboboxOption {
       return options;
    }
 
-   static clazzToComboboxItems(enumeration: any): ComboboxOption[] {
+   static clazzToComboboxItems(clazz: any): ComboboxOption[] {
       let options: ComboboxOption[] = [];
-      Object.keys(enumeration).forEach((key) => {
-         options.push(<ComboboxOption>{ value: enumeration[key], text: key });
+      Object.keys(clazz).forEach((key) => {
+         options.push(<ComboboxOption>{ value: clazz[key], text: key });
       });
       return options;
    }
-
 }
 
 export class ComboboxInputData extends AbstractInputData {
@@ -55,9 +54,6 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    name: string = '';
 
    @property()
-   label: string = '';
-
-   @property()
    size: number = 1;
 
    @property()
@@ -69,86 +65,19 @@ export class ComboboxComponent extends AbstractComponent<ComboboxInputData, KeyV
    @property()
    selectedValue: string = '';
 
-   @property()
-   cssStyle: string = '';
-
-   @property()
-   leadingIcon: string = '';
-
-   @property()
-   trailingIcon: string = '';
-
-   @property()
-   assistiveText: string = '';
-
-   @property()
-   assistiveTextMessageType: string = ElementState.DEFAULT;
-
    @query('#selectElement')
    private selectElemet: HTMLSelectElement | undefined;
 
-   protected inputDataChanged() {
-      this.name = BasicService.getUniqueInstance().getValue(this.inputData.name, '');
-      this.label = BasicService.getUniqueInstance().getValue(this.inputData.label, '');
-      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, '');
-      this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, 1);
-      this.selectedValue = BasicService.getUniqueInstance().getValue(this.inputData.selectedValue, '');
-      this.options = BasicService.getUniqueInstance().getValue(this.inputData.options, <ComboboxOption>{});
-   }
-
    render() {
       return html`
-         <component-inputbox
-            labelText="${this.label}"
-            assistiveText="${this.assistiveText}"
-            assistiveTextMessageType="${this.assistiveTextMessageType}"
-            leadingIcon="${this.leadingIcon}"
-            trailingIcon="${this.trailingIcon}"
-            showLabel="true"
-         >
-            <select
-               id="selectElement"
-               ?required="${this.required}"
-               name="${this.name}"
-               style="${this.cssStyle}"
-               size="${this.size}"
-               @change="${(event: Event) => this.onChange(event)}"
-            >
-               ${guard(
-                  [this.options],
-                  () => html`
-                     ${repeat(
-                        this.options,
-                        (option) => option.value,
-                        (option) =>
-                           BasicService.getUniqueInstance().isEqual(this.selectedValue, option.value)
-                              ? html`
-                                   <option value="${option.value}" selected>${option.text}</option>
-                                `
-                              : html`
-                                   <option value="${option.value}">${option.text}</option>
-                                `
-                     )}
-                  `
-               )}
-            </select>
-         </component-inputbox>
       `;
    }
 
-   private onChange(event: Event) {
-      let selectElement: HTMLSelectElement | null = <HTMLSelectElement>event.target;
-      this.selectedValue = selectElement != null ? selectElement.value : '';
-      console.log('selected value change, new value: '.concat(this.selectedValue));
-      if (this.selectElemet != null && this.selectElemet.validationMessage != this.assistiveText) {
-         this.assistiveText = this.selectElemet.validationMessage;
-         if (this.selectElemet.validationMessage.length > 0) {
-            this.assistiveTextMessageType = NotifyType.ERROR;
-         } else {
-            this.assistiveTextMessageType = ElementState.DEFAULT;
-         }
-      }
-      this.dispatchSimpleCustomEvent(ComboboxComponent.EVENT_SELECTION_CHANGE, this.getOutputData());
+   protected inputDataChanged() {
+      this.name = BasicService.getUniqueInstance().getValue(this.inputData.name, '');
+      this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, 1);
+      this.selectedValue = BasicService.getUniqueInstance().getValue(this.inputData.selectedValue, '');
+      this.options = BasicService.getUniqueInstance().getValue(this.inputData.options, <ComboboxOption>{});
    }
 
    getOutputData(): KeyValueData {

@@ -1,6 +1,6 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { InputfieldComponent } from '../inputfield/component';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {InputfieldComponent, InputfieldType} from '../inputfield/component';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
@@ -77,7 +77,9 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
       let elements: Element[] = slotElement.assignedElements();
       for (let index = 0; index < elements.length; index++) {
          let element: Element = elements[index];
-         element.classList.add('formElement');
+         if (element instanceof InputfieldComponent && element.inputfieldType != InputfieldType.HIDDEN) {
+            element.classList.add('formElement');
+         }
       }
    }
 
