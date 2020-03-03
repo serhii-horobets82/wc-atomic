@@ -1,10 +1,10 @@
-import {repeat} from 'lit-html/directives/repeat';
-import {guard} from 'lit-html/directives/guard';
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {KeyValueData} from '../form/component';
-import {TypographyType} from '../typography/component';
-import {BasicService} from '@domoskanonos/frontend-basis';
+import { repeat } from 'lit-html/directives/repeat';
+import { guard } from 'lit-html/directives/guard';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { KeyValueData } from '../form/component';
+import { TypographyType } from '../typography/component';
+import { BasicService } from '@domoskanonos/frontend-basis';
 import {
    AlignContent,
    AlignItems,
@@ -164,6 +164,9 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    @property()
    selected: boolean = false;
 
+   @property()
+   options: KeyValueData[] = [];
+
    @query('#inputElement')
    inputElemet: HTMLInputElement | undefined;
 
@@ -185,42 +188,42 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                   .clickable="${this.leadingIconClickable}"
                ></component-icon>
                ${this.inputfieldType == InputfieldType.COMBOBOX
-          ? html`
+                  ? html`
                        <select id="selectElement" ?required="${this.required}" name="${this.name}" size="${this.size}">
                           ${guard(
-              [this.options],
-              () => html`
+                             [this.options],
+                             () => html`
                                 ${repeat(
-                  this.options,
-                  (option) => option.value,
-                  (option) =>
-                      BasicService.getUniqueInstance().isEqual(this.selectedValue, option.value)
-                          ? html`
-                                              <option value="${option.value}" selected>${option.text}</option>
+                                   this.options,
+                                   (option) => option.value,
+                                   (option) =>
+                                      BasicService.getUniqueInstance().isEqual(this.value, option.key)
+                                         ? html`
+                                              <option value="${option.key}" selected>${option.value}</option>
                                            `
-                          : html`
-                                              <option value="${option.value}">${option.text}</option>
+                                         : html`
+                                              <option value="${option.key}">${option.value}</option>
                                            `
-              )}
+                                )}
                              `
-          )}
+                          )}
                        </select>
                     `
-          : this.inputfieldType == InputfieldType.TEXTAREA
-              ? html`
+                  : this.inputfieldType == InputfieldType.TEXTAREA
+                  ? html`
                        <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.size}">
 ${this.value}</textarea
                        >
                     `
-              : html`
+                  : html`
                        <input
                           id="inputElement"
                           name="${this.name}"
                           type="${this.inputfieldType}"
                           value="${this.prepareValue(this.value)}"
                           placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) && !this.showLabelText()
-                  ? this.label
-                  : this.placeholder}"
+                             ? this.label
+                             : this.placeholder}"
                           size="${this.size}"
                           minlength="${this.minlength}"
                           maxlength="${this.maxlength}"
@@ -321,9 +324,9 @@ ${this.value}</textarea
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
                   outputValue =
-                      this.inputElemet != null
-                          ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
-                          : false;
+                     this.inputElemet != null
+                        ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
+                        : false;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
@@ -361,8 +364,8 @@ ${this.value}</textarea
       this.infoText = BasicService.getUniqueInstance().getValue(this.inputData.infoText, this.infoText);
       this.assistiveText = BasicService.getUniqueInstance().getValue(this.inputData.assistiveText, this.assistiveText);
       this.assistiveTextMessageType = BasicService.getUniqueInstance().getValue(
-          this.inputData.assistiveTextMessageType,
-          this.assistiveTextMessageType
+         this.inputData.assistiveTextMessageType,
+         this.assistiveTextMessageType
       );
       this.leadingIcon = BasicService.getUniqueInstance().getValue(this.inputData.leadingIcon, this.leadingIcon);
       this.trailingIcon = BasicService.getUniqueInstance().getValue(this.inputData.trailingIcon, this.trailingIcon);
@@ -396,9 +399,7 @@ ${this.value}</textarea
          case InputfieldType.MONTH:
          case InputfieldType.RADIO:
          case InputfieldType.RANGE:
-         case InputfieldType.RESET:
          case InputfieldType.SEARCH:
-         case InputfieldType.SUBMIT:
          case InputfieldType.TEL:
          case InputfieldType.TIME:
          case InputfieldType.URL:
@@ -406,25 +407,25 @@ ${this.value}</textarea
             break;
          case InputfieldType.NUMBER:
             this.infoText = BasicService.getUniqueInstance()
-                .getValue(this.min, '')
-                .toString()
-                .concat('-')
-                .concat(
-                    BasicService.getUniqueInstance()
-                        .getValue(this.max, '')
-                        .toString()
-                );
+               .getValue(this.min, '')
+               .toString()
+               .concat('-')
+               .concat(
+                  BasicService.getUniqueInstance()
+                     .getValue(this.max, '')
+                     .toString()
+               );
             break;
          case InputfieldType.TEXT:
          case InputfieldType.PASSWORD:
             this.infoText = this.value.length
-                .toString()
-                .concat('/')
-                .concat(
-                    BasicService.getUniqueInstance()
-                        .getValue(this.maxlength, '0')
-                        .toString()
-                );
+               .toString()
+               .concat('/')
+               .concat(
+                  BasicService.getUniqueInstance()
+                     .getValue(this.maxlength, '0')
+                     .toString()
+               );
             break;
       }
    }
@@ -434,25 +435,46 @@ ${this.value}</textarea
    }
 
    private showSelectedBorder(): boolean {
-      return this.showBorder() && this.selected && this.inputfieldType !== InputfieldType.RANGE && this.inputfieldType !== InputfieldType.COLOR;
+      return (
+         this.showBorder() &&
+         this.selected &&
+         this.inputfieldType !== InputfieldType.RANGE &&
+         this.inputfieldType !== InputfieldType.COLOR
+      );
    }
 
    private showLabelText(): boolean {
       return (
-          ((this.selected ||
-              this.inputfieldType === InputfieldType.COLOR ||
-              this.inputfieldType === InputfieldType.COMBOBOX ||
-              this.inputfieldType === InputfieldType.TEXTAREA ||
-              this.inputfieldType === InputfieldType.RANGE ||
-              this.inputfieldType === InputfieldType.CHECKBOX ||
-              this.inputfieldType === InputfieldType.MONTH ||
-              this.inputfieldType === InputfieldType.TIME ||
-              this.inputfieldType === InputfieldType.WEEK ||
-              this.inputfieldType === InputfieldType.DATE ||
-              this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
-              BasicService.getUniqueInstance().isNotBlank(this.label)) ||
-          (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) &&
-              BasicService.getUniqueInstance().isNotBlank(this.label))
+         ((this.selected ||
+            this.inputfieldType === InputfieldType.COLOR ||
+            this.inputfieldType === InputfieldType.COMBOBOX ||
+            this.inputfieldType === InputfieldType.TEXTAREA ||
+            this.inputfieldType === InputfieldType.RANGE ||
+            this.inputfieldType === InputfieldType.CHECKBOX ||
+            this.inputfieldType === InputfieldType.MONTH ||
+            this.inputfieldType === InputfieldType.TIME ||
+            this.inputfieldType === InputfieldType.WEEK ||
+            this.inputfieldType === InputfieldType.DATE ||
+            this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
+            BasicService.getUniqueInstance().isNotBlank(this.label)) ||
+         (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) &&
+            BasicService.getUniqueInstance().isNotBlank(this.label))
       );
+   }
+
+   static enumToComboboxItems(enumeration: any): KeyValueData[] {
+      let options: KeyValueData[] = [];
+      Object.keys(enumeration).forEach((key) => {
+         options.push(<KeyValueData>{ key: key, value: enumeration[key] });
+      });
+      return options;
+   }
+
+   static clazzToComboboxItems(clazz: any): KeyValueData[] {
+      let options: KeyValueData[] = [];
+      Object.keys(clazz).forEach((key) => {
+         options.push(<KeyValueData>{ key: clazz[key], value: key });
+      });
+      return options;
    }
 }

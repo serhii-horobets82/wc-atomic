@@ -2,8 +2,8 @@ import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {InputfieldComponent, InputfieldInputData} from '../inputfield/component';
-import {ComboboxComponent, ComboboxInputData, ComboboxOption} from '../combobox/component';
+import {ComboboxOption, InputfieldComponent, InputfieldInputData} from '../inputfield/component';
+import {ComboboxComponent, ComboboxInputData} from '../combobox/component';
 import {ButtonComponent, ButtonInputData} from '../button/component';
 import {IconComponent} from '../icon/component';
 import {BasicService, HttpClientService} from '@domoskanonos/frontend-basis';

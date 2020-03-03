@@ -5,8 +5,8 @@
    box-sizing: border-box;
 }
 
-.flex_container,
-::slotted(.flex_container) {
+.FLEX_CONTAINER,
+::slotted(.FLEX_CONTAINER) {
    margin: auto;
    display: flex;
    box-sizing: border-box;
@@ -39,8 +39,8 @@ height: min-content;
    width: 25%;
 }
 
-.flex_item,
-::slotted(.flex_item) {
+.FLEX_ITEM,
+::slotted(.FLEX_ITEM) {
    box-sizing: border-box;
    overflow: hidden;
 }
@@ -90,21 +90,36 @@ height: min-content;
    padding: 0;
 }
 
-@media only screen and (max-width: 768px) and (orientation: portrait) {
-   .container_100,
-   .container_75,
-   .container_50,
-   .container_25,
-   ::slotted(.container_100),
-   ::slotted(.container_75),
-   ::slotted(.container_50),
-   ::slotted(.container_25) {
+@media only screen and (max-width: 1280px) and (orientation: portrait) {
+
+   FLEX_CONTAINER.CONTAINER_FULL_WIDTH_TABLET {
+      width: 100%;
+   }
+   FLEX_CONTAINER.CONTAINER_ITEM_FULL_WIDTH_TABLET {
+      width: 100%;
+   }
+   FLEX_ITEM.ITEM_FULL_WIDTH_TABLET {
+      width: 100%;
+   }
+   FLEX_ITEM.CONTAINER_ITEM_FULL_WIDTH_TABLET {
       width: 100%;
    }
 
-   .flex_item,
-   ::slotted(.flex_item) {
-      /**max-width: 100% !important;
-      flex-basis: 100% !important;**/
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+
+   FLEX_CONTAINER.CONTAINER_FULL_WIDTH_SMARTPHONE {
+      width: 100%;
    }
+   FLEX_CONTAINER.CONTAINER_ITEM_FULL_WIDTH_SMARTPHONE {
+      width: 100%;
+   }
+   FLEX_ITEM.ITEM_FULL_WIDTH_SMARTPHONE {
+      width: 100%;
+   }
+   FLEX_ITEM.CONTAINER_ITEM_FULL_WIDTH_SMARTPHONE {
+      width: 100%;
+   }
+
 }

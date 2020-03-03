@@ -15,7 +15,6 @@ import {ElementListInputData,ElementListComponent} from './element-list/componen
 import {CardSupportingTextInputData,CardSupportingTextComponent} from './card/supporting-text/component';
 import {CardInputData,CardComponent} from './card/component';
 import {CodeInputData,CodeComponent} from './code/component';
-import {ComboboxOption,ComboboxInputData,ComboboxComponent} from './combobox/component';
 import {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
 import {DataProtectionInputData,DataProtection} from './data-protection/component';
 import {DividerInputData,DividerComponent} from './divider/component';
@@ -32,7 +31,12 @@ import {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/comp
 import {RichMediaType, RichMediaInputData,RichMediaComponent} from './rich-media/component';
 import {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 import {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
-import {InputfieldType,InputfieldInputData,InputfieldDataChangeEvent,InputfieldComponent} from './inputfield/component';
+import {
+    InputfieldType,
+    InputfieldInputData,
+    InputfieldDataChangeEvent,
+    InputfieldComponent
+} from './inputfield/component';
 import {LinkInputData,LinkComponent} from './link/component';
 import {ListInputData,ListComponent} from './list/container/component';
 import {ListItemInputData,ListItemComponent} from './list/item/component';
@@ -55,7 +59,6 @@ import {TeaserMenuElementInputData,TeaserElementMenuComponent} from './teaser/te
 import {BasisTemplateInputData,BasisTemplate} from './template-basis/component';
 import {TopBottomTemplateInputData,TopBottomTemplate} from './template-top-bottom-bars/component';
 import {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-header/component';
-import {TextareaInputData,TextareaComponent} from './textarea/component';
 import {TileInputData,TileComponent} from './tile/component';
 import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 import {TypographyType, TypographyInputData, TypographyComponent} from './typography/component';
@@ -81,7 +84,6 @@ export {CardSupportingTextInputData,CardSupportingTextComponent} from './card/su
 export {CardInputData,CardComponent} from './card/component';
 export {ContainerInputData,ContainerComponent} from './container/component';
 export {CodeInputData,CodeComponent} from './code/component';
-export {ComboboxOption,ComboboxInputData,ComboboxComponent} from './combobox/component';
 export {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
 export {DataProtectionInputData,DataProtection} from './data-protection/component';
 export {DividerInputData,DividerComponent} from './divider/component';
@@ -123,7 +125,6 @@ export {TeaserMenuElementInputData,TeaserElementMenuComponent} from './teaser/te
 export {BasisTemplateInputData,BasisTemplate} from './template-basis/component';
 export {TopBottomTemplateInputData,TopBottomTemplate} from './template-top-bottom-bars/component';
 export {TextWithHeaderInputData,TextWithHeaderComponent} from './text-with-header/component';
-export {TextareaInputData,TextareaComponent} from './textarea/component';
 export {TileInputData,TileComponent} from './tile/component';
 export {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 export {TypographyType, TypographyInputData, TypographyComponent} from './typography/component';
@@ -138,4 +139,3 @@ export {ColumnEventData} from "./services/iterator/iterator-component-service";
 
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
 import './_showcase/showcase-app';
-

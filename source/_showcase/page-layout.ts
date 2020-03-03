@@ -8,16 +8,24 @@ import {
    FlexJustifyContent,
    FlexWrap,
    KeylineAlignment,
-   KeylineSize
+   KeylineSize,
+   MobileResizeMode
 } from '../flex-container/component';
-import { ComboboxOption } from '../combobox/component';
-import {ElementState, SpacerSize, TypographyType} from '..';
+import { ElementState, InputfieldType, SpacerSize, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
+import {ComboboxOption} from "../inputfield/component";
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
    @property()
+   resizeModeSmartphone: string = MobileResizeMode.NONE;
+
+   @property()
+   resizeModeTablet: string = MobileResizeMode.NONE;
+
+   @property()
    itemFlexBasisValue: string = 'auto';
+
    @property()
    direction: string = FlexDirection.ROW;
 
@@ -70,6 +78,23 @@ export class PageLayoutComponent extends PageAbstract {
                >
                <component-form>
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
+                     .options="${ComboboxOption.enumToComboboxItems(MobileResizeMode)}"
+                     label="MobileResizeModeSmartphone"
+                     selectedValue="${this.resizeModeSmartphone}"
+                     @combobox-selection-change="${(event: CustomEvent) => this.changeResizeModeSmartphone(event)}"
+                  ></component-inputfield>
+
+                  <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
+                     .options="${ComboboxOption.enumToComboboxItems(MobileResizeMode)}"
+                     label="MobileResizeModeTablet"
+                     selectedValue="${this.resizeModeTablet}"
+                     @combobox-selection-change="${(event: CustomEvent) => this.changeResizeModeTablet(event)}"
+                  ></component-inputfield>
+
+                  <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
                      label="FlexDirection"
                      selectedValue="${this.direction}"
@@ -77,6 +102,7 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
                      label="FlexWrap"
                      selectedValue="${this.wrap}"
@@ -84,6 +110,7 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
                      label="FlexJustifyContent"
                      selectedValue="${this.justifyContent}"
@@ -91,6 +118,7 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
                      label="AlignItems"
                      selectedValue="${this.alignItems}"
@@ -98,6 +126,7 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
                      label="AlignContent"
                      selectedValue="${this.alignContent}"
@@ -111,6 +140,7 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
                      label="KeylineAlignment"
                      selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineAlignment, KeylineAlignment)}"
@@ -118,12 +148,12 @@ export class PageLayoutComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-inputfield
+                     .inputfieldType="${InputfieldType.COMBOBOX}"
                      .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
                      label="KeylineSize"
                      selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}"
                      @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
                   ></component-inputfield>
-                  
                </component-form>
             </component-flex-container>
 
@@ -131,6 +161,8 @@ export class PageLayoutComponent extends PageAbstract {
                <component-flex-container
                   id="sample-flex-container"
                   containerClazz=""
+                  .resizeModeSmartphone="${this.resizeModeSmartphone}"
+                  .resizeModeTablet="${this.resizeModeTablet}"
                   itemFlexBasisValue="${this.itemFlexBasisValue}"
                   .direction="${this.direction}"
                   .wrap="${this.wrap}"
@@ -177,16 +209,36 @@ export class PageLayoutComponent extends PageAbstract {
 
                <component-code
                   >&lt;component-flex-container containerClazz="container_100"
-                  .direction="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(this.direction, FlexDirection)}&#125;"
+                  .direction="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(
+                     this.direction,
+                     FlexDirection
+                  )}&#125;"
                   .wrap="$&#123;FlexWrap.${BasicService.getUniqueInstance().getEnumKey(this.wrap, FlexWrap)}&#125;"
                   .justifyContent="$&#123;FlexJustifyContent.${BasicService.getUniqueInstance().getEnumKey(
                      this.justifyContent,
                      FlexJustifyContent
                   )}&#125;"
-                  .alignItems="$&#123;AlignItems.${BasicService.getUniqueInstance().getEnumKey(this.alignItems, AlignItems)}&#125;"
-                  .alignContent="$&#123;AlignContent.${BasicService.getUniqueInstance().getEnumKey(this.alignContent, AlignContent)}&#125;"
+                  .resizeModeTablet="$&#123;MobileResizeMode.${BasicService.getUniqueInstance().getEnumKey(
+                     this.resizeModeTablet,
+                     MobileResizeMode
+                  )}&#125;"
+                  .resizeModeSmartphone="$&#123;MobileResizeMode.${BasicService.getUniqueInstance().getEnumKey(
+                     this.resizeModeSmartphone,
+                     MobileResizeMode
+                  )}&#125;"
+                  .alignItems="$&#123;AlignItems.${BasicService.getUniqueInstance().getEnumKey(
+                     this.alignItems,
+                     AlignItems
+                  )}&#125;"
+                  .alignContent="$&#123;AlignContent.${BasicService.getUniqueInstance().getEnumKey(
+                     this.alignContent,
+                     AlignContent
+                  )}&#125;"
                   itemFlexBasisValue="${this.itemFlexBasisValue}"
-                  .keylineSize="$&#123;KeylineSize.${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}&#125;"
+                  .keylineSize="$&#123;KeylineSize.${BasicService.getUniqueInstance().getEnumKey(
+                     this.keylineSize,
+                     KeylineSize
+                  )}&#125;"
                   .keylineAlignment="$&#123;KeylineAlignment.${BasicService.getUniqueInstance().getEnumKey(
                      this.keylineAlignment,
                      KeylineAlignment
@@ -229,5 +281,13 @@ export class PageLayoutComponent extends PageAbstract {
 
    private changeItemFlexBasis(event: CustomEvent) {
       this.itemFlexBasisValue = event.detail.outputData.value;
+   }
+
+   private changeResizeModeSmartphone(event: CustomEvent) {
+      this.resizeModeSmartphone = event.detail.outputData.value;
+   }
+
+   private changeResizeModeTablet(event: CustomEvent) {
+      this.resizeModeTablet = event.detail.outputData.value;
    }
 }

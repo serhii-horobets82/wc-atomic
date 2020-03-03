@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputfieldType } from '../inputfield/component';
-import { ComboboxOption } from '../combobox/component';
+import {InputfieldType} from '../inputfield/component';
+import {KeyValueData} from "..";
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
@@ -34,16 +34,16 @@ export class PageInputComponent extends PageAbstract {
                   label="Wähle ein Land aus"
                   selectedValue="de"
                   .options="${[
-                     <ComboboxOption>{
-                        text: '-',
-                        value: ''
+                     <KeyValueData>{
+                        value: '-',
+                        key: ''
                      },
-                     <ComboboxOption>{
-                        text: 'Deutschland',
-                        value: 'de'
+                     <KeyValueData>{
+                        value: 'Deutschland',
+                        key: 'de'
                      },
-                     <ComboboxOption>{ text: 'England', value: 'en' },
-                     <ComboboxOption>{ text: 'Frankreich', value: 'fr' }
+                     <KeyValueData>{ value: 'England', key: 'en' },
+                     <KeyValueData>{ value: 'Frankreich', key: 'fr' }
                   ]}"
                ></component-inputfield>
             </component-form>

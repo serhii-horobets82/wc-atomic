@@ -1,11 +1,19 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
-import { guard } from 'lit-html/directives/guard';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { ComponentLoader } from '../abstract/component-loader';
-import { BasicService } from '@domoskanonos/frontend-basis';
+import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
+import {repeat} from 'lit-html/directives/repeat';
+import {guard} from 'lit-html/directives/guard';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {ComponentLoader} from '../abstract/component-loader';
+import {BasicService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
+
+
+export class MobileResizeMode {
+   static NONE = 'NONE';
+   static CONTAINER_FULL_WIDTH = 'CONTAINER_FULL_WIDTH';
+   static ITEM_FULL_WIDTH = 'ITEM_FULL_WIDTH';
+   static CONTAINER_ITEM_FULL_WIDTH = 'CONTAINER_ITEM_FULL_WIDTH';
+}
 
 export class KeylineAlignment {
    static HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL';
@@ -98,6 +106,12 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    static IDENTIFIER: string = 'FlexComponent';
 
    @property()
+   resizeModeSmartphone: string = MobileResizeMode.NONE;
+
+   @property()
+   resizeModeTablet: string = MobileResizeMode.NONE;
+
+   @property()
    flexDirection: string = FlexDirection.ROW;
 
    @property()
@@ -136,7 +150,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    render() {
       return html`
          <div
-            class="flex_container ${this.containerClazz}"
+            class="FLEX_CONTAINER ${this.containerClazz} ${this.resizeModeSmartphone}_SMARTPHONE ${this.resizeModeTablet}_TABLET"
             style="flex-direction: ${this.flexDirection}; flex-wrap: ${this.flexWrap}; justify-content: ${this
                .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
          >
@@ -147,7 +161,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
                      ${repeat(
                         this.inputDataItems,
                         (componentInputData, index) => html`
-                           <div class="flex_item" style="${this.getFlexItemStyle(index)};">
+                           <div class="FLEX_ITEM ${this.resizeModeSmartphone}_SMARTPHONE ${this.resizeModeTablet}_TABLET" style="${this.getFlexItemStyle(index)};">
                               ${ComponentLoader.getUniqueInstance().createComponentFromInputData(componentInputData)}
                            </div>
                         `
@@ -193,7 +207,9 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          let element: Element = elements[index];
 
          let classList = element.classList;
-         classList.add('flex_item');
+         classList.add('FLEX_ITEM');
+         classList.add(this.resizeModeSmartphone.concat('_SMARTPHONE'));
+         classList.add(this.resizeModeTablet.concat('_TABLET'));
 
          classList.remove(KeylineAlignment.BOTH);
          classList.remove(KeylineAlignment.HORIZONTAL);
