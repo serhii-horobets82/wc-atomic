@@ -1,8 +1,5 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import {ComboboxOption, InputfieldComponent} from '../inputfield/component';
-import { SimpleTableRowData } from '../simple-table/component';
-import { LinkComponent, LinkInputData, TypographyType } from '..';
 
 @customElement('page-form')
 export class PageFormComponent extends PageAbstract {
