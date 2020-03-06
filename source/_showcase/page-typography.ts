@@ -11,10 +11,10 @@ import { I18nService } from '@domoskanonos/frontend-basis';
 export class PageTypographyComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="100%">
             <component-flex-container
-               containerClazz="container_100"
-               .justifyContent="${FlexJustifyContent.FLEX_START}"
+               .containerClazzes="${["CONTAINER_100"]}"
+               .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
                .alignItems="${AlignItems.CENTER}"
             >
                <component-icon
@@ -54,7 +54,7 @@ export class PageTypographyComponent extends PageAbstract {
             </component-simple-table>
          
          
-         <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_100"]}" itemFlexBasisValue="100%">
 
             <component-typography .typographyType="${TypographyType.H1}">Headline 1</component-typography>
             <component-typography .typographyType="${TypographyType.H2}">Headline 2</component-typography>

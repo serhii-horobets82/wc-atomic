@@ -1,19 +1,19 @@
-.backgroundColor, ::slotted(.backgroundColor) {
+.BACKGROUND_COLOR, ::slotted(.BACKGROUND_COLOR) {
     color: var(--app-color-on-background);
     background-color: var(--app-color-background);
 }
 
-.surfaceColor, ::slotted(.surfaceColor) {
+.SURFACE_COLOR, ::slotted(.SURFACE_COLOR) {
     color: var(--app-color-on-surface);
     background-color: var(--app-color-surface);
 }
 
-.secondaryColor, ::slotted(.secondaryColor) {
+.SECONDARY_COLOR, ::slotted(.SECONDARY_COLOR) {
     color: var(--app-color-on-secondary);
     background-color: var(--app-color-secondary);
 }
 
-.primaryColor, ::slotted(.primaryColor) {
+.PRIMARY_COLOR, ::slotted(.PRIMARY_COLOR) {
     color: var(--app-color-on-primary);
     background-color: var(--app-color-primary);
 }

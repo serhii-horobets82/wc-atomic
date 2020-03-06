@@ -8,7 +8,7 @@ export class PageRegister extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          <component-flex-container
-            containerClazz="container_50"
+            .containerClazzes="${["CONTAINER_50"]}
             itemFlexBasisValue="100%"
          >
             <component-register @component-register-submit="${(event: CustomEvent) => this.register(event)}"></component-register>

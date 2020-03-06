@@ -10,7 +10,7 @@ export class PageTableComponent extends PageAbstract {
         return html`
         
         
-         <component-flex-container containerClazz="container_100">
+         <component-flex-container .containerClazzes="${["CONTAINER_100"]}">
          
             <component-table requestPath="/AUTHUSER/FIND" .headers="${[<TableHeaderInputData>{
             componentInputData: <TypographyInputData>{componentIdentifier: TypographyComponent.IDENTIFIER},

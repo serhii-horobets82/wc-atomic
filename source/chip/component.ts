@@ -17,7 +17,7 @@ export class ChipComponent extends AbstractComponent<ChipInputData, undefined> {
    static IDENTIFIER: string = 'ChipComponent';
 
    @property()
-   clazz: string = 'primaryColor';
+   clazz: string = 'PRIMARY_COLOR';
 
    @property()
    spacerSize: SpacerSize = SpacerSize.LITTLE;

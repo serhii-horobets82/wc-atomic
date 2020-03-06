@@ -18,7 +18,7 @@ import {CodeInputData,CodeComponent} from './code/component';
 import {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
 import {DataProtectionInputData,DataProtection} from './data-protection/component';
 import {DividerInputData,DividerComponent} from './divider/component';
-import {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
+import {FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {ChipInputData,ChipComponent} from './chip/component';

@@ -54,7 +54,7 @@ export class PageUsers extends PageAbstract {
 
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_75">
+         <component-flex-container .containerClazzes="${["CONTAINER_75"]}">
             <component-table
                @component-iterator-column-clicked="${(event: CustomEvent) => {
          this.columnTableClickedEvent(event);

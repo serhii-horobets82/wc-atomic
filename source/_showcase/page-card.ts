@@ -11,7 +11,7 @@ import { FlexJustifyContent } from '../flex-container/component';
 export class PageCardComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_25">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}>
             <component-card>
                <effect-ripple>
                   <component-rich-media
@@ -38,7 +38,7 @@ export class PageCardComponent extends PageAbstract {
                </effect-ripple>
                <component-card-actions>
                   <component-flex-container>
-                     <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                     <component-toolbar .flexJustifyContent="${FlexJustifyContent.FLEX_END}">
                         <component-icon icon="favorite_border"></component-icon>
                         <component-icon icon="star_border"></component-icon>
                         <component-icon icon="star_border"></component-icon>

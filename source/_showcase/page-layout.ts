@@ -3,25 +3,23 @@ import { PageAbstract } from './page-abstract';
 import {
    AlignContent,
    AlignItems,
+   ContainerClazzValues,
    FlexComponent,
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
-   KeylineAlignment,
-   KeylineSize,
-   MobileResizeMode
+   ItemClazzValues
 } from '../flex-container/component';
-import { ElementState, InputfieldType, SpacerSize, TypographyType } from '..';
+import { ElementState, InputfieldComponent, InputfieldType, SpacerSize, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import {ComboboxOption} from "../inputfield/component";
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
    @property()
-   resizeModeSmartphone: string = MobileResizeMode.NONE;
+   containerClazzes: string[] = [ContainerClazzValues.CONTAINER_100, ContainerClazzValues.SECONDARY_COLOR];
 
    @property()
-   resizeModeTablet: string = MobileResizeMode.NONE;
+   itemClazzes: string[] = [ItemClazzValues.TABLET_MAX_WIDTH, ItemClazzValues.SMARTPHONE_MAX_WIDTH];
 
    @property()
    itemFlexBasisValue: string = 'auto';
@@ -30,10 +28,10 @@ export class PageLayoutComponent extends PageAbstract {
    direction: string = FlexDirection.ROW;
 
    @property()
-   wrap: string = FlexWrap.WRAP;
+   flexWrap: string = FlexWrap.WRAP;
 
    @property()
-   justifyContent: string = FlexJustifyContent.FLEX_START;
+   flexJustifyContent: string = FlexJustifyContent.FLEX_START;
 
    @property()
    alignItems: string = AlignItems.STRETCH;
@@ -41,190 +39,91 @@ export class PageLayoutComponent extends PageAbstract {
    @property()
    alignContent: string = AlignContent.STRETCH;
 
-   @property()
-   keylineAlignment: string = KeylineAlignment.BOTH;
-
-   @property()
-   keylineSize: string = KeylineSize.LITTLE;
-
    @query('#sample-flex-container')
    flexContainer: FlexComponent | undefined;
 
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_75" .keylineSize="${KeylineSize.MEDIUM}" itemFlexBasisValue="50%">
-            <component-flex-container .keylineSize="${KeylineSize.MEDIUM}" itemFlexBasisValue="100%">
-               <component-flex-container
-                  containerClazz="container_100"
-                  .justifyContent="${FlexJustifyContent.FLEX_START}"
-                  .alignItems="${AlignItems.CENTER}"
+         <component-flex-container
+            .containerClazzes="${[ContainerClazzValues.CONTAINER_75]}"
+            .itemClazzes="${[ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
+            .itemFlexBasisValues="${['100%', '50%', '50%']}"
+         >
+            <component-flex-container
+               .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+               .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
+               .alignItems="${AlignItems.CENTER}"
+               itemFlexBasisValue="100%"
+            >
+               <component-typography .typographyType="${TypographyType.H2}">Layout System</component-typography>
+               <component-typography .typographyType="${TypographyType.H4}"
+                  >Positionieren und Ausrichten von Elementen</component-typography
                >
-                  <component-icon
-                     .clickable="false"
-                     icon="dashboard"
-                     color="#25498d"
-                     iconSize="96"
-                     elementState="${ElementState.ACTIVE_FOCUSED}"
-                     .withIconSpace="${false}"
-                  ></component-icon>
-
-                  <component-typography type="${TypographyType.H2}">Layout System</component-typography>
-               </component-flex-container>
 
                <component-typography type="${TypographyType.BODY1}"
-                  ><i>Component Flex Container</i> basiert auf dem HTML 5 Flex Contaier Layout (display: flex). Auf dieser Seite
-                  können Sie die Komponente und deren Attribute ausführlich testen. Sie können das Ergebnis Ihrer Auswahl in der
-                  Beispielkomponente begutachten, sowie den zugehörigen Quelltext anschauen.</component-typography
+                  >Die Komponente <i>component-flex-container</i> basiert auf dem CSS Flexbox Layout Modell (display: flex).
+                  Auf dieser Seite können Sie diese Komponente und deren Eigenschaften ausführlich testen.</component-typography
                >
-               <component-form>
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(MobileResizeMode)}"
-                     label="MobileResizeModeSmartphone"
-                     selectedValue="${this.resizeModeSmartphone}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeResizeModeSmartphone(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(MobileResizeMode)}"
-                     label="MobileResizeModeTablet"
-                     selectedValue="${this.resizeModeTablet}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeResizeModeTablet(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(FlexDirection)}"
-                     label="FlexDirection"
-                     selectedValue="${this.direction}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(FlexWrap)}"
-                     label="FlexWrap"
-                     selectedValue="${this.wrap}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(FlexJustifyContent)}"
-                     label="FlexJustifyContent"
-                     selectedValue="${this.justifyContent}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(AlignItems)}"
-                     label="AlignItems"
-                     selectedValue="${this.alignItems}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(AlignContent)}"
-                     label="AlignContent"
-                     selectedValue="${this.alignContent}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     label="itemFlexBasisValue"
-                     value="${this.itemFlexBasisValue}"
-                     @component-inputfield-change="${(event: CustomEvent) => this.changeItemFlexBasis(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(KeylineAlignment)}"
-                     label="KeylineAlignment"
-                     selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineAlignment, KeylineAlignment)}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineAlignment(event)}"
-                  ></component-inputfield>
-
-                  <component-inputfield
-                     .inputfieldType="${InputfieldType.COMBOBOX}"
-                     .options="${ComboboxOption.enumToComboboxItems(KeylineSize)}"
-                     label="KeylineSize"
-                     selectedValue="${BasicService.getUniqueInstance().getEnumKey(this.keylineSize, KeylineSize)}"
-                     @combobox-selection-change="${(event: CustomEvent) => this.changeKeylineSize(event)}"
-                  ></component-inputfield>
-               </component-form>
             </component-flex-container>
 
-            <component-flex-container .keylineSize="${KeylineSize.MEDIUM}" itemFlexBasisValue="100%">
+            <component-container>
                <component-flex-container
                   id="sample-flex-container"
-                  containerClazz=""
-                  .resizeModeSmartphone="${this.resizeModeSmartphone}"
-                  .resizeModeTablet="${this.resizeModeTablet}"
+                  .containerClazzes="${this.containerClazzes}"
+                  .itemClazzes="${this.itemClazzes}"
+                  cssStyle="height:500px;"
                   itemFlexBasisValue="${this.itemFlexBasisValue}"
                   .direction="${this.direction}"
-                  .wrap="${this.wrap}"
-                  .justifyContent="${this.justifyContent}"
-                  .keylineAlignment="${this.keylineAlignment}"
+                  .flexWrap="${this.flexWrap}"
+                  .flexJustifyContent="${this.flexJustifyContent}"
                   .alignItems="${this.alignItems}"
                   .alignContent="${this.alignContent}"
-                  .keylineSize="${this.keylineSize}"
                >
                   <component-spacer
-                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-primary)"
+                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
                   ></component-spacer>
                   <component-spacer
-                     cssStyle="width:200px; height: 100px; background-color:var(--app-color-secondary)"
+                     cssStyle="width:200px; height: 100px; background-color:var(--app-color-primary)"
                   ></component-spacer>
                   <component-spacer
-                     cssStyle="width:100px; height: 200px; background-color:var(--app-color-primary)"
+                     cssStyle="width:100px; height: 200px; background-color:var(--app-color-surface)"
                   ></component-spacer>
                   <component-spacer
-                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-primary)"
+                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
                   ></component-spacer>
                   <component-spacer
-                     cssStyle="width:100px; height: 100px; background-color:var(--app-color-primary)"
+                     cssStyle="width:100px; height: 100px; background-color:var(--app-color-surface)"
                   ></component-spacer>
                   <component-spacer
-                     cssStyle="width:50px; height: 50px; background-color:var(--app-color-primary)"
-                  ></component-spacer>
-
-                  <component-spacer
-                     .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-primary)"
+                     cssStyle="width:50px; height: 50px; background-color:var(--app-color-surface)"
                   ></component-spacer>
 
                   <component-spacer
                      .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-primary)"
+                     cssStyle="background-color:var(--app-color-surface)"
                   ></component-spacer>
 
                   <component-spacer
                      .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-primary)"
+                     cssStyle="background-color:var(--app-color-surface)"
+                  ></component-spacer>
+
+                  <component-spacer
+                     .size="${SpacerSize.BIG}"
+                     cssStyle="background-color:var(--app-color-surface)"
                   ></component-spacer>
                </component-flex-container>
 
                <component-code
-                  >&lt;component-flex-container containerClazz="container_100"
+                  >&lt;component-flex-container .containerClazzes="${['CONTAINER_100']}"
                   .direction="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(
                      this.direction,
                      FlexDirection
                   )}&#125;"
-                  .wrap="$&#123;FlexWrap.${BasicService.getUniqueInstance().getEnumKey(this.wrap, FlexWrap)}&#125;"
-                  .justifyContent="$&#123;FlexJustifyContent.${BasicService.getUniqueInstance().getEnumKey(
-                     this.justifyContent,
+                  .flexWrap="$&#123;FlexWrap.${BasicService.getUniqueInstance().getEnumKey(this.flexWrap, FlexWrap)}&#125;"
+                  .flexJustifyContent="$&#123;FlexJustifyContent.${BasicService.getUniqueInstance().getEnumKey(
+                     this.flexJustifyContent,
                      FlexJustifyContent
-                  )}&#125;"
-                  .resizeModeTablet="$&#123;MobileResizeMode.${BasicService.getUniqueInstance().getEnumKey(
-                     this.resizeModeTablet,
-                     MobileResizeMode
-                  )}&#125;"
-                  .resizeModeSmartphone="$&#123;MobileResizeMode.${BasicService.getUniqueInstance().getEnumKey(
-                     this.resizeModeSmartphone,
-                     MobileResizeMode
                   )}&#125;"
                   .alignItems="$&#123;AlignItems.${BasicService.getUniqueInstance().getEnumKey(
                      this.alignItems,
@@ -234,60 +133,96 @@ export class PageLayoutComponent extends PageAbstract {
                      this.alignContent,
                      AlignContent
                   )}&#125;"
-                  itemFlexBasisValue="${this.itemFlexBasisValue}"
-                  .keylineSize="$&#123;KeylineSize.${BasicService.getUniqueInstance().getEnumKey(
-                     this.keylineSize,
-                     KeylineSize
-                  )}&#125;"
-                  .keylineAlignment="$&#123;KeylineAlignment.${BasicService.getUniqueInstance().getEnumKey(
-                     this.keylineAlignment,
-                     KeylineAlignment
-                  )}&#125;"
-                  &gt; &lt;/component-tab-content&gt;
+                  itemFlexBasisValue="${this.itemFlexBasisValue}" &gt; &lt;/component-tab-content&gt;
                </component-code>
-            </component-flex-container>
+            </component-container>
+
+            <component-form>
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(FlexDirection)}"
+                  label="FlexDirection"
+                  value="${this.direction}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeFlexDirection(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(ContainerClazzValues)}"
+                  label="ContainerClazzValues"
+                  value="${this.containerClazzes}"
+                  size="10"
+                  multiple="true"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeContainerClazzes(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(FlexWrap)}"
+                  label="FlexWrap"
+                  value="${this.flexWrap}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeFlexWrap(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(FlexJustifyContent)}"
+                  label="FlexJustifyContent"
+                  value="${this.flexJustifyContent}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeFlexJustify(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(AlignItems)}"
+                  label="AlignItems"
+                  value="${this.alignItems}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeAlignItems(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(AlignContent)}"
+                  label="AlignContent"
+                  value="${this.alignContent}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeAlignContent(event)}"
+               ></component-inputfield>
+
+               <component-inputfield
+                  label="itemFlexBasisValue"
+                  value="${this.itemFlexBasisValue}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeItemFlexBasis(event)}"
+               ></component-inputfield>
+            </component-form>
          </component-flex-container>
       `;
    }
 
-   private changeKeylineAlignment(event: CustomEvent) {
-      this.keylineAlignment = (<any>KeylineAlignment)[event.detail.value];
-      console.log(this.keylineAlignment);
-   }
-
-   private changeKeylineSize(event: CustomEvent) {
-      this.keylineSize = (<any>KeylineSize)[event.detail.value];
-   }
-
    private changeFlexDirection(event: CustomEvent) {
-      this.direction = (<any>FlexDirection)[event.detail.value];
+      this.direction = (<any>FlexDirection)[event.detail.outputData.value];
    }
 
    private changeFlexWrap(event: CustomEvent) {
-      this.wrap = (<any>FlexWrap)[event.detail.value];
+      this.flexWrap = (<any>FlexWrap)[event.detail.outputData.value];
    }
 
    private changeFlexJustify(event: CustomEvent) {
-      this.justifyContent = (<any>FlexJustifyContent)[event.detail.value];
+      this.flexJustifyContent = (<any>FlexJustifyContent)[event.detail.outputData.value];
    }
 
    private changeAlignItems(event: CustomEvent) {
-      this.alignItems = (<any>AlignItems)[event.detail.value];
+      this.alignItems = (<any>AlignItems)[event.detail.outputData.value];
    }
 
    private changeAlignContent(event: CustomEvent) {
-      this.alignContent = (<any>AlignContent)[event.detail.value];
+      this.alignContent = (<any>AlignContent)[event.detail.outputData.value];
    }
 
    private changeItemFlexBasis(event: CustomEvent) {
       this.itemFlexBasisValue = event.detail.outputData.value;
    }
 
-   private changeResizeModeSmartphone(event: CustomEvent) {
-      this.resizeModeSmartphone = event.detail.outputData.value;
-   }
-
-   private changeResizeModeTablet(event: CustomEvent) {
-      this.resizeModeTablet = event.detail.outputData.value;
+   private changeContainerClazzes(event: CustomEvent) {
+      this.containerClazzes = event.detail.outputData.value;
    }
 }

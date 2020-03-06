@@ -3,7 +3,6 @@ import { PageAbstract } from './page-abstract';
 import {
    AlignContent,
    AlignItems,
-   ComboboxOption,
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
@@ -38,17 +37,15 @@ export class PageIntroduction extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          <component-flex-container
-            containerClazz="container_100"
+            .containerClazzes="${["CONTAINER_100"]}"
             .direction="${FlexDirection.ROW}"
             .wrap="${FlexWrap.WRAP}"
-            .justifyContent="${FlexJustifyContent.CENTER}"
+            .flexJustifyContent="${FlexJustifyContent.CENTER}"
             .alignItems="${AlignItems.CENTER}"
             .alignContent="${AlignContent.FLEX_START}"
             itemFlexBasisValue="50%"
-            .keylineSize="${KeylineSize.ZERO}"
-            .keylineAlignment="${KeylineAlignment.BOTH}"
          >
-            <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+            <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="100%">
                <component-typography .typographyType="${TypographyType.H2}">WC-Atomic</component-typography>
                <component-typography .typographyType="${TypographyType.H6}"
                   >Erstelle wunderbare PWA Single Page Anwendungen</component-typography
@@ -64,21 +61,21 @@ export class PageIntroduction extends PageAbstract {
          </component-flex-container>
 
          <component-flex-container
-            containerClazz="container_100"
+            .containerClazzes="${["CONTAINER_100"]}"
             .direction="${FlexDirection.ROW}"
             .wrap="${FlexWrap.WRAP}"
-            .justifyContent="${FlexJustifyContent.CENTER}"
+            .flexJustifyContent="${FlexJustifyContent.CENTER}"
             .alignItems="${AlignItems.CENTER}"
             .alignContent="${AlignContent.FLEX_START}"
             itemFlexBasisValue="25%"
-            .keylineSize="${KeylineSize.ZERO}"
-            .keylineAlignment="${KeylineAlignment.BOTH}"
+            
+            
          >
             <component-rich-media src="https://picsum.photos/500/400" text="Mein Bild"></component-rich-media>
             <component-rich-media src="https://picsum.photos/550/400" text="Mein Bild"></component-rich-media>
             <component-rich-media src="https://picsum.photos/600/400" text="Mein Bild"></component-rich-media>
 
-            <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+            <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="100%">
                <component-typography .typographyType="${TypographyType.H4}">Bildquelle</component-typography>
                <component-typography .typographyType="${TypographyType.BODY1}">
                   Die hier abgebildeten Fotos stammen von:
@@ -87,16 +84,16 @@ export class PageIntroduction extends PageAbstract {
             </component-flex-container>
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_75" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="100%">
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
             <component-typography .typographyType="${TypographyType.H4}">Installation und Quelldateien</component-typography>
             <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-flex-container
-               containerClazz="container_100"
+               .containerClazzes="${["CONTAINER_100"]}"
                itemFlexBasisValue="33.3%"
                .keylineSize="${KeylineSize.MEDIUM}"
-               .keylineAlignment="${KeylineAlignment.BOTH}"
+               
             >
                <component-card>
                   <component-card-primary-title>
@@ -118,7 +115,7 @@ export class PageIntroduction extends PageAbstract {
 
                   <component-card-actions>
                      <component-flex-container>
-                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                        <component-toolbar .flexJustifyContent="${FlexJustifyContent.FLEX_END}">
                            <component-icon icon="favorite_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>
@@ -147,7 +144,7 @@ export class PageIntroduction extends PageAbstract {
 
                   <component-card-actions>
                      <component-flex-container>
-                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                        <component-toolbar .flexJustifyContent="${FlexJustifyContent.FLEX_END}">
                            <component-icon icon="favorite_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>
@@ -177,7 +174,7 @@ export class PageIntroduction extends PageAbstract {
 
                   <component-card-actions>
                      <component-flex-container>
-                        <component-toolbar .justifyContent="${FlexJustifyContent.FLEX_END}">
+                        <component-toolbar .flexJustifyContent="${FlexJustifyContent.FLEX_END}">
                            <component-icon icon="favorite_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>
                            <component-icon icon="star_border"></component-icon>

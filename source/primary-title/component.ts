@@ -32,13 +32,13 @@ export class PrimaryTitleComponent extends AbstractComponent<PrimaryTitleInputDa
    render() {
       return html`
          <component-flex-container
-            containerClazz="container_100"
+            .containerClazzes="${["CONTAINER_100"]}"
             .itemFlexBasisValues="${this.richMedia != undefined ? ['20%', '80%'] : ['100%']}"
          >
             <component-container .rendered="${this.richMedia != undefined}">
                <component-rich-media .inputData="${this.richMedia}"></component-rich-media>
             </component-container>
-            <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%" .>
+            <component-flex-container .containerClazzes="${["CONTAINER_100"]}" itemFlexBasisValue="100%" .>
                <component-typography .inputData="${this.primaryTitle}"></component-typography>
                <component-typography .inputData="${this.secondaryTitle}"></component-typography>
             </component-flex-container>

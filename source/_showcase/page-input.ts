@@ -7,7 +7,7 @@ import {KeyValueData} from "..";
 export class PageInputComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
          <component-search-bar placeholder="Suche nach allem"></component-search-bar>
             <component-form>
                ${this.createInputfield(InputfieldType.TEXT, 'TEXT', 'account_circle', '')}

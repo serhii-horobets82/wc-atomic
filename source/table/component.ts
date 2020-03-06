@@ -2,15 +2,13 @@ import {css, customElement, html, property, TemplateResult, unsafeCSS} from 'lit
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {guard} from 'lit-html/directives/guard';
 import {repeat} from 'lit-html/directives/repeat';
-import {ComboboxOption, InputfieldComponent, InputfieldInputData} from '../inputfield/component';
-import {ComboboxComponent, ComboboxInputData} from '../combobox/component';
 import {ButtonComponent, ButtonInputData} from '../button/component';
 import {IconComponent} from '../icon/component';
 import {BasicService, HttpClientService} from '@domoskanonos/frontend-basis';
 import {KeyValueData} from '../form/component';
 import {TypographyComponent, TypographyInputData} from '../typography/component';
 import {HttpClientRequest} from '@domoskanonos/frontend-basis/source/http-client-service';
-import {IteratorComponentService} from "..";
+import {InputfieldComponent, InputfieldInputData, IteratorComponentService} from "..";
 
 const componentCSS = require('./component.css');
 
@@ -130,29 +128,29 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    filtering: Boolean = true;
 
    @property()
-   sizeComboboxInputData = <ComboboxInputData>{
-      componentIdentifier: ComboboxComponent.IDENTIFIER,
-      selectedValue: String(this.itemSizeDefaultValue),
+   sizeComboboxInputData = <InputfieldInputData>{
+      componentIdentifier: InputfieldComponent.IDENTIFIER,
+      value: String(this.itemSizeDefaultValue),
       label: this.getI18NValue(this.i18nTablePrefix.concat('entries_per_page')),
       options: [
-         <ComboboxOption>{
-            text: '5',
+         <KeyValueData>{
+            key: '5',
             value: '5'
          },
-         <ComboboxOption>{
-            text: '10',
+         <KeyValueData>{
+            key: '10',
             value: '10'
          },
-         <ComboboxOption>{
-            text: '20',
+         <KeyValueData>{
+            key: '20',
             value: '20'
          },
-         <ComboboxOption>{
-            text: '50',
+         <KeyValueData>{
+            key: '50',
             value: '50'
          },
-         <ComboboxOption>{
-            text: '100',
+         <KeyValueData>{
+            key: '100',
             value: '100'
          }
       ]
@@ -177,7 +175,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                        <component-combobox
                           slot="mainComponents"
                           .inputData="${this.sizeComboboxInputData}"
-                          @combobox-selection-change="${(event: CustomEvent) => this.changeSize(event)}"
+                          @component-inputfield-change="${(event: CustomEvent) => this.changeSize(event)}"
                        ></component-combobox>
 
                        <component-icon
@@ -325,7 +323,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    inputDataChanged(): void {
       this.sort = BasicService.getUniqueInstance().getValue(this.inputData.sort, '');
       this.requestParams = BasicService.getUniqueInstance().getValue(this.inputData.requestParams, '');
-      this.sizeComboboxInputData.selectedValue = String(
+      this.sizeComboboxInputData.value = String(
          BasicService.getUniqueInstance().getValue(this.inputData.size, this.itemSizeDefaultValue)
       );
       this.requestPath = BasicService.getUniqueInstance().getValue(this.inputData.requestPath, '');
@@ -384,7 +382,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
             this.numberOfElements = Number(tableContent.numberOfElements);
 
             let pageable = tableContent.pageable;
-            this.sizeComboboxInputData.selectedValue = String(pageable.pageSize);
+            this.sizeComboboxInputData.value = String(pageable.pageSize);
             this.page = pageable.pageNumber + 1;
 
             let content = tableContent.content;
@@ -424,7 +422,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
                         (<TypographyInputData>inputData).text = BasicService.getUniqueInstance().beautifyText(columnValue);
                         (<TypographyInputData>inputData).clazz = 'ellipsis';
                         break;
-                     case ComboboxComponent.IDENTIFIER:
+                     case InputfieldComponent.IDENTIFIER:
                         break;
                      case ButtonComponent.IDENTIFIER:
                         (<ButtonInputData>inputData).text = columnValue;
@@ -478,7 +476,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
    private changeSize(event: CustomEvent) {
       let newSize: KeyValueData = event.detail;
       console.log('set new size per page: ' + newSize.value);
-      this.sizeComboboxInputData.selectedValue = newSize.value;
+      this.sizeComboboxInputData.value = newSize.value;
       this.loadData();
    }
 
@@ -582,7 +580,7 @@ export class TableComponent extends AbstractComponent<TableInputData, undefined>
 
 
    private getItemSize(): number {
-      let size: number = Number(this.sizeComboboxInputData.selectedValue);
+      let size: number = Number(this.sizeComboboxInputData.value);
       return size;
    }
 

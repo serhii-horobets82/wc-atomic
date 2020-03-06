@@ -1,35 +1,46 @@
-import {css, customElement, html, property, unsafeCSS} from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 
 const componentCSS = require('./component.css');
 
 export class ContainerInputData extends AbstractInputData {
-    componentIdentifier = ContainerComponent.IDENTIFIER;
+   componentIdentifier = ContainerComponent.IDENTIFIER;
+   rendered: boolean = true;
+   cssStyle: string = '';
 }
 
 @customElement('component-container')
 export class ContainerComponent extends AbstractComponent<ContainerInputData, undefined> {
-    static styles = css`
+   static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
-    static IDENTIFIER: string = 'ContainerComponent';
+   static IDENTIFIER: string = 'ContainerComponent';
 
-    @property()
-    rendered: boolean = true;
+   @property()
+   rendered: boolean = true;
 
-    render() {
-        return this.rendered ? html`<div><slot></slot></div>` : html``;
-    }
+   @property()
+   cssStyle: string = '';
 
-    getDefaultInputData(): any {
-        return <ContainerInputData>{};
-    }
+   render() {
+      return this.rendered
+         ? html`
+              <div style="${this.cssStyle}"><slot></slot></div>
+           `
+         : html``;
+   }
 
-    getOutputData(): undefined {
-        return undefined;
-    }
+   getDefaultInputData(): any {
+      return <ContainerInputData>{};
+   }
 
-    protected inputDataChanged() {
-    }
+   getOutputData(): undefined {
+      return undefined;
+   }
+
+   protected inputDataChanged() {
+       this.rendered  = this.inputData.rendered;
+       this.cssStyle = this.inputData.cssStyle;
+   }
 }

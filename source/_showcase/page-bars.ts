@@ -8,15 +8,15 @@ export class PageBars extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          ojoijij
-         <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
             <component-top-app-bar>
                <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
                <component-typography slot="mainComponents">Mein Menü</component-typography>
                <component-icon slot="rightComponents" icon="search" clickable="true"></component-icon>
             </component-top-app-bar>
-            ${this.createToolbar('primaryColor', ToolbarAlignment.HORIZONTAL, FlexJustifyContent.SPACE_AROUND, '100px', 'auto')}
+            ${this.createToolbar('PRIMARY_COLOR', ToolbarAlignment.HORIZONTAL, FlexJustifyContent.SPACE_AROUND, '100px', 'auto')}
             ${this.createToolbar(
-               'secondaryColor',
+               'SECONDARY_COLOR',
                ToolbarAlignment.HORIZONTAL,
                FlexJustifyContent.SPACE_AROUND,
                '100px',
@@ -24,27 +24,27 @@ export class PageBars extends PageAbstract {
             )}
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_50" itemFlexBasisValue="25%">
-            ${this.createToolbar('primaryColor', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', 'auto')}
-            ${this.createToolbar('secondaryColor', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, '150px', 'auto')}
-            ${this.createToolbar('surfaceColor', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', '150px')}
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="25%">
+            ${this.createToolbar('PRIMARY_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', 'auto')}
+            ${this.createToolbar('SECONDARY_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, '150px', 'auto')}
+            ${this.createToolbar('SURFACE_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', '150px')}
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_50" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
             <component-search-bar></component-search-bar>
          </component-flex-container>
       `;
    }
 
    private createToolbar(
-      primaryColor: string,
+      PRIMARY_COLOR: string,
       toolbarAlignment: string,
       flexJustifyContent: string,
       height: string,
       width: string
    ) {
       return html`
-         <component-flex-container containerClazz="container_min_content ${primaryColor}" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="CONTAINER_MIN_CONTENT ${PRIMARY_COLOR}" itemFlexBasisValue="100%">
             <component-toolbar
                height="${height}"
                width="${width}"

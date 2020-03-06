@@ -4,30 +4,36 @@ import {guard} from 'lit-html/directives/guard';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {ComponentLoader} from '../abstract/component-loader';
 import {BasicService} from '@domoskanonos/frontend-basis';
+import {ColorClasses} from "../meta-data/color-classes";
 
 const componentCSS = require('./component.css');
 
-
-export class MobileResizeMode {
-   static NONE = 'NONE';
-   static CONTAINER_FULL_WIDTH = 'CONTAINER_FULL_WIDTH';
-   static ITEM_FULL_WIDTH = 'ITEM_FULL_WIDTH';
-   static CONTAINER_ITEM_FULL_WIDTH = 'CONTAINER_ITEM_FULL_WIDTH';
+export class ContainerClazzValues {
+   static CONTAINER_MIN_CONTENT = 'CONTAINER_MIN_CONTENT';
+   static CONTAINER_100 = 'CONTAINER_100';
+   static CONTAINER_75 = 'CONTAINER_75';
+   static CONTAINER_50 = 'CONTAINER_50';
+   static CONTAINER_25 = 'CONTAINER_25';
+   static TABLET_MAX_WIDTH = 'TABLET_MAX_WIDTH';
+   static SMARTPHONE_MAX_WIDTH = 'SMARTPHONE_MAX_WIDTH';
+   static PRIMARY_COLOR = ColorClasses.PRIMARY_COLOR;
+   static SECONDARY_COLOR = ColorClasses.SECONDARY_COLOR;
+   static SURFACE_COLOR = ColorClasses.SURFACE_COLOR;
+   static BACKGROUND_COLOR = ColorClasses.BACKGROUND_COLOR;
 }
 
-export class KeylineAlignment {
-   static HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL';
-   static VERTICAL = 'KEYLINE_ALIGNMENT_VERTICAL';
-   static BOTH = 'KEYLINE_ALIGNMENT_BOTH';
-}
-
-export class KeylineSize {
-   static ZERO = 'PADDING_ZERO';
-   static LITTLE = 'PADDING_LITTLE';
-   static SMALL = 'PADDING_SMALL';
-   static MEDIUM = 'PADDING_MEDIUM';
-   static BIG = 'PADDING_BIG';
-   static MAX = 'PADDING_MAX';
+export class ItemClazzValues {
+   static TABLET_MAX_WIDTH = 'TABLET_MAX_WIDTH';
+   static SMARTPHONE_MAX_WIDTH = 'SMARTPHONE_MAX_WIDTH';
+   static KEYLINE_ALIGNMENT_HORIZONTAL = 'KEYLINE_ALIGNMENT_HORIZONTAL';
+   static KEYLINE_ALIGNMENT_VERTICAL = 'KEYLINE_ALIGNMENT_VERTICAL';
+   static KEYLINE_ALIGNMENT_BOTH = 'KEYLINE_ALIGNMENT_BOTH';
+   static KEYLINE_SIZE_ZERO = 'PADDING_ZERO';
+   static KEYLINE_SIZE_LITTLE = 'PADDING_LITTLE';
+   static KEYLINE_SIZE_SMALL = 'PADDING_SMALL';
+   static KEYLINE_SIZE_MEDIUM = 'PADDING_MEDIUM';
+   static KEYLINE_SIZE_BIG = 'PADDING_BIG';
+   static KEYLINE_SIZE_MAX = 'PADDING_MAX';
 }
 
 export class FlexDirection {
@@ -40,7 +46,7 @@ export class FlexDirection {
 export class FlexWrap {
    static WRAP = 'wrap';
    static NO_WRAP = 'nowrap';
-   static WRAP_REVERSE = 'wrap-reverse';
+   static WRAP_REVERSE = 'flexWrap-reverse';
 }
 
 export class FlexJustifyContent {
@@ -84,16 +90,16 @@ export class AlignContent {
 }
 
 export class FlexContainerInputData extends AbstractInputData {
-   containerClazz: string = 'container_100';
-   itemFlexBasisValue: string = 'auto';
-   itemFlexBasisValues: string[] = [];
-   direction: string = FlexDirection.ROW;
+   containerClazzes: string[] = [ContainerClazzValues.CONTAINER_100];
+   cssStyle: string = '';
+   flexDirection: string = FlexDirection.ROW;
    flexWrap: string = FlexWrap.WRAP;
-   justifyContent: string = FlexJustifyContent.FLEX_START;
+   flexJustifyContent: string = FlexJustifyContent.FLEX_START;
    alignItems: string = AlignItems.STRETCH;
    alignContent: string = AlignContent.STRETCH;
-   keylineAlignment: string = KeylineAlignment.BOTH;
-   keylineSize: string = KeylineSize.ZERO;
+   itemClazzes: string[] = [];
+   itemFlexBasisValue: string = 'auto';
+   itemFlexBasisValues: string[] = [];
    inputDataItems: AbstractInputData[] = [];
 }
 
@@ -106,10 +112,10 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    static IDENTIFIER: string = 'FlexComponent';
 
    @property()
-   resizeModeSmartphone: string = MobileResizeMode.NONE;
+   containerClazzes: string[] = new FlexContainerInputData().containerClazzes;
 
    @property()
-   resizeModeTablet: string = MobileResizeMode.NONE;
+   cssStyle: string = new FlexContainerInputData().cssStyle;
 
    @property()
    flexDirection: string = FlexDirection.ROW;
@@ -127,13 +133,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    alignContent: string = AlignContent.STRETCH;
 
    @property()
-   keylineAlignment: string = KeylineAlignment.BOTH;
-
-   @property()
-   keylineSize: string = KeylineSize.ZERO;
-
-   @property()
-   containerClazz: string = new FlexContainerInputData().containerClazz;
+   itemClazzes: string[] = new FlexContainerInputData().itemClazzes;
 
    @property()
    itemFlexBasisValue: string = new FlexContainerInputData().itemFlexBasisValue;
@@ -142,7 +142,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    itemFlexBasisValues: string[] = new FlexContainerInputData().itemFlexBasisValues;
 
    @property()
-   inputDataItems: AbstractInputData[] = [];
+   inputDataItems: AbstractInputData[] = new FlexContainerInputData().inputDataItems;
 
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;
@@ -150,24 +150,22 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    render() {
       return html`
          <div
-            class="FLEX_CONTAINER ${this.containerClazz} ${this.resizeModeSmartphone}_SMARTPHONE ${this.resizeModeTablet}_TABLET"
+            class="${this.toContainerClazzesString(this.containerClazzes)}"
             style="flex-direction: ${this.flexDirection}; flex-wrap: ${this.flexWrap}; justify-content: ${this
-               .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent};"
+          .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent}; ${this.cssStyle}"
          >
             ${guard(
-               this.inputDataItems,
-               () =>
-                  html`
+          this.inputDataItems,
+          () =>
+              html`
                      ${repeat(
-                        this.inputDataItems,
-                        (componentInputData, index) => html`
-                           <div class="FLEX_ITEM ${this.resizeModeSmartphone}_SMARTPHONE ${this.resizeModeTablet}_TABLET" style="${this.getFlexItemStyle(index)};">
-                              ${ComponentLoader.getUniqueInstance().createComponentFromInputData(componentInputData)}
-                           </div>
+                  this.inputDataItems,
+                  (componentInputData, index) => html`
+                           ${this.createItem(componentInputData, index)}
                         `
-                     )}
+              )}
                   `
-            )}
+      )}
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
          </div>
       `;
@@ -178,66 +176,59 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       if (
          changedProperties.get('itemFlexBasisValue') != undefined ||
          changedProperties.get('itemFlexBasisValues') != undefined ||
-         changedProperties.get('keylineAlignment') != undefined ||
-         changedProperties.get('keylineSize') != undefined
+          changedProperties.get('itemClazzes') != undefined
       ) {
-         this.changeSlotElementStyle();
+         this.changeSlotComponentsStyle(this.slotElement);
       }
    }
 
    slotChanged(event: Event) {
       let slotElement: HTMLSlotElement = <HTMLSlotElement>event.target;
-      this.changeElementStyle(slotElement);
+      this.changeSlotComponentsStyle(slotElement);
    }
 
-   private changeSlotElementStyle() {
-      if (this.slotElement != undefined) {
-         this.changeElementStyle(this.slotElement);
-      }
-   }
-
-   private changeElementStyle(slotElement: HTMLSlotElement) {
-      if (slotElement == null) {
+   private changeSlotComponentsStyle(slotElement: HTMLSlotElement | undefined) {
+      if (slotElement == undefined) {
          return;
       }
-
       let elements: Element[] = slotElement.assignedElements();
-
       for (let index = 0; index < elements.length; index++) {
          let element: Element = elements[index];
+         this.changeItemStyle(element, index);
+      }
+   }
 
-         let classList = element.classList;
-         classList.add('FLEX_ITEM');
-         classList.add(this.resizeModeSmartphone.concat('_SMARTPHONE'));
-         classList.add(this.resizeModeTablet.concat('_TABLET'));
+   private changeItemStyle(element: Element, index: number) {
+      let classList = element.classList;
+      classList.remove(ItemClazzValues.SMARTPHONE_MAX_WIDTH);
+      classList.remove(ItemClazzValues.TABLET_MAX_WIDTH);
+      classList.remove(ItemClazzValues.KEYLINE_ALIGNMENT_BOTH);
+      classList.remove(ItemClazzValues.KEYLINE_ALIGNMENT_HORIZONTAL);
+      classList.remove(ItemClazzValues.KEYLINE_ALIGNMENT_VERTICAL);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_BIG);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_LITTLE);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_MAX);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_MEDIUM);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_SMALL);
+      classList.remove(ItemClazzValues.KEYLINE_SIZE_ZERO);
+      classList.add('FLEX_ITEM');
+      this.itemClazzes.forEach((clazz) => {
+         classList.add(clazz);
+      });
 
-         classList.remove(KeylineAlignment.BOTH);
-         classList.remove(KeylineAlignment.HORIZONTAL);
-         classList.remove(KeylineAlignment.VERTICAL);
-         classList.add(this.keylineAlignment);
-
-         classList.remove(KeylineSize.ZERO);
-         classList.remove(KeylineSize.LITTLE);
-         classList.remove(KeylineSize.SMALL);
-         classList.remove(KeylineSize.MEDIUM);
-         classList.remove(KeylineSize.BIG);
-         classList.remove(KeylineSize.MAX);
-         classList.add(this.keylineSize);
-
-         let currentStyle: string | null = element.getAttribute('style');
-         if (currentStyle === null) {
-            element.setAttribute('style', this.getFlexItemStyle(index) + ';');
-         } else {
-            let currentStyles = currentStyle.split(';');
-            currentStyle = '';
-            currentStyles.forEach((value) => {
-               if (value.length > 0 && value.lastIndexOf('flex-basis') === -1 && value.lastIndexOf('max-width') === -1) {
-                  currentStyle += value + ';';
-               }
-            });
-            currentStyle += this.getFlexItemStyle(index) + ';';
-            element.setAttribute('style', currentStyle);
-         }
+      let currentStyle: string | null = element.getAttribute('style');
+      if (currentStyle === null) {
+         element.setAttribute('style', this.getFlexItemStyle(index) + ';');
+      } else {
+         let currentStyles = currentStyle.split(';');
+         currentStyle = '';
+         currentStyles.forEach((value) => {
+            if (value.length > 0 && value.lastIndexOf('flex-basis') === -1 && value.lastIndexOf('max-width') === -1) {
+               currentStyle += value + ';';
+            }
+         });
+         currentStyle += this.getFlexItemStyle(index) + ';';
+         element.setAttribute('style', currentStyle);
       }
    }
 
@@ -251,20 +242,46 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
 
    inputDataChanged() {
       let defaultData: FlexContainerInputData = new FlexContainerInputData();
-      this.containerClazz = BasicService.getUniqueInstance().getValue(this.inputData.containerClazz, defaultData.containerClazz);
-      this.itemFlexBasisValue = BasicService.getUniqueInstance().getValue(this.inputData.itemFlexBasisValue, defaultData.itemFlexBasisValue);
-      this.itemFlexBasisValues = BasicService.getUniqueInstance().getValue(this.inputData.itemFlexBasisValues, defaultData.itemFlexBasisValues);
-      this.flexJustifyContent = BasicService.getUniqueInstance().getValue(this.inputData.justifyContent, defaultData.justifyContent);
+      this.containerClazzes = BasicService.getUniqueInstance().getValue(
+          this.inputData.containerClazzes,
+          defaultData.containerClazzes
+      );
+      this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
+      this.flexDirection = BasicService.getUniqueInstance().getValue(this.inputData.flexDirection, defaultData.flexDirection);
+      this.flexWrap = BasicService.getUniqueInstance().getValue(this.inputData.flexWrap, defaultData.flexWrap);
+      this.flexJustifyContent = BasicService.getUniqueInstance().getValue(
+          this.inputData.flexJustifyContent,
+          defaultData.flexJustifyContent
+      );
       this.alignItems = BasicService.getUniqueInstance().getValue(this.inputData.alignItems, defaultData.alignItems);
       this.alignContent = BasicService.getUniqueInstance().getValue(this.inputData.alignContent, defaultData.alignContent);
-      this.flexWrap = BasicService.getUniqueInstance().getValue(this.inputData.flexWrap, defaultData.flexWrap);
-      this.flexDirection = BasicService.getUniqueInstance().getValue(this.inputData.direction, defaultData.direction);
-      this.keylineAlignment = BasicService.getUniqueInstance().getValue(this.inputData.keylineAlignment, defaultData.keylineAlignment);
-      this.keylineSize = BasicService.getUniqueInstance().getValue(this.inputData.keylineSize, defaultData.keylineSize);
+      this.itemClazzes = BasicService.getUniqueInstance().getValue(this.inputData.itemClazzes, defaultData.itemClazzes);
+      this.itemFlexBasisValue = BasicService.getUniqueInstance().getValue(
+          this.inputData.itemFlexBasisValue,
+          defaultData.itemFlexBasisValue
+      );
+      this.itemFlexBasisValues = BasicService.getUniqueInstance().getValue(
+          this.inputData.itemFlexBasisValues,
+          defaultData.itemFlexBasisValues
+      );
       this.inputDataItems = BasicService.getUniqueInstance().getValue(this.inputData.inputDataItems, defaultData.inputDataItems);
    }
 
    getOutputData(): undefined {
       return undefined;
+   }
+
+   private createItem(componentInputData: AbstractInputData, index: number) {
+      let abstractComponent = ComponentLoader.getUniqueInstance().createComponentFromInputData(componentInputData);
+      this.changeItemStyle(abstractComponent, index);
+      return abstractComponent;
+   }
+
+   toContainerClazzesString(containerClazzeses: string[]) {
+      let containerClazzString: string = 'FLEX_CONTAINER';
+      containerClazzeses.forEach((clazz) => {
+         containerClazzString = containerClazzString.concat(' ').concat(clazz);
+      });
+      return containerClazzString;
    }
 }

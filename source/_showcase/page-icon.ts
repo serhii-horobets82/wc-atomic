@@ -39,8 +39,8 @@ export class PageIconComponent extends PageAbstract {
          <component-spacer clazz="mediumPaddingTop"></component-spacer>
 
          <component-flex-container
-            containerClazz="container_75"
-            .justifyContent="${FlexJustifyContent.FLEX_START}"
+            .containerClazzes="${["CONTAINER_75"]}"
+            .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
             .alignItems="${AlignItems.CENTER}"
          >
             <component-icon
@@ -55,8 +55,8 @@ export class PageIconComponent extends PageAbstract {
             <component-typography type="${TypographyType.H2}">Icon Component</component-typography>
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_75" itemFlexBasisValue="50%">
-            <component-flex-container .keylineSize="${KeylineSize.ZERO}" itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="50%">
+            <component-flex-container  itemFlexBasisValue="100%">
                <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
                <component-typography type="${TypographyType.BODY1}"
                   ><i>Icon Component</i> ist eine Komponente mit der man die Google Material Icons in seine Anwendung integrieren
@@ -72,7 +72,7 @@ export class PageIconComponent extends PageAbstract {
                   >
                </component-typography>
             </component-flex-container>
-            <component-flex-container containerClazz="container_100" itemFlexBasisValue="100%">
+            <component-flex-container .containerClazzes="${["CONTAINER_100"]}" itemFlexBasisValue="100%">
                <component-form>
                   <component-inputfield
                      label="Klickbar ?"
@@ -97,14 +97,14 @@ export class PageIconComponent extends PageAbstract {
                   ></component-inputfield>
 
                   <component-combobox
-                     @combobox-selection-change="${(event: CustomEvent) => (this.elementState = event.detail.value)}"
+                     @component-inputfield-change="${(event: CustomEvent) => (this.elementState = event.detail.value)}"
                      label="Status"
                      selectedValue="${this.elementState}"
-                     .options="${ComboboxOption.clazzToComboboxItems(ElementState)}"
+                     .options="${InputfieldComponent.clazzToComboboxItems(ElementState)}"
                   ></component-combobox>
                </component-form>
 
-               <component-flex-container containerClazz="container_100">
+               <component-flex-container .containerClazzes="${["CONTAINER_100"]}">
                   <component-icon
                      icon="sports_motorsports"
                      clickable="true"
@@ -235,15 +235,15 @@ export class PageIconComponent extends PageAbstract {
             </component-flex-container>
 
             <component-flex-container
-               containerClazz=""
+               .containerClazzes=""
                .direction="${FlexDirection.ROW}"
                .wrap="${FlexWrap.WRAP}"
-               .justifyContent="${FlexJustifyContent.CENTER}"
+               .flexJustifyContent="${FlexJustifyContent.CENTER}"
                .alignItems="${AlignItems.CENTER}"
                .alignContent="${AlignContent.STRETCH}"
                itemFlexBasisValue="auto"
-               .keylineSize="${KeylineSize.ZERO}"
-               .keylineAlignment="${KeylineAlignment.BOTH}"
+               
+               
             >
                <component-icon
                   .clickable="${this.clickable}"
@@ -260,7 +260,7 @@ export class PageIconComponent extends PageAbstract {
             </component-code>
          </component-flex-container>
 
-         <component-flex-container containerClazz="container_75"> </component-flex-container>
+         <component-flex-container .containerClazzes="${["CONTAINER_75"]}"> </component-flex-container>
       `;
    }
 }

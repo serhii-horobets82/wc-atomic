@@ -1,10 +1,8 @@
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ButtonComponent } from '../button/component';
 import { CodeComponent } from '../code/component';
-import { ComboboxComponent } from '../combobox/component';
 import { RichMediaComponent } from '../rich-media/component';
 import { IconComponent } from '../icon/component';
-import { TextareaComponent } from '../textarea/component';
 import { InputfieldComponent } from '../inputfield/component';
 import { AccordionComponent } from '../accordion/container/component';
 import { ImgSliderComponent } from '../img-slider/component';
@@ -71,17 +69,11 @@ export class ComponentLoader {
          case InputfieldComponent.IDENTIFIER:
             component = new InputfieldComponent();
             break;
-         case TextareaComponent.IDENTIFIER:
-            component = new TextareaComponent();
-            break;
          case IconComponent.IDENTIFIER:
             component = new IconComponent();
             break;
          case RichMediaComponent.IDENTIFIER:
             component = new RichMediaComponent();
-            break;
-         case ComboboxComponent.IDENTIFIER:
-            component = new ComboboxComponent();
             break;
          case CodeComponent.IDENTIFIER:
             component = new CodeComponent();

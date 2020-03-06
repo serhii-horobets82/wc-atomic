@@ -12,30 +12,29 @@
    box-sizing: border-box;
 }
 
-
-.container_min_content,
-::slotted(.container_min_content) {
-width: min-content;
-height: min-content;
+.CONTAINER_MIN_CONTENT,
+::slotted(.CONTAINER_MIN_CONTENT) {
+   width: min-content;
+   height: min-content;
 }
 
-.container_100,
-::slotted(.container_100) {
+.CONTAINER_100,
+::slotted(.CONTAINER_100) {
    width: 100%;
 }
 
-.container_75,
-::slotted(.container_75) {
+.CONTAINER_75,
+::slotted(.CONTAINER_75) {
    width: 75%;
 }
 
-.container_50,
-::slotted(.container_50) {
+.CONTAINER_50,
+::slotted(.CONTAINER_50) {
    width: 50%;
 }
 
-.container_25,
-::slotted(.container_25) {
+.CONTAINER_25,
+::slotted(.CONTAINER_25) {
    width: 25%;
 }
 
@@ -91,35 +90,26 @@ height: min-content;
 }
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
-
-   FLEX_CONTAINER.CONTAINER_FULL_WIDTH_TABLET {
-      width: 100%;
-   }
-   FLEX_CONTAINER.CONTAINER_ITEM_FULL_WIDTH_TABLET {
-      width: 100%;
-   }
-   FLEX_ITEM.ITEM_FULL_WIDTH_TABLET {
-      width: 100%;
-   }
-   FLEX_ITEM.CONTAINER_ITEM_FULL_WIDTH_TABLET {
+   .FLEX_CONTAINER.TABLET_MAX_WIDTH,
+   ::slotted(.FLEX_CONTAINER.TABLET_MAX_WIDTH) {
       width: 100%;
    }
 
+   ::slotted(.FLEX_ITEM.TABLET_MAX_WIDTH),
+   .FLEX_ITEM.TABLET_MAX_WIDTH {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+   }
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait) {
-
-   FLEX_CONTAINER.CONTAINER_FULL_WIDTH_SMARTPHONE {
+   .FLEX_CONTAINER.SMARTPHONE_MAX_WIDTH,
+   ::slotted(.FLEX_CONTAINER.SMARTPHONE_MAX_WIDTH) {
       width: 100%;
    }
-   FLEX_CONTAINER.CONTAINER_ITEM_FULL_WIDTH_SMARTPHONE {
-      width: 100%;
+   ::slotted(.FLEX_ITEM.SMARTPHONE_MAX_WIDTH),
+   .FLEX_ITEM.SMARTPHONE_MAX_WIDTH {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
    }
-   FLEX_ITEM.ITEM_FULL_WIDTH_SMARTPHONE {
-      width: 100%;
-   }
-   FLEX_ITEM.CONTAINER_ITEM_FULL_WIDTH_SMARTPHONE {
-      width: 100%;
-   }
-
 }

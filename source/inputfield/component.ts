@@ -67,6 +67,7 @@ export class InputfieldInputData extends AbstractInputData {
    trailingIcon: string = '';
    leadingIconClickable: boolean = false;
    trailingIconClickable: boolean = false;
+   options: KeyValueData[] = [];
 }
 //inputBoxInputData: InputBoxInputData = new InputBoxInputData();
 
@@ -170,6 +171,9 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    @query('#inputElement')
    inputElemet: HTMLInputElement | undefined;
 
+   @query('#selectElement')
+   selectElemet: HTMLSelectElement | undefined;
+
    protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
       super.firstUpdated(_changedProperties);
       this.updateInfoText();
@@ -189,7 +193,16 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                ></component-icon>
                ${this.inputfieldType == InputfieldType.COMBOBOX
                   ? html`
-                       <select id="selectElement" ?required="${this.required}" name="${this.name}" size="${this.size}">
+                       <select
+                          id="selectElement"
+                          ?required="${this.required}"
+                          ?multiple="${this.multiple}"
+                          name="${this.name}"
+                          size="${this.size}"
+                          @change="${(event: Event) => this.change(event)}"
+                          @focus="${(event: Event) => this.focused(event)}"
+                          @focusout="${(event: Event) => this.focusout(event)}"
+                       >
                           ${guard(
                              [this.options],
                              () => html`
@@ -248,15 +261,13 @@ ${this.value}</textarea
                ></component-icon>
             </div>
             <component-flex-container
-               containerClazz=""
+               .containerClazzes=""
                .flexDirection="${FlexDirection.ROW}"
                .wrap="${FlexWrap.WRAP}"
                .flexJustifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
                .alignItems="${AlignItems.STRETCH}"
                .alignContent="${AlignContent.STRETCH}"
                itemFlexBasisValue="auto"
-               .keylineSize="${KeylineSize.ZERO}"
-               .keylineAlignment="${KeylineAlignment.BOTH}"
             >
                <component-typography
                   .typographyType="${TypographyType.OVERLINE}"
@@ -318,7 +329,15 @@ ${this.value}</textarea
 
    getOutputData(): KeyValueData {
       let outputValue: any = this.oldValue;
-      if (this.inputElemet != null) {
+      if (this.selectElemet != null) {
+         outputValue = [];
+         for (let i = 0, len = this.selectElemet.options.length; i < len; i++) {
+            let opt: HTMLOptionElement = this.selectElemet.options[i];
+            if (opt.selected) {
+               outputValue.push(opt.value);
+            }
+         }
+      } else if (this.inputElemet != null) {
          if (this.inputElemet.validationMessage.length == 0) {
             outputValue = this.inputElemet.value;
             switch (this.inputfieldType) {

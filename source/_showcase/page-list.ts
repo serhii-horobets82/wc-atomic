@@ -8,7 +8,7 @@ export class PageElementList extends PageAbstract {
       return html`
          
          <component-list>
-               <component-list-item clazz="primaryColor">guzguz
+               <component-list-item clazz="PRIMARY_COLOR">guzguz
                   <component-spacer clazz="mediumPaddingLeft"></component-spacer>
                   <component-typography>Lorem Ipsum Dolorem</component-typography>
                </component-list-item>
