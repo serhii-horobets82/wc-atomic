@@ -6,7 +6,7 @@ export class PageChangePassword extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          <component-flex-container
-            .containerClazzes="${["CONTAINER_50"]}
+            .containerClazzes="${["CONTAINER_50"]}"
             itemFlexBasisValue="100%"
          >
             <component-change-password></component-change-password>

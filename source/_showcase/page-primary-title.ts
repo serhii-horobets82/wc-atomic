@@ -9,7 +9,7 @@ import {FlexJustifyContent} from "../flex-container/component";
 export class PagePrimaryTitleComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]}>
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}">
             <component-primary-title
                .richMedia="${<RichMediaInputData>{src: 'https://picsum.photos/50/50'}}"
                .primaryTitle="${<TypographyInputData>{

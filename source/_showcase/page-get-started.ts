@@ -6,7 +6,7 @@ import { TypographyInputData, TypographyType } from '../typography/component';
 export class PageGetStarted extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}" itemFlexBasisValue="100%">
             <component-spacer clazz="maxPaddingTop"></component-spacer>
             <component-typography .typographyType="${TypographyType.H2}">Base Project</component-typography>
             <component-typography>

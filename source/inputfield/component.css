@@ -9,7 +9,7 @@
    position: absolute;
    top: -10px;
    left: var(--space-medium);
-   background-color: white;
+   background-color: var(--app-color-background);
    padding-left: var(--space-small);
    padding-right: var(--space-small);
 }
@@ -32,6 +32,10 @@ input, select, textarea {
    padding-left: var(--space-normal);
    background-color: transparent;
    line-height: var(--line-height);
+}
+
+select[multiple] {
+   padding-top: var(--line-height);
 }
 
 input:focus, select:focus, textarea:focus {

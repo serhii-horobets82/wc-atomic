@@ -10,7 +10,7 @@ export class PageImgComponent extends PageAbstract {
         return html`
         
         
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]}>
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}">
          
          
        <iframe width="560" height="315" src="https://www.youtube.com/embed/gG_JWPF99vA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

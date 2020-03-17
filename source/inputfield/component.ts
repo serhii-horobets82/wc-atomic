@@ -210,6 +210,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                                    this.options,
                                    (option) => option.value,
                                    (option) =>
+                                      (option.key.length > 0 && this.multiple && this.value.indexOf(option.key) > -1) ||
                                       BasicService.getUniqueInstance().isEqual(this.value, option.key)
                                          ? html`
                                               <option value="${option.key}" selected>${option.value}</option>

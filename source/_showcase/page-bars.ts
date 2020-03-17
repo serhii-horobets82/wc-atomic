@@ -8,7 +8,7 @@ export class PageBars extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
          ojoijij
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}" itemFlexBasisValue="100%">
             <component-top-app-bar>
                <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
                <component-typography slot="mainComponents">Mein Menü</component-typography>
@@ -24,13 +24,13 @@ export class PageBars extends PageAbstract {
             )}
          </component-flex-container>
 
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="25%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}" itemFlexBasisValue="25%">
             ${this.createToolbar('PRIMARY_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', 'auto')}
             ${this.createToolbar('SECONDARY_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, '150px', 'auto')}
             ${this.createToolbar('SURFACE_COLOR', ToolbarAlignment.VERTICAL, FlexJustifyContent.SPACE_AROUND, 'auto', '150px')}
          </component-flex-container>
 
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}" itemFlexBasisValue="100%">
             <component-search-bar></component-search-bar>
          </component-flex-container>
       `;

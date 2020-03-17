@@ -16,7 +16,7 @@ export class PageLogin extends PageAbstract {
 
     getMainComponent(): TemplateResult {
         return html`
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]} itemFlexBasisValue="100%">
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}" itemFlexBasisValue="100%">
             <component-authentication @component-authentication-event-login="${(event: CustomEvent) => this.login(event)}"  @component-authentication-event-logout="${() => this.logout()}" .isAuthenticated="${this.isAuthenticated}"></component-authentication>
          </component-flex-container>
       `;

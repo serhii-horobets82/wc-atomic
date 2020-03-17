@@ -6,9 +6,6 @@ import {
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
-   InputfieldType,
-   KeylineAlignment,
-   KeylineSize,
    RichMediaInputData,
    SpacerSize,
    TypographyInputData,
@@ -92,7 +89,6 @@ export class PageIntroduction extends PageAbstract {
             <component-flex-container
                .containerClazzes="${["CONTAINER_100"]}"
                itemFlexBasisValue="33.3%"
-               .keylineSize="${KeylineSize.MEDIUM}"
                
             >
                <component-card>

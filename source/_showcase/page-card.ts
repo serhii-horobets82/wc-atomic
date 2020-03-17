@@ -11,7 +11,7 @@ import { FlexJustifyContent } from '../flex-container/component';
 export class PageCardComponent extends PageAbstract {
    getMainComponent(): TemplateResult {
       return html`
-         <component-flex-container .containerClazzes="${["CONTAINER_50"]}>
+         <component-flex-container .containerClazzes="${["CONTAINER_50"]}">
             <component-card>
                <effect-ripple>
                   <component-rich-media
