@@ -1,9 +1,8 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputfieldComponent } from '../inputfield/component';
-import {TypographyComponent, TypographyType} from '../typography/component';
+import {TypographyType} from '../typography/component';
 import { SimpleTableRowData } from '../simple-table/component';
-import { AlignItems, FlexJustifyContent, KeylineSize } from '../flex-container/component';
+import { AlignItems, FlexJustifyContent } from '../flex-container/component';
 import {ElementState, SpacerAlignment, SpacerSize} from '..';
 import { I18nService } from '@domoskanonos/frontend-basis';
 

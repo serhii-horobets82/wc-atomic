@@ -12,8 +12,6 @@ import {
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
-   KeylineAlignment,
-   KeylineSize
 } from '..';
 import { NotifyType } from '../meta-data/notify-type';
 

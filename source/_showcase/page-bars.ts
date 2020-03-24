@@ -1,6 +1,6 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { ComboboxOption, ElementState, FlexJustifyContent } from '..';
+import { ElementState, FlexJustifyContent } from '..';
 import { ToolbarAlignment } from '../toolbar/component';
 
 @customElement('page-bars')

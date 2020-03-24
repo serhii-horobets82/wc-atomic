@@ -1,6 +1,5 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {AlignContent, AlignItems, FlexDirection, FlexJustifyContent, FlexWrap, KeylineAlignment, KeylineSize} from '..';
 
 const componentCSS = require('./component.css');
 

@@ -1,11 +1,8 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { ComboboxComponent, ComboboxInputData} from '../combobox/component';
 import { KeyValueData } from '../form/component';
-import {Key} from "readline";
 import { I18nService } from '@domoskanonos/frontend-basis';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import {ComboboxOption} from "../inputfield/component";
 
 const componentCSS = require('./component.css');
 
@@ -24,11 +21,10 @@ export class I18NSelectorComponent extends AbstractComponent<I18NInputData, KeyV
    static EVENT_CHANGE_LANG: string = 'component-i18n-selector-change-lang';
 
    @property()
-   languages: ComboboxOption[] = [<ComboboxOption>{
-      value: 'de-DE',
-      text: 'Deutsch',
-      selected: true
-   }, <ComboboxOption>{value: 'en-EN', text: 'English'}];
+   languages: KeyValueData[] = [<KeyValueData>{
+      key: 'de-DE',
+      value: 'Deutsch'
+   }, <KeyValueData>{key: 'en-EN', value: 'English'}];
 
    private outputData: KeyValueData = <KeyValueData>{};
 

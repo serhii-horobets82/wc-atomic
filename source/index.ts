@@ -87,7 +87,7 @@ export {CodeInputData,CodeComponent} from './code/component';
 export {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
 export {DataProtectionInputData,DataProtection} from './data-protection/component';
 export {DividerInputData,DividerComponent} from './divider/component';
-export {KeylineAlignment,KeylineSize,FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
+export {FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
 export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
@@ -138,4 +138,4 @@ export {ComponentLoader} from './abstract/component-loader';
 export {ColumnEventData} from "./services/iterator/iterator-component-service";
 
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-import './_showcase/showcase-app';
+//import './_showcase/showcase-app';
