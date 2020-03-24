@@ -1,17 +1,14 @@
 import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputfieldType } from '../inputfield/component';
+import {InputfieldComponent, InputfieldType} from '../inputfield/component';
 import {
    AlignContent,
    AlignItems,
-   ComboboxOption,
    ElementState,
    FlexDirection,
    FlexJustifyContent,
    FlexWrap,
    IconComponent,
-   KeylineAlignment,
-   KeylineSize,
    SpacerAlignment,
    SpacerSize,
    TypographyType
@@ -249,14 +246,14 @@ export class PageIconComponent extends PageAbstract {
                   .clickable="${this.clickable}"
                   icon="${this.icon}"
                   color="${this.color}"
-                  iconSize="${this.iconSize}"
+                  .size="${this.iconSize}"
                   .elementState="${this.elementState}"
                ></component-icon>
             </component-flex-container>
 
             <component-code
                >&lt;component-icon .clickable="${this.clickable}" icon="${this.icon}" color="${this.color}"
-               .iconSize="${this.iconSize}" .elementState="$&#123;ElementState.${this.elementState}&#125;" &gt;&lt;/component-icon&gt;
+               .size="${this.iconSize}" .elementState="$&#123;ElementState.${this.elementState}&#125;" &gt;&lt;/component-icon&gt;
             </component-code>
          </component-flex-container>
 
