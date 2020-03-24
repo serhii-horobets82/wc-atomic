@@ -73,7 +73,7 @@ export class PageLayoutComponent extends PageAbstract {
                   .itemClazzes="${this.itemClazzes}"
                   cssStyle="height:500px;"
                   itemFlexBasisValue="${this.itemFlexBasisValue}"
-                  .direction="${this.direction}"
+                  .flexDirection="${this.direction}"
                   .flexWrap="${this.flexWrap}"
                   .flexJustifyContent="${this.flexJustifyContent}"
                   .alignItems="${this.alignItems}"
@@ -116,7 +116,7 @@ export class PageLayoutComponent extends PageAbstract {
 
                <component-code
                   >&lt;component-flex-container .containerClazzes="${['CONTAINER_100']}"
-                  .direction="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(
+                  .flexDirection="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(
                      this.direction,
                      FlexDirection
                   )}&#125;"
@@ -133,7 +133,7 @@ export class PageLayoutComponent extends PageAbstract {
                      this.alignContent,
                      AlignContent
                   )}&#125;"
-                  itemFlexBasisValue="${this.itemFlexBasisValue}" &gt; &lt;/component-tab-content&gt;
+                  itemFlexBasisValue="${this.itemFlexBasisValue}" &gt; &lt;/component-flex-container&gt;
                </component-code>
             </component-container>
 

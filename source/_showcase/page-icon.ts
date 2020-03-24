@@ -233,8 +233,8 @@ export class PageIconComponent extends PageAbstract {
 
             <component-flex-container
                .containerClazzes=""
-               .direction="${FlexDirection.ROW}"
-               .wrap="${FlexWrap.WRAP}"
+               .flexDirection="${FlexDirection.ROW}"
+               .flexWrap="${FlexWrap.WRAP}"
                .flexJustifyContent="${FlexJustifyContent.CENTER}"
                .alignItems="${AlignItems.CENTER}"
                .alignContent="${AlignContent.STRETCH}"
