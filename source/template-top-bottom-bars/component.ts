@@ -1,5 +1,4 @@
 import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
-import {DataProtection} from '../data-protection/component';
 
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {IconInputData} from '../icon/component';
@@ -47,7 +46,6 @@ export abstract class TopBottomTemplate extends AbstractComponent<TopBottomTempl
                ${this.getBottomContent()}
             </div>
          </div>
-         <component-data-protection .inputData="${new DataProtection().getDefaultInputData()}"></component-data-protection>
       `;
    }
 

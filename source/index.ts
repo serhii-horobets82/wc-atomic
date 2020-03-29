@@ -1,11 +1,7 @@
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
-import {AuthenticatedIconInputData,AuthenticatedIconComponent} from './authenticated-icon/component';
-import {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
-import {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/component';
 import {RegisterInputData,RegisterComponent} from './register/component';
-import {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
 import {CardActionInputData,CardActionComponent} from './card/actions/component';
@@ -16,11 +12,9 @@ import {CardSupportingTextInputData,CardSupportingTextComponent} from './card/su
 import {CardInputData,CardComponent} from './card/component';
 import {CodeInputData,CodeComponent} from './code/component';
 import {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
-import {DataProtectionInputData,DataProtection} from './data-protection/component';
 import {DividerInputData,DividerComponent} from './divider/component';
 import {FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
-import {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 import {ChipInputData,ChipComponent} from './chip/component';
 import {ContainerInputData,ContainerComponent} from './container/component';
 import {RippleComponent} from './effect-ripple/component';
@@ -64,16 +58,11 @@ import {ToolbarInputData,ToolbarComponent} from './toolbar/component';
 import {TypographyType, TypographyInputData, TypographyComponent} from './typography/component';
 import {DialogInputData, DialogComponent} from './dialog/component';
 import {ElementState} from "./meta-data/element-state";
-
 import {ComponentLoader} from './abstract/component-loader';
-
 import {ColumnEventData, IteratorComponentService} from "./services/iterator/iterator-component-service";
-
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
 export {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
-export {AuthenticatedIconInputData,AuthenticatedIconComponent} from './authenticated-icon/component';
-export {LoginInputData,AuthenticatedSuccessfullyEventData,AuthenticatedFailureEventData,LogoutEventData,AuthenticationComponent} from './authentication/component';
 export {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 export {ButtonInputData,ButtonComponent} from './button/component';
 export {CardActionInputData,CardActionComponent} from './card/actions/component';
@@ -85,11 +74,9 @@ export {CardInputData,CardComponent} from './card/component';
 export {ContainerInputData,ContainerComponent} from './container/component';
 export {CodeInputData,CodeComponent} from './code/component';
 export {ContentSliderInputData,ContentSliderComponent} from './content-slider/component';
-export {DataProtectionInputData,DataProtection} from './data-protection/component';
 export {DividerInputData,DividerComponent} from './divider/component';
 export {FlexDirection,FlexWrap,FlexJustifyContent,AlignItems,AlignContent,FlexContainerInputData,FlexComponent} from './flex-container/component';
 export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponent} from './form/component';
-export {I18NInputData,I18NSelectorComponent} from './i18n-selector/component';
 export {IconInputData,IconComponent} from './icon/component';
 export {ChipInputData,ChipComponent} from './chip/component';
 export {RippleComponent} from './effect-ripple/component';
@@ -102,8 +89,6 @@ export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slide
 export {InputfieldType,InputfieldInputData,InputfieldDataChangeEvent,InputfieldComponent} from './inputfield/component';
 export {LinkInputData,LinkComponent} from './link/component';
 export {ListInputData,ListComponent} from './list/container/component';
-export {ChangePasswordInputData, ChangePasswordComponent} from './change-password/component';
-export {ResetPasswordInputData, ResetPasswordComponent} from './reset-password/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
 export {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
 export {SearchBarInputData,SearchBarComponent} from './search-bar/component';

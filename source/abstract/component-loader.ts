@@ -16,9 +16,7 @@ import { TileComponent } from '../tile/component';
 import { BreadcrumbComponent } from '../breadcrumb/component';
 import { ToolbarComponent } from '../toolbar/component';
 import { TextWithHeaderComponent } from '../text-with-header/component';
-import { AuthenticatedIconComponent } from '../authenticated-icon/component';
 import { SpacerComponent } from '../spacer/component';
-import { I18NSelectorComponent } from '../i18n-selector/component';
 import { ListComponent } from '../list/container/component';
 import { ListItemComponent } from '../list/item/component';
 import {TypographyComponent} from "../typography/component";
@@ -81,9 +79,6 @@ export class ComponentLoader {
          case ButtonComponent.IDENTIFIER:
             component = new ButtonComponent();
             break;
-         case I18NSelectorComponent.IDENTIFIER:
-            component = new I18NSelectorComponent();
-            break;
          case LinkComponent.IDENTIFIER:
             component = new LinkComponent();
             break;
@@ -116,9 +111,6 @@ export class ComponentLoader {
             break;
          case TextWithHeaderComponent.IDENTIFIER:
             component = new TextWithHeaderComponent();
-            break;
-         case AuthenticatedIconComponent.IDENTIFIER:
-            component = new AuthenticatedIconComponent();
             break;
          default:
             let error = new Error('Elemenent not found: ' + componentIdentifier);

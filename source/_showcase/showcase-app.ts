@@ -25,7 +25,6 @@ import './showcase-app.ts';
 import {
     HttpClientService,
 } from "@domoskanonos/frontend-basis/source/http-client-service";
-import {PageLogin} from "./page-login";
 import {PageRegister} from "./page-register";
 import {PageChangePassword} from "./change-password";
 import {PageSettings} from "./page-settings";
@@ -55,10 +54,6 @@ export class ShowcaseApp extends AbstractApp {
       console.log('current path: '.concat(path));
        switch (path) {
            case 'login':
-           case 'logout':
-               return html`
-               ${new PageLogin()}
-            `;
            case 'register':
                return html`
                ${new PageRegister()}
