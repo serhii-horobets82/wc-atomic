@@ -20,7 +20,7 @@ export class SpacerSize {
 }
 
 export class SpacerInputData extends AbstractInputData {
-   size: string = SpacerSize.ZERO;
+   spacerSize: string = SpacerSize.ZERO;
    spacerAlignment: string = SpacerAlignment.BOTH;
 }
 
@@ -52,7 +52,7 @@ export class SpacerComponent extends AbstractComponent<SpacerInputData, undefine
    }
 
    protected inputDataChanged() {
-      this.spacerSize = BasicService.getUniqueInstance().getValue(this.inputData.size, SpacerSize.ZERO);
+      this.spacerSize = BasicService.getUniqueInstance().getValue(this.inputData.spacerSize, SpacerSize.ZERO);
       this.spacerAlignment = BasicService.getUniqueInstance().getValue(this.inputData.spacerAlignment, SpacerAlignment.BOTH);
    }
 }

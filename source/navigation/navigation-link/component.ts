@@ -1,24 +1,20 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../../abstract-component/component';
-import { LinkInputData } from '../../link/component';
-import { RouterService } from '@domoskanonos/frontend-basis';
+import { css, customElement, html, unsafeCSS, property } from 'lit-element';
+import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
+import { BasicService, RouterService } from '@domoskanonos/frontend-basis';
+import { AlignContent, AlignItems, FlexDirection, FlexJustifyContent, FlexWrap, SpacerAlignment, SpacerSize } from '../..';
+import { ContainerClazzValues } from '../../flex-container/component';
 
 const componentCSS = require('./component.css');
 
 export class NavigationLinkInputData extends AbstractInputData {
-   iconClazz?: string = '';
-   text?: string = '';
-   target?: string = '';
-   href?: string = '';
+   icon?: string = '';
+   text: string = '';
+   href: string = '';
+   rendered: boolean = true;
 }
 
 @customElement('component-navigation-link')
 export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInputData, any> {
-
-    protected inputDataChanged(): void {
-
-    }
-
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -38,21 +34,38 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
    rendered: boolean = true;
 
    render() {
-      return this.rendered ? html`
-         <div
-            @click="${() => this.linkClicked()}"
-            class="${RouterService.getUniqueInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
-         >
-            <component-icon icon="${this.icon}" class="navitemIcon"></component-icon>
-            <component-typography>${this.text}</component-typography>
-         </div>
-      ` : html``;
+      return this.rendered
+         ? html`
+              <div
+                 class="navItem"
+                 class="${RouterService.getUniqueInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
+              >
+                 <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.HORIZONTAL}"
+                    ><component-flex-container
+                       @click="${() => this.linkClicked()}"
+                       .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                       .itemClazzes="${[]}"
+                       .flexDirection="${FlexDirection.ROW}"
+                       .flexWrap="${FlexWrap.NO_WRAP}"
+                       .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
+                       .alignItems="${AlignItems.CENTER}"
+                       .alignContent="${AlignContent.FLEX_START}"
+                       .itemFlexBasisValues="${['48px', '250px']}"
+                    >
+                       <component-icon icon="${this.icon}" .withIconSpace="${false}"></component-icon>
+                       <component-typography>${this.text}</component-typography>
+                    </component-flex-container>
+                 </component-spacer>
+              </div>
+           `
+         : html``;
    }
 
-   getDefaultInputData(): NavigationLinkInputData {
-      return <NavigationLinkInputData>{
-         componentIdentifier: NavigationLinkComponent.IDENTIFIER
-      };
+   protected inputDataChanged() {
+      this.icon = BasicService.getUniqueInstance().getValue(this.inputData.icon, '');
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, '');
+      this.href = BasicService.getUniqueInstance().getValue(this.inputData.href, '');
+      this.rendered = BasicService.getUniqueInstance().getValue(this.inputData.rendered, true);
    }
 
    getOutputData(): any {

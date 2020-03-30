@@ -1,3 +1,7 @@
+:host,
+::slotted(:host) {
+    height: min-content;
+}
 
 .H1,
 .H2,
@@ -17,6 +21,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    line-height: var(--line-height);
 }
 
 .H1,
@@ -92,7 +97,7 @@
 
 .BODY1 {
     font-size: 1rem;
-    line-height: 1rem;
+    line-height: 1.4rem;
     font-weight: 400;
     letter-spacing: 0.03125rem;
     text-decoration-style: solid;

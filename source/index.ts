@@ -123,4 +123,4 @@ export {ComponentLoader} from './abstract/component-loader';
 export {ColumnEventData} from "./services/iterator/iterator-component-service";
 
 //Auskommentieren bei erstellen neuer Version auf NPM, nach auskommentieren nochmal ts in js bauen
-//import './_showcase/showcase-app';
+import './_showcase/showcase-app';

@@ -1,5 +1,5 @@
 @import "../css/color.css";
-@import "../css/spacer.css";
+
 
 .chip, ::slotted(.chip) {
     display: inline-block;

@@ -1,19 +1,9 @@
 .navItem {
-    line-height: var(--line-height-large);
-    height: var(--line-height-large);
     cursor: pointer;
-    background-color: var(--app-color-primary);
-    color: var(--app-color-on-primary);
+    background-color: transparent;
 }
 
-.navItem.selected, .navItem:hover, .navItem:active {
+::slotted(.navItem.selected),.navItem.selected, ::slotted(.navItem.hover), .navItem:hover, ::slotted(.navItem.active), .navItem:active {
     background-color: var(--app-color-secondary);
     color: var(--app-color-on-secondary);
-}
-
-.navitemIcon {
-    text-align:center;
-    vertical-align: middle;
-    width: 50px;
-    display: inline-block;
 }

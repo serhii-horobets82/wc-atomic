@@ -40,7 +40,7 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
       return <NavigationInputData>{
          componentIdentifier: NavigationComponent.IDENTIFIER,
          links: [
-            { text: 'Homepage', href: '#', iconClazz: 'icon-home' },
+            { text: 'Homepage', href: '#', icon: 'icon-home' },
             { text: 'Get started', href: '#get-started', iconClazz: '' },
             { text: 'Form', href: '#form', iconClazz: '' },
             { text: 'Media', href: '#media', iconClazz: '' },
@@ -71,7 +71,7 @@ export class NavigationComponent extends AbstractComponent<NavigationInputData, 
             ${this.links.map(
                (linkItem) => html`
                   <component-navigation-link
-                     iconClazz="${linkItem.iconClazz}"
+                     icon="${linkItem.icon}"
                      text="${linkItem.text}"
                      href="${linkItem.href}"
                   ></component-navigation-link>
