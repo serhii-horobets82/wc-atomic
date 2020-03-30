@@ -29,21 +29,20 @@ export class NavigationSectionComponent extends AbstractComponent<LinkInputData,
 
    render() {
       return html`
-         <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"
-            ><component-flex-container
-               .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
-               .itemClazzes="${[]}"
-               .flexDirection="${FlexDirection.ROW}"
-               .flexWrap="${FlexWrap.NO_WRAP}"
-               .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
-               .alignItems="${AlignItems.CENTER}"
-               .alignContent="${AlignContent.FLEX_START}"
-               .itemFlexBasisValues="${['12px', 'auto']}"
-            >
-               <component-spacer spacerSize="${SpacerSize.LITTLE}" alignment="${SpacerAlignment.BOTH}"></component-spacer>
+         <component-flex-container
+            .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+            .itemClazzes="${[]}"
+            .flexDirection="${FlexDirection.ROW}"
+            .flexWrap="${FlexWrap.NO_WRAP}"
+            .flexJustifyContent="${FlexJustifyContent.FLEX_END}"
+            .alignItems="${AlignItems.CENTER}"
+            .alignContent="${AlignContent.FLEX_START}"
+            itemFlexBasisValue="80%"
+         >
+            <component-spacer spacerSize="${SpacerSize.MEDIUM}" spacerAlignment="${SpacerAlignment.VERTICAL}">
                <component-typography .typographyType="${TypographyType.CAPTION}" text="${this.text}"></component-typography>
-            </component-flex-container>
-         </component-spacer>
+            </component-spacer>
+         </component-flex-container>
       `;
    }
 

@@ -40,21 +40,22 @@ export class NavigationLinkComponent extends AbstractComponent<NavigationLinkInp
                  class="navItem"
                  class="${RouterService.getUniqueInstance().getPath() == this.href ? 'navItem selected' : 'navItem'}"
               >
-                 <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.HORIZONTAL}"
-                    ><component-flex-container
-                       @click="${() => this.linkClicked()}"
-                       .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
-                       .itemClazzes="${[]}"
-                       .flexDirection="${FlexDirection.ROW}"
-                       .flexWrap="${FlexWrap.NO_WRAP}"
-                       .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
-                       .alignItems="${AlignItems.CENTER}"
-                       .alignContent="${AlignContent.FLEX_START}"
-                       .itemFlexBasisValues="${['48px', '250px']}"
-                    >
-                       <component-icon icon="${this.icon}" .withIconSpace="${false}"></component-icon>
-                       <component-typography>${this.text}</component-typography>
-                    </component-flex-container>
+                 <component-spacer spacerSize="${SpacerSize.LITTLE}" spacerAlignment="${SpacerAlignment.VERTICAL}"></component-spacer>
+                 <component-flex-container
+                    @click="${() => this.linkClicked()}"
+                    .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                    .itemClazzes="${[]}"
+                    .flexDirection="${FlexDirection.ROW}"
+                    .flexWrap="${FlexWrap.NO_WRAP}"
+                    .flexJustifyContent="${FlexJustifyContent.FLEX_END}"
+                    .alignItems="${AlignItems.CENTER}"
+                    .alignContent="${AlignContent.FLEX_START}"
+                    .itemFlexBasisValues="${['20%', '80%']}"
+                 >
+                    <component-icon icon="${this.icon}" .withIconSpace="${false}"></component-icon>
+                    <component-typography>${this.text}</component-typography>
+                 </component-flex-container>
+                 <component-spacer spacerSize="${SpacerSize.LITTLE}" spacerAlignment="${SpacerAlignment.VERTICAL}">
                  </component-spacer>
               </div>
            `

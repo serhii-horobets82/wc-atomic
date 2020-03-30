@@ -1,11 +1,12 @@
 import {BasicRemoteRepository, AuthUser} from "@domoskanonos/frontend-basis";
+import {HttpClientService} from "@domoskanonos/frontend-basis/source/http-client-service";
 
-export class UserRepository extends BasicRemoteRepository<AuthUser> {
+export class UserRepository extends BasicRemoteRepository<AuthUser, Number> {
 
     private static uniqueInstance: UserRepository;
 
     constructor() {
-        super("/AUTHUSER");
+        super(HttpClientService.getUniqueInstance(), "/AUTHUSER");
     }
 
     static getUniqueInstance() {

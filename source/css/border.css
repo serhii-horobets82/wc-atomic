@@ -1,5 +1,6 @@
 .basicBorder {
     border: 1px solid var(--app-color-border);
+    opacity: 0.7;
 }
 
 .basicBorderBottom {

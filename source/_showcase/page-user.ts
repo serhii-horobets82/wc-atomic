@@ -24,9 +24,9 @@ export class PageUser extends PageAbstract {
         let userid: number | null = Number(
             ParamService.getUniqueInstance().getParam('userid')
         );
-        let userPromise = UserRepository.getUniqueInstance().find(userid);
+        let userPromise = UserRepository.getUniqueInstance().findById(userid);
         userPromise
-            .then((user) => {
+            .then((user:any) => {
                 this.user = user;
                 this.firstName = user.firstName;
                 this.lastName = user.lastName;
@@ -38,7 +38,7 @@ export class PageUser extends PageAbstract {
                 );
                 this.active = user.active;
             })
-            .catch((reason) => {
+            .catch((reason:any) => {
                 console.log('error user loading..' + reason);
             });
     }
@@ -184,7 +184,7 @@ export class PageUser extends PageAbstract {
              console.log('update user, id=' + this.user.id);
              UserRepository.getUniqueInstance()
                  .update(this.user.id, user)
-                 .then((value) => {
+                 .then((value:AuthUser) => {
                      WebApiService.getUniqueInstance().notify(
                          'Benutzer aktualisiert!' + value
                      );
@@ -192,7 +192,7 @@ export class PageUser extends PageAbstract {
          } else {
             UserRepository.getUniqueInstance()
                .persist(user)
-               .then((user) => {
+               .then((user:AuthUser) => {
                    this.user = user;
                    WebApiService.getUniqueInstance().notify(
                        'Neuen Benutzer angelegt!'
@@ -206,11 +206,8 @@ export class PageUser extends PageAbstract {
       if (this.user?.id != null) {
           console.log('delete user, id=' + this.user.id);
           UserRepository.getUniqueInstance()
-              .delete(this.user.id)
-              .then((value) => {
-                  console.log(value);
-                  RouterService.getUniqueInstance().navigate('#users');
-              });
+              .delete(this.user.id);
+
       }
    }
 }
