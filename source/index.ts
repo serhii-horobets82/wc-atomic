@@ -1,7 +1,6 @@
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
-import {RegisterInputData,RegisterComponent} from './register/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
 import {CardActionInputData,CardActionComponent} from './card/actions/component';
@@ -102,7 +101,6 @@ export {TableHeaderInputData,Sort,Pageable,ColumnInputData,RowInputData,TableInp
 export {TableCompoundHeaderInputData,TableCompoundHeader} from './table/compound-header/component';
 export {TabsInputData,TabsComponent} from './tabs/component';
 export {TabInputData,TabComponent} from './tabs/tab/component';
-export {RegisterInputData,RegisterComponent} from './register/component';
 export {TabContentInputData,TabContentComponent} from './tabs/tab-content/component';
 export {TeaserContainerInputData,TeaserComponent} from './teaser/component';
 export {TeaserElementInputData,TeaserElementComponent} from './teaser/teaser-element/component';
