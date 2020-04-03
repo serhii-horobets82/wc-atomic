@@ -37,9 +37,6 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
    trailingIcon: string = '';
 
    @property()
-   leftIcon: string = 'search';
-
-   @property()
    value: string = '';
 
    @query('#inputfieldComponent')
@@ -49,13 +46,7 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
       return html`
          <div class="search-bar">
             <slot></slot>
-            <component-icon
-               @component-icon-click="${() => {
-                  this.leftIconClicked();
-               }}"
-               icon="${this.leftIcon}"
-               clickable="true"
-            ></component-icon>
+            <component-icon icon="search"></component-icon>
             <component-inputfield
                id="inputfieldComponent"
                @component-inputfield-keyup="${() => this.textfieldKeyUp()}"
@@ -65,7 +56,6 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
                placeholder="${this.placeholder}"
                value="${this.value}"
                .automaticInfoText="${false}"
-               @component-inputfield-focus="${() => this.textfieldOnFocus()}"
                .inputfieldType="${InputfieldType.TEXT}"
                trailingIcon="${this.trailingIcon}"
                .leadingIconClickable="${true}"
@@ -85,11 +75,6 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
 
    protected inputDataChanged() {}
 
-   private textfieldOnFocus() {
-      this.leftIcon = 'keyboard_backspace';
-      this.setTrailingIcon();
-   }
-
    private textfieldIconClicked(event: CustomEvent) {
       let data: EventIconClickData = event.detail;
       switch (data.icon) {
@@ -98,6 +83,7 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
                this.inputfieldComponent.inputElemet.value = '';
                this.inputfieldComponent.inputElemet.focus();
             }
+            this.setTrailingIcon();
             break;
       }
    }
@@ -111,23 +97,6 @@ export class SearchBarComponent extends AbstractComponent<SearchBarInputData, Se
          this.trailingIcon = 'close';
       } else {
          this.trailingIcon = '';
-      }
-   }
-
-   private leftIconClicked() {
-      if (this.leftIcon == 'keyboard_backspace') {
-         if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
-            console.log('leave search mode...');
-            this.inputfieldComponent.inputElemet.value = '';
-         }
-         this.leftIcon = 'search';
-         this.trailingIcon = '';
-      } else if (this.leftIcon == 'search') {
-         console.log('enter search mode...');
-         this.leftIcon = 'keyboard_backspace';
-         if (this.inputfieldComponent != null && this.inputfieldComponent.inputElemet != null) {
-            this.inputfieldComponent.inputElemet.focus();
-         }
       }
    }
 }
