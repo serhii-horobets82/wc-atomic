@@ -477,7 +477,7 @@ ${this.value}</textarea
             this.inputfieldType === InputfieldType.DATE ||
             this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
             BasicService.getUniqueInstance().isNotBlank(this.label)) ||
-         (BasicService.getUniqueInstance().isNotBlank(this.inputElemet?.value) &&
+         (BasicService.getUniqueInstance().isNotBlank(this.value) &&
             BasicService.getUniqueInstance().isNotBlank(this.label))
       );
    }
