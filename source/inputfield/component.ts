@@ -384,17 +384,17 @@ ${this.value}</textarea
     }
 
     private prepareValue(value: any): any {
+        if (value == null || value == undefined) {
+            return '';
+        }
         switch (this.inputfieldType) {
-            case InputfieldType.NUMBER:
-                value = Number(value);
-                break;
             case InputfieldType.DATE:
                 value = value.toISOString().substr(0, 10);
                 break;
             default:
+                value = BasicService.getUniqueInstance().beautifyText(value);
                 break;
         }
-        //return BasicService.getUniqueInstance().beautifyText(value);
         return value;
     }
 

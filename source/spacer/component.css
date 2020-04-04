@@ -1,14 +1,12 @@
 :host,
 ::slotted(:host) {
-   line-height: 0;
-   font-size: 0;
-   letter-spacing: 0;
+
 }
 
 .spacer,
 ::slotted(.spacer) {
    box-sizing: border-box;
-   display: inline-block;
+   display: block;
 }
 
 .horizontalAlignment,

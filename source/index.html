@@ -17,28 +17,17 @@
          src: url(https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
       }
 
-      body {
-         margin: 0;
-         padding: 0;
-      }
-
       :root {
+         --space-little: 2px;
+         --space-small: 4px;
+         --space-medium: 8px;
+         --space-normal: 12px;
+         --space-big: 16px;
+         --space-max: 32px;
 
-         --space-little: 2pt;
-         --space-small: 4pt;
-         --space-medium: 8pt;
-         --space-normal: 12pt;
-         --space-big: 16pt;
-         --space-max: 32pt;
-
-
-         --font-size: 16px;
-         --font-size-small: 16px;
-         --font-family: 'Roboto';
-         --font-style: 'sans-serif';
-         --font-weight: 400;
-         --font-weight-bold: 600;
+         --font-family: 'Main Font';
          --letter-spacing: 1pt;
+         --font-size: 1.1em;
 
          --menu-size: 275px;
 
@@ -54,40 +43,27 @@
          --line-height-big: 60px;
          --line-height-massiv: 72px;
 
-
-
-         --app-color-success: #22BB33;
-         --app-color-error: #B00020;
-         --app-error-warning: #FFCC00;
-         --app-color-info: #40A6CE;
-         --app-color-primary: #202124;
-         --app-color-secondary: #6200EE;
-         --app-color-surface: #F2F2F2;
-         --app-color-background: #FFFFFF;
+         --app-color-success: #22bb33;
+         --app-color-error: #b00020;
+         --app-error-warning: #ffcc00;
+         --app-color-info: #40a6ce;
+         --app-color-primary: #303F9F;
+         --app-color-secondary: #3F51B5;
+         --app-color-surface: #009688;
+         --app-color-background: #ffffff;
 
          --app-color-on-success: #000000;
-         --app-color-on-error: #B00020;
+         --app-color-on-error: #b00020;
          --app-error-on-warning: #000000;
-         --app-color-on-info: #FFFFFF;
+         --app-color-on-info: #ffffff;
          --app-color-on-disabled: #cccccc;
 
-
-
-         --app-color-on-primary: #FFFFFF;
-         --app-color-on-secondary: #FFFFFF;
-         --app-color-on-surface: #000000;
+         --app-color-on-primary: #ffffff;
+         --app-color-on-secondary: #ffffff;
+         --app-color-on-surface: #FFFFFF;
          --app-color-on-background: #000000;
 
-
-         --app-color-border: #b3b3b3;
-
-
-
-
-
-
-
-
+         --app-color-border: #ebebeb;
       }
 
       * {
@@ -96,23 +72,47 @@
          word-wrap: break-word;
          box-sizing: border-box;
          text-rendering: optimizelegibility;
-         font-family: var(--font-family), var(--font-style);
+         font-family: var(--font-family);
          font-size: var(--font-size);
+         fx-font-family: var(--font-family);
          letter-spacing: var(--letter-spacing);
          text-decoration: none;
-         line-height: 0;
+         line-height: unset;
       }
 
       @media (max-width: 1280px) {
          :root {
-            --font-size: 0.9rem;
-            --font-size-small: 0.6rem;
+            --space-little: 1pt;
+            --space-small: 2pt;
+            --space-medium: 4pt;
+            --space-normal: 6pt;
+            --space-big: 8pt;
+            --space-max: 16pt;
+            --font-size: 1.05em;
          }
 
          body {
             padding-left: var(--space-little);
             padding-right: var(--space-little);
          }
+      }
+
+      @media (orientation: portrait) {
+         :root {
+            --space-little: 0pt;
+            --space-small: 1pt;
+            --space-medium: 2pt;
+            --space-normal: 3pt;
+            --space-big: 4pt;
+            --space-max: 8pt;
+            --font-size: 0.9em;
+         }
+
+         body {
+            padding-left: var(--space-little);
+            padding-right: var(--space-little);
+         }
+
       }
    </style>
    <script>
