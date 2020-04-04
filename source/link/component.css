@@ -2,11 +2,9 @@
 ::slotted(:host) {
   height: unset;
   line-height: unset;
-  background-color: green;
   float: left;
   display: inline;
   white-space: nowrap;
-  background-color: green;
 }
 a {
   color: inherit;
