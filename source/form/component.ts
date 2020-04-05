@@ -1,11 +1,10 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {InputfieldComponent, InputfieldType} from '../inputfield/component';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { InputfieldComponent, InputfieldType } from '../inputfield/component';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { ButtonInputData } from '../button/component';
 import { guard } from 'lit-html/directives/guard';
 import { repeat } from 'lit-html/directives/repeat';
 import { ComponentLoader } from '../abstract/component-loader';
-import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -45,13 +44,12 @@ export class FormComponent extends AbstractComponent<FormComponentInputData, For
    protected render() {
       return html`
          <form id="htmlForm" @component-button-click="${this.formButtonClicked}">
-            
             <slot name="header"></slot>
 
             <div class="errorMessages">
-                <slot name="errorMessages"></slot>
+               <slot name="errorMessages"></slot>
             </div>
-            
+
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
             ${guard(
                this.buttonInputDatas,
