@@ -103,10 +103,22 @@
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait) {
+
+   .FLEX_CONTAINER.SMARTPHONE_HORIZONTAL_PADDING {
+      padding-left: var(--space-normal);
+      padding-right: var(--space-normal);
+   }
+
+   .FLEX_CONTAINER.SMARTPHONE_VERTICAL_PADDING {
+      padding-top: var(--space-normal);
+      padding-bottom: var(--space-normal);
+   }
+
    .FLEX_CONTAINER.SMARTPHONE_MAX_WIDTH,
    ::slotted(.FLEX_CONTAINER.SMARTPHONE_MAX_WIDTH) {
       width: 100%;
    }
+
    ::slotted(.FLEX_ITEM.SMARTPHONE_MAX_WIDTH),
    .FLEX_ITEM.SMARTPHONE_MAX_WIDTH {
       flex-basis: 100% !important;
