@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { IconInputData } from '../icon/component';
-import {SpacerAlignment, SpacerSize} from "..";
+import { SpacerAlignment, SpacerSize } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -56,14 +56,12 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
 
    render() {
       return html`
-         <effect-ripple>
-            <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
-               <component-icon icon="${this.icon}" .rendered="${this.icon != undefined}" .withIconSpace="${false}"></component-icon>
-               <component-spacer size="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
-               <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
-               <slot></slot>
-            </button>
-         </effect-ripple>
+         <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
+            <component-icon icon="${this.icon}" .rendered="${this.icon != undefined}" .withIconSpace="${false}"></component-icon>
+            <component-spacer size="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
+            <component-typography clazz="ellipsis centerText" text="${this.text}"></component-typography>
+            <slot></slot>
+         </button>
       `;
    }
 
