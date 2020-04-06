@@ -20,6 +20,8 @@
     white-space: nowrap;
     word-wrap: normal;
     text-align: left;
+    width: 100%;
+    float: left;
 }
 
 .H1,
