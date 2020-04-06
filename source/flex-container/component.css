@@ -90,6 +90,17 @@
 }
 
 @media only screen and (max-width: 1280px) and (orientation: portrait) {
+
+   .FLEX_CONTAINER.TABLET_HORIZONTAL_PADDING {
+      padding-left: var(--space-normal);
+      padding-right: var(--space-normal);
+   }
+
+   .FLEX_CONTAINER.TABLET_VERTICAL_PADDING {
+      padding-top: var(--space-normal);
+      padding-bottom: var(--space-normal);
+   }
+
    .FLEX_CONTAINER.TABLET_MAX_WIDTH,
    ::slotted(.FLEX_CONTAINER.TABLET_MAX_WIDTH) {
       width: 100%;
