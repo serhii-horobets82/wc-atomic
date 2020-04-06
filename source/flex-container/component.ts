@@ -9,6 +9,7 @@ import {ColorClasses} from "../meta-data/color-classes";
 const componentCSS = require('./component.css');
 
 export class ContainerClazzValues {
+
    static CONTAINER_MIN_CONTENT = 'CONTAINER_MIN_CONTENT';
    static CONTAINER_100 = 'CONTAINER_100';
    static CONTAINER_75 = 'CONTAINER_75';
@@ -16,6 +17,10 @@ export class ContainerClazzValues {
    static CONTAINER_25 = 'CONTAINER_25';
    static TABLET_MAX_WIDTH = 'TABLET_MAX_WIDTH';
    static SMARTPHONE_MAX_WIDTH = 'SMARTPHONE_MAX_WIDTH';
+   static SMARTPHONE_HORIZONTAL_PADDING = 'SMARTPHONE_HORIZONTAL_PADDING';
+   static SMARTPHONE_VERTICAL_PADDING = 'SMARTPHONE_VERTICAL_PADDING';
+   static TABLET_HORIZONTAL_PADDING = 'TABLET_HORIZONTAL_PADDING';
+   static TABLET_VERTICAL_PADDING = 'TABLET_VERTICAL_PADDING';
    static PRIMARY_COLOR = ColorClasses.PRIMARY_COLOR;
    static SECONDARY_COLOR = ColorClasses.SECONDARY_COLOR;
    static SURFACE_COLOR = ColorClasses.SURFACE_COLOR;

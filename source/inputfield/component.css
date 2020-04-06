@@ -35,7 +35,7 @@ input, select, textarea {
 }
 
 select[multiple] {
-   padding-top: var(--line-height);
+   margin-top: var(--line-height);
 }
 
 input:focus, select:focus, textarea:focus {
