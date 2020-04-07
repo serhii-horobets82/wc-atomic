@@ -1,7 +1,8 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {TypographyInputData, TypographyType} from '..';
-import {BasicService} from '@domoskanonos/frontend-basis';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { TypographyInputData, TypographyType } from '..';
+import { BasicService } from '@domoskanonos/frontend-basis';
+import { EventIconClickData } from '../icon/component';
 
 const componentCSS = require('./component.css');
 
@@ -26,21 +27,31 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
 
    static IDENTIFIER: string = 'LinkComponent';
 
+   static EVENT_CLICK: string = 'component-link-click';
+
    @property()
    href: string = '';
 
    @property()
-   target: string = TargetType.BLANK;
+   target: string = TargetType.SELF;
 
    @property()
    text: string = '';
 
    render() {
-      return html`
+      return BasicService.getUniqueInstance().isNotBlank(this.href)
+         ? html`
               <a href="${this.href}" target="${this.target}"
                  ><component-typography .typographyType="${TypographyType.BUTTON}">${this.text}<slot></slot></component-typography
               ></a>
+           `
+         : html`
+              <span style="cursor:pointer;" @click="${this.clicked}">${this.text}</span>
            `;
+   }
+
+   async clicked() {
+      this.dispatchSimpleCustomEvent(LinkComponent.EVENT_CLICK, this.getOutputData());
    }
 
    protected inputDataChanged() {

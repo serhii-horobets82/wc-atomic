@@ -31,7 +31,7 @@
 }
 
 .dialogContainer {
-    width: 80%;
+    width: min-content;
     height: auto;
 
     padding: 0;
