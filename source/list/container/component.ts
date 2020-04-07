@@ -22,6 +22,9 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
    @property()
    items: ListItemInputData[] = [];
 
+   @property()
+   selectMode: boolean = false;
+
    render() {
       return html`
          <div class="list">
@@ -31,7 +34,7 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
                   ${repeat(
                      this.items,
                      (item) => html`
-                        <component-list-item .inputData="${item}"></component-list-item>
+                        <component-list-item .selectMode="${this.selectMode}" .inputData="${item}"></component-list-item>
                      `
                   )}
                `
