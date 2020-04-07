@@ -1,6 +1,6 @@
 {
    "name": "@domoskanonos/wc-atomic",
-   "version": "1.0.323",
+   "version": "1.0.324",
    "license": "ISC",
    "description": "",
    "main": "source/index.js",
