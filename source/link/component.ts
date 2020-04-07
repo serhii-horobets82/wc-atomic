@@ -46,12 +46,8 @@ export class LinkComponent extends AbstractComponent<LinkInputData, undefined> {
               ></a>
            `
          : html`
-              <span style="cursor:pointer;" @click="${this.clicked}">${this.text}</span>
+              <span style="cursor:pointer;">${this.text}</span>
            `;
-   }
-
-   async clicked() {
-      this.dispatchSimpleCustomEvent(LinkComponent.EVENT_CLICK, this.getOutputData());
    }
 
    protected inputDataChanged() {
