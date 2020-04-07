@@ -20,6 +20,8 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
 
     static IDENTIFIER: string = 'ListItemComponent';
 
+    static EVENT_LIST_ITEM_CLICKED: string = 'component-list-item-clicked';
+
     @property()
     content: AbstractInputData[] = [];
 
@@ -45,10 +47,14 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, any>
                   @click="${() => this.switchSelected()}"
                   icon="${this.selected ? 'check_box' : 'check_box_outline_blank'}"
                ></component-icon>
-               <slot></slot>
+               <slot @click="${() => this.itemClicked()}"></slot>
             </component-flex-container>
          </component-border>
       `;
+    }
+
+    itemClicked() {
+        BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListItemComponent.EVENT_LIST_ITEM_CLICKED);
     }
 
     switchSelected() {
