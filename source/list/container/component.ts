@@ -21,6 +21,7 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
 
    static EVENT_SELECTION_CHANGED: string = 'component-list-selection-changed';
 
+   @property()
    selection: number[] = [];
 
    @property()
