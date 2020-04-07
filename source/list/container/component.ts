@@ -8,19 +8,20 @@ import { BasicService } from '@domoskanonos/frontend-basis';
 const componentCSS = require('./component.css');
 
 export class ListInputData extends AbstractInputData {
-   items?: ListItemInputData[];
+   selectMode: boolean = false;
 }
 
 @customElement('component-list')
-export class ListComponent extends AbstractComponent<ListInputData, any> {
+export class ListComponent extends AbstractComponent<ListInputData, undefined> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
 
    static IDENTIFIER: string = 'ListComponent';
 
-   @property()
-   items: ListItemInputData[] = [];
+   static EVENT_SELECTION_CHANGED: string = 'component-list-selection-changed';
+
+   selection: number[] = [];
 
    @property()
    selectMode: boolean = false;
@@ -28,34 +29,35 @@ export class ListComponent extends AbstractComponent<ListInputData, any> {
    render() {
       return html`
          <div class="list">
-            ${guard(
-               [this.items],
-               () => html`
-                  ${repeat(
-                     this.items,
-                     (item) => html`
-                        <component-list-item .selectMode="${this.selectMode}" .inputData="${item}"></component-list-item>
-                     `
-                  )}
-               `
-            )}
-            <slot></slot>
+            <slot
+               @component-list-item-select="${(event: CustomEvent) => this.listItemSelected(event)}"
+               @component-list-item-unselect="${(event: CustomEvent) => this.listItemUnSelected(event)}"
+            ></slot>
          </div>
       `;
    }
 
-   getDefaultInputData(): ListInputData {
-      return <ListInputData>{
-         componentIdentifier: ListComponent.IDENTIFIER,
-         items: []
-      };
+   listItemSelected(event: CustomEvent) {
+      let index: number = event.detail;
+      console.log(index);
+      this.selection.push(Number(index));
+      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, this.selection);
    }
 
-   getOutputData(): any {
-      return {};
+   listItemUnSelected(event: CustomEvent) {
+      let index: number = event.detail;
+      console.log(index);
+      this.selection = this.selection.filter((obj) => obj !== Number(index));
+      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, this.selection);
+   }
+
+   getOutputData(): undefined {
+      return undefined;
    }
 
    protected inputDataChanged() {
-      this.items = BasicService.getUniqueInstance().getValue(this.inputData.items, []);
+      let defaultData: ListInputData = new ListInputData();
+      this.selectMode = BasicService.getUniqueInstance().getValue(this.inputData.selectMode, defaultData.selectMode);
    }
+   
 }
