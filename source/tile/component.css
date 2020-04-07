@@ -1,4 +1,3 @@
-@import '../css/shadow.css';
 
 .tile,::slotted(.tile) {
    box-sizing: border-box;

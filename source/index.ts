@@ -1,5 +1,7 @@
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
+import {ColorType,ColorInputData,ColorComponent} from './color/component';
+import {BorderType,BorderInputData,BorderComponent} from './border/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 import {ButtonInputData,ButtonComponent} from './button/component';
@@ -30,7 +32,7 @@ import {
     InputfieldDataChangeEvent,
     InputfieldComponent
 } from './inputfield/component';
-import {LinkInputData,LinkComponent} from './link/component';
+import {TargetType, LinkInputData,LinkComponent} from './link/component';
 import {ListInputData,ListComponent} from './list/container/component';
 import {ListItemInputData,ListItemComponent} from './list/item/component';
 import {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';
@@ -61,6 +63,8 @@ import {ComponentLoader} from './abstract/component-loader';
 import {ColumnEventData, IteratorComponentService} from "./services/iterator/iterator-component-service";
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
+export {ColorType,ColorInputData,ColorComponent} from './color/component';
+export {BorderType,BorderInputData,BorderComponent} from './border/component';
 export {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 export {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
 export {ButtonInputData,ButtonComponent} from './button/component';
@@ -86,7 +90,7 @@ export {RichMediaType, RichMediaInputData,RichMediaComponent} from './rich-media
 export {ImgSliderInputData,ImgSliderComponent} from './img-slider/component';
 export {ImgSliderSelectorInputData,ImgSliderSelectorComponent} from './img-slider-selector/component';
 export {InputfieldType,InputfieldInputData,InputfieldDataChangeEvent,InputfieldComponent} from './inputfield/component';
-export {LinkInputData,LinkComponent} from './link/component';
+export {TargetType, LinkInputData,LinkComponent} from './link/component';
 export {ListInputData,ListComponent} from './list/container/component';
 export {ListItemInputData,ListItemComponent} from './list/item/component';
 export {TopAppBarInputData,TopAppBarComponent} from './top-app-bar/component';

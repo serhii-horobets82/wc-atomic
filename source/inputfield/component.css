@@ -9,7 +9,7 @@
    position: absolute;
    top: -10px;
    left: var(--space-medium);
-   background-color: var(--app-color-background);
+
    padding-left: var(--space-small);
    padding-right: var(--space-small);
 }

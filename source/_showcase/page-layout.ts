@@ -10,13 +10,16 @@ import {
    FlexWrap,
    ItemClazzValues
 } from '../flex-container/component';
-import { ElementState, InputfieldComponent, InputfieldType, SpacerSize, TypographyType } from '..';
+import { ColorType, InputfieldComponent, InputfieldType, SpacerSize, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-layout')
 export class PageLayoutComponent extends PageAbstract {
    @property()
-   containerClazzes: string[] = [ContainerClazzValues.CONTAINER_100, ContainerClazzValues.SECONDARY_COLOR];
+   containerClazzes: string[] = [ContainerClazzValues.CONTAINER_100];
+
+   @property()
+   colorType: string = ColorType.SECONDARY_COLOR;
 
    @property()
    itemClazzes: string[] = [ItemClazzValues.TABLET_MAX_WIDTH, ItemClazzValues.SMARTPHONE_MAX_WIDTH];
@@ -61,59 +64,61 @@ export class PageLayoutComponent extends PageAbstract {
                >
 
                <component-typography type="${TypographyType.BODY1}"
-                  >Die Komponente <i>component-flex-container</i> basiert auf dem CSS Flexbox Layout Modell (display: flex).
-                  Auf dieser Seite können Sie diese Komponente und deren Eigenschaften ausführlich testen.</component-typography
+                  >Die Komponente <i>component-flex-container</i> basiert auf dem CSS Flexbox Layout Modell (display: flex). Auf
+                  dieser Seite können Sie diese Komponente und deren Eigenschaften ausführlich testen.</component-typography
                >
             </component-flex-container>
 
             <component-container>
-               <component-flex-container
-                  id="sample-flex-container"
-                  .containerClazzes="${this.containerClazzes}"
-                  .itemClazzes="${this.itemClazzes}"
-                  cssStyle="height:500px;"
-                  itemFlexBasisValue="${this.itemFlexBasisValue}"
-                  .flexDirection="${this.direction}"
-                  .flexWrap="${this.flexWrap}"
-                  .flexJustifyContent="${this.flexJustifyContent}"
-                  .alignItems="${this.alignItems}"
-                  .alignContent="${this.alignContent}"
-               >
-                  <component-spacer
-                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
-                  ></component-spacer>
-                  <component-spacer
-                     cssStyle="width:200px; height: 100px; background-color:var(--app-color-primary)"
-                  ></component-spacer>
-                  <component-spacer
-                     cssStyle="width:100px; height: 200px; background-color:var(--app-color-surface)"
-                  ></component-spacer>
-                  <component-spacer
-                     cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
-                  ></component-spacer>
-                  <component-spacer
-                     cssStyle="width:100px; height: 100px; background-color:var(--app-color-surface)"
-                  ></component-spacer>
-                  <component-spacer
-                     cssStyle="width:50px; height: 50px; background-color:var(--app-color-surface)"
-                  ></component-spacer>
+               <component-color colorType="${this.colorType}">
+                  <component-flex-container
+                     id="sample-flex-container"
+                     .containerClazzes="${this.containerClazzes}"
+                     colorType="${this.colorType}"
+                     .itemClazzes="${this.itemClazzes}"
+                     cssStyle="height:500px;"
+                     itemFlexBasisValue="${this.itemFlexBasisValue}"
+                     .flexDirection="${this.direction}"
+                     .flexWrap="${this.flexWrap}"
+                     .flexJustifyContent="${this.flexJustifyContent}"
+                     .alignItems="${this.alignItems}"
+                     .alignContent="${this.alignContent}"
+                  >
+                     <component-spacer
+                        cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
+                     ></component-spacer>
+                     <component-spacer
+                        cssStyle="width:200px; height: 100px; background-color:var(--app-color-primary)"
+                     ></component-spacer>
+                     <component-spacer
+                        cssStyle="width:100px; height: 200px; background-color:var(--app-color-surface)"
+                     ></component-spacer>
+                     <component-spacer
+                        cssStyle="width:200px; height: 200px; background-color:var(--app-color-surface)"
+                     ></component-spacer>
+                     <component-spacer
+                        cssStyle="width:100px; height: 100px; background-color:var(--app-color-surface)"
+                     ></component-spacer>
+                     <component-spacer
+                        cssStyle="width:50px; height: 50px; background-color:var(--app-color-surface)"
+                     ></component-spacer>
 
-                  <component-spacer
-                     .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-surface)"
-                  ></component-spacer>
+                     <component-spacer
+                        .size="${SpacerSize.BIG}"
+                        cssStyle="background-color:var(--app-color-surface)"
+                     ></component-spacer>
 
-                  <component-spacer
-                     .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-surface)"
-                  ></component-spacer>
+                     <component-spacer
+                        .size="${SpacerSize.BIG}"
+                        cssStyle="background-color:var(--app-color-surface)"
+                     ></component-spacer>
 
-                  <component-spacer
-                     .size="${SpacerSize.BIG}"
-                     cssStyle="background-color:var(--app-color-surface)"
-                  ></component-spacer>
-               </component-flex-container>
-
+                     <component-spacer
+                        .size="${SpacerSize.BIG}"
+                        cssStyle="background-color:var(--app-color-surface)"
+                     ></component-spacer>
+                  </component-flex-container>
+               </component-color>
                <component-code
                   >&lt;component-flex-container .containerClazzes="${['CONTAINER_100']}"
                   .flexDirection="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(

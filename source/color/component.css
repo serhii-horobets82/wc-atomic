@@ -1,0 +1,31 @@
+slot {
+   width: 100%;
+}
+
+.BACKGROUND_COLOR,
+::slotted(.BACKGROUND_COLOR) {
+   display: inline-block;
+   color: var(--app-color-on-background);
+   background-color: var(--app-color-background);
+}
+
+.SURFACE_COLOR,
+::slotted(.SURFACE_COLOR) {
+   display: inline-block;
+   color: var(--app-color-on-surface);
+   background-color: var(--app-color-surface);
+}
+
+.SECONDARY_COLOR,
+::slotted(.SECONDARY_COLOR) {
+   display: inline-block;
+   color: var(--app-color-on-secondary);
+   background-color: var(--app-color-secondary);
+}
+
+.PRIMARY_COLOR,
+::slotted(.PRIMARY_COLOR) {
+   display: inline-block;
+   color: var(--app-color-on-primary);
+   background-color: var(--app-color-primary);
+}

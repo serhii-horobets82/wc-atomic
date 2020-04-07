@@ -33,7 +33,7 @@
 .dialogContainer {
     width: 80%;
     height: auto;
-    background-color: var(--app-color-background);
+
     padding: 0;
     margin: 0 auto;
 }

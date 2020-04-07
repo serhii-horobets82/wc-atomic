@@ -1,7 +1,7 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
-import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
-import { SpacerAlignment, SpacerSize } from '..';
-import { BasicService } from '@domoskanonos/frontend-basis';
+import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
+import {BorderType, SpacerAlignment, SpacerSize} from '..';
+import {BasicService} from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
@@ -23,8 +23,9 @@ export class DividerComponent extends AbstractComponent<DividerInputData, undefi
 
    render() {
       return html`
-         <component-spacer spacerSize="${this.spacerSize}" spacerAlignment="${SpacerAlignment.BOTH}"> </component-spacer>
-         <div class="basicBorder basicBorderBottom"></div>
+         <component-border borderType="${BorderType.BOTTOM}">
+            <component-spacer spacerSize="${this.spacerSize}" spacerAlignment="${SpacerAlignment.BOTH}"> </component-spacer>
+         </component-border>
          <component-spacer spacerSize="${this.spacerSize}" spacerAlignment="${SpacerAlignment.BOTH}"> </component-spacer>
       `;
    }

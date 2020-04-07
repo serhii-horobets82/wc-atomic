@@ -1,5 +1,3 @@
-@import "../css/border.css";
-
 div, ::slotted(.div) {
     width: auto;
     height: auto;

@@ -1,8 +1,8 @@
 button {
     cursor: pointer;
     border: none;
-    background-color: var(--app-color-primary);
-    color: var(--app-color-on-primary);
+
+
     text-transform: uppercase;
     box-sizing: border-box;
     font-family: inherit;

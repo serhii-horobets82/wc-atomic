@@ -1,14 +1,13 @@
-import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element';
+import { css, html, property, query, TemplateResult, unsafeCSS } from 'lit-element';
 
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {IconInputData} from '../icon/component';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { IconInputData } from '../icon/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
-
+import { BorderType, ColorType } from '..';
 
 const componentCSS = require('./component.css');
 
-export class BasisTemplateInputData extends AbstractInputData {
-}
+export class BasisTemplateInputData extends AbstractInputData {}
 
 export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInputData, undefined> {
    static styles = css`
@@ -34,10 +33,18 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
       return html`
          <div class="container" @component-icon-click="${this.menuItemClicked}">
             <top id="top" class="${this.menuCss}">
-               ${this.getTopContent()}
+               <component-color colorType="${ColorType.PRIMARY_COLOR}">
+                  <component-border borderType="${BorderType.BOTTOM}">
+                     ${this.getTopContent()}
+                  </component-border>
+               </component-color>
             </top>
             <div id="left" class="${this.menuCss}">
-               ${this.getLeftComponent()}
+               <component-color colorType="${ColorType.PRIMARY_COLOR}"
+                  ><component-border borderType="${BorderType.RIGHT}">
+                     ${this.getLeftComponent()}
+                  </component-border></component-color
+               >
             </div>
             <div id="main" class="${this.menuCss}">
                ${this.getMainComponent()}
@@ -52,8 +59,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    abstract getTopContent(): TemplateResult;
 
-   protected inputDataChanged(): void {
-   }
+   protected inputDataChanged(): void {}
 
    public getOutputData(): undefined {
       return undefined;
@@ -61,7 +67,7 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
 
    getDefaultInputData(): BasisTemplateInputData {
       return <BasisTemplateInputData>{
-         componentIdentifier: BasisTemplate.IDENTIFIER,
+         componentIdentifier: BasisTemplate.IDENTIFIER
       };
    }
 
@@ -79,7 +85,5 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
       } else {
          this.menuCss = 'basicShadow';
       }
-
    }
-
 }

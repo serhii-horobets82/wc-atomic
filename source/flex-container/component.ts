@@ -1,15 +1,13 @@
-import {css, customElement, html, property, query, unsafeCSS} from 'lit-element';
-import {repeat} from 'lit-html/directives/repeat';
-import {guard} from 'lit-html/directives/guard';
-import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
-import {ComponentLoader} from '../abstract/component-loader';
-import {BasicService} from '@domoskanonos/frontend-basis';
-import {ColorClasses} from "../meta-data/color-classes";
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
+import { repeat } from 'lit-html/directives/repeat';
+import { guard } from 'lit-html/directives/guard';
+import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
+import { ComponentLoader } from '../abstract/component-loader';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
 export class ContainerClazzValues {
-
    static CONTAINER_MIN_CONTENT = 'CONTAINER_MIN_CONTENT';
    static CONTAINER_100 = 'CONTAINER_100';
    static CONTAINER_75 = 'CONTAINER_75';
@@ -21,10 +19,6 @@ export class ContainerClazzValues {
    static SMARTPHONE_VERTICAL_PADDING = 'SMARTPHONE_VERTICAL_PADDING';
    static TABLET_HORIZONTAL_PADDING = 'TABLET_HORIZONTAL_PADDING';
    static TABLET_VERTICAL_PADDING = 'TABLET_VERTICAL_PADDING';
-   static PRIMARY_COLOR = ColorClasses.PRIMARY_COLOR;
-   static SECONDARY_COLOR = ColorClasses.SECONDARY_COLOR;
-   static SURFACE_COLOR = ColorClasses.SURFACE_COLOR;
-   static BACKGROUND_COLOR = ColorClasses.BACKGROUND_COLOR;
 }
 
 export class ItemClazzValues {
@@ -157,20 +151,20 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
          <div
             class="${this.toContainerClazzesString(this.containerClazzes)}"
             style="flex-direction: ${this.flexDirection}; flex-wrap: ${this.flexWrap}; justify-content: ${this
-          .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent}; ${this.cssStyle}"
+               .flexJustifyContent}; align-items: ${this.alignItems}; align-content: ${this.alignContent}; ${this.cssStyle}"
          >
             ${guard(
-          this.inputDataItems,
-          () =>
-              html`
+               this.inputDataItems,
+               () =>
+                  html`
                      ${repeat(
-                  this.inputDataItems,
-                  (componentInputData, index) => html`
+                        this.inputDataItems,
+                        (componentInputData, index) => html`
                            ${this.createItem(componentInputData, index)}
                         `
-              )}
+                     )}
                   `
-      )}
+            )}
             <slot id="slotElement" @slotchange="${(event: Event) => this.slotChanged(event)}"></slot>
          </div>
       `;
@@ -181,7 +175,7 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
       if (
          changedProperties.get('itemFlexBasisValue') != undefined ||
          changedProperties.get('itemFlexBasisValues') != undefined ||
-          changedProperties.get('itemClazzes') != undefined
+         changedProperties.get('itemClazzes') != undefined
       ) {
          this.changeSlotComponentsStyle(this.slotElement);
       }
@@ -248,26 +242,26 @@ export class FlexComponent extends AbstractComponent<FlexContainerInputData, und
    inputDataChanged() {
       let defaultData: FlexContainerInputData = new FlexContainerInputData();
       this.containerClazzes = BasicService.getUniqueInstance().getValue(
-          this.inputData.containerClazzes,
-          defaultData.containerClazzes
+         this.inputData.containerClazzes,
+         defaultData.containerClazzes
       );
       this.cssStyle = BasicService.getUniqueInstance().getValue(this.inputData.cssStyle, defaultData.cssStyle);
       this.flexDirection = BasicService.getUniqueInstance().getValue(this.inputData.flexDirection, defaultData.flexDirection);
       this.flexWrap = BasicService.getUniqueInstance().getValue(this.inputData.flexWrap, defaultData.flexWrap);
       this.flexJustifyContent = BasicService.getUniqueInstance().getValue(
-          this.inputData.flexJustifyContent,
-          defaultData.flexJustifyContent
+         this.inputData.flexJustifyContent,
+         defaultData.flexJustifyContent
       );
       this.alignItems = BasicService.getUniqueInstance().getValue(this.inputData.alignItems, defaultData.alignItems);
       this.alignContent = BasicService.getUniqueInstance().getValue(this.inputData.alignContent, defaultData.alignContent);
       this.itemClazzes = BasicService.getUniqueInstance().getValue(this.inputData.itemClazzes, defaultData.itemClazzes);
       this.itemFlexBasisValue = BasicService.getUniqueInstance().getValue(
-          this.inputData.itemFlexBasisValue,
-          defaultData.itemFlexBasisValue
+         this.inputData.itemFlexBasisValue,
+         defaultData.itemFlexBasisValue
       );
       this.itemFlexBasisValues = BasicService.getUniqueInstance().getValue(
-          this.inputData.itemFlexBasisValues,
-          defaultData.itemFlexBasisValues
+         this.inputData.itemFlexBasisValues,
+         defaultData.itemFlexBasisValues
       );
       this.inputDataItems = BasicService.getUniqueInstance().getValue(this.inputData.inputDataItems, defaultData.inputDataItems);
    }

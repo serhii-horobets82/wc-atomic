@@ -2,7 +2,6 @@ import {css, html, property, query, TemplateResult, unsafeCSS} from 'lit-element
 
 import {AbstractComponent, AbstractInputData} from '../abstract-component/component';
 import {IconInputData} from '../icon/component';
-import {DialogComponent} from "..";
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');

@@ -1,5 +1,3 @@
-@import '../css/color.css';
-
 *,
 ::slotted(*) {
    box-sizing: border-box;

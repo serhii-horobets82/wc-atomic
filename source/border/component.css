@@ -1,0 +1,36 @@
+.BORDER {
+    border-color: var(--app-color-border);
+}
+
+slot {
+    display: block;
+}
+
+.ALL {
+    border-width: thin;
+}
+
+.HORIZONTAL,
+.TOP {
+    border-top-width: thin;
+    border-top-style: solid;
+}
+
+.HORIZONTAL,
+.BOTTOM {
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+}
+
+.VERTICAL,
+.LEFT {
+    border-left-width: thin;
+    border-left-style: solid;
+
+}
+
+.VERTICAL,
+.RIGHT {
+    border-right-width: thin;
+    border-right-style: solid;
+}
