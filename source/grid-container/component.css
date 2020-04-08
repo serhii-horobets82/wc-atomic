@@ -1,0 +1,11 @@
+*,
+::slotted(*) {
+   box-sizing: border-box;
+}
+
+.GRID_CONTAINER,
+::slotted(.GRID_CONTAINER) {
+   margin: auto;
+   display: flex;
+   box-sizing: border-box;
+}
