@@ -1,5 +1,10 @@
 slot {
    width: 100%;
+   height: 100%;
+}
+
+a, ::slotted(a), slot {
+   color: green;
 }
 
 .BACKGROUND_COLOR,
