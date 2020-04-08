@@ -246,6 +246,22 @@ ${this.value}</textarea
                           @focusout="${(event: Event) => this.focusout(event)}"
                        />
                     `}
+               <component-icon
+                  .rendered="${!this.checked}"
+                  @click="${() => {
+                     this.switchChecked();
+                  }}"
+                  icon="toggle_off"
+                  .clickable="${true}"
+               ></component-icon>
+               <component-icon
+                  .rendered="${this.checked}"
+                  @click="${() => {
+                     this.switchChecked();
+                  }}"
+                  icon="toggle_on"
+                  .clickable="${true}"
+               ></component-icon>
 
                <component-icon
                   .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
@@ -271,6 +287,10 @@ ${this.value}</textarea
             </component-flex-container>
          </div>
       `;
+   }
+
+   private switchChecked() {
+      this.checked = !this.checked;
    }
 
    async keyup() {
@@ -477,8 +497,7 @@ ${this.value}</textarea
             this.inputfieldType === InputfieldType.DATE ||
             this.inputfieldType === InputfieldType.DATETIME_LOCAL) &&
             BasicService.getUniqueInstance().isNotBlank(this.label)) ||
-         (BasicService.getUniqueInstance().isNotBlank(this.value) &&
-            BasicService.getUniqueInstance().isNotBlank(this.label))
+         (BasicService.getUniqueInstance().isNotBlank(this.value) && BasicService.getUniqueInstance().isNotBlank(this.label))
       );
    }
 
@@ -497,4 +516,5 @@ ${this.value}</textarea
       });
       return options;
    }
+
 }

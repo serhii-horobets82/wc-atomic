@@ -25,6 +25,14 @@ export class PageInputComponent extends PageAbstract {
                        trailingIcon="vpn_key"
                        required="true"
                     ></component-inputfield>
+
+                    <component-inputfield
+                       .inputfieldType="${InputfieldType.CHECKBOX}"
+                       label="${this.getI18NValue('component_authentication_password')}"
+                       name="password"
+                       trailingIcon="vpn_key"
+                       required="true"
+                    ></component-inputfield>
             
                <component-inputfield
                   inputfieldType="${InputfieldType.COMBOBOX}"
