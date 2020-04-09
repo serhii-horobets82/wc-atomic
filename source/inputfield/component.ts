@@ -360,16 +360,15 @@ ${this.value}</textarea
                outputValue.push(opt.value);
             }
          }*/
-
       } else if (this.inputElemet != null) {
          if (this.inputElemet.validationMessage.length == 0) {
             outputValue = this.inputElemet.value;
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
                   outputValue =
-                      this.inputElemet != null
-                          ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
-                          : false;
+                     this.inputElemet != null
+                        ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
+                        : false;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
@@ -401,8 +400,6 @@ ${this.value}</textarea
       this.size = BasicService.getUniqueInstance().getValue(this.inputData.size, defaultData.size);
       this.min = BasicService.getUniqueInstance().getValue(this.inputData.min, defaultData.min);
       this.max = BasicService.getUniqueInstance().getValue(this.inputData.max, defaultData.max);
-      //this.inputBoxInputData = BasicService.getUniqueInstance().getValue(this.inputBoxInputData, this.inputBoxInputData);
-
       this.label = BasicService.getUniqueInstance().getValue(this.inputData.labelText, this.label);
       this.infoText = BasicService.getUniqueInstance().getValue(this.inputData.infoText, this.infoText);
       this.assistiveText = BasicService.getUniqueInstance().getValue(this.inputData.assistiveText, this.assistiveText);
@@ -529,10 +526,10 @@ ${this.value}</textarea
    }
 
    static object2KeyValueDataArray(
-       object: any,
-       keyFieldName: string,
-       valueFieldName: string,
-       withEmptyItem: boolean = false
+      object: any,
+      keyFieldName: string,
+      valueFieldName: string,
+      withEmptyItem: boolean = false
    ): KeyValueData[] {
       let options: KeyValueData[] = [];
       if (withEmptyItem) {
@@ -543,5 +540,4 @@ ${this.value}</textarea
       });
       return options;
    }
-
 }

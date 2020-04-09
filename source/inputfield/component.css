@@ -6,6 +6,7 @@
 }
 
 .label {
+   background-color: inherit;
    position: absolute;
    top: -10px;
    left: var(--space-medium);
@@ -29,12 +30,23 @@ textarea {
    width: 100%;
    border: none;
    padding-left: var(--space-normal);
-   background-color: transparent;
-   line-height: var(--line-height);
+   background-color: inherit;
+   line-height: var(--line-height-big);
+   height: var(--line-height-big);
 }
 
 select[multiple] {
    margin-top: var(--line-height);
+   line-height: unset;
+   height: auto;
+}
+
+
+
+input:-webkit-autofill
+{
+   background-color: inherit !important;
+
 }
 
 input:focus,
