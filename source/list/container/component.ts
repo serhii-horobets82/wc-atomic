@@ -1,8 +1,8 @@
-import { css, customElement, html, property, unsafeCSS } from 'lit-element';
+import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { guard } from 'lit-html/directives/guard';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
-import { ListItemInputData } from '../item/component';
+import {ListItemComponent, ListItemInputData} from '../item/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -26,6 +26,28 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
 
    @property()
    selectMode: boolean = false;
+
+   @query('#slotElement')
+   slotElement: HTMLSlotElement | undefined;
+
+   protected update(changedProperties: keyof T extends PropertyKey ? Map<keyof T, unknown> : never): void {
+      super.update(changedProperties);
+      changedProperties.forEach((oldValue, propName: any) => {
+         console.log(`${propName} changed. oldValue: ${oldValue}`);
+         if (propName == 'selection' && this.slotElement != null) {
+            let slottedElements = this.slotElement.assignedElements();
+            let indexListItemComponents = 0;
+            for (let index = 0; index < slottedElements.length; index++) {
+               let element = slottedElements[index];
+               if (element instanceof ListItemComponent) {
+                  console.log('update selected property of list item component.');
+                  element.selected = this.selection[indexListItemComponents] != null;
+                  indexListItemComponents++;
+               }
+            }
+         }
+      });
+   }
 
    render() {
       return html`
@@ -64,5 +86,4 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
    itemsSelected(): boolean {
       return this.selection.length > 0;
    }
-
 }
