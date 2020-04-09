@@ -523,7 +523,7 @@ ${this.value}</textarea
        object: any,
        keyFieldName: string,
        valueFieldName: string,
-       withEmptyItem: boolean = true
+       withEmptyItem: boolean = false
    ): KeyValueData[] {
       let options: KeyValueData[] = [];
       if (withEmptyItem) {
