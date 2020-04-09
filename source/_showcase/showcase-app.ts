@@ -30,6 +30,7 @@ import {PageChangePassword} from "./change-password";
 import {PageSettings} from "./page-settings";
 import {PageUsers} from "./page-users";
 import {PageUser} from "./page-user";
+import {PageGrid} from "./page-grid";
 
 
 
@@ -65,6 +66,10 @@ export class ShowcaseApp extends AbstractApp {
            case 'settings':
                return html`
                ${new PageSettings()}
+            `;
+           case 'grid':
+               return html`
+               ${new PageGrid()}
             `;
            case 'users':
                return html`
