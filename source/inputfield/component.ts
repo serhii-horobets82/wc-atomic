@@ -519,11 +519,20 @@ ${this.value}</textarea
       return options;
    }
 
-   static object2KeyValueDataArray(object: any, keyFieldName: string, valueFieldName: string): KeyValueData[] {
+   static object2KeyValueDataArray(
+       object: any,
+       keyFieldName: string,
+       valueFieldName: string,
+       withEmptyItem: boolean = true
+   ): KeyValueData[] {
       let options: KeyValueData[] = [];
+      if (withEmptyItem) {
+         options.push(new KeyValueData());
+      }
       Object.values(object).forEach((value: any) => {
          options.push(<KeyValueData>{ key: value[keyFieldName], value: value[valueFieldName] });
       });
       return options;
    }
+
 }
