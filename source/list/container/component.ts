@@ -10,7 +10,7 @@ export class ListInputData extends AbstractInputData {
 }
 
 @customElement('component-list')
-export class ListComponent extends AbstractComponent<ListInputData, Number[]> {
+export class ListComponent extends AbstractComponent<ListInputData, number[]> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -63,8 +63,8 @@ export class ListComponent extends AbstractComponent<ListInputData, Number[]> {
       );
    }
 
-   getOutputData(): Number[] {
-      let selection: Number[] = [];
+   getOutputData(): number[] {
+      let selection: number[] = [];
       if (this.slotElement != null) {
          let slottedElements = this.slotElement.assignedElements();
          let indexListItemComponents = 0;
