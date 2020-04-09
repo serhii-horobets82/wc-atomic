@@ -1,8 +1,6 @@
-import { css, customElement, html, property, query, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
-import { guard } from 'lit-html/directives/guard';
+import { css, customElement, html, property, unsafeCSS, query } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
-import {ListItemComponent, ListItemInputData} from '../item/component';
+import { ListItemComponent } from '../item/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
@@ -12,7 +10,7 @@ export class ListInputData extends AbstractInputData {
 }
 
 @customElement('component-list')
-export class ListComponent extends AbstractComponent<ListInputData, undefined> {
+export class ListComponent extends AbstractComponent<ListInputData, Number[]> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -21,8 +19,7 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
 
    static EVENT_SELECTION_CHANGED: string = 'component-list-selection-changed';
 
-   @property()
-   selection: number[] = [];
+   static EVENT_SELECTION_MODE_CHANGED: string = 'component-list-selection-mode-changed';
 
    @property()
    selectMode: boolean = false;
@@ -30,29 +27,11 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;
 
-   protected update(changedProperties: keyof any extends PropertyKey ? Map<keyof any, unknown> : never): void {
-      super.update(changedProperties);
-      changedProperties.forEach((oldValue, propName: any) => {
-         console.log(`${propName} changed. oldValue: ${oldValue}`);
-         if (propName == 'selection' && this.slotElement != null) {
-            let slottedElements = this.slotElement.assignedElements();
-            let indexListItemComponents = 0;
-            for (let index = 0; index < slottedElements.length; index++) {
-               let element = slottedElements[index];
-               if (element instanceof ListItemComponent) {
-                  console.log('update selected property of list item component.');
-                  element.selected = this.selection[indexListItemComponents] != null;
-                  indexListItemComponents++;
-               }
-            }
-         }
-      });
-   }
-
    render() {
       return html`
          <div class="list">
             <slot
+               id="slotElement"
                @component-list-item-select="${(event: CustomEvent) => this.listItemSelected(event)}"
                @component-list-item-unselect="${(event: CustomEvent) => this.listItemUnSelected(event)}"
             ></slot>
@@ -63,19 +42,43 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
    listItemSelected(event: CustomEvent) {
       let index: number = event.detail;
       console.log(index);
-      this.selection.push(Number(index));
-      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, this.selection);
+      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, index);
    }
 
    listItemUnSelected(event: CustomEvent) {
       let index: number = event.detail;
       console.log(index);
-      this.selection = this.selection.filter((obj) => obj !== Number(index));
-      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, this.selection);
+      if (this.getOutputData().length == 0) {
+         this.resetSelectionMode();
+      }
+      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, ListComponent.EVENT_SELECTION_CHANGED, index);
    }
 
-   getOutputData(): undefined {
-      return undefined;
+   resetSelectionMode(): void {
+      this.selectMode = false;
+      BasicService.getUniqueInstance().dispatchSimpleCustomEvent(
+          this,
+          ListComponent.EVENT_SELECTION_MODE_CHANGED,
+          this.selectMode
+      );
+   }
+
+   getOutputData(): Number[] {
+      let selection: Number[] = [];
+      if (this.slotElement != null) {
+         let slottedElements = this.slotElement.assignedElements();
+         let indexListItemComponents = 0;
+         for (let index = 0; index < slottedElements.length; index++) {
+            let element = slottedElements[index];
+            if (element instanceof ListItemComponent) {
+               if (element.selected) {
+                  selection.push(indexListItemComponents);
+               }
+               indexListItemComponents++;
+            }
+         }
+      }
+      return selection;
    }
 
    protected inputDataChanged() {
@@ -83,7 +86,4 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
       this.selectMode = BasicService.getUniqueInstance().getValue(this.inputData.selectMode, defaultData.selectMode);
    }
 
-   itemsSelected(): boolean {
-      return this.selection.length > 0;
-   }
 }
