@@ -323,7 +323,12 @@ ${this.value}</textarea
    }
 
    public isValid(): boolean {
-      return this.inputElemet != null ? this.inputElemet.validity.valid : false;
+      switch (this.inputfieldType) {
+         case InputfieldType.COMBOBOX:
+            return this.selectElemet != null ? this.selectElemet.validity.valid : false;
+         default:
+            return this.inputElemet != null ? this.inputElemet.validity.valid : false;
+      }
    }
 
    public validate(): void {
@@ -345,22 +350,26 @@ ${this.value}</textarea
    getOutputData(): KeyValueData {
       let outputValue: any = this.oldValue;
       if (this.selectElemet != null) {
+         //BEi einer selektierung, was ist mit mehreren ?
+         outputValue = this.selectElemet.value;
+         /*
          outputValue = [];
          for (let i = 0, len = this.selectElemet.options.length; i < len; i++) {
             let opt: HTMLOptionElement = this.selectElemet.options[i];
             if (opt.selected) {
                outputValue.push(opt.value);
             }
-         }
+         }*/
+
       } else if (this.inputElemet != null) {
          if (this.inputElemet.validationMessage.length == 0) {
             outputValue = this.inputElemet.value;
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
                   outputValue =
-                     this.inputElemet != null
-                        ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
-                        : false;
+                      this.inputElemet != null
+                          ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
+                          : false;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
