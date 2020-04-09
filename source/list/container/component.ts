@@ -60,5 +60,9 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
       let defaultData: ListInputData = new ListInputData();
       this.selectMode = BasicService.getUniqueInstance().getValue(this.inputData.selectMode, defaultData.selectMode);
    }
-   
+
+   itemsSelected(): boolean {
+      return this.selection.length > 0;
+   }
+
 }
