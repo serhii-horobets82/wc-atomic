@@ -30,7 +30,7 @@ export class ListComponent extends AbstractComponent<ListInputData, undefined> {
    @query('#slotElement')
    slotElement: HTMLSlotElement | undefined;
 
-   protected update(changedProperties: keyof T extends PropertyKey ? Map<keyof T, unknown> : never): void {
+   protected update(changedProperties: keyof any extends PropertyKey ? Map<keyof any, unknown> : never): void {
       super.update(changedProperties);
       changedProperties.forEach((oldValue, propName: any) => {
          console.log(`${propName} changed. oldValue: ${oldValue}`);
