@@ -15,16 +15,15 @@
 }
 .box {
    box-sizing: border-box;
-   width: 100%;
-   min-height: var(--line-height-big);
-   line-height: var(--line-height-big);
-   display: flex;
-   flex-wrap: nowrap;
-   justify-content: space-between;
-   align-items: center;
+   height: min-content;
+   display: grid;
+   grid-template-columns: auto 1fr auto auto;
+   grid-template-rows: 1fr;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
    font: inherit;
    box-sizing: border-box;
    width: 100%;
@@ -38,7 +37,9 @@ select[multiple] {
    margin-top: var(--line-height);
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
    outline: none;
 }
 
@@ -58,7 +59,6 @@ input[type='color'] {
    height: var(--line-height);
    line-height: var(--line-height);
 }
-
 
 .labelContainer.showLabelText {
    position: relative;

@@ -5,7 +5,6 @@
 
 .GRID_CONTAINER,
 ::slotted(.GRID_CONTAINER) {
-   height: 200px;
    display: grid;
    box-sizing: border-box;
 }

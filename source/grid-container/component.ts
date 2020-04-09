@@ -26,7 +26,7 @@ export class GridComponent extends AbstractComponent<GridContainerInputData, und
    gridTemplateColumns: string[] = [];
 
    @property()
-   height: string = '';
+   height: string = 'min-content';
 
    render() {
       return html`
