@@ -52,7 +52,7 @@ export class RippleComponent extends LitElement {
             this.rippleElement.style.width = (scrollWidthContainer * 2).toString().concat('px');
             this.rippleElement.style.height = (scrollHeightContainer * 2).toString().concat('px');
             this.rippleElement.style.left = (event.offsetX - scrollWidthContainer).toString().concat('px');
-            this.rippleElement.style.top = (event.offsetY - scrollHeightContainer).toString().concat('px');
+            this.rippleElement.style.top = (event.clientY - scrollHeightContainer).toString().concat('px');
             this.rippleElement.classList.add('animate');
          }
       }
