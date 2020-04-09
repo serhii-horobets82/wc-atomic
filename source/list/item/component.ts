@@ -36,21 +36,14 @@ export class ListItemComponent extends AbstractComponent<ListItemInputData, unde
    render() {
       return html`
          <component-border borderType="${BorderType.BOTTOM}">
-            <component-flex-container
-               .containerClazzes="${[ContainerClazzValues.CONTAINER_100, ContainerClazzValues.SMARTPHONE_MAX_WIDTH]}"
-               itemFlexBasisValue="auto"
-               .flexJustifyContent="${FlexJustifyContent.FLEX_START}"
-               .alignItems="${AlignItems.CENTER}"
-               .alignContent="${AlignContent.FLEX_START}"
-               .flexWrap="${FlexWrap.WRAP}"
-            >
+            <component-grid-container .gridTemplateRows="${['1fr']}" .gridTemplateColumns="${['auto', '1fr']}">
                <component-icon
                   .rendered="${this.selectMode}"
                   @click="${() => this.switchSelected()}"
                   icon="${this.selected ? 'check_box' : 'check_box_outline_blank'}"
                ></component-icon>
                <slot @click="${() => this.itemClicked()}"></slot>
-            </component-flex-container>
+            </component-grid-container>
          </component-border>
       `;
    }
