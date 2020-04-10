@@ -80,7 +80,7 @@ export class PageUser extends PageAbstract {
             ></component-icon>
             <component-spacer
                slot="leftComponents"
-               size="${SpacerSize.SMALL}"
+               spacerSize="${SpacerSize.SMALL}"
             ></component-spacer>
             <component-typography
                slot="leftComponents"

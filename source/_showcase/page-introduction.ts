@@ -22,7 +22,7 @@ export class PageIntroduction extends PageAbstract {
             <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
             <component-spacer
                slot="leftComponents"
-               size="${SpacerSize.SMALL}"
+               spacerSize="${SpacerSize.SMALL}"
                alignment="${SpacerAlignment.HORIZONTAL}"
             ></component-spacer>
             <component-typography slot="leftComponents" type="${TypographyType.H6}">Introduction</component-typography>
@@ -82,9 +82,9 @@ export class PageIntroduction extends PageAbstract {
          </component-flex-container>
 
          <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="100%">
-            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+            <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
             <component-typography .typographyType="${TypographyType.H4}">Installation und Quelldateien</component-typography>
-            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+            <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-flex-container
                .containerClazzes="${["CONTAINER_100"]}"

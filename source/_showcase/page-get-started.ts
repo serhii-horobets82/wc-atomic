@@ -1,7 +1,7 @@
 import { customElement, html, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
 import { TypographyInputData, TypographyType } from '../typography/component';
-import {ColorType} from "..";
+import {ColorScheme} from "..";
 
 @customElement('page-get-started')
 export class PageGetStarted extends PageAbstract {

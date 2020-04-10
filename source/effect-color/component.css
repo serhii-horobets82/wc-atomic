@@ -34,3 +34,35 @@ a, ::slotted(a), slot {
    color: var(--app-color-on-primary);
    background-color: var(--app-color-primary);
 }
+
+.SUCCESS, ::slotted(.SUCCESS) {
+   color: var(--app-color-on-success);
+}
+
+.ERROR, ::slotted(.ERROR) {
+   color: var(--app-color-on-error);
+}
+
+.WARNING, ::slotted(.WARNING) {
+   color: var(--app-error-on-warning);
+}
+
+.INFO, ::slotted(.INFO) {
+   color: var(--app-color-on-info);
+}
+
+.ACTIVE, ::slotted(.ACTIVE) {
+   color: var(--app-color-on-primary);
+}
+
+.active-focused {
+   opacity: 1.00;
+}
+
+.active {
+   opacity: 0.70;
+}
+
+.inactive {
+   opacity: 0.50;
+}

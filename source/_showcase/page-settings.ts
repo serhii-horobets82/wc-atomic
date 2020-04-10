@@ -8,7 +8,7 @@ export class PageSettings extends TopBottomTemplate {
       return html`
          <component-top-app-bar>
             <component-icon slot="leftComponents" icon="menu" clickable="true"></component-icon>
-            <component-spacer slot="leftComponents" size="${SpacerSize.SMALL}"></component-spacer>
+            <component-spacer slot="leftComponents" spacerSize="${SpacerSize.SMALL}"></component-spacer>
             <component-typography slot="leftComponents" .typographyType="${TypographyType.H6}">Einstellungen</component-typography>
             <component-authenticated-icon
                .isAuthenticated="${SecureService.getUniqueInstance().isAuthenticated()}"

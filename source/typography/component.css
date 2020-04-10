@@ -17,8 +17,9 @@
    box-sizing: border-box;
    text-decoration: none;
    line-height: normal;
-   white-space: nowrap;
+   white-space: normal;
    word-wrap: normal;
+   word-break: break-all;
    text-align: left;
    width: 100%;
    float: left;

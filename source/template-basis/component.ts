@@ -3,7 +3,7 @@ import { css, html, property, query, TemplateResult, unsafeCSS } from 'lit-eleme
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { IconInputData } from '../icon/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import { BorderType, ColorType } from '..';
+import { BorderType, ColorScheme } from '..';
 
 const componentCSS = require('./component.css');
 
@@ -33,17 +33,17 @@ export abstract class BasisTemplate extends AbstractComponent<BasisTemplateInput
       return html`
          <div class="container" @component-icon-click="${this.menuItemClicked}">
             <top id="top" class="${this.menuCss}">
-               <component-color colorType="${ColorType.PRIMARY_COLOR}">
+               <effect-color colorScheme="${ColorScheme.PRIMARY_COLOR}">
                   <component-border borderType="${BorderType.BOTTOM}">
                      ${this.getTopContent()}
                   </component-border>
-               </component-color>
+               </effect-color>
             </top>
             <div id="left" class="${this.menuCss}">
-               <component-color colorType="${ColorType.PRIMARY_COLOR}"
+               <effect-color colorScheme="${ColorScheme.PRIMARY_COLOR}"
                   ><component-border borderType="${BorderType.RIGHT}">
                      ${this.getLeftComponent()}
-                  </component-border></component-color
+                  </component-border></effect-color
                >
             </div>
             <div id="main" class="${this.menuCss}">

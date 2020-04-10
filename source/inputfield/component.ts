@@ -5,9 +5,21 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { KeyValueData } from '../form/component';
 import { TypographyType } from '../typography/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import { AlignContent, AlignItems, BorderType, ElementState, FlexDirection, FlexJustifyContent, FlexWrap, VisibleType } from '..';
+import {
+   AlignContent,
+   AlignItems,
+   BorderType,
+   ElementState,
+   FlexDirection,
+   FlexJustifyContent,
+   FlexWrap,
+   SpacerAlignment,
+   SpacerSize,
+   VisibleType
+} from '..';
 import { NotifyType } from '../meta-data/notify-type';
 import { ContainerClazzValues } from '../flex-container/component';
+import { TextColorClazz } from '../effect-color/component';
 
 const componentCSS = require('./component.css');
 
@@ -288,7 +300,7 @@ ${this.value}</textarea
                     ></component-icon>
                  </component-grid-container>
               </component-border>
-
+              <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
               <component-flex-container
                  .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
                  itemFlexBasisValue="auto"
@@ -303,9 +315,21 @@ ${this.value}</textarea
                     text="${this.infoText}"
                  ></component-typography>
               </component-flex-container>
+              <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
+              <effect-color textColorClazz="${TextColorClazz.ERROR}">
+                 <component-typography
+                    .typographyType="${TypographyType.OVERLINE}"
+                    text="${this.errorText}"
+                 ></component-typography>
+              </effect-color>
            `
          : html`
-              HIDDEN
+              <input
+                 id="inputElement"
+                 name="${this.name}"
+                 type="${this.inputfieldType}"
+                 value="${this.prepareValue(this.value)}"
+              />
            `;
    }
 

@@ -54,7 +54,7 @@ export class PageIconComponent extends PageAbstract {
 
          <component-flex-container .containerClazzes="${["CONTAINER_75"]}" itemFlexBasisValue="50%">
             <component-flex-container  itemFlexBasisValue="100%">
-               <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+               <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
                <component-typography type="${TypographyType.BODY1}"
                   ><i>Icon Component</i> ist eine Komponente mit der man die Google Material Icons in seine Anwendung integrieren
                   kann. Sie basiert auf den Google Material Design Richtlinien:

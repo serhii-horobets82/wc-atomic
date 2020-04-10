@@ -27,10 +27,10 @@ export class PageTypographyComponent extends PageAbstract {
 
                <component-typography .typographyType="${TypographyType.H2}">Typography</component-typography>
             </component-flex-container>
-            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+            <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-typography .typographyType="${TypographyType.H4}">Types of Typography</component-typography>
-            <component-spacer size="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
+            <component-spacer spacerSize="${SpacerSize.MEDIUM}" alignment="${SpacerAlignment.HORIZONTAL}"></component-spacer>
 
             <component-simple-table
                .headers="${[I18nService.getUniqueInstance().getValue('typographyType'), I18nService.getUniqueInstance().getValue('typographyTypeDescription')]}"

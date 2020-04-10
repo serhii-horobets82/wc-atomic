@@ -10,7 +10,7 @@ import {
    FlexWrap,
    ItemClazzValues
 } from '../flex-container/component';
-import { ColorType, InputfieldComponent, InputfieldType, SpacerSize, TypographyType } from '..';
+import { ColorScheme, InputfieldComponent, InputfieldType, SpacerSize, TypographyType } from '..';
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-layout')
@@ -19,7 +19,7 @@ export class PageLayoutComponent extends PageAbstract {
    containerClazzes: string[] = [ContainerClazzValues.CONTAINER_100];
 
    @property()
-   colorType: string = ColorType.SECONDARY_COLOR;
+   colorScheme: string = ColorScheme.SECONDARY_COLOR;
 
    @property()
    itemClazzes: string[] = [ItemClazzValues.TABLET_MAX_WIDTH, ItemClazzValues.SMARTPHONE_MAX_WIDTH];
@@ -70,11 +70,11 @@ export class PageLayoutComponent extends PageAbstract {
             </component-flex-container>
 
             <component-container>
-               <component-color colorType="${this.colorType}">
+               <effect-color colorScheme="${this.colorScheme}">
                   <component-flex-container
                      id="sample-flex-container"
                      .containerClazzes="${this.containerClazzes}"
-                     colorType="${this.colorType}"
+                     colorScheme="${this.colorScheme}"
                      .itemClazzes="${this.itemClazzes}"
                      cssStyle="height:500px;"
                      itemFlexBasisValue="${this.itemFlexBasisValue}"
@@ -104,21 +104,21 @@ export class PageLayoutComponent extends PageAbstract {
                      ></component-spacer>
 
                      <component-spacer
-                        .size="${SpacerSize.BIG}"
+                        .spacerSize="${SpacerSize.BIG}"
                         cssStyle="background-color:var(--app-color-surface)"
                      ></component-spacer>
 
                      <component-spacer
-                        .size="${SpacerSize.BIG}"
+                        .spacerSize="${SpacerSize.BIG}"
                         cssStyle="background-color:var(--app-color-surface)"
                      ></component-spacer>
 
                      <component-spacer
-                        .size="${SpacerSize.BIG}"
+                        .spacerSize="${SpacerSize.BIG}"
                         cssStyle="background-color:var(--app-color-surface)"
                      ></component-spacer>
                   </component-flex-container>
-               </component-color>
+               </effect-color>
                <component-code
                   >&lt;component-flex-container .containerClazzes="${['CONTAINER_100']}"
                   .flexDirection="$&#123;FlexDirection.${BasicService.getUniqueInstance().getEnumKey(

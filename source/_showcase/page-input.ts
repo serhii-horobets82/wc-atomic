@@ -1,18 +1,24 @@
-import {customElement, html, property, TemplateResult} from 'lit-element';
-import {PageAbstract} from './page-abstract';
-import {InputfieldComponent, InputfieldType} from '../inputfield/component';
-import {FlexDirection, TypographyType} from '..';
-import {ContainerClazzValues, ItemClazzValues} from '../flex-container/component';
+import { customElement, html, property, TemplateResult } from 'lit-element';
+import { PageAbstract } from './page-abstract';
+import { InputfieldComponent, InputfieldType } from '../inputfield/component';
+import { FlexDirection, TypographyType } from '..';
+import { ContainerClazzValues, ItemClazzValues } from '../flex-container/component';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
-    @property()
-    type: string = InputfieldType.TEXT;
+   @property()
+   type: string = InputfieldType.TEXT;
 
-    getMainComponent(): TemplateResult {
-        return html`
+   getMainComponent(): TemplateResult {
+      return html`
          <component-flex-container
-            .containerClazzes="${[ContainerClazzValues.CONTAINER_50]}"
+            .containerClazzes="${[
+               ContainerClazzValues.CONTAINER_50,
+               ContainerClazzValues.TABLET_MAX_WIDTH,
+               ContainerClazzValues.SMARTPHONE_MAX_WIDTH,
+               ContainerClazzValues.SMARTPHONE_HORIZONTAL_PADDING,
+               ContainerClazzValues.TABLET_HORIZONTAL_PADDING
+            ]}"
             .itemClazzes="${[ItemClazzValues.KEYLINE_ALIGNMENT_HORIZONTAL, ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
             itemFlexBasisValue="100%"
          >
@@ -29,7 +35,13 @@ export class PageInputComponent extends PageAbstract {
          </component-flex-container>
 
          <component-flex-container
-            .containerClazzes="${[ContainerClazzValues.CONTAINER_50]}"
+            .containerClazzes="${[
+               ContainerClazzValues.CONTAINER_50,
+               ContainerClazzValues.TABLET_MAX_WIDTH,
+               ContainerClazzValues.SMARTPHONE_MAX_WIDTH,
+               ContainerClazzValues.SMARTPHONE_HORIZONTAL_PADDING,
+               ContainerClazzValues.TABLET_HORIZONTAL_PADDING
+            ]}"
             .itemClazzes="${[ItemClazzValues.KEYLINE_ALIGNMENT_BOTH, ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
             itemFlexBasisValue="50%"
          >
@@ -56,11 +68,11 @@ export class PageInputComponent extends PageAbstract {
             </component-form>
          </component-flex-container>
       `;
-    }
+   }
 
-    private changeType(event: CustomEvent) {
-        let type: string = (<any>InputfieldType)[event.detail.outputData.value];
-        console.log('change type: {}', type);
-        this.type = type;
-    }
+   private changeType(event: CustomEvent) {
+      let type: string = (<any>InputfieldType)[event.detail.outputData.value];
+      console.log('change type: {}', type);
+      this.type = type;
+   }
 }
