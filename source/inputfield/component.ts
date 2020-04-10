@@ -203,7 +203,10 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
                        icon="${this.leadingIcon}"
                        .clickable="${this.leadingIconClickable}"
                     ></component-icon>
-                    <component-container>
+                    <component-flex-container
+                       .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                       itemFlexBasisValue="100%"
+                    >
                        <effect-visible visibleType="${this.showLabelText() ? VisibleType.NORMAL : VisibleType.INVISIBLE}">
                           <component-typography
                              .typographyType="${TypographyType.OVERLINE}"
@@ -249,6 +252,45 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
 ${this.value}</textarea
                                >
                             `
+                          : this.inputfieldType == InputfieldType.CHECKBOX
+                          ? html`
+                               <component-grid-container
+                                  .gridTemplateRows="${['auto']}"
+                                  .gridTemplateColumns="${['1fr', 'auto']}"
+                               >
+                                  <component-flex-container
+                                     .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                                     itemFlexBasisValue="100%"
+                                  >
+                                     <component-typography
+                                        .typographyType="${TypographyType.SUBTITLE1}"
+                                        text="${this.assistiveText}"
+                                     ></component-typography>
+                                     <component-typography
+                                        .typographyType="${TypographyType.SUBTITLE2}"
+                                        text="${this.infoText}"
+                                     ></component-typography
+                                  ></component-flex-container>
+                                  <componetn-container>
+                                     <component-icon
+                                        .rendered="${!this.checked}"
+                                        @component-icon-click="${() => {
+                                           this.switchChecked();
+                                        }}"
+                                        icon="toggle_off"
+                                        .clickable="${true}"
+                                     ></component-icon>
+                                     <component-icon
+                                        .rendered="${this.checked}"
+                                        @component-icon-click="${() => {
+                                           this.switchChecked();
+                                        }}"
+                                        icon="toggle_on"
+                                        .clickable="${true}"
+                                     ></component-icon>
+                                  </componetn-container>
+                               </component-grid-container>
+                            `
                           : html`
                                <input
                                   id="inputElement"
@@ -274,25 +316,8 @@ ${this.value}</textarea
                                   @focus="${(event: Event) => this.focused(event)}"
                                   @focusout="${(event: Event) => this.focusout(event)}"
                                />
-                            `}</component-container
-                    ><component-container>
-                       <component-icon
-                          .rendered="${!this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
-                          @component-icon-click="${() => {
-                             this.switchChecked();
-                          }}"
-                          icon="toggle_off"
-                          .clickable="${true}"
-                       ></component-icon>
-                       <component-icon
-                          .rendered="${this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
-                          @component-icon-click="${() => {
-                             this.switchChecked();
-                          }}"
-                          icon="toggle_on"
-                          .clickable="${true}"
-                       ></component-icon>
-                    </component-container>
+                            `}</component-flex-container
+                    >
                     <component-icon
                        .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
                        icon="${this.trailingIcon}"
@@ -301,20 +326,24 @@ ${this.value}</textarea
                  </component-grid-container>
               </component-border>
               <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
-              <component-flex-container
-                 .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
-                 itemFlexBasisValue="auto"
-                 flexJustifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
+              <effect-visible
+                 visibleType="${this.inputfieldType != InputfieldType.CHECKBOX ? VisibleType.NORMAL : VisibleType.INVISIBLE}"
               >
-                 <component-typography
-                    .typographyType="${TypographyType.OVERLINE}"
-                    text="${this.assistiveText}"
-                 ></component-typography>
-                 <component-typography
-                    .typographyType="${TypographyType.OVERLINE}"
-                    text="${this.infoText}"
-                 ></component-typography>
-              </component-flex-container>
+                 <component-flex-container
+                    .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                    itemFlexBasisValue="auto"
+                    flexJustifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
+                 >
+                    <component-typography
+                       .typographyType="${TypographyType.OVERLINE}"
+                       text="${this.assistiveText}"
+                    ></component-typography>
+                    <component-typography
+                       .typographyType="${TypographyType.OVERLINE}"
+                       text="${this.infoText}"
+                    ></component-typography>
+                 </component-flex-container>
+              </effect-visible>
               <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
               <effect-color textColorClazz="${TextColorClazz.ERROR}">
                  <component-typography
