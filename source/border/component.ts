@@ -3,6 +3,7 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { BasicService } from '@domoskanonos/frontend-basis';
 
 export class BorderType {
+   static NONE: string = 'NONE';
    static ALL: string = 'ALL';
    static HORIZONTAL: string = 'HORIZONTAL';
    static VERTICAL: string = 'VERTICAL';
@@ -10,6 +11,7 @@ export class BorderType {
    static RIGHT: string = 'RIGHT';
    static TOP: string = 'TOP';
    static BOTTOM: string = 'BOTTOM';
+   static BOTTOM_SELECTED: string = 'BOTTOM_SELECTED';
 }
 
 export class BorderInputData extends AbstractInputData {

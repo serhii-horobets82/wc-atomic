@@ -5,8 +5,9 @@ import { AbstractComponent, AbstractInputData } from '../abstract-component/comp
 import { KeyValueData } from '../form/component';
 import { TypographyType } from '../typography/component';
 import { BasicService } from '@domoskanonos/frontend-basis';
-import { AlignContent, AlignItems, ElementState, FlexDirection, FlexJustifyContent, FlexWrap } from '..';
+import { AlignContent, AlignItems, BorderType, ElementState, FlexDirection, FlexJustifyContent, FlexWrap, VisibleType } from '..';
 import { NotifyType } from '../meta-data/notify-type';
+import { ContainerClazzValues } from '../flex-container/component';
 
 const componentCSS = require('./component.css');
 
@@ -52,8 +53,8 @@ export class InputfieldInputData extends AbstractInputData {
    size?: number;
    labelText: string = '';
    infoText: string = '';
+   errorText: string = '';
    assistiveText: string = '';
-   assistiveTextMessageType: string = ElementState.DEFAULT;
    leadingIcon: string = '';
    trailingIcon: string = '';
    leadingIconClickable: boolean = false;
@@ -140,7 +141,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    infoText: string = new InputfieldInputData().infoText;
 
    @property()
-   assistiveTextMessageType: string = ElementState.DEFAULT;
+   errorText: string = new InputfieldInputData().errorText;
 
    @property()
    leadingIcon: string = new InputfieldInputData().leadingIcon;
@@ -172,127 +173,144 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
    }
 
    render() {
-      return html`
-         <div class="container ${this.inputfieldType == InputfieldType.HIDDEN ? 'hide' : ''} ">
-            <div class="labelContainer${this.showLabelText() ? ' showLabelText' : ''}">
-               <div class="label">${this.label}</div>
-            </div>
-            <div class="box${this.showSelectedBorder() ? ' showSelectedBorder' : ''}${this.showBorder() ? ' showBorder' : ''}">
-               <component-icon
-                  .rendered="${BasicService.getUniqueInstance().isNotBlank(this.leadingIcon)}"
-                  icon="${this.leadingIcon}"
-                  .clickable="${this.leadingIconClickable}"
-               ></component-icon>
-               ${this.inputfieldType == InputfieldType.COMBOBOX
-                  ? html`
-                       <select
-                          id="selectElement"
-                          ?required="${this.required}"
-                          ?multiple="${this.multiple}"
-                          name="${this.name}"
-                          size="${this.size}"
-                          @change="${(event: Event) => this.change(event)}"
-                          @focus="${(event: Event) => this.focused(event)}"
-                          @focusout="${(event: Event) => this.focusout(event)}"
-                       >
-                          ${guard(
-                             [this.options],
-                             () => html`
-                                ${repeat(
-                                   this.options,
-                                   (option) => option.value,
-                                   (option) =>
-                                      (option.key.length > 0 && this.multiple && this.value.indexOf(option.key) > -1) ||
-                                      BasicService.getUniqueInstance().isEqual(this.value, option.key)
-                                         ? html`
-                                              <option value="${option.key}" selected>${option.value}</option>
-                                           `
-                                         : html`
-                                              <option value="${option.key}">${option.value}</option>
-                                           `
-                                )}
-                             `
-                          )}
-                       </select>
-                    `
-                  : this.inputfieldType == InputfieldType.TEXTAREA
-                  ? html`
-                       <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.size}">
-${this.value}</textarea
-                       >
-                    `
-                  : html`
-                       <input
-                          id="inputElement"
-                          name="${this.name}"
-                          type="${this.inputfieldType}"
-                          value="${this.prepareValue(this.value)}"
-                          placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) && !this.showLabelText()
-                             ? this.label
-                             : this.placeholder}"
-                          size="${this.size}"
-                          minlength="${this.minlength}"
-                          maxlength="${this.maxlength}"
-                          min="${this.min}"
-                          max="${this.max}"
-                          step="${this.step}"
-                          ?required="${this.required}"
-                          ?disabled="${this.disabled}"
-                          ?checked="${this.checked}"
-                          ?multiple="${this.multiple}"
-                          @keyup="${this.keyup}"
-                          @change="${(event: Event) => this.change(event)}"
-                          @focus="${(event: Event) => this.focused(event)}"
-                          @focusout="${(event: Event) => this.focusout(event)}"
-                       />
-                    `}
+      return this.inputfieldType != InputfieldType.HIDDEN
+         ? html`
+              <component-border
+                 borderType="${this.showSelectedBorder()
+                    ? BorderType.BOTTOM_SELECTED
+                    : this.showBorder()
+                    ? BorderType.BOTTOM
+                    : BorderType.BOTTOM}"
+              >
+                 <component-grid-container
+                    .gridTemplateRows="${['auto']}"
+                    .gridTemplateColumns="${['auto', '1fr', 'auto', 'auto']}"
+                 >
+                    <component-icon
+                       .rendered="${BasicService.getUniqueInstance().isNotBlank(this.leadingIcon)}"
+                       icon="${this.leadingIcon}"
+                       .clickable="${this.leadingIconClickable}"
+                    ></component-icon>
+                    <component-container>
+                       <effect-visible visibleType="${this.showLabelText() ? VisibleType.NORMAL : VisibleType.INVISIBLE}">
+                          <component-typography
+                             .typographyType="${TypographyType.OVERLINE}"
+                             text="${this.label}"
+                          ></component-typography>
+                       </effect-visible>
 
-               <span>
-                  <component-icon
-                     .rendered="${!this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
-                     @click="${() => {
-                        this.switchChecked();
-                     }}"
-                     icon="toggle_off"
-                     .clickable="${true}"
-                  ></component-icon>
-                  <component-icon
-                     .rendered="${this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
-                     @click="${() => {
-                        this.switchChecked();
-                     }}"
-                     icon="toggle_on"
-                     .clickable="${true}"
-                  ></component-icon>
-               </span>
-               <component-icon
-                  .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
-                  icon="${this.trailingIcon}"
-                  .clickable="${this.trailingIconClickable}"
-               ></component-icon>
-            </div>
-            <component-flex-container
-               .containerClazzes=""
-               .flexDirection="${FlexDirection.ROW}"
-               .wrap="${FlexWrap.WRAP}"
-               .flexJustifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
-               .alignItems="${AlignItems.STRETCH}"
-               .alignContent="${AlignContent.STRETCH}"
-               itemFlexBasisValue="auto"
-            >
-               <component-typography
-                  .typographyType="${TypographyType.OVERLINE}"
-                  messageType="${this.assistiveTextMessageType}"
-                  text="${this.assistiveText}"
-               ></component-typography>
-               <component-typography .typographyType="${TypographyType.OVERLINE}" text="${this.infoText}"></component-typography>
-            </component-flex-container>
-         </div>
-      `;
+                       ${this.inputfieldType == InputfieldType.COMBOBOX
+                          ? html`
+                               <select
+                                  id="selectElement"
+                                  ?required="${this.required}"
+                                  ?multiple="${this.multiple}"
+                                  name="${this.name}"
+                                  size="${this.size}"
+                                  @change="${(event: Event) => this.change(event)}"
+                                  @focus="${(event: Event) => this.focused(event)}"
+                                  @focusout="${(event: Event) => this.focusout(event)}"
+                               >
+                                  ${guard(
+                                     [this.options],
+                                     () => html`
+                                        ${repeat(
+                                           this.options,
+                                           (option) => option.value,
+                                           (option) =>
+                                              (option.key.length > 0 && this.multiple && this.value.indexOf(option.key) > -1) ||
+                                              BasicService.getUniqueInstance().isEqual(this.value, option.key)
+                                                 ? html`
+                                                      <option value="${option.key}" selected>${option.value}</option>
+                                                   `
+                                                 : html`
+                                                      <option value="${option.key}">${option.value}</option>
+                                                   `
+                                        )}
+                                     `
+                                  )}
+                               </select>
+                            `
+                          : this.inputfieldType == InputfieldType.TEXTAREA
+                          ? html`
+                               <textarea id="textareaElement" name="${this.name}" @keyup="${this.keyup}" rows="${this.size}">
+${this.value}</textarea
+                               >
+                            `
+                          : html`
+                               <input
+                                  id="inputElement"
+                                  name="${this.name}"
+                                  type="${this.inputfieldType}"
+                                  value="${this.prepareValue(this.value)}"
+                                  placeholder="${BasicService.getUniqueInstance().isBlank(this.placeholder) &&
+                                  !this.showLabelText()
+                                     ? this.label
+                                     : this.placeholder}"
+                                  size="${this.size}"
+                                  minlength="${this.minlength}"
+                                  maxlength="${this.maxlength}"
+                                  min="${this.min}"
+                                  max="${this.max}"
+                                  step="${this.step}"
+                                  ?required="${this.required}"
+                                  ?disabled="${this.disabled}"
+                                  ?checked="${this.checked}"
+                                  ?multiple="${this.multiple}"
+                                  @keyup="${this.keyup}"
+                                  @change="${(event: Event) => this.change(event)}"
+                                  @focus="${(event: Event) => this.focused(event)}"
+                                  @focusout="${(event: Event) => this.focusout(event)}"
+                               />
+                            `}</component-container
+                    ><component-container>
+                       <component-icon
+                          .rendered="${!this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
+                          @component-icon-click="${() => {
+                             this.switchChecked();
+                          }}"
+                          icon="toggle_off"
+                          .clickable="${true}"
+                       ></component-icon>
+                       <component-icon
+                          .rendered="${this.checked && this.inputfieldType == InputfieldType.CHECKBOX}"
+                          @component-icon-click="${() => {
+                             this.switchChecked();
+                          }}"
+                          icon="toggle_on"
+                          .clickable="${true}"
+                       ></component-icon>
+                    </component-container>
+                    <component-icon
+                       .rendered="${BasicService.getUniqueInstance().isNotBlank(this.trailingIcon)}"
+                       icon="${this.trailingIcon}"
+                       .clickable="${this.trailingIconClickable}"
+                    ></component-icon>
+                 </component-grid-container>
+              </component-border>
+
+              <component-flex-container
+                 .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
+                 itemFlexBasisValue="auto"
+                 flexJustifyContent="${FlexJustifyContent.SPACE_BETWEEN}"
+              >
+                 <component-typography
+                    .typographyType="${TypographyType.OVERLINE}"
+                    text="${this.assistiveText}"
+                 ></component-typography>
+                 <component-typography
+                    .typographyType="${TypographyType.OVERLINE}"
+                    text="${this.infoText}"
+                 ></component-typography>
+              </component-flex-container>
+           `
+         : html`
+              HIDDEN
+           `;
    }
 
    private switchChecked() {
-      this.checked = !this.checked;
+      this.checked = !Boolean(this.checked);
    }
 
    async keyup() {
@@ -336,13 +354,9 @@ ${this.value}</textarea
          if (this.inputElemet.validity.valid) {
             this.value = this.inputElemet.value;
             this.oldValue = this.inputElemet.value;
-            this.assistiveTextMessageType = ElementState.DEFAULT;
          }
-         if (this.inputElemet.validationMessage != this.assistiveText) {
-            this.assistiveText = this.inputElemet.validationMessage;
-            if (this.inputElemet.validationMessage.length > 0) {
-               this.assistiveTextMessageType = NotifyType.ERROR;
-            }
+         if (this.inputElemet.validationMessage != this.errorText) {
+            this.errorText = this.inputElemet.validationMessage;
          }
       }
    }
@@ -403,10 +417,7 @@ ${this.value}</textarea
       this.label = BasicService.getUniqueInstance().getValue(this.inputData.labelText, this.label);
       this.infoText = BasicService.getUniqueInstance().getValue(this.inputData.infoText, this.infoText);
       this.assistiveText = BasicService.getUniqueInstance().getValue(this.inputData.assistiveText, this.assistiveText);
-      this.assistiveTextMessageType = BasicService.getUniqueInstance().getValue(
-         this.inputData.assistiveTextMessageType,
-         this.assistiveTextMessageType
-      );
+      this.errorText = BasicService.getUniqueInstance().getValue(this.inputData.errorText, this.errorText);
       this.leadingIcon = BasicService.getUniqueInstance().getValue(this.inputData.leadingIcon, this.leadingIcon);
       this.trailingIcon = BasicService.getUniqueInstance().getValue(this.inputData.trailingIcon, this.trailingIcon);
    }

@@ -1,3 +1,6 @@
+:host, *{
+    box-sizing: border-box;
+}
 .BORDER {
     border-color: var(--app-color-border);
 }
@@ -26,11 +29,16 @@ slot {
 .LEFT {
     border-left-width: thin;
     border-left-style: solid;
-
 }
 
 .VERTICAL,
 .RIGHT {
     border-right-width: thin;
     border-right-style: solid;
+}
+
+.BOTTOM_SELECTED {
+    border-bottom-width: thick;
+    border-bottom-style: solid;
+    border-color: var(--app-color-primary);
 }

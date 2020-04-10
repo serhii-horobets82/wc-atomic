@@ -1,100 +1,66 @@
-import { customElement, html, TemplateResult } from 'lit-element';
-import { PageAbstract } from './page-abstract';
-import { InputfieldType } from '../inputfield/component';
-import { KeyValueData } from '..';
+import {customElement, html, property, TemplateResult} from 'lit-element';
+import {PageAbstract} from './page-abstract';
+import {InputfieldComponent, InputfieldType} from '../inputfield/component';
+import {FlexDirection, TypographyType} from '..';
+import {ContainerClazzValues, ItemClazzValues} from '../flex-container/component';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
-   getMainComponent(): TemplateResult {
-      return html`
-         <component-flex-container .containerClazzes="${['CONTAINER_50']}" itemFlexBasisValue="100%">
-            <component-search-bar placeholder="Suche nach allem"></component-search-bar>
+    @property()
+    type: string = InputfieldType.TEXT;
+
+    getMainComponent(): TemplateResult {
+        return html`
+         <component-flex-container
+            .containerClazzes="${[ContainerClazzValues.CONTAINER_50]}"
+            .itemClazzes="${[ItemClazzValues.KEYLINE_ALIGNMENT_HORIZONTAL, ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
+            itemFlexBasisValue="100%"
+         >
+            <component-typography .typographyType="${TypographyType.H1}" text="Textfields"></component-typography>
+            <component-typography
+               .typographyType="${TypographyType.BODY1}"
+               text="Text fields let users enter and edit text."
+            ></component-typography>
+            <component-typography .typographyType="${TypographyType.H4}" text="Interactive demo"></component-typography>
+            <component-typography
+               .typographyType="${TypographyType.BODY1}"
+               text="This demo lets you preview the text field component, its variations, and configuration options. Each tab displays a different type of text field."
+            ></component-typography>
+         </component-flex-container>
+
+         <component-flex-container
+            .containerClazzes="${[ContainerClazzValues.CONTAINER_50]}"
+            .itemClazzes="${[ItemClazzValues.KEYLINE_ALIGNMENT_BOTH, ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
+            itemFlexBasisValue="50%"
+         >
             <component-form>
-            
-             <component-inputfield
-                       name="username"
-                       .inputfieldType="${InputfieldType.EMAIL}"
-                       label="${this.getI18NValue('component_authentication_username')}"
-                       trailingIcon="account_circle"
-                       required="true"
-                    ></component-inputfield>
-                    <component-inputfield
-                       .inputfieldType="${InputfieldType.PASSWORD}"
-                       label="${this.getI18NValue('component_authentication_password')}"
-                       name="password"
-                       trailingIcon="vpn_key"
-                       required="true"
-                    ></component-inputfield>
-
-                    <component-inputfield
-                       .inputfieldType="${InputfieldType.CHECKBOX}"
-                       label="${this.getI18NValue('component_authentication_password')}"
-                       name="password"
-                       trailingIcon="vpn_key"
-                       required="true"
-                    ></component-inputfield>
-            
                <component-inputfield
-                  inputfieldType="${InputfieldType.COMBOBOX}"
-                  .required="${true}"
-                  label="Wähle ein Land aus"
-                  value="de"
-                  .options="${[
-                     <KeyValueData>{
-                        value: '-',
-                        key: ''
-                     },
-                     <KeyValueData>{
-                        value: 'Deutschland',
-                        key: 'de'
-                     },
-                     <KeyValueData>{ value: 'England', key: 'en' },
-                     <KeyValueData>{ value: 'Frankreich', key: 'fr' }
-                  ]}"
+                  .inputfieldType="${InputfieldType.COMBOBOX}"
+                  .options="${InputfieldComponent.enumToComboboxItems(InputfieldType)}"
+                  label="Typ"
+                  value="${this.type}"
+                  @component-inputfield-change="${(event: CustomEvent) => this.changeType(event)}"
                ></component-inputfield>
-
+            </component-form>
+            <component-form>
                <component-inputfield
-                  inputfieldType="${InputfieldType.COMBOBOX}"
-                  .required="${true}"
-                  label="Wähle mehrere Früchte aus"
-                  value="${['apfel', 'birne']}"
-                  .multiple="${true}"
-                  .options="${[
-                     <KeyValueData>{
-                        value: '-',
-                        key: ''
-                     },
-                     <KeyValueData>{
-                        value: 'Apfel',
-                        key: 'apfel'
-                     },
-                     <KeyValueData>{ value: 'Birne', key: 'birne' },
-                     <KeyValueData>{
-                        value: 'Mango',
-                        key: 'mango'
-                     },
-                     <KeyValueData>{ value: 'Kiwi', key: 'kiwi' },
-                     <KeyValueData>{ value: 'Traube', key: 'traube' }
-                  ]}"
+                  name="username"
+                  .inputfieldType="${this.type}"
+                  label="${this.type.toLocaleUpperCase()}"
+                  trailingIcon="account_circle"
+                  leadingIcon="account_circle"
+                  assistiveText="assistiveText"
+                  infoText="infoText"
+                  required="true"
                ></component-inputfield>
-               
-               
-               
             </component-form>
          </component-flex-container>
       `;
-   }
+    }
 
-   private createInputfield(type: InputfieldType, labelText: string, trailingIcon: string, leadingIcon: string) {
-      return html`
-         <component-inputfield
-            .inputfieldType="${type}"
-            label="${labelText}"
-            trailingIcon="${trailingIcon}"
-            leadingIcon="${leadingIcon}"
-            required="true"
-            size="5"
-         ></component-inputfield>
-      `;
-   }
+    private changeType(event: CustomEvent) {
+        let type: string = (<any>InputfieldType)[event.detail.outputData.value];
+        console.log('change type: {}', type);
+        this.type = type;
+    }
 }

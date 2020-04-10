@@ -26,7 +26,7 @@ export class ContainerComponent extends AbstractComponent<ContainerInputData, un
    render() {
       return this.rendered
          ? html`
-              <div style="${this.cssStyle}"><slot></slot></div>
+              <span style="${this.cssStyle}"><slot></slot></span>
            `
          : html``;
    }
@@ -40,7 +40,7 @@ export class ContainerComponent extends AbstractComponent<ContainerInputData, un
    }
 
    protected inputDataChanged() {
-       this.rendered  = this.inputData.rendered;
-       this.cssStyle = this.inputData.cssStyle;
+      this.rendered = this.inputData.rendered;
+      this.cssStyle = this.inputData.cssStyle;
    }
 }

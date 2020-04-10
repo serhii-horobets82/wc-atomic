@@ -1,0 +1,10 @@
+.HIDE,
+::slotted(.HIDE) {
+   display: none !important;
+   visibility: hidden !important;
+}
+
+.INVISIBLE,
+::slotted(.INVISIBLE) {
+   visibility: hidden !important;
+}

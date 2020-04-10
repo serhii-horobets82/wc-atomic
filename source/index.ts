@@ -20,6 +20,7 @@ import {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponen
 import {ChipInputData,ChipComponent} from './chip/component';
 import {ContainerInputData,ContainerComponent} from './container/component';
 import {RippleComponent} from './effect-ripple/component';
+import {VisibleType, VisibleEffect} from './effect-visible/component';
 import {HoverComponent} from './effect-hover/component';
 import {IconInputData,IconComponent} from './icon/component';
 import {IconGroupInputData,IconGroupComponent} from './icon-group/component';
@@ -85,6 +86,7 @@ export {KeyValueData,FormComponentOutputData,FormComponentInputData,FormComponen
 export {IconInputData,IconComponent} from './icon/component';
 export {ChipInputData,ChipComponent} from './chip/component';
 export {RippleComponent} from './effect-ripple/component';
+export {VisibleType, VisibleEffect} from './effect-visible/component';
 export {HoverComponent} from './effect-hover/component';
 export {IconGroupInputData,IconGroupComponent} from './icon-group/component';
 export {IconWithTextInputData,IconWithTextComponent} from './icon-with-text/component';
