@@ -1,10 +1,12 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
+import { TabInputData, VisibleType } from '../..';
+import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
 export class TabContentInputData extends AbstractInputData {
-   hide: boolean = true;
+   selected: boolean = true;
 }
 
 @customElement('component-tab-content')
@@ -20,12 +22,10 @@ export class TabContentComponent extends AbstractComponent<TabContentInputData, 
 
    render() {
       return html`
-         <div class="${this.selected ? '' : 'hide'}"><slot></slot></div>
+         <effect-visible visibleType="${this.selected ? VisibleType.NORMAL : VisibleType.HIDE}">
+            <slot></slot>
+         </effect-visible>
       `;
-   }
-
-   getDefaultInputData(): any {
-      return <TabContentInputData>{};
    }
 
    getOutputData(): undefined {
@@ -33,6 +33,7 @@ export class TabContentComponent extends AbstractComponent<TabContentInputData, 
    }
 
    protected inputDataChanged() {
-      this.selected = this.inputData.hide;
+      let defaultData: TabContentInputData = new TabContentInputData();
+      this.selected = BasicService.getUniqueInstance().getValue(this.inputData.selected, defaultData.selected);
    }
 }

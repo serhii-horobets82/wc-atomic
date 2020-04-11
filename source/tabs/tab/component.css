@@ -1,15 +1,3 @@
 .tab, ::slotted(.tab) {
     cursor: pointer;
-    line-height: var(--line-height-big);
-    height: var(--line-height-big);
-    background-color: var(--app-color-surface);
-    color: var(--app-color-on-surface);
-    padding-left: var(--space-medium);
-    padding-right: var(--space-medium);
-    float: left;
-}
-
-.selected, ::slotted(.selected) {
-
-
 }

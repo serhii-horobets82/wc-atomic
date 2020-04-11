@@ -1,14 +1,17 @@
 import { css, customElement, html, property, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../../abstract-component/component';
+import { BasicService, I18nService } from '@domoskanonos/frontend-basis';
+import { BorderType, TypographyType } from '../..';
 
 const componentCSS = require('./component.css');
 
 export class TabInputData extends AbstractInputData {
-   clazz?: string;
+   selected: boolean = false;
+   text: string = '';
 }
 
 @customElement('component-tab')
-export class TabComponent extends AbstractComponent<TabInputData, undefined> {
+export class TabComponent extends AbstractComponent<TabInputData, TabComponent> {
    static styles = css`
       ${unsafeCSS(componentCSS)}
    `;
@@ -21,26 +24,39 @@ export class TabComponent extends AbstractComponent<TabInputData, undefined> {
    selected: boolean = false;
 
    @property()
-   tabContentId: string = '';
+   text: string = '';
 
    render() {
       return html`
-         <div class="tab ${this.selected ? 'selected' : ''}" @click="${() => this.tabClicked()}"><slot></slot></div>
+         <span class="tab" @click="${() => this.tabClicked()}">
+            <component-border borderType="${this.selected ? BorderType.BOTTOM_SELECTED : BorderType.BOTTOM}">
+               ${BasicService.getUniqueInstance().isNotBlank(this.text)
+                  ? html`
+                       <component-typography
+                          .typographyType="${TypographyType.OVERLINE}"
+                          text="${this.text}"
+                       ></component-typography>
+                    `
+                  : html``}
+
+               <slot></slot>
+            </component-border>
+         </span>
       `;
    }
 
-   getDefaultInputData(): any {
-      return <TabInputData>{};
+   getOutputData(): TabComponent {
+      return this;
    }
 
-   getOutputData(): undefined {
-      return undefined;
+   protected inputDataChanged() {
+      let defaultData: TabInputData = new TabInputData();
+      this.selected = BasicService.getUniqueInstance().getValue(this.inputData.selected, defaultData.selected);
+      this.text = BasicService.getUniqueInstance().getValue(this.inputData.text, defaultData.text);
    }
-
-   protected inputDataChanged() {}
 
    private tabClicked(): void {
-      console.log('tab clicked, render content for querySelector: ' + this.tabContentId);
-      this.dispatchSimpleCustomEvent(TabComponent.EVENT_CLICK, this.tabContentId);
+      console.log('tab clicked.');
+      this.dispatchSimpleCustomEvent(TabComponent.EVENT_CLICK, this.getOutputData());
    }
 }

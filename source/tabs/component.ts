@@ -2,12 +2,10 @@ import { css, customElement, html, query, unsafeCSS } from 'lit-element';
 import { AbstractComponent, AbstractInputData } from '../abstract-component/component';
 import { TabContentComponent } from './tab-content/component';
 import { TabComponent } from './tab/component';
-import { BasicService } from '@domoskanonos/frontend-basis';
 
 const componentCSS = require('./component.css');
 
 export class TabsInputData extends AbstractInputData {
-   clazz?: string;
 }
 
 @customElement('component-tabs')
@@ -26,14 +24,14 @@ export class TabsComponent extends AbstractComponent<TabsInputData, undefined> {
 
    render() {
       return html`
-         <component-flex-container .containerClazzes="${["CONTAINER_100"]}" itemFlexBasisValue="100%">
-            <div class="tabHeader" @component-tab-click="${(event: CustomEvent) => this.tabClicked(event)}">
-               <slot id="tabSlot" name="tab"></slot>
-            </div>
-            <div class="tabContent">
-               <slot id="tabContentSlot" name="tabContent"></slot>
-            </div>
-         </component-flex-container>
+         <component-grid-container
+            @component-tab-click="${(event: CustomEvent) => this.tabClicked(event)}"
+            .gridTemplateRows="${['auto', 'auto']}"
+            .gridTemplateColumns="${['auto']}"
+         >
+            <slot id="tabSlot" name="tab"></slot>
+            <slot id="tabContentSlot" name="tabContent"></slot>
+         </component-grid-container>
       `;
    }
 
@@ -48,25 +46,39 @@ export class TabsComponent extends AbstractComponent<TabsInputData, undefined> {
    protected inputDataChanged() {}
 
    private tabClicked(event: CustomEvent): void {
-      let elementId: string = event.detail;
-      if (BasicService.getUniqueInstance().isBlank(elementId)) {
-         return;
-      }
-      [this.tabSlot, this.tabContentSlot].forEach((slot) => {
-         if (slot != null) {
-            let assignedElements: Element[] = slot.assignedElements();
-            for (let index = 0; index < assignedElements.length; index++) {
-               let element: Element = assignedElements[index];
-               if (element instanceof TabContentComponent || element instanceof TabComponent) {
-                  if (element.id == elementId) {
-                     element.selected = true;
-                  } else {
-                     element.selected = false;
-                  }
+      let clickedTab: TabComponent = event.detail;
+      let tabIndex: number = 0;
+      if (this.tabSlot != null) {
+         let assignedElements: Element[] = this.tabSlot.assignedElements();
+         for (let index = 0; index < assignedElements.length; index++) {
+            let element: Element = assignedElements[index];
+            if (element instanceof TabComponent) {
+               if (element == clickedTab) {
+                  tabIndex = index;
+                  element.selected = true;
+               } else {
+                  element.selected = false;
                }
             }
          }
-      });
-      (<TabComponent>event.target).selected = true;
+      }
+
+      console.log('tab selected, index = %s', tabIndex);
+
+      let tabContentIndex: number = 0;
+      if (this.tabContentSlot != null) {
+         let assignedElements: Element[] = this.tabContentSlot.assignedElements();
+         for (let index = 0; index < assignedElements.length; index++) {
+            let tabContentElement: Element = assignedElements[index];
+            if (tabContentElement instanceof TabContentComponent) {
+               if (tabIndex == tabContentIndex) {
+                  tabContentElement.selected = true;
+               } else {
+                  tabContentElement.selected = false;
+               }
+               tabContentIndex++;
+            }
+         }
+      }
    }
 }

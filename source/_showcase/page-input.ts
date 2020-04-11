@@ -3,6 +3,7 @@ import { PageAbstract } from './page-abstract';
 import { InputfieldComponent, InputfieldInputData, InputfieldType } from '../inputfield/component';
 import { FlexDirection, TypographyType } from '..';
 import { ContainerClazzValues, ItemClazzValues } from '../flex-container/component';
+import { I18nService } from '@domoskanonos/frontend-basis';
 
 @customElement('page-inputfield')
 export class PageInputComponent extends PageAbstract {
@@ -46,14 +47,21 @@ export class PageInputComponent extends PageAbstract {
             ></component-typography>
          </component-flex-container>
 
-         <component-flex-container
+         <component-tabs>
+            <component-tab
+               slot="tab"
+               .selected="${true}"
+               text="${I18nService.getUniqueInstance().getValue('demo')}"
+            ></component-tab>
+            <component-tab slot="tab" text="${I18nService.getUniqueInstance().getValue('source')}"></component-tab>
+            <component-tab-content slot="tabContent" .selected="${true}"><component-flex-container
             .containerClazzes="${[
-               ContainerClazzValues.CONTAINER_50,
-               ContainerClazzValues.TABLET_MAX_WIDTH,
-               ContainerClazzValues.SMARTPHONE_MAX_WIDTH,
-               ContainerClazzValues.SMARTPHONE_HORIZONTAL_PADDING,
-               ContainerClazzValues.TABLET_HORIZONTAL_PADDING
-            ]}"
+         ContainerClazzValues.CONTAINER_50,
+         ContainerClazzValues.TABLET_MAX_WIDTH,
+         ContainerClazzValues.SMARTPHONE_MAX_WIDTH,
+         ContainerClazzValues.SMARTPHONE_HORIZONTAL_PADDING,
+         ContainerClazzValues.TABLET_HORIZONTAL_PADDING
+      ]}"
             .itemClazzes="${[ItemClazzValues.KEYLINE_ALIGNMENT_BOTH, ItemClazzValues.KEYLINE_SIZE_MEDIUM]}"
             itemFlexBasisValue="50%"
          >
@@ -92,7 +100,11 @@ export class PageInputComponent extends PageAbstract {
                   required="true"
                ></component-inputfield>
             </component-form>
-         </component-flex-container>
+         </component-flex-container></component-tab-content>
+            <component-tab-content slot="tabContent"><component-code>spodkpofspdofj</component-code></component-tab-content>
+         </component-tabs>
+
+         
       `;
    }
 
