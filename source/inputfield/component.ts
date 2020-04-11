@@ -181,7 +181,7 @@ export class InputfieldComponent extends AbstractComponent<InputfieldInputData, 
 
    protected firstUpdated(_changedProperties: Map<PropertyKey, unknown>): void {
       super.firstUpdated(_changedProperties);
-      this.updateInfoText();
+      //this.updateInfoText();
    }
 
    render() {
@@ -325,10 +325,8 @@ ${this.value}</textarea
                     ></component-icon>
                  </component-grid-container>
               </component-border>
-              <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
-              <effect-visible
-                 visibleType="${this.inputfieldType != InputfieldType.CHECKBOX ? VisibleType.NORMAL : VisibleType.INVISIBLE}"
-              >
+              <effect-visible visibleType="${this.showAdditionalTextContainer() ? VisibleType.NORMAL : VisibleType.HIDE}">
+                 <component-spacer spacerSize="${SpacerSize.SMALL}" alignment="${SpacerAlignment.VERTICAL}"></component-spacer>
                  <component-flex-container
                     .containerClazzes="${[ContainerClazzValues.CONTAINER_100]}"
                     itemFlexBasisValue="auto"
@@ -364,10 +362,15 @@ ${this.value}</textarea
 
    private switchChecked() {
       this.checked = !Boolean(this.checked);
+      let inputDataChangedEvent: InputfieldDataChangeEvent = <InputfieldDataChangeEvent>{};
+      inputDataChangedEvent.type = this.inputfieldType;
+      inputDataChangedEvent.element = this.inputElemet;
+      inputDataChangedEvent.outputData = this.getOutputData();
+      this.dispatchSimpleCustomEvent(InputfieldComponent.EVENT_CHANGE, inputDataChangedEvent);
    }
 
    async keyup() {
-      this.updateInfoText();
+      //this.updateInfoText();
       this.dispatchSimpleCustomEvent(InputfieldComponent.EVENT_KEY_UP_CHANGE, this.getOutputData());
    }
 
@@ -432,10 +435,7 @@ ${this.value}</textarea
             outputValue = this.inputElemet.value;
             switch (this.inputfieldType) {
                case InputfieldType.CHECKBOX:
-                  outputValue =
-                     this.inputElemet != null
-                        ? BasicService.getUniqueInstance().getValue(this.inputElemet.checked, false)
-                        : false;
+                  outputValue = this.checked;
                   break;
                case InputfieldType.DATETIME_LOCAL:
                case InputfieldType.DATE:
@@ -603,5 +603,9 @@ ${this.value}</textarea
          options.push(<KeyValueData>{ key: value[keyFieldName], value: value[valueFieldName] });
       });
       return options;
+   }
+
+   private showAdditionalTextContainer() {
+      return this.inputfieldType != InputfieldType.CHECKBOX && (this.assistiveText.length > 0 || this.infoText.length > 0);
    }
 }

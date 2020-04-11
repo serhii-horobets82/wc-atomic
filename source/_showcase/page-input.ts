@@ -1,6 +1,6 @@
 import { customElement, html, property, TemplateResult } from 'lit-element';
 import { PageAbstract } from './page-abstract';
-import { InputfieldComponent, InputfieldType } from '../inputfield/component';
+import { InputfieldComponent, InputfieldInputData, InputfieldType } from '../inputfield/component';
 import { FlexDirection, TypographyType } from '..';
 import { ContainerClazzValues, ItemClazzValues } from '../flex-container/component';
 
@@ -8,6 +8,18 @@ import { ContainerClazzValues, ItemClazzValues } from '../flex-container/compone
 export class PageInputComponent extends PageAbstract {
    @property()
    type: string = InputfieldType.TEXT;
+
+   @property()
+   showLeadingIcon: boolean = true;
+
+   @property()
+   showTrailingIcon: boolean = true;
+
+   @property()
+   leadingIconClickable: boolean = false;
+
+   @property()
+   trailingIconClickable: boolean = false;
 
    getMainComponent(): TemplateResult {
       return html`
@@ -53,14 +65,28 @@ export class PageInputComponent extends PageAbstract {
                   value="${this.type}"
                   @component-inputfield-change="${(event: CustomEvent) => this.changeType(event)}"
                ></component-inputfield>
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.CHECKBOX}"
+                  label="Trailing Icon"
+                  assistiveText="Es besteht die Möglichkeit an jedes Eingabefeld rechts ein Icon zu plazieren."
+                  .checked="${this.showTrailingIcon}"
+                  @component-inputfield-change="${() => this.switchTrailingIcon()}"
+               ></component-inputfield>
+               <component-inputfield
+                  .inputfieldType="${InputfieldType.CHECKBOX}"
+                  label="Trailing Icon"
+                  assistiveText="Es besteht die Möglichkeit an jedes Eingabefeld links ein Icon zu plazieren."
+                  .checked="${this.showLeadingIcon}"
+                  @component-inputfield-change="${() => this.switchLeadingIcon()}"
+               ></component-inputfield>
             </component-form>
             <component-form>
                <component-inputfield
                   name="username"
                   .inputfieldType="${this.type}"
                   label="${this.type.toLocaleUpperCase()}"
-                  trailingIcon="account_circle"
-                  leadingIcon="account_circle"
+                  trailingIcon="${this.showTrailingIcon ? 'account_circle' : ''}"
+                  leadingIcon="${this.showLeadingIcon ? 'account_circle' : ''}"
                   assistiveText="assistiveText"
                   infoText="infoText"
                   required="true"
@@ -74,5 +100,12 @@ export class PageInputComponent extends PageAbstract {
       let type: string = (<any>InputfieldType)[event.detail.outputData.value];
       console.log('change type: {}', type);
       this.type = type;
+   }
+
+   private switchTrailingIcon() {
+      this.showTrailingIcon = !Boolean(this.showTrailingIcon);
+   }
+   private switchLeadingIcon() {
+      this.showLeadingIcon = !Boolean(this.showLeadingIcon);
    }
 }
