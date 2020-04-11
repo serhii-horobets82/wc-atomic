@@ -52,7 +52,13 @@ export class RippleComponent extends LitElement {
             this.rippleElement.style.width = (scrollWidthContainer * 2).toString().concat('px');
             this.rippleElement.style.height = (scrollHeightContainer * 2).toString().concat('px');
             this.rippleElement.style.left = (event.offsetX - scrollWidthContainer).toString().concat('px');
-            if(this.firstElementChild.nodeName != "BUTTON") { // Top style removal for button
+            if(this.firstElementChild.nodeName == "BUTTON") {
+              var buttonY = event.offsetY - this.offsetHeight - 10 // button size calc, For more accurate i added curser size
+              if (event.offsetY > 150){
+                var buttonY = (this.offsetHeight/2) * -1
+              }
+              this.rippleElement.style.top = buttonY.toString().concat('px');
+            } else {
               this.rippleElement.style.top = (event.clientY - scrollHeightContainer).toString().concat('px');
             }
             this.rippleElement.classList.add('animate');
