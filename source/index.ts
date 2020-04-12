@@ -1,6 +1,6 @@
 import {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 import {AccordionInputData,AccordionComponent} from './accordion/container/component';
-import {ColorScheme,ColorInputData,ColorEffect} from './effect-color/component';
+import {ColorScheme,ColorEffect} from './effect-color/component';
 import {BorderType,BorderInputData,BorderComponent} from './border/component';
 import {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 import {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
@@ -65,7 +65,7 @@ import {ComponentLoader} from './abstract/component-loader';
 import {ColumnEventData, IteratorComponentService} from "./services/iterator/iterator-component-service";
 export {AbstractInputData,AbstractComponent,AppData,AbstractApp} from './abstract-component/component';
 export {AccordionInputData,AccordionComponent} from './accordion/container/component';
-export {ColorScheme,ColorInputData,ColorEffect} from './effect-color/component';
+export {ColorScheme,ColorEffect} from './effect-color/component';
 export {BorderType,BorderInputData,BorderComponent} from './border/component';
 export {AccordionItemInputData,AccordionItemComponent} from './accordion/item/component';
 export {BreadcrumbInputData,BreadcrumbComponent} from './breadcrumb/component';
