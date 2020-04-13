@@ -19,6 +19,10 @@ Please see the example on: <br/>
          
          
          <component-button icon="menu">Hallo</component-button>
+
+         <component-button height="100px" width="200px">Big hallo</component-button>
+
+         <component-button height="200px" width="100px">Big hallo</component-button>
          
          
           <br/> <br/> <br/>

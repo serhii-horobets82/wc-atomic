@@ -13,6 +13,8 @@ export class ButtonInputData extends AbstractInputData {
    selected?: boolean;
    clickEventData?: any;
    icon?: IconInputData;
+   height: string = 'auto';
+   width: string = 'auto';
 }
 
 @customElement('component-button')
@@ -38,6 +40,12 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    href: string = '';
 
    @property()
+   height: string = 'auto';
+
+   @property()
+   width: string = 'auto';
+
+   @property()
    selected: boolean = false;
 
    @property()
@@ -57,7 +65,7 @@ export class ButtonComponent extends AbstractComponent<ButtonInputData, undefine
    render() {
       return html`
          <effect-ripple>
-            <button class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
+            <button style="height:${this.height};width:${this.width};" class=" ${this.selected ? 'selected' : ''} ${this.disabled ? 'disabled' : ''}" @click="${this.clicked}">
                <component-spacer spacerSize="${SpacerSize.MEDIUM}" spacerAlignment="${SpacerAlignment.HORIZONTAL}">
                   <component-icon
                      icon="${this.icon}"

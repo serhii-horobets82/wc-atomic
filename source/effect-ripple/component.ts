@@ -45,22 +45,14 @@ export class RippleComponent extends LitElement {
    private clicked(event: MouseEvent) {
       console.log('start ripple effect...');
       if (this.rippleElement != null) {
-         this.rippleElement.classList.add('ripple');
          if (this.rippleContainerElement != null) {
-            let scrollWidthContainer: number = this.rippleContainerElement.scrollWidth;
-            let scrollHeightContainer: number = this.rippleContainerElement.scrollHeight;
-            this.rippleElement.style.width = (scrollWidthContainer * 2).toString().concat('px');
-            this.rippleElement.style.height = (scrollHeightContainer * 2).toString().concat('px');
-            this.rippleElement.style.left = (event.offsetX - scrollWidthContainer).toString().concat('px');
-            if(this.firstElementChild!=null && this.firstElementChild.nodeName == "BUTTON") {
-              var buttonY = event.offsetY - this.offsetHeight - 10 // button size calc, For more accurate i added curser size
-              if (event.offsetY > 150){
-                var buttonY = (this.offsetHeight/2) * -1
-              }
-              this.rippleElement.style.top = buttonY.toString().concat('px');
-            } else {
-              this.rippleElement.style.top = (event.clientY - scrollHeightContainer).toString().concat('px');
-            }
+            const { scrollWidth: scrollWidthContainer, scrollHeight: scrollHeightContainer } = this.rippleContainerElement;
+            const ripleSize = Math.max(scrollWidthContainer, scrollHeightContainer);
+            const minSize = Math.min(scrollWidthContainer, scrollHeightContainer);
+            // ripple must be a square with side of max dimention size of element
+            this.rippleElement.style.width = this.rippleElement.style.height = `${ripleSize}px`;
+            this.rippleElement.style.left = `${event.offsetX - minSize}px`;
+            this.rippleElement.style.top = `${event.offsetY - minSize}px`;
             this.rippleElement.classList.add('animate');
          }
       }
